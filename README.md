@@ -9,8 +9,10 @@
 如有体验上的问题、分类错误欢迎提[issues](https://github.com/xjh22222228/nav/issues), 感谢！
 
 
+[github仓库](https://github.com/xjh22222228/nav) 欢迎star
 
-### 预览
+
+## 预览
 [点击这里预览](https://xjh22222228.github.io/nav/index.html)
 
 
@@ -19,10 +21,10 @@
 
 
 
+----
 
 
-
-### 优势
+## 优势
 - 支持描点定位
 - 可选中/英文站点
 - 简洁可观、定位清晰、响应式
@@ -30,9 +32,9 @@
 
 
 
-### 贡献导航/友情链接
-[点此贡献](https://github.com/xjh22222228/nav/issues)
+----
 
+## 贡献导航
 提交格式
 ```
 icon: 'http://favicon.png',
@@ -43,8 +45,18 @@ link: 'https://github.com/xjh22222228/nav'
 
 
 
+感谢为发现导航贡献过的每一个人！ [我要贡献](https://github.com/xjh22222228/nav/issues) 
+
+<a href="https://github.com/YutHelloWorld">
+    <img src="https://avatars1.githubusercontent.com/u/20860159?s=460&v=4" width="30px" height="30px" />
+</a>
+
+
+
 
 ----
+
+👍👍👍
 
 
 ### License
