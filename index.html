@@ -41,8 +41,12 @@
 	<link rel="icon" href="./favicon.png" type="image/x-icon">
 	<link rel ="apple-touch-icon" href="./favicon.png">
 	<link rel="stylesheet" href="./css/style.css">
+	<script src="https://cdn.bootcss.com/angular.js/1.6.9/angular.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://hm.baidu.com/hm.js?15a99cb1c1eea969bcc1da33d0d8763b"></script>
 	<script>
 		(function(){try {var b = navigator.appName,v = navigator.appVersion,vp = v.split(";"),t_v = vp[1].replace(/[ ]/g, ""),tvt = t_v.substr(4);if(b == "Microsoft Internet Explorer" && tvt <= 9){alert('当前浏览器存在安全隐患');}}catch(e){}})();
+		!function(a,b,c){a.ripple=function(d,e){var f=this,g=f.log=function(){f.defaults.debug&&console&&console.log&&console.log.apply(console,arguments)};f.selector=d,f.defaults={debug:!1,on:"mousedown",opacity:.4,color:"auto",multi:!1,duration:.7,rate:function(a){return a},easing:"linear"},f.defaults=a.extend({},f.defaults,e);var h=function(b){var d,e,h=a(this);if(h.addClass("has-ripple"),e=a.extend({},f.defaults,h.data()),e.multi||!e.multi&&0===h.find(".ripple").length){if(d=a("<span></span>").addClass("ripple"),d.appendTo(h),g("Create: Ripple"),!d.height()&&!d.width()){var i=c.max(h.outerWidth(),h.outerHeight());d.css({height:i,width:i}),g("Set: Ripple size")}if(e.rate&&"function"==typeof e.rate){var j=c.round(d.width()/e.duration),k=e.rate(j),l=d.width()/k;e.duration.toFixed(2)!==l.toFixed(2)&&(g("Update: Ripple Duration",{from:e.duration,to:l}),e.duration=l)}var m="auto"==e.color?h.css("color"):e.color,n={animationDuration:e.duration.toString()+"s",animationTimingFunction:e.easing,background:m,opacity:e.opacity};g("Set: Ripple CSS",n),d.css(n)}e.multi||(g("Set: Ripple Element"),d=h.find(".ripple")),g("Destroy: Ripple Animation"),d.removeClass("ripple-animate");var o=b.pageX-h.offset().left-d.width()/2,p=b.pageY-h.offset().top-d.height()/2;e.multi&&(g("Set: Ripple animationend event"),d.one("animationend webkitAnimationEnd oanimationend MSAnimationEnd",function(){g("Note: Ripple animation ended"),g("Destroy: Ripple"),a(this).remove()})),g("Set: Ripple location"),g("Set: Ripple animation"),d.css({top:p+"px",left:o+"px"}).addClass("ripple-animate")};a(b).on(f.defaults.on,f.selector,h)}}(jQuery,document,Math);$.ripple.version = "1.2.1";
 	</script>
 </head>
 <body> 
@@ -110,9 +114,6 @@
 		</footer>
 	</section>
 </div>
-<script src="https://cdn.bootcss.com/angular.js/1.6.9/angular.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://hm.baidu.com/hm.js?15a99cb1c1eea969bcc1da33d0d8763b"></script>
 <script>
 document.body.addEventListener('touchstart', function(){});
 var app = angular.module('app', []);
@@ -377,9 +378,19 @@ app.controller('controller', function ($scope) {
 				},
 				{
 					icon: './icon/icon-1x002.svg',
-					name: 'React中文',
-					desc: 'react中文论坛',
+					name: 'React社区',
+					desc: 'React论坛社区',
 					link: 'http://react-china.org/',
+					language: [
+						'https://discuss.reactjs.org/',
+						'http://react-china.org/'
+					]
+				},
+				{
+					icon: './icon/icon-2x016.png',
+					name: '众成翻译',
+					desc: '中国最好的技术翻译社区，最懂译者的翻译平台，奇虎360最大前端团队“奇舞团”出品',
+					link: 'https://zcfy.cc/',
 				}
 			]
 		},
@@ -582,6 +593,16 @@ app.controller('controller', function ($scope) {
 					name: 'CODEIF',
 					desc: '变量命名神器',
 					link: 'https://unbug.github.io/codelf/',
+				},
+				{
+					icon: './icon/icon-4x024.svg',
+					name: 'Lodash',
+					desc: 'Lodash是一个一致性、模块化、高性能的 JavaScript 实用工具库',
+					link: 'https://www.lodashjs.com/',
+					language: [
+						'https://lodash.com/',
+						'https://www.lodashjs.com/'
+					]
 				}
 			]
 		},
@@ -710,11 +731,14 @@ app.controller('controller', function ($scope) {
 		});
 		$(window).on('scroll', function () {
 			var scrollTop = $(window).scrollTop();
-			if( scrollTop > 1000 ) {
+			if( scrollTop > 300 ) {
 				elTop.fadeIn();
 			} else {
 				elTop.fadeOut();
 			}
+		});
+		$.ripple('.ng-binding', {
+			multi: true
 		});
 	});
 });

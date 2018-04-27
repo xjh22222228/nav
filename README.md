@@ -47,7 +47,7 @@ link: 'https://github.com/xjh22222228/nav'
 
 感谢为发现导航贡献过的每一个人！ [我要贡献](https://github.com/xjh22222228/nav/issues) 
 
-<a href="https://github.com/YutHelloWorld" target="_blank">
+<a href="https://github.com/YutHelloWorld">
     <img src="https://avatars1.githubusercontent.com/u/20860159?s=460&v=4" width="30px" height="30px" />
 </a>
 
@@ -59,7 +59,7 @@ link: 'https://github.com/xjh22222228/nav'
 👍👍👍
 
 
-### License
+## License
 [The MIT License](https://opensource.org/licenses/MIT)
 
 
