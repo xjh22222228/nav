@@ -204,6 +204,10 @@ img {
         margin-top: 10px;
         text-align: center;
 
+        a {
+            display: inline-block;
+        }
+
         img {
             width: 50px;
             height: 50px;
@@ -246,7 +250,7 @@ img {
 
         .block {
             margin: 15px 0;
-            padding: 20px 20px 10px 30px;
+            padding: 20px 0 10px 0;
             background: #fff;
             box-shadow: 0 0 5px #ccc;
         }
@@ -254,11 +258,13 @@ img {
         .title {
             color: #000;
             font-size: 18px;
+            padding: 0 0 10px 30px;
+            border-bottom: 1px dotted #eee;
         }
     }
 
     .main-nav {
-        margin: 20px 0 0 0;
+        margin: 20px 20px 0 30px;
 
         .nav-ul {
             @include display(flex);
@@ -305,12 +311,14 @@ img {
             .mark {
                 z-index: 28;
                 position: absolute;
-                top: -1000px;
+                bottom: -50px;
                 left: 0;
                 width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, .3);
+                height: 50px;
+                background: #fff;
+                cursor: auto;
                 @include center;
+                @include prefix(transition, .1s linear);
 
                 .button-box {
                     width: 100%;
@@ -326,7 +334,7 @@ img {
                     width: 30%;
                     background: #2db7f5;
                     color: #fff;
-                    border-radius: 5px;
+                    border-radius: 3px;
                     overflow: hidden;
 
                     &:nth-child(1) {
@@ -368,10 +376,14 @@ img {
         background: #fff;
 
         .logo {
-            width: 35px;
-            height: 35px;
-            margin-top: 4px;
-            pointer-events: none;
+            display: inline-block;
+
+            img {
+                width: 35px;
+                height: 35px;
+                margin-top: 4px;
+                pointer-events: none;
+            }
         }
     }
 
@@ -472,16 +484,25 @@ img {
 
         .main {
             margin: 10px;
+
+            .block {
+                padding: 20px 0 10px 0;
+            }
+
+            .title {
+                padding-left: 20px;
+            }
         }
     }
 
     .main-nav {
+        margin: 20px 5px 0 20px !important;
 
         .nav-ul li {
             width: calc(50% - 15px);
 
             &:not(:nth-child(even)) {
-                margin: 0 30px 30px 0;
+                margin: 0 15px 30px 0;
             }
 
             &:not(:nth-child(odd)) {
@@ -499,10 +520,9 @@ img {
             li {
 
                 &:hover {
-                    // @include prefix(transform, rotate(5deg));
 
                     .mark {
-                        top: 0;
+                        bottom: 0;
                     }
                 }
             }

@@ -2,14 +2,14 @@
 > 发现导航 - 新世界
 
 
-做这个导航网站的初衷就是为了把一些实用的网站分享出去，让大家可以提高工作效率。
+做这个导航网站的初衷就是为了把一些实用的网站分享出去，让大家可以提高工作效率和学习更多的知识。
 
 偏前端的比较多，后续会慢慢的增加其他分类，
 
 如有体验上的问题、分类错误欢迎提[issues](https://github.com/xjh22222228/nav/issues), 感谢！
 
 
-[github仓库](https://github.com/xjh22222228/nav) 欢迎star
+[github仓库](https://github.com/xjh22222228/nav)
 
 
 ## 预览
@@ -17,7 +17,7 @@
 
 
 
-![演示](https://raw.githubusercontent.com/xjh22222228/nav/master/images/demo.gif)
+![demo](https://raw.githubusercontent.com/xjh22222228/nav/master/images/demo.gif)
 
 
 
@@ -25,7 +25,7 @@
 
 
 ## 优势
-- 支持描点定位
+- 支持描点、滚动定位
 - 可选中/英文站点
 - 简洁可观、定位清晰、响应式
 - 开源、维护开发成本低
@@ -52,6 +52,20 @@ link: 'https://github.com/xjh22222228/nav'
 </a>
 
 
+----
+
+
+## Build Setup
+``` bash
+# install dependencies
+$ npm install
+
+# compiler index.js
+$ npm run dev
+
+# open index.html
+```
+
 
 
 ----
@@ -60,6 +74,6 @@ link: 'https://github.com/xjh22222228/nav'
 
 
 ## License
-[The MIT License](https://opensource.org/licenses/MIT)
+[MIT](https://opensource.org/licenses/MIT)
 
 

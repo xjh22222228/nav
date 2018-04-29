@@ -1,14 +1,21 @@
 {
   "name": "nav",
-  "version": "1.0.0",
-  "description": "导航站",
-  "main": "main.js",
+  "version": "1.1.0",
+  "description": "爱分享，爱创造，一个资源难寻的导航网站",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack -w",
+    "dev": "npm run start"
   },
   "author": "xiejiahe",
   "license": "MIT",
   "devDependencies": {
-    "@types/axios": "^0.14.0"
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15"
+  },
+  "dependencies": {
+    "angular": "^1.6.9",
+    "jquery": "^3.3.1"
   }
 }
