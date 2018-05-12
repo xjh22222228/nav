@@ -159,6 +159,18 @@ module.exports = {
                 'https://lodash.com/',
                 'https://www.lodashjs.com/'
             ]
-        }
+        },
+        {
+            icon: './icon/page4/icon-4x025.png',
+            name: '云转换',
+            desc: '在线免费转换视频,音频,YouTube视频到文字,视频到文字,音频到文字,语音转换成文字',
+            link: 'http://www.360converter.com/',
+        },
+        {
+            icon: './icon/default.png',
+            name: 'CSS3 UI Lib',
+            desc: 'CSS动画集成、在线调试阴影',
+            link: 'http://css3lib.alloyteam.com/#panel/demo1',
+        },
     ]
 }

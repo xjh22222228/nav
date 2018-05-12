@@ -168,5 +168,11 @@ module.exports = {
 				'http://www.koacn.com/'
 			]
 		},
+		{
+			icon: './icon/page1/icon-1x017.svg',
+			name: 'Mocha',
+			desc: 'Mocha是JavaScript的一种单元测试框架，既可以在浏览器环境下运行，也可以在Node.js环境下运行',
+			link: 'https://mochajs.org/',
+		},
 	]
 }

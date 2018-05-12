@@ -1,6 +1,8 @@
 {
   "name": "nav",
-  "version": "1.1.0",
+  "version": "1.1.1",
+  "author": "xiejiahe",
+  "link": "https://github.com/xjh22222228/nav",
   "description": "爱分享，爱创造，一个资源难寻的导航网站",
   "main": "index.js",
   "scripts": {
