@@ -107,6 +107,12 @@ module.exports = {
             name: '众成翻译',
             desc: '中国最好的技术翻译社区，最懂译者的翻译平台，奇虎360最大前端团队“奇舞团”出品',
             link: 'https://zcfy.cc/',
-        }
+        },
+        {
+          icon: './icon/page2/icon-2x017.png',
+          name: 'MDN web docs',
+          desc: 'Mozilla 开发者社区，是一个完整的学习平台，你可以在这里深入学习Web技术以及能够驱动Web的软件',
+          link: 'https://developer.mozilla.org/zh-CN/',
+      },
     ]
 }

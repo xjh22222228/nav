@@ -14,7 +14,7 @@ import page99 from './data/page99'
 window.addEventListener('load', () => {
     document.body.addEventListener('touchstart', function(){});
 });
-var app = angular.module('app', []);
+var app = angular.module('xiejiahe', []);
 app.controller('controller', ['$scope', function ($scope) {
 	$scope.open = false;
 	$scope.nav = [
