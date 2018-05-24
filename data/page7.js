@@ -35,8 +35,14 @@ module.exports = {
         {
             icon: './icon/default.png',
             name: 'XSS挑战',
-            desc: '为响应国家号召，建设互联网安全强国，打造全民网络安全尖兵，免费给白帽子提供了渗透测试专用的XSS平台。',
+            desc: '为响应国家号召，建设互联网安全强国，打造全民网络安全尖兵，免费给白帽子提供了渗透测试专用的XSS平台',
             link: 'http://47.94.13.75/test/',
         },
+        {
+          icon: './icon/page7/icon-7x006.png',
+          name: '安全周',
+          desc: '关注安全资讯 专注资源共享',
+          link: 'https://www.secz.org/',
+      },
     ]
 }

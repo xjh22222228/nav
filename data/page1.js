@@ -173,6 +173,12 @@ module.exports = {
 			name: 'Mocha',
 			desc: 'Mocha是JavaScript的一种单元测试框架，既可以在浏览器环境下运行，也可以在Node.js环境下运行',
 			link: 'https://mochajs.org/',
+    },
+    {
+			icon: './icon/page1/icon-1x018.png',
+			name: 'Electron',
+			desc: '使用 JavaScript, HTML 和 CSS 构建跨平台的桌面应用',
+			link: 'https://electronjs.org/',
 		},
 	]
 }

@@ -172,5 +172,11 @@ module.exports = {
             desc: 'CSS动画集成、在线调试阴影',
             link: 'http://css3lib.alloyteam.com/#panel/demo1',
         },
+        {
+          icon: './icon/page4/icon-4x026.png',
+          name: 'Picdiet',
+          desc: '独特且强悍的JavaScript算法，能极速压缩80%的图片大小，而不损害其质量',
+          link: 'https://www.picdiet.com/zh-cn',
+      },
     ]
 }
