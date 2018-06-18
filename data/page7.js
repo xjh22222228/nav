@@ -43,6 +43,12 @@ module.exports = {
           name: '安全周',
           desc: '关注安全资讯 专注资源共享',
           link: 'https://www.secz.org/',
-      },
+        },
+        {
+          icon: './icon/page7/icon-7x007.png',
+          name: '全球被黑站点统计系统',
+          desc: '主要通过网络搜集国内被黑网站信息，统计分析数据，为部署安全型网络提供强有力的依据...',
+          link: 'http://www.hacked.com.cn/',
+        },
     ]
 }

@@ -2,6 +2,7 @@
 node_modules/
 dist/
 gh-pages/
+scss/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -14,5 +15,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 
-scss/
+
 *.svn
