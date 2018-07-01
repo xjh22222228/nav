@@ -179,6 +179,16 @@ module.exports = {
 			name: 'Electron',
 			desc: '使用 JavaScript, HTML 和 CSS 构建跨平台的桌面应用',
 			link: 'https://electronjs.org/',
+    },
+    {
+			icon: './icon/page1/icon-1x019.png',
+			name: 'React Native',
+			desc: '目前最火的跨平台移动应用开发框架',
+			link: 'https://facebook.github.io/react-native/docs/getting-started.html',
+			language: [
+				'https://facebook.github.io/react-native/docs/getting-started.html',
+				'https://reactnative.cn/docs/0.51/tutorial.html'
+			]
 		},
 	]
 }
