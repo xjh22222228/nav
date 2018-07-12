@@ -177,6 +177,12 @@ module.exports = {
           name: 'Picdiet',
           desc: '独特且强悍的JavaScript算法，能极速压缩80%的图片大小，而不损害其质量',
           link: 'https://www.picdiet.com/zh-cn',
-      },
+        },
+        {
+          icon: './icon/page4/icon-4x027.png',
+          name: 'easyicon',
+          desc: '在线图标转换ico、icns',
+          link: 'https://www.easyicon.net/covert/',
+        },
     ]
 }
