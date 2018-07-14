@@ -189,6 +189,12 @@ module.exports = {
 				'https://facebook.github.io/react-native/docs/getting-started.html',
 				'https://reactnative.cn/docs/0.51/tutorial.html'
 			]
+    },
+    {
+			icon: './icon/page1/icon-1x020.png',
+			name: 'Animista',
+			desc: '在线生成CSS动画',
+			link: 'http://animista.net/play/background/ken-burns',
 		},
 	]
 }

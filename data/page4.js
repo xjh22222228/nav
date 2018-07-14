@@ -184,5 +184,29 @@ module.exports = {
           desc: '在线图标转换ico、icns',
           link: 'https://www.easyicon.net/covert/',
         },
+        {
+          icon: './icon/page4/icon-4x028.png',
+          name: 'Smallpdf',
+          desc: '压缩pdf、各种文件格式转换pdf',
+          link: 'https://smallpdf.com/',
+        },
+        {
+          icon: './icon/page4/icon-4x029.png',
+          name: '幕布',
+          desc: '极简大纲笔记 | 一键生成思维导图',
+          link: 'https://mubu.com/',
+        },
+        {
+          icon: './icon/page4/icon-4x030.svg',
+          name: '声享',
+          desc: '在线制作 PPT，让分享更有价值',
+          link: 'https://ppt.baomitu.com/',
+        },
+        {
+          icon: './icon/page4/icon-4x031.png',
+          name: '墨刀',
+          desc: '原型设计工具，web原型设计工具，app原型设计工具',
+          link: 'https://modao.cc/features',
+        },
     ]
 }
