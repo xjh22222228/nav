@@ -13,6 +13,12 @@ module.exports = {
             name: 'CNZZ',
             desc: 'CNZZ数据专家是全球最大的中文网站统计分析平台，为各类网站提供免费、安全、稳定',
             link: 'http://www.cnzz.com/',
-        }
+        },
+        {
+          icon: './icon/page6/icon-6x003.svg',
+          name: '百度搜索资源平台',
+          desc: '百度搜索资源平台_让网站更具价值',
+          link: 'https://ziyuan.baidu.com/',
+      },
     ]
 }
