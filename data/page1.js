@@ -197,13 +197,23 @@ module.exports = {
 			link: 'http://animista.net/play/background/ken-burns',
     },
     {
-      icon: './icon/page4/icon-1x021.svg',
+      icon: './icon/page1/icon-1x021.svg',
       name: 'Lodash',
       desc: 'Lodash是一个一致性、模块化、高性能的 JavaScript 实用工具库',
       link: 'https://www.lodashjs.com/',
       language: [
           'https://lodash.com/',
           'https://www.lodashjs.com/'
+      ]
+    },
+    {
+			icon: './icon/page1/icon-1x022.png',
+			name: 'Puppeteer',
+			desc: 'Puppeteer是一个Node库，它提供了一个高级API来通过DevTools协议控制Chromium或Chrome。',
+			link: 'https://pptr.dev/',
+      language: [
+          'https://pptr.dev/',
+          'https://zhaoqize.github.io/puppeteer-api-zh_CN/'
       ]
     },
 	]
