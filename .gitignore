@@ -4,6 +4,7 @@ dist/
 gh-pages/
 scss/
 data/
+icon/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
