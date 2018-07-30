@@ -29,18 +29,8 @@
 
 ----
 
-## 贡献导航
-提交格式
-```
-icon: 'http://favicon.png',
-name: '发现导航',
-desc: '爱分享，爱创造，一个资源难寻的导航网站',
-link: 'https://github.com/xjh22222228/nav'
-```
-
-
-
-感谢为发现导航贡献过的每一个人！ [我要贡献](https://github.com/xjh22222228/nav/issues) 
+## 贡献 / Contribution
+Thank you for your [contribution](https://github.com/xjh22222228/awesome-web-editor/issues), men.
 
 <a href="https://github.com/YutHelloWorld">
   <img src="https://avatars1.githubusercontent.com/u/20860159?s=460&v=4" width="30px" height="30px" />
