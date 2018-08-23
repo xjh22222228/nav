@@ -45,7 +45,7 @@
 		(function(){try {var b = navigator.appName,v = navigator.appVersion,vp = v.split(";"),t_v = vp[1].replace(/[ ]/g, ""),tvt = t_v.substr(4);if(b == "Microsoft Internet Explorer" && tvt <= 9){alert('当前浏览器存在安全隐患');}}catch(e){}})();
 	</script>
 </head>
-<body data-latest-update-time="2018-07-29"> 
+<body> 
 <div id="xiejiahe" ng-controller="controller" ng-cloak="https://github.com/xjh22222228">
 	<img src="./icon/top.svg" alt="top" class="scroll-top">
 	<aside class="sidebar user-select-none">
@@ -91,7 +91,7 @@
 								</div>
 								<div class="desc">{{ nav.desc }}</div>
 							</a>
-							<div class="mark user-select-none" ng-show="nav.language.length >= 2">
+							<div class="mark user-select-none" ng-if="nav.language && nav.language.length >= 2">
 								<div class="button-box">
 									<a ng-attr-href="{{ nav.language[0] }}" class="en" target="_blank">英文</a>
 									<a ng-attr-href="{{ nav.language[1] }}" class="zh" target="_blank">中文</a>

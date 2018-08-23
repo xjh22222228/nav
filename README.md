@@ -1,17 +1,12 @@
 
 
-作者正在开发第2版，敬请期待！
-
-
-
-
 
 ## 预览
-[点击这里预览](https://xjh22222228.github.io/nav/index.html)
+[在线预览](https://xjh22222228.github.io/nav/index.html)
 
 
 
-![demo](https://raw.githubusercontent.com/xjh22222228/nav/master/images/demo.gif)
+![preview](https://raw.githubusercontent.com/xjh22222228/nav/master/media/v1.gif)
 
 
 
@@ -30,7 +25,7 @@
 ----
 
 ## 贡献 / Contribution
-Thank you for your [contribution](https://github.com/xjh22222228/awesome-web-editor/issues), men.
+Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), men.
 
 <a href="https://github.com/YutHelloWorld">
   <img src="https://avatars1.githubusercontent.com/u/20860159?s=460&v=4" width="30px" height="30px" />
@@ -53,11 +48,10 @@ $ npm start
 
 
 
-----
-
-
 
 👍👍👍
+
+----
 
 
 ## License
