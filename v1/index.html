@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+              _.._        ,+++++++++++++++++++++++++++++++++++++++++++++++++.
+            ,'      `.    ( We want you! https://github.com/xjh22222228/nav )
+          /  __) __` \    `-,+++++++++++++++++++++++++++++++++++++++++++++++'
+          (  (`-`(-')  ) _______________________.-'
+          /)  \  = /  (
+        /'    |++' .  \
+        (  ,+++|  `-.)__`
+        )(  `-.,++'   _`-.
+        '/,'          (  Uu",
+        (_       ,    `/,-' )
+        `.__,  : `-'/  /`++'
+          |     `++'  |
+          `   `-._   /
+            \        (
+            /\ .      \. 
+          / |` \     ,-\
+          /  \| .)   /   \
+        ( ,'|\    ,'     :
+        | \,`.`++"/      }
+        `,'    \  |,'    /
+        / "-._   `-/      |
+        "-.   "-.,'|     ;
+      /        _/["+++'""]
+      :        /  |"-     '
+      '           |      /
+                  `      |
+-->
+<html ng-app="xiejiahe">
+<head>
+	<title>发现导航 - 新世界</title>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	<meta name="author" content="https://github.com/xjh22222228">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta name="description" content="爱分享，爱创造，一个资源难寻的导航网站，应有尽有的干货都在这里。">
+	<meta name="keywords" content="导航,前端资源,社区站点,设计师,实用工具,学习资源,运营,网络安全">
+	<link rel="icon" href="./favicon.png" type="image/x-icon">
+	<link rel ="apple-touch-icon" href="./favicon.png">
+	<link rel="stylesheet" href="./css/style.css">
+	<script>
+		(function(){try {var b = navigator.appName,v = navigator.appVersion,vp = v.split(";"),t_v = vp[1].replace(/[ ]/g, ""),tvt = t_v.substr(4);if(b == "Microsoft Internet Explorer" && tvt <= 9){alert('当前浏览器存在安全隐患');}}catch(e){}})();
+	</script>
+</head>
+<body> 
+<div id="xiejiahe" ng-controller="controller" ng-cloak="https://github.com/xjh22222228">
+	<img src="./icon/top.svg" alt="top" class="scroll-top">
+	<aside class="sidebar user-select-none">
+		<div class="logo">
+			<a href="https://github.com/xjh22222228/nav" target="_blank">
+				<img src="./favicon.png" alt="logo" class="logo">
+			</a>
+		</div>
+		<nav class="nav">
+			<div class="nav-title" ng-repeat="item in nav track by $index">
+				<a ng-attr-href="{{ item.hash }}" ng-class="{active: item.hash == hash}" ng-click="hashButton(item.hash)">{{ item.title }}</a>
+			</div>
+		</nav>
+	</aside>
+	<section class="container">
+		<header class="header user-select-none">
+			<div class="header-top">
+				<a href="https://github.com/xjh22222228/nav" target="_blank" class="logo">
+					<img src="./favicon.png" alt="logo">
+				</a>
+				<div class="open" ng-class="{active: open}" ng-click="openButton()">
+					<i></i>
+					<i></i>
+					<i></i>
+				</div>
+			</div>
+			<nav class="nav-open">
+				<div class="nav-title" ng-repeat="item in nav track by $index">
+					<a ng-attr-href="{{ item.hash }}" ng-class="{active: item.hash == hash}" ng-click="hashButton(item.hash)">{{ item.title }}</a>
+				</div>
+			</nav>
+		</header>
+		<main class="main">
+			<div class="block" ng-repeat="item in nav track by $index" ng-attr-id="{{ item.hash.slice(1) }}">
+				<div class="title">{{ item.title }}</div>
+				<nav class="main-nav">
+					<ul class="nav-ul">
+						<li ng-repeat="nav in item.nav track by $index">
+							<a ng-attr-href="{{ nav.link }}" target="_blank">
+								<div class="top">
+									<img ng-attr-src="{{ nav.icon }}" alt="icon" class="icon">
+									<em class="name" ng-attr-title="{{ nav.name }}">{{ nav.name }}</em>
+								</div>
+								<div class="desc">{{ nav.desc }}</div>
+							</a>
+							<div class="mark user-select-none" ng-if="nav.language && nav.language.length >= 2">
+								<div class="button-box">
+									<a ng-attr-href="{{ nav.language[0] }}" class="en" target="_blank">英文</a>
+									<a ng-attr-href="{{ nav.language[1] }}" class="zh" target="_blank">中文</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</main>
+		<footer class="footer">
+			<div>
+				<span>爱分享，爱创造，这里是发现导航 - 新世界</span>
+			</div>
+			<div>
+				<a href="https://github.com/xjh22222228/nav" target="_blank">本站仓库</a>
+				<em>|</em>
+        <a href="https://github.com/xjh22222228/nav/issues" target="_blank">贡献导航</a>
+        <a style="line-height: 40px;margin-left: 5px;" href="https://github.com/xjh22222228/nav" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="90" height="20"><style>a #llink:hover{fill:url(#b);stroke:#ccc}a #rlink:hover{fill:#4183c4}</style><linearGradient id="a" x2="0" y2="100%"><stop offset="0" stop-color="#fcfcfc" stop-opacity="0"/><stop offset="1" stop-opacity=".1"/></linearGradient><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#ccc" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><g stroke="#d5d5d5"><rect stroke="none" fill="#fcfcfc" x=".5" y=".5" width="50" height="19" rx="2"/><rect y=".5" x="56.5" width="33" height="19" rx="2" fill="#fafafa"/><path stroke="#fafafa" d="M56 7.5h.5v5h-.5z"/><path d="M56.5 6.5l-3 3v1l3 3" stroke="d5d5d5" fill="#fafafa"/></g><image x="5" y="3" width="14" height="14" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMTIgMTIgNDAgNDAiPgo8cGF0aCBmaWxsPSIjMzMzMzMzIiBkPSJNMzIsMTMuNGMtMTAuNSwwLTE5LDguNS0xOSwxOWMwLDguNCw1LjUsMTUuNSwxMywxOGMxLDAuMiwxLjMtMC40LDEuMy0wLjljMC0wLjUsMC0xLjcsMC0zLjIgYy01LjMsMS4xLTYuNC0yLjYtNi40LTIuNkMyMCw0MS42LDE4LjgsNDEsMTguOCw0MWMtMS43LTEuMiwwLjEtMS4xLDAuMS0xLjFjMS45LDAuMSwyLjksMiwyLjksMmMxLjcsMi45LDQuNSwyLjEsNS41LDEuNiBjMC4yLTEuMiwwLjctMi4xLDEuMi0yLjZjLTQuMi0wLjUtOC43LTIuMS04LjctOS40YzAtMi4xLDAuNy0zLjcsMi01LjFjLTAuMi0wLjUtMC44LTIuNCwwLjItNWMwLDAsMS42LTAuNSw1LjIsMiBjMS41LTAuNCwzLjEtMC43LDQuOC0wLjdjMS42LDAsMy4zLDAuMiw0LjcsMC43YzMuNi0yLjQsNS4yLTIsNS4yLTJjMSwyLjYsMC40LDQuNiwwLjIsNWMxLjIsMS4zLDIsMywyLDUuMWMwLDcuMy00LjUsOC45LTguNyw5LjQgYzAuNywwLjYsMS4zLDEuNywxLjMsMy41YzAsMi42LDAsNC42LDAsNS4yYzAsMC41LDAuNCwxLjEsMS4zLDAuOWM3LjUtMi42LDEzLTkuNywxMy0xOC4xQzUxLDIxLjksNDIuNSwxMy40LDMyLDEzLjR6Ii8+Cjwvc3ZnPgo="/><g fill="#333" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="700" font-size="110"><text x="335" y="150" fill="#fff" transform="scale(.1)" textLength="230">Star</text><text x="335" y="140" transform="scale(.1)" textLength="230">Star</text><text x="725" y="150" fill="#fff" transform="scale(.1)" textLength="250">1319</text><a target="_blank" xlink:href="https://github.com/xjh22222228/nav"><text id="rlink" x="725" y="140" transform="scale(.1)" textLength="250">100+</text></a> </g><a target="_blank" xlink:href="https://github.com/xjh22222228/nav"><rect id="llink" stroke="#d5d5d5" fill="url(#a)" x=".5" y=".5" width="50" height="19" rx="2"/></a></svg>
+        </a>
+			</div>
+		</footer>
+	</section>
+</div>
+<script src="./bundle.js" data-p="8889"></script>
+</body>
+</html>
