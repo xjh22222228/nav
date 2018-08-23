@@ -1,0 +1,552 @@
+@charset "utf-8";
+@import "variable";
+/*!
+    @author xiejiahe;
+    @link https://github.com/xjh22222228
+*/
+
+a,abbr,address,article,aside,audio,b,blockquote,body,canvas,caption,cite,code,dd,del,details,dfn,div,dl,dt,em,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,p,pre,q,samp,section,small,span,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,ul,var,video {
+    margin: 0;
+    padding: 0;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    overflow-x: hidden;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+	min-width: 320px;
+    font-size: 12px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", Arial, "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: $bgColor;
+}
+
+body,
+html,
+#xiejiahe {
+    height: 100%;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup, 
+menu,
+nav,
+section {
+    display: block;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+h4,
+h5,
+h6 {
+    font-size: 100%;
+}
+
+address,
+cite,
+dfn,
+em,
+var {
+    font-style: normal;
+}
+
+small {
+    font-size: 12px;
+}
+
+ol,
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+abbr[title],
+acronym[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+q:after,
+q:before {
+    content: '';
+}
+
+legend {
+    color: #000;
+}
+
+fieldset,
+img,
+iframe {
+    border: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+hr {
+    border: none;
+    height: 1px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="submit"],
+input[type="reset"] {
+    -webkit-appearance: none;
+    outline: none;
+    border: 1px solid #e1e1e1;
+}
+
+textarea {
+	resize: none;
+	outline: none;
+	-webkit-appearance: none;
+}
+
+button,
+input[type="submit"],
+input[type="reset"] {
+    cursor: pointer;
+    outline:none;
+}
+
+i,
+em {
+    font-style: normal;
+}
+
+[ng-cloak] {
+    display: none;
+}
+
+a,
+img {
+    -webkit-touch-callout: none;
+}
+
+.user-select-none {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+
+
+
+// 侧边栏
+.sidebar {
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $sideBarWidth;
+    height: 100%;
+    background: #30333c;
+    height: 100%;
+    visibility: visible;
+    @include prefix(transition, all .2s linear);
+
+    .logo {
+        margin-top: 10px;
+        text-align: center;
+
+        a {
+            display: inline-block;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+            pointer-events: none;
+        }
+    }
+
+    .nav {
+        padding-top: 20px;
+    }
+
+    .nav-title {
+        text-align: center;
+        cursor: pointer;
+        font-size: 16px;
+
+        a {
+            padding: 12px 0;
+            display: block;
+            color: #fff;
+
+            &.active {
+                background: rgba(255, 255, 255, .2);
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
+
+/*!@link https://github.com/xjh22222228*/
+// main
+.container {
+    margin-left: $sideBarWidth;
+    @include prefix(transition, all .2s linear);
+
+    .main {
+        margin: 20px 20px;
+
+        .block {
+            margin: 15px 0;
+            padding: 20px 0 10px 0;
+            background: #fff;
+            box-shadow: 0 0 5px #ccc;
+        }
+
+        .title {
+            color: #000;
+            font-size: 18px;
+            padding: 0 0 10px 30px;
+            border-bottom: 1px dotted #eee;
+        }
+    }
+
+    .main-nav {
+        margin: 20px 20px 0 30px;
+
+        .nav-ul {
+            @include display(flex);
+            flex-wrap: wrap;
+        }
+
+        li {
+            position: relative;
+            margin: 0 30px 30px 0;
+            width: 200px;
+            padding: 15px;
+            border: 1px solid #eee;
+            cursor: pointer;
+            border-radius: 5px;
+            overflow: hidden;
+            @include prefix(transform-origin, right bottom);
+            @include prefix(transition, .1s linear);
+
+            
+        }
+    }
+}
+
+
+.container .main-nav li .icon {
+	width:35px;
+	height:35px;
+	vertical-align:middle;
+	border-radius:50%;
+	pointer-events:none
+}
+.container .main-nav li .name {
+	display:inline-block;
+	font-size:16px;
+	margin-left:5px;
+	width:calc(100% - 50px);
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	vertical-align:middle
+}
+.container .main-nav li .desc {
+	padding-top:5px;
+	border-top:1px solid #eee;
+	margin-top:8px
+}
+
+
+
+
+
+.container .main-nav li .mark {
+	z-index:28;
+	position:absolute;
+	bottom:-50px;
+	left:0;
+	width:100%;
+	height:50px;
+	background:#fff;
+	cursor:auto;
+	display:flex;
+	display:-webkit-flex;
+	display:-ms-flexbox;
+	display:box;
+	display:-webkit-box;
+	display:-ms-flexbox;
+	justify-content:center;
+	align-items:center;
+	box-pack:center;
+	-webkit-box-pack:center;
+	-ms-box-pack:center;
+	box-align:center;
+	-webkit-box-align:center;
+	-ms-box-align:center;
+	transition:0.1s linear;
+	-webkit-transition:0.1s linear;
+	-ms-transition:0.1s linear
+}
+.container .main-nav li .mark .button-box {
+	width:100%;
+	text-align:center
+}
+.container .main-nav li .mark a {
+	display:inline-block;
+	position:relative;
+	font-size:16px;
+	padding:3px 0;
+	border:none;
+	width:30%;
+	background:#2db7f5;
+	color:#fff;
+	border-radius:3px;
+	overflow:hidden
+}
+.container .main-nav li .mark a:nth-child(1) {
+	margin-right:15px
+}
+.container .main-nav li .mark a:after {
+	content:"";
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background:#000;
+	opacity:0
+}
+.container .main-nav li .mark a:active:after {
+	opacity:.2
+}
+.container .main-nav li .mark .zh {
+	background:#26a2ff
+}
+
+
+
+
+
+.header {
+    display: none;
+    text-align: center;
+
+    .header-top {
+        position: relative;
+        height: 45px;
+        border-bottom: 1px solid #eee;
+        background: #fff;
+
+        .logo {
+            display: inline-block;
+
+            img {
+                width: 35px;
+                height: 35px;
+                margin-top: 4px;
+                pointer-events: none;
+            }
+        }
+    }
+
+    .open {
+        position: absolute;
+        top: 9px;
+        right: 15px;
+        cursor: pointer;
+
+        i {
+            display: block;
+            margin-top: 6px;
+            height: 2px;
+            width: 25px;
+            background: #000;
+            @include prefix(transform-origin, right center);
+            @include prefix(transition, .1s linear);
+        }
+
+        &.active {
+
+            i:nth-child(1) {
+                @include prefix(transform, rotate(-45deg));
+            }
+
+            i:nth-child(2) {
+                opacity: 0;
+            }
+
+            i:nth-child(3) {
+                @include prefix(transform, translateY(2px) rotate(45deg));
+            }
+        }
+    }
+
+    .nav-open {
+        display: none;
+        box-shadow: 1px 1px 5px #ccc;
+        overflow: hidden;
+        background: #fff;
+        @include prefix(transition, .1s linear);
+    }
+
+    .nav-title {
+        font-size: 16px;
+        
+        a {
+            display: block;
+            padding: 8px 0;
+
+            &:active,
+            &.active {
+                background: rgba(0, 0, 0, .05);
+            }
+        }
+    }
+}
+/*!@link https://github.com/xjh22222228*/
+
+
+// 底部
+.footer {
+    margin-top: 20px;
+    padding: 10px 10px 10px 15px;
+    background: #fff;
+    line-height: 22px;
+
+    a {
+        color: #0366d6;
+    }
+}
+
+
+.scroll-top {
+    z-index: 66;
+    position: fixed;
+    bottom: 25px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+
+
+
+// 媒体查询
+@media screen and (max-width: 768px) {
+    .sidebar {
+        @include prefix(transform, translate3d(-100%, 0, 0));
+    }
+
+    .header {
+        display: block;
+    }
+
+    .container {
+        margin-left: 0;
+
+        .main {
+            margin: 10px;
+
+            .block {
+                padding: 20px 0 10px 0;
+            }
+
+            .title {
+                padding-left: 20px;
+            }
+        }
+    }
+
+    .main-nav {
+        margin: 20px 5px 0 20px !important;
+
+        .nav-ul li {
+            width: calc(50% - 15px);
+
+            &:not(:nth-child(even)) {
+                margin: 0 15px 30px 0;
+            }
+
+            &:not(:nth-child(odd)) {
+                margin: 0 0 30px 0;
+            }
+        }
+    }
+}
+/*!@link https://github.com/xjh22222228*/
+@media screen and (min-width: 768px) {
+    .container {
+
+        .nav-ul {
+
+            li {
+
+                &:hover {
+
+                    .mark {
+                        bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer {
+    
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+
+
+
+
+
+/*!@link https://github.com/xjh22222228*/
+/*! Ripple.js v1.2.1
+ * The MIT License (MIT)
+ * Copyright (c) 2014 Jacob Kelley */
+ .has-ripple{position:relative;overflow:hidden;-webkit-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}.ripple{display:block;position:absolute;pointer-events:none;border-radius:50%;-webkit-transform:scale(0);-o-transform:scale(0);transform:scale(0);background:#fff;opacity:1}.ripple-animate{-webkit-animation:ripple;-o-animation:ripple;animation:ripple}@-webkit-keyframes ripple{100%{opacity:0;-webkit-transform:scale(2);transform:scale(2)}}@-o-keyframes ripple{100%{opacity:0;-o-transform:scale(2);transform:scale(2)}}@keyframes ripple{100%{opacity:0;transform:scale(2)}}

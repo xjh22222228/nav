@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+@mixin keyframes($name){
+    @keyframes #{$name} {
+        @content;
+    }
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+}
+
+
+@mixin prefix($name,$value){
+    #{$name}:$value;
+    -webkit-#{$name}:$value;
+    -ms-#{$name}:$value;
+}
+
+@mixin flex($val) {
+    display: #{$value};
+    display:-webkit-#{$value};
+    display:-ms-flexbox;
+}
+
+
+@mixin display($value) {
+    display: #{$value};
+    display:-webkit-#{$value};
+    display:-ms-flexbox;
+}
+
+
+@mixin center($x: center, $y: center, $xx: center, $yy: center) {
+    @include display(flex); 
+    @include display(box);
+    justify-content: $x;
+    align-items: $y;
+    @include prefix(box-pack, $xx);
+    @include prefix(box-align, $yy);
+}
+
+@mixin user-select() {
+    @include prefix(user-select, none);
+}
+
+// 背景颜色
+$bgColor: #f8f8f8;
+// 侧边栏宽度
+$sideBarWidth: 180px;
+
+
+
+
+
+
