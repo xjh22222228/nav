@@ -10,7 +10,7 @@
 ## 预览
 [线路一](https://xjh22222228.github.io/nav/index.html)
 
-[线路二](https://xiejiahe.gitee.io/nav/)
+[线路二](https://xiejiahe.gitee.io/nav/index.html)
 
 ![preview](https://raw.githubusercontent.com/xjh22222228/nav/master/media/v2.gif)
 
@@ -40,7 +40,7 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 
 
 ## 支持作者
-![support](https://raw.githubusercontent.com/xjh22222228/statics/master/images/2018/32.png)
+<img src="https://raw.githubusercontent.com/xjh22222228/statics/master/images/2018/32.png" alt="支持" width="500" />
 
 
 
