@@ -1,23 +1,51 @@
 {
-  "name": "nav",
-  "version": "1.1.3",
+  "name": "navigation",
+  "version": "2.0.0",
   "author": "xiejiahe",
   "link": "https://github.com/xjh22222228/nav",
-  "description": "爱分享，爱创造，一个资源难寻的导航网站",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack -w",
-    "dev": "npm run start"
+    "ng": "ng",
+    "start": "ng serve --open",
+    "build": "ng build --prod",
+    "lint": "ng lint"
   },
-  "author": "xiejiahe",
-  "license": "MIT",
-  "devDependencies": {
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.15"
-  },
+  "private": true,
   "dependencies": {
-    "angular": "^1.6.9",
-    "jquery": "^3.3.1"
+    "@angular/animations": "^6.0.3",
+    "@angular/common": "^6.0.3",
+    "@angular/compiler": "^6.0.3",
+    "@angular/core": "^6.0.3",
+    "@angular/forms": "^6.0.3",
+    "@angular/http": "^6.0.3",
+    "@angular/platform-browser": "^6.0.3",
+    "@angular/platform-browser-dynamic": "^6.0.3",
+    "@angular/router": "^6.0.3",
+    "core-js": "^2.5.4",
+    "iscroll": "^5.2.0",
+    "jquery": "^3.3.1",
+    "rxjs": "^6.0.0",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.6.8",
+    "@angular/cli": "~6.0.8",
+    "@angular/compiler-cli": "^6.0.3",
+    "@angular/language-service": "^6.0.3",
+    "@types/jasmine": "~2.8.6",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
+    "codelyzer": "~4.2.1",
+    "fs-extra": "^7.0.0",
+    "jasmine-core": "~2.99.1",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~1.7.1",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.0",
+    "karma-jasmine": "~1.1.1",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "protractor": "~5.3.0",
+    "ts-node": "~5.0.1",
+    "tslint": "~5.9.1",
+    "typescript": "~2.7.2"
   }
 }
