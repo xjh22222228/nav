@@ -1,10 +1,19 @@
 
-## 发现导航-V2
-基于[v1](https://github.com/xjh22222228/nav/tree/v1)版本的一个升级版，最大的改变是对其分类进行了扩展，基本可以满足大部分使用场景，可以理解为三叉树分类，并且拥有强大的颜值，新增了GitHub网址。
 
-目前[v1](https://github.com/xjh22222228/nav/tree/v1)版本不再对其进行维护，但不代表它不好，如果觉得颜值还不错，可以作为模板去使用。
+[V1版本移步这里](https://github.com/xjh22222228/nav/tree/v1)
 
-导航网站还在不断的完善和新增当中，每天保持3+，特殊情况外，欢迎持续关注。
+
+<div align="center">
+  <p>发现导航 - 精选实用导航网站</p>
+  <div>
+    <a href="https://github.com/xjh22222228/nav/">GitHub</a>&nbsp;&nbsp;&nbsp;
+    <a href="https://github.com/xjh22222228/nav/issues/">Contribution</a>&nbsp;&nbsp;&nbsp;
+    <a href="https://github.com/xjh22222228/">Author</a>
+  </div>
+</div>
+
+
+
 
 
 ## 预览
@@ -21,16 +30,19 @@
 - [√] 三叉树分类、结构清晰、分类清晰。
 - [√] 颜值与简约并存，不再是杀马特时代。
 - [√] 支持中文、英文、GitHub浏览，目前唯一一个支持的导航。
-- [√] 支持页面定位、滚动条定位。
+- [√] 支持页面定位、滚动定位。
 
 
 
 
-## 贡献 / Contribution
+## 贡献
 Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), men.
 
 <a href="https://github.com/YutHelloWorld">
   <img src="https://avatars1.githubusercontent.com/u/20860159?s=460&v=4" width="30px" height="30px" />
+</a>
+<a href="https://github.com/JJJTHuang">
+  <img src="https://avatars3.githubusercontent.com/u/22817432?s=460&v=4" width="30px" height="30px" />
 </a>
 
 
