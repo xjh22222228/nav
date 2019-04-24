@@ -2,6 +2,7 @@
 
 # compiled output
 /dist
+/build
 /tmp
 /out-tsc
 /src
@@ -41,3 +42,4 @@ Thumbs.db
 package-lock.json
 
 *.psd*
+build.js

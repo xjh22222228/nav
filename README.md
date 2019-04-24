@@ -44,6 +44,9 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 <a href="https://github.com/JJJTHuang">
   <img src="https://avatars3.githubusercontent.com/u/22817432?s=460&v=4" width="30px" height="30px" />
 </a>
+<a href="https://github.com/Fechin">
+  <img src="https://avatars1.githubusercontent.com/u/2541482?s=460&v=4" width="30px" height="30px" />
+</a>
 
 
 ---
