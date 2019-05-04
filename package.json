@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
-    "build": "ng build --prod --base-href ./",
+    "build": "ng build --prod --base-href ./ && node build.js",
     "lint": "ng lint"
   },
   "private": true,
