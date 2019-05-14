@@ -1,6 +1,5 @@
 
 
-[V1版本移步这里](https://github.com/xjh22222228/nav/tree/v1)
 
 
 <div align="center">
@@ -17,9 +16,8 @@
 
 
 ## 预览
-[线路一](https://xjh22222228.github.io/nav/index.html)
+[在线预览](https://xjh22222228.github.io/nav/index.html)
 
-[线路二](https://xiejiahe.gitee.io/nav/index.html)
 
 ![preview](https://raw.githubusercontent.com/xjh22222228/nav/master/media/v2.gif)
 
@@ -31,7 +29,7 @@
 - [√] 颜值与简约并存，不再是杀马特时代。
 - [√] 支持中文、英文、GitHub浏览，目前唯一一个支持的导航。
 - [√] 支持页面定位、滚动定位。
-
+- [√] 支持移动端。
 
 
 
