@@ -1,0 +1,105 @@
+<main class="homepage container">
+  <input 
+    type="text" 
+    class="search" 
+    placeholder="聚焦搜索" 
+    maxlength="50"
+    (input)="searchLoading = true; handleSearch()"
+    [(ngModel)]="search"
+    *ngIf="showInput"
+    (blur)="showInput = false"
+  />
+  <nav class="top-nav user-select-none">
+    <a 
+      *ngFor="let item of nav; let i = index;" 
+      (click)="handleCilckNav(i)" 
+      [class.active]="page === i" 
+      class="ripple-btn">
+      {{ item.title }}
+    </a>
+  </nav>
+  <section class="index-section user-select-none">
+    <aside class="sidebar" id="sidebar">
+      <ul>
+        <li 
+          class="tag" 
+          *ngFor="let item of nav[page].nav; let i = index" 
+          [class.active]="id === i" 
+          (click)="handleSidebarNav(i)">
+          <a class="ripple-btn" *ngIf="item.title">{{ item.title }}</a>
+        </li>
+      </ul>
+      <div class="icon-box">
+        <a href="javascript:;" (click)="handleOnClickSearch()">
+          <img src="assets/img/search.svg" alt="" class="icon" draggable="false">
+        </a>
+        <a class="good-like">
+          <img 
+            src="assets/img/like.svg" 
+            alt="like" 
+            class="like icon" 
+            draggable="false" (click)="supportModal = !supportModal">
+          <div class="support pointer-events-none" *ngIf="supportModal">
+            <img src="https://raw.githubusercontent.com/xjh22222228/statics/master/images/2018/32.png" alt="支持作者">
+          </div>
+        </a>
+      </div>
+    </aside>
+    <div class="main" id="main" (scroll)="handleScroll($event)">
+      <!-- Loading -->
+      <div class="loading" *ngIf="searchLoading">
+        <img src="assets/img/loading.gif" alt="" />
+      </div>
+      
+      <ul *ngIf="list.length && list[0].nav">
+        <li *ngFor="let item of list">
+          <h2 class="block-title" *ngIf="item.subtitle">{{ item.subtitle }} x {{ item.nav.length }}</h2>
+          <div class="row">
+            <div class="click-btn" *ngFor="let el of item.nav">
+              <a [href]="el.link" target="_blank" rel="noopener noreferer">
+                <div class="top">
+                  <img [src]="el.icon" alt="" class="icon">
+                  <em class="name" [innerHtml]="el.name"></em>
+                </div>
+                <div class="desc" [innerHtml]="el.desc"></div>
+              </a>
+              <div class="mark" *ngIf="el.language && el.language.length > 0">
+                <div class="button-box">
+                  <a 
+                    [href]="el.language[0]" 
+                    class="zh" 
+                    target="_blank" 
+                    *ngIf="el.language[0]" 
+                    rel="noopener noreferer"
+                  >
+                    英文
+                  </a>
+                  <a 
+                    [href]="el.language[1]" 
+                    class="zh" 
+                    target="_blank" 
+                    *ngIf="el.language[1]" 
+                    rel="noopener noreferer"
+                  >
+                    中文
+                  </a>
+                  <a 
+                    [href]="el.language[2]" 
+                    class="zh" 
+                    target="_blank" 
+                    *ngIf="el.language[2]" 
+                    rel="noopener noreferer"
+                  >
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <p class="no-result" *ngIf="list.length && list[0].nav && !list[0].nav.length">对不起，没有找到您想要的结果~</p>
+    </div>
+  </section>
+</main>

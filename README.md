@@ -23,13 +23,9 @@
 
 
 
-## 起源
-在过去的工作当中，积累了各种实用网站都存放于浏览器标签当中，但慢慢的发现由于存放的网站太多，不易分类，描述不清晰，查找不容易。这让我有了这项目的启发，我想做一个简洁、分类清晰、结构清晰、一目了然的导航网站。并且我想把认为非常实用的网站分享出去， **发现导航** 就是这么诞生的。
 
 
-
-
-## 和其他导航站相比具有以下优势
+## 优势
 - [√] 三叉树分类、结构清晰、分类清晰。
 - [√] 颜值与简约并存，不再是杀马特时代。
 - [√] 支持中文、英文、GitHub浏览，创新。
@@ -55,9 +51,22 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 ---
 
 
+## Build Setup
+``` bash
+# install dependencies
+npm install
+
+# start
+npm start
+
+# build for production with minification
+npm run build
+```
 
 
-## 支持作者
+
+
+## 支持开源
 <img src="https://raw.githubusercontent.com/xjh22222228/statics/master/images/2018/32.png" alt="支持" width="500" />
 
 
