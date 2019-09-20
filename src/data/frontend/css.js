@@ -71,7 +71,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/h5.svg',
+          icon: 'assets/icon/frontend/0.svg',
           name: 'Hover',
           desc: 'CSS3动力悬停效果的集合，适用于链接，按钮，徽标，SVG，特色图像等',
           link: 'http://ianlunn.github.io/Hover/',
@@ -82,7 +82,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/h5.svg',
+          icon: 'assets/icon/frontend/0.svg',
           name: 'github-markdown-css',
           desc: '复制GitHub Markdown样式的最小CSS量',
           link: 'https://sindresorhus.com/github-markdown-css/',

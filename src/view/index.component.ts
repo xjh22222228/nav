@@ -12,7 +12,6 @@ export class HomeComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
   nav: Array<any> = nav;
-  supportModal: boolean = false;
   id: number = 0;
   page: number = 0;
   list: any[] = [];

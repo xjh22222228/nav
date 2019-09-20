@@ -37,6 +37,12 @@ export default {
             'https://github.com/DefinitelyTyped/DefinitelyTyped'
           ]
         },
+        {
+          icon: 'https://avatars0.githubusercontent.com/u/46634674?s=200&v=4',
+          name: 'typescript-eslint',
+          desc: 'Monorepo用于所有工具，使ESLint能够支持TypeScript',
+          link: 'https://github.com/typescript-eslint/typescript-eslint',
+        },
       ]
     },
 	]

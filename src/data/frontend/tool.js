@@ -5,7 +5,7 @@ export default {
       subtitle: 'CSS',
       nav: [
         {
-          icon: 'assets/icon/h5.svg',
+          icon: 'assets/icon/frontend/0.svg',
           name: 'CSS3 UI Lib',
           desc: 'CSS动画集成、在线调试阴影',
           link: 'http://css3lib.alloyteam.com/#panel/demo1',
@@ -46,7 +46,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/h5.svg',
+          icon: 'assets/icon/frontend/0.svg',
           name: 'px与em单位转换',
           desc: 'px与em单位转换',
           link: 'http://pxtoem.com/',
@@ -188,7 +188,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/h5.svg',
+          icon: 'assets/icon/frontend/0.svg',
           name: 'Character Entity Reference Chart',
           desc: '字符实体参考图，&gt;',
           link: 'https://dev.w3.org/html5/html-author/charref',

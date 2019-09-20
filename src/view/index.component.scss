@@ -81,41 +81,6 @@
     .icon {
       width: 20px;
     }
-
-    .good-like {
-      position: relative;
-    }
-
-    .like {
-      margin-left: 7px;
-      cursor: pointer;
-    }
-
-    .support {
-      z-index: 111111111;
-      position: absolute;
-      bottom: 45px;
-      left: 0;
-      padding: 20px;
-      border-radius: 5px;
-      background: #fff;
-      box-shadow: 0 0 10px #ccc;
-
-      &:after {
-        content: "";
-        position: absolute;
-        bottom: -31px;
-        left: 0;
-        width: 0;
-        border: 20px solid transparent;
-        border-top-color: #fff;
-        transform: rotate(10deg);
-      }
-
-      img {
-        width: 500px;
-      }
-    }
   }
 
   // 侧边栏分类

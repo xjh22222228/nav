@@ -33,16 +33,6 @@
         <a href="javascript:;" (click)="handleOnClickSearch()">
           <img src="assets/img/search.svg" alt="" class="icon" draggable="false">
         </a>
-        <a class="good-like">
-          <img 
-            src="assets/img/like.svg" 
-            alt="like" 
-            class="like icon" 
-            draggable="false" (click)="supportModal = !supportModal">
-          <div class="support pointer-events-none" *ngIf="supportModal">
-            <img src="https://raw.githubusercontent.com/xjh22222228/statics/master/images/2018/32.png" alt="支持作者">
-          </div>
-        </a>
       </div>
     </aside>
     <div class="main" id="main" (scroll)="handleScroll($event)">
