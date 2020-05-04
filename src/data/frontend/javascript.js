@@ -49,6 +49,17 @@ export default {
           ]
         },
         {
+          icon: 'https://avatars3.githubusercontent.com/u/10076935?s=200&v=4',
+          name: 'stylelint',
+          desc: '一个强大的现代样式风格的linter',
+          link: 'https://stylelint.io/',
+          language: [
+            '',
+            '',
+            'https://github.com/stylelint/stylelint'
+          ]
+        },
+        {
           icon: 'assets/icon/frontend/017.svg',
           name: 'Mocha',
           desc: 'Mocha是JavaScript的一种单元测试框架，既可以在浏览器环境下运行，也可以在Node.js环境下运行',
@@ -60,17 +71,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/043.png',
-          name: 'three.js',
-          desc: 'JavaScript 3D引擎',
-          link: 'https://threejs.org/',
-          language: [
-            'https://threejs.org/',
-            'http://techbrood.com/threejs/docs',
-            'https://github.com/mrdoob/three.js'
-          ]
-        },
-        {
           icon: 'assets/icon/frontend/081.png',
           name: 'MUI',
           desc: 'MUI: 最接近原生APP体验的高性能前端框架',
@@ -79,6 +79,28 @@ export default {
             '',
             '',
             'https://github.com/dcloudio/mui'
+          ]
+        },
+        {
+          icon: 'https://avatars0.githubusercontent.com/u/12554859?s=200&v=4',
+          name: 'rollup',
+          desc: 'Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序',
+          link: 'https://rollupjs.org/guide/zh/',
+          language: [
+            'https://rollupjs.org/guide/en/',
+            'https://rollupjs.org/guide/zh/',
+            'https://github.com/rollup/rollup'
+          ]
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/29208316?s=200&v=4',
+          name: 'standard',
+          desc: 'JavaScript样式指南，带有linter和自动代码修复程序',
+          link: 'https://standardjs.com',
+          language: [
+            '',
+            '',
+            'https://github.com/standard/standard'
           ]
         },
       ]
@@ -338,10 +360,177 @@ export default {
           desc: '将字符串路径转换成正则表达式',
           link: 'https://github.com/pillarjs/path-to-regexp',
         },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'autosize',
+          desc: 'autosize是一个小的独立脚本，可以自动调整textarea域的高度以适合文本',
+          link: 'http://www.jacklmoore.com/autosize/',
+          language: [
+            '',
+            '',
+            'https://github.com/jackmoore/autosize'
+          ]
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'shake.js',
+          desc: '监听手机设备摇动',
+          link: 'https://github.com/alexgibson/shake.js',
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'progressbar',
+          desc: '可以轻松地为Web创建响应式和时尚的进度栏。动画即使在移动设备上也表现良好',
+          link: 'https://kimmobrunfeldt.github.io/progressbar.js/',
+          language: [
+            '',
+            '',
+            'https://github.com/kimmobrunfeldt/progressbar.js'
+          ]
+        },
+        {
+          icon: 'https://avatars0.githubusercontent.com/u/28626637?s=200&v=4',
+          name: 'easy-mock',
+          desc: 'Easy Mock 是一个可视化，并且能快速生成模拟数据的持久化服务',
+          link: 'https://easy-mock.com',
+          language: [
+            '',
+            '',
+            'https://github.com/easy-mock/easy-mock/blob/dev/README.zh-CN.md'
+          ]
+        },
+        {
+          icon: 'https://joe.sh/assets/images/favicon.ico',
+          name: 'Clamp.js',
+          desc: 'JS版本的多行文本溢出省略',
+          link: 'https://joe.sh/clamp-js',
+          language: [
+            '',
+            '',
+            'https://github.com/josephschmitt/Clamp.js'
+          ]
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'json-bigint',
+          desc: '带有bigints支持的JSON.parse / stringify',
+          link: 'https://github.com/sidorares/json-bigint'
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'exif-js',
+          desc: '用于读取EXIF图像元数据的JavaScript库',
+          link: 'https://github.com/exif-js/exif-js'
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'lunr.js',
+          desc: 'Lunr.js是一个用于浏览器的小型全文本搜索库。它为JSON文档建立索引，并提供一个简单的搜索界面来检索与文本查询最匹配的文档',
+          link: 'https://github.com/olivernn/lunr.js'
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'hotkeys',
+          desc: '强大的Javascript库，用于捕获键盘输入和输入的按键组合。它没有依赖性。',
+          link: 'https://wangchujiang.com/hotkeys/',
+          language: [
+            '',
+            '',
+            'https://github.com/jaywcjlove/hotkeys'
+          ]
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'dom-to-image',
+          desc: '使用HTML5 canvas从DOM节点生成图像',
+          link: 'https://github.com/tsayen/dom-to-image'
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/59940233?s=200&v=4',
+          name: 'single-spa',
+          desc: '使微前端变得简单',
+          link: 'https://single-spa.js.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/single-spa/single-spa'
+          ]
+        },
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/33895495?s=200&v=4',
+          name: 'qiankun',
+          desc: '为微型前端提供快速，简单和完整的解决方案',
+          link: 'https://qiankun.umijs.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/umijs/qiankun'
+          ]
+        },
+        {
+          icon: 'https://zelark.github.io/nano-id-cc/favicon.ico',
+          name: 'nanoid',
+          desc: '一个很小的，安全的，URL友好的，唯一的JavaScript字符串ID生成器。',
+          link: 'https://zelark.github.io/nano-id-cc/',
+          language: [
+            '',
+            '',
+            'https://github.com/ai/nanoid'
+          ]
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'Numeral-js',
+          desc: '一个用于格式化和处理数字的javascript库',
+          link: 'http://numeraljs.com',
+          language: [
+            '',
+            '',
+            'https://github.com/adamwdraper/Numeral-js'
+          ]
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'ua-parser-js',
+          desc: '用于从userAgent字符串检测浏览器，引擎，操作系统，CPU和设备类型/模型。支持浏览器和node.js环境',
+          link: 'http://faisalman.github.io/ua-parser-js/',
+          language: [
+            '',
+            '',
+            'https://github.com/faisalman/ua-parser-js'
+          ]
+        },
       ]
     },
     {
-      subtitle: '动画效果',
+      subtitle: '国际化多语言方案',
+      nav: [
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/8546082?s=200&v=4',
+          name: 'i18next',
+          desc: 'i18next是一个非常流行的国际化框架，适用于浏览器或任何其他JavaScript环境（例如，node.js）。',
+          link: 'http://i18next.com/',
+          language: [
+            '',
+            '',
+            'https://github.com/i18next/i18next'
+          ]
+        },
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/11225539?s=200&v=4',
+          name: 'js-lingui',
+          desc: 'JavaScript的可读，自动化和优化（5 kb）国际化',
+          link: 'https://lingui.js.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/lingui/js-lingui'
+          ]
+        },
+      ]
+    },
+    {
+      subtitle: '动画',
       nav: [
         {
           icon: 'assets/icon/frontend/073.png',
@@ -508,6 +697,23 @@ export default {
             'https://github.com/pqina/filepond'
           ]
         },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'FileSaver.js',
+          desc: '客户端保存文件的解决方案，非常适合在客户端上生成文件的Web应用程序',
+          link: 'https://github.com/eligrey/FileSaver.js',
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'jsPDF',
+          desc: '一个使用JavaScript生成PDF的库',
+          link: 'https://parall.ax/products/jspdf',
+          language: [
+            '',
+            '',
+            'https://github.com/MrRio/jsPDF'
+          ]
+        },
       ]
     },
     {
@@ -576,6 +782,39 @@ export default {
       ]
     },
     {
+      subtitle: '图形',
+      nav: [
+        {
+          icon: 'assets/icon/frontend/043.png',
+          name: 'three.js',
+          desc: 'JavaScript 3D引擎',
+          link: 'https://threejs.org/',
+          language: [
+            'https://threejs.org/',
+            'http://techbrood.com/threejs/docs',
+            'https://github.com/mrdoob/three.js'
+          ]
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'flowy',
+          desc: '创建流程图的最小JavaScript库',
+          link: 'https://github.com/alyssaxuu/flowy'
+        },
+        {
+          icon: 'https://echarts.apache.org/examples/images/favicon.png',
+          name: 'incubator-echarts',
+          desc: '浏览器的功能强大的交互式图表和可视化库',
+          link: 'http://echarts.apache.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/apache/incubator-echarts'
+          ]
+        },
+      ]
+    },
+    {
       subtitle: 'UI组件库',
       nav: [
         {
@@ -626,6 +865,39 @@ export default {
             '',
             '',
             ''
+          ]
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'async-validator',
+          desc: '异步验证器',
+          link: 'https://github.com/yiminghe/async-validator',
+        },
+      ]
+    },
+    {
+      subtitle: '步骤引导',
+      nav: [
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/2010360?s=200&v=4',
+          name: 'introjs',
+          desc: '为您的网站和项目提供新功能介绍和逐步用户指南的更好方法',
+          link: 'https://introjs.com/',
+          language: [
+            '',
+            '',
+            'https://github.com/usablica/intro.js'
+          ]
+        },
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/17297725?s=200&v=4',
+          name: 'shepherd',
+          desc: '引导您的用户浏览您的应用程序',
+          link: 'https://shepherdjs.dev/',
+          language: [
+            '',
+            '',
+            'https://github.com/shipshapecode/shepherd'
           ]
         },
       ]

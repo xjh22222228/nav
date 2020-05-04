@@ -78,17 +78,6 @@ export default {
           link: 'https://github.com/stephentian/33-js-concepts',
         },
         {
-          icon: 'assets/icon/frontend/007.png',
-          name: 'TypeScript 入门教程',
-          desc: 'TypeScript 入门教程',
-          link: 'https://ts.xcatliu.com/',
-          language: [
-            '',
-            '',
-            'https://github.com/xcatliu/typescript-tutorial'
-          ]
-        },
-        {
           icon: 'assets/icon/frontend/114.png',
           name: 'ECMAScript Proposals',
           desc: '跟踪ECMAScript 提案',
@@ -126,12 +115,6 @@ export default {
           name: 'Daily-Interview-Question',
           desc: '工作日每天一道前端大厂面试题，祝大家天天进步，一年后会看到不一样的自己',
           link: 'https://github.com/Advanced-Frontend/Daily-Interview-Question',
-        },
-        {
-          icon: 'assets/icon/frontend/007.png',
-          name: 'awesome-typescript',
-          desc: '用于客户端和服务器端开发的强大TypeScript资源的集合。在TypeScript中编写精彩的JavaScript',
-          link: 'https://github.com/dzharii/awesome-typescript',
         },
         {
           icon: 'assets/icon/frontend/023.png',

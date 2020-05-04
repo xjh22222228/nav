@@ -11,6 +11,7 @@ import { debounce } from '../utils';
 export class HomeComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
+
   nav: Array<any> = nav;
   id: number = 0;
   page: number = 0;
@@ -41,7 +42,7 @@ export class HomeComponent {
       initList();
     });
 
-    const recursionFind = () => {
+    const fuzzySearch = () => {
       const that = this;
       let searchList = [{ nav: [] }];
       this.searchLoading = false;
@@ -55,7 +56,7 @@ export class HomeComponent {
             f(arr[i].nav);
           }
 
-          if(arr[i].name) {
+          if (arr[i].name) {
             const name = arr[i].name.toLocaleLowerCase();
             const desc = arr[i].desc.toLocaleLowerCase();
             const search = that.search.toLocaleLowerCase();
@@ -65,7 +66,11 @@ export class HomeComponent {
                 const regex = new RegExp(`(${that.search})`, 'i');
                 result.name = result.name.replace(regex, `$1`.bold())
                 result.desc = result.desc.replace(regex, `$1`.bold())
-                searchList[0].nav.push(result);
+
+                const idx = searchList[0].nav.findIndex(item => item.name === result.name);
+                if (idx === -1) {
+                  searchList[0].nav.push(result);
+                }
               } catch (err) {}
             }
           }
@@ -83,7 +88,7 @@ export class HomeComponent {
       }
 
       this.searchLoading = true;
-      this.list = recursionFind()();
+      this.list = fuzzySearch()();
     }, 1000, false);
   }
 

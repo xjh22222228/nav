@@ -1,9 +1,8 @@
 @charset "utf-8";
-/*!
- * @author xiejiahe;
- * @link https://github.com/xjh22222228
- */
-a,abbr,address,article,aside,audio,b,blockquote,body,canvas,caption,cite,code,dd,del,details,dfn,div,dl,dt,em,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,p,pre,q,samp,section,small,span,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,ul,var,video {
+
+/*! https://github.com/xjh22222228 */
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -28,15 +27,8 @@ body {
   overflow: hidden;
 }
 
-article,
-aside,
-details,
-figcaption,
-figure,
 footer,
 header,
-hgroup, 
-menu,
 nav,
 section {
   display: block;
@@ -57,7 +49,6 @@ h2 {
   font-size: 16px;
 }
 
-fieldset,
 img,
 iframe {
   border: none;
@@ -65,15 +56,11 @@ iframe {
 
 button,
 input,
-select,
 textarea {
   font-size: 100%;
 }
 
 input[type="text"],
-input[type="password"],
-input[type="submit"],
-input[type="reset"],
 button {
   -webkit-appearance: none;
   outline: none;
@@ -110,12 +97,9 @@ em {
 .overflow-hidden {
   overflow: hidden;
 }
-
 .touch-active:active {
   background: rgba(0, 0, 0, .2) !important;
 }
-
-
 .container {
   width: 1000px;
   margin: 0 auto;

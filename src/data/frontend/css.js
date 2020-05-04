@@ -109,6 +109,12 @@ export default {
             'https://github.com/Martz90/vivify'
           ]
         },
+        {
+          icon: 'assets/icon/frontend/0.svg',
+          name: 'cubic-bezier',
+          desc: '在线制作CSS动画',
+          link: 'https://cubic-bezier.com'
+        },
       ]
     },
     {

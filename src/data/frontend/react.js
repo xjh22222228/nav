@@ -8,10 +8,10 @@ export default {
           icon: 'assets/icon/frontend/1.svg',
           name: 'React',
           desc: '用于构建用户界面的 JavaScript 库',
-          link: 'https://reactjs.org/',
+          link: 'https://react.docschina.org/',
           language: [
             'https://reactjs.org/',
-            'https://doc.react-china.org/',
+            'https://react.docschina.org/',
             'https://github.com/facebook/react/'
           ]
         },
@@ -158,6 +158,17 @@ export default {
           ]
         },
         {
+          icon: 'https://material-ui.com/static/favicon.ico',
+          name: 'MATERIAL-UI',
+          desc: 'React 组件用于更快速、更简便的 web 开发。你也可以建立你自己的设计系统，或者从 Material Design 开始',
+          link: 'https://material-ui.com/zh/',
+          language: [
+            'https://material-ui.com/',
+            'https://material-ui.com/zh/',
+            'https://github.com/mui-org/material-ui'
+          ]
+        },
+        {
           icon: 'assets/icon/frontend/6.png',
           name: 'element',
           desc: 'elementUI组件库',
@@ -221,6 +232,17 @@ export default {
             '',
             '',
             'https://github.com/arturbien/React95'
+          ]
+        },
+        {
+          icon: 'https://rsuitejs.com/favicon.ico',
+          name: 'rsuite',
+          desc: 'React Suite 是一套 React 组件库，为后台产品而生。同时也是一个具有贴心设计以及对开发者友好的 UI 框架',
+          link: 'https://rsuitejs.com',
+          language: [
+            '',
+            '',
+            'https://github.com/rsuite/rsuite'
           ]
         },
       ]
@@ -362,6 +384,56 @@ export default {
           desc: '一个简单的组件，用于使元素可拖动',
           link: 'https://github.com/mzabriskie/react-draggable',
         },
+        {
+          icon: 'assets/icon/frontend/1.svg',
+          name: 'react-slick',
+          desc: 'react走马灯组件',
+          link: 'https://react-slick.neostack.com/',
+          language: [
+            '',
+            '',
+            'https://github.com/akiran/react-slick'
+          ]
+        },
+        {
+          icon: 'assets/icon/frontend/1.svg',
+          name: 'react-color',
+          desc: 'react 拾色器',
+          link: 'http://casesandberg.github.io/react-color/',
+          language: [
+            '',
+            '',
+            'https://github.com/casesandberg/react-color'
+          ]
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/50559490?s=200&v=4',
+          name: 'react-intl',
+          desc: '国际化React应用程序。这个库提供了React组件和一个API，用于格式化日期，数字和字符串，包括复数形式和处理翻译',
+          link: 'https://github.com/formatjs/react-intl',
+        },
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/1763971?s=200&v=4',
+          name: 'react-data-grid',
+          desc: '使用React构建的类似于Excel的网格组件，具有编辑器，键盘导航，复制和粘贴等功能',
+          link: 'http://adazzle.github.io/react-data-grid/',
+          language: [
+            '',
+            '',
+            'https://github.com/adazzle/react-data-grid'
+          ]
+        },
+        {
+          icon: 'https://cloud.githubusercontent.com/assets/29597/11736841/c0497158-9f87-11e5-8dfe-9c0be97d4286.png',
+          name: 'react-virtualized',
+          desc: 'React组件可有效呈现大型列表和表格数据',
+          link: 'http://www.reactvirtualized.com',
+          language: [
+            '',
+            '',
+            'https://github.com/bvaughn/react-virtualized'
+          ]
+        },
       ]
     },
     {
@@ -376,6 +448,71 @@ export default {
             '',
             'https://pro.ant.design/',
             'https://github.com/ant-design/ant-design-pro/',
+          ]
+        },
+      ]
+    },
+    {
+      subtitle: '单元测试',
+      nav: [
+        {
+          icon: 'assets/icon/frontend/1.svg',
+          name: 'enzyme',
+          desc: '适用于React的JavaScript测试实用程序',
+          link: 'https://enzymejs.github.io/enzyme/',
+          language: [
+            '',
+            '',
+            'https://github.com/enzymejs/enzyme',
+          ]
+        },
+        {
+          icon: 'assets/icon/frontend/115.png',
+          name: 'Jest',
+          desc: 'Jest是一个令人愉快的JavaScript测试框架，专注于简单性。',
+          link: 'https://jestjs.io/zh-Hans/',
+          language: [
+            '',
+            '',
+            'https://github.com/facebook/jest',
+          ]
+        },
+      ]
+    },
+    {
+      subtitle: 'umi/dva',
+      nav: [
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/33895495?s=200&v=4',
+          name: 'umijs',
+          desc: '插件化的企业级前端应用框架。',
+          link: 'https://umijs.org/zh-CN',
+          language: [
+            'https://umijs.org/',
+            'https://umijs.org/zh-CN',
+            'https://github.com/umijs/umi',
+          ]
+        },
+        {
+          icon: 'assets/icon/frontend/030.png',
+          name: 'DvaJS',
+          desc: '基于React和Redux的轻量级和elm风格框架',
+          link: 'https://dvajs.com/',
+          language: [
+            '',
+            '',
+            'https://github.com/dvajs/dva'
+          ]
+        },
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/33895495?s=200&v=4',
+          name: 'umijs/hooks',
+          desc: '你可以将 umi hooks 使用在任何地方，和任意组件库搭配使用。虽然我们的代码示例都是基于 ant design 的，但是并不代表我们的 Hooks 只能和 ant design 配合使用',
+          link: 'https://hooks.umijs.org/',
+          language: [
+            '',
+            'https://hooks.umijs.org/',
+            'https://github.com/umijs/hooks',
           ]
         },
       ]
@@ -424,23 +561,12 @@ export default {
         },
         {
           icon: 'assets/icon/frontend/030.png',
-          name: 'DvaJS',
-          desc: '基于React和Redux的轻量级和elm风格框架',
-          link: 'https://dvajs.com/',
-          language: [
-            '',
-            '',
-            'https://github.com/dvajs/dva'
-          ]
-        },
-        {
-          icon: 'assets/icon/frontend/030.png',
           name: 'next.js',
           desc: '服务端渲染框架、SEO解决方案',
-          link: 'https://nextjs.org/',
+          link: 'https://www.nextjs.cn/',
           language: [
             'https://nextjs.org/',
-            '',
+            'https://www.nextjs.cn/',
             'https://github.com/zeit/next.js'
           ]
         },
@@ -455,6 +581,12 @@ export default {
             'https://github.com/react-dnd/react-dnd'
           ]
         },
+        {
+          icon: 'assets/icon/frontend/030.png',
+          name: 'nwb',
+          desc: '适用于Web的React，Preact，Inferno和Vanilla JS应用，React库和其他npm模块的工具包，无需配置',
+          link: 'https://github.com/insin/nwb',
+        }
       ]
     },
   ]

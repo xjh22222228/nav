@@ -43,6 +43,23 @@ export default {
           desc: 'Monorepo用于所有工具，使ESLint能够支持TypeScript',
           link: 'https://github.com/typescript-eslint/typescript-eslint',
         },
+        {
+          icon: 'assets/icon/frontend/007.png',
+          name: 'awesome-typescript',
+          desc: '用于客户端和服务器端开发的强大TypeScript资源的集合。在TypeScript中编写精彩的JavaScript',
+          link: 'https://github.com/dzharii/awesome-typescript',
+        },
+        {
+          icon: 'assets/icon/frontend/007.png',
+          name: 'TypeScript 入门教程',
+          desc: 'TypeScript 入门教程',
+          link: 'https://ts.xcatliu.com/',
+          language: [
+            '',
+            '',
+            'https://github.com/xcatliu/typescript-tutorial'
+          ]
+        },
       ]
     },
 	]

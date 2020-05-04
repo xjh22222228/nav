@@ -75,6 +75,12 @@ export default {
           desc: '上千种Loading认你选',
           link: 'https://www.xiejiahe.com/detail/59ec506be9b3310879551f5e',
         },
+        {
+          icon: 'https://cssreference.io/favicons/favicon-32x32.png',
+          name: 'CSS Reference',
+          desc: 'css参考是一个免费的视觉指导css。它以最受欢迎的特性为特色，并用插图和动画示例对其进行说明',
+          link: 'https://cssreference.io/',
+        },
       ]
     },
     {
@@ -115,6 +121,16 @@ export default {
           desc: '微信调试，各种WebView样式调试、手机浏览器的页面真机调试。便捷的远程调试手机页面、抓包工具，支持：HTTP/HTTPS，无需USB连接设备',
           link: 'https://github.com/wuchangming/spy-debugger',
         },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'VConsole',
+          desc: '一个轻量、可拓展、针对手机网页的前端开发者调试面板',
+          link: 'https://github.com/Tencent/vConsole/',
+          language: [
+            'https://github.com/Tencent/vConsole',
+            'https://github.com/Tencent/vConsole/blob/dev/README_CN.md'
+          ]
+        },
       ]
     },
     {
@@ -154,16 +170,6 @@ export default {
     {
       subtitle: '其他',
       nav: [
-        {
-          icon: 'assets/icon/frontend/023.png',
-          name: 'VConsole',
-          desc: '一个轻量、可拓展、针对手机网页的前端开发者调试面板',
-          link: 'https://github.com/Tencent/vConsole/',
-          language: [
-            'https://github.com/Tencent/vConsole',
-            'https://github.com/Tencent/vConsole/blob/dev/README_CN.md'
-          ]
-        },
         {
           icon: 'assets/icon/utility-tool/011.png',
           name: 'FunDebug',
@@ -206,7 +212,7 @@ export default {
           link: 'http://jsfiddle.net/',
         },
         {
-          icon: 'assets/icon/frontend/035.png',
+          icon: 'https://avatars0.githubusercontent.com/u/11043997?s=200&v=4',
           name: 'jsperf',
           desc: 'jsPerf旨在提供一种简单的方法来创建和共享测试用例，通过运行基准测试来比较不同JavaScript代码段的性能',
           link: 'https://jsperf.com/',
@@ -221,6 +227,12 @@ export default {
           name: 'codesandbox',
           desc: 'codesandbox是为Web应用程序定制的在线编辑器。',
           link: 'https://codesandbox.io',
+        },
+        {
+          icon: 'https://htmlreference.io/favicons/favicon-32x32.png',
+          name: 'HTML Reference',
+          desc: '所有HTML元素和属性的免费指南参考',
+          link: 'https://htmlreference.io/',
         },
       ]
     },
