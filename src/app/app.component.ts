@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import nav from '../data';
+import nav from '../../data';
 
 @Component({
   selector: 'app-xiejiahe',
