@@ -21,6 +21,7 @@ export class HomeComponent {
   searchLoading = false;
 
   ngOnInit () {
+    const that = this;
     const initList = () => {
       this.list = this.nav[this.page].nav[this.id].nav;
     };
@@ -28,6 +29,8 @@ export class HomeComponent {
     this.activatedRoute.queryParams.subscribe(query => {
       const id = +query.id || 0;
       const page = +query.page || 0;
+      this.search = query.q || '';
+
       if (page > this.nav.length - 1) {
         this.page = this.nav.length - 1;
         this.id = 0;
@@ -39,13 +42,17 @@ export class HomeComponent {
           this.id = this.nav[this.page].nav.length - 1;
         }
       }
-      initList();
+      
+      if (this.search) {
+        this.list = fuzzySearch()();
+      } else {
+        initList();
+      }
     });
 
-    const fuzzySearch = () => {
-      const that = this;
+    function fuzzySearch() {
       let searchList = [{ nav: [] }];
-      this.searchLoading = false;
+      that.searchLoading = false;
 
       return function f(arr?: any[]) {
         arr = arr || that.nav;
@@ -75,7 +82,7 @@ export class HomeComponent {
             }
           }
         }
-        
+
         return searchList;
       };
     }
@@ -87,8 +94,16 @@ export class HomeComponent {
         return;
       }
 
+      const hash = window.location.hash;
+      const params = new URLSearchParams(hash.slice(hash.indexOf('?')));
+      this.router.navigate(['/index'], {
+        queryParams: {
+          ...params,
+          q: this.search
+        }
+      });
+
       this.searchLoading = true;
-      this.list = fuzzySearch()();
     }, 1000, false);
   }
 
