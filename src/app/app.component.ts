@@ -12,6 +12,7 @@ export class AppComponent {
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
   nav: Array<any> = nav;
   page: number = 0;
+  includeTotal: number = 0;
 
   ngOnInit () {
     const screenWidth = window.innerWidth;
@@ -19,9 +20,11 @@ export class AppComponent {
     const params = new URLSearchParams(hash.slice(hash.indexOf('?')));
     const page = params.get('page');
     const id = params.get('id');
+    const q = params.get('q');
     const queryParams = {
       page,
-      id
+      id,
+      q
     };
 
     if (screenWidth < 768) {
@@ -38,5 +41,24 @@ export class AppComponent {
         this.page = page;
       }
     });
+
+    this.computedTotal();
+  }
+
+  // 计算收录个数
+  computedTotal() {
+    let total = 0;
+    function r(nav) {
+      if (!Array.isArray(nav)) return;
+      for (let i = 0; i < nav.length; i++) {
+        if (nav[i].link) {
+          total += 1;
+        } else {
+          r(nav[i].nav);
+        }
+      }
+    }
+    r(this.nav);
+    this.includeTotal = total;
   }
 }

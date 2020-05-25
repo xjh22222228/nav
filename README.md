@@ -50,13 +50,13 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 
 ## Build Setup
 ``` bash
-# install dependencies
+# 安装依赖
 npm install
 
-# start
+# 启动[可选]
 npm start
 
-# build for production with minification
+# 打包
 npm run build
 ```
 
@@ -67,6 +67,12 @@ npm run build
 你不需要关心程序代码，只需要了解 `data` 目录数据结构即可。
 
 
+## 配置文件
+`config/index.ts`, 你可以对默认的 中文 、 英文 、 Github 进行修改。
+
+
+## 关于图标
+项目中有一部分是使用本地图标，但我建议你直接使用网络图片，方便管理。
 
 
 ## 支持开源

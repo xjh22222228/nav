@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import nav from '../../data';
 import { debounce } from '../utils';
+import { appLanguage } from '../../config';
 
 @Component({
   selector: 'app-home',
@@ -12,13 +13,14 @@ export class HomeComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  nav: Array<any> = nav;
+  nav: any[] = nav;
   id: number = 0;
   page: number = 0;
   list: any[] = [];
   search: string = '';
   showInput = false;
   searchLoading = false;
+  language: string[] = appLanguage;
 
   ngOnInit () {
     const that = this;

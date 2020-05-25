@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import nav from '../../data';
+import { webpLanguage } from '../../config';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class WebpComponent {
   id: number = 0;
   page: number = 0;
   open: boolean = false;
+  language: string[] = webpLanguage;
 
   ngOnInit () {
     this.activatedRoute.queryParams.subscribe(query => {
