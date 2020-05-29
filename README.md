@@ -14,7 +14,7 @@
 [在线预览](https://xjh22222228.github.io/nav/index.html)
 
 
-![preview](https://raw.githubusercontent.com/xjh22222228/nav/master/media/v2.gif)
+![Preview](media/v2.png)
 
 
 
@@ -50,6 +50,9 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 
 ## Build Setup
 ``` bash
+# 下载
+git clone --depth=1 https://github.com/xjh22222228/nav.git
+
 # 安装依赖
 npm install
 
@@ -72,7 +75,7 @@ npm run build
 
 
 ## 关于图标
-项目中有一部分是使用本地图标，但我建议你直接使用网络图标，方便管理。
+项目中有一部分是使用本地图标，但我建议你直接使用网络图片，方便管理。
 
 
 ## 支持开源
