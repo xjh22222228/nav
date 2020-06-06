@@ -46,7 +46,13 @@
             </a>
             <div class="bottom-slide">
               <div class="wrapper-button" *ngIf="el.language && el.language.length">
-                <a [href]="el.link" *ngIf="el.language.length <= 3 && (!el.language[0] || !el.language[1])" target="_blank">默认</a>
+                <a
+                  [href]="el.link"
+                  *ngIf="el.language.length <= 3 && (!el.language[0] || !el.language[1])"
+                  target="_blank"
+                >
+                  默认
+                </a>
                 <a [href]="el.language[0]" *ngIf="el.language[0]" target="_blank">{{ language[0] }}</a>
                 <a [href]="el.language[1]" *ngIf="el.language[1]" target="_blank">{{ language[1] }}</a>
                 <a [href]="el.language[2]" *ngIf="el.language[2]" target="_blank">{{ language[2] }}</a>

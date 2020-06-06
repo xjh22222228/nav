@@ -122,6 +122,12 @@ export default {
           desc: 'JavaScript 算法与数据结构',
           link: 'https://github.com/trekhleb/javascript-algorithms',
         },
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/26534952?s=200&v=4',
+          name: 'weekly',
+          desc: '前端精读周刊',
+          link: 'https://github.com/dt-fe/weekly',
+        },
       ]
     },
 	]

@@ -27,8 +27,9 @@
 - [√] 支持页面定位、滚动定位。
 - [√] 支持移动端浏览。
 - [√] 支持搜索查询。
-- [√] 纯静态, 不依赖服务器，部署简单。
+- [√] 纯静态, 提供自动化部署。
 - [√] 二次修改简单, 只需要懂一点开发知识即可。
+- [√] 默认提供 `650+` 网站
 
 
 ## 贡献
@@ -65,9 +66,19 @@ npm run build
 
 
 ## 如何部署？
-你只需要执行 `npm run build` 即可打包出来静态资源，放到服务器上即可。
+傻瓜化部署，不需要服务器。
 
-你不需要关心程序代码，只需要了解 `data` 目录数据结构即可。
+1、Fork 当前项目。
+
+2、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token
+
+3、到 https://github.com/你的名字/nav/settings/secrets/new  添加刚刚申请的token， name填写 `TOKEN`
+
+4、当推送内容到仓库后会自动部署， 打开 https://你的名字.github.io/nav  即可看到。
+
+
+
+
 
 
 ## 配置文件

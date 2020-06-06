@@ -500,6 +500,17 @@ export default {
             'https://github.com/faisalman/ua-parser-js'
           ]
         },
+        {
+          icon: 'https://avatars0.githubusercontent.com/u/7997161?s=200&v=4',
+          name: 'hammer.js',
+          desc: '一个用于多点触摸手势的javascript库',
+          link: 'http://hammerjs.github.io',
+          language: [
+            '',
+            '',
+            'https://github.com/hammerjs/hammer.js'
+          ]
+        },
       ]
     },
     {
@@ -861,17 +872,23 @@ export default {
           name: 'validator.js',
           desc: '字符串验证插件、表单验证',
           link: 'https://github.com/chriso/validator.js',
-          language: [
-            '',
-            '',
-            ''
-          ]
         },
         {
           icon: 'assets/icon/frontend/023.png',
           name: 'async-validator',
           desc: '异步验证器',
           link: 'https://github.com/yiminghe/async-validator',
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'yup',
+          desc: '无效的简单对象架构验证',
+          link: 'https://runkit.com/jquense/yup',
+          language: [
+            '',
+            '',
+            'https://github.com/jquense/yup#using-a-custom-locale-dictionary'
+          ]
         },
       ]
     },

@@ -10,3 +10,6 @@ export const webpLanguage = [
   'CN',
   'Git'
 ];
+
+// 网站运行开始时间
+export const start = new Date(2018, 3, 26, 0, 0, 0, 0);
