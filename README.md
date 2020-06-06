@@ -19,8 +19,7 @@
 
 
 
-
-## 优势
+## 亮点
 - [√] 三叉树分类、结构清晰、分类清晰。
 - [√] 颜值与简约并存，不再是杀马特时代。
 - [√] 支持中文、英文、GitHub浏览，创新。
@@ -46,7 +45,6 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 </a>
 
 
----
 
 
 ## Build Setup
@@ -66,7 +64,7 @@ npm run build
 
 
 ## 如何部署？
-傻瓜化部署，不需要服务器。
+傻瓜化部署，不需要服务器, 像数 321 一样简单。
 
 1、Fork 当前项目。
 
@@ -94,7 +92,6 @@ npm run build
 
 
 
----
 
 
 ## License
