@@ -41,9 +41,21 @@ export default {
         },
         {
           icon: 'assets/icon/community/007.svg',
-          name: 'git-tips',
-          desc: 'Git的奇技淫巧',
-          link: 'https://github.com/521xueweihan/git-tips',
+          name: 'github帮助文档',
+          desc: 'github帮助文档',
+          link: 'https://help.github.com/cn',
+        },
+        {
+          icon: 'assets/icon/community/007.svg',
+          name: 'awesome-actions',
+          desc: '精选的GitHub上很棒的Action列表',
+          link: 'https://github.com/sdras/awesome-actions',
+        },
+        {
+          icon: 'assets/icon/community/007.svg',
+          name: 'Github - Actions',
+          desc: 'Github 官方Actions 资源列表',
+          link: 'https://github.com/marketplace?type=actions',
         },
         {
           icon: 'assets/icon/community/007.svg',
