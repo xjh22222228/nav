@@ -1,14 +1,14 @@
-name: GitHub Actions Build and Deploy Demo
+name: Build web
 on:
   push:
     branches:
       - master
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+      uses: actions/checkout@v2
       with:
         persist-credentials: false
     - name: Install and Build

@@ -41,12 +41,6 @@ export default {
         },
         {
           icon: 'assets/icon/community/007.svg',
-          name: 'github帮助文档',
-          desc: 'github帮助文档',
-          link: 'https://help.github.com/cn',
-        },
-        {
-          icon: 'assets/icon/community/007.svg',
           name: 'awesome-actions',
           desc: '精选的GitHub上很棒的Action列表',
           link: 'https://github.com/sdras/awesome-actions',
