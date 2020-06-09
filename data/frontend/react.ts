@@ -445,6 +445,17 @@ export default {
             'https://github.com/FormidableLabs/react-live'
           ]
         },
+        {
+          icon: 'https://jaredpalmer.com/formik/img/favicon.png',
+          name: 'formik',
+          desc: '在React中轻松创建表单',
+          link: 'https://jaredpalmer.com/formik/docs/overview',
+          language: [
+            '',
+            '',
+            'https://github.com/jaredpalmer/formik'
+          ]
+        },
       ]
     },
     {
