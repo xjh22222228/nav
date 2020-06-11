@@ -43,7 +43,18 @@
       
       <ul *ngIf="list.length && list[0].nav">
         <li *ngFor="let item of list">
-          <h2 class="block-title" *ngIf="item.subtitle">{{ item.subtitle }} x {{ item.nav.length }}</h2>
+          <div class="title-wrapper">
+            <h2 class="block-title" *ngIf="item.subtitle">
+              {{ item.subtitle }} x {{ item.nav.length }}
+              <a
+                [href]="git + '/tree/master/data'"
+                class="edit"
+                target="_blank"
+                rel="noopener noreferer"
+              >
+              </a>
+            </h2>
+          </div>
           <div class="row">
             <div class="click-btn" *ngFor="let el of item.nav">
               <a [href]="el.link" target="_blank" rel="noopener noreferer">

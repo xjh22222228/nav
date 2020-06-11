@@ -219,10 +219,34 @@
       }
     }
 
-    .block-title {
-      padding: 10px 0 10px 15px;
+    .title-wrapper {
       border-bottom: 1px solid #ccc;
+      padding: 10px 0 10px 15px;
+
+      &:hover {
+        .edit {
+          display: inline-block;
+        }
+      }
+    }
+
+    .block-title {
+      display: inline-block;
+      position: relative;
       color: #3F51B5;
+
+      .edit {
+        display: none;
+        position: absolute;
+        top: -2px;
+        right: -25px;
+        width: 15px;
+        height: 15px;
+        margin-left: 5px;
+        margin-top: 5px;
+        background: url("~/assets/img/edit.svg");
+        background-size: 15px;
+      }
     }
 
     .top {

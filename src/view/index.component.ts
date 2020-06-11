@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import nav from '../../data';
 import { debounce } from '../utils';
-import { appLanguage } from '../../config';
+import { appLanguage, git } from '../../config';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +21,7 @@ export class HomeComponent {
   showInput = false;
   searchLoading = false;
   language: string[] = appLanguage;
+  git: string = git;
 
   ngOnInit () {
     const that = this;
