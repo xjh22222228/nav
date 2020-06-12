@@ -1,6 +1,6 @@
+import nav from '../../data';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import nav from '../../data';
 import { debounce } from '../utils';
 import { appLanguage, git } from '../../config';
 
@@ -156,5 +156,9 @@ export class HomeComponent {
     try {
       document.getElementById('main').scrollTop = +(<any>window).sessionStorage.top || 0;
     } catch (e) {}
+  }
+
+  goBack = () => {
+    history.go(-1);
   }
 }

@@ -43,8 +43,8 @@
       
       <ul *ngIf="list.length && list[0].nav">
         <li *ngFor="let item of list">
-          <div class="title-wrapper">
-            <h2 class="block-title" *ngIf="item.subtitle">
+          <div class="title-wrapper" *ngIf="item.subtitle">
+            <h2 class="block-title">
               {{ item.subtitle }} x {{ item.nav.length }}
               <a
                 [href]="git + '/tree/master/data'"
@@ -100,7 +100,12 @@
         </li>
       </ul>
 
-      <p class="no-result" *ngIf="list.length && list[0].nav && !list[0].nav.length">对不起，没有找到您想要的结果~</p>
+      <div class="no-result" *ngIf="list.length && list[0].nav && !list[0].nav.length">
+        对不起，没有找到您想要的结果~
+        <div class="back">
+          <span (click)="goBack()">Back</span>
+        </div>
+      </div>
     </div>
   </section>
 </main>

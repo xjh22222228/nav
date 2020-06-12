@@ -4,6 +4,12 @@ export default {
     {
       nav: [
         {
+          icon: 'https://static.runoob.com/images/icon/mobile-icon.png',
+          name: '菜鸟教程',
+          desc: '提供了编程的基础技术教程, 介绍了HTML、CSS、Javascript、Python，Java，Ruby，C，PHP , MySQL等各种编程语言的基础知识。 同时本站中也提供了大量的在线实例，通过实例，您可以更好的学习编程',
+          link: 'https://www.runoob.com/',
+        },
+        {
           icon: 'assets/icon/learn/001.png',
           name: '慕课网',
           desc: '慕课网-程序员的梦工厂',
