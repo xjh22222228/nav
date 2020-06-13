@@ -81,6 +81,12 @@ export default {
           desc: 'css参考是一个免费的视觉指导css。它以最受欢迎的特性为特色，并用插图和动画示例对其进行说明',
           link: 'https://cssreference.io/',
         },
+        {
+          icon: 'https://www.w3cschool.cn/favicon.ico',
+          name: '在线CSS阴影调试',
+          desc: 'CSS3 Box Shadow(阴影)效果在线调试工具',
+          link: 'https://www.w3cschool.cn/tools/index?name=css3_boxshadow',
+        },
       ]
     },
     {

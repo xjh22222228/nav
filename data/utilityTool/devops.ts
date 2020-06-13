@@ -1,5 +1,4 @@
 
-
 const nav = {
   title: '开发相关',
   nav: [
@@ -146,6 +145,17 @@ const nav = {
           name: 'public-apis',
           desc: '一些可用在 Web 或软件开发的开放 API 接口',
           link: 'https://github.com/public-apis/public-apis',
+        },
+        {
+          icon: 'https://astexplorer.net/favicon.png',
+          name: 'astexplorer',
+          desc: '一个Web工具，用于探索由各种解析器生成的AST',
+          link: 'https://astexplorer.net/',
+          language: [
+            '',
+            '',
+            'https://github.com/fkling/astexplorer'
+          ]
         },
       ]
     },

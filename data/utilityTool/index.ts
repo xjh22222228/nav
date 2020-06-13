@@ -1,4 +1,4 @@
-import dev from './development';
+import dev from './devops';
 import design from './design';
 import movies from './movies';
 import job from './job';
