@@ -114,6 +114,17 @@ export default {
           desc: 'Go热重载',
           link: 'https://github.com/cosmtrek/air',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'go-micro',
+          desc: '分布式系统开发框架',
+          link: 'https://go-micro.dev',
+          language: [
+            '',
+            '',
+            'https://github.com/micro/go-micro'
+          ]
+        },
       ]
     },
     {
