@@ -145,5 +145,16 @@ export default {
         },
       ]
     },
+    {
+      subtitle: '工具',
+      nav: [
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'gvm',
+          desc: 'Go版本管理器，类似 nvm',
+          link: 'https://github.com/moovweb/gvm',
+        },
+      ]
+    },
   ]
 }
