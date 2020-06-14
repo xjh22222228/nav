@@ -6,10 +6,10 @@ const nav = {
       subtitle: '开发者',
       nav: [
         {
-            icon: 'assets/icon/utility-tool/005.png',
-            name: 'BootCDN',
-            desc: 'BootCDN 是 Bootstrap 中文网支持并维护的前端开源项目免费 CDN 服务',
-            link: 'http://www.bootcdn.cn/',
+            icon: 'assets/icon/community/007.svg',
+            name: 'GitHub 文件加速',
+            desc: 'GitHub 文件加速',
+            link: 'https://shrill-pond-3e81.hunsh.workers.dev/',
         },
         {
             icon: 'assets/icon/utility-tool/006.png',
