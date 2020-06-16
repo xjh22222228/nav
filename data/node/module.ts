@@ -363,6 +363,18 @@ export default {
       subtitle: 'CLI',
       nav: [
         {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'prompts',
+          desc: '轻巧，美观和用户友好的交互式提示',
+          link: 'https://github.com/terkelg/prompts',
+        },
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/21160645?s=200&v=4',
+          name: 'enquirer',
+          desc: '时尚，直观和用户友好的提示',
+          link: 'https://github.com/enquirer/enquirer',
+        },
+        {
           icon: 'https://avatars2.githubusercontent.com/u/887802?s=200&v=4',
           name: 'cli-table3',
           desc: '带有Node.JS的CLI的漂亮unicode表',
