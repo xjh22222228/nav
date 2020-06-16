@@ -86,6 +86,12 @@ export default {
             'https://github.com/labstack/echo'
           ]
         },
+        {
+          icon: 'assets/icon/community/007.svg',
+          name: 'go-web-framework-stars',
+          desc: 'Go Web框架相关的流行github项目列表',
+          link: 'https://github.com/mingrammer/go-web-framework-stars',
+        },
       ]
     },
     {

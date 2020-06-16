@@ -6,6 +6,12 @@ const nav = {
       subtitle: '开发者',
       nav: [
         {
+          icon: 'https://i.imgur.com/zBEQq4w.png',
+          name: 'Hits',
+          desc: '了解有多少人正在查看您的GitHub项目的简单方法',
+          link: 'http://hits.dwyl.io/',
+        },
+        {
             icon: 'assets/icon/community/007.svg',
             name: 'GitHub 文件加速',
             desc: 'GitHub 文件加速',
@@ -289,6 +295,4 @@ const nav = {
   ]
 };
 
-
 export default nav;
-
