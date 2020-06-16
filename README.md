@@ -1,4 +1,6 @@
 
+[![HitCount](http://hits.dwyl.com/xjh22222228/nav.svg)](http://hits.dwyl.com/xjh22222228/nav)
+
 <div align="center">
   <p>发现导航 - 精选实用导航网站</p>
   <div>
