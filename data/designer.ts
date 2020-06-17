@@ -1,6 +1,6 @@
 
 const nav = {
-  title: '设计师',
+  title: 'Design',
   nav: [
     {
       title: '',
@@ -102,6 +102,12 @@ const nav = {
               name: '派图网',
               desc: '专注优质素材免费分享，提供APP界面|网页模板|图标|插画|样机|名片|VI|场景|包装|画册|等素材免费下载服务',
               link: 'https://www.156pic.com/',
+            },
+            {
+              icon: 'https://octodex.github.com/favicon.ico',
+              name: 'GitHub Octodex',
+              desc: '由GitHub Design团队创建和维护的所有吉祥物素材',
+              link: 'https://octodex.github.com/',
             },
           ]
         },
