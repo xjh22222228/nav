@@ -109,6 +109,17 @@ export default {
       subtitle: '常用插件',
       nav: [
         {
+          icon: 'https://roughnotation.com/images/fav.png',
+          name: 'rough-notation',
+          desc: '一个小的JavaScript库，用于在网页上创建手绘动画并为其添加动画效果',
+          link: 'https://roughnotation.com/',
+          language: [
+            '',
+            '',
+            'https://github.com/rough-stuff/rough-notation'
+          ]
+        },
+        {
           icon: 'assets/icon/frontend/013.png',
           name: 'AntV',
           desc: 'AntV 是蚂蚁金服全新一代数据可视化解决方案',
