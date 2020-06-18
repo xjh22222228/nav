@@ -171,6 +171,12 @@ export default {
           desc: 'Go版本管理器，类似 nvm',
           link: 'https://github.com/moovweb/gvm',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'json-to-go',
+          desc: '在线 JSON 转 Struct结构体',
+          link: 'https://mholt.github.io/json-to-go/',
+        },
       ]
     },
   ]

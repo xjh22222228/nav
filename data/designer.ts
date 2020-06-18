@@ -146,6 +146,17 @@ const nav = {
             },
           ]
         },
+        {
+          subtitle: '配色',
+          nav: [
+            {
+              icon: 'assets/icon/designer/001.jpg',
+              name: 'Color Hunt',
+              desc: 'Color Hunt是一个免费开放的平台，可通过数千种精选的时尚调色板来激发色彩灵感',
+              link: 'https://colorhunt.co/',
+            },
+          ]
+        },
       ]
     },
   ]

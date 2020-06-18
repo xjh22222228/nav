@@ -606,6 +606,12 @@ export default {
           desc: '用JavaScript编写的FIG驱动程序，旨在完全实现FIGfont规范, 生成ascii',
           link: 'https://github.com/patorjk/figlet.js',
         },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'node-printer',
+          desc: '本机 node.js 打印机',
+          link: 'https://github.com/tojocky/node-printer',
+        },
       ]
     },
   ]

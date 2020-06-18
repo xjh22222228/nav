@@ -126,6 +126,17 @@ export default {
           desc: '在Y分钟内学习X',
           link: 'https://learnxinyminutes.com/',
         },
+        {
+          icon: 'https://learnxinyminutes.com/favicon.ico',
+          name: 'Vscode Docs',
+          desc: 'Vscode 扩展开发文档',
+          link: 'https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/',
+          language: [
+            'https://code.visualstudio.com/docs',
+            'https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/',
+            'https://github.com/microsoft/vscode-docs'
+          ]
+        },
       ]
     },
   ]
