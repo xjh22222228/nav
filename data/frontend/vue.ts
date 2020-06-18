@@ -98,6 +98,12 @@ export default {
             'https://github.com/vuejs/eslint-plugin-vue'
           ]
         },
+        {
+          icon: 'assets/icon/frontend/001.png',
+          name: 'vite',
+          desc: 'Vite是一个经过验证的Web开发人员构建工具，可在开发过程中通过本机ES模块导入为您的代码提供服务，并将其与Rollup捆绑在一起进行生产',
+          link: 'https://github.com/vitejs/vite',
+        },
       ]
     },
     {

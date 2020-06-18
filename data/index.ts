@@ -12,13 +12,13 @@ import operation from './operation';
 import community from './community';
 
 export default [
+  utilityTool,
   frontend,
   node,
   deno,
   flutter,
   go,
   community,
-  utilityTool,
   designer,
   study,
   security,
