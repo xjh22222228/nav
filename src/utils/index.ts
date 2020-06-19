@@ -20,3 +20,7 @@ export function debounce(func, wait, immediate) {
     }
   }
 }
+
+export function randomInt(max) {
+  return Math.floor(Math.random() * max);
+}

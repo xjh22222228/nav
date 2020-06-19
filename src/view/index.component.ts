@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { debounce } from '../utils';
 import { appLanguage, git } from '../../config';
+import { annotate } from 'rough-notation';
+
+let equeue = [];
 
 @Component({
   selector: 'app-home',
@@ -30,6 +33,7 @@ export class HomeComponent {
     };
 
     this.activatedRoute.queryParams.subscribe(query => {
+      const tempPage = this.page;
       const id = +query.id || 0;
       const page = +query.page || 0;
       this.search = query.q || '';
@@ -50,6 +54,10 @@ export class HomeComponent {
         this.list = fuzzySearch()();
       } else {
         initList();
+      }
+
+      if (tempPage !== page) {
+        this.setAnnotate();
       }
     });
 
@@ -110,6 +118,8 @@ export class HomeComponent {
     }, 1000, false);
   }
 
+  handleSearch = null
+
   handleScroll(e) {
     const target = e.target;
     const top = target.scrollTop;
@@ -124,8 +134,6 @@ export class HomeComponent {
       }
     });
   }
-
-  handleSearch() {}
 
   handleOnClickSearch() {
     this.showInput = true;
@@ -148,6 +156,8 @@ export class HomeComponent {
   }
 
   ngAfterViewInit () {
+    this.setAnnotate();
+
     (<any>window).$.ripple('.ripple-btn', {
       multi: true,
       debug: false,
@@ -160,5 +170,22 @@ export class HomeComponent {
 
   goBack = () => {
     history.go(-1);
+  }
+
+  setAnnotate() {
+    const elList = document.querySelectorAll('.top-nav .ripple-btn') || [];
+    if (elList.length === 0) return;
+
+    equeue.forEach(item => item.hide());
+    equeue = [];
+
+    const annotation = annotate(elList[this.page], {
+      type: 'underline',
+      color: 'red',
+      padding: 3,
+      strokeWidth: 3
+    });
+    equeue.push(annotation);
+    annotation.show();
   }
 }

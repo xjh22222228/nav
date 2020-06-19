@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import nav from '../../data';
+import { BACKGROUND_LINEAR } from '../../config';
+import { randomInt } from '../utils';
 
 @Component({
   selector: 'app-xiejiahe',
@@ -14,7 +16,7 @@ export class AppComponent {
   page: number = 0;
   includeTotal: number = 0;
 
-  ngOnInit () {
+  ngOnInit() {
     const screenWidth = window.innerWidth;
     const hash = window.location.hash;
     const params = new URLSearchParams(hash.slice(hash.indexOf('?')));
@@ -45,6 +47,10 @@ export class AppComponent {
     this.computedTotal();
   }
 
+  ngAfterViewInit() {
+    setInterval(this.setBackground, 10000);
+  }
+
   // 计算收录个数
   computedTotal() {
     let total = 0;
@@ -60,5 +66,16 @@ export class AppComponent {
     }
     r(this.nav);
     this.includeTotal = total;
+  }
+
+  setBackground() {
+    const randomBg = BACKGROUND_LINEAR[randomInt(BACKGROUND_LINEAR.length)];
+    const el = document.getElementById('index-background');
+    if (!el) return;
+    el.style.opacity = '.3';
+    setTimeout(() => {
+      el.style.backgroundImage = randomBg;
+      el.style.opacity = '1';
+    }, 1000);
   }
 }

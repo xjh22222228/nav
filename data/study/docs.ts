@@ -79,6 +79,12 @@ export default {
       subtitle: '其他文档',
       nav: [
         {
+          icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/linux/linux.png',
+          name: 'Linux 常用命令参考手册',
+          desc: 'Linux 常用命令参考手册',
+          link: 'https://github.com/xjh22222228/linux-manual',
+        },
+        {
           icon: 'assets/icon/utility-tool/062.png',
           name: 'linux-command',
           desc: 'Linux命令大全搜索工具，内容包含Linux命令手册、详解、学习、搜集',
@@ -127,12 +133,12 @@ export default {
           link: 'https://learnxinyminutes.com/',
         },
         {
-          icon: 'https://learnxinyminutes.com/favicon.ico',
+          icon: 'https://code.visualstudio.com/apple-touch-icon.png',
           name: 'Vscode Docs',
           desc: 'Vscode 扩展开发文档',
           link: 'https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/',
           language: [
-            'https://code.visualstudio.com/docs',
+            'https://code.visualstudio.com/api',
             'https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/',
             'https://github.com/microsoft/vscode-docs'
           ]

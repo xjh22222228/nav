@@ -11,13 +11,13 @@ import learData from './learData';
 export default {
   title: 'WEB前端',
   nav: [
+    javascript,
     react,
     vue,
     angular,
     smallProgram,
     tool,
     css,
-    javascript,
     ts,
     learData
   ]

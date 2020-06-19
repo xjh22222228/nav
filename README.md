@@ -1,14 +1,11 @@
 
 [![HitCount](http://hits.dwyl.com/xjh22222228/nav.svg)](http://hits.dwyl.com/xjh22222228/nav)
 
-<div align="center">
-  <p>发现导航 - 精选实用导航网站</p>
-  <div>
-    <a href="https://github.com/xjh22222228/nav/">GitHub</a>&nbsp;&nbsp;&nbsp;
-    <a href="https://github.com/xjh22222228/nav/issues/">Contribution</a>&nbsp;&nbsp;&nbsp;
-    <a href="https://github.com/xjh22222228/">Author</a>
-  </div>
-</div>
+
+
+## 发现导航是什么？
+一个纯静态、易管理的强大导航网站，希望您喜欢它。
+
 
 
 
@@ -21,8 +18,8 @@
 
 
 
-## 它为什么强大？
-- [√] 默认提供 `650+` 网站。
+## 拥有出色的特性
+- [√] 内置 `650+` 实用网站。
 - [√] 三叉树分类、结构清晰、分类清晰。
 - [√] 颜值与简约并存，不再是杀马特时代。
 - [√] 支持3种浏览模式，创新。
@@ -30,7 +27,7 @@
 - [√] 支持移动端浏览。
 - [√] 支持搜索查询。
 - [√] 纯静态, 提供自动化部署功能。
-- [√] 二次修改简单, 只需要懂一点开发知识即可。
+- [√] 完全开源，轻松定制化。
 
 
 ## 贡献
