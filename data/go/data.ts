@@ -177,6 +177,12 @@ export default {
           desc: '在线 JSON 转 Struct结构体',
           link: 'https://mholt.github.io/json-to-go/',
         },
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/35628013?s=200&v=4',
+          name: 'golangci-lint',
+          desc: 'Go的快速Linters Runner',
+          link: 'https://github.com/golangci/golangci-lint',
+        },
       ]
     },
   ]

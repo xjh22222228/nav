@@ -1,5 +1,5 @@
 export default {
-  title: '微信开发者',
+  title: '微信开发',
   nav: [
     {
       subtitle: '小程序文档',

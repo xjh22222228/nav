@@ -1,7 +1,7 @@
 import react from './react';
 import vue from './vue'
 import angular from './angular';
-import smallProgram from './smallProgram';
+import wechat from './wechat';
 import tool from './tool';
 import css from './css';
 import javascript from './javascript';
@@ -15,7 +15,7 @@ export default {
     react,
     vue,
     angular,
-    smallProgram,
+    wechat,
     tool,
     css,
     ts,
