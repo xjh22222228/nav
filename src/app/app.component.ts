@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import nav from '../../data';
-import { BACKGROUND_LINEAR } from '../../config';
+import { BACKGROUND_LINEAR, git } from '../../config';
 import { randomInt } from '../utils';
 
 @Component({
@@ -15,6 +15,7 @@ export class AppComponent {
   nav: Array<any> = nav;
   page: number = 0;
   includeTotal: number = 0;
+  git: string = git;
 
   ngOnInit() {
     const screenWidth = window.innerWidth;
