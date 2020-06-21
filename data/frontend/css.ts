@@ -167,5 +167,22 @@ export default {
         },
       ]
     },
+    {
+      subtitle: '资源',
+      nav: [
+        {
+          icon: 'https://cssbattle.dev/images/logo-square.png',
+          name: 'css battle',
+          desc: '在线比拼CSS',
+          link: 'https://cssbattle.dev/'
+        },
+        {
+          icon: 'http://zh.learnlayout.com/images/logo.png',
+          name: '学习CSS布局',
+          desc: '学习CSS布局',
+          link: 'http://zh.learnlayout.com/'
+        },
+      ]
+    },
 	]
 }
