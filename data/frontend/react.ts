@@ -8,10 +8,10 @@ export default {
           icon: 'assets/icon/frontend/1.svg',
           name: 'React',
           desc: '用于构建用户界面的 JavaScript 库',
-          link: 'https://react.docschina.org/',
+          link: 'https://zh-hans.reactjs.org/',
           language: [
             'https://reactjs.org/',
-            'https://react.docschina.org/',
+            'https://zh-hans.reactjs.org/',
             'https://github.com/facebook/react/'
           ]
         },
@@ -614,7 +614,18 @@ export default {
           name: 'nwb',
           desc: '适用于Web的React，Preact，Inferno和Vanilla JS应用，React库和其他npm模块的工具包，无需配置',
           link: 'https://github.com/insin/nwb',
-        }
+        },
+        {
+          icon: 'https://ahooks.js.org/simple-logo.svg',
+          name: 'ahooks',
+          desc: '为 React Hooks 而生',
+          link: 'https://ahooks.js.org/zh-CN',
+          language: [
+            '',
+            '',
+            'https://github.com/alibaba/hooks'
+          ]
+        },
       ]
     },
   ]
