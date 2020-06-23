@@ -103,6 +103,12 @@ const nav = {
               desc: '由GitHub Design团队创建和维护的所有吉祥物素材',
               link: 'https://octodex.github.com/',
             },
+            {
+              icon: 'https://www.shareicon.net/favicon.ico',
+              name: 'shareicon',
+              desc: '超过25万个icon免费集合',
+              link: 'https://www.shareicon.net/',
+            },
           ]
         },
         {
