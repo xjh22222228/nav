@@ -240,6 +240,12 @@ export default {
           desc: '所有HTML元素和属性的免费指南参考',
           link: 'https://htmlreference.io/',
         },
+        {
+          icon: 'https://static.jsbin.com/images/dave.min.svg',
+          name: 'jsbin',
+          desc: '一个轻量级的html/css/js在线编辑器Debug调试器',
+          link: 'https://jsbin.com/juduyibeku/edit?html,css,js,console,output',
+        },
       ]
     },
   ]
