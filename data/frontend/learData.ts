@@ -5,6 +5,12 @@ export default {
       subtitle: '',
       nav: [
         {
+          icon: 'https://bonsaiden.github.io/JavaScript-Garden/favicon.ico?v=2',
+          name: 'JavaScript 秘密花园',
+          desc: 'JavaScript 语言最古怪用法的文档集合',
+          link: 'https://bonsaiden.github.io/JavaScript-Garden/zh/',
+        },
+        {
           icon: 'assets/icon/frontend/023.png',
           name: 'JavaScript Puzzlers',
           desc: '你真的了解JavaScript吗？来试试吧！',
