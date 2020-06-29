@@ -109,6 +109,17 @@ export default {
       subtitle: '常用插件',
       nav: [
         {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'formilyjs',
+          desc: 'Formily 是一个由阿里巴巴集团多 BU 共建的面向中后台复杂场景的表单解决方案，它也是一个表单框架',
+          link: 'https://formilyjs.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/alibaba/formily'
+          ]
+        },
+        {
           icon: 'https://roughnotation.com/images/fav.png',
           name: 'rough-notation',
           desc: '一个小的JavaScript库，用于在网页上创建手绘动画并为其添加动画效果',
