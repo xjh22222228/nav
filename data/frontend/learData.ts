@@ -5,6 +5,12 @@ export default {
       subtitle: '',
       nav: [
         {
+          icon: 'https://zh.javascript.info/img/favicon/favicon.png',
+          name: '现代 JavaScript 教程',
+          desc: '以最新的 JavaScript 标准为基准。通过简单但足够详细的内容，为你讲解从基础到高阶的 JavaScript 相关知识',
+          link: 'https://zh.javascript.info/',
+        },
+        {
           icon: 'https://bonsaiden.github.io/JavaScript-Garden/favicon.ico?v=2',
           name: 'JavaScript 秘密花园',
           desc: 'JavaScript 语言最古怪用法的文档集合',
