@@ -267,6 +267,17 @@ export default {
       subtitle: '其他组件库',
       nav: [
         {
+          icon: 'assets/icon/frontend/1.svg',
+          name: 'react-grid-layout',
+          desc: 'React的网格布局系统。它具有自动打包，可拖动和可调整大小的小部件，静态小部件，流畅的布局以及每个响应断点的单独布局的功能',
+          link: 'https://strml.github.io/react-grid-layout/examples/0-showcase.html',
+          language: [
+            '',
+            '',
+            'https://github.com/STRML/react-grid-layout'
+          ]
+        },
+        {
           icon: 'assets/icon/frontend/029.jpg',
           name: 'React Helmet',
           desc: '这个可重用的反应组件将管理对文档头的所有更改',
