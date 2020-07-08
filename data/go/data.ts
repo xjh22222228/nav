@@ -17,6 +17,12 @@ export default {
         },
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'go.dev',
+          desc: '大规模构建快速，可靠，高效的软件',
+          link: 'https://go.dev/',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'awesome-go',
           desc: '精选的Go框架，库和软件的精选列表',
           link: 'https://github.com/jobbole/awesome-go-cn',
