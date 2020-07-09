@@ -85,6 +85,12 @@ export default {
           link: 'https://github.com/xjh22222228/linux-manual',
         },
         {
+          icon: 'https://devhints.io/assets/favicon.png',
+          name: 'Devhints',
+          desc: 'WEB开发速查表，mysql/go/java/js/bash/react/git...',
+          link: 'https://devhints.io/',
+        },
+        {
           icon: 'assets/icon/utility-tool/062.png',
           name: 'linux-command',
           desc: 'Linux命令大全搜索工具，内容包含Linux命令手册、详解、学习、搜集',
