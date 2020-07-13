@@ -19,10 +19,10 @@ export default {
           icon: 'assets/icon/frontend/2.png',
           name: 'React Router',
           desc: 'React 路由管理',
-          link: 'http://reacttraining.cn/',
+          link: 'https://react-router.docschina.org/',
           language: [
             'https://reacttraining.com/react-router/',
-            'http://reacttraining.cn/',
+            'https://react-router.docschina.org/',
             'https://github.com/ReactTraining/react-router'
           ]
         },
