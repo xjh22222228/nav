@@ -73,6 +73,17 @@ export default {
             'https://github.com/nginx/nginx'
           ]
         },
+        {
+          icon: 'https://avatars0.githubusercontent.com/u/1412239?s=200&v=4',
+          name: 'Nginx开发从入门到精通',
+          desc: 'Nginx开发从入门到精通',
+          link: 'http://tengine.taobao.org/book/index.html',
+          language: [
+            '',
+            '',
+            'https://github.com/taobao/nginx-book'
+          ]
+        },
       ]
     },
     {
