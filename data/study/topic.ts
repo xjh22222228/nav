@@ -30,6 +30,12 @@ export default {
             'https://github.com/CyC2018/CS-Notes'
           ]
         },
+        {
+          icon: 'https://visualgo.net/img/favicon.png',
+          name: '数据结构和算法动态可视化',
+          desc: '数据结构和算法动态可视化',
+          link: 'https://visualgo.net/zh',
+        },
       ]
     },
   ]

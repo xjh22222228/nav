@@ -13,7 +13,7 @@
 [在线预览](https://xjh22222228.github.io/nav/index.html)
 
 
-![Preview](media/v2.png)
+![Preview](media/poster.png)
 
 
 

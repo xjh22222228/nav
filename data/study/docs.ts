@@ -1,3 +1,6 @@
+
+const thisYear = new Date().getFullYear();
+
 export default {
   title: '参考文档',
   nav: [
@@ -96,6 +99,12 @@ export default {
           link: 'https://github.com/xjh22222228/linux-manual',
         },
         {
+          icon: 'assets/icon/community/007.svg',
+          name: 'developer-roadmap',
+          desc: `${thisYear}年成为网络开发人员的路线图`,
+          link: 'https://github.com/kamranahmedse/developer-roadmap',
+        },
+        {
           icon: 'https://devhints.io/assets/favicon.png',
           name: 'Devhints',
           desc: 'WEB开发速查表，mysql/go/java/js/bash/react/git...',
@@ -118,7 +127,6 @@ export default {
           desc: '正则表达式学习',
           link: 'https://github.com/ziishaned/learn-regex',
         },
-        
         {
           icon: 'assets/icon/community/007.svg',
           name: 'the-art-of-command-line',
