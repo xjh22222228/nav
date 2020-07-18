@@ -1,11 +1,20 @@
 
-[![HitCount](http://hits.dwyl.com/xjh22222228/nav.svg)](http://hits.dwyl.com/xjh22222228/nav)
+<p align="center">
+  <img src="src/assets/icon/logo.png" width="300" />
+  <br />
+  <b>发现导航</b>
+  <p align="center">一个纯静态、易管理的强大导航网站，希望您喜欢它</p>
+  <p align="center">
+    <a href="https://github.com/xjh22222228/nav/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/nav" alt="Stars Badge"/></a>
+    <img src="https://img.shields.io/github/license/xjh22222228/nav" />
+    <a href="https://hits.dwyl.com/xjh22222228/nav">
+      <img src="https://hits.dwyl.com/xjh22222228/nav.svg" />
+    </a>
+  </p>
+</p>
 
-
-
-## 发现导航是什么？
-一个纯静态、易管理的强大导航网站，希望您喜欢它。
-
+<br />
+<br />
 
 
 
