@@ -134,6 +134,12 @@ export default {
           desc: '智联招聘旗下专业的招聘求职社交问答平台，覆盖了求职、招聘、职业规划、升职加薪、面试技巧、工作经验分享等热门话 题，涉及各种行业职场问题，1.5亿用户的职场社区',
           link: 'https://zq.zhaopin.com/',
         },
+        {
+          icon: 'http://jandan.net/favicon.ico',
+          name: '煎蛋',
+          desc: '煎蛋以译介方式传播网络新鲜资讯',
+          link: 'http://jandan.net/',
+        },
       ]
     },
     {
