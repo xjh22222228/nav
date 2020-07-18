@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="src/assets/icon/logo.png" width="300" />
+  <img src="src/assets/icon/logo.png" width="130" />
   <br />
   <b>发现导航</b>
   <p align="center">一个纯静态、易管理的强大导航网站，希望您喜欢它</p>
