@@ -1,6 +1,8 @@
 
 <p align="center">
-  <img src="src/assets/icon/logo.png" width="130" />
+  <a href="https://xjh22222228.github.io/nav/index.html?g">
+    <img src="src/assets/icon/logo.png" width="130" />
+  </a>
   <br />
   <b>发现导航</b>
   <p align="center">一个纯静态、易管理的强大导航网站，希望您喜欢它</p>
@@ -19,7 +21,7 @@
 
 
 ## 预览
-[在线预览](https://xjh22222228.github.io/nav/index.html)
+[在线预览](https://xjh22222228.github.io/nav/index.html?g)
 
 
 ![Preview](media/poster.png)
