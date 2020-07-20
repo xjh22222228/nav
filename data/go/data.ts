@@ -166,6 +166,12 @@ export default {
           desc: 'Go编程时光 1.0.0 documentation',
           link: 'http://golang.iswbm.com/en/latest/',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'Go by Example 中文版',
+          desc: 'Go by Example 是对 Go 基于实践的介绍，包含一系列带有注释说明的示例程序。',
+          link: 'https://gobyexample-cn.github.io/',
+        },
       ]
     },
     {
