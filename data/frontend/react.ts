@@ -245,6 +245,17 @@ export default {
             'https://github.com/rsuite/rsuite'
           ]
         },
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/54212428?s=200&v=4',
+          name: 'chakra-ui',
+          desc: '适用于您的React应用程序的简单，模块化和可访问的UI组件',
+          link: 'https://chakra-ui.com/',
+          language: [
+            '',
+            '',
+            'https://github.com/chakra-ui/chakra-ui'
+          ]
+        },
       ]
     },
     {
