@@ -195,6 +195,12 @@ export default {
           desc: 'Go的快速Linters Runner',
           link: 'https://github.com/golangci/golangci-lint',
         },
+        {
+          icon: 'https://play.golang.org/favicon.ico',
+          name: 'The Go Playground',
+          desc: '在线运行Golang',
+          link: 'https://play.golang.org/',
+        },
       ]
     },
   ]
