@@ -152,6 +152,12 @@ export default {
           desc: '免费下载百度文库文档',
           link: 'http://wenku.baiduvvv.com/doc',
         },
+        {
+          icon: 'http://tools.bugscaner.com/static/images/favicon.ico',
+          name: '在线文件编码识别',
+          desc: '在线文件编码识别',
+          link: 'http://tools.bugscaner.com/filebianma/',
+        },
       ]
     },
   ]
