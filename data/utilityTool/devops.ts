@@ -6,6 +6,12 @@ const nav = {
       subtitle: '开发者',
       nav: [
         {
+          icon: 'https://camo.githubusercontent.com/ebfdd465daa90626d0ab0d0fddc0e457c942a392/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f616e7572616768617a72612f696d6167652f75706c6f61642f76313539343930383234322f6c6f676f5f636373776d652e737667',
+          name: 'github-readme-stats',
+          desc: '在你的 README 中 获取动态生成的 GitHub 统计信息',
+          link: 'https://github.com/anuraghazra/github-readme-stats/blob/master/readme_cn.md',
+        },
+        {
           icon: 'https://i.imgur.com/zBEQq4w.png',
           name: 'Hits',
           desc: '了解有多少人正在查看您的GitHub项目的简单方法',
