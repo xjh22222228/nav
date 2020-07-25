@@ -1,6 +1,6 @@
 
 <p align="center">
-  <a href="https://xjh22222228.github.io/nav/index.html?g">
+  <a href="https://nav3.cn/?g">
     <img src="src/assets/icon/logo.png" width="130" />
   </a>
   <br />
@@ -21,7 +21,7 @@
 
 
 ## 预览
-[在线预览](https://xjh22222228.github.io/nav/index.html?g)
+[在线预览](https://nav3.cn/?g)
 
 
 ![Preview](media/poster.png)
