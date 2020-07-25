@@ -14,6 +14,7 @@
     "ng": "ng",
     "start": "ng serve --open",
     "build": "ng build --prod --base-href ./",
+    "build-static": "ng build --prod --base-href=./ --deploy-url=static/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

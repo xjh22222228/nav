@@ -22,6 +22,8 @@ export const start = new Date(2018, 3, 26, 0, 0, 0, 0);
 // 如果没有请赋值空字符串
 export const git = 'https://github.com/xjh22222228/nav';
 
+export const caseNumber = '粤ICP备16052285号';
+
 // http://nav.xiejiahe.com/#/index?q=grabient
 export const BACKGROUND_LINEAR = [
   'linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)',
