@@ -6,6 +6,12 @@ const nav = {
       subtitle: '开发者',
       nav: [
         {
+          icon: 'https://randomuser.me/favicon.ico',
+          name: 'randomuser',
+          desc: '随机用户生成器是用于生成占位符用户信息的免费API。 获取个人资料照片，姓名等。 对于人们来说，就像Lorem Ipsum。',
+          link: 'https://randomuser.me/',
+        },
+        {
           icon: 'https://camo.githubusercontent.com/ebfdd465daa90626d0ab0d0fddc0e457c942a392/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f616e7572616768617a72612f696d6167652f75706c6f61642f76313539343930383234322f6c6f676f5f636373776d652e737667',
           name: 'github-readme-stats',
           desc: '在你的 README 中 获取动态生成的 GitHub 统计信息',
