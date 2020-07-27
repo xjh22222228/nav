@@ -79,6 +79,12 @@ const nav = {
           subtitle: '辅助工具',
           nav: [
             {
+              icon: 'https://www.wireshark.org/assets/images/favicon.ico',
+              name: 'wireshark',
+              desc: '是一个网络封包分析软件。网络封包分析软件的功能是撷取网络封包，并尽可能显示出最为详细的网络封包资料。Wireshark使用WinPCAP作为接口，直接与网卡进行数据报文交换',
+              link: 'https://www.wireshark.org/',
+            },
+            {
               icon: 'assets/icon/security/008.png',
               name: 'XSS平台-白帽安全测试',
               desc: 'XSS平台是一个免费给白帽安全测试的平台',
