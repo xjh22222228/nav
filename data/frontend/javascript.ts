@@ -109,6 +109,17 @@ export default {
       subtitle: '常用插件',
       nav: [
         {
+          icon: 'https://avatars0.githubusercontent.com/u/17040762?s=200&v=4',
+          name: 'Sortable',
+          desc: '一个JavaScript库，用于在现代浏览器和触摸设备上对拖放列表进行重新排序',
+          link: 'https://sortablejs.github.io/Sortable/',
+          language: [
+            '',
+            '',
+            'https://github.com/SortableJS/Sortable'
+          ]
+        },
+        {
           icon: 'assets/icon/frontend/023.png',
           name: 'formilyjs',
           desc: 'Formily 是一个由阿里巴巴集团多 BU 共建的面向中后台复杂场景的表单解决方案，它也是一个表单框架',
