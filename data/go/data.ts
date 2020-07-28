@@ -137,6 +137,12 @@ export default {
             'https://github.com/micro/go-micro'
           ]
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'xlsx',
+          desc: 'xlsx是一个库，用于简化在Go程序中读写Microsoft Excel最新版本使用的XML格式。',
+          link: 'https://github.com/tealeg/xlsx',
+        },
       ]
     },
     {
