@@ -181,6 +181,12 @@ const nav = {
           desc: 'uTools是一个极简、插件化、跨平台的现代桌面软件。通过自由选配丰富的插件，打造你得心应手的工具集合',
           link: 'http://www.u.tools/',
         },
+        {
+          icon: 'https://ihateregex.io/favicon.ico',
+          name: 'ihateregex',
+          desc: '正则表达式备忘录',
+          link: 'https://ihateregex.io/',
+        },
       ]
     },
     {
