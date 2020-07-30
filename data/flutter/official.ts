@@ -90,6 +90,12 @@ export default {
           name: 'FlutterToast',
           desc: '适用于Flutter的Android Toast插件',
           link: 'https://github.com/PonnamKarthik/FlutterToast',
+        },
+        {
+          icon: 'https://flutter.dev/images/favicon.png',
+          name: 'dart-uuid',
+          desc: '生成 RFC4122(v1,v4,v5) UUIDs',
+          link: 'https://github.com/Daegalus/dart-uuid',
         }
       ]
     },
