@@ -109,6 +109,12 @@ const nav = {
               desc: '超过25万个icon免费集合',
               link: 'https://www.shareicon.net/',
             },
+            {
+              icon: 'http://collectui.com/img/favicon.ico',
+              name: 'Collect UI',
+              desc: '从每日ui档案库及其他收集的每日灵感。 根据Dribbble拍摄的照片，手工挑选，每天更新',
+              link: 'http://collectui.com/',
+            },
           ]
         },
         {
