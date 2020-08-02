@@ -5,6 +5,12 @@ export default {
       subtitle: '',
       nav: [
         {
+          icon: 'assets/icon/frontend/023.png',
+          name: '你不知道的JavaScript',
+          desc: '你不知道的JavaScript',
+          link: 'https://github.com/getify/You-Dont-Know-JS',
+        },
+        {
           icon: 'https://zh.javascript.info/img/favicon/favicon.png',
           name: '现代 JavaScript 教程',
           desc: '以最新的 JavaScript 标准为基准。通过简单但足够详细的内容，为你讲解从基础到高阶的 JavaScript 相关知识',
