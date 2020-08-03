@@ -36,6 +36,12 @@ export default {
           desc: '数据结构和算法动态可视化',
           link: 'https://visualgo.net/zh',
         },
+        {
+          icon: 'assets/icon/community/007.svg',
+          name: 'algorithm-pattern',
+          desc: '算法模板，最科学的刷题方式，最快速的刷题路径，你值得拥有~',
+          link: 'https://github.com/greyireland/algorithm-pattern',
+        },
       ]
     },
   ]
