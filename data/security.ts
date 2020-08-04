@@ -79,6 +79,12 @@ const nav = {
           subtitle: '辅助工具',
           nav: [
             {
+              icon: 'https://www.telerik.com/favicon.ico',
+              name: 'fiddler',
+              desc: 'Fiddler是一个用于HTTP调试的代理服务器应用程序',
+              link: 'https://www.telerik.com/fiddler',
+            },
+            {
               icon: 'https://www.wireshark.org/assets/images/favicon.ico',
               name: 'wireshark',
               desc: '是一个网络封包分析软件。网络封包分析软件的功能是撷取网络封包，并尽可能显示出最为详细的网络封包资料。Wireshark使用WinPCAP作为接口，直接与网卡进行数据报文交换',
