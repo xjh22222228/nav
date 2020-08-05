@@ -612,6 +612,12 @@ export default {
           desc: '本机 node.js 打印机',
           link: 'https://github.com/tojocky/node-printer',
         },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'fontmin',
+          desc: '无缝缩小字体',
+          link: 'https://github.com/ecomfe/fontmin',
+        },
       ]
     },
   ]
