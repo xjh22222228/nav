@@ -65,7 +65,7 @@ const nav = {
               icon: 'assets/icon/security/012.png',
               name: 'XSS-CTF',
               desc: 'XSS-CTF 是一个练习和入门的XSS平台, 每一位WEB工程师都应具备的基础知识，提高网络安全意识',
-              link: 'http://xss-ctf.xiejiahe.com',
+              link: 'http://xss.xiejiahe.com',
             },
             {
               icon: 'assets/icon/security/000.svg',
