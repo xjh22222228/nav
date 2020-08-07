@@ -3,7 +3,7 @@ import design from './design';
 import movies from './movies';
 import job from './job';
 import other from './other';
-
+import gui from './gui';
 
 
 export default {
@@ -11,6 +11,7 @@ export default {
   nav: [
     dev,
     design,
+    gui,
     movies,
     job,
     other
