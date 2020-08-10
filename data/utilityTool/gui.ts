@@ -22,6 +22,12 @@ export default {
           desc: 'Mac和Windows虚拟化|管理Mac|VDI和RDS解决方案',
           link: 'https://www.parallels.cn/',
         },
+        {
+          icon: 'http://mumu.163.com/favicon.ico',
+          name: 'mumu Android模拟器',
+          desc: '网易MuMu[手游模拟器][安卓模拟器]',
+          link: 'http://mumu.163.com/',
+        },
       ]
     },
   ]
