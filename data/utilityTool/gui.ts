@@ -28,6 +28,12 @@ export default {
           desc: '网易MuMu[手游模拟器][安卓模拟器]',
           link: 'http://mumu.163.com/',
         },
+        {
+          icon: 'https://www.sourcetreeapp.com/assets/img/favicons/sourcetree/favicon-32x32.png',
+          name: 'Sourcetree',
+          desc: '美丽的Git GUI中的简单性和强大功能',
+          link: 'https://www.sourcetreeapp.com/',
+        },
       ]
     },
   ]
