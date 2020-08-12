@@ -34,6 +34,12 @@ export default {
           desc: '美丽的Git GUI中的简单性和强大功能',
           link: 'https://www.sourcetreeapp.com/',
         },
+        {
+          icon: 'https://www.charlesproxy.com/static/img/icon.8b97278f.png',
+          name: 'charles',
+          desc: 'Charles是HTTP代理/ HTTP监视器/反向代理，使开发人员可以查看其计算机与Internet之间的所有HTTP和SSL / HTTPS通信。这包括请求，响应和HTTP标头（其中包含cookie和缓存信息）。',
+          link: 'https://www.charlesproxy.com/',
+        },
       ]
     },
   ]
