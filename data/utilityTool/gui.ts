@@ -40,6 +40,12 @@ export default {
           desc: 'Charles是HTTP代理/ HTTP监视器/反向代理，使开发人员可以查看其计算机与Internet之间的所有HTTP和SSL / HTTPS通信。这包括请求，响应和HTTP标头（其中包含cookie和缓存信息）。',
           link: 'https://www.charlesproxy.com/',
         },
+        {
+          icon: 'https://tunnelblick.net/favicon.ico',
+          name: 'Tunnelblick',
+          desc: '适用于macOS的免费开源OpenVPN VPN客户端服务器软件。',
+          link: 'https://tunnelblick.net/',
+        },
       ]
     },
   ]
