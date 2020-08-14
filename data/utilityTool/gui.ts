@@ -46,6 +46,12 @@ export default {
           desc: '适用于macOS的免费开源OpenVPN VPN客户端服务器软件。',
           link: 'https://tunnelblick.net/',
         },
+        {
+          icon: 'https://tableplus.com/resources/favicons/apple-icon-57x57.png',
+          name: 'tableplus',
+          desc: '用于关系数据库的现代，本地且友好的GUI工具：MySQL，PostgreSQL，SQLite等',
+          link: 'https://tableplus.com/',
+        },
       ]
     },
   ]
