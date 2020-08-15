@@ -52,6 +52,12 @@ export default {
           desc: '用于关系数据库的现代，本地且友好的GUI工具：MySQL，PostgreSQL，SQLite等',
           link: 'https://tableplus.com/',
         },
+        {
+          icon: 'https://robomongo.org/static/favicon-11ace079.ico',
+          name: 'Robo 3T',
+          desc: '一个现代，强大且由社区驱动的MongoDB管理工具',
+          link: 'https://robomongo.org/',
+        },
       ]
     },
   ]
