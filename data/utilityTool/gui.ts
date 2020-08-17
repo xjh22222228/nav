@@ -58,6 +58,12 @@ export default {
           desc: '一个现代，强大且由社区驱动的MongoDB管理工具',
           link: 'https://robomongo.org/',
         },
+        {
+          icon: 'https://www.keka.io/img/Keka-120x120.png',
+          name: 'Keka',
+          desc: 'macOS文件存档器, 储存更多，私密分享',
+          link: 'https://www.keka.io/',
+        },
       ]
     },
   ]
