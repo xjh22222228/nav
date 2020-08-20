@@ -70,6 +70,12 @@ export default {
           desc: 'Sequel Pro是一个快速，易于使用的Mac数据库管理应用程序，用于处理MySQL数据库。',
           link: 'https://www.sequelpro.com/',
         },
+        {
+          icon: 'https://getkap.co/static/favicon/kap.ico',
+          name: 'Kap',
+          desc: '使用Web技术构建的开源屏幕录像机。',
+          link: 'https://getkap.co/',
+        },
       ]
     },
   ]

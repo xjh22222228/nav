@@ -90,10 +90,10 @@ export default {
           icon: 'assets/icon/frontend/093.png',
           name: 'vant-weapp',
           desc: '轻量、可靠的小程序 UI 组件库',
-          link: 'https://youzan.github.io/vant-weapp/#/intro',
+          link: 'https://vant-contrib.gitee.io/vant-weapp/#/intro',
           language: [
             '',
-            'https://youzan.github.io/vant-weapp/#/intro',
+            '',
             'https://github.com/youzan/vant-weapp',
           ]
         },
