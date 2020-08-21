@@ -65,7 +65,7 @@ export default {
           link: 'https://www.keka.io/',
         },
         {
-          icon: 'https://www.keka.io/img/Keka-120x120.png',
+          icon: 'https://sequelpro.com/favicon/favicon-32x32.png',
           name: 'Sequel Pro',
           desc: 'Sequel Pro是一个快速，易于使用的Mac数据库管理应用程序，用于处理MySQL数据库。',
           link: 'https://www.sequelpro.com/',
