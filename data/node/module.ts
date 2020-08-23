@@ -618,6 +618,12 @@ export default {
           desc: '无缝缩小字体',
           link: 'https://github.com/ecomfe/fontmin',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/5658226?s=200&v=4',
+          name: 'morgan',
+          desc: 'Node.js的HTTP请求记录器中间件',
+          link: 'https://github.com/expressjs/morgan',
+        },
       ]
     },
   ]
