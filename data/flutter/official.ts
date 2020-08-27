@@ -51,6 +51,12 @@ export default {
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/2605412?s=200&v=4',
+          name: 'imei_plugin',
+          desc: '用flutter在Android中获取imei的插件',
+          link: 'https://github.com/kevincaicedo/imei_plugin',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/2605412?s=200&v=4',
           name: 'multi_image_picker',
           desc: 'Flutter插件，可让您在iOS和Android上显示多图像选择器。',
           link: 'https://github.com/Sh1d0w/multi_image_picker',
