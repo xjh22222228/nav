@@ -158,7 +158,7 @@ export default {
           icon: 'assets/icon/frontend/070.png',
           name: 'BootCDN',
           desc: '稳定、快速、免费的前端开源项目 CDN 加速服务',
-          link: 'https://www.jsdelivr.com/',
+          link: 'https://www.bootcdn.cn/',
         },
         {
           icon: 'assets/icon/frontend/112.png',
