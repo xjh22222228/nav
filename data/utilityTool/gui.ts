@@ -76,6 +76,12 @@ export default {
           desc: '使用Web技术构建的开源屏幕录像机。',
           link: 'https://getkap.co/',
         },
+        {
+          icon: 'https://code.visualstudio.com/apple-touch-icon.png',
+          name: 'Vscode',
+          desc: 'VScode是一款轻量级的编辑器，自由。 建立在开源上。 无处不在。',
+          link: 'https://code.visualstudio.com/',
+        },
       ]
     },
   ]
