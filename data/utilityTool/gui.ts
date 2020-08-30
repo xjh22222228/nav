@@ -82,6 +82,12 @@ export default {
           desc: 'VScode是一款轻量级的编辑器，自由。 建立在开源上。 无处不在。',
           link: 'https://code.visualstudio.com/',
         },
+        {
+          icon: 'https://nmap.org/shared/images/tiny-eyeicon.png',
+          name: 'zenmap',
+          desc: '开源免费的网络发现工具，通过它能够找出网络上在线的主机，并测试主机上哪些端口处于监听状态，接着通过端口确定主机上运行的应用程序类型与版本信息，最后利用它还能侦测出操作系统的类型和版本',
+          link: 'https://nmap.org/zenmap/',
+        },
       ]
     },
   ]
