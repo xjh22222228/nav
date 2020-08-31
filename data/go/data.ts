@@ -43,6 +43,12 @@ export default {
             'https://github.com/goproxy/goproxy.cn'
           ]
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/49926011?s=200&v=4',
+          name: 'cobra',
+          desc: 'Cobra既是用于创建功能强大的现代CLI应用程序的库，又是用于生成应用程序和命令文件的程序',
+          link: 'https://github.com/spf13/cobra',
+        },
       ]
     },
     {
