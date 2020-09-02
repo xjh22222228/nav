@@ -107,6 +107,22 @@ export default {
       ]
     },
     {
+      subtitle: '数据库',
+      nav: [
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'gorm',
+          desc: '适用于Golang的绝佳ORM库，旨在对开发人员友好',
+          link: 'https://gorm.io/',
+          language: [
+            '',
+            '',
+            'https://github.com/go-gorm/gorm'
+          ]
+        },
+      ]
+    },
+    {
       subtitle: '依赖包',
       nav: [
         {
