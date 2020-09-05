@@ -88,6 +88,12 @@ export default {
           desc: '开源免费的网络发现工具，通过它能够找出网络上在线的主机，并测试主机上哪些端口处于监听状态，接着通过端口确定主机上运行的应用程序类型与版本信息，最后利用它还能侦测出操作系统的类型和版本',
           link: 'https://nmap.org/zenmap/',
         },
+        {
+          icon: 'https://www.vmware.com/favicon.ico',
+          name: 'vmware',
+          desc: '利用VMware提供的软件定义的云，移动性，网络和安全解决方案来建立您的数字基础。',
+          link: 'https://www.vmware.com/',
+        },
       ]
     },
   ]
