@@ -73,6 +73,12 @@ const nav = {
               desc: 'XSS小游戏',
               link: 'https://xss.haozi.me/',
             },
+            {
+              icon: 'assets/icon/security/000.svg',
+              name: 'Pasteurize',
+              desc: 'XSS CTF',
+              link: 'https://pasteurize.web.ctfcompetition.com/',
+            },
           ]
         },
         {
