@@ -119,10 +119,10 @@ const nav = {
           link: 'https://github.com/hwdsl2/setup-ipsec-vpn',
         },
         {
-          icon: 'https://nginxconfig.io/assets/img/favicon.png',
+          icon: 'https://www.digitalocean.com/favicon.ico',
           name: 'nginxconfig',
           desc: 'nginx配置生成器',
-          link: 'https://nginxconfig.io',
+          link: 'https://www.digitalocean.com/community/tools/nginx#?',
           language: [
             '',
             '',
