@@ -282,6 +282,28 @@ export default {
       ]
     },
     {
+      subtitle: 'AST辅助工具',
+      nav: [
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'esprima',
+          desc: 'ECMAScript解析基础架构，可进行多用途分析, 将代码转换成AST',
+          link: 'https://esprima.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/jquery/esprima'
+          ]
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'recast',
+          desc: 'JavaScript AST转换器，非破坏性漂亮打印机和自动源映射生成器',
+          link: 'https://github.com/benjamn/recast',
+        },
+      ]
+    },
+    {
       subtitle: '文件相关',
       nav: [
         {
