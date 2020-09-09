@@ -94,6 +94,12 @@ export default {
           desc: '利用VMware提供的软件定义的云，移动性，网络和安全解决方案来建立您的数字基础。',
           link: 'https://www.vmware.com/',
         },
+        {
+          icon: 'https://obsproject.com/favicon-32x32.png',
+          name: 'obsproject',
+          desc: '免费和开源软件，用于视频录制和实时流。',
+          link: 'https://obsproject.com/',
+        },
       ]
     },
   ]
