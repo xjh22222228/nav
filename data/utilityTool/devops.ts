@@ -6,6 +6,17 @@ const nav = {
       subtitle: '开发神器',
       nav: [
         {
+          icon: 'https://avatars3.githubusercontent.com/u/1396951?s=200&v=4',
+          name: 'Sentry',
+          desc: 'Web应用程序，移动应用程序和游戏的实时崩溃报告。',
+          link: 'https://sentry.io/',
+          language: [
+            '',
+            '',
+            'https://github.com/getsentry'
+          ]
+        },
+        {
           icon: 'https://randomuser.me/favicon.ico',
           name: 'randomuser',
           desc: '随机用户生成器是用于生成占位符用户信息的免费API。 获取个人资料照片，姓名等。 对于人们来说，就像Lorem Ipsum。',
