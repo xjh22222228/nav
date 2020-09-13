@@ -100,6 +100,17 @@ export default {
           desc: '免费和开源软件，用于视频录制和实时流。',
           link: 'https://obsproject.com/',
         },
+        {
+          icon: 'https://redisdesktop.com/static/css/favicon.png',
+          name: 'RedisDesktopManager',
+          desc: 'Redis Desktop Manager（又名RDM）—是用于Windows，Linux，MacOS和iPadOS的快速Redis数据库管理应用程序。',
+          link: 'https://redisdesktop.com/',
+          language: [
+            '',
+            '',
+            'https://github.com/uglide/RedisDesktopManager'
+          ]
+        },
       ]
     },
   ]
