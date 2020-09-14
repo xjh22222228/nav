@@ -227,6 +227,12 @@ export default {
             'https://github.com/knex/knex'
           ]
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/5845577?s=200&v=4',
+          name: 'node-redis',
+          desc: '高性能Node.js Redis客户端。',
+          link: 'https://github.com/NodeRedis/node-redis',
+        },
       ]
     },
     {

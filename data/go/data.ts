@@ -171,6 +171,12 @@ export default {
           desc: 'Go强大而灵活的电子邮件库。',
           link: 'https://github.com/jordan-wright/email',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'websocket',
+          desc: 'Go的一种快速，经过测试且广泛使用的WebSocket实现',
+          link: 'https://github.com/gorilla/websocket',
+        },
       ]
     },
     {
