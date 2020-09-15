@@ -82,11 +82,13 @@ npm run build
 
 2、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token。
 
-3、到 https://github.com/你的名字/nav/settings/secrets/new  添加刚刚申请的token， name填写 `TOKEN`。
+3、到 https://github.com/用户名/nav/settings/secrets/new  添加刚刚申请的token， name填写 `TOKEN` 大写。
 
-4、当推送内容到仓库后会自动部署， 打开 https://你的名字.github.io/nav  即可看到。
+4、打开 https://github.com/用户名/nav/actions 点击 `绿色按钮`
 
-5、打开 https://你的名字.github.io/nav 就能看到一个非常强大的导航网站了。
+5、往仓库推送一条Commit (非常重要)。
+
+6、5分钟后打开 https://用户名.github.io/nav 就能看到一个非常强大的导航网站了。
 
 
 注：如果你想部署到自己的域名，那么以上教程同样适合，因为它提供了自动化更新， 之后你可以通过 `CNAME` 或 `反向代理` 实现。
