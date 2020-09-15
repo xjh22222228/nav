@@ -177,6 +177,12 @@ export default {
           desc: 'Go的一种快速，经过测试且广泛使用的WebSocket实现',
           link: 'https://github.com/gorilla/websocket',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'govalidator',
+          desc: '参数验证程序，用于字符串，数字，切片和结构',
+          link: 'https://github.com/asaskevich/govalidator',
+        },
       ]
     },
     {
