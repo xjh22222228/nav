@@ -80,7 +80,7 @@ npm run build
 
 1、Fork 当前项目。
 
-2、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token。
+2、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中。
 
 3、到 https://github.com/用户名/nav/settings/secrets/new  添加刚刚申请的token， name填写 `TOKEN` 大写。
 

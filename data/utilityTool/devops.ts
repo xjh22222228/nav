@@ -6,6 +6,12 @@ const nav = {
       subtitle: '开发神器',
       nav: [
         {
+          icon: 'https://avatars2.githubusercontent.com/u/30217756?s=200&v=4',
+          name: 'askgit',
+          desc: '使用SQL查询git存储库。生成报告，执行状态检查，分析代码库。',
+          link: 'https://github.com/augmentable-dev/askgit',
+        },
+        {
           icon: 'https://avatars3.githubusercontent.com/u/1396951?s=200&v=4',
           name: 'Sentry',
           desc: 'Web应用程序，移动应用程序和游戏的实时崩溃报告。',
