@@ -247,6 +247,17 @@ export default {
           desc: '在线运行Golang',
           link: 'https://play.golang.org/',
         },
+        {
+          icon: 'https://nuclei.projectdiscovery.io/',
+          name: 'nuclei',
+          desc: 'Nuclei是基于模板的可配置目标扫描的快速工具，具有广泛的可扩展性和易用性。',
+          link: 'https://play.golang.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/projectdiscovery/nuclei'
+          ]
+        },
       ]
     },
   ]
