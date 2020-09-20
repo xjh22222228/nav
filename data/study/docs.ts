@@ -25,6 +25,17 @@ export default {
           desc: 'Docker 镜像仓库',
           link: 'https://hub.docker.com/',
         },
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/7739233?s=200&v=4',
+          name: 'Docker-Compose',
+          desc: '使用Docker定义和运行多容器应用程序',
+          link: 'https://docs.docker.com/compose/',
+          language: [
+            '',
+            '',
+            'https://github.com/docker/compose'
+          ]
+        },
       ]
     },
     {
