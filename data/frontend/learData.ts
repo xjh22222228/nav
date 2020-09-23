@@ -6,6 +6,12 @@ export default {
       nav: [
         {
           icon: 'assets/icon/frontend/023.png',
+          name: 'JavaScript 20 年',
+          desc: 'JavaScript 20 年',
+          link: 'https://cn.history.js.org/',
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
           name: '你不知道的JavaScript',
           desc: '你不知道的JavaScript',
           link: 'https://github.com/getify/You-Dont-Know-JS',

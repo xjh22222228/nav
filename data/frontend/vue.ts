@@ -146,10 +146,10 @@ export default {
           icon: 'assets/icon/frontend/091.png',
           name: 'Ant Design Vue',
           desc: '这里是 Ant Design 的 Vue 实现，开发和服务于企业级后台产品',
-          link: 'https://vuecomponent.github.io/ant-design-vue/docs/vue/introduce-cn/',
+          link: 'https://antdv.com/docs/vue/introduce-cn/',
           language: [
-            'https://vuecomponent.github.io/ant-design-vue/docs/vue/introduce/',
-            'https://vuecomponent.github.io/ant-design-vue/docs/vue/introduce-cn/',
+            'https://antdv.com/docs/vue/introduce/',
+            'https://antdv.com/docs/vue/introduce-cn/',
             'https://github.com/vueComponent/ant-design-vue',
           ]
         },

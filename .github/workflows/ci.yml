@@ -15,11 +15,6 @@ jobs:
       run: |
         npm install
         npm run build
-    - name: Install and Build Static
-      if: github.repository == 'xjh22222228/nav'
-      run: |
-        npm install
-        npm run build-static
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
