@@ -101,6 +101,22 @@ export default {
       ]
     },
     {
+      subtitle: '数据库',
+      nav: [
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/1529926?s=200&v=4',
+          name: 'redis',
+          desc: 'Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构',
+          link: 'http://www.redis.cn/',
+          language: [
+            'https://redis.io/',
+            'http://www.redis.cn/',
+            'https://github.com/redis/redis'
+          ]
+        },
+      ]
+    },
+    {
       subtitle: '其他文档',
       nav: [
         {

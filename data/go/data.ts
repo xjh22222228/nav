@@ -113,10 +113,10 @@ export default {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'gorm',
           desc: '适用于Golang的绝佳ORM库，旨在对开发人员友好',
-          link: 'https://gorm.io/',
+          link: 'https://gorm.io/zh_CN/',
           language: [
-            '',
-            '',
+            'https://gorm.io/',
+            'https://gorm.io/zh_CN/',
             'https://github.com/go-gorm/gorm'
           ]
         },
