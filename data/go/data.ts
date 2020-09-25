@@ -183,6 +183,12 @@ export default {
           desc: '参数验证程序，用于字符串，数字，切片和结构',
           link: 'https://github.com/asaskevich/govalidator',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'jwt-go',
+          desc: 'Golang 实现的 JSON WEB TOKEN',
+          link: 'https://github.com/dgrijalva/jwt-go',
+        },
       ]
     },
     {
@@ -217,6 +223,18 @@ export default {
           name: 'Go by Example 中文版',
           desc: 'Go by Example 是对 Go 基于实践的介绍，包含一系列带有注释说明的示例程序。',
           link: 'https://gobyexample-cn.github.io/',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'Gin实战',
+          desc: 'WEB 框架Gin实战',
+          link: 'https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI3MjU4Njk3Ng==&action=getalbum&album_id=1362784031968149504&scene=173#wechat_redirect',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'Go语言之旅',
+          desc: '本指南涵盖了该语言的大部分重要特性，主要包括：基础、方法和接口、并发等',
+          link: 'https://tour.go-zh.org/welcome/1',
         },
       ]
     },
