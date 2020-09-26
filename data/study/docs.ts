@@ -49,8 +49,8 @@ export default {
         },
         {
           icon: 'assets/icon/community/007.svg',
-          name: 'github帮助文档',
-          desc: 'github帮助文档',
+          name: 'GitHub Docs',
+          desc: 'github 官方帮助文档',
           link: 'https://help.github.com/cn',
         },
         {

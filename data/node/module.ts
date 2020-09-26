@@ -392,6 +392,12 @@ export default {
       nav: [
         {
           icon: 'assets/icon/frontend/023.png',
+          name: 'Glob',
+          desc: '匹配文件。 **/*.js',
+          link: 'https://github.com/isaacs/node-glob',
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
           name: 'prompts',
           desc: '轻巧，美观和用户友好的交互式提示',
           link: 'https://github.com/terkelg/prompts',
