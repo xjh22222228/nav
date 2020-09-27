@@ -111,6 +111,17 @@ export default {
             'https://github.com/uglide/RedisDesktopManager'
           ]
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/14985020?s=200&v=4',
+          name: 'hyper',
+          desc: '基于WEB技术的终端',
+          link: 'https://hyper.is/',
+          language: [
+            '',
+            '',
+            'https://github.com/zeit/hyper'
+          ]
+        }
       ]
     },
   ]

@@ -282,16 +282,17 @@ const nav = {
           ]
         },
         {
-          icon: 'https://avatars1.githubusercontent.com/u/14985020?s=200&v=4',
-          name: 'hyper',
-          desc: '基于WEB技术的终端',
-          link: 'https://hyper.is/',
-          language: [
-            '',
-            '',
-            'https://github.com/zeit/hyper'
-          ]
-        }
+          icon: 'https://www.zentao.net/favicon.ico',
+          name: '禅道',
+          desc: '禅道是灵活的项目管理软件',
+          link: 'https://www.zentao.net/',
+        },
+        {
+          icon: 'https://www.tapd.cn/favicon.ico',
+          name: 'Tapd',
+          desc: '一站式敏捷研发协作云平台, 凝聚腾讯研发方法及敏捷实践精髓, 助力企业研发更高效、协作更敏捷',
+          link: 'https://www.tapd.cn/',
+        },
       ]
     },
     {
