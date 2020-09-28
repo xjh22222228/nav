@@ -123,6 +123,23 @@ export default {
       ]
     },
     {
+      subtitle: '日志模块',
+      nav: [
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'logrus',
+          desc: 'Go的结构化，可插入日志记录。',
+          link: 'https://github.com/sirupsen/logrus',
+        },
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/19262598?s=200&v=4',
+          name: 'zap',
+          desc: '在Go中实现快速，结构化，水平的日志记录。',
+          link: 'https://github.com/uber-go/zap',
+        },
+      ]
+    },
+    {
       subtitle: '依赖包',
       nav: [
         {
@@ -135,12 +152,6 @@ export default {
             '',
             'https://github.com/json-iterator/go'
           ]
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'logrus',
-          desc: 'Go的结构化，可插入日志记录。',
-          link: 'https://github.com/sirupsen/logrus',
         },
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
