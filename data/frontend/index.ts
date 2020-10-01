@@ -6,7 +6,7 @@ import tool from './tool';
 import css from './css';
 import javascript from './javascript';
 import ts from './typescript';
-import learData from './learData';
+import reference from './reference';
 
 export default {
   title: 'WEB前端',
@@ -19,6 +19,6 @@ export default {
     tool,
     css,
     ts,
-    learData
+    reference
   ]
 }
