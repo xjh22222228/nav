@@ -211,6 +211,18 @@ export default {
           desc: 'Golang 实现的 JSON WEB TOKEN',
           link: 'https://github.com/dgrijalva/jwt-go',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'cron',
+          desc: 'Go 实现的 cron 包',
+          link: 'https://github.com/robfig/cron',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'blackfriday',
+          desc: 'Markdown处理器，安全、快速。',
+          link: 'https://github.com/russross/blackfriday',
+        },
       ]
     },
     {
