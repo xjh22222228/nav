@@ -6,6 +6,12 @@ const nav = {
       subtitle: '开发神器',
       nav: [
         {
+          icon: 'assets/icon/community/007.svg',
+          name: 'UPX',
+          desc: 'UPX-可执行文件的终极打包器',
+          link: 'https://github.com/augmentable-dev/askgit',
+        },
+        {
           icon: 'https://avatars2.githubusercontent.com/u/30217756?s=200&v=4',
           name: 'askgit',
           desc: '使用SQL查询git存储库。生成报告，执行状态检查，分析代码库。',

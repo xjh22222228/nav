@@ -6,7 +6,7 @@ export default {
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'the-way-to-go_ZH_CN',
+          name: 'Go 入门指南',
           desc: '《The Way to Go》中文译本，中文正式名《Go 入门指南》',
           link: 'https://github.com/unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md',
         },
@@ -21,12 +21,6 @@ export default {
           name: 'build-web-application-with-golang',
           desc: 'Golang电子书介绍如何使用Golang建立网络',
           link: 'https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'Go编程时光',
-          desc: 'Go编程时光 1.0.0 documentation',
-          link: 'http://golang.iswbm.com/en/latest/',
         },
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
@@ -51,6 +45,12 @@ export default {
           name: 'project-layout',
           desc: 'Go标准布局结构，项目架构结构参考。',
           link: 'https://github.com/golang-standards/project-layout/blob/master/README_zh.md',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: '100天从新手到大师',
+          desc: 'Golang - 100天从新手到大师',
+          link: 'https://github.com/rubyhan1314/Golang-100-Days',
         },
       ]
     },

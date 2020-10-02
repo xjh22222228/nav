@@ -43,12 +43,6 @@ export default {
             'https://github.com/goproxy/goproxy.cn'
           ]
         },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/49926011?s=200&v=4',
-          name: 'cobra',
-          desc: 'Cobra既是用于创建功能强大的现代CLI应用程序的库，又是用于生成应用程序和命令文件的程序',
-          link: 'https://github.com/spf13/cobra',
-        },
       ]
     },
     {
@@ -107,39 +101,6 @@ export default {
       ]
     },
     {
-      subtitle: '数据库',
-      nav: [
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'gorm',
-          desc: '适用于Golang的绝佳ORM库，旨在对开发人员友好',
-          link: 'https://gorm.io/zh_CN/',
-          language: [
-            'https://gorm.io/',
-            'https://gorm.io/zh_CN/',
-            'https://github.com/go-gorm/gorm'
-          ]
-        },
-      ]
-    },
-    {
-      subtitle: '日志模块',
-      nav: [
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'logrus',
-          desc: 'Go的结构化，可插入日志记录。',
-          link: 'https://github.com/sirupsen/logrus',
-        },
-        {
-          icon: 'https://avatars3.githubusercontent.com/u/19262598?s=200&v=4',
-          name: 'zap',
-          desc: '在Go中实现快速，结构化，水平的日志记录。',
-          link: 'https://github.com/uber-go/zap',
-        },
-      ]
-    },
-    {
       subtitle: 'CLI',
       nav: [
         {
@@ -148,126 +109,11 @@ export default {
           desc: 'CLI 控制台颜色渲染工具库, 拥有简洁的使用API，支持16色，256色，RGB色彩渲染输出，兼容并支持 Windows 环境的色彩渲染',
           link: 'https://github.com/gookit/color',
         },
-      ]
-    },
-    {
-      subtitle: '依赖包',
-      nav: [
         {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'json-iterator',
-          desc: '高性能100％兼容的“ encoding / json”替代产品',
-          link: 'http://jsoniter.com/migrate-from-go-std.html',
-          language: [
-            '',
-            '',
-            'https://github.com/json-iterator/go'
-          ]
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'air',
-          desc: 'Go热重载',
-          link: 'https://github.com/cosmtrek/air',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'go-micro',
-          desc: '分布式系统开发框架',
-          link: 'https://go-micro.dev',
-          language: [
-            '',
-            '',
-            'https://github.com/micro/go-micro'
-          ]
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'xlsx',
-          desc: 'xlsx是一个库，用于简化在Go程序中读写Microsoft Excel最新版本使用的XML格式。',
-          link: 'https://github.com/tealeg/xlsx',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'email',
-          desc: 'Go强大而灵活的电子邮件库。',
-          link: 'https://github.com/jordan-wright/email',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'websocket',
-          desc: 'Go的一种快速，经过测试且广泛使用的WebSocket实现',
-          link: 'https://github.com/gorilla/websocket',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'govalidator',
-          desc: '参数验证程序，用于字符串，数字，切片和结构',
-          link: 'https://github.com/asaskevich/govalidator',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'jwt-go',
-          desc: 'Golang 实现的 JSON WEB TOKEN',
-          link: 'https://github.com/dgrijalva/jwt-go',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'cron',
-          desc: 'Go 实现的 cron 包',
-          link: 'https://github.com/robfig/cron',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'blackfriday',
-          desc: 'Markdown处理器，安全、快速。',
-          link: 'https://github.com/russross/blackfriday',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'qrcode',
-          desc: '二维码生成',
-          link: 'https://github.com/skip2/go-qrcode',
-        },
-      ]
-    },
-    {
-      subtitle: '工具',
-      nav: [
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'gvm',
-          desc: 'Go版本管理器，类似 nvm',
-          link: 'https://github.com/moovweb/gvm',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'json-to-go',
-          desc: '在线 JSON 转 Struct结构体',
-          link: 'https://mholt.github.io/json-to-go/',
-        },
-        {
-          icon: 'https://avatars3.githubusercontent.com/u/35628013?s=200&v=4',
-          name: 'golangci-lint',
-          desc: 'Go的快速Linters Runner',
-          link: 'https://github.com/golangci/golangci-lint',
-        },
-        {
-          icon: 'https://play.golang.org/favicon.ico',
-          name: 'The Go Playground',
-          desc: '在线运行Golang',
-          link: 'https://play.golang.org/',
-        },
-        {
-          icon: 'https://nuclei.projectdiscovery.io/',
-          name: 'nuclei',
-          desc: 'Nuclei是基于模板的可配置目标扫描的快速工具，具有广泛的可扩展性和易用性。',
-          link: 'https://play.golang.org/',
-          language: [
-            '',
-            '',
-            'https://github.com/projectdiscovery/nuclei'
-          ]
+          icon: 'https://avatars1.githubusercontent.com/u/49926011?s=200&v=4',
+          name: 'cobra',
+          desc: 'Cobra既是用于创建功能强大的现代CLI应用程序的库，又是用于生成应用程序和命令文件的程序',
+          link: 'https://github.com/spf13/cobra',
         },
       ]
     },
