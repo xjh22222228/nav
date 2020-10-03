@@ -32,10 +32,28 @@ export default {
             'https://github.com/go-gorm/gorm'
           ]
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'mysql',
+          desc: 'Go MySQL驱动程序是Go（golang）数据库/ sql包的MySQL驱动程序',
+          link: 'https://github.com/go-sql-driver/mysql',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'sqlite3',
+          desc: 'sqlite3驱动程序',
+          link: 'https://github.com/mattn/go-sqlite3',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'pq',
+          desc: '适用于database/sql的Pure Go Postgres驱动程序',
+          link: 'https://github.com/lib/pq',
+        },
       ]
     },
     {
-      subtitle: '其他',
+      subtitle: '解析器',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
@@ -48,6 +66,23 @@ export default {
             'https://github.com/json-iterator/go'
           ]
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'blackfriday',
+          desc: 'Markdown处理器，安全、快速。',
+          link: 'https://github.com/russross/blackfriday',
+        },
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/19262598?s=200&v=4',
+          name: 'goldmark',
+          desc: '用Go语言编写的markdown解析器。易于扩展，符合标准（CommonMark），结构合理。',
+          link: 'https://github.com/yuin/goldmark',
+        },
+      ]
+    },
+    {
+      subtitle: '其他',
+      nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'air',
@@ -100,12 +135,6 @@ export default {
           name: 'cron',
           desc: 'Go 实现的 cron 包',
           link: 'https://github.com/robfig/cron',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'blackfriday',
-          desc: 'Markdown处理器，安全、快速。',
-          link: 'https://github.com/russross/blackfriday',
         },
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',

@@ -340,6 +340,17 @@ const nav = {
         },
       ]
     },
+    {
+      subtitle: '免费公开API',
+      nav: [
+        {
+          icon: 'https://www.ipify.org/static/images/favicon-96x96.png',
+          name: 'ipify',
+          desc: '一个简单的公共IP地址API',
+          link: 'https://www.ipify.org/',
+        },
+      ]
+    },
   ]
 };
 

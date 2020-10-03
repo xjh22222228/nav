@@ -491,6 +491,12 @@ export default {
           desc: '清空终端屏幕信息',
           link: 'https://github.com/bahamas10/node-clear',
         },
+        {
+          icon: 'assets/icon/frontend/063.svg',
+          name: 'chalk',
+          desc: '终端字符串样式',
+          link: 'https://github.com/chalk/chalk',
+        },
       ]
     },
     {
@@ -534,12 +540,6 @@ export default {
           name: 'node-xml2js',
           desc: '简单的XML到JavaScript对象转换器。它支持双向转换。使用sax-js和 xmlbuilder-js',
           link: 'https://github.com/Leonidas-from-XIV/node-xml2js',
-        },
-        {
-          icon: 'assets/icon/frontend/063.svg',
-          name: 'chalk',
-          desc: '改变console终端输出样式',
-          link: 'https://github.com/chalk/chalk',
         },
         {
           icon: 'assets/icon/frontend/023.png',

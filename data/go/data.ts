@@ -2,7 +2,7 @@ export default {
   title: '生态系统',
   nav: [
     {
-      subtitle: '',
+      subtitle: '生态',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
@@ -42,6 +42,18 @@ export default {
             '',
             'https://github.com/goproxy/goproxy.cn'
           ]
+        },
+        {
+          icon: 'https://static.studygolang.com/static/img/favicon.ico',
+          name: 'Go语言中文网',
+          desc: 'Go语言中文网',
+          link: 'https://studygolang.com/',
+        },
+        {
+          icon: 'https://studygolang.com/static/img/go.ico',
+          name: 'Go标准库中文文档',
+          desc: 'Go标准库中文文档',
+          link: 'https://studygolang.com/pkgdoc',
         },
       ]
     },
@@ -114,6 +126,24 @@ export default {
           name: 'cobra',
           desc: 'Cobra既是用于创建功能强大的现代CLI应用程序的库，又是用于生成应用程序和命令文件的程序',
           link: 'https://github.com/spf13/cobra',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/49926011?s=200&v=4',
+          name: 'cli',
+          desc: '一个简单，快速且有趣的软件包，用于在Go中构建命令行应用',
+          link: 'https://github.com/urfave/cli/',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/49926011?s=200&v=4',
+          name: 'promptui',
+          desc: '命令行应用程序的交互式提示',
+          link: 'https://github.com/manifoldco/promptui',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/49926011?s=200&v=4',
+          name: 'pb',
+          desc: 'Golang的控制台进度栏',
+          link: 'https://github.com/cheggaaa/pb',
         },
       ]
     },
