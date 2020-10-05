@@ -65,12 +65,6 @@ const nav = {
           link: 'http://xss.fbisb.com/',
         },
         {
-          icon: 'assets/icon/utility-tool/009.png',
-          name: 'MD5解密',
-          desc: 'md5在线解密破解，md5解密加密',
-          link: 'http://www.cmd5.com/',
-        },
-        {
           icon: 'assets/icon/utility-tool/011.png',
           name: 'FunDebug',
           desc: '支持前端JavaScript，后端Node.js以及微信小程序错误监控',
@@ -157,12 +151,6 @@ const nav = {
           name: 'GraphQL Explorer',
           desc: 'GraphQL资源管理器利用真实的、实时的生产数据',
           link: 'https://developer.github.com/v4/explorer/',
-        },
-        {
-          icon: 'https://jwt.io/img/favicon/apple-icon-76x76.png',
-          name: 'JSON Web Tokens',
-          desc: 'jwt 在线解码',
-          link: 'https://jwt.io/',
         },
         {
           icon: 'assets/icon/utility-tool/000.svg',
@@ -337,6 +325,29 @@ const nav = {
             '',
             'https://github.com/inconshreveable/ngrok'
           ]
+        },
+      ]
+    },
+    {
+      subtitle: '编码/解码',
+      nav: [
+        {
+          icon: 'assets/icon/utility-tool/009.png',
+          name: 'MD5解密',
+          desc: 'md5在线解密破解，md5解密加密',
+          link: 'http://www.cmd5.com/',
+        },
+        {
+          icon: 'https://jwt.io/img/favicon/apple-icon-76x76.png',
+          name: 'JSON Web Tokens',
+          desc: 'jwt 在线解码',
+          link: 'https://jwt.io/',
+        },
+        {
+          icon: '',
+          name: 'base64',
+          desc: 'base64在线解码编码',
+          link: 'http://base64.xpcha.com/',
         },
       ]
     },

@@ -85,6 +85,12 @@ export default {
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'ip',
+          desc: '获取公网IP地址、v4/v6',
+          link: 'https://github.com/xjh22222228/ip',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'air',
           desc: 'Go热重载',
           link: 'https://github.com/cosmtrek/air',

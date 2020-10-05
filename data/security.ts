@@ -100,7 +100,7 @@ const nav = {
               icon: 'assets/icon/security/008.png',
               name: 'XSS平台-白帽安全测试',
               desc: 'XSS平台是一个免费给白帽安全测试的平台',
-              link: 'http://xsspt.com/index.php?do=login',
+              link: 'https://xsspt.com/',
             },
             {
               icon: 'assets/icon/security/011.png',

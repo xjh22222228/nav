@@ -52,11 +52,11 @@ export default {
       ]
     },
     {
-      subtitle: 'koa',
+      subtitle: 'Express/Koa',
       nav: [
         {
           icon: 'assets/icon/frontend/023.png',
-          name: 'koa',
+          name: 'Koa',
           desc: 'Koa -- 基于Node.js 平台的下一代web开发框架',
           link: 'https://koa.bootcss.com/',
           language: [
@@ -64,6 +64,12 @@ export default {
             'https://koa.bootcss.com/',
             'https://github.com/koajs/koa'
           ]
+        },
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'Express',
+          desc: 'Express - 快速、开放、极简的 Web 开发框架',
+          link: 'http://expressjs.jser.us/',
         },
       ]
     }

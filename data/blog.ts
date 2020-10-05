@@ -9,13 +9,13 @@ const nav = {
           subtitle: 'Team',
           nav: [
             {
-              icon: 'assets/icon/blog/001.png?a=88',
+              icon: 'https://aotu.io/img/favicon-48x48.png',
               name: '凹凸实验室',
               desc: 'O2面向多终端技术体系，致力于构建沉淀与分享包括但不限于交互、页面制作技巧...',
               link: 'https://aotu.io/',
             },
             {
-              icon: 'assets/icon/blog/004.svg?a',
+              icon: 'https://awps-assets.meituan.net/mit/blog/v20190629/asset/icon/favicon.ico?v=Whistle&t=20181017-1r',
               name: '美团点评技术团队',
               desc: '美团点评技术团队',
               link: 'https://tech.meituan.com/',
@@ -50,19 +50,19 @@ const nav = {
           subtitle: '个人博客',
           nav: [
             {
-              icon: 'assets/icon/blog/003.png',
+              icon: 'https://www.xiejiahe.com/favicon-128x128.png',
               name: '谢家和的博客',
               desc: 'WEB Developer',
               link: 'https://www.xiejiahe.com/?from=nav2',
             },
             {
-              icon: 'assets/icon/blog/002.jpg',
+              icon: 'https://www.yinwang.org/images/Yc.jpg',
               name: '王垠的博客',
               desc: '当然我在扯淡',
               link: 'http://www.yinwang.org/',
             },
             {
-              icon: 'assets/icon/blog/005.jpg',
+              icon: 'https://overreacted.io/favicon.ico',
               name: 'Dan',
               desc: 'react作者的博客',
               link: 'https://overreacted.io/',

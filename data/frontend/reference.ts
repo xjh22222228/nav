@@ -2,7 +2,7 @@ export default {
 	title: '参考资料',
 	nav: [
 		{
-      subtitle: '',
+      subtitle: '书籍',
       nav: [
         {
           icon: 'assets/icon/frontend/023.png',
@@ -21,29 +21,6 @@ export default {
           name: '现代 JavaScript 教程',
           desc: '以最新的 JavaScript 标准为基准。通过简单但足够详细的内容，为你讲解从基础到高阶的 JavaScript 相关知识',
           link: 'https://zh.javascript.info/',
-        },
-        {
-          icon: 'https://bonsaiden.github.io/JavaScript-Garden/favicon.ico?v=2',
-          name: 'JavaScript 秘密花园',
-          desc: 'JavaScript 语言最古怪用法的文档集合',
-          link: 'https://bonsaiden.github.io/JavaScript-Garden/zh/',
-        },
-        {
-          icon: 'assets/icon/frontend/023.png',
-          name: 'JavaScript Puzzlers',
-          desc: '你真的了解JavaScript吗？来试试吧！',
-          link: 'http://javascript-puzzlers.herokuapp.com/',
-        },
-        {
-          icon: 'assets/icon/frontend/040.png',
-          name: 'InterviewMap',
-          desc: '打造最好的面试图谱',
-          link: 'https://yuchengkai.cn/docs/zh/',
-          language: [
-            'https://yuchengkai.cn/docs/',
-            'https://yuchengkai.cn/docs/zh/',
-            'https://github.com/InterviewMap/CS-Interview-Knowledge-Map'
-          ]
         },
         {
           icon: 'assets/icon/frontend/023.png',
@@ -65,6 +42,28 @@ export default {
             '',
             '',
             'https://github.com/ruanyf/jstutorial'
+          ]
+        },
+      ]
+    },
+    {
+      subtitle: '文档',
+      nav: [
+        {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'JavaScript Puzzlers',
+          desc: '你真的了解JavaScript吗？来试试吧！',
+          link: 'http://javascript-puzzlers.herokuapp.com/',
+        },
+        {
+          icon: 'assets/icon/frontend/040.png',
+          name: 'InterviewMap',
+          desc: '打造最好的面试图谱',
+          link: 'https://yuchengkai.cn/docs/zh/',
+          language: [
+            'https://yuchengkai.cn/docs/',
+            'https://yuchengkai.cn/docs/zh/',
+            'https://github.com/InterviewMap/CS-Interview-Knowledge-Map'
           ]
         },
         {
@@ -122,6 +121,12 @@ export default {
             '',
             'https://github.com/tc39/ecma262'
           ]
+        },
+        {
+          icon: 'https://bonsaiden.github.io/JavaScript-Garden/favicon.ico?v=2',
+          name: 'JavaScript 秘密花园',
+          desc: 'JavaScript 语言最古怪用法的文档集合',
+          link: 'https://bonsaiden.github.io/JavaScript-Garden/zh/',
         },
         {
           icon: 'assets/icon/frontend/023.png',
