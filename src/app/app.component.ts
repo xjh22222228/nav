@@ -13,44 +13,35 @@ export class AppComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
   nav: Array<any> = nav;
-  page: number = 0;
   includeTotal: number = 0;
   git: string = git;
   caseNumber: string = caseNumber;
 
   ngOnInit() {
-    const screenWidth = window.innerWidth;
     const hash = window.location.hash;
     const params = new URLSearchParams(hash.slice(hash.indexOf('?')));
     const page = params.get('page');
     const id = params.get('id');
     const q = params.get('q');
-    const queryParams = {
-      page,
-      id,
-      q
-    };
+    const queryParams = { page, id, q };
+
+    this.goRoute(queryParams);
+    
+    this.computedTotal();
+  }
+
+  ngAfterViewInit() {
+    setInterval(this.setBackground, 10000);
+  }
+
+  goRoute(queryParams: object) {
+    const screenWidth = window.innerWidth;
 
     if (screenWidth < 768) {
       this.router.navigate(['/app'], { queryParams });
     } else {
       this.router.navigate(['/index'], { queryParams });
     }
-    
-    this.activatedRoute.queryParams.subscribe(query => {
-      const page = +query.page || 0;
-      if (page > this.nav.length - 1) {
-        this.page = this.nav.length - 1;
-      } else {
-        this.page = page;
-      }
-    });
-
-    this.computedTotal();
-  }
-
-  ngAfterViewInit() {
-    setInterval(this.setBackground, 10000);
   }
 
   // 计算收录个数

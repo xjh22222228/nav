@@ -349,6 +349,12 @@ const nav = {
           desc: '一个简单的公共IP地址API',
           link: 'https://www.ipify.org/',
         },
+        {
+          icon: '',
+          name: '归属地查询',
+          desc: '淘宝免费归属地查询',
+          link: 'https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=13333333333',
+        },
       ]
     },
   ]

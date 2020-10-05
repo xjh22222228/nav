@@ -16,9 +16,6 @@ export const webpLanguage = [
   'Git'
 ];
 
-// 网站运行开始时间
-export const start = new Date(2018, 3, 26, 0, 0, 0, 0);
-
 // 如果没有请赋值空字符串
 export const git = 'https://github.com/xjh22222228/nav';
 
