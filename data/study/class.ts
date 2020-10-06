@@ -51,6 +51,12 @@ export default {
             desc: '网易云课堂 - 领先的实用技能学习平台',
             link: 'http://study.163.com/',
         },
+        {
+          icon: 'https://study.163.com/favicon.ico',
+          name: '蓝桥',
+          desc: '蓝桥是国内领先的IT在线编程及在线实训学习平台，专业导师提供精选的实践项目，创新的技术使得学习者无需配置繁琐的本地环境，随时在线流畅使用',
+          link: 'https://www.lanqiao.cn/',
+        },
       ]
     }
   ]

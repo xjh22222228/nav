@@ -6,6 +6,18 @@ const nav = {
       subtitle: '开发神器',
       nav: [
         {
+          icon: 'https://www.sonarqube.org/favicon-152.png',
+          name: 'SonarQube',
+          desc: '代码质量和安全性检查, 支持所有开发人员编写更干净，更安全的代码。',
+          link: 'https://www.sonarqube.org/',
+        },
+        {
+          icon: 'https://paste.ubuntu.com/favicon.ico',
+          name: 'Pastebin',
+          desc: '在线共享代码，将代码以URL形式发送以便查看',
+          link: 'https://paste.ubuntu.com/',
+        },
+        {
           icon: 'assets/icon/community/007.svg',
           name: 'UPX',
           desc: 'UPX-可执行文件的终极打包器',

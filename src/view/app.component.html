@@ -39,7 +39,10 @@
           <div class="item-list" *ngFor="let el of item.nav; index as i;">
             <a (click)="handleToWebsite(el, i, $event)" href="javascript:;">
               <div class="top">
-                <img [src]="el.icon" alt="icon" class="icon">
+                <img *ngIf="el.icon; else icon" [src]="el.icon" alt="" class="icon">
+                <ng-template #icon>
+                  <span class="icon"></span>
+                </ng-template>
                 <em class="name" [title]="el.name">{{ el.name }}</em>
               </div>
               <div class="desc" [title]="el.desc">{{ el.desc }}</div>
