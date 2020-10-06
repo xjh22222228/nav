@@ -5,7 +5,7 @@ export default {
       subtitle: '面试刷题',
       nav: [
         {
-          icon: 'assets/icon/learn/009.png',
+          icon: 'https://static.leetcode-cn.com/cn-assets/icons/favicon-96x96.png',
           name: 'LeetCode',
           desc: '提高你的编码技能，快速找到一份工作。这是扩展你知识和为下一次面试做好准备的最佳地方。',
           link: 'https://leetcode-cn.com/',

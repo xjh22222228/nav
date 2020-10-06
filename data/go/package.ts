@@ -91,6 +91,12 @@ export default {
         },
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'gopsutil',
+          desc: '用于检索正在运行的进程和系统利用率（CPU，内存，磁盘，网络，传感器）的信息。它主要用于系统监视，概要分析和限制进程资源以及管理正在运行的进程',
+          link: 'https://github.com/shirou/gopsutil',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'air',
           desc: 'Go热重载',
           link: 'https://github.com/cosmtrek/air',
