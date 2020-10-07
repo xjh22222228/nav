@@ -40,6 +40,12 @@ export default {
           desc: '本指南涵盖了该语言的大部分重要特性，主要包括：基础、方法和接口、并发等',
           link: 'https://tour.go-zh.org/welcome/1',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'Go语言高级编程',
+          desc: '本书涵盖CGO、Go汇编语言、RPC实现、Web框架实现、分布式系统等高阶主题，针对Go语言有一定经验想深入了解Go语言各种高级用法的开发人员(不推荐新手)',
+          link: 'https://chai2010.cn/advanced-go-programming-book/',
+        },
       ]
     },
     {
