@@ -73,7 +73,7 @@ export default {
           link: 'https://github.com/russross/blackfriday',
         },
         {
-          icon: 'https://avatars3.githubusercontent.com/u/19262598?s=200&v=4',
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'goldmark',
           desc: '用Go语言编写的markdown解析器。易于扩展，符合标准（CommonMark），结构合理。',
           link: 'https://github.com/yuin/goldmark',
@@ -88,6 +88,12 @@ export default {
           name: 'ip',
           desc: '获取公网IP地址、v4/v6',
           link: 'https://github.com/xjh22222228/ip',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'terminal',
+          desc: '提供了用于处理终端的支持功能，这在UNIX系统上很常见',
+          link: 'https://godoc.org/golang.org/x/crypto/ssh/terminal',
         },
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',

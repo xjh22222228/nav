@@ -350,6 +350,12 @@ const nav = {
           link: 'http://www.cmd5.com/',
         },
         {
+          icon: 'http://www.chamd5.org/favicon.ico',
+          name: '查MD5',
+          desc: 'MD5在线解密|md5在线破解|批量破解md5网站',
+          link: 'http://www.cmd5.com/',
+        },
+        {
           icon: 'https://jwt.io/img/favicon/apple-icon-76x76.png',
           name: 'JSON Web Tokens',
           desc: 'jwt 在线解码',
