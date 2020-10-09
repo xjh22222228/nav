@@ -65,6 +65,16 @@ export default {
         },
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: '编码规范',
+          desc: 'Uber Go 语言编码规范',
+          link: 'https://github.com/xxjwxc/uber_go_guide_cn',
+          language: [
+            'https://github.com/uber-go/guide/blob/master/style.md',
+            'https://github.com/xxjwxc/uber_go_guide_cn'
+          ]
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'Gin实战',
           desc: 'WEB 框架Gin实战',
           link: 'https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI3MjU4Njk3Ng==&action=getalbum&album_id=1362784031968149504&scene=173#wechat_redirect',
