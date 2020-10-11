@@ -195,6 +195,12 @@ export default {
             'https://github.com/microsoft/vscode-docs'
           ]
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/14127308?s=200&v=4',
+          name: '免费的编程中文书籍索引',
+          desc: '免费的编程中文书籍索引',
+          link: 'https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md',
+        },
       ]
     },
   ]

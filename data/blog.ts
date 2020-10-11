@@ -15,7 +15,7 @@ const nav = {
               link: 'https://aotu.io/',
             },
             {
-              icon: 'https://awps-assets.meituan.net/mit/blog/v20190629/asset/icon/favicon.ico?v=Whistle&t=20181017-1r',
+              icon: 'https://www.meituan.com/favicon.ico',
               name: '美团点评技术团队',
               desc: '美团点评技术团队',
               link: 'https://tech.meituan.com/',

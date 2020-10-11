@@ -78,6 +78,12 @@ export default {
           desc: '用Go语言编写的markdown解析器。易于扩展，符合标准（CommonMark），结构合理。',
           link: 'https://github.com/yuin/goldmark',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'goquery',
+          desc: '接近jQuery语法的DOM解析库',
+          link: 'https://github.com/PuerkitoBio/goquery',
+        },
       ]
     },
     {

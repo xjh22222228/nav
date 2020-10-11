@@ -497,6 +497,12 @@ export default {
           desc: '终端字符串样式',
           link: 'https://github.com/chalk/chalk',
         },
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/16504989?s=200&v=4',
+          name: 'yargs',
+          desc: '通过解析参数并生成优雅的用户界面来帮助您构建交互式命令行工具。',
+          link: 'https://github.com/yargs/yargs',
+        },
       ]
     },
     {
