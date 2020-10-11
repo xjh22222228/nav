@@ -80,10 +80,10 @@ export default {
           icon: 'https://avatars0.githubusercontent.com/u/1412239?s=200&v=4',
           name: 'nginx',
           desc: 'nginx参考文档',
-          link: 'http://nginx.org/en/docs/',
+          link: 'https://www.docs4dev.com/docs/zh/nginx/current/reference#toolbar-title',
           language: [
-            '',
-            '',
+            'http://nginx.org/en/docs/',
+            'https://www.docs4dev.com/docs/zh/nginx/current/reference#toolbar-title',
             'https://github.com/nginx/nginx'
           ]
         },

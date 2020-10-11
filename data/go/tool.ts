@@ -39,6 +39,17 @@ export default {
             'https://github.com/projectdiscovery/nuclei'
           ]
         },
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/35628013?s=200&v=4',
+          name: 'jaeger',
+          desc: '分布式链路追踪',
+          link: 'https://www.jaegertracing.io/',
+          language: [
+            '',
+            '',
+            'https://github.com/jaegertracing/jaeger'
+          ]
+        },
       ]
     },
   ]
