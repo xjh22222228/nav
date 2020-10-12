@@ -84,6 +84,12 @@ export default {
           desc: '接近jQuery语法的DOM解析库',
           link: 'https://github.com/PuerkitoBio/goquery',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'go-yaml',
+          desc: 'yaml包使Go程序能够轻松地对yaml值进行编码和解码, 可以快速可靠地解析和生成YAML数据。',
+          link: 'https://github.com/go-yaml/yaml/tree/v3',
+        },
       ]
     },
     {

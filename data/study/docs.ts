@@ -201,6 +201,12 @@ export default {
           desc: '免费的编程中文书籍索引',
           link: 'https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md',
         },
+        {
+          icon: '',
+          name: 'YAML教程',
+          desc: 'YAML教程',
+          link: 'https://www.yiibai.com/yaml',
+        },
       ]
     },
   ]
