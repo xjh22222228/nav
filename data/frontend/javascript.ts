@@ -109,6 +109,17 @@ export default {
       subtitle: '常用插件',
       nav: [
         {
+          icon: 'assets/icon/frontend/023.png',
+          name: 'sweetalert',
+          desc: 'JavaScript Alert 的漂亮替代品',
+          link: 'https://sweetalert.js.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/t4t5/sweetalert'
+          ]
+        },
+        {
           icon: 'https://avatars0.githubusercontent.com/u/17040762?s=200&v=4',
           name: 'Sortable',
           desc: '一个JavaScript库，用于在现代浏览器和触摸设备上对拖放列表进行重新排序',

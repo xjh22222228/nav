@@ -183,6 +183,23 @@ export default {
             'https://github.com/casbin/casbin'
           ]
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'resty',
+          desc: '用于Go的简单HTTP和REST客户端库',
+          link: 'https://github.com/go-resty/resty',
+        },
+        {
+          icon: 'https://grpc.io/favicons/apple-touch-icon.png',
+          name: 'grpc-go',
+          desc: 'gRPC的Go语言实现。基于HTTP/2的RPC',
+          link: 'https://grpc.io/',
+          language: [
+            '',
+            '',
+            'https://github.com/grpc/grpc-go'
+          ]
+        },
       ]
     },
   ]

@@ -161,6 +161,17 @@ export default {
           desc: '很棒的清单，精选了最好的Flutter库，工具，教程，文章等',
           link: 'https://github.com/Solido/awesome-flutter',
         },
+        {
+          icon: 'https://flutter.dev/images/favicon.png',
+          name: 'flutter-do',
+          desc: '330+Widgets在线查看预览和使用。',
+          link: 'http://laomengit.com/flutter/widgets/widgets_structure.html',
+          language: [
+            '',
+            '',
+            'https://github.com/781238222/flutter-do'
+          ]
+        },
       ]
     },
     {

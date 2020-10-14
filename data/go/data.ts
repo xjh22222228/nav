@@ -105,10 +105,15 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/community/007.svg',
-          name: 'go-web-framework-stars',
-          desc: 'Go Web框架相关的流行github项目列表',
-          link: 'https://github.com/mingrammer/go-web-framework-stars',
+          icon: 'https://www.iris-go.com/favicon.ico',
+          name: 'iris',
+          desc: '最快的HTTP / 2 Go Web框架。AWS Lambda，gRPC，MVC，唯一路由器，Websocket，会话，测试套件，依赖注入等。expressjs和laravel的真正继承者|',
+          link: 'https://www.iris-go.com/',
+          language: [
+            '',
+            '',
+            'https://github.com/kataras/iris'
+          ]
         },
       ]
     },

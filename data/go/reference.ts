@@ -55,7 +55,12 @@ export default {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: '100天从新手到大师',
           desc: 'Golang - 100天从新手到大师',
-          link: 'https://github.com/rubyhan1314/Golang-100-Days',
+          link: 'https://www.qfgolang.com/',
+          language: [
+            '',
+            '',
+            'https://github.com/rubyhan1314/Golang-100-Days'
+          ]
         },
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
