@@ -50,6 +50,17 @@ export default {
           desc: '适用于database/sql的Pure Go Postgres驱动程序',
           link: 'https://github.com/lib/pq',
         },
+        {
+          icon: 'https://redis.uptrace.dev/assets/images/favicon.png',
+          name: 'redis',
+          desc: '用于Golang的类型安全的Redis客户端',
+          link: 'https://redis.uptrace.dev/',
+          language: [
+            '',
+            '',
+            'https://github.com/go-redis/redis'
+          ]
+        },
       ]
     },
     {

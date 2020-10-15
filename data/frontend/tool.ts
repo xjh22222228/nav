@@ -1,5 +1,5 @@
 export default {
-  title: '效率工具',
+  title: '工具',
   nav: [
     {
       subtitle: 'CSS',
@@ -245,6 +245,12 @@ export default {
           name: 'jsbin',
           desc: '一个轻量级的html/css/js在线编辑器Debug调试器',
           link: 'https://jsbin.com/juduyibeku/edit?html,css,js,console,output',
+        },
+        {
+          icon: 'http://www.jsfuck.com/favicon.ico',
+          name: 'jsfuck',
+          desc: 'JSFuck是基于JavaScript原子部分的深奥和教育性编程风格。它仅使用六个不同的字符来编写和执行代码。',
+          link: 'http://www.jsfuck.com/',
         },
       ]
     },
