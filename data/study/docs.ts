@@ -114,6 +114,12 @@ export default {
             'https://github.com/redis/redis'
           ]
         },
+        {
+          icon: 'https://labs.mysql.com/common/themes/sakila/favicon.ico',
+          name: 'MySQL',
+          desc: 'MySQL数据库服务是一个完全托管的数据库服务，可使用世界上最受欢迎的开源数据库来部署云原生应用程序。 它是百分百由MySQL原厂开发，管理和提供支持',
+          link: 'https://www.mysql.com/cn/',
+        },
       ]
     },
     {
