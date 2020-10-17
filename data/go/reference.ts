@@ -42,6 +42,12 @@ export default {
         },
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'Go语言101',
+          desc: '一本着墨于Go语法语义以及运行时相关知识点的编程指导书（Go 1.15就绪）。 此书旨在尽可能地帮助Go程序员更深更全面地理解Go语言',
+          link: 'https://gfw.go101.org/article/101.html',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'Go语言高级编程',
           desc: '本书涵盖CGO、Go汇编语言、RPC实现、Web框架实现、分布式系统等高阶主题，针对Go语言有一定经验想深入了解Go语言各种高级用法的开发人员(不推荐新手)',
           link: 'https://chai2010.cn/advanced-go-programming-book/',

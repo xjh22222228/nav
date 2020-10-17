@@ -167,10 +167,10 @@ export default {
           icon: 'assets/icon/frontend/021.svg',
           name: 'Lodash',
           desc: 'Lodash是一个一致性、模块化、高性能的 JavaScript 实用工具库',
-          link: 'https://www.css88.com/doc/lodash/',
+          link: 'https://www.lodashjs.com/',
           language: [
             'https://lodash.com/',
-            'https://www.css88.com/doc/lodash/',
+            'https://www.lodashjs.com/',
             'https://github.com/lodash/lodash'
           ]
         },
