@@ -150,6 +150,12 @@ export default {
           desc: 'Golang的控制台进度栏',
           link: 'https://github.com/cheggaaa/pb',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'godotenv',
+          desc: '从`.env`文件加载环境变量。',
+          link: 'https://github.com/joho/godotenv',
+        },
       ]
     },
   ]
