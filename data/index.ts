@@ -1,6 +1,5 @@
 import frontend from './frontend';
 import node from './node';
-import deno from './deno';
 import flutter from './flutter';
 import go from './go';
 import utilityTool from './utilityTool';
@@ -15,7 +14,6 @@ export default [
   utilityTool,
   frontend,
   node,
-  deno,
   flutter,
   go,
   community,

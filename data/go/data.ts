@@ -156,6 +156,12 @@ export default {
           desc: '从`.env`文件加载环境变量。',
           link: 'https://github.com/joho/godotenv',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'go-prompt',
+          desc: '受python-prompt-toolkit启发，在Go中构建强大的交互式提示。',
+          link: 'https://github.com/c-bata/go-prompt',
+        },
       ]
     },
   ]
