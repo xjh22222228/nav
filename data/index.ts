@@ -1,6 +1,7 @@
 import frontend from './frontend';
 import node from './node';
 import flutter from './flutter';
+import python from './python';
 import go from './go';
 import utilityTool from './utilityTool';
 import study from './study';
@@ -15,6 +16,7 @@ export default [
   frontend,
   node,
   flutter,
+  python,
   go,
   community,
   designer,
