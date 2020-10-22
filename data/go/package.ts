@@ -101,6 +101,12 @@ export default {
           desc: 'yaml包使Go程序能够轻松地对yaml值进行编码和解码, 可以快速可靠地解析和生成YAML数据。',
           link: 'https://github.com/go-yaml/yaml/tree/v3',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'xurls',
+          desc: '从文本中提取Urls',
+          link: 'https://github.com/mvdan/xurls',
+        },
       ]
     },
     {

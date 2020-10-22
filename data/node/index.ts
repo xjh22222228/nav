@@ -3,6 +3,7 @@ import tool from './tool';
 import official from './official';
 import frame from './frame';
 import webFrame from './web-frame';
+import deno from './deno';
 
 export default {
   title: 'Node.js',
@@ -11,6 +12,7 @@ export default {
     _module,
     frame,
     webFrame,
-    tool
+    tool,
+    deno
   ]
 }
