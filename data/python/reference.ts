@@ -34,6 +34,12 @@ export default {
           desc: '一些有趣且鲜为人知的 Python 特性.',
           link: 'https://github.com/satwikkansal/wtfpython',
         },
+        {
+          icon: 'https://www.python.org/static/favicon.ico',
+          name: 'awesome-python-cn',
+          desc: 'Python 资源大全中文版',
+          link: 'https://github.com/jobbole/awesome-python-cn',
+        },
       ]
     },
   ]

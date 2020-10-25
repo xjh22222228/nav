@@ -50,6 +50,12 @@ export default {
             'https://github.com/jaegertracing/jaeger'
           ]
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/19232073?s=200&v=4',
+          name: 'delve',
+          desc: 'Delve是Go编程语言的调试器。',
+          link: 'https://github.com/go-delve/delve',
+        },
       ]
     },
   ]
