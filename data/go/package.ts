@@ -228,6 +228,17 @@ export default {
             'https://github.com/grpc/grpc-go'
           ]
         },
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/33584194?s=200&v=4',
+          name: 'colly',
+          desc: 'Colly提供了一个干净的界面来编写任何种类的爬虫',
+          link: 'http://go-colly.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/gocolly/colly'
+          ]
+        },
       ]
     },
   ]

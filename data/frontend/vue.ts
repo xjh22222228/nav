@@ -5,7 +5,7 @@ export default {
       subtitle: '生态系统',
       nav: [
         {
-          icon: 'assets/icon/frontend/001.png',
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
           name: 'Vue.js',
           desc: '渐进式JavaScript 框架',
           link: 'https://cn.vuejs.org/',
@@ -16,7 +16,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/001.png',
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
           name: 'Vue Router',
           desc: 'Vue Router 是 Vue.js 官方的路由管理器',
           link: 'https://router.vuejs.org/zh/',
@@ -27,7 +27,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/001.png',
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
           name: 'Vuex',
           desc: 'Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。',
           link: 'https://vuex.vuejs.org/zh/',
@@ -38,7 +38,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/001.png',
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
           name: 'vue-devtools',
           desc: 'vue.js调试工具',
           link: 'https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd',
@@ -71,7 +71,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/001.png',
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
           name: 'Vue SSR',
           desc: 'Vue服务端渲染、SEO解决方案',
           link: 'https://vuepress.vuejs.org/zh/',
@@ -82,13 +82,13 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/001.png',
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
           name: 'vue-class-component',
           desc: '用于类式Vue组件的ECMAScript / TypeScript装饰器。',
           link: 'https://github.com/vuejs/vue-class-component',
         },
         {
-          icon: 'assets/icon/frontend/001.png',
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
           name: 'eslint-plugin-vue',
           desc: 'Vue.js的官方ESLint插件',
           link: 'https://eslint.vuejs.org/',
@@ -99,10 +99,16 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/001.png',
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
           name: 'vite',
           desc: 'Vite是一个经过验证的Web开发人员构建工具，可在开发过程中通过本机ES模块导入为您的代码提供服务，并将其与Rollup捆绑在一起进行生产',
           link: 'https://github.com/vitejs/vite',
+        },
+        {
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
+          name: 'Vue 组合式 API',
+          desc: 'Vue 组合式 API在线文档阅读',
+          link: 'https://composition-api.vuejs.org/zh',
         },
       ]
     },
@@ -285,13 +291,13 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/001.png',
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
           name: 'vue-meta',
           desc: '管理Vue 2.0组件中的页面元信息。支持SSR + Streaming',
           link: 'https://github.com/nuxt/vue-meta',
         },
         {
-          icon: 'assets/icon/frontend/001.png',
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
           name: 'vue-scroller',
           desc: 'Vue Scroller是Vonic UI 的基础组件。为了平滑滚动，拉动刷新和无限加载。',
           link: 'https://wangdahoo.github.io/vue-scroller/#/',
@@ -302,7 +308,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/001.png',
+          icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
           name: 'vue-infinite-loading',
           desc: 'Vue.js的无限滚动插件(支持向上和向下)',
           link: 'https://peachscript.github.io/vue-infinite-loading/zh/',
