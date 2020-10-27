@@ -115,6 +115,17 @@ export default {
             'https://github.com/kataras/iris'
           ]
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/59947262?s=200&v=4',
+          name: 'fiber',
+          desc: 'Fiber是一个受Express启发的Web框架，建立在Fasthttp（Go最快的HTTP引擎）的基础上。 旨在简化零内存分配和性能的情况，以便快速开发。',
+          link: 'https://gofiber.io/',
+          language: [
+            '',
+            '',
+            'https://github.com/gofiber/fiber'
+          ]
+        },
       ]
     },
     {
