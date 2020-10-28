@@ -2,6 +2,22 @@ export default {
   title: '依赖包',
   nav: [
     {
+      subtitle: 'GUI',
+      nav: [
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/36045855?s=200&v=4',
+          name: 'Fyne',
+          desc: '基于Material Design的Go跨平台GUI',
+          link: 'https://fyne.io/',
+          language: [
+            '',
+            '',
+            'https://github.com/fyne-io/fyne'
+          ]
+        },
+      ]
+    },
+    {
       subtitle: '日志模块',
       nav: [
         {
