@@ -123,6 +123,29 @@ export default {
       ]
     },
     {
+      subtitle: '书籍',
+      nav: [
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/14127308?s=200&v=4',
+          name: '免费的编程中文书籍索引',
+          desc: '免费的编程中文书籍索引',
+          link: 'https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md',
+        },
+        {
+          icon: 'https://zh.b-ok.global/apple-touch-icon.png',
+          name: 'Zlibrary',
+          desc: 'Z-Library 项目部分. 全球最大的数字图书馆, 电子书',
+          link: 'https://zh.b-ok.global/',
+        },
+        {
+          icon: '',
+          name: 'IT-eBOOK',
+          desc: 'IT类技术书籍PDF',
+          link: 'https://github.com/asyncfun/IT-eBOOK',
+        },
+      ]
+    },
+    {
       subtitle: '其他文档',
       nav: [
         {
@@ -200,12 +223,6 @@ export default {
             'https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/',
             'https://github.com/microsoft/vscode-docs'
           ]
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/14127308?s=200&v=4',
-          name: '免费的编程中文书籍索引',
-          desc: '免费的编程中文书籍索引',
-          link: 'https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md',
         },
         {
           icon: '',

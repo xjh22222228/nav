@@ -134,8 +134,8 @@ export default {
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'color',
-          desc: 'CLI 控制台颜色渲染工具库, 拥有简洁的使用API，支持16色，256色，RGB色彩渲染输出，兼容并支持 Windows 环境的色彩渲染',
-          link: 'https://github.com/gookit/color',
+          desc: 'CLI 控制台颜色渲染工具库, 支持Windows',
+          link: 'https://github.com/fatih/color',
         },
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
