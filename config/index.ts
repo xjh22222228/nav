@@ -19,9 +19,10 @@ export const webpLanguage = [
 // 如果没有请赋值空字符串
 export const git = 'https://github.com/xjh22222228/nav';
 
-export const caseNumber = '粤ICP备16052285号';
+// 网站底部描述, 可以是 HTML
+export const FOOTER_DESC = '';
 
-// http://nav.xiejiahe.com/#/index?q=grabient
+// http://www.nav3.cn/#/index?q=grabient
 export const BACKGROUND_LINEAR = [
   'linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)',
   'linear-gradient(90deg, #FEE140 0%, #FA709A 100%)',

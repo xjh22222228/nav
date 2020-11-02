@@ -12,16 +12,10 @@
 
   <footer class="footer">
     <div>
-      <a [href]="git" target="_blank">
-        <img src="https://img.shields.io/github/stars/xjh22222228/nav?style=social" alt="" style="margin-right: 6px;transform: scale(.9);">
-        <img src="https://img.shields.io/github/forks/xjh22222228/nav?style=social" alt="" style="margin-left: 6px;transform: scale(.9);">
-      </a>
       <span class="total">共收录 {{ includeTotal }} 个网站</span>
     </div>
     
-    <div class="copyright" *ngIf="caseNumber">
-      <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备16052285号</a>
-    </div>
+    <div class="copyright" *ngIf="FOOTER_DESC" [innerHTML]="FOOTER_DESC"></div>
   </footer>
 </div>
 

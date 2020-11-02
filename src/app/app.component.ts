@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import nav from '../../data';
-import { BACKGROUND_LINEAR, git, caseNumber } from '../../config';
+import { BACKGROUND_LINEAR, git, FOOTER_DESC } from '../../config';
 import { randomInt } from '../utils';
 
 @Component({
@@ -15,7 +15,7 @@ export class AppComponent {
   nav: Array<any> = nav;
   includeTotal: number = 0;
   git: string = git;
-  caseNumber: string = caseNumber;
+  FOOTER_DESC: string = FOOTER_DESC;
 
   ngOnInit() {
     const hash = window.location.hash;

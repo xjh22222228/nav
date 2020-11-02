@@ -143,6 +143,12 @@ export default {
           desc: 'IT类技术书籍PDF',
           link: 'https://github.com/asyncfun/IT-eBOOK',
         },
+        {
+          icon: 'https://refactoringguru.cn/favicon.ico',
+          name: 'Refactoring.Guru',
+          desc: '22种常用设计模式',
+          link: 'https://refactoringguru.cn/design-patterns',
+        },
       ]
     },
     {
