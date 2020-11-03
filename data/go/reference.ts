@@ -52,6 +52,18 @@ export default {
           desc: '本书涵盖CGO、Go汇编语言、RPC实现、Web框架实现、分布式系统等高阶主题，针对Go语言有一定经验想深入了解Go语言各种高级用法的开发人员(不推荐新手)',
           link: 'https://chai2010.cn/advanced-go-programming-book/',
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'Mastering GO',
+          desc: '《Mastering GO》中文译本，《玩转 GO》。',
+          link: 'https://github.com/hantmac/Mastering_Go_ZH_CN',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
+          name: 'Mastering GO2',
+          desc: 'Mastering Go 第二版中文版来袭！',
+          link: 'https://github.com/hantmac/Mastering_Go_Second_Edition_Zh_CN',
+        },
       ]
     },
     {
