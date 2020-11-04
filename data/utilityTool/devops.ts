@@ -210,6 +210,17 @@ const nav = {
           desc: '正则表达式备忘录',
           link: 'https://ihateregex.io/',
         },
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/22552083?s=200&v=4',
+          name: 'Oh My ZSH',
+          desc: '是一个开放源代码，社区驱动的框架，用于管理zsh配置。',
+          link: 'https://ohmyz.sh/',
+          language: [
+            '',
+            '',
+            'https://github.com/ohmyzsh'
+          ]
+        },
       ]
     },
     {

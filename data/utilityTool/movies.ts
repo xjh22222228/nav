@@ -58,7 +58,7 @@ export default {
       subtitle: '音乐',
       nav: [
         {
-          icon: 'assets/icon/utility-tool/043.png',
+          icon: '',
           name: '自由的音乐',
           desc: '自由的音乐是一个免费试听并下载全网音乐的网站',
           link: 'https://www.tikitiki.cn/',
