@@ -40,6 +40,12 @@ export default {
           desc: 'Python 资源大全中文版',
           link: 'https://github.com/jobbole/awesome-python-cn',
         },
+        {
+          icon: 'https://www.python.org/static/favicon.ico',
+          name: 'cheatsheet',
+          desc: 'Python大全备忘单',
+          link: 'https://github.com/gto76/python-cheatsheet',
+        },
       ]
     },
   ]
