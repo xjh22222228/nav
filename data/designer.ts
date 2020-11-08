@@ -115,10 +115,16 @@ const nav = {
               desc: '从每日ui档案库及其他收集的每日灵感。 根据Dribbble拍摄的照片，手工挑选，每天更新',
               link: 'http://collectui.com/',
             },
+            {
+              icon: 'https://www.vectorlogo.zone/favicon.ico',
+              name: 'vectorlogo',
+              desc: '3000多种精美的SVG徽标，非常适合您的自述文件或积分页面',
+              link: 'https://www.vectorlogo.zone/',
+            },
           ]
         },
         {
-          subtitle: '设计工具',
+          subtitle: '工具',
           nav: [
             {
               icon: 'https://www.chuangkit.com/favicon.ico',
