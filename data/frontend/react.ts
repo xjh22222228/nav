@@ -5,7 +5,7 @@ export default {
       subtitle: '生态系统',
       nav: [
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'React',
           desc: '用于构建用户界面的 JavaScript 库',
           link: 'https://zh-hans.reactjs.org/',
@@ -76,7 +76,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'redux-thunk',
           desc: 'Redux的Thunk中间件, 用于处理异步逻辑',
           link: 'https://github.com/reduxjs/redux-thunk',
@@ -278,7 +278,7 @@ export default {
       subtitle: '其他组件库',
       nav: [
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'React Helmet',
           desc: '这个可重用的反应组件将管理对文档头的所有更改',
           link: 'https://github.com/nfl/react-helmet',
@@ -289,7 +289,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'react-image-crop',
           desc: '用于React的响应式图像裁剪工具',
           link: 'https://github.com/DominicTobias/react-image-crop',
@@ -340,7 +340,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'video-react',
           desc: '网络视频播放器使用React库从头开始构建HTML5世界',
           link: 'https://video-react.js.org/',
@@ -357,7 +357,7 @@ export default {
           link: 'https://github.com/atlassian/react-beautiful-dnd',
         },
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'react-keeper',
           desc: '一个react路由库，更适合移动端使用，拥有缓存等功能',
           link: 'https://github.com/vifird/react-keeper',
@@ -385,7 +385,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'react-json-view',
           desc: 'JSON查看器',
           link: 'https://mac-s-g.github.io/react-json-view/demo/dist/',
@@ -407,13 +407,13 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'react-draggable',
           desc: '一个简单的组件，用于使元素可拖动',
           link: 'https://github.com/mzabriskie/react-draggable',
         },
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'react-slick',
           desc: 'react走马灯组件',
           link: 'https://react-slick.neostack.com/',
@@ -424,7 +424,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'react-color',
           desc: 'react 拾色器',
           link: 'http://casesandberg.github.io/react-color/',
@@ -506,7 +506,7 @@ export default {
       subtitle: '单元测试',
       nav: [
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'enzyme',
           desc: '适用于React的JavaScript测试实用程序',
           link: 'https://enzymejs.github.io/enzyme/',
@@ -577,19 +577,19 @@ export default {
       subtitle: '知识',
       nav: [
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'React.js 小书',
           desc: '这是一本关于 React.js 的小书',
           link: 'http://huziketang.mangojuice.top/books/react/',
         },
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'TypeScript-React-Starter',
           desc: 'TypeScript和React的入门模板，带有详细的README，描述了如何将两者结合使用。',
           link: 'https://github.com/Microsoft/TypeScript-React-Starter',
         },
         {
-          icon: 'assets/icon/frontend/1.svg',
+          icon: 'https://reactjs.org/favicon.ico',
           name: 'react-redux-typescript-guide',
           desc: 'TypeScript中的React和 Redux - 使用说明',
           link: 'https://piotrwitek.github.io/react-redux-typescript-guide/',
@@ -653,6 +653,12 @@ export default {
             '',
             'https://github.com/alibaba/hooks'
           ]
+        },
+        {
+          icon: 'https://reactjs.org/favicon.ico',
+          name: 'react-app-rewired',
+          desc: '覆盖create-react-app webpack配置而不弹出',
+          link: 'https://github.com/timarney/react-app-rewired',
         },
       ]
     },

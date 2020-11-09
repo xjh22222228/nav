@@ -108,6 +108,12 @@ export default {
           name: 'dart-uuid',
           desc: '生成 RFC4122(v1,v4,v5) UUIDs',
           link: 'https://github.com/Daegalus/dart-uuid',
+        },
+        {
+          icon: 'https://flutter.dev/images/favicon.png',
+          name: 'fluwx',
+          desc: 'Flutter版微信SDK.WeChat SDK for flutter.',
+          link: 'https://github.com/OpenFlutter/fluwx',
         }
       ]
     },

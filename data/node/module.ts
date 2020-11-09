@@ -509,7 +509,7 @@ export default {
       subtitle: '模板引擎',
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: 'https://handlebarsjs.com/images/favicon.png',
           name: 'handlebars',
           desc: 'JavaScript模板引擎',
           link: 'http://handlebarsjs.com/',
@@ -520,7 +520,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: 'https://ejs.co/favicon.svg',
           name: 'ejs',
           desc: 'JavaScript模板引擎',
           link: 'https://ejs.co/',
@@ -531,7 +531,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: 'https://github.githubassets.com/favicons/favicon.svg',
           name: 'mustache.js',
           desc: '使用JavaScript的无逻辑{{mustache}}模板',
           link: 'https://github.com/janl/mustache.js',

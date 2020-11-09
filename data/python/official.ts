@@ -16,6 +16,12 @@ export default {
             'https://github.com/TheAlgorithms/Python'
           ]
         },
+        {
+          icon: 'https://www.python.org/static/favicon.ico',
+          name: 'PyPi',
+          desc: '使用Python软件包索引查找，安装和发布Python软件包',
+          link: 'https://pypi.org/',
+        },
       ]
     }
   ]

@@ -38,6 +38,22 @@ export default {
           ]
         },
       ]
+    },
+    {
+      subtitle: '图像',
+      nav: [
+        {
+          icon: 'https://avatars3.githubusercontent.com/u/2036701?s=200&v=4',
+          name: 'Pillow',
+          desc: '友好的PIL前叉，是一个出色的图像处理库',
+          link: 'https://python-pillow.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/python-pillow/Pillow'
+          ]
+        },
+      ]
     }
   ]
 }

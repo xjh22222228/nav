@@ -6,6 +6,12 @@ const nav = {
       subtitle: '开发神器',
       nav: [
         {
+          icon: '',
+          name: 'Supervisor',
+          desc: 'Supervisor是一个客户端/服务器系统，允许其用户监视和控制类似UNIX的操作系统上的多个进程。',
+          link: 'http://supervisord.org/',
+        },
+        {
           icon: 'https://www.sonarqube.org/favicon-152.png',
           name: 'SonarQube',
           desc: '代码质量和安全性检查, 支持所有开发人员编写更干净，更安全的代码。',
