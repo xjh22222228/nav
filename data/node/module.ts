@@ -1,11 +1,15 @@
+
+const DEFAULT_ICON = 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png';
+
 export default {
   title: '常用模块',
   nav: [
     {
       subtitle: '网络请求',
+      icon: DEFAULT_ICON,
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'request',
           desc: '简化的HTTP请求客户端',
           link: 'https://github.com/request/request',
@@ -22,19 +26,19 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'axios',
           desc: '基于Promise的HTTP客户端，用于浏览器和node.js',
           link: 'https://github.com/axios/axios',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'node-fetch',
           desc: '一个轻量级的模块，将window.fetch带到Node.js',
           link: 'https://github.com/node-fetch/node-fetch',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'bent',
           desc: '带有async await的功能性JS HTTP客户端（Node.js和Fetch）',
           link: 'https://github.com/mikeal/bent',
@@ -49,6 +53,7 @@ export default {
     },
     {
       subtitle: '单元测试',
+      icon: DEFAULT_ICON,
       nav: [
         {
           icon: 'assets/icon/frontend/050.png',
@@ -153,6 +158,7 @@ export default {
     },
     {
       subtitle: '数据库',
+      icon: DEFAULT_ICON,
       nav: [
         {
           icon: 'assets/icon/frontend/083.svg',
@@ -189,7 +195,7 @@ export default {
           link: 'https://github.com/luin/ioredis',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'objection.js',
           desc: 'Objection.js是Node.js的一个ORM ，它旨在避免使用SQL和底层数据库引擎的全部功能，同时尽可能简单地将magic保持在最低限度。',
           link: 'http://vincit.github.io/objection.js/',
@@ -237,33 +243,34 @@ export default {
     },
     {
       subtitle: '图形相关',
+      icon: DEFAULT_ICON,
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'node-canvas',
           desc: 'node-canvas是Node.js的Cairo -backed Canvas实现。',
           link: 'https://github.com/Automattic/node-canvas',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'svg-captcha',
           desc: '在node.js中生成svg验证码',
           link: 'https://github.com/lemonce/svg-captcha',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'ccap',
           desc: 'node.js使用C++库CImg生成验证码，无需安装任何其他库或软件',
           link: 'https://github.com/DoubleSpout/ccap',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'text-to-svg',
           desc: '将文本转换为SVG路径而不依赖于本机',
           link: 'https://github.com/shrhdk/text-to-svg',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'svg2png',
           desc: '使用PhantomJS将SVG转换为PNG',
           link: 'https://github.com/domenic/svg2png',
@@ -272,6 +279,7 @@ export default {
     },
     {
       subtitle: '代理',
+      icon: DEFAULT_ICON,
       nav: [
         {
           icon: 'assets/icon/frontend/132.png',
@@ -280,7 +288,7 @@ export default {
           link: 'https://github.com/nodejitsu/node-http-proxy',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'http-proxy-middleware',
           desc: '用于连接，快速和浏览器同步的单线程node.js http-proxy中间件（基于node-http-proxy）',
           link: 'https://github.com/chimurai/http-proxy-middleware',
@@ -289,9 +297,10 @@ export default {
     },
     {
       subtitle: 'AST辅助工具',
+      icon: DEFAULT_ICON,
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'esprima',
           desc: 'ECMAScript解析基础架构，可进行多用途分析, 将代码转换成AST',
           link: 'https://esprima.org/',
@@ -302,7 +311,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'recast',
           desc: 'JavaScript AST转换器，非破坏性漂亮打印机和自动源映射生成器',
           link: 'https://github.com/benjamn/recast',
@@ -311,15 +320,16 @@ export default {
     },
     {
       subtitle: '文件相关',
+      icon: DEFAULT_ICON,
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'node-xlsx',
           desc: 'NodeJS excel文件解析器和构建器',
           link: 'https://github.com/mgcrea/node-xlsx',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'fs-extra',
           desc: '操作系统文件，用于替代内置的fs模块',
           link: 'https://www.xiejiahe.com/detail/5b52fca1df53a14006035e1e',
@@ -355,6 +365,7 @@ export default {
     },
     {
       subtitle: '微信开发',
+      icon: DEFAULT_ICON,
       nav: [
         {
           icon: 'assets/icon/frontend/135.png',
@@ -389,15 +400,16 @@ export default {
     },
     {
       subtitle: 'CLI',
+      icon: DEFAULT_ICON,
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'Glob',
           desc: '匹配文件。 **/*.js',
           link: 'https://github.com/isaacs/node-glob',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'prompts',
           desc: '轻巧，美观和用户友好的交互式提示',
           link: 'https://github.com/terkelg/prompts',
@@ -415,25 +427,25 @@ export default {
           link: 'https://github.com/cli-table/cli-table3',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'commander.js',
           desc: 'node.js命令行界面的完整解决方案，受Ruby指挥官的启发',
           link: 'https://github.com/tj/commander.js',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'ora',
           desc: '优雅的终端微调器',
           link: 'https://github.com/sindresorhus/ora',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'Inquirer.js',
           desc: '常用交互式命令行用户界面的集合',
           link: 'https://github.com/SBoudrias/Inquirer.js',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'shelljs',
           desc: 'Node.js的可移植Unix shell命令',
           link: 'https://documentup.com/shelljs/shelljs',
@@ -444,7 +456,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'download-git-repo',
           desc: '下载并提取git存储库（GitHub，GitLab，Bitbucket）',
           link: 'https://github.com/flipxfx/download-git-repo'
@@ -468,7 +480,7 @@ export default {
           link: 'https://github.com/soldair/node-qrcode'
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'open',
           desc: '打开URL，文件，可执行文件等内容。跨平台。',
           link: 'https://github.com/sindresorhus/open',
@@ -507,6 +519,7 @@ export default {
     },
     {
       subtitle: '模板引擎',
+      icon: DEFAULT_ICON,
       nav: [
         {
           icon: 'https://handlebarsjs.com/images/favicon.png',
@@ -540,51 +553,52 @@ export default {
     },
     {
       subtitle: '其他',
+      icon: DEFAULT_ICON,
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'node-xml2js',
           desc: '简单的XML到JavaScript对象转换器。它支持双向转换。使用sax-js和 xmlbuilder-js',
           link: 'https://github.com/Leonidas-from-XIV/node-xml2js',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'iconv-lite',
           desc: '纯JavaScript中转换字符编码。',
           link: 'https://github.com/ashtuchkin/iconv-lite',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'node-uuid',
           desc: '在JavaScript中生成符合RFC的UUID',
           link: 'https://github.com/kelektiv/node-uuid',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'nativefier',
           desc: '使任何网页成为桌面应用程序',
           link: 'https://github.com/jiahaog/nativefier',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'getmac',
           desc: '通过Node.js获取当前计算机的mac地址',
           link: 'https://github.com/bevry/getmac',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'http-server',
           desc: '一个简单的零配置命令行http服务器',
           link: 'https://github.com/indexzero/http-server',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'node-schedule',
           desc: 'Node的类似cron-like和非not-cron-like的作业调度程序。',
           link: 'https://github.com/node-schedule/node-schedule',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'qrcode-terminal',
           desc: 'QRCode终端版',
           link: 'https://github.com/gtanner/qrcode-terminal',
@@ -612,13 +626,13 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'parameter',
           desc: '参数验证工具',
           link: 'https://github.com/node-modules/parameter',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'bytes',
           desc: '用于解析字符串字节, b/kb/mb/gb/tb/pb',
           link: 'https://github.com/visionmedia/bytes.js',
@@ -641,19 +655,19 @@ export default {
           link: 'https://github.com/acornjs/acorn',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'figlet.js',
           desc: '用JavaScript编写的FIG驱动程序，旨在完全实现FIGfont规范, 生成ascii',
           link: 'https://github.com/patorjk/figlet.js',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'node-printer',
           desc: '本机 node.js 打印机',
           link: 'https://github.com/tojocky/node-printer',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
+          icon: null,
           name: 'fontmin',
           desc: '无缝缩小字体',
           link: 'https://github.com/ecomfe/fontmin',

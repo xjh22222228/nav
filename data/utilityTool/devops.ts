@@ -227,6 +227,18 @@ const nav = {
             'https://github.com/ohmyzsh'
           ]
         },
+        {
+          icon: 'https://tampermonkey.freetls.fastly.net/images/icon144.png',
+          name: 'Tampermonkey',
+          desc: '一款免费的浏览器扩展和最为流行的用户脚本管理器',
+          link: 'https://www.tampermonkey.net/',
+        },
+        {
+          icon: '',
+          name: 'Greasy Fork',
+          desc: '提供用户脚本的网站',
+          link: 'https://greasyfork.org/zh-CN',
+        },
       ]
     },
     {

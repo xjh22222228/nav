@@ -61,7 +61,12 @@
             <div class="click-btn" *ngFor="let el of item.nav">
               <a [href]="el.link" target="_blank" rel="noopener noreferer">
                 <div class="top">
-                  <img *ngIf="el.icon; else icon" [src]="el.icon" alt="" class="icon">
+                  <img
+                    *ngIf="el.icon || item.icon; else icon"
+                    [src]="el.icon || item.icon"
+                    alt=""
+                    class="icon"
+                  >
                   <ng-template #icon>
                     <span class="icon"></span>
                   </ng-template>
