@@ -1,7 +1,7 @@
 import nav from '../../../../data';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { debounce } from '../../../utils';
+import { debounce, fuzzySearch } from '../../../utils';
 import { appLanguage, GIT_REPO_URL } from '../../../../config';
 import { annotate } from 'rough-notation';
 
@@ -51,7 +51,8 @@ export default class HomeComponent {
       }
       
       if (this.search) {
-        this.list = fuzzySearch()();
+        this.list = fuzzySearch(this.nav, this.search);
+        this.searchLoading = false;
       } else {
         initList();
       }
@@ -60,43 +61,6 @@ export default class HomeComponent {
         this.setAnnotate();
       }
     });
-
-    function fuzzySearch() {
-      let searchList = [{ nav: [] }];
-      that.searchLoading = false;
-
-      return function f(arr?: any[]) {
-        arr = arr || that.nav;
-
-        for (let i = 0; i < arr.length; i++) {
-
-          if (Array.isArray(arr[i].nav)) {
-            f(arr[i].nav);
-          }
-
-          if (arr[i].name) {
-            const name = arr[i].name.toLocaleLowerCase();
-            const desc = arr[i].desc.toLocaleLowerCase();
-            const search = that.search.toLocaleLowerCase();
-            if (~name.indexOf(search) || ~desc.indexOf(search)) {
-              try {
-                let result = Object.assign({}, arr[i]);
-                const regex = new RegExp(`(${that.search})`, 'i');
-                result.name = result.name.replace(regex, `$1`.bold())
-                result.desc = result.desc.replace(regex, `$1`.bold())
-
-                const idx = searchList[0].nav.findIndex(item => item.name === result.name);
-                if (idx === -1) {
-                  searchList[0].nav.push(result);
-                }
-              } catch (err) {}
-            }
-          }
-        }
-
-        return searchList;
-      };
-    }
 
     this.handleSearch = debounce(() => {
       if (!this.search) {
@@ -183,5 +147,9 @@ export default class HomeComponent {
     });
     equeue.push(annotation);
     annotation.show();
+  }
+
+  onImgError = (e) => {
+    e.target.src = 'assets/img/transparent.gif'
   }
 }

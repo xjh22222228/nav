@@ -30,7 +30,7 @@ export function randomInt(max: number) {
 export function fuzzySearch(navList: any[], keyword: string) {
   let searchResultList = [{ nav: [] }]
 
-  return function f(arr?: any[]) {
+  function f(arr?: any[]) {
     arr = arr || navList
 
     for (let i = 0; i < arr.length; i++) {
@@ -59,9 +59,11 @@ export function fuzzySearch(navList: any[], keyword: string) {
         }
       }
     }
-
-    return searchResultList
   }
+
+  f()
+
+  return searchResultList
 }
 
 export function totalWeb(): number {
