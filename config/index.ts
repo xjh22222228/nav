@@ -16,11 +16,15 @@ export const webpLanguage = [
   'Git'
 ]
 
-// 如果没有请赋值空字符串
-export const git = 'https://github.com/xjh22222228/nav'
+// Git 仓库地址, 没有填空字符串
+export const GIT_REPO_URL = 'https://github.com/xjh22222228/nav'
 
 // 网站底部描述, 可以是 HTML
+// 可以是版权信息，备案号
 export const FOOTER_DESC = ''
+
+// 百度统计
+export const TONGJI_URL = 'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba'
 
 // http://www.nav3.cn/#/index?q=grabient
 export const BACKGROUND_LINEAR = [

@@ -1,0 +1,117 @@
+<div class="index-wrapper">
+  <main class="homepage container">
+    <div class="bg-color-linear" id="index-background"></div>
+    <input 
+      type="text" 
+      class="search" 
+      placeholder="聚焦搜索" 
+      maxlength="50"
+      (input)="searchLoading = true; handleSearch()"
+      [(ngModel)]="search"
+      *ngIf="showInput"
+      (blur)="showInput = false"
+    />
+    <nav class="top-nav user-select-none">
+      <a 
+        *ngFor="let item of nav; let i = index;" 
+        (click)="handleCilckNav(i)" 
+        [class.active]="page === i" 
+        class="ripple-btn">
+        {{ item.title }}
+      </a>
+    </nav>
+    <section class="index-section user-select-none">
+      <aside class="sidebar" id="sidebar">
+        <ul>
+          <li 
+            class="tag" 
+            *ngFor="let item of nav[page].nav; let i = index" 
+            [class.active]="id === i" 
+            (click)="handleSidebarNav(i)">
+            <a class="ripple-btn" *ngIf="item.title">{{ item.title }}</a>
+          </li>
+        </ul>
+        <div class="icon-box">
+          <a href="javascript:;" (click)="handleOnClickSearch()">
+            <img src="assets/img/search.svg" alt="" class="icon" draggable="false">
+          </a>
+        </div>
+      </aside>
+      <div class="main" id="main" (scroll)="handleScroll($event)">
+        <app-loading *ngIf="searchLoading"></app-loading>
+        
+        <ul *ngIf="list.length && list[0].nav">
+          <li *ngFor="let item of list">
+            <div class="title-wrapper" *ngIf="item.subtitle">
+              <h2 class="block-title">
+                {{ item.subtitle }} x {{ item.nav.length }}
+                <a
+                  [href]="GIT_REPO_URL + '/tree/master/data'"
+                  class="edit"
+                  target="_blank"
+                  rel="noopener noreferer"
+                  title="编辑"
+                >
+                </a>
+              </h2>
+            </div>
+            <div class="row">
+              <div class="click-btn" *ngFor="let el of item.nav">
+                <a [href]="el.link" target="_blank" rel="noopener noreferer">
+                  <div class="top">
+                    <img
+                      *ngIf="el.icon || item.icon; else icon"
+                      [src]="el.icon || item.icon"
+                      alt=""
+                      class="icon"
+                    >
+                    <ng-template #icon>
+                      <span class="icon"></span>
+                    </ng-template>
+                    <em class="name" [innerHtml]="el.name"></em>
+                  </div>
+                  <div class="desc" [innerHtml]="el.desc"></div>
+                </a>
+                <div class="mark" *ngIf="el.language && el.language.length > 0">
+                  <div class="button-box">
+                    <a 
+                      [href]="el.language[0]" 
+                      class="zh" 
+                      target="_blank" 
+                      *ngIf="el.language[0]" 
+                      rel="noopener noreferer"
+                    >
+                      {{ language[0] }}
+                    </a>
+                    <a 
+                      [href]="el.language[1]" 
+                      class="zh" 
+                      target="_blank" 
+                      *ngIf="el.language[1]" 
+                      rel="noopener noreferer"
+                    >
+                      {{ language[1] }}
+                    </a>
+                    <a 
+                      [href]="el.language[2]" 
+                      class="zh" 
+                      target="_blank" 
+                      *ngIf="el.language[2]" 
+                      rel="noopener noreferer"
+                    >
+                      {{ language[2] }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+  
+        <app-no-data *ngIf="list.length && list[0].nav && !list[0].nav.length"></app-no-data>
+      </div>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+</div>

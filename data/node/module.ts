@@ -15,7 +15,7 @@ export default {
           link: 'https://github.com/request/request',
         },
         {
-          icon: 'assets/icon/frontend/049.png',
+          icon: null,
           name: 'superagent',
           desc: '一个小型渐进式客户端HTTP请求库，Node.js模块具有相同的API，具有许多高级HTTP客户端功能',
           link: 'http://visionmedia.github.io/superagent/',
@@ -44,7 +44,7 @@ export default {
           link: 'https://github.com/mikeal/bent',
         },
         {
-          icon: 'assets/icon/frontend/049.png',
+          icon: null,
           name: 'superagent-proxy',
           desc: 'superagent代理扩展，这使您可以通过某种代理来代理HTTP请求',
           link: 'https://github.com/TooTallNate/superagent-proxy',
@@ -282,7 +282,7 @@ export default {
       icon: DEFAULT_ICON,
       nav: [
         {
-          icon: 'assets/icon/frontend/132.png',
+          icon: null,
           name: 'node-http-proxy',
           desc: '一个HTTP可编程代理库，支持websocket。它适用于实现反向代理和负载平衡器等组件',
           link: 'https://github.com/nodejitsu/node-http-proxy',
@@ -368,25 +368,25 @@ export default {
       icon: DEFAULT_ICON,
       nav: [
         {
-          icon: 'assets/icon/frontend/135.png',
+          icon: null,
           name: 'wechat-oauth',
           desc: '微信公共平台OAuth接口消息接口服务中间件与API SDK',
           link: 'https://github.com/node-webot/wechat-oauth',
         },
         {
-          icon: 'assets/icon/frontend/135.png',
+          icon: null,
           name: 'wechat-api',
           desc: '微信公共平台API',
           link: 'https://github.com/node-webot/wechat-api',
         },
         {
-          icon: 'assets/icon/frontend/135.png',
+          icon: null,
           name: 'wechat',
           desc: '微信公共平台消息接口服务中间件',
           link: 'https://github.com/node-webot/wechat',
         },
         {
-          icon: 'assets/icon/frontend/135.png',
+          icon: null,
           name: 'wechaty',
           desc: '是适用于微信个人帐户的Bot SDK ，可以帮助您创建6行javascript的机器人',
           link: 'https://chatie.io/wechaty/',
@@ -468,13 +468,13 @@ export default {
           link: 'https://github.com/npm/node-semver'
         },
         {
-          icon: 'assets/icon/frontend/076.png',
+          icon: null,
           name: 'node-progress',
           desc: 'node.js的灵活ascii进度条',
           link: 'https://github.com/visionmedia/node-progress'
         },
         {
-          icon: 'assets/icon/frontend/076.png',
+          icon: null,
           name: 'node-qrcode',
           desc: '二维码生成',
           link: 'https://github.com/soldair/node-qrcode'
@@ -486,19 +486,19 @@ export default {
           link: 'https://github.com/sindresorhus/open',
         },
         {
-          icon: 'assets/icon/frontend/076.png',
+          icon: null,
           name: 'ssh2',
           desc: '用纯JavaScript编写的SSH2客户端和服务器模块，用于node.js',
           link: 'https://github.com/mscdex/ssh2',
         },
         {
-          icon: 'assets/icon/frontend/076.png',
+          icon: null,
           name: 'minimist',
           desc: '解析参数选项',
           link: 'https://github.com/substack/minimist',
         },
         {
-          icon: 'assets/icon/frontend/076.png',
+          icon: null,
           name: 'node-clear',
           desc: '清空终端屏幕信息',
           link: 'https://github.com/bahamas10/node-clear',
@@ -615,7 +615,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/136.png',
+          icon: 'http://www.passportjs.org/images/favicon/apple-icon-57x57.png',
           name: 'passport',
           desc: 'Node.js的简单，不显眼的身份验证',
           link: 'http://www.passportjs.org/',

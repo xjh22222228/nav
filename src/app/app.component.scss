@@ -3,24 +3,4 @@
   &.app {
     color: #000;
   }
-
-  .footer {
-    text-align: center;
-    margin-top: 10px;
-    color: #fff;
-
-    .total {
-      margin-left: 5px;
-      vertical-align: super;
-      font-weight: bold;
-    }
-
-    .runtime {
-      font-weight: bold;
-    }
-
-    .copyright > * {
-      color: #fff;
-    }
-  }
 }

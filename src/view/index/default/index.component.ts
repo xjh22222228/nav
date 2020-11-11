@@ -1,8 +1,8 @@
-import nav from '../../data';
+import nav from '../../../../data';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { debounce } from '../utils';
-import { appLanguage, git } from '../../config';
+import { debounce } from '../../../utils';
+import { appLanguage, GIT_REPO_URL } from '../../../../config';
 import { annotate } from 'rough-notation';
 
 let equeue = [];
@@ -12,7 +12,7 @@ let equeue = [];
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export class HomeComponent {
+export default class HomeComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -24,7 +24,7 @@ export class HomeComponent {
   showInput = false;
   searchLoading = false;
   language: string[] = appLanguage;
-  git: string = git;
+  GIT_REPO_URL: string = GIT_REPO_URL;
 
   ngOnInit () {
     const that = this;
@@ -166,10 +166,6 @@ export class HomeComponent {
     try {
       document.getElementById('main').scrollTop = +(<any>window).sessionStorage.top || 0;
     } catch (e) {}
-  }
-
-  goBack = () => {
-    history.go(-1);
   }
 
   setAnnotate() {

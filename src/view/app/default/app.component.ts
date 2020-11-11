@@ -1,14 +1,14 @@
+import nav from '../../../../data';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import nav from '../../data';
-import { webpLanguage } from '../../config';
+import { webpLanguage } from '../../../../config';
 
 @Component({
   selector: 'app-home',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class WebpComponent {
+export default class WebpComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
   nav: Array<any> = nav;

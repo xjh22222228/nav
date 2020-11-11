@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import nav from '../../data';
-import { BACKGROUND_LINEAR, git, FOOTER_DESC } from '../../config';
-import { randomInt } from '../utils';
+import nav from '../../data'
+import { Component } from '@angular/core'
+import { Router, ActivatedRoute } from '@angular/router'
+import { BACKGROUND_LINEAR, TONGJI_URL } from '../../config'
+import { randomInt } from '../utils'
 
 @Component({
   selector: 'app-xiejiahe',
@@ -10,65 +10,54 @@ import { randomInt } from '../utils';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  nav: Array<any> = nav
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
-  nav: Array<any> = nav;
-  includeTotal: number = 0;
-  git: string = git;
-  FOOTER_DESC: string = FOOTER_DESC;
 
   ngOnInit() {
-    const hash = window.location.hash;
-    const params = new URLSearchParams(hash.slice(hash.indexOf('?')));
-    const page = params.get('page');
-    const id = params.get('id');
-    const q = params.get('q');
-    const queryParams = { page, id, q };
+    const hash = window.location.hash
+    const params = new URLSearchParams(hash.slice(hash.indexOf('?')))
+    const page = params.get('page')
+    const id = params.get('id')
+    const q = params.get('q')
+    const queryParams = { page, id, q }
 
-    this.goRoute(queryParams);
-    
-    this.computedTotal();
+    this.goRoute(queryParams)
+    this.appendTongji()
   }
 
   ngAfterViewInit() {
-    setInterval(this.setBackground, 10000);
+    setInterval(this.setBackground, 10000)
   }
 
   goRoute(queryParams: object) {
-    const screenWidth = window.innerWidth;
+    const screenWidth = window.innerWidth
 
     if (screenWidth < 768) {
-      this.router.navigate(['/app'], { queryParams });
+      this.router.navigate(['/app'], { queryParams })
     } else {
-      this.router.navigate(['/index'], { queryParams });
+      this.router.navigate(['/index'], { queryParams })
     }
-  }
-
-  // 计算收录个数
-  computedTotal() {
-    let total = 0;
-    function r(nav) {
-      if (!Array.isArray(nav)) return;
-      for (let i = 0; i < nav.length; i++) {
-        if (nav[i].link) {
-          total += 1;
-        } else {
-          r(nav[i].nav);
-        }
-      }
-    }
-    r(this.nav);
-    this.includeTotal = total;
   }
 
   setBackground() {
-    const randomBg = BACKGROUND_LINEAR[randomInt(BACKGROUND_LINEAR.length)];
-    const el = document.getElementById('index-background');
-    if (!el) return;
-    el.style.opacity = '.3';
+    const randomBg = BACKGROUND_LINEAR[randomInt(BACKGROUND_LINEAR.length)]
+    const el = document.getElementById('index-background')
+    if (!el) return
+    el.style.opacity = '.3'
     setTimeout(() => {
-      el.style.backgroundImage = randomBg;
-      el.style.opacity = '1';
-    }, 1000);
+      el.style.backgroundImage = randomBg
+      el.style.opacity = '1'
+    }, 1000)
+  }
+
+  appendTongji() {
+    if (document.getElementById('tongji_url')) return
+
+    const script = document.createElement('script')
+    script.src = TONGJI_URL
+    script.id = 'tongji_url'
+    script.async = true
+    document.documentElement.appendChild(script)
   }
 }
