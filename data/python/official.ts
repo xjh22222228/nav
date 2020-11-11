@@ -1,9 +1,12 @@
 
+const DEFAULT_ICON = 'https://www.python.org/static/favicon.ico'
+
 export default {
   title: '生态系统',
   nav: [
     {
       subtitle: '官方',
+      icon: DEFAULT_ICON,
       nav: [
         {
           icon: 'https://www.python.org/static/favicon.ico',

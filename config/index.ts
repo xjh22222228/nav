@@ -8,19 +8,19 @@ export const appLanguage = [
   '英文',
   '中文',
   'GitHub'
-];
+]
 
 export const webpLanguage = [
   'EN',
   'CN',
   'Git'
-];
+]
 
 // 如果没有请赋值空字符串
-export const git = 'https://github.com/xjh22222228/nav';
+export const git = 'https://github.com/xjh22222228/nav'
 
 // 网站底部描述, 可以是 HTML
-export const FOOTER_DESC = '';
+export const FOOTER_DESC = ''
 
 // http://www.nav3.cn/#/index?q=grabient
 export const BACKGROUND_LINEAR = [
@@ -50,4 +50,4 @@ export const BACKGROUND_LINEAR = [
   'linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%)',
   'linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)',
   'linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)'
-];
+]

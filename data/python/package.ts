@@ -1,7 +1,11 @@
+
+const DEFAULT_ICON = 'https://www.python.org/static/favicon.ico'
+
 export default {
   title: '依赖包',
   nav: [
     {
+      icon: DEFAULT_ICON,
       subtitle: 'HTTP',
       nav: [
         {
@@ -41,9 +45,10 @@ export default {
     },
     {
       subtitle: '图像',
+      icon: DEFAULT_ICON,
       nav: [
         {
-          icon: 'https://avatars3.githubusercontent.com/u/2036701?s=200&v=4',
+          icon: null,
           name: 'Pillow',
           desc: '友好的PIL前叉，是一个出色的图像处理库',
           link: 'https://python-pillow.org/',
@@ -52,6 +57,18 @@ export default {
             '',
             'https://github.com/python-pillow/Pillow'
           ]
+        },
+      ]
+    },
+    {
+      subtitle: 'CLI',
+      icon: DEFAULT_ICON,
+      nav: [
+        {
+          icon: null,
+          name: 'Fire',
+          desc: 'Python Fire是一个用于从绝对任何Python对象自动生成命令行界面（CLI）的库。',
+          link: 'https://github.com/google/python-fire',
         },
       ]
     }

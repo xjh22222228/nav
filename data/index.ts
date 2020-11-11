@@ -1,15 +1,15 @@
-import frontend from './frontend';
-import node from './node';
-import flutter from './flutter';
-import python from './python';
-import go from './go';
-import utilityTool from './utilityTool';
-import study from './study';
-import security from './security';
-import designer from './designer';
-import blog from './blog';
-import operation from './operation';
-import community from './community';
+import frontend from './frontend'
+import node from './node'
+import flutter from './flutter'
+import python from './python'
+import go from './go'
+import utilityTool from './utilityTool'
+import study from './study'
+import security from './security'
+import design from './design'
+import blog from './blog'
+import operation from './operation'
+import community from './community'
 
 export default [
   utilityTool,
@@ -19,9 +19,9 @@ export default [
   python,
   go,
   community,
-  designer,
+  design,
   study,
   security,
   operation,
   blog,
-];
+]
