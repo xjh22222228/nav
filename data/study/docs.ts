@@ -8,13 +8,13 @@ export default {
       subtitle: 'Docker',
       nav: [
         {
-          icon: 'assets/icon/community/007.svg',
+          icon: 'https://github.com/favicon.ico',
           name: 'Docker — 从入门到实践',
           desc: 'Docker — 从入门到实践',
           link: 'https://yeasy.gitbooks.io/docker_practice/',
         },
         {
-          icon: 'assets/icon/community/007.svg',
+          icon: 'https://github.com/favicon.ico',
           name: 'Docker官方映像文档',
           desc: 'docker-library中的Docker官方映像文档',
           link: 'https://github.com/docker-library/docs',
@@ -42,31 +42,31 @@ export default {
       subtitle: 'Git',
       nav: [
         {
-          icon: 'assets/icon/community/007.svg',
+          icon: 'https://github.com/favicon.ico',
           name: 'git-manual',
           desc: 'Git常用命令参考手册 (推荐学习)',
           link: 'https://github.com/xjh22222228/git-manual',
         },
         {
-          icon: 'assets/icon/community/007.svg',
+          icon: 'https://github.com/favicon.ico',
           name: 'GitHub Docs',
           desc: 'github 官方帮助文档',
           link: 'https://help.github.com/cn',
         },
         {
-          icon: 'assets/icon/community/007.svg',
+          icon: 'https://github.com/favicon.ico',
           name: 'awesome-actions',
           desc: '精选的GitHub上很棒的Action列表',
           link: 'https://github.com/sdras/awesome-actions',
         },
         {
-          icon: 'assets/icon/community/007.svg',
+          icon: 'https://github.com/favicon.ico',
           name: 'Github - Actions',
           desc: 'Github 官方Actions 资源列表',
           link: 'https://github.com/marketplace?type=actions',
         },
         {
-          icon: 'assets/icon/community/007.svg',
+          icon: 'https://github.com/favicon.ico',
           name: 'growing-up',
           desc: '程序猿成长计划',
           link: 'https://github.com/mylxsw/growing-up',
@@ -161,7 +161,7 @@ export default {
           link: 'https://github.com/xjh22222228/linux-manual',
         },
         {
-          icon: 'assets/icon/community/007.svg',
+          icon: 'https://github.com/favicon.ico',
           name: 'developer-roadmap',
           desc: `${thisYear}年成为网络开发人员的路线图`,
           link: 'https://github.com/kamranahmedse/developer-roadmap',
@@ -173,7 +173,7 @@ export default {
           link: 'https://devhints.io/',
         },
         {
-          icon: 'assets/icon/utility-tool/062.png',
+          icon: 'https://wangchujiang.com/linux-command/img/favicon.ico',
           name: 'linux-command',
           desc: 'Linux命令大全搜索工具，内容包含Linux命令手册、详解、学习、搜集',
           link: 'https://git.io/linux',
@@ -184,13 +184,13 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/community/007.svg',
+          icon: 'https://github.com/favicon.ico',
           name: 'learn-regex',
           desc: '正则表达式学习',
           link: 'https://github.com/ziishaned/learn-regex',
         },
         {
-          icon: 'assets/icon/community/007.svg',
+          icon: 'https://github.com/favicon.ico',
           name: 'the-art-of-command-line',
           desc: '命令行的艺术',
           link: 'https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md',

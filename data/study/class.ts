@@ -34,7 +34,7 @@ export default {
           link: 'https://www.ichunqiu.com/',
         },
         {
-          icon: 'assets/icon/learn/006.png',
+          icon: 'http://www.shiyanbar.com/favicon.ico',
           name: '实验吧',
           desc: '实验吧是国内最大的在线虚拟机实验IT教育平台',
           link: 'http://www.shiyanbar.com/',

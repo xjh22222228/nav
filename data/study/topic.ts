@@ -37,7 +37,7 @@ export default {
           link: 'https://visualgo.net/zh',
         },
         {
-          icon: 'assets/icon/community/007.svg',
+          icon: 'https://github.com/favicon.ico',
           name: 'algorithm-pattern',
           desc: '算法模板，最科学的刷题方式，最快速的刷题路径，你值得拥有~',
           link: 'https://github.com/greyireland/algorithm-pattern',

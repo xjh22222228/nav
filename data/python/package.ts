@@ -6,7 +6,7 @@ export default {
   nav: [
     {
       icon: DEFAULT_ICON,
-      subtitle: 'HTTP',
+      subtitle: 'HTTP/爬虫',
       nav: [
         {
           icon: 'https://www.python.org/static/favicon.ico',
@@ -41,6 +41,17 @@ export default {
             'https://github.com/scrapy/scrapy'
           ]
         },
+        {
+          icon: 'https://avatars0.githubusercontent.com/u/983927?s=200&v=4',
+          name: 'selenium',
+          desc: '浏览器自动化框架和生态系统。',
+          link: 'https://www.selenium.dev/',
+          language: [
+            '',
+            '',
+            'https://github.com/SeleniumHQ/selenium/'
+          ]
+        },
       ]
     },
     {
@@ -48,7 +59,6 @@ export default {
       icon: DEFAULT_ICON,
       nav: [
         {
-          icon: null,
           name: 'Pillow',
           desc: '友好的PIL前叉，是一个出色的图像处理库',
           link: 'https://python-pillow.org/',
@@ -65,7 +75,6 @@ export default {
       icon: DEFAULT_ICON,
       nav: [
         {
-          icon: null,
           name: 'Fire',
           desc: 'Python Fire是一个用于从绝对任何Python对象自动生成命令行界面（CLI）的库。',
           link: 'https://github.com/google/python-fire',
