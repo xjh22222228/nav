@@ -52,6 +52,11 @@ export default {
             'https://github.com/SeleniumHQ/selenium/'
           ]
         },
+        {
+          name: 'beautifulsoup',
+          desc: '可以从HTML或XML文件中提取数据的Python库',
+          link: 'https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/',
+        },
       ]
     },
     {

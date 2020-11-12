@@ -1,8 +1,7 @@
 import nav from '../../data'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { BACKGROUND_LINEAR, TONGJI_URL } from '../../config'
-import { randomInt } from '../utils'
+import { TONGJI_URL } from '../../config'
 
 @Component({
   selector: 'app-xiejiahe',
@@ -26,10 +25,6 @@ export class AppComponent {
     this.appendTongji()
   }
 
-  ngAfterViewInit() {
-    setInterval(this.setBackground, 10000)
-  }
-
   goRoute(queryParams: object) {
     const screenWidth = window.innerWidth
 
@@ -38,17 +33,6 @@ export class AppComponent {
     } else {
       this.router.navigate(['/index'], { queryParams })
     }
-  }
-
-  setBackground() {
-    const randomBg = BACKGROUND_LINEAR[randomInt(BACKGROUND_LINEAR.length)]
-    const el = document.getElementById('index-background')
-    if (!el) return
-    el.style.opacity = '.3'
-    setTimeout(() => {
-      el.style.backgroundImage = randomBg
-      el.style.opacity = '1'
-    }, 1000)
   }
 
   appendTongji() {

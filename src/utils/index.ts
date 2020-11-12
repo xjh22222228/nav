@@ -1,4 +1,5 @@
 import nav from '../../data';
+import { BACKGROUND_LINEAR } from '../../config';
 
 export function debounce(func, wait, immediate) {
   let timeout
@@ -82,4 +83,26 @@ export function totalWeb(): number {
   r(nav)
 
   return total
+}
+
+export function randomBgImg() {
+  const el = document.createElement('div')
+  el.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:-3;transition: 1s linear;'
+  el.style.backgroundImage = BACKGROUND_LINEAR[randomInt(BACKGROUND_LINEAR.length)]
+  document.body.appendChild(el)
+
+  function setBg() {
+    const randomBg = BACKGROUND_LINEAR[randomInt(BACKGROUND_LINEAR.length)]
+    el.style.opacity = '.3'
+    setTimeout(() => {
+      el.style.backgroundImage = randomBg
+      el.style.opacity = '1'
+    }, 1000)
+  }
+
+  setInterval(setBg, 10000)
+}
+
+export function onImgError(e: any) {
+  e.target.src = 'assets/img/transparent.gif'
 }

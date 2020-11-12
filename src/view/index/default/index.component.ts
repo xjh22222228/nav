@@ -1,7 +1,7 @@
 import nav from '../../../../data';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { debounce, fuzzySearch } from '../../../utils';
+import { debounce, fuzzySearch, randomBgImg, onImgError } from '../../../utils';
 import { appLanguage, GIT_REPO_URL } from '../../../../config';
 import { annotate } from 'rough-notation';
 
@@ -27,7 +27,8 @@ export default class HomeComponent {
   GIT_REPO_URL: string = GIT_REPO_URL;
 
   ngOnInit () {
-    const that = this;
+    randomBgImg();
+
     const initList = () => {
       this.list = this.nav[this.page].nav[this.id].nav;
     };
@@ -149,7 +150,5 @@ export default class HomeComponent {
     annotation.show();
   }
 
-  onImgError = (e) => {
-    e.target.src = 'assets/img/transparent.gif'
-  }
+  onImgError = onImgError
 }
