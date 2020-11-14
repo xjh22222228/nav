@@ -1,5 +1,6 @@
-import nav from '../../data';
-import { BACKGROUND_LINEAR } from '../../config';
+import nav from '../../data'
+import qs from 'qs'
+import { BACKGROUND_LINEAR } from '../../config'
 
 export function debounce(func, wait, immediate) {
   let timeout
@@ -105,4 +106,31 @@ export function randomBgImg() {
 
 export function onImgError(e: any) {
   e.target.src = 'assets/img/transparent.gif'
+}
+
+export function queryString() {
+  const { href } = window.location
+  const search = href.slice(href.indexOf('?') + 1)
+  const parseQs = qs.parse(search)
+  let id = parseInt(parseQs.id) || 0
+  let page = parseInt(parseQs.page) || 0
+
+  if (page > nav.length - 1) {
+    page = nav.length - 1;
+    id = 0;
+  } else {
+    page = page;
+    if (id <= nav[page].nav.length - 1) {
+      id = id;
+    } else {
+      id = nav[page].nav.length - 1;
+    }
+  }
+
+  return {
+    ...parseQs,
+    q: parseQs.q || '',
+    id,
+    page
+  }
 }

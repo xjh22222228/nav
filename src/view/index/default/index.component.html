@@ -6,7 +6,7 @@
       placeholder="聚焦搜索" 
       maxlength="50"
       (input)="searchLoading = true; handleSearch()"
-      [(ngModel)]="search"
+      [(ngModel)]="searchKeyword"
       *ngIf="showInput"
       (blur)="showInput = false"
     />

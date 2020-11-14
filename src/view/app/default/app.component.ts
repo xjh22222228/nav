@@ -2,6 +2,7 @@ import nav from '../../../../data';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { webpLanguage } from '../../../../config';
+import { onImgError, queryString } from '../../../utils';
 
 @Component({
   selector: 'app-home',
@@ -18,25 +19,15 @@ export default class WebpComponent {
   language: string[] = webpLanguage;
 
   ngOnInit () {
-    this.activatedRoute.queryParams.subscribe(query => {
-      const id = +query.id || 0;
-      const page = +query.page || 0;
-      if (page > this.nav.length - 1) {
-        this.page = this.nav.length - 1;
-        this.id = 0;
-      } else {
-        this.page = page;
-        if (id <= this.nav[this.page].nav.length - 1) {
-          this.id = id;
-        } else {
-          this.id = this.nav[this.page].nav.length - 1;
-        }
-      }
+    this.activatedRoute.queryParams.subscribe(() => {
+      const { page, id } = queryString()
+      this.page = page
+      this.id = id
     });
   }
 
   handleSidebarNav (index) {
-    const page = +this.activatedRoute.snapshot.queryParams.page || 0;
+    const { page } = queryString()
     this.router.navigate(['/app'], { 
       queryParams: {
         page,
@@ -76,4 +67,6 @@ export default class WebpComponent {
     }
     $this.siblings('.bottom-slide').toggleClass('active')
   }
+
+  onImgError = onImgError
 }

@@ -1,6 +1,6 @@
 {
   "name": "nav",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "xiejiahe",
   "bugs": {
     "url": "https://github.com/xjh22222228/nav/issues"
@@ -20,9 +20,6 @@
   },
   "private": true,
   "dependencies": {
-    "iscroll": "^5.2.0",
-    "jquery": "^3.5.1",
-    "rough-notation": "^0.3.3",
     "@angular/animations": "~9.1.9",
     "@angular/common": "~9.1.9",
     "@angular/compiler": "~9.1.9",
@@ -31,6 +28,10 @@
     "@angular/platform-browser": "~9.1.9",
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
+    "iscroll": "^5.2.0",
+    "jquery": "^3.5.1",
+    "qs": "^6.9.4",
+    "rough-notation": "^0.3.3",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

@@ -44,6 +44,7 @@
                   [src]="el.icon || item.icon"
                   alt=""
                   class="icon"
+                  (error)="onImgError($event)"
                 >
                 <ng-template #icon>
                   <span class="icon"></span>

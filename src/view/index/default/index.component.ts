@@ -1,11 +1,11 @@
-import nav from '../../../../data';
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { debounce, fuzzySearch, randomBgImg, onImgError } from '../../../utils';
-import { appLanguage, GIT_REPO_URL } from '../../../../config';
-import { annotate } from 'rough-notation';
+import nav from '../../../../data'
+import { Component } from '@angular/core'
+import { Router, ActivatedRoute } from '@angular/router'
+import { debounce, fuzzySearch, randomBgImg, onImgError, queryString } from '../../../utils'
+import { appLanguage, GIT_REPO_URL } from '../../../../config'
+import { annotate } from 'rough-notation'
 
-let equeue = [];
+let equeue = []
 
 @Component({
   selector: 'app-home',
@@ -16,79 +16,65 @@ export default class HomeComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  nav: any[] = nav;
-  id: number = 0;
-  page: number = 0;
-  list: any[] = [];
-  search: string = '';
-  showInput = false;
-  searchLoading = false;
-  language: string[] = appLanguage;
-  GIT_REPO_URL: string = GIT_REPO_URL;
+  nav: any[] = nav
+  id: number = 0
+  page: number = 0
+  list: any[] = []
+  searchKeyword: string = ''
+  showInput = false
+  searchLoading = false
+  language: string[] = appLanguage
+  GIT_REPO_URL: string = GIT_REPO_URL
 
   ngOnInit () {
-    randomBgImg();
+    randomBgImg()
 
     const initList = () => {
-      this.list = this.nav[this.page].nav[this.id].nav;
-    };
+      this.list = this.nav[this.page].nav[this.id].nav
+    }
 
-    this.activatedRoute.queryParams.subscribe(query => {
-      const tempPage = this.page;
-      const id = +query.id || 0;
-      const page = +query.page || 0;
-      this.search = query.q || '';
+    this.activatedRoute.queryParams.subscribe(() => {
+      const tempPage = this.page
+      const { id, page, q } = queryString()
+      this.searchKeyword = q
+      this.page = page
+      this.id = id
 
-      if (page > this.nav.length - 1) {
-        this.page = this.nav.length - 1;
-        this.id = 0;
+      if (q) {
+        this.list = fuzzySearch(this.nav, q)
+        this.searchLoading = false
       } else {
-        this.page = page;
-        if (id <= this.nav[this.page].nav.length - 1) {
-          this.id = id;
-        } else {
-          this.id = this.nav[this.page].nav.length - 1;
-        }
-      }
-      
-      if (this.search) {
-        this.list = fuzzySearch(this.nav, this.search);
-        this.searchLoading = false;
-      } else {
-        initList();
+        initList()
       }
 
       if (tempPage !== page) {
-        this.setAnnotate();
+        this.setAnnotate()
       }
-    });
+    })
 
     this.handleSearch = debounce(() => {
-      if (!this.search) {
-        initList();
-        this.searchLoading = false;
-        return;
+      if (!this.searchKeyword) {
+        initList()
+        this.searchLoading = false
+        return
       }
 
-      const hash = window.location.hash;
-      const params = new URLSearchParams(hash.slice(hash.indexOf('?')));
+      const params = queryString()
       this.router.navigate(['/index'], {
         queryParams: {
           ...params,
-          q: this.search
+          q: this.searchKeyword
         }
-      });
+      })
 
-      this.searchLoading = true;
-    }, 1000, false);
+      this.searchLoading = true
+    }, 1000, false)
   }
 
-  handleSearch = null
-
   handleScroll(e) {
-    const target = e.target;
+    const target = e.target
     const top = target.scrollTop;
-    (<any>window).sessionStorage.top = top;
+    (<any>window).sessionStorage.top = top
   }
 
   handleCilckNav(index) {
@@ -97,27 +83,27 @@ export default class HomeComponent {
         page: index,
         _: Date.now()
       }
-    });
+    })
   }
 
   handleOnClickSearch() {
-    this.showInput = true;
+    this.showInput = true
     setTimeout(() => {
       try {
-        (<any>document).querySelector('.search').focus();
+        (<any>document).querySelector('.search').focus()
       } catch (err) {}
-    }, 0);
+    }, 0)
   }
 
   handleSidebarNav (index) {
-    const page = +this.activatedRoute.snapshot.queryParams.page || 0;
+    const { page } = queryString()
     this.router.navigate(['/index'], { 
       queryParams: {
         page,
         id: index,
         _: Date.now()
       }
-    });
+    })
   }
 
   ngAfterViewInit () {
@@ -127,28 +113,29 @@ export default class HomeComponent {
       multi: true,
       debug: false,
       opacity: .2,
-    });
+    })
     try {
-      document.getElementById('main').scrollTop = +(<any>window).sessionStorage.top || 0;
+      document.getElementById('main').scrollTop = +(<any>window).sessionStorage.top || 0
     } catch (e) {}
   }
 
   setAnnotate() {
-    const elList = document.querySelectorAll('.top-nav .ripple-btn') || [];
-    if (elList.length === 0) return;
+    const elList = document.querySelectorAll('.top-nav .ripple-btn') || []
+    if (elList.length === 0) return
 
-    equeue.forEach(item => item.hide());
-    equeue = [];
+    equeue.forEach(item => item.hide())
+    equeue = []
 
     const annotation = annotate(elList[this.page], {
       type: 'underline',
       color: 'red',
       padding: 3,
       strokeWidth: 3
-    });
-    equeue.push(annotation);
-    annotation.show();
+    })
+    equeue.push(annotation)
+    annotation.show()
   }
 
+  handleSearch = null
   onImgError = onImgError
 }
