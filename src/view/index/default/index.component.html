@@ -92,7 +92,7 @@
               />
             </div>
 
-            <div class="row" *ngIf="item.collapsed !== false">
+            <div class="row" *ngIf="!item.collapsed">
               <div class="click-btn" *ngFor="let el of item.nav">
                 <a [href]="el.link" target="_blank" rel="noopener noreferer">
                   <div class="top">
