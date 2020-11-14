@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { INDEX_LANGUAGE, GIT_REPO_URL } from '../../../../config'
 import { annotate } from 'rough-notation'
+import { INavProps, INavThreeProp } from '../../../types'
 import {
   debounce,
   fuzzySearch,
@@ -13,7 +14,7 @@ import {
   toggleCollapseAll,
 } from '../../../utils'
 
-let equeue = []
+let ANNOTATE_EQUEUE = []
 
 @Component({
   selector: 'app-home',
@@ -24,8 +25,8 @@ export default class HomeComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  websiteList: any[] = getWebsiteList()
-  currentList: any[] = []
+  websiteList: INavProps[] = getWebsiteList()
+  currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
   searchKeyword: string = ''
@@ -58,6 +59,8 @@ export default class HomeComponent {
       if (tempPage !== page) {
         this.setAnnotate()
       }
+
+      setWebsiteList(this.websiteList)
     })
 
     this.handleSearch = debounce(() => {
@@ -79,32 +82,30 @@ export default class HomeComponent {
     }, 1000, false)
   }
 
-  handleScroll(e) {
-    const target = e.target
-    const top = target.scrollTop;
-    (<any>window).sessionStorage.top = top
+  handleOnClickSearch() {
+    this.showInput = true
+    setTimeout(() => {
+      const searchEl = document.querySelector('.search') as HTMLInputElement
+      if (searchEl) {
+        searchEl.focus()
+      }
+    }, 0)
   }
 
-  handleCilckNav(index) {
+  handleCilckTopNav(index) {
+    const id = this.websiteList[index].id || 0
     this.router.navigate(['/index'], {
       queryParams: {
         page: index,
+        id,
         _: Date.now()
       }
     })
   }
 
-  handleOnClickSearch() {
-    this.showInput = true
-    setTimeout(() => {
-      try {
-        (<any>document).querySelector('.search').focus()
-      } catch (err) {}
-    }, 0)
-  }
-
   handleSidebarNav (index) {
     const { page } = queryString()
+    this.websiteList[page].id = index
     this.router.navigate(['/index'], { 
       queryParams: {
         page,
@@ -122,17 +123,14 @@ export default class HomeComponent {
       debug: false,
       opacity: .2,
     })
-    try {
-      document.getElementById('main').scrollTop = +(<any>window).sessionStorage.top || 0
-    } catch (e) {}
   }
 
   setAnnotate() {
     const elList = document.querySelectorAll('.top-nav .ripple-btn') || []
     if (elList.length === 0) return
 
-    equeue.forEach(item => item.hide())
-    equeue = []
+    ANNOTATE_EQUEUE.forEach(item => item.hide())
+    ANNOTATE_EQUEUE = []
 
     const annotation = annotate(elList[this.page], {
       type: 'underline',
@@ -140,7 +138,7 @@ export default class HomeComponent {
       padding: 3,
       strokeWidth: 3
     })
-    equeue.push(annotation)
+    ANNOTATE_EQUEUE.push(annotation)
     annotation.show()
   }
 

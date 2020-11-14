@@ -1,19 +1,28 @@
 
-interface ThreeProp {
-  name: string;
-  desc: string;
-  link: string;
-  language?: string[]
+export interface INavFourProp {
+  icon?: string | null
+  name: string
+  desc: string
+  link: string
 }
 
-interface TwoProp {
-  subtitle?: string;
-  icon?: string | null;
-  nav: ThreeProp[]
+export interface INavThreeProp {
+  subtitle?: string
+  icon?: string | null
+  showSideIcon?: boolean
+  collapsed?: boolean
+  nav: INavFourProp[]
+}
+
+export interface INavTwoProp {
+  title?: string
+  icon?: string | null
+  collapsed?: boolean
+  nav: INavThreeProp[]
 }
 
 export interface INavProps {
-  title: string;
-  icon?: string | null;
-  nav: TwoProp[]
+  title: string
+  id?: number
+  nav: INavTwoProp[]
 }

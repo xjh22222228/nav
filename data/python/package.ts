@@ -3,9 +3,9 @@ const DEFAULT_ICON = 'https://www.python.org/static/favicon.ico'
 
 export default {
   title: '依赖包',
+  icon: DEFAULT_ICON,
   nav: [
     {
-      icon: DEFAULT_ICON,
       subtitle: 'HTTP/爬虫',
       nav: [
         {
@@ -61,7 +61,6 @@ export default {
     },
     {
       subtitle: '图像',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: 'Pillow',
@@ -77,12 +76,16 @@ export default {
     },
     {
       subtitle: 'CLI',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: 'Fire',
           desc: 'Python Fire是一个用于从绝对任何Python对象自动生成命令行界面（CLI）的库。',
           link: 'https://github.com/google/python-fire',
+        },
+        {
+          name: 'colorama',
+          desc: 'Python中简单的跨平台彩色终端文本',
+          link: 'https://pypi.org/project/colorama/',
         },
       ]
     }

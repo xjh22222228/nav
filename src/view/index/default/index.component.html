@@ -25,7 +25,7 @@
     <nav class="top-nav user-select-none">
       <a 
         *ngFor="let item of websiteList; let i = index;" 
-        (click)="handleCilckNav(i)" 
+        (click)="handleCilckTopNav(i)" 
         [class.active]="page === i" 
         class="ripple-btn">
         {{ item.title }}
@@ -50,7 +50,7 @@
         </div>
       </aside>
 
-      <div class="main" id="main" (scroll)="handleScroll($event)">
+      <div class="main">
         <app-loading *ngIf="searchLoading"></app-loading>
  
         <ul *ngIf="currentList.length && currentList[0].nav">
@@ -92,7 +92,7 @@
               />
             </div>
 
-            <div class="row" [class.hide]="item.collapsed">
+            <div class="row" *ngIf="item.collapsed">
               <div class="click-btn" *ngFor="let el of item.nav">
                 <a [href]="el.link" target="_blank" rel="noopener noreferer">
                   <div class="top">

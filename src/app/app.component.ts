@@ -1,7 +1,7 @@
-import nav from '../../data'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { TONGJI_URL } from '../../config'
+import { queryString, setLocation } from '../utils'
 
 @Component({
   selector: 'app-xiejiahe',
@@ -9,24 +9,21 @@ import { TONGJI_URL } from '../../config'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  nav: Array<any> = nav
-
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    const hash = window.location.hash
-    const params = new URLSearchParams(hash.slice(hash.indexOf('?')))
-    const page = params.get('page')
-    const id = params.get('id')
-    const q = params.get('q')
-    const queryParams = { page, id, q }
-
-    this.goRoute(queryParams)
+    this.goRoute()
     this.appendTongji()
+
+    this.activatedRoute.queryParams.subscribe(() => {
+      setLocation()
+    })
   }
 
-  goRoute(queryParams: object) {
+  goRoute() {
+    const { page, id, q } = queryString()
     const screenWidth = window.innerWidth
+    const queryParams = { page, id, q }
 
     if (screenWidth < 768) {
       this.router.navigate(['/app'], { queryParams })

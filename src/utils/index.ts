@@ -1,6 +1,7 @@
 import WEBSITE_LIST from '../../data'
 import qs from 'qs'
 import { BACKGROUND_LINEAR, ERROR_ICON } from '../../config'
+import { INavProps } from '../types'
 
 export function debounce(func, wait, immediate) {
   let timeout
@@ -29,7 +30,7 @@ export function randomInt(max: number) {
   return Math.floor(Math.random() * max)
 }
 
-export function fuzzySearch(navList: any[], keyword: string) {
+export function fuzzySearch(navList: INavProps[], keyword: string) {
   let searchResultList = [{ nav: [] }]
 
   function f(arr?: any[]) {
@@ -115,6 +116,15 @@ export function queryString() {
   let id = parseInt(parseQs.id) || 0
   let page = parseInt(parseQs.page) || 0
 
+  if (parseQs.id === undefined && parseQs.page === undefined) {
+    try {
+      const location = window.localStorage.getItem('location')
+      if (location) {
+        return JSON.parse(location)
+      }
+    } catch {}
+  }
+
   if (page > WEBSITE_LIST.length - 1) {
     page = WEBSITE_LIST.length - 1;
     id = 0;
@@ -159,13 +169,13 @@ export function getWebsiteList() {
   return webSiteList
 }
 
-export function setWebsiteList(v) {
-  if (!v) return
+export function setWebsiteList(v?: INavProps[]) {
+  v = v || WEBSITE_LIST
 
   window.localStorage.setItem('website', JSON.stringify(v))
 }
 
-export function toggleCollapseAll(websiteList?): boolean {
+export function toggleCollapseAll(websiteList?: INavProps[]): boolean {
   websiteList = websiteList || WEBSITE_LIST
 
   const { page, id } = queryString()
@@ -181,4 +191,13 @@ export function toggleCollapseAll(websiteList?): boolean {
   setWebsiteList(websiteList)
 
   return collapsed
+}
+
+export function setLocation() {
+  const { page, id } = queryString()
+
+  window.localStorage.setItem('location', JSON.stringify({
+    page,
+    id
+  }))
 }
