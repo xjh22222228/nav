@@ -10,21 +10,23 @@
       *ngIf="showInput"
       (blur)="showInput = false"
     />
+
     <nav class="top-nav user-select-none">
       <a 
-        *ngFor="let item of nav; let i = index;" 
+        *ngFor="let item of websiteList; let i = index;" 
         (click)="handleCilckNav(i)" 
         [class.active]="page === i" 
         class="ripple-btn">
         {{ item.title }}
       </a>
     </nav>
+
     <section class="index-section user-select-none">
       <aside class="sidebar" id="sidebar">
         <ul>
           <li 
             class="tag" 
-            *ngFor="let item of nav[page].nav; let i = index" 
+            *ngFor="let item of websiteList[page].nav; let i = index" 
             [class.active]="id === i" 
             (click)="handleSidebarNav(i)">
             <a class="ripple-btn" *ngIf="item.title">{{ item.title }}</a>
@@ -36,15 +38,32 @@
           </a>
         </div>
       </aside>
+
       <div class="main" id="main" (scroll)="handleScroll($event)">
         <app-loading *ngIf="searchLoading"></app-loading>
         
-        <ul *ngIf="list.length && list[0].nav">
-          <li *ngFor="let item of list">
+        <ul *ngIf="currentList.length && currentList[0].nav">
+          <li *ngFor="let item of currentList; let i=index">
             <div class="title-wrapper" *ngIf="item.subtitle">
               <h2 class="block-title">
-                {{ item.subtitle }} x {{ item.nav.length }}
+                <span
+                  (click)="onCollapse(item, i)"
+                  class="cursor-pointer"
+                >
+                  {{ item.subtitle }} x {{ item.nav.length }}
+                </span>
+
+                <img
+                  src="assets/img/down-arrow.svg"
+                  class="down-arrow"
+                  [class.active]="item.collapsed" 
+                  draggable="false"
+                  alt=""
+                  (click)="onCollapse(item, i)"
+                />
+
                 <a
+                  *ngIf="GIT_REPO_URL"
                   [href]="GIT_REPO_URL + '/tree/master/data'"
                   class="edit"
                   target="_blank"
@@ -53,14 +72,22 @@
                 >
                 </a>
               </h2>
+
+              <img
+                *ngIf="item.icon && item.showSideIcon !== false"
+                [src]="item.icon"
+                class="side-logo"
+                alt="" 
+              />
             </div>
-            <div class="row">
+
+            <div class="row" [class.hide]="item.collapsed">
               <div class="click-btn" *ngFor="let el of item.nav">
                 <a [href]="el.link" target="_blank" rel="noopener noreferer">
                   <div class="top">
                     <img
-                      *ngIf="el.icon || item.icon; else icon"
-                      [src]="el.icon || item.icon"
+                      *ngIf="el.icon || item.icon || websiteList[page].nav[id].icon; else icon"
+                      [src]="el.icon || item.icon || websiteList[page].nav[id].icon"
                       alt=""
                       class="icon"
                       (error)="onImgError($event)"
@@ -72,6 +99,7 @@
                   </div>
                   <div class="desc" [innerHtml]="el.desc"></div>
                 </a>
+
                 <div class="mark" *ngIf="el.language && el.language.length > 0">
                   <div class="button-box">
                     <a 
@@ -108,7 +136,10 @@
           </li>
         </ul>
   
-        <app-no-data *ngIf="list.length && list[0].nav && !list[0].nav.length"></app-no-data>
+        <app-no-data
+          *ngIf="currentList.length && currentList[0].nav && !currentList[0].nav.length"
+        >
+        </app-no-data>
       </div>
     </section>
   </main>

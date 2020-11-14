@@ -118,6 +118,12 @@
     padding-bottom: 50px;
     overflow-y: auto;
 
+    .side-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+
     .icon {
       display: inline-block;
       width: 35px;
@@ -207,7 +213,9 @@
 
     .title-wrapper {
       border-bottom: 1px solid #ccc;
-      padding: 10px 0 10px 15px;
+      padding: 10px 30px 10px 15px;
+      display: flex;
+      justify-content: space-between;
 
       &:hover {
         .edit {
@@ -216,16 +224,31 @@
       }
     }
 
+    .down-arrow {
+      width: 15px;
+      height: 15px;
+      align-self: center;
+      margin-left: 15px;
+      cursor: pointer;
+      transition: .1s linear;
+
+      &.active {
+        transform: rotate(-90deg);
+      }
+    }
+
     .block-title {
       display: inline-block;
       position: relative;
       color: #3F51B5;
+      align-self: center;
+      display: flex;
 
       .edit {
         display: none;
         position: absolute;
         top: -2px;
-        right: -25px;
+        right: -35px;
         width: 15px;
         height: 15px;
         margin-left: 5px;
@@ -242,8 +265,13 @@
 
   .row {
     display: flex;
-    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
+    transition: .1s ease-out;
+    overflow: hidden;
+
+    &.hide {
+      display: none;
+    }
 
     a {
       color: #333;

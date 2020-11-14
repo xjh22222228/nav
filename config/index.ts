@@ -4,13 +4,13 @@
  * @url https://github.com/xjh22222228/nav
  */
 
-export const appLanguage = [
+export const INDEX_LANGUAGE = [
   '英文',
   '中文',
   'GitHub'
 ]
 
-export const webpLanguage = [
+export const APP_LANGUAGE = [
   'EN',
   'CN',
   'Git'
@@ -18,6 +18,10 @@ export const webpLanguage = [
 
 // Git 仓库地址, 没有填空字符串
 export const GIT_REPO_URL = 'https://github.com/xjh22222228/nav'
+
+// 错误图标, 图标地址访问不了时显示
+// 建议使用网络地址，放在您任何服务器上, 减少入侵
+export const ERROR_ICON = 'assets/img/transparent.gif'
 
 // 网站底部描述, 可以是 HTML
 // 可以是版权信息，备案号
@@ -35,7 +39,6 @@ export const BACKGROUND_LINEAR = [
   'linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)',
   'linear-gradient(147deg, #FFE53B 0%, #FF2525 74%)',
   'linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%)',
-  'linear-gradient(180deg, #FFFFFF 0%, #6284FF 50%, #FF0000 100%)',
   'linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%)',
   'linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%)',
   'linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%)',
@@ -50,8 +53,9 @@ export const BACKGROUND_LINEAR = [
   'linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)',
   'linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)',
   'linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%)',
-  'linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%)',
   'linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%)',
-  'linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)',
-  'linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)'
+  'linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)',
+  'linear-gradient(132deg, #F4D03F 0%, #16A085 100%)',
+  'linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)',
+  'linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%)'
 ]

@@ -1,6 +1,6 @@
-import nav from '../../data'
+import WEBSITE_LIST from '../../data'
 import qs from 'qs'
-import { BACKGROUND_LINEAR } from '../../config'
+import { BACKGROUND_LINEAR, ERROR_ICON } from '../../config'
 
 export function debounce(func, wait, immediate) {
   let timeout
@@ -81,7 +81,7 @@ export function totalWeb(): number {
       }
     }
   }
-  r(nav)
+  r(WEBSITE_LIST)
 
   return total
 }
@@ -105,7 +105,7 @@ export function randomBgImg() {
 }
 
 export function onImgError(e: any) {
-  e.target.src = 'assets/img/transparent.gif'
+  e.target.src = ERROR_ICON
 }
 
 export function queryString() {
@@ -115,15 +115,15 @@ export function queryString() {
   let id = parseInt(parseQs.id) || 0
   let page = parseInt(parseQs.page) || 0
 
-  if (page > nav.length - 1) {
-    page = nav.length - 1;
+  if (page > WEBSITE_LIST.length - 1) {
+    page = WEBSITE_LIST.length - 1;
     id = 0;
   } else {
     page = page;
-    if (id <= nav[page].nav.length - 1) {
+    if (id <= WEBSITE_LIST[page].nav.length - 1) {
       id = id;
     } else {
-      id = nav[page].nav.length - 1;
+      id = WEBSITE_LIST[page].nav.length - 1;
     }
   }
 
@@ -133,4 +133,34 @@ export function queryString() {
     id,
     page
   }
+}
+
+export function getWebsiteList() {
+  let webSiteList = WEBSITE_LIST
+  const scriptElAll = document.querySelectorAll('script')
+  const scriptUrl = scriptElAll[scriptElAll.length - 1].src
+  const storageScriptUrl = window.localStorage.getItem('s_url')
+
+  // 更新数据
+  if (storageScriptUrl !== scriptUrl) {
+    window.localStorage.clear()
+    window.localStorage.setItem('s_url', scriptUrl)
+    return webSiteList
+  }
+
+  try {
+    const w = window.localStorage.getItem('website')
+    const json = JSON.parse(w)
+    if (Array.isArray(json)) {
+      webSiteList = json
+    }
+  } catch {}
+
+  return webSiteList
+}
+
+export function setWebsiteList(v) {
+  if (!v) return
+
+  window.localStorage.setItem('website', JSON.stringify(v))
 }

@@ -2,7 +2,7 @@ export default {
   title: 'GUI软件',
   nav: [
     {
-      subtitle: '',
+      subtitle: 'GUI',
       nav: [
         {
           icon: 'https://typora.io/img/favicon-48.png',

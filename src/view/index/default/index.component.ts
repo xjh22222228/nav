@@ -1,9 +1,16 @@
-import nav from '../../../../data'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { debounce, fuzzySearch, randomBgImg, onImgError, queryString } from '../../../utils'
-import { appLanguage, GIT_REPO_URL } from '../../../../config'
+import { INDEX_LANGUAGE, GIT_REPO_URL } from '../../../../config'
 import { annotate } from 'rough-notation'
+import {
+  debounce,
+  fuzzySearch,
+  randomBgImg,
+  onImgError,
+  queryString,
+  getWebsiteList,
+  setWebsiteList
+} from '../../../utils'
 
 let equeue = []
 
@@ -16,21 +23,21 @@ export default class HomeComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  nav: any[] = nav
+  websiteList: any[] = getWebsiteList()
+  currentList: any[] = []
   id: number = 0
   page: number = 0
-  list: any[] = []
   searchKeyword: string = ''
   showInput = false
   searchLoading = false
-  language: string[] = appLanguage
+  language: string[] = INDEX_LANGUAGE
   GIT_REPO_URL: string = GIT_REPO_URL
 
   ngOnInit () {
     randomBgImg()
 
     const initList = () => {
-      this.list = this.nav[this.page].nav[this.id].nav
+      this.currentList = this.websiteList[this.page].nav[this.id].nav
     }
 
     this.activatedRoute.queryParams.subscribe(() => {
@@ -41,7 +48,7 @@ export default class HomeComponent {
       this.id = id
 
       if (q) {
-        this.list = fuzzySearch(this.nav, q)
+        this.currentList = fuzzySearch(this.websiteList, q)
         this.searchLoading = false
       } else {
         initList()
@@ -134,6 +141,12 @@ export default class HomeComponent {
     })
     equeue.push(annotation)
     annotation.show()
+  }
+
+  onCollapse = (item, index) => {
+    item.collapsed = !item.collapsed
+    this.websiteList[this.page].nav[this.id].nav[index] = item
+    setWebsiteList(this.websiteList)
   }
 
   handleSearch = null

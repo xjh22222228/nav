@@ -42,6 +42,6 @@ export class AppComponent {
     script.src = TONGJI_URL
     script.id = 'tongji_url'
     script.async = true
-    document.documentElement.appendChild(script)
+    document.head.appendChild(script)
   }
 }

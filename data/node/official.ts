@@ -1,11 +1,14 @@
+const DEFAULT_ICON = 'assets/icon/frontend/076.png'
+
 export default {
   title: '生态系统',
+  icon: DEFAULT_ICON,
   nav: [
     {
+      icon: DEFAULT_ICON,
       subtitle: '官方',
       nav: [
         {
-          icon: 'assets/icon/frontend/076.png',
           name: 'Node.js',
           desc: 'Node.js® 是一个基于 Chrome V8 引擎 的 JavaScript 运行时',
           link: 'http://nodejs.cn',
@@ -16,7 +19,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/077.png',
           name: 'npm',
           desc: 'npm是JavaScript世界的包管理工具,并且是 Node.js 平台的默认包管理工具',
           link: 'https://www.npmjs.com/',
@@ -32,19 +34,16 @@ export default {
       subtitle: '模块',
       nav: [
         {
-          icon: 'assets/icon/frontend/110.png',
           name: 'urllib',
           desc: '在复杂的世界中请求HTTP(s)URL',
           link: 'https://github.com/node-modules/urllib',
         },
         {
-          icon: 'assets/icon/frontend/110.png',
           name: 'formstream',
           desc: 'multipart / form-data编码流，用于文件上传的帮助程序。',
           link: 'https://github.com/node-modules/formstream',
         },
         {
-          icon: 'assets/icon/frontend/110.png',
           name: 'validate-npm-package-name',
           desc: '给我一个字符串，我会告诉你它是否是有效的npm软件包名称',
           link: 'https://github.com/npm/validate-npm-package-name',
