@@ -9,7 +9,8 @@ import {
   onImgError,
   queryString,
   getWebsiteList,
-  setWebsiteList
+  setWebsiteList,
+  toggleCollapseAll,
 } from '../../../utils'
 
 let equeue = []
@@ -147,6 +148,10 @@ export default class HomeComponent {
     item.collapsed = !item.collapsed
     this.websiteList[this.page].nav[this.id].nav[index] = item
     setWebsiteList(this.websiteList)
+  }
+
+  onCollapseAll = () => {
+    toggleCollapseAll(this.websiteList)
   }
 
   handleSearch = null

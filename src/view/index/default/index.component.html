@@ -11,6 +11,17 @@
       (blur)="showInput = false"
     />
 
+    <div
+      class="fixed-collapse"
+      (click)="onCollapseAll()"
+      [class.active]="websiteList[page].nav[id].collapsed"
+    >
+      <img
+        src="assets/img/collapse.svg"
+        alt=""
+      >
+    </div>
+
     <nav class="top-nav user-select-none">
       <a 
         *ngFor="let item of websiteList; let i = index;" 
@@ -41,7 +52,7 @@
 
       <div class="main" id="main" (scroll)="handleScroll($event)">
         <app-loading *ngIf="searchLoading"></app-loading>
-        
+ 
         <ul *ngIf="currentList.length && currentList[0].nav">
           <li *ngFor="let item of currentList; let i=index">
             <div class="title-wrapper" *ngIf="item.subtitle">

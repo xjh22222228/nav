@@ -164,3 +164,21 @@ export function setWebsiteList(v) {
 
   window.localStorage.setItem('website', JSON.stringify(v))
 }
+
+export function toggleCollapseAll(websiteList?): boolean {
+  websiteList = websiteList || WEBSITE_LIST
+
+  const { page, id } = queryString()
+  const collapsed = !websiteList[page].nav[id].collapsed
+
+  websiteList[page].nav[id].collapsed = collapsed
+
+  websiteList[page].nav[id].nav.map(item => {
+    item.collapsed = collapsed
+    return item
+  })
+
+  setWebsiteList(websiteList)
+
+  return collapsed
+}

@@ -2,7 +2,7 @@ export default {
 	title: 'TypeScript',
 	nav: [
 		{
-      subtitle: '',
+      subtitle: 'TypeScript',
       nav: [
         {
           icon: 'assets/icon/frontend/007.png',
