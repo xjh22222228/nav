@@ -43,6 +43,7 @@
     cursor: pointer;
     transform: rotate(-180deg);
     transition: .1s linear;
+    overflow: hidden;
 
     &.active {
       transform: rotate(-270deg);

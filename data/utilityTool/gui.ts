@@ -151,5 +151,22 @@ export default {
         },
       ]
     },
+    {
+      subtitle: '远程控制',
+      nav: [
+        {
+          icon: 'https://www.teamviewer.cn/wp-content/themes/tv-wordpress-theme/dist/media/favicon.png',
+          name: 'TeamViewer',
+          desc: 'TeamViewer远程连接控制软件是一款随时随地连接到远程桌面电脑、移动设备及Iot,让远程连接过程更加的快速和安全,轻松实现对文件、网络及程序的实时支持或访问。',
+          link: 'https://www.teamviewer.cn/',
+        },
+        {
+          icon: 'https://sunlogin.oray.com/favicon.ico',
+          name: '向日葵',
+          desc: '向日葵远程控制软件是一款免费的集远程控制电脑手机、远程桌面连接、远程开机、远程管理、支持内网穿透的一体化远程控制管理工具软件',
+          link: 'https://sunlogin.oray.com/',
+        }
+      ]
+    },
   ]
 };

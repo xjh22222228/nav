@@ -57,5 +57,6 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
-  }
+  },
+  "types": "./src/types/index.d.ts"
 }
