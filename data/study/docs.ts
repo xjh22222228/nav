@@ -231,10 +231,15 @@ export default {
           ]
         },
         {
-          icon: '',
           name: 'YAML教程',
           desc: 'YAML教程',
           link: 'https://www.yiibai.com/yaml',
+        },
+        {
+          icon: 'https://www.google.com/images/icons/product/chrome-32.png',
+          name: 'Chrome Extension',
+          desc: '谷歌浏览器扩展插件开发文档',
+          link: 'https://developer.chrome.com/extensions',
         },
       ]
     },
