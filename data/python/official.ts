@@ -5,7 +5,7 @@ export default {
   title: '生态系统',
   nav: [
     {
-      subtitle: '官方',
+      title: '官方',
       icon: DEFAULT_ICON,
       nav: [
         {

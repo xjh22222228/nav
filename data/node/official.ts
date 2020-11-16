@@ -6,7 +6,7 @@ export default {
   nav: [
     {
       icon: DEFAULT_ICON,
-      subtitle: '官方',
+      title: '官方',
       nav: [
         {
           name: 'Node.js',
@@ -31,7 +31,7 @@ export default {
       ]
     },
     {
-      subtitle: '模块',
+      title: '模块',
       nav: [
         {
           name: 'urllib',
@@ -51,7 +51,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他',
+      title: '其他',
       nav: [
         {
           icon: 'assets/icon/frontend/092.png',
@@ -79,7 +79,7 @@ export default {
       ]
     },
     {
-      subtitle: 'CMS',
+      title: 'CMS',
       nav: [
         {
           icon: 'assets/icon/frontend/119.png',
@@ -106,7 +106,7 @@ export default {
       ]
     },
     {
-      subtitle: '资料',
+      title: '资料',
       nav: [
         {
           icon: 'assets/icon/frontend/076.png',

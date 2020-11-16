@@ -5,7 +5,7 @@ export default {
   title: '参考资料',
   nav: [
     {
-      subtitle: '书籍',
+      title: '书籍',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -16,7 +16,7 @@ export default {
       ]
     },
     {
-      subtitle: '文档资料',
+      title: '文档资料',
       icon: DEFAULT_ICON,
       nav: [
         {

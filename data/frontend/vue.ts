@@ -2,7 +2,7 @@ export default {
   title: 'vue.js',
   nav: [
     {
-      subtitle: '生态系统',
+      title: '生态系统',
       nav: [
         {
           icon: 'https://v3.vuejs.org/images/icons/apple-icon-152x152.png',
@@ -113,7 +113,7 @@ export default {
       ]
     },
     {
-      subtitle: 'PC端UI组件库',
+      title: 'PC端UI组件库',
       nav: [
         {
           icon: 'assets/icon/frontend/024.png',
@@ -206,7 +206,7 @@ export default {
       ]
     },
     {
-      subtitle: '移动端UI组件库',
+      title: '移动端UI组件库',
       nav: [
         {
           icon: 'assets/icon/frontend/093.png',
@@ -277,7 +277,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他组件/插件',
+      title: '其他组件/插件',
       nav: [
         {
           icon: 'assets/icon/frontend/039.png',
@@ -321,7 +321,7 @@ export default {
       ]
     },
     {
-      subtitle: '开箱即用',
+      title: '开箱即用',
       nav: [
         {
           icon: 'assets/icon/frontend/024.png',
@@ -337,7 +337,7 @@ export default {
       ]
     },
     {
-      subtitle: 'nuxt服务端渲染框架',
+      title: 'nuxt服务端渲染框架',
       nav: [
         {
           icon: 'assets/icon/frontend/105.png',

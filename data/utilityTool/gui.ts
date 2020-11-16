@@ -2,7 +2,7 @@ export default {
   title: 'GUI软件',
   nav: [
     {
-      subtitle: 'GUI',
+      title: 'GUI',
       nav: [
         {
           icon: 'https://typora.io/img/favicon-48.png',
@@ -78,7 +78,7 @@ export default {
       ]
     },
     {
-      subtitle: '虚拟机',
+      title: '虚拟机',
       nav: [
         {
           icon: 'https://www.vmware.com/favicon.ico',
@@ -101,7 +101,7 @@ export default {
       ]
     },
     {
-      subtitle: '数据库',
+      title: '数据库',
       nav: [
         {
           icon: 'https://avatars3.githubusercontent.com/u/34743864?s=200&v=4',
@@ -152,7 +152,7 @@ export default {
       ]
     },
     {
-      subtitle: '远程控制',
+      title: '远程控制',
       nav: [
         {
           icon: 'https://www.teamviewer.cn/wp-content/themes/tv-wordpress-theme/dist/media/favicon.png',

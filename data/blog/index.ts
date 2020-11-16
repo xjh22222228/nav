@@ -6,7 +6,7 @@ const nav = {
       title: '',
       nav: [
         {
-          subtitle: 'Team',
+          title: 'Team',
           nav: [
             {
               icon: 'https://aotu.io/img/favicon-48x48.png',
@@ -47,7 +47,7 @@ const nav = {
           ]
         },
         {
-          subtitle: '个人博客',
+          title: '个人博客',
           nav: [
             {
               icon: 'https://www.xiejiahe.com/favicon-128x128.png',

@@ -2,7 +2,7 @@ export default {
   title: '生态系统',
   nav: [
     {
-      subtitle: '官方',
+      title: '官方',
       nav: [
         {
           icon: 'https://pub.dev/favicon.ico',
@@ -47,7 +47,7 @@ export default {
       ]
     },
     {
-      subtitle: '常用模块',
+      title: '常用模块',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/2605412?s=200&v=4',
@@ -118,7 +118,7 @@ export default {
       ]
     },
     {
-      subtitle: '文档资料',
+      title: '文档资料',
       nav: [
         {
           icon: 'https://flutter.dev/images/favicon.png',
@@ -181,7 +181,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他',
+      title: '其他',
       nav: [
         {
           icon: 'https://flutter.dev/images/favicon.png',

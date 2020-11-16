@@ -2,7 +2,7 @@ export default {
   title: '生态系统',
   nav: [
     {
-      subtitle: '生态',
+      title: '生态',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
@@ -58,7 +58,7 @@ export default {
       ]
     },
     {
-      subtitle: 'WEB框架',
+      title: 'WEB框架',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
@@ -129,7 +129,7 @@ export default {
       ]
     },
     {
-      subtitle: 'CLI',
+      title: 'CLI',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',

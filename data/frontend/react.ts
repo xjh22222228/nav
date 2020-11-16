@@ -2,7 +2,7 @@ export default {
   title: 'react',
   nav: [
     {
-      subtitle: '生态系统',
+      title: '生态系统',
       nav: [
         {
           icon: 'https://reactjs.org/favicon.ico',
@@ -51,7 +51,7 @@ export default {
       ]
     },
     {
-      subtitle: 'Redux相关',
+      title: 'Redux相关',
       nav: [
         {
           icon: 'assets/icon/frontend/3.png',
@@ -95,7 +95,7 @@ export default {
       ]
     },
     {
-      subtitle: 'React Native相关',
+      title: 'React Native相关',
       nav: [
         {
           icon: 'assets/icon/frontend/019.png',
@@ -144,7 +144,7 @@ export default {
       ]
     },
     {
-      subtitle: 'PC端UI组件库',
+      title: 'PC端UI组件库',
       nav: [
         {
           icon: 'assets/icon/frontend/5.png',
@@ -259,7 +259,7 @@ export default {
       ]
     },
     {
-      subtitle: '移动端UI组件库',
+      title: '移动端UI组件库',
       nav: [
         {
           icon: 'assets/icon/frontend/5.png',
@@ -275,7 +275,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他组件库',
+      title: '其他组件库',
       nav: [
         {
           icon: 'https://reactjs.org/favicon.ico',
@@ -487,7 +487,7 @@ export default {
       ]
     },
     {
-      subtitle: '开箱即用',
+      title: '开箱即用',
       nav: [
         {
           icon: 'assets/icon/frontend/033.png',
@@ -503,7 +503,7 @@ export default {
       ]
     },
     {
-      subtitle: '单元测试',
+      title: '单元测试',
       nav: [
         {
           icon: 'https://reactjs.org/favicon.ico',
@@ -530,7 +530,7 @@ export default {
       ]
     },
     {
-      subtitle: 'umi/dva',
+      title: 'umi/dva',
       nav: [
         {
           icon: 'https://avatars2.githubusercontent.com/u/33895495?s=200&v=4',
@@ -574,7 +574,7 @@ export default {
       ]
     },
     {
-      subtitle: '知识',
+      title: '知识',
       nav: [
         {
           icon: 'https://reactjs.org/favicon.ico',
@@ -602,7 +602,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他',
+      title: '其他',
       nav: [
         {
           icon: 'assets/icon/frontend/034.png',

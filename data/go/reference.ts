@@ -2,7 +2,7 @@ export default {
   title: '参考资料',
   nav: [
     {
-      subtitle: '书籍',
+      title: '书籍',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
@@ -67,7 +67,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他',
+      title: '其他',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',

@@ -6,10 +6,9 @@ const nav = {
       title: '',
       nav: [
         {
-          subtitle: '网络安全',
+          title: '网络安全',
           nav: [
             {
-              icon: '',
               name: '乌云网镜像',
               desc: 'WooYun是一个位于厂商和安全研究者之间的漏洞报告平台,注重尊重,进步,与意义',
               link: 'http://wooyun.2xss.cc/',
@@ -39,7 +38,6 @@ const nav = {
               link: 'https://www.knownsec.com/',
             },
             {
-              icon: '',
               name: '安全周',
               desc: '关注安全资讯 专注资源共享',
               link: 'https://www.secz.org/',
@@ -59,7 +57,7 @@ const nav = {
           ]
         },
         {
-          subtitle: 'CTF',
+          title: 'CTF',
           nav: [
             {
               icon: 'http://xss.xiejiahe.com/favicon.png',
@@ -68,13 +66,11 @@ const nav = {
               link: 'http://xss.xiejiahe.com',
             },
             {
-              icon: '',
               name: 'XSS测试',
               desc: 'XSS小游戏',
               link: 'https://xss.haozi.me/',
             },
             {
-              icon: '',
               name: 'Pasteurize',
               desc: 'XSS CTF',
               link: 'https://pasteurize.web.ctfcompetition.com/',
@@ -82,7 +78,7 @@ const nav = {
           ]
         },
         {
-          subtitle: '辅助工具',
+          title: '辅助工具',
           nav: [
             {
               icon: 'https://www.telerik.com/favicon.ico',
@@ -97,19 +93,16 @@ const nav = {
               link: 'https://www.wireshark.org/',
             },
             {
-              icon: '',
               name: 'XSS平台-白帽安全测试',
               desc: 'XSS平台是一个免费给白帽安全测试的平台',
               link: 'https://xsspt.com/',
             },
             {
-              icon: '',
               name: 'Security Headers',
               desc: '快速轻松地评估HTTP响应头的安全性',
               link: 'https://securityheaders.com',
             },
             {
-              icon: '',
               name: 'w9scan',
               desc: '一款全能型的网站漏洞扫描器，内置1200+插件可对网站进行一次规模的检测，功能包括但不限于web指纹检测、端口指纹检测、网站结构分析、各种流行的漏洞检测、爬虫以及SQL注入检测、XSS检测...',
               link: 'https://github.com/w-digital-scanner/w9scan',
@@ -151,7 +144,6 @@ const nav = {
               link: 'https://phpinfo.me/domain/',
             },
             {
-              icon: '',
               name: 'fuzzDicts',
               desc: 'Web Pentesting Fuzz 字典',
               link: 'https://github.com/TheKingOfDuck/fuzzDicts',
@@ -159,7 +151,7 @@ const nav = {
           ]
         },
         {
-          subtitle: '知识/测试',
+          title: '知识/测试',
           nav: [
             {
               icon: 'https://vulhub.org/img/favicon.ico',
@@ -173,13 +165,11 @@ const nav = {
               ]
             },
             {
-              icon: '',
               name: 'SRC-experience',
               desc: '工欲善其事，必先利其器,一些src挖掘奇技淫巧，国外新技术的学习网站分享',
               link: 'https://github.com/Wh0ale/SRC-experience',
             },
             {
-              icon: '',
               name: 'Intranet_Penetration_Tips',
               desc: '内网渗透TIPS',
               link: 'https://github.com/Ridter/Intranet_Penetration_Tips',

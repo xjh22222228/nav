@@ -116,7 +116,7 @@ server {
   icon: 'https://example/favicon.ico',
   nav: [
     {
-      subtitle: '网站',
+      title: '网站',
       collapsed: false, // 默认展开，设置 false 折叠
       showSideIcon: false, // 右侧边图标，如果设置Icon则默认显示
       nav: [
@@ -147,7 +147,7 @@ server {
   nav: [
     {
       showSideIcon: false, // 如果这层设置 icon 图标会默认在右侧边栏显示ICON, 设置 false 关闭显示
-      subtitle: 'Example',
+      title: 'Example',
       // icon: 'https://favicon.ico',
       nav: [
         {

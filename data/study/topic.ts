@@ -2,7 +2,7 @@ export default {
   title: '面试刷题',
   nav: [
     {
-      subtitle: '面试刷题',
+      title: '面试刷题',
       nav: [
         {
           icon: 'https://static.leetcode-cn.com/cn-assets/icons/favicon-96x96.png',

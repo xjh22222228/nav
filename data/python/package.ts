@@ -6,7 +6,7 @@ export default {
   icon: DEFAULT_ICON,
   nav: [
     {
-      subtitle: 'HTTP/爬虫',
+      title: 'HTTP/爬虫',
       nav: [
         {
           icon: 'https://www.python.org/static/favicon.ico',
@@ -60,7 +60,7 @@ export default {
       ]
     },
     {
-      subtitle: '图像',
+      title: '图像',
       nav: [
         {
           name: 'Pillow',
@@ -75,7 +75,7 @@ export default {
       ]
     },
     {
-      subtitle: 'CLI',
+      title: 'CLI',
       nav: [
         {
           name: 'Fire',

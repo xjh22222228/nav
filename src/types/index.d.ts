@@ -7,7 +7,7 @@ export interface INavFourProp {
 }
 
 export interface INavThreeProp {
-  subtitle?: string
+  title?: string
   icon?: string | null
   showSideIcon?: boolean
   collapsed?: boolean

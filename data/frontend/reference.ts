@@ -2,7 +2,7 @@ export default {
 	title: '参考资料',
 	nav: [
 		{
-      subtitle: '书籍',
+      title: '书籍',
       nav: [
         {
           icon: 'assets/icon/frontend/023.png',
@@ -47,7 +47,7 @@ export default {
       ]
     },
     {
-      subtitle: '文档',
+      title: '文档',
       nav: [
         {
           icon: 'assets/icon/frontend/023.png',

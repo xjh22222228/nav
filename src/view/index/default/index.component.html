@@ -55,13 +55,13 @@
  
         <ul *ngIf="currentList.length && currentList[0].nav">
           <li *ngFor="let item of currentList; let i=index">
-            <div class="title-wrapper" *ngIf="item.subtitle">
+            <div class="title-wrapper" *ngIf="item.title">
               <h2 class="block-title">
                 <span
                   (click)="onCollapse(item, i)"
                   class="cursor-pointer"
                 >
-                  {{ item.subtitle }} x {{ item.nav.length }}
+                  {{ item.title }} x {{ item.nav.length }}
                 </span>
 
                 <img

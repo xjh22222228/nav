@@ -5,7 +5,7 @@ export default {
   title: '参考文档',
   nav: [
     {
-      subtitle: 'Docker',
+      title: 'Docker',
       nav: [
         {
           icon: 'https://github.com/favicon.ico',
@@ -39,7 +39,7 @@ export default {
       ]
     },
     {
-      subtitle: 'Git',
+      title: 'Git',
       nav: [
         {
           icon: 'https://github.com/favicon.ico',
@@ -74,7 +74,7 @@ export default {
       ]
     },
     {
-      subtitle: '服务器',
+      title: '服务器',
       nav: [
         {
           icon: 'https://avatars0.githubusercontent.com/u/1412239?s=200&v=4',
@@ -101,7 +101,7 @@ export default {
       ]
     },
     {
-      subtitle: '数据库',
+      title: '数据库',
       nav: [
         {
           icon: 'https://avatars3.githubusercontent.com/u/1529926?s=200&v=4',
@@ -123,7 +123,7 @@ export default {
       ]
     },
     {
-      subtitle: '书籍',
+      title: '书籍',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/14127308?s=200&v=4',
@@ -138,7 +138,6 @@ export default {
           link: 'https://zh.b-ok.global/',
         },
         {
-          icon: '',
           name: 'IT-eBOOK',
           desc: 'IT类技术书籍PDF',
           link: 'https://github.com/asyncfun/IT-eBOOK',
@@ -152,7 +151,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他文档',
+      title: '其他文档',
       nav: [
         {
           icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/linux/linux.png',

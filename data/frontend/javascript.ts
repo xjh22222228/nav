@@ -2,7 +2,7 @@ export default {
 	title: 'JavaScript',
 	nav: [
     {
-      subtitle: 'JavaScript',
+      title: 'JavaScript',
       nav: [
         {
           icon: 'assets/icon/frontend/004.svg',
@@ -106,7 +106,7 @@ export default {
       ]
     },
     {
-      subtitle: '常用插件',
+      title: '常用插件',
       nav: [
         {
           icon: 'assets/icon/frontend/023.png',
@@ -558,7 +558,7 @@ export default {
       ]
     },
     {
-      subtitle: '国际化多语言方案',
+      title: '国际化多语言方案',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/8546082?s=200&v=4',
@@ -585,7 +585,7 @@ export default {
       ]
     },
     {
-      subtitle: '动画',
+      title: '动画',
       nav: [
         {
           icon: 'assets/icon/frontend/073.png',
@@ -640,7 +640,7 @@ export default {
       ]
     },
     {
-      subtitle: '加盐',
+      title: '加盐',
       nav: [
         {
           icon: 'assets/icon/frontend/023.png',
@@ -695,7 +695,7 @@ export default {
       ]
     },
     {
-      subtitle: '文件插件相关',
+      title: '文件插件相关',
       nav: [
         {
           icon: 'assets/icon/frontend/023.png',
@@ -772,7 +772,7 @@ export default {
       ]
     },
     {
-      subtitle: '图片预览',
+      title: '图片预览',
       nav: [
         {
           icon: 'assets/icon/frontend/023.png',
@@ -799,7 +799,7 @@ export default {
       ]
     },
     {
-      subtitle: '音频/视频',
+      title: '音频/视频',
       nav: [
         {
           icon: 'assets/icon/frontend/096.png',
@@ -837,7 +837,7 @@ export default {
       ]
     },
     {
-      subtitle: '图形',
+      title: '图形',
       nav: [
         {
           icon: 'assets/icon/frontend/043.png',
@@ -870,7 +870,7 @@ export default {
       ]
     },
     {
-      subtitle: 'UI组件库',
+      title: 'UI组件库',
       nav: [
         {
           icon: 'assets/icon/frontend/111.png',
@@ -886,7 +886,7 @@ export default {
       ]
     },
     {
-      subtitle: '原生APP交互webview桥接',
+      title: '原生APP交互webview桥接',
       nav: [
         {
           icon: 'assets/icon/frontend/023.png',
@@ -903,7 +903,7 @@ export default {
       ]
     },
     {
-      subtitle: '参数验证',
+      title: '参数验证',
       nav: [
         {
           icon: 'assets/icon/frontend/142.png',
@@ -937,7 +937,7 @@ export default {
       ]
     },
     {
-      subtitle: '步骤引导',
+      title: '步骤引导',
       nav: [
         {
           icon: 'https://avatars2.githubusercontent.com/u/2010360?s=200&v=4',

@@ -3,10 +3,9 @@ const nav = {
   title: '开发相关',
   nav: [
     {
-      subtitle: '开发神器',
+      title: '开发神器',
       nav: [
         {
-          icon: '',
           name: 'Supervisor',
           desc: 'Supervisor是一个客户端/服务器系统，允许其用户监视和控制类似UNIX的操作系统上的多个进程。',
           link: 'http://supervisord.org/',
@@ -65,13 +64,11 @@ const nav = {
           link: 'http://hits.dwyl.io/',
         },
         {
-          icon: null,
           name: 'GitHub 文件加速',
           desc: 'GitHub 文件加速',
           link: 'https://shrill-pond-3e81.hunsh.workers.dev/',
         },
         {
-          icon: null,
           name: 'Shields IO',
           desc: 'svg生成版本号图标',
           link: 'https://shields.io/',
@@ -119,7 +116,6 @@ const nav = {
           link: 'http://sc.ftqq.com',
         },
         {
-          icon: null,
           name: 'mkcert',
           desc: '一个简单的零配置工具，可以使用您喜欢的任何名称制作本地可信赖的SSL开发证书',
           link: 'https://github.com/FiloSottile/mkcert',
@@ -136,7 +132,6 @@ const nav = {
           ]
         },
         {
-          icon: null,
           name: 'setup-ipsec-vpn',
           desc: '用于构建您自己的IPsec VPN服务器的脚本，在Ubuntu，Debian和CentOS上使用IPsec / L2TP和Cisco IPsec',
           link: 'https://github.com/hwdsl2/setup-ipsec-vpn',
@@ -153,13 +148,11 @@ const nav = {
           ]
         },
         {
-          icon: null,
           name: 'GraphQL Explorer',
           desc: 'GraphQL资源管理器利用真实的、实时的生产数据',
           link: 'https://developer.github.com/v4/explorer/',
         },
         {
-          icon: null,
           name: 'patorjk',
           desc: '将文本转换成ASCII',
           link: 'http://patorjk.com/software/taag/#p=display&f=Graffiti&t=xiejiahe',
@@ -176,7 +169,6 @@ const nav = {
           ]
         },
         {
-          icon: null,
           name: 'public-apis',
           desc: '一些可用在 Web 或软件开发的开放 API 接口',
           link: 'https://github.com/public-apis/public-apis',
@@ -222,7 +214,6 @@ const nav = {
           link: 'https://www.tampermonkey.net/',
         },
         {
-          icon: '',
           name: 'Greasy Fork',
           desc: '提供用户脚本的网站',
           link: 'https://greasyfork.org/zh-CN',
@@ -230,7 +221,7 @@ const nav = {
       ]
     },
     {
-      subtitle: '接口/开发文档管理',
+      title: '接口/开发文档管理',
       nav: [
         {
           icon: 'https://www.eolinker.com/assets/images/favicon.ico',
@@ -319,16 +310,14 @@ const nav = {
       ]
     },
     {
-      subtitle: '内网穿透/代理',
+      title: '内网穿透/代理',
       nav: [
         {
-          icon: null,
           name: 'Sunny-Ngrok',
           desc: '一条命令解决的外网访问内网问题，无需任何配置，下载客户端之后直接一条命令让外网访问您的内网不再是距离',
           link: 'https://www.ngrok.cc/',
         },
         {
-          icon: null,
           name: 'frp',
           desc: '一个快速反向代理，可帮助您将NAT或防火墙后面的本地服务器暴露给Internet。',
           link: 'https://github.com/fatedier/frp',
@@ -358,7 +347,7 @@ const nav = {
       ]
     },
     {
-      subtitle: '编码/解码',
+      title: '编码/解码',
       nav: [
         {
           icon: 'http://www.chamd5.org/favicon.ico',
@@ -381,7 +370,7 @@ const nav = {
       ]
     },
     {
-      subtitle: '免费公开API',
+      title: '免费公开API',
       nav: [
         {
           icon: 'https://www.ipify.org/static/images/favicon-96x96.png',
@@ -390,7 +379,6 @@ const nav = {
           link: 'https://www.ipify.org/',
         },
         {
-          icon: '',
           name: '归属地查询',
           desc: '淘宝免费归属地查询',
           link: 'https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=13333333333',

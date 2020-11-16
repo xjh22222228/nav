@@ -3,7 +3,7 @@ export default {
   title: '设计相关',
   nav: [
     {
-      subtitle: '设计相关',
+      title: '设计相关',
       nav: [
         {
           icon: 'https://www.draw.io/images/apple-touch-icon.png',
@@ -66,7 +66,6 @@ export default {
           link: 'https://infogram.com/',
         },
         {
-          icon: '',
           name: 'CLIPPING MAGIC',
           desc: '删除图像背景在线。使背景透明，白色等编辑，裁剪，旋转，固定颜色，添加阴影，一款在线抠图工具',
           link: 'https://clippingmagic.com/',

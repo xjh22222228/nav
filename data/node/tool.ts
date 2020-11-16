@@ -2,7 +2,7 @@ export default {
   title: '辅助工具',
   nav: [
     {
-      subtitle: '调试debugger',
+      title: '调试debugger',
       nav: [
         {
           icon: 'assets/icon/frontend/076.png',
@@ -25,7 +25,7 @@ export default {
       ]
     },
     {
-      subtitle: 'node版本管理',
+      title: 'node版本管理',
       nav: [
         {
           icon: 'assets/icon/frontend/076.png',
@@ -54,7 +54,7 @@ export default {
       ]
     },
     {
-      subtitle: '日志管理',
+      title: '日志管理',
       nav: [
         {
           icon: 'assets/icon/frontend/076.png',
@@ -76,7 +76,7 @@ export default {
       ]
     },
     {
-      subtitle: '集成工具',
+      title: '集成工具',
       nav: [
         {
           icon: 'assets/icon/frontend/137.png',
@@ -109,7 +109,7 @@ export default {
       ]
     },
     {
-      subtitle: '代码压缩',
+      title: '代码压缩',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/43502240?s=200&v=4',
@@ -125,7 +125,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他',
+      title: '其他',
       nav: [
         {
           icon: 'assets/icon/frontend/056.svg',

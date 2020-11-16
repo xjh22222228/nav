@@ -6,7 +6,7 @@ const nav = {
       title: '',
       nav: [
         {
-          subtitle: '',
+          title: '',
           nav: [
             {
               icon: 'https://tongji.baidu.com/favicon.ico',

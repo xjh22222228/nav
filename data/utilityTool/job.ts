@@ -2,7 +2,7 @@ export default {
   title: '招聘/求职',
   nav: [
     {
-      subtitle: '招聘/求职',
+      title: '招聘/求职',
       nav: [
         {
           icon: 'https://www.zhaopin.com/favicon.ico',
@@ -25,10 +25,9 @@ export default {
       ]
     },
     {
-      subtitle: '其他',
+      title: '其他',
       nav: [
         {
-          icon: '',
           name: 'ResumeSample',
           desc: '程序员简历模板系列, WEB/IOS/Android/C++/node等以及通用程序员简历模板',
           link: 'https://github.com/geekcompany/ResumeSample',

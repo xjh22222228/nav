@@ -2,7 +2,7 @@ export default {
   title: 'angular',
   nav: [
     {
-      subtitle: '生态系统',
+      title: '生态系统',
       nav: [
         {
           icon: 'assets/icon/frontend/003.svg',
@@ -40,7 +40,7 @@ export default {
       ]
     },
     {
-      subtitle: 'PC端UI组件库',
+      title: 'PC端UI组件库',
       nav: [
         {
           icon: 'assets/icon/frontend/031.svg',
@@ -100,7 +100,7 @@ export default {
       ]
     },
     {
-      subtitle: '移动端UI组件库',
+      title: '移动端UI组件库',
       nav: [
         {
           icon: 'assets/icon/frontend/003.svg',

@@ -2,7 +2,7 @@ export default {
   title: 'WEB框架',
   nav: [
     {
-      subtitle: 'nest',
+      title: 'nest',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/28507035?s=200&v=4',
@@ -24,7 +24,7 @@ export default {
       ]
     },
     {
-      subtitle: 'egg.js',
+      title: 'egg.js',
       nav: [
         {
           icon: 'https://eggjs.org/images/favicon.png',
@@ -52,7 +52,7 @@ export default {
       ]
     },
     {
-      subtitle: 'Express/Koa',
+      title: 'Express/Koa',
       nav: [
         {
           icon: 'https://avatars2.githubusercontent.com/u/5055057?s=200&v=4',

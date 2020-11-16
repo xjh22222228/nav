@@ -5,7 +5,7 @@ export default {
   title: '常用模块',
   nav: [
     {
-      subtitle: '网络请求',
+      title: '网络请求',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -46,7 +46,7 @@ export default {
       ]
     },
     {
-      subtitle: '单元测试',
+      title: '单元测试',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -151,7 +151,7 @@ export default {
       ]
     },
     {
-      subtitle: '数据库',
+      title: '数据库',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -230,7 +230,7 @@ export default {
       ]
     },
     {
-      subtitle: '图形相关',
+      title: '图形相关',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -261,7 +261,7 @@ export default {
       ]
     },
     {
-      subtitle: '代理',
+      title: '代理',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -277,7 +277,7 @@ export default {
       ]
     },
     {
-      subtitle: 'AST辅助工具',
+      title: 'AST辅助工具',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -298,7 +298,7 @@ export default {
       ]
     },
     {
-      subtitle: '文件相关',
+      title: '文件相关',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -341,7 +341,7 @@ export default {
       ]
     },
     {
-      subtitle: '微信开发',
+      title: '微信开发',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -372,7 +372,7 @@ export default {
       ]
     },
     {
-      subtitle: 'CLI',
+      title: 'CLI',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -478,7 +478,7 @@ export default {
       ]
     },
     {
-      subtitle: '模板引擎',
+      title: '模板引擎',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -512,7 +512,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他',
+      title: '其他',
       icon: DEFAULT_ICON,
       nav: [
         {

@@ -2,7 +2,7 @@ export default {
   title: '其他',
   nav: [
     {
-      subtitle: '压缩工具',
+      title: '压缩工具',
       nav: [
         {
           icon: 'https://tinypng.com/images/apple-touch-icon.png',
@@ -19,7 +19,7 @@ export default {
       ]
     },
     {
-      subtitle: '辅助工具',
+      title: '辅助工具',
       nav: [
         {
           icon: 'https://static.clewm.net/static/images/favicon.ico',
@@ -28,7 +28,6 @@ export default {
           link: 'https://cli.im/url/',
         },
         {
-          icon: '',
           name: 'Feed 验证器',
           desc: '验证RSS是否符合标准规范',
           link: 'http://www.feedvalidator.org/',
@@ -147,7 +146,6 @@ export default {
           link: 'https://bigjpg.com',
         },
         {
-          icon: '',
           name: 'VVV文档在线导出工具',
           desc: '免费下载百度文库文档',
           link: 'http://wenku.baiduvvv.com/doc',

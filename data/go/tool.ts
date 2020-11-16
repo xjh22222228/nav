@@ -2,7 +2,7 @@ export default {
   title: '工具',
   nav: [
     {
-      subtitle: '工具',
+      title: '工具',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',

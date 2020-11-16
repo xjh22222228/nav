@@ -2,11 +2,10 @@ export default {
   title: '跨平台框架',
   nav: [
     {
-      subtitle: 'Electron',
+      title: 'Electron',
       icon: 'https://www.electronjs.org/images/favicon.ico',
       nav: [
         {
-          icon: null,
           name: 'Electron',
           desc: '使用 JavaScript, HTML 和 CSS 构建跨平台的桌面应用',
           link: 'https://electronjs.org/',
@@ -17,13 +16,11 @@ export default {
           ]
         },
         {
-          icon: null,
           name: 'electron-packager',
           desc: '通过JS或CLI自定义和封装您的Electron应用程序与特定于操作系统的软件包（.app，.exe等）',
           link: 'https://github.com/electron-userland/electron-packager',
         },
         {
-          icon: null,
           name: 'electron-installer-dmg',
           desc: '使用AppDMG为电子应用程序创建DMG安装程序',
           link: 'https://github.com/electron-userland/electron-installer-dmg',
@@ -62,7 +59,6 @@ export default {
           ]
         },
         {
-          icon: null,
           name: 'menubar',
           desc: 'Electron创建菜单栏桌面应用程序的高级方法。',
           link: 'https://github.com/maxogden/menubar',
@@ -70,7 +66,7 @@ export default {
       ]
     },
     {
-      subtitle: 'nw.js',
+      title: 'nw.js',
       nav: [
         {
           icon: 'https://nwjs.org.cn/asset/img/favicon.ico',

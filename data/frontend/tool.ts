@@ -2,7 +2,7 @@ export default {
   title: '工具',
   nav: [
     {
-      subtitle: 'CSS',
+      title: 'CSS',
       nav: [
         {
           icon: 'assets/icon/frontend/0.svg',
@@ -90,7 +90,7 @@ export default {
       ]
     },
     {
-      subtitle: 'JavaScript',
+      title: 'JavaScript',
       nav: [
         {
           icon: 'assets/icon/utility-tool/004.png',
@@ -140,7 +140,7 @@ export default {
       ]
     },
     {
-      subtitle: 'CDN',
+      title: 'CDN',
       nav: [
         {
           icon: 'assets/icon/frontend/068.png',
@@ -174,7 +174,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他',
+      title: '其他',
       nav: [
         {
           icon: 'assets/icon/utility-tool/011.png',

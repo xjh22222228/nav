@@ -5,7 +5,7 @@ export default {
   title: 'Deno',
   nav: [
     {
-      subtitle: '官方',
+      title: '官方',
       icon: DEFAULT_ICON,
       nav: [
         {
@@ -26,7 +26,7 @@ export default {
       ]
     },
     {
-      subtitle: '工具',
+      title: '工具',
       icon: DEFAULT_ICON,
       nav: [
         {

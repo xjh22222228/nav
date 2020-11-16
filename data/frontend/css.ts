@@ -2,7 +2,7 @@ export default {
 	title: 'CSS',
 	nav: [
 		{
-      subtitle: 'CSS',
+      title: 'CSS',
       nav: [
         {
           icon: 'assets/icon/frontend/008.svg',
@@ -118,7 +118,7 @@ export default {
       ]
     },
     {
-      subtitle: '图标库',
+      title: '图标库',
       nav: [
         {
           icon: 'assets/icon/designer/004.svg',
@@ -168,7 +168,7 @@ export default {
       ]
     },
     {
-      subtitle: '资源',
+      title: '资源',
       nav: [
         {
           icon: 'https://cssbattle.dev/images/logo-square.png',

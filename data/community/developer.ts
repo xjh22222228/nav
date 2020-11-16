@@ -3,7 +3,7 @@ export default {
   title: '',
   nav: [
     {
-      subtitle: '问答社区',
+      title: '问答社区',
       nav: [
         {
           icon: 'https://cdn.segmentfault.com/v-5f64887f/global/img/touch-icon.png',
@@ -18,7 +18,6 @@ export default {
           link: 'https://juejin.im/',
         },
         {
-          icon: '',
           name: 'DiyCode',
           desc: '致力于构建开发工程师高端交流分享社区',
           link: 'https://www.diycode.cc/',
@@ -30,7 +29,6 @@ export default {
           link: 'https://hacpai.com/',
         },
         {
-          icon: '',
           name: 'Node.js专业中文社区',
           desc: '国内最专业的 Node.js 开源技术社区，致力于 Node.js 的技术研究',
           link: 'https://cnodejs.org/',
@@ -90,7 +88,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他',
+      title: '其他',
       nav: [
         {
           icon: 'https://www.v2ex.com/static/img/v2ex_192.png',
@@ -143,7 +141,7 @@ export default {
       ]
     },
     {
-      subtitle: '代码托管',
+      title: '代码托管',
       nav: [
         {
           icon: 'https://github.githubassets.com/favicons/favicon.svg',

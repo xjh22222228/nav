@@ -2,7 +2,7 @@ export default {
   title: '微信开发',
   nav: [
     {
-      subtitle: '小程序文档',
+      title: '小程序文档',
       nav: [
         {
           icon: 'assets/icon/frontend/044.svg',
@@ -29,7 +29,7 @@ export default {
       ]
     },
     {
-      subtitle: '小程序框架',
+      title: '小程序框架',
       nav: [
         {
           icon: 'assets/icon/frontend/045.png',
@@ -84,7 +84,7 @@ export default {
       ]
     },
     {
-      subtitle: '小程序组件库/插件',
+      title: '小程序组件库/插件',
       nav: [
         {
           icon: 'assets/icon/frontend/093.png',
@@ -147,7 +147,7 @@ export default {
       ]
     },
     {
-      subtitle: '微信公众号开发辅助工具',
+      title: '微信公众号开发辅助工具',
       nav: [
         {
           icon: 'assets/icon/frontend/078.svg',
@@ -170,7 +170,7 @@ export default {
       ]
     },
     {
-      subtitle: '资源',
+      title: '资源',
       nav: [
         {
           icon: 'assets/icon/frontend/078.svg',
@@ -187,7 +187,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他',
+      title: '其他',
       nav: [
         {
           icon: 'assets/icon/frontend/078.svg',

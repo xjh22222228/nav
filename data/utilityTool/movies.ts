@@ -2,7 +2,7 @@ export default {
   title: '影视/音乐',
   nav: [
     {
-      subtitle: '影视',
+      title: '影视',
       nav: [
         {
           icon: 'https://www.bilibili.com/favicon.ico',
@@ -47,7 +47,6 @@ export default {
           link: 'https://beecut.cn/online-video-editor',
         },
         {
-          icon: '',
           name: 'kk高清影院',
           desc: 'kk高清影院,1080p电影下载,高清电影迅雷下载,免费高清电影网',
           link: 'http://www.kk3.tv/',
@@ -55,10 +54,9 @@ export default {
       ]
     },
     {
-      subtitle: '音乐',
+      title: '音乐',
       nav: [
         {
-          icon: '',
           name: '自由的音乐',
           desc: '自由的音乐是一个免费试听并下载全网音乐的网站',
           link: 'https://www.tikitiki.cn/',

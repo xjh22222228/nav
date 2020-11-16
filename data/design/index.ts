@@ -6,7 +6,7 @@ const nav = {
       title: '',
       nav: [
         {
-          subtitle: '素材',
+          title: '素材',
           nav: [
             {
               icon: 'http://www.51yuansu.com/favicon.ico',
@@ -51,7 +51,6 @@ const nav = {
               link: 'https://www.artstation.com/',
             },
             {
-              icon: '',
               name: 'SVG Logos',
               desc: '超过1000+SVG Logos集合',
               link: 'https://github.com/gilbarbara/logos/archive/master.zip',
@@ -124,7 +123,7 @@ const nav = {
           ]
         },
         {
-          subtitle: '工具',
+          title: '工具',
           nav: [
             {
               icon: 'https://www.chuangkit.com/favicon.ico',
@@ -133,7 +132,6 @@ const nav = {
               link: 'https://www.chuangkit.com/',
             },
             {
-              icon: '',
               name: 'Ps Play',
               desc: 'Ps Play - 移动设计零阻力',
               link: 'https://isux.tencent.com/resources/psplay/',
@@ -153,7 +151,7 @@ const nav = {
           ]
         },
         {
-          subtitle: '配色',
+          title: '配色',
           nav: [
             {
               icon: 'https://colorhunt.co/img/color-hunt-icon-ios.png',

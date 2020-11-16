@@ -2,7 +2,7 @@ export default {
   title: '依赖包',
   nav: [
     {
-      subtitle: 'GUI',
+      title: 'GUI',
       nav: [
         {
           icon: 'https://avatars3.githubusercontent.com/u/36045855?s=200&v=4',
@@ -18,7 +18,7 @@ export default {
       ]
     },
     {
-      subtitle: '日志模块',
+      title: '日志模块',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
@@ -35,7 +35,7 @@ export default {
       ]
     },
     {
-      subtitle: '数据库',
+      title: '数据库',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
@@ -80,7 +80,7 @@ export default {
       ]
     },
     {
-      subtitle: '解析器',
+      title: '解析器',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
@@ -126,7 +126,7 @@ export default {
       ]
     },
     {
-      subtitle: '参数验证',
+      title: '参数验证',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
@@ -143,7 +143,7 @@ export default {
       ]
     },
     {
-      subtitle: '其他',
+      title: '其他',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
