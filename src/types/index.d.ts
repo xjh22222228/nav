@@ -26,3 +26,10 @@ export interface INavProps {
   id?: number
   nav: INavTwoProp[]
 }
+
+export interface ISearchEngineProps {
+  name: string
+  url: string
+  icon: string
+  placeholder?: string
+}

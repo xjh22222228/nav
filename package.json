@@ -1,6 +1,6 @@
 {
   "name": "nav",
-  "version": "2.2.0",
+  "version": "3.0.0-rc0",
   "author": "xiejiahe",
   "bugs": {
     "url": "https://github.com/xjh22222228/nav/issues"
@@ -15,7 +15,7 @@
     "start": "ng serve --open",
     "build": "ng build --prod --base-href ./",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "eslint --cache --ext .js,.ts ./src",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -37,15 +37,16 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "commander": "^2.20.0",
-    "fs-extra": "^8.1.0",
     "@angular-devkit/build-angular": "~0.901.7",
     "@angular/cli": "~9.1.7",
     "@angular/compiler-cli": "~9.1.9",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "commander": "^2.20.0",
+    "eslint": "^7.13.0",
+    "fs-extra": "^8.1.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~5.0.0",
