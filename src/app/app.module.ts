@@ -1,18 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser'
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { FormsModule } from '@angular/forms'
 
 // components
-import { AppComponent } from './app.component';
+import { AppComponent } from './app.component'
 
 // views
-import HomeComponent from '../view/index/default/index.component';
-import WebpComponent from '../view/app/default/app.component';
-import { FooterComponent } from '../components/footer/footer.component';
-import { IconGitComponent } from '../components/icon-git/icon-git.component';
-import { NoDataComponent } from '../components/no-data/no-data.component';
-import { LoadingComponent } from '../components/loading/loading.component';
+import HomeComponent from '../view/index/default/index.component'
+import WebpComponent from '../view/app/default/app.component'
+import { FooterComponent } from '../components/footer/footer.component'
+import { IconGitComponent } from '../components/icon-git/icon-git.component'
+import { NoDataComponent } from '../components/no-data/no-data.component'
+import { LoadingComponent } from '../components/loading/loading.component'
+import { SearchEngineComponent } from '../components/search-engine/search-engine.component'
 
 const appRoutes: Routes = [
   { 
@@ -27,7 +28,7 @@ const appRoutes: Routes = [
     path: '**',
     redirectTo: '/index',
   },
-];
+]
 
 
 @NgModule({
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     FooterComponent,
     IconGitComponent,
     NoDataComponent,
-    LoadingComponent
+    LoadingComponent,
+    SearchEngineComponent
   ],
   imports: [
     BrowserModule,

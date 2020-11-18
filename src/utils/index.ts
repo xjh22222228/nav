@@ -1,7 +1,7 @@
 import WEBSITE_LIST from '../../data'
 import qs from 'qs'
-import { BACKGROUND_LINEAR, ERROR_ICON } from '../../config'
-import { INavProps } from '../types'
+import { BACKGROUND_LINEAR, ERROR_ICON, SEARCH_ENGINE_LIST } from '../../config'
+import { INavProps, ISearchEngineProps } from '../types'
 
 export function debounce(func, wait, immediate) {
   let timeout
@@ -200,4 +200,19 @@ export function setLocation() {
     page,
     id
   }))
+}
+
+export function getDefaultSearchEngine(): ISearchEngineProps {
+  let DEFAULT = (SEARCH_ENGINE_LIST[0] || {}) as ISearchEngineProps
+  try {
+    const engine = window.localStorage.getItem('engine');
+    if (engine) {
+      DEFAULT = JSON.parse(engine)
+    }
+  } catch {}
+  return DEFAULT
+}
+
+export function setDefaultSearchEngine(engine: ISearchEngineProps) {
+  window.localStorage.setItem('engine', JSON.stringify(engine))
 }

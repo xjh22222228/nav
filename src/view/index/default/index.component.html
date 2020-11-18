@@ -52,16 +52,18 @@
 
       <div class="main">
         <app-loading *ngIf="searchLoading"></app-loading>
+
+        <app-search-engine></app-search-engine>
  
         <ul *ngIf="currentList.length && currentList[0].nav">
           <li *ngFor="let item of currentList; let i=index">
-            <div class="title-wrapper" *ngIf="item.title">
+            <div class="title-wrapper" *ngIf="item.title || item.subtitle">
               <h2 class="block-title">
                 <span
                   (click)="onCollapse(item, i)"
                   class="cursor-pointer"
                 >
-                  {{ item.title }} x {{ item.nav.length }}
+                  {{ item.title || item.subtitle }} x {{ item.nav.length }}
                 </span>
 
                 <img

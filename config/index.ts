@@ -3,17 +3,45 @@
  * @author xiejiahe
  * @url https://github.com/xjh22222228/nav
  */
+import { ISearchEngineProps } from '../src/types'
 
-export const INDEX_LANGUAGE = [
-  '英文',
-  '中文',
-  'GitHub'
-]
-
-export const APP_LANGUAGE = [
-  'EN',
-  'CN',
-  'Git'
+// 搜索引擎列表, 为空时不显示搜索引擎
+// 以下系统内置了一些，需要其他的自行添加
+// 自定义引擎 icon 建议使用网络图标 减少入侵
+export const SEARCH_ENGINE_LIST: ISearchEngineProps[] = [
+  {
+    name: '百度',
+    url: 'https://www.baidu.com/s?wd=',
+    icon: 'assets/engine/baidu.svg',
+    placeholder: '百度一下'
+  },
+  {
+    name: 'Google',
+    url: 'https://www.google.com/search?q=',
+    icon: 'assets/engine/google.svg',
+  },
+  {
+    name: '必应',
+    url: 'https://cn.bing.com/search?q=',
+    icon: 'assets/engine/bing.svg',
+  },
+  {
+    name: 'GitHub',
+    url: 'https://github.com/search?q=',
+    icon: 'assets/engine/github.svg',
+    placeholder: 'Search GitHub'
+  },
+  {
+    name: '知乎',
+    url: 'https://www.zhihu.com/search?type=content&q=',
+    icon: 'assets/engine/zhihu.svg',
+  },
+  {
+    name: '豆瓣',
+    url: 'https://search.douban.com/book/subject_search?search_text=',
+    icon: 'assets/engine/douban.svg',
+    placeholder: '书名、作者、ISBN'
+  }
 ]
 
 // Git 仓库地址, 没有填空字符串
@@ -29,6 +57,18 @@ export const FOOTER_DESC = ''
 
 // 百度统计
 export const TONGJI_URL = 'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba'
+
+export const INDEX_LANGUAGE = [
+  '英文',
+  '中文',
+  'GitHub'
+]
+
+export const APP_LANGUAGE = [
+  'EN',
+  'CN',
+  'Git'
+]
 
 // http://www.nav3.cn/#/index?q=grabient
 export const BACKGROUND_LINEAR = [
