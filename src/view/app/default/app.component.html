@@ -34,7 +34,9 @@
     </nav>
     <ul>
       <li *ngFor="let item of nav[page].nav[id].nav">
-        <h2 class="block-title" *ngIf="item.subtitle">{{ item.subtitle }} x {{ item.nav.length }}</h2>
+        <h2 class="block-title" *ngIf="item.title || item.subtitle">
+          {{ item.title || item.subtitle }} x {{ item.nav.length }}
+        </h2>
         <div class="row">
           <div class="item-list" *ngFor="let el of item.nav; index as i;">
             <a (click)="handleToWebsite(el, i, $event)" href="javascript:;">

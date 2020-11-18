@@ -7,7 +7,7 @@ export interface INavFourProp {
 }
 
 export interface INavThreeProp {
-  subtitle?: string
+  title?: string
   icon?: string | null
   showSideIcon?: boolean
   collapsed?: boolean
@@ -25,4 +25,11 @@ export interface INavProps {
   title: string
   id?: number
   nav: INavTwoProp[]
+}
+
+export interface ISearchEngineProps {
+  name: string
+  url: string
+  icon: string
+  placeholder?: string
 }
