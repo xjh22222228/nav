@@ -21,11 +21,15 @@ export class SearchEngineComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngAfterViewInit() {
+  inputFocus() {
     const inputEl = document.getElementById('search-engine-input')
     if (inputEl) {
       inputEl.focus()
     }
+  }
+
+  ngAfterViewInit() {
+    this.inputFocus()
 
     document.addEventListener('click', () => {
       this.toggleEngine(null, false)
@@ -44,6 +48,7 @@ export class SearchEngineComponent implements OnInit {
   clickEngineItem(index) {
     this.currentEngine = SEARCH_ENGINE_LIST[index]
     this.toggleEngine()
+    this.inputFocus()
     setDefaultSearchEngine(this.currentEngine)
   }
 
