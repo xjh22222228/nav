@@ -11,7 +11,7 @@ $width: 500px;
     width: $width;
     height: 40px;
     background: #fff;
-    border-radius: 15px;
+    border-radius: 5px;
     border: 1px solid #ccc;
     overflow: hidden;
 
@@ -22,9 +22,19 @@ $width: 500px;
       padding-right: 50px;
       border-color: transparent;
       font-size: 16px;
+      transition: all .3s;
 
       &::placeholder {
         font-size: 14px;
+      }
+
+      &:hover {
+        border-color: #40a9ff;
+      }
+
+      &:focus {
+        border-color: #40a9ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
       }
     }
 

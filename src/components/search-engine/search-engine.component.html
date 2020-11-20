@@ -2,7 +2,7 @@
   <div class="input-wrapper">
     <div
       class="left-icon"
-      (click)="toggleEngine()"
+      (click)="toggleEngine($event)"
       [ngStyle]="{ 'background-image': 'url(' + currentEngine.icon + ')' }"
     >
     </div>

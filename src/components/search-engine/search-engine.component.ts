@@ -26,10 +26,19 @@ export class SearchEngineComponent implements OnInit {
     if (inputEl) {
       inputEl.focus()
     }
+
+    document.addEventListener('click', () => {
+      this.toggleEngine(null, false)
+    })
   }
 
-  toggleEngine() {
-    this.showEngine = !this.showEngine
+  toggleEngine(e?: Event, isShow?: boolean) {
+    if (e) {
+      e.stopPropagation()
+    }
+    this.showEngine = typeof isShow === 'undefined'
+      ? !this.showEngine
+      : isShow
   }
 
   clickEngineItem(index) {
