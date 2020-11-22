@@ -324,6 +324,7 @@ export default {
         },
         {
           desc: '网络视频播放器使用React库从头开始构建HTML5世界',
+          name: 'video-react',
           url: 'https://video-react.js.org/',
           language: [
             '',
