@@ -5,13 +5,13 @@ export default {
   title: 'Deno',
   nav: [
     {
-      subtitle: '官方',
+      title: '官方',
       icon: DEFAULT_ICON,
       nav: [
         {
           name: 'Deno',
           desc: '一个安全的运行时的JavaScript和TypeScript',
-          link: 'https://deno.land/',
+          url: 'https://deno.land/',
           language: [
             '',
             '',
@@ -21,18 +21,18 @@ export default {
         {
           name: 'Deno 标准库',
           desc: 'Deno 标准库',
-          link: 'https://deno.land/std',
+          url: 'https://deno.land/std',
         },
       ]
     },
     {
-      subtitle: '工具',
+      title: '工具',
       icon: DEFAULT_ICON,
       nav: [
         {
           name: 'Deno',
           desc: '适用于Deno的Visual Studio Code插件',
-          link: 'https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno',
+          url: 'https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno',
           language: [
             '',
             '',

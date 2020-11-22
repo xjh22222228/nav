@@ -96,7 +96,7 @@
 
             <div class="row" *ngIf="!item.collapsed">
               <div class="click-btn" *ngFor="let el of item.nav">
-                <a [href]="el.link" target="_blank" rel="noopener noreferer">
+                <a [href]="el.url" target="_blank" rel="noopener noreferer">
                   <div class="top">
                     <img
                       *ngIf="el.icon || item.icon || websiteList[page].nav[id].icon; else icon"

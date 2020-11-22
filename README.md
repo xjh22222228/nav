@@ -124,7 +124,7 @@ server {
         {
           name: '发现导航',
           desc: '发现导航 - 精选实用导航网站',
-          link: 'https://nav3.cn',
+          url: 'https://nav3.cn',
         }
       ]
     }

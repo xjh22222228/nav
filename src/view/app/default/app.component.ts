@@ -54,7 +54,7 @@ export default class WebpComponent {
 
   handleToWebsite(item, index, event) {
     if (!Array.isArray(item.language)) {
-      window.open(item.link)
+      window.open(item.url)
       return
     }
     const el = (<any>window).$('.bottom-slide')

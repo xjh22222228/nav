@@ -5,31 +5,31 @@ export default {
   title: '参考文档',
   nav: [
     {
-      subtitle: 'Docker',
+      title: 'Docker',
       nav: [
         {
           icon: 'https://github.com/favicon.ico',
           name: 'Docker — 从入门到实践',
           desc: 'Docker — 从入门到实践',
-          link: 'https://yeasy.gitbooks.io/docker_practice/',
+          url: 'https://yeasy.gitbooks.io/docker_practice/',
         },
         {
           icon: 'https://github.com/favicon.ico',
           name: 'Docker官方映像文档',
           desc: 'docker-library中的Docker官方映像文档',
-          link: 'https://github.com/docker-library/docs',
+          url: 'https://github.com/docker-library/docs',
         },
         {
           icon: 'https://avatars2.githubusercontent.com/u/7739233?s=200&v=4',
           name: 'Docker Hub',
           desc: 'Docker 镜像仓库',
-          link: 'https://hub.docker.com/',
+          url: 'https://hub.docker.com/',
         },
         {
           icon: 'https://avatars2.githubusercontent.com/u/7739233?s=200&v=4',
           name: 'Docker-Compose',
           desc: '使用Docker定义和运行多容器应用程序',
-          link: 'https://docs.docker.com/compose/',
+          url: 'https://docs.docker.com/compose/',
           language: [
             '',
             '',
@@ -39,48 +39,48 @@ export default {
       ]
     },
     {
-      subtitle: 'Git',
+      title: 'Git',
       nav: [
         {
           icon: 'https://github.com/favicon.ico',
           name: 'git-manual',
           desc: 'Git常用命令参考手册 (推荐学习)',
-          link: 'https://github.com/xjh22222228/git-manual',
+          url: 'https://github.com/xjh22222228/git-manual',
         },
         {
           icon: 'https://github.com/favicon.ico',
           name: 'GitHub Docs',
           desc: 'github 官方帮助文档',
-          link: 'https://help.github.com/cn',
+          url: 'https://help.github.com/cn',
         },
         {
           icon: 'https://github.com/favicon.ico',
           name: 'awesome-actions',
           desc: '精选的GitHub上很棒的Action列表',
-          link: 'https://github.com/sdras/awesome-actions',
+          url: 'https://github.com/sdras/awesome-actions',
         },
         {
           icon: 'https://github.com/favicon.ico',
           name: 'Github - Actions',
           desc: 'Github 官方Actions 资源列表',
-          link: 'https://github.com/marketplace?type=actions',
+          url: 'https://github.com/marketplace?type=actions',
         },
         {
           icon: 'https://github.com/favicon.ico',
           name: 'growing-up',
           desc: '程序猿成长计划',
-          link: 'https://github.com/mylxsw/growing-up',
+          url: 'https://github.com/mylxsw/growing-up',
         },
       ]
     },
     {
-      subtitle: '服务器',
+      title: '服务器',
       nav: [
         {
           icon: 'https://avatars0.githubusercontent.com/u/1412239?s=200&v=4',
           name: 'nginx',
           desc: 'nginx参考文档',
-          link: 'https://www.docs4dev.com/docs/zh/nginx/current/reference#toolbar-title',
+          url: 'https://www.docs4dev.com/docs/zh/nginx/current/reference#toolbar-title',
           language: [
             'http://nginx.org/en/docs/',
             'https://www.docs4dev.com/docs/zh/nginx/current/reference#toolbar-title',
@@ -91,7 +91,7 @@ export default {
           icon: 'https://avatars0.githubusercontent.com/u/1412239?s=200&v=4',
           name: 'Nginx开发从入门到精通',
           desc: 'Nginx开发从入门到精通',
-          link: 'http://tengine.taobao.org/book/index.html',
+          url: 'http://tengine.taobao.org/book/index.html',
           language: [
             '',
             '',
@@ -101,13 +101,13 @@ export default {
       ]
     },
     {
-      subtitle: '数据库',
+      title: '数据库',
       nav: [
         {
           icon: 'https://avatars3.githubusercontent.com/u/1529926?s=200&v=4',
           name: 'redis',
           desc: 'Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构',
-          link: 'http://www.redis.cn/',
+          url: 'http://www.redis.cn/',
           language: [
             'https://redis.io/',
             'http://www.redis.cn/',
@@ -118,65 +118,64 @@ export default {
           icon: 'https://labs.mysql.com/common/themes/sakila/favicon.ico',
           name: 'MySQL',
           desc: 'MySQL数据库服务是一个完全托管的数据库服务，可使用世界上最受欢迎的开源数据库来部署云原生应用程序。 它是百分百由MySQL原厂开发，管理和提供支持',
-          link: 'https://www.mysql.com/cn/',
+          url: 'https://www.mysql.com/cn/',
         },
       ]
     },
     {
-      subtitle: '书籍',
+      title: '书籍',
       nav: [
         {
           icon: 'https://avatars1.githubusercontent.com/u/14127308?s=200&v=4',
           name: '免费的编程中文书籍索引',
           desc: '免费的编程中文书籍索引',
-          link: 'https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md',
+          url: 'https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md',
         },
         {
           icon: 'https://zh.b-ok.global/apple-touch-icon.png',
           name: 'Zlibrary',
           desc: 'Z-Library 项目部分. 全球最大的数字图书馆, 电子书',
-          link: 'https://zh.b-ok.global/',
+          url: 'https://zh.b-ok.global/',
         },
         {
-          icon: '',
           name: 'IT-eBOOK',
           desc: 'IT类技术书籍PDF',
-          link: 'https://github.com/asyncfun/IT-eBOOK',
+          url: 'https://github.com/asyncfun/IT-eBOOK',
         },
         {
           icon: 'https://refactoringguru.cn/favicon.ico',
           name: 'Refactoring.Guru',
           desc: '22种常用设计模式',
-          link: 'https://refactoringguru.cn/design-patterns',
+          url: 'https://refactoringguru.cn/design-patterns',
         },
       ]
     },
     {
-      subtitle: '其他文档',
+      title: '其他文档',
       nav: [
         {
           icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/linux/linux.png',
           name: 'Linux 常用命令参考手册',
           desc: 'Linux 常用命令参考手册',
-          link: 'https://github.com/xjh22222228/linux-manual',
+          url: 'https://github.com/xjh22222228/linux-manual',
         },
         {
           icon: 'https://github.com/favicon.ico',
           name: 'developer-roadmap',
           desc: `${thisYear}年成为网络开发人员的路线图`,
-          link: 'https://github.com/kamranahmedse/developer-roadmap',
+          url: 'https://github.com/kamranahmedse/developer-roadmap',
         },
         {
           icon: 'https://devhints.io/assets/favicon.png',
           name: 'Devhints',
           desc: 'WEB开发速查表，mysql/go/java/js/bash/react/git...',
-          link: 'https://devhints.io/',
+          url: 'https://devhints.io/',
         },
         {
           icon: 'https://wangchujiang.com/linux-command/img/favicon.ico',
           name: 'linux-command',
           desc: 'Linux命令大全搜索工具，内容包含Linux命令手册、详解、学习、搜集',
-          link: 'https://git.io/linux',
+          url: 'https://git.io/linux',
           language: [
             '',
             '',
@@ -187,43 +186,43 @@ export default {
           icon: 'https://github.com/favicon.ico',
           name: 'learn-regex',
           desc: '正则表达式学习',
-          link: 'https://github.com/ziishaned/learn-regex',
+          url: 'https://github.com/ziishaned/learn-regex',
         },
         {
           icon: 'https://github.com/favicon.ico',
           name: 'the-art-of-command-line',
           desc: '命令行的艺术',
-          link: 'https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md',
+          url: 'https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md',
         },
         {
           icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/chrome/chrome.png',
           name: 'Peter Beverloo',
           desc: 'Chrome浏览器命令参数参考手册',
-          link: 'https://peter.sh/experiments/chromium-command-line-switches/',
+          url: 'https://peter.sh/experiments/chromium-command-line-switches/',
         },
         {
           icon: 'https://avatars2.githubusercontent.com/u/11618545?s=200&v=4',
           name: 'vimrc',
           desc: 'vim配置参考手册',
-          link: 'https://github.com/amix/vimrc',
+          url: 'https://github.com/amix/vimrc',
         },
         {
           icon: 'https://www.jenkins.io/zh/sites/default/files/jenkins_favicon.ico',
           name: 'Jenkins',
           desc: 'Jenkins是开源CI&CD软件领导者， 提供超过1000个插件来支持构建、部署、自动化， 满足任何项目的需要',
-          link: 'https://www.jenkins.io/zh/',
+          url: 'https://www.jenkins.io/zh/',
         },
         {
           icon: 'https://learnxinyminutes.com/favicon.ico',
           name: 'learnxinyminutes-docs',
           desc: '在Y分钟内学习X',
-          link: 'https://learnxinyminutes.com/',
+          url: 'https://learnxinyminutes.com/',
         },
         {
           icon: 'https://code.visualstudio.com/apple-touch-icon.png',
           name: 'Vscode Docs',
           desc: 'Vscode 扩展开发文档',
-          link: 'https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/',
+          url: 'https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/',
           language: [
             'https://code.visualstudio.com/api',
             'https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/',
@@ -231,10 +230,15 @@ export default {
           ]
         },
         {
-          icon: '',
           name: 'YAML教程',
           desc: 'YAML教程',
-          link: 'https://www.yiibai.com/yaml',
+          url: 'https://www.yiibai.com/yaml',
+        },
+        {
+          icon: 'https://www.google.com/images/icons/product/chrome-32.png',
+          name: 'Chrome Extension',
+          desc: '谷歌浏览器扩展插件开发文档',
+          url: 'https://developer.chrome.com/extensions',
         },
       ]
     },
