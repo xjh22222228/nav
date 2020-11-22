@@ -3,7 +3,7 @@ export interface INavFourProp {
   icon?: string | null
   name: string
   desc: string
-  link: string
+  url: string
 }
 
 export interface INavThreeProp {

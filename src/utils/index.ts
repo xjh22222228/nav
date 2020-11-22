@@ -75,7 +75,7 @@ export function totalWeb(): number {
     if (!Array.isArray(nav)) return
 
     for (let i = 0; i < nav.length; i++) {
-      if (nav[i].link) {
+      if (nav[i].url) {
         total += 1
       } else {
         r(nav[i].nav)

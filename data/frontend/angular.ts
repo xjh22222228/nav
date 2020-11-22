@@ -8,7 +8,7 @@ export default {
         {
           name: 'Angular',
           desc: '一个框架，移动 & 桌面',
-          link: 'https://www.angular.cn/',
+          url: 'https://www.angular.cn/',
           language: [
             'https://angular.io/',
             'https://www.angular.cn/',
@@ -18,7 +18,7 @@ export default {
         {
           name: 'angular-cli',
           desc: '用于Angular CLI脚手架工具',
-          link: 'https://cli.angular.io/',
+          url: 'https://cli.angular.io/',
           language: [
             'https://cli.angular.io/',
             '',
@@ -28,7 +28,7 @@ export default {
         {
           name: 'augury',
           desc: 'Angular调试和可视化工具',
-          link: 'https://augury.angular.io/',
+          url: 'https://augury.angular.io/',
           language: [
             'https://augury.angular.io/',
             '',
@@ -44,7 +44,7 @@ export default {
           icon: 'https://avatars2.githubusercontent.com/u/30223759?s=200&v=4',
           name: 'NG-ZORRO',
           desc: '基于Ant Design的Angular企业级UI组件',
-          link: 'http://ng.ant.design/docs/introduce/zh',
+          url: 'http://ng.ant.design/docs/introduce/zh',
           language: [
             'http://ng.ant.design/docs/introduce/en',
             'http://ng.ant.design/docs/introduce/zh',
@@ -55,7 +55,7 @@ export default {
           icon: 'https://avatars3.githubusercontent.com/u/14283866?s=200&v=4',
           name: 'ng-bootstrap',
           desc: '基于Bootstrap 4的Angular组件',
-          link: 'https://ng-bootstrap.github.io/#/components/accordion/examples',
+          url: 'https://ng-bootstrap.github.io/#/components/accordion/examples',
           language: [
             'https://ng-bootstrap.github.io/#/components/accordion/examples',
             '',
@@ -66,7 +66,7 @@ export default {
           icon: 'https://avatars2.githubusercontent.com/u/12810740?s=200&v=4',
           name: 'element-angular',
           desc: 'Element Angular组件库',
-          link: 'https://element-angular.faas.ele.me/guide/install',
+          url: 'https://element-angular.faas.ele.me/guide/install',
           language: [
             'https://element-angular.faas.ele.me/',
             'https://element-angular.faas.ele.me/guide/install',
@@ -77,7 +77,7 @@ export default {
           icon: 'https://avatars1.githubusercontent.com/u/3494069?s=200&v=4',
           name: 'primeng',
           desc: 'PrimeNG是Angular的丰富UI组件的集合',
-          link: 'https://www.primefaces.org/primeng/#/button',
+          url: 'https://www.primefaces.org/primeng/#/button',
           language: [
             '',
             '',
@@ -87,7 +87,7 @@ export default {
         {
           name: 'material',
           desc: 'Material Design是一个统一的视觉，动作和交互设计系统的规范，适用于不同的设备。',
-          link: 'https://www.primefaces.org/primeng/#/button',
+          url: 'https://www.primefaces.org/primeng/#/button',
           language: [
             '',
             '',
@@ -102,7 +102,7 @@ export default {
         {
           name: 'material',
           desc: 'Material Design是一个统一的视觉，动作和交互设计系统的规范，适用于不同的设备。',
-          link: 'https://www.primefaces.org/primeng/#/button',
+          url: 'https://www.primefaces.org/primeng/#/button',
           language: [
             '',
             '',
