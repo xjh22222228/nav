@@ -317,7 +317,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/150.png',
+          icon: 'https://avatars0.githubusercontent.com/u/5826089?s=200&v=4',
           name: 'js-xlsx',
           desc: 'SheetJS社区版 - 电子表格工具包',
           url: 'https://sheetjs.com/',
@@ -464,7 +464,7 @@ export default {
           url: 'https://github.com/bahamas10/node-clear',
         },
         {
-          icon: 'assets/icon/frontend/063.svg',
+          icon: 'https://avatars2.githubusercontent.com/u/13122722?s=200&v=4',
           name: 'chalk',
           desc: '终端字符串样式',
           url: 'https://github.com/chalk/chalk',
@@ -556,7 +556,7 @@ export default {
           url: 'https://github.com/gtanner/qrcode-terminal',
         },
         {
-          icon: 'assets/icon/frontend/133.png',
+          icon: 'https://avatars1.githubusercontent.com/u/13612933?s=200&v=4',
           name: 'localtunnel',
           desc: 'localtunnel将您的localhost暴露给世界，以便于测试和共享！无需混淆DNS或部署只是为了让其他人测试您的更改',
           url: 'https://localtunnel.github.io/www/',

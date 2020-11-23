@@ -1,5 +1,6 @@
 export default {
   title: 'react',
+  icon: 'https://reactjs.org/favicon.ico',
   nav: [
     {
       title: '生态系统',
