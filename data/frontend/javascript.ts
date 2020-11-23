@@ -1,11 +1,12 @@
 export default {
-	title: 'JavaScript',
+  title: 'JavaScript',
+  icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png',
 	nav: [
     {
       title: 'JavaScript',
       nav: [
         {
-          icon: 'assets/icon/frontend/004.svg',
+          icon: 'https://jquery.com/jquery-wp-content/themes/jquery.com/i/favicon.ico',
           name: 'jQuery',
           desc: 'jQuery是一个JavaScript函数库',
           url: 'http://jquery.com/',
@@ -16,7 +17,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/009.svg',
+          icon: 'https://www.webpackjs.com/assets/favicon.ico',
           name: 'webpack',
           desc: 'webpack是一个模块打包器',
           url: 'https://www.webpackjs.com/',
@@ -27,7 +28,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/010.png',
+          icon: 'https://babeljs.io/img/favicon.png',
           name: 'Babel',
           desc: '用于编写下一代 JavaScript 的编译器',
           url: 'http://babeljs.io/',
@@ -38,7 +39,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/011.svg',
+          icon: 'https://cn.eslint.org/img/favicon.512x512.png',
           name: 'ESLint',
           desc: '可组装的JavaScript和JSX检查工具',
           url: 'https://cn.eslint.org/',
@@ -60,7 +61,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/017.svg',
+          icon: 'https://avatars0.githubusercontent.com/u/8770005?s=200&v=4',
           name: 'Mocha',
           desc: 'Mocha是JavaScript的一种单元测试框架，既可以在浏览器环境下运行，也可以在Node.js环境下运行',
           url: 'https://mochajs.org/',
@@ -71,7 +72,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/081.png',
+          icon: 'https://avatars1.githubusercontent.com/u/5485517?s=200&v=4',
           name: 'MUI',
           desc: 'MUI: 最接近原生APP体验的高性能前端框架',
           url: 'http://dev.dcloud.net.cn/mui/',
@@ -109,7 +110,6 @@ export default {
       title: '常用插件',
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'sweetalert',
           desc: 'JavaScript Alert 的漂亮替代品',
           url: 'https://sweetalert.js.org/',
@@ -131,7 +131,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'formilyjs',
           desc: 'Formily 是一个由阿里巴巴集团多 BU 共建的面向中后台复杂场景的表单解决方案，它也是一个表单框架',
           url: 'https://formilyjs.org/',
@@ -153,7 +152,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/013.png',
+          icon: 'https://avatars3.githubusercontent.com/u/19199542?s=200&v=4',
           name: 'AntV',
           desc: 'AntV 是蚂蚁金服全新一代数据可视化解决方案',
           url: 'https://antv.alipay.com/',
@@ -164,7 +163,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/021.svg',
+          icon: 'https://www.lodashjs.com/icons/favicon-32x32.png',
           name: 'Lodash',
           desc: 'Lodash是一个一致性、模块化、高性能的 JavaScript 实用工具库',
           url: 'https://www.lodashjs.com/',
@@ -175,7 +174,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/039.png',
+          icon: 'https://www.swiper.com.cn/favicon.ico',
           name: 'Swiper',
           desc: '轻量级的移动设备触控滑块的js框架，使用硬件加速过渡',
           url: 'https://www.swiper.com.cn/',
@@ -186,13 +185,11 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'fastclick',
           desc: 'Polyfill 解决移动端具有300ms延迟的库',
           url: 'https://github.com/ftlabs/fastclick',
         },
         {
-          icon: 'assets/icon/frontend/047.png',
           name: 'Layer',
           desc: '丰富多样的Web弹出层组件,可轻松实现Alert/Confirm/Prompt/普通提示/页面区块/iframe/tips等等几乎所有的弹出交互',
           url: 'http://layer.layui.com/',
@@ -203,7 +200,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/053.png',
+          icon: 'https://momentjs.com/static/img/moment-favicon.png',
           name: 'moment.js',
           desc: '一个轻量级的JavaScript日期库，用于解析，验证，操作和格式化日期',
           url: 'http://momentjs.cn/',
@@ -214,19 +211,16 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'js-cookie',
           desc: '一个简单，轻量级的JavaScript API，用于处理浏览器cookie',
           url: 'https://github.com/js-cookie/js-cookie',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'qs',
           desc: '具有嵌套支持的查询字符串解析器',
           url: 'https://github.com/ljharb/qs',
         },
         {
-          icon: 'assets/icon/frontend/058.svg',
           name: 'Mock.js',
           desc: '生成随机数据，拦截 Ajax 请求',
           url: 'http://mockjs.com/',
@@ -259,7 +253,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'nprogress',
           desc: '顶部加载进度条',
           url: 'http://ricostacruz.com/nprogress/',
@@ -270,7 +263,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'iNotify',
           desc: 'JS实现浏览器标题闪烁，滚动，语音提示，Chrome/Safari/FireFox/IE通知',
           url: 'https://git.io/iNotify',
@@ -281,7 +273,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'html2canvas',
           desc: '最流行的JavaScript屏幕截图',
           url: 'https://html2canvas.hertzen.com/',
@@ -292,7 +283,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'dayjs',
           desc: '使用与Moment.js兼容的API来解析，验证，操作和显示现代浏览器的日期和时间',
           url: 'https://github.com/iamkun/dayjs/blob/master/docs/zh-cn/API-reference.md',
@@ -320,13 +310,11 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'lib-flexible',
           desc: '可伸缩布局方案, 淘宝rem解决方案',
           url: 'https://github.com/amfe/lib-flexible',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'js-xss',
           desc: '根据白名单过滤HTML(防止XSS攻击)',
           url: 'https://github.com/leizongmin/js-xss',
@@ -343,7 +331,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'better-scroll',
           desc: '灵感来自iscroll，它具有更好的滚动性能',
           url: 'https://ustbhuangyi.github.io/better-scroll/',
@@ -354,7 +341,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'pinyinjs',
           desc: '一个实现汉字与拼音互转的小巧web工具库',
           url: 'http://demo.haoji.me/pinyinjs/',
@@ -382,7 +368,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'decimal.js',
           desc: 'JavaScript的任意精度Decimal类型 (0.1+0.2=0.3)',
           url: 'http://mikemcl.github.io/decimal.js',
@@ -393,19 +378,16 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'copy-to-clipboard',
           desc: '简单的模块公开copy功能，它将尝试使用execCommand与特定于IE的clipboardData接口的回退，最后，通常prompt使用适当的文本内容和消息',
           url: 'https://github.com/sudodoki/copy-to-clipboard',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'path-to-regexp',
           desc: '将字符串路径转换成正则表达式',
           url: 'https://github.com/pillarjs/path-to-regexp',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'autosize',
           desc: 'autosize是一个小的独立脚本，可以自动调整textarea域的高度以适合文本',
           url: 'http://www.jacklmoore.com/autosize/',
@@ -416,13 +398,11 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'shake.js',
           desc: '监听手机设备摇动',
           url: 'https://github.com/alexgibson/shake.js',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'progressbar',
           desc: '可以轻松地为Web创建响应式和时尚的进度栏。动画即使在移动设备上也表现良好',
           url: 'https://kimmobrunfeldt.github.io/progressbar.js/',
@@ -455,25 +435,21 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'json-bigint',
           desc: '带有bigints支持的JSON.parse / stringify',
           url: 'https://github.com/sidorares/json-bigint'
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'exif-js',
           desc: '用于读取EXIF图像元数据的JavaScript库',
           url: 'https://github.com/exif-js/exif-js'
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'lunr.js',
           desc: 'Lunr.js是一个用于浏览器的小型全文本搜索库。它为JSON文档建立索引，并提供一个简单的搜索界面来检索与文本查询最匹配的文档',
           url: 'https://github.com/olivernn/lunr.js'
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'hotkeys',
           desc: '强大的Javascript库，用于捕获键盘输入和输入的按键组合。它没有依赖性。',
           url: 'https://wangchujiang.com/hotkeys/',
@@ -484,7 +460,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'dom-to-image',
           desc: '使用HTML5 canvas从DOM节点生成图像',
           url: 'https://github.com/tsayen/dom-to-image'
@@ -523,7 +498,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'Numeral-js',
           desc: '一个用于格式化和处理数字的javascript库',
           url: 'http://numeraljs.com',
@@ -534,7 +508,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'ua-parser-js',
           desc: '用于从userAgent字符串检测浏览器，引擎，操作系统，CPU和设备类型/模型。支持浏览器和node.js环境',
           url: 'http://faisalman.github.io/ua-parser-js/',
@@ -605,7 +578,6 @@ export default {
           url: 'http://fian.my.id/Waves/#examples',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'velocity',
           desc: '加速JavaScript动画',
           url: 'http://velocityjs.org/',
@@ -627,7 +599,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'Hover-Buttons',
           desc: 'hover动画CSS / SCSS按钮',
           url: 'https://varin6.github.io/Hover-Buttons/',
@@ -643,7 +614,6 @@ export default {
       title: '加盐',
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'JavaScript-MD5',
           desc: 'JavaScript MD5实现。兼容服务器端环境，如node.js，RequireJS等模块加载器和所有Web浏览器',
           url: 'https://blueimp.github.io/JavaScript-MD5/',
@@ -654,7 +624,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'js-sha1',
           desc: 'JavaScript的简单SHA1哈希函数支持UTF-8编码。',
           url: 'https://github.com/emn178/js-sha1',
@@ -665,13 +634,11 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'js-base64',
           desc: 'JavaScript的Base64实现',
           url: 'https://github.com/dankogai/js-base64',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'jsSHA',
           desc: 'SHA-1，SHA-224，SHA3-224，SHA-256，SHA3-256，SHA-384，SHA3-384，SHA-512，SHA3-512，SHAKE128 ，和SHAKE256以及HMAC',
           url: 'https://caligatio.github.io/jsSHA/',
@@ -682,7 +649,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'crypto-js',
           desc: '加密标准的JavaScript库',
           url: 'https://cryptojs.gitbook.io',
@@ -698,7 +664,6 @@ export default {
       title: '文件插件相关',
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'pdf.js',
           desc: 'PDF.js是一个使用HTML5构建的可移植文档格式（PDF）查看器',
           url: 'https://mozilla.github.io/pdf.js/web/viewer.html',
@@ -720,7 +685,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'pdfmake',
           desc: '纯JavaScript中的客户端/服务器端PDF打印, HTML转换Pdf',
           url: 'http://pdfmake.org/',
@@ -742,7 +706,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'filepond',
           desc: '灵活而有趣的JavaScript文件上传库',
           url: 'https://pqina.nl/filepond/',
@@ -753,13 +716,11 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'FileSaver.js',
           desc: '客户端保存文件的解决方案，非常适合在客户端上生成文件的Web应用程序',
           url: 'https://github.com/eligrey/FileSaver.js',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'jsPDF',
           desc: '一个使用JavaScript生成PDF的库',
           url: 'https://parall.ax/products/jspdf',
@@ -775,7 +736,6 @@ export default {
       title: '图片预览',
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'PhotoSwipe',
           desc: '适用于移动和桌面的JavaScript图像库, 图片预览',
           url: 'http://photoswipe.com/',
@@ -851,7 +811,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'flowy',
           desc: '创建流程图的最小JavaScript库',
           url: 'https://github.com/alyssaxuu/flowy'
@@ -889,13 +848,11 @@ export default {
       title: '原生APP交互webview桥接',
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'JsBridge',
           desc: 'android java和javascript桥接，灵感来自微信webview jsbridge',
           url: 'https://github.com/lzyzsd/JsBridge',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'DSBridge-Android',
           desc: '一个现代的跨平台JavaScript桥接，通过它您可以在JavaScript和本机之间同步或异步地调用彼此的功能',
           url: 'https://github.com/wendux/DSBridge-Android',
@@ -912,19 +869,16 @@ export default {
           url: 'https://github.com/hapijs/joi',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'validator.js',
           desc: '字符串验证插件、表单验证',
           url: 'https://github.com/chriso/validator.js',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'async-validator',
           desc: '异步验证器',
           url: 'https://github.com/yiminghe/async-validator',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'yup',
           desc: '无效的简单对象架构验证',
           url: 'https://runkit.com/jquense/yup',
@@ -962,7 +916,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'bootstrap-tour',
           desc: '使用Twitter Bootstrap Popovers快速方便地进行产品浏览',
           url: 'http://bootstraptour.com/',
