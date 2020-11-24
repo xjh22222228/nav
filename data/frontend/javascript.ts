@@ -878,6 +878,17 @@ export default {
       ]
     },
     {
+      title: '数据库',
+      nav: [
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/18673496?s=200&v=4',
+          name: 'localForage',
+          desc: '离线存储，使用简单但功能强大的API包装IndexedDB，WebSQL或localStorage。',
+          url: 'https://github.com/localForage/localForage',
+        },
+      ]
+    },
+    {
       title: '步骤引导',
       nav: [
         {

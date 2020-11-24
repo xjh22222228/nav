@@ -1,11 +1,11 @@
 export default {
-	title: 'TypeScript',
+  title: 'TypeScript',
+  icon: 'https://www.typescriptlang.org/favicon-32x32.png',
 	nav: [
 		{
       title: 'TypeScript',
       nav: [
         {
-          icon: 'assets/icon/frontend/007.png',
           name: 'TypeScript',
           desc: 'TypeScript 是一种由微软开发的自由和开源的编程语言，它是JavaScript的一个超集',
           url: 'https://www.tslang.cn/index.html',
@@ -16,7 +16,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/007.png',
           name: 'TypeSearch',
           desc: '搜索typescript 类型包 @types/node',
           url: 'https://microsoft.github.io/TypeSearch/',
@@ -27,7 +26,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/127.png',
           name: 'DefinitelyTyped',
           desc: '高质量TypeScript类型定义的存储库',
           url: 'http://definitelytyped.org/',
@@ -44,13 +42,11 @@ export default {
           url: 'https://github.com/typescript-eslint/typescript-eslint',
         },
         {
-          icon: 'assets/icon/frontend/007.png',
           name: 'awesome-typescript',
           desc: '用于客户端和服务器端开发的强大TypeScript资源的集合。在TypeScript中编写精彩的JavaScript',
           url: 'https://github.com/dzharii/awesome-typescript',
         },
         {
-          icon: 'assets/icon/frontend/007.png',
           name: 'TypeScript 入门教程',
           desc: 'TypeScript 入门教程',
           url: 'https://ts.xcatliu.com/',

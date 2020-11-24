@@ -156,6 +156,12 @@ export default {
           desc: '在线文件编码识别',
           url: 'http://tools.bugscaner.com/filebianma/',
         },
+        {
+          icon: 'http://tools.bugscaner.com/static/images/favicon.ico',
+          name: 'iptv',
+          desc: '收集来自世界各地的5000多个公共IPTV频道',
+          url: 'https://github.com/iptv-org/iptv',
+        },
       ]
     },
   ]
