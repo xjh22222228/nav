@@ -75,6 +75,12 @@ export default {
             'https://github.com/zeit/hyper'
           ]
         },
+        {
+          icon: 'https://www.listary.com/wp-content/themes/listary5/images/favicon.ico',
+          name: 'Listary',
+          desc: 'Listary是Windows的革命性搜索实用程序，它使休闲用户和高级用户都能快速找到文件并启动应用程序！',
+          url: 'https://www.listary.com/',
+        },
       ]
     },
     {
