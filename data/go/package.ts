@@ -49,6 +49,17 @@ export default {
           ]
         },
         {
+          icon: 'https://entgo.io/img/favicon.ico',
+          name: 'ent',
+          desc: '用于Go的简单但功能强大的实体框架，可轻松构建和维护具有大型数据模型的应用程序。',
+          url: 'https://entgo.io/',
+          language: [
+            '',
+            '',
+            'https://github.com/facebook/ent'
+          ]
+        },
+        {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'mysql',
           desc: 'Go MySQL驱动程序是Go（golang）数据库/ sql包的MySQL驱动程序',

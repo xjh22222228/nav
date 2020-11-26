@@ -103,7 +103,7 @@ export default {
           url: 'https://www.json.cn/',
         },
         {
-          icon: 'assets/icon/frontend/071.png',
+          icon: 'https://avatars0.githubusercontent.com/u/25822731?s=200&v=4',
           name: 'prettier',
           desc: 'Prettier是一个固定的代码格式化程序。它通过解析代码并使用自己的规则重新打印它来强制执行一致的样式，这些规则考虑了最大行长度，并在必要时包装代码',
           url: 'https://prettier.io/',
@@ -138,25 +138,25 @@ export default {
       title: 'CDN',
       nav: [
         {
-          icon: 'assets/icon/frontend/068.png',
+          icon: 'https://www.staticfile.org/assets/images/logo.png',
           name: 'Staticfile CDN',
           desc: '免费CDN服务，包括 JavaScript、CSS、图片和 swf 等静态文件',
           url: 'https://www.staticfile.org/',
         },
         {
-          icon: 'assets/icon/frontend/069.png',
+          icon: 'https://www.jsdelivr.com/favicon.ico',
           name: 'jsDelivr',
           desc: 'jsDelivr – 开源 CDN',
           url: 'https://www.jsdelivr.com/',
         },
         {
-          icon: 'assets/icon/frontend/070.png',
+          icon: 'https://www.bootcdn.cn/assets/ico/favicon.ico',
           name: 'BootCDN',
           desc: '稳定、快速、免费的前端开源项目 CDN 加速服务',
           url: 'https://www.bootcdn.cn/',
         },
         {
-          icon: 'assets/icon/frontend/112.png',
+          icon: 'https://avatars0.githubusercontent.com/u/637362?s=200&v=4',
           name: 'cdnjs',
           desc: '面向Web开发人员的免费和开源公共Web CDN！',
           url: 'https://cdnjs.com/',
@@ -172,19 +172,19 @@ export default {
       title: '其他',
       nav: [
         {
-          icon: 'assets/icon/utility-tool/011.png',
+          icon: 'https://www.fundebug.com/favicon.ico',
           name: 'FunDebug',
           desc: '支持前端JavaScript，后端Node.js以及微信小程序错误监控',
           url: 'https://www.fundebug.com/',
         },
         {
-          icon: 'assets/icon/utility-tool/010.png',
+          icon: 'https://www.caniuse.com/img/favicon-128.png',
           name: '前端兼容性查询',
           desc: '前端查询API各个厂商兼容性情况',
           url: 'https://www.caniuse.com/',
         },
         {
-          icon: 'assets/icon/frontend/035.png',
+          icon: 'http://browserhacks.com/assets/images/browserhacks.ico',
           name: 'Browserhacks',
           desc: 'Browserhacks是来自各个互联网的浏览器特定CSS和JavaScript hacks的广泛列表。',
           url: 'http://browserhacks.com/',
@@ -195,7 +195,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/0.svg',
           name: 'Character Entity Reference Chart',
           desc: '字符实体参考图，&gt;',
           url: 'https://dev.w3.org/html5/html-author/charref',
@@ -206,7 +205,7 @@ export default {
           url: 'https://github.com/xjh22222228/awesome-web-editor',
         },
         {
-          icon: 'assets/icon/utility-tool/013.png',
+          icon: 'https://jsfiddle.net/img/favicon.png',
           name: 'jsfiddle',
           desc: '强大的前端代码在线演示的网站',
           url: 'http://jsfiddle.net/',
@@ -223,7 +222,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/143.png',
+          icon: 'https://codesandbox.io/favicon.ico',
           name: 'codesandbox',
           desc: 'codesandbox是为Web应用程序定制的在线编辑器。',
           url: 'https://codesandbox.io',
