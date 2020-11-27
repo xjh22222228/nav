@@ -106,7 +106,7 @@ export default {
       title: 'PC端UI组件库',
       nav: [
         {
-          icon: 'assets/icon/frontend/024.png',
+          icon: 'https://avatars0.githubusercontent.com/u/20693613?s=200&v=4',
           name: 'iView',
           desc: '一套基于 Vue.js 的高质量UI 组件库',
           url: 'https://www.iviewui.com/docs/guide/install',
@@ -117,7 +117,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/025.png',
+          icon: 'https://avatars2.githubusercontent.com/u/12810740?s=200&v=4',
           name: 'Element',
           desc: '一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库',
           url: 'http://element-cn.eleme.io/#/zh-CN',
@@ -128,7 +128,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/038.png',
+          icon: 'https://avatars0.githubusercontent.com/u/22283362?s=200&v=4',
           name: 'Muse-UI',
           desc: '基于 Vue 2.0 优雅的 Material Design UI 组件库',
           url: 'https://muse-ui.org/#/zh-CN',
@@ -139,7 +139,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/091.png',
+          icon: 'https://qn.antdv.com/favicon.ico',
           name: 'Ant Design Vue',
           desc: '这里是 Ant Design 的 Vue 实现，开发和服务于企业级后台产品',
           url: 'https://antdv.com/docs/vue/introduce-cn/',
@@ -150,7 +150,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/094.svg',
+          icon: 'https://avatars2.githubusercontent.com/u/22138497?s=200&v=4',
           name: 'vuetify',
           desc: '让Vue和Material Design的强大力量在开发上助您一臂之力',
           url: 'https://vuetifyjs.com/zh-Hans/',
@@ -161,7 +161,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/121.png',
+          icon: 'https://avatars1.githubusercontent.com/u/22965283?s=200&v=4',
           name: 'bootstrap-vue',
           desc: 'BootstrapVue为Vue.js提供了最全面的Bootstrap 4组件和网格系统实现之一，并提供了广泛的自动WAI-ARIA可访问性标记',
           url: 'https://bootstrap-vue.js.org/',
@@ -172,7 +172,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/140.png',
+          icon: 'https://avatars0.githubusercontent.com/u/23659108?s=200&v=4',
           name: 'vue-material',
           desc: 'Vue material简单，轻巧，完全符合Google Material Design规范',
           url: 'https://vuematerial.io',
@@ -183,7 +183,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/141.png',
+          icon: 'https://avatars1.githubusercontent.com/u/26799900?s=200&v=4',
           name: 'buefy',
           desc: 'Buefy是一个基于Bulma框架和设计的Vue.js响应式UI组件的轻量级库。',
           url: 'https://buefy.org',
@@ -199,7 +199,7 @@ export default {
       title: '移动端UI组件库',
       nav: [
         {
-          icon: 'assets/icon/frontend/093.png',
+          icon: 'https://avatars2.githubusercontent.com/u/11404085?s=200&v=4',
           name: 'vant',
           desc: '轻量、可靠的移动端 Vue 组件库',
           url: 'https://youzan.github.io/vant/#/zh-CN/intro',
@@ -210,7 +210,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/027.png',
           name: 'vux',
           desc: '一个凑合的 Vue.js 移动端 UI 组件库',
           url: 'https://vux.li/',
@@ -221,7 +220,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/054.png',
+          icon: 'https://avatars0.githubusercontent.com/u/27521938?s=200&v=4',
           name: 'cube-ui',
           desc: '基于 Vue.js 实现的精致移动端组件库',
           url: 'https://didi.github.io/cube-ui/#/zh-CN',
@@ -232,7 +231,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/090.png',
+          icon: 'https://avatars0.githubusercontent.com/u/27521938?s=200&v=4',
           name: 'Mand Mobile',
           desc: '面向金融场景的Vue移动端UI组件库，丰富、灵活、实用，快速搭建优质的金融类产品，让复杂的金融场景变简单',
           url: 'https://didi.github.io/mand-mobile/#/zh-CN/home',
@@ -243,7 +242,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/026.svg',
+          icon: 'https://avatars2.githubusercontent.com/u/12810740?s=200&v=4',
           name: 'Mint UI',
           desc: '基于 Vue.js 的移动端组件库',
           url: 'http://mint-ui.github.io/#!/zh-cn',
@@ -254,7 +253,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/116.png',
           name: 'NutUI',
           desc: '一套京东风格的轻量级移动端Vue组件库',
           url: 'https://nutui.jd.com',
@@ -270,7 +268,6 @@ export default {
       title: '其他组件/插件',
       nav: [
         {
-          icon: 'assets/icon/frontend/039.png',
           name: 'vue-awesome-swiper',
           desc: '基于swiper封装的轮播图组件',
           url: 'https://surmon-china.github.io/vue-awesome-swiper/',
@@ -311,7 +308,6 @@ export default {
       title: '开箱即用',
       nav: [
         {
-          icon: 'assets/icon/frontend/024.png',
           name: 'iview-admin',
           desc: '基于iView的Vue 2.0管理系统模板',
           url: 'https://admin.iviewui.com/login',
@@ -327,7 +323,7 @@ export default {
       title: 'nuxt服务端渲染框架',
       nav: [
         {
-          icon: 'assets/icon/frontend/105.png',
+          icon: 'https://avatars2.githubusercontent.com/u/23360933?s=200&v=4',
           name: 'nuxt',
           desc: 'Vue.js 通用应用框架',
           url: 'https://zh.nuxtjs.org/',
@@ -338,7 +334,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/105.png',
+          icon: 'https://avatars2.githubusercontent.com/u/23360933?s=200&v=4',
           name: '创建nuxt的脚手架工具',
           desc: 'create-nuxt-app',
           url: 'https://github.com/nuxt/create-nuxt-app',

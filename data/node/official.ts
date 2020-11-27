@@ -1,11 +1,9 @@
-const DEFAULT_ICON = 'assets/icon/frontend/076.png'
 
 export default {
   title: '生态系统',
-  icon: DEFAULT_ICON,
+  icon: 'https://nodejs.org/static/images/favicons/favicon.ico',
   nav: [
     {
-      icon: DEFAULT_ICON,
       title: '官方',
       nav: [
         {
@@ -54,7 +52,7 @@ export default {
       title: '其他',
       nav: [
         {
-          icon: 'assets/icon/frontend/092.png',
+          icon: 'https://classic.yarnpkg.com/favicon.ico',
           name: 'Yarn',
           desc: '快速、可靠、安全的依赖管理',
           url: 'https://yarnpkg.com/zh-Hans/',
@@ -65,13 +63,11 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/076.png',
           name: 'awesome-nodejs',
           desc: 'Node.js软件包和资源',
           url: 'https://github.com/sindresorhus/awesome-nodejs',
         },
         {
-          icon: 'assets/icon/frontend/076.png',
           name: 'nodebestpractices',
           desc: '最大的Node.js最佳实践列表',
           url: 'https://github.com/goldbergyoni/nodebestpractices',
@@ -82,7 +78,7 @@ export default {
       title: 'CMS',
       nav: [
         {
-          icon: 'assets/icon/frontend/119.png',
+          icon: 'https://avatars0.githubusercontent.com/u/4449608?s=200&v=4',
           name: 'NodeBB',
           desc: '基于Node.js的论坛软件，为现代网站',
           url: 'https://nodebb.org/',
@@ -93,7 +89,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/139.jpg',
+          icon: 'https://avatars1.githubusercontent.com/u/2178663?s=200&v=4',
           name: 'Ghost',
           desc: 'Ghost 是基于 Node.js 构建的开源博客平台。Ghost 具有易用的书写界面和体验,博客内容默认采用 Markdown 语法书写。Ghost 的目标是取代臃肿的 Wordpress',
           url: 'https://ghost.org/',
@@ -109,7 +105,6 @@ export default {
       title: '资料',
       nav: [
         {
-          icon: 'assets/icon/frontend/076.png',
           name: 'nodebestpractices',
           desc: 'Node.js 最佳实践, 最大的汇集，且每周都在增长 - 当前，超过50个最佳实现，样式指南，架构建议已经呈现',
           url: 'https://github.com/goldbergyoni/nodebestpractices',

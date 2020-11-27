@@ -231,18 +231,18 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/059.png',
+          icon: 'https://gitalk.github.io/favicon.ico',
           name: 'GITALK',
           desc: '凹凸实验室出品的一款基于 Github Issue 和 Preact 开发的评论插件',
           url: 'https://gitalk.github.io/',
           language: [
             '',
             '',
-            'https://gitalk.github.io/'
+            'https://github.com/gitalk/gitalk'
           ]
         },
         {
-          icon: 'assets/icon/frontend/060.png',
+          icon: 'https://prismjs.com/assets/favicon.png',
           name: 'prism',
           desc: '轻巧，强大，优雅的代码语法高亮',
           url: 'https://prismjs.com/',
@@ -288,7 +288,6 @@ export default {
           url: 'https://github.com/iamkun/dayjs/blob/master/docs/zh-cn/API-reference.md',
         },
         {
-          icon: 'assets/icon/frontend/072.png',
           name: 'JsBarcode',
           desc: '易于使用但功能强大的条形码生成器，适用于Web和Node.js',
           url: 'https://lindell.me/JsBarcode/',
@@ -299,7 +298,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/079.png',
           name: 'clipboard.js',
           desc: '现代复制到剪贴板。没有Flash。只需3kb gzipped。',
           url: 'https://clipboardjs.com/',
@@ -320,7 +318,6 @@ export default {
           url: 'https://github.com/leizongmin/js-xss',
         },
         {
-          icon: 'assets/icon/frontend/097.png',
           name: 'mescroll',
           desc: '精致的下拉刷新和上拉加载 js框架.支持vue,完美运行于移动端和主流PC浏览器',
           url: 'http://www.mescroll.com/index.html',
@@ -351,13 +348,12 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/144.png',
           name: 'ms',
           desc: '使用此包可以轻松地将各种时间格式转换为毫秒。',
           url: 'https://github.com/zeit/ms',
         },
         {
-          icon: 'assets/icon/frontend/145.png',
+          icon: 'https://avatars2.githubusercontent.com/u/5298359?s=200&v=4',
           name: 'ramda',
           desc: '适用于JavaScript程序员的实用函数库',
           url: 'https://ramdajs.com',
@@ -561,7 +557,6 @@ export default {
       title: '动画',
       nav: [
         {
-          icon: 'assets/icon/frontend/073.png',
           name: 'wow.js',
           desc: '基于Animate.css,向下滚动页面时显示CSS动画,轻松自定义动画设置：样式，延迟，长度，偏移，迭代...',
           url: 'http://mynameismatthieu.com/WOW/',
@@ -572,7 +567,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/067.png',
           name: 'Waves',
           desc: '受Google材质设计启发的点击效果, 波纹效果',
           url: 'http://fian.my.id/Waves/#examples',
@@ -588,7 +582,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/074.png',
           name: 'anime',
           desc: '轻量级的JavaScript动画库。它适用于任何CSS属性，单个CSS转换，SVG或任何DOM属性以及JavaScript对象',
           url: 'http://animejs.com/',
@@ -674,7 +667,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/051.png',
           name: 'webuploader',
           desc: '百度出品，采用大文件分片并发上传，极大的提高了文件上传效率。',
           url: 'http://fex.baidu.com/webuploader/',
@@ -695,7 +687,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/082.png',
           name: 'ViewerJS',
           desc: 'JavaScript中的文档阅读器, pdf/ppt/opt/odt等文件渲染成HTML',
           url: 'https://viewerjs.org/',
@@ -746,7 +737,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/109.png',
           name: 'viewerjs',
           desc: 'javascript图片预览',
           url: 'https://fengyuanchen.github.io/viewerjs/',
@@ -762,7 +752,7 @@ export default {
       title: '音频/视频',
       nav: [
         {
-          icon: 'assets/icon/frontend/096.png',
+          icon: 'https://howlerjs.com/assets/images/favicon.ico',
           name: 'howler.js',
           desc: '现代 Web 音频 javascript 库',
           url: 'https://howlerjs.com/',
@@ -773,7 +763,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/101.png',
           name: 'DPlayer',
           desc: '哇，这么可爱的HTML5 danmaku视频播放器',
           url: 'http://dplayer.js.org/#/zh-Hans/',
@@ -784,7 +773,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/102.jpg',
           name: 'APlayer',
           desc: '哇，这么可爱的HTML5音乐播放器',
           url: 'https://aplayer.js.org/#/zh-Hans/',
@@ -800,7 +788,7 @@ export default {
       title: '图形',
       nav: [
         {
-          icon: 'assets/icon/frontend/043.png',
+          icon: 'https://threejs.org/files/favicon.ico',
           name: 'three.js',
           desc: 'JavaScript 3D引擎',
           url: 'https://threejs.org/',
@@ -832,7 +820,7 @@ export default {
       title: 'UI组件库',
       nav: [
         {
-          icon: 'assets/icon/frontend/111.png',
+          icon: 'https://getuikit.com/images/favicon.png',
           name: 'uikit',
           desc: '一款轻量级、模块化的前端框架可快速构建强大的web前端界面',
           url: 'http://www.getuikit.net/',
@@ -863,7 +851,6 @@ export default {
       title: '参数验证',
       nav: [
         {
-          icon: 'assets/icon/frontend/142.png',
           name: 'joi',
           desc: '对象模式验证',
           url: 'https://github.com/hapijs/joi',
@@ -887,6 +874,17 @@ export default {
             '',
             'https://github.com/jquense/yup#using-a-custom-locale-dictionary'
           ]
+        },
+      ]
+    },
+    {
+      title: '数据库',
+      nav: [
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/18673496?s=200&v=4',
+          name: 'localForage',
+          desc: '离线存储，使用简单但功能强大的API包装IndexedDB，WebSQL或localStorage。',
+          url: 'https://github.com/localForage/localForage',
         },
       ]
     },

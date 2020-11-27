@@ -1,17 +1,16 @@
 export default {
-	title: '参考资料',
+  title: '参考资料',
+  icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png',
 	nav: [
 		{
       title: '书籍',
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'JavaScript 20 年',
           desc: 'JavaScript 20 年',
           url: 'https://cn.history.js.org/',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: '你不知道的JavaScript',
           desc: '你不知道的JavaScript',
           url: 'https://github.com/getify/You-Dont-Know-JS',
@@ -23,7 +22,6 @@ export default {
           url: 'https://zh.javascript.info/',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'ECMAScript 6入门',
           desc: 'ECMAScript 6入门',
           url: 'http://es6.ruanyifeng.com/#README',
@@ -34,7 +32,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'JavaScript教程',
           desc: 'JavaScript 标准参考教程',
           url: 'https://wangdoc.com/javascript/basic/index.html',
@@ -50,13 +47,12 @@ export default {
       title: '文档',
       nav: [
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'JavaScript Puzzlers',
           desc: '你真的了解JavaScript吗？来试试吧！',
           url: 'http://javascript-puzzlers.herokuapp.com/',
         },
         {
-          icon: 'assets/icon/frontend/040.png',
+          icon: 'https://avatars1.githubusercontent.com/u/41361384?s=200&v=4',
           name: 'InterviewMap',
           desc: '打造最好的面试图谱',
           url: 'https://yuchengkai.cn/docs/zh/',
@@ -67,13 +63,11 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: '飞冰早报',
           desc: '飞冰早报',
           url: 'http://fe.jskou.com/ice',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'jsdoc',
           desc: '用于JavaScript的API文档生成器。',
           url: 'http://www.css88.com/doc/jsdoc/index.html',
@@ -84,7 +78,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/075.png',
+          icon: 'https://avatars3.githubusercontent.com/u/43479428?s=200&v=4',
           name: '30 seconds of code',
           desc: '精选的有用JavaScript代码段集合，您可以在30秒或更短的时间内理解这些代码段。',
           url: 'https://30secondsofcode.org/',
@@ -95,13 +89,12 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/086.jpg',
           name: '33-js-concepts',
           desc: 'JavaScript开发者应懂的33个概念',
           url: 'https://github.com/stephentian/33-js-concepts',
         },
         {
-          icon: 'assets/icon/frontend/114.png',
+          icon: 'https://avatars1.githubusercontent.com/u/1725583?s=200&v=4',
           name: 'ECMAScript Proposals',
           desc: '跟踪ECMAScript 提案',
           url: 'https://tc39.github.io/process-document/',
@@ -112,7 +105,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/114.png',
+          icon: 'https://avatars1.githubusercontent.com/u/1725583?s=200&v=4',
           name: 'ecma262',
           desc: 'ECMA-262的状态，流程和文档',
           url: 'https://tc39.es/ecma262/',
@@ -129,7 +122,6 @@ export default {
           url: 'https://bonsaiden.github.io/JavaScript-Garden/zh/',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'Airbnb JavaScript 编码规范',
           desc: 'Airbnb JavaScript 编码规范',
           url: 'https://github.com/yuche/javascript',
@@ -140,13 +132,11 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'Daily-Interview-Question',
           desc: '工作日每天一道前端大厂面试题，祝大家天天进步，一年后会看到不一样的自己',
           url: 'https://github.com/Advanced-Frontend/Daily-Interview-Question',
         },
         {
-          icon: 'assets/icon/frontend/023.png',
           name: 'javascript-algorithms',
           desc: 'JavaScript 算法与数据结构',
           url: 'https://github.com/trekhleb/javascript-algorithms',

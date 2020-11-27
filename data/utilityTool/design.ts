@@ -60,7 +60,7 @@ export default {
           url: 'https://www.chuangkit.com/',
         },
         {
-          icon: 'assets/icon/utility-tool/046.png',
+          icon: 'https://cdn.jifo.co/favicon/favicon.ico',
           name: '在线制作图表',
           desc: '信息图表是一种易于使用的信息图表和图表制造商。创建和分享美丽的信息图表，在线报告和互动地图。在这里做你自己',
           url: 'https://infogram.com/',

@@ -154,4 +154,11 @@ export default class HomeComponent {
 
   handleSearch = null
   onImgError = onImgError
+
+  onSideLogoError(e) {
+    const el = e.currentTarget;
+    if (el) {
+      el?.parentNode?.removeChild(el)
+    }
+  }
 }
