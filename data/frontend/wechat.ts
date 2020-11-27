@@ -1,11 +1,11 @@
 export default {
   title: '微信开发',
+  icon: 'https://avatars0.githubusercontent.com/u/18461506?s=200&v=4',
   nav: [
     {
       title: '小程序文档',
       nav: [
         {
-          icon: 'assets/icon/frontend/044.svg',
           name: '小程序开发',
           desc: '微信小程序',
           url: 'https://developers.weixin.qq.com/miniprogram/dev/index.html',
@@ -16,7 +16,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/044.svg',
           name: '小游戏开发',
           desc: '微信小游戏',
           url: 'https://developers.weixin.qq.com/minigame/dev/index.html?t=18082922',
@@ -32,7 +31,6 @@ export default {
       title: '小程序框架',
       nav: [
         {
-          icon: 'assets/icon/frontend/045.png',
           name: 'mpvue',
           desc: 'Vue.js 开发小程序的前端框架。框架基于 Vue.js 核心',
           url: 'http://mpvue.com/',
@@ -43,7 +41,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/044.svg',
           name: 'wepy',
           desc: '官方小程序组件化开发框架',
           url: 'https://tencent.github.io/wepy/',
@@ -54,7 +51,7 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/099.png',
+          icon: 'https://avatars0.githubusercontent.com/u/27521938?s=200&v=4',
           name: 'mpx',
           desc: 'Mpx是一款致力于提高小程序开发体验的增强型小程序框架(滴滴出品，基于vue)',
           url: 'https://didi.github.io/mpx/',
@@ -87,7 +84,7 @@ export default {
       title: '小程序组件库/插件',
       nav: [
         {
-          icon: 'assets/icon/frontend/093.png',
+          icon: 'https://avatars2.githubusercontent.com/u/11404085?s=200&v=4',
           name: 'vant-weapp',
           desc: '轻量、可靠的小程序 UI 组件库',
           url: 'https://vant-contrib.gitee.io/vant-weapp/#/intro',
@@ -104,13 +101,11 @@ export default {
           url: 'https://github.com/Tencent/weui-wxss/',
         },
         {
-          icon: 'assets/icon/frontend/044.svg',
           name: 'wxParse',
           desc: 'wxParse-微信小程序富文本解析自定义组件，支持HTML及markdown解析',
           url: 'https://github.com/icindy/wxParse',
         },
         {
-          icon: 'assets/icon/frontend/044.svg',
           name: 'mpvue-wxParse',
           desc: '适用于 Mpvue 的微信小程序富文本解析自定义组件',
           url: 'https://github.com/F-loat/mpvue-wxParse',
@@ -128,7 +123,6 @@ export default {
           url: 'https://lbs.qq.com/qqmap_wx_jssdk/index.html',
         },
         {
-          icon: 'assets/icon/frontend/151.png',
           name: 'ColorUI',
           desc: '鲜亮的高饱和色彩，专注视觉的小程序组件库',
           url: 'https://www.color-ui.com/',
@@ -139,7 +133,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/044.svg',
           name: 'weapp-input-frame',
           desc: '验证码、支付密码输入框组件',
           url: 'https://github.com/xjh22222228/weapp-input-frame',
@@ -150,19 +143,16 @@ export default {
       title: '微信公众号开发辅助工具',
       nav: [
         {
-          icon: 'assets/icon/frontend/078.svg',
           name: 'JS接口签名校验工具',
           desc: '微信 JS 接口签名校验工具',
           url: 'https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign',
         },
         {
-          icon: 'assets/icon/frontend/078.svg',
           name: '接口调试工具',
           desc: '微信公众平台接口调试工具',
           url: 'https://mp.weixin.qq.com/debug/',
         },
         {
-          icon: 'assets/icon/frontend/078.svg',
           name: 'computed',
           desc: '小程序自定义组件 computed / watch 扩展',
           url: 'https://github.com/wechat-miniprogram/computed',
@@ -173,13 +163,11 @@ export default {
       title: '资源',
       nav: [
         {
-          icon: 'assets/icon/frontend/078.svg',
           name: 'awesome-github-wechat-weapp',
           desc: '微信小程序开源项目库汇总',
           url: 'https://github.com/opendigg/awesome-github-wechat-weapp',
         },
         {
-          icon: 'assets/icon/frontend/078.svg',
           name: 'awesome-wechat-weapp',
           desc: '微信小程序开发资源汇总',
           url: 'https://github.com/justjavac/awesome-wechat-weapp',
@@ -190,13 +178,11 @@ export default {
       title: '其他',
       nav: [
         {
-          icon: 'assets/icon/frontend/078.svg',
           name: '微信开放社区',
           desc: '小程序开发者专区，微信公众平台,微信开放社区,开发者专区',
           url: 'https://developers.weixin.qq.com/',
         },
         {
-          icon: 'assets/icon/frontend/120.png',
           name: 'wechat-format',
           desc: '微信公众号排版编辑器，转换 Markdown 到微信特制的 HTML',
           url: 'https://lab.lyric.im/wxformat/',
@@ -207,7 +193,6 @@ export default {
           ]
         },
         {
-          icon: 'assets/icon/frontend/078.svg',
           name: '微信开放平台',
           desc: '微信开放平台',
           url: 'https://open.weixin.qq.com/',

@@ -307,6 +307,12 @@ const nav = {
           desc: '一站式敏捷研发协作云平台, 凝聚腾讯研发方法及敏捷实践精髓, 助力企业研发更高效、协作更敏捷',
           url: 'https://www.tapd.cn/',
         },
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/56705483?s=200&v=4',
+          name: 'Hoppscotch',
+          desc: '一个免费，快速，美观的API请求构建器，供10万多个开发人员使用。(原名叫 Postwoman)',
+          url: 'https://hoppscotch.io/',
+        },
       ]
     },
     {
