@@ -1,11 +1,11 @@
 export default {
   title: '生态系统',
+  icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
   nav: [
     {
       title: '生态',
       nav: [
         {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'Golang',
           desc: 'Go编程语言',
           url: 'https://go-zh.org/',
@@ -16,13 +16,11 @@ export default {
           ]
         },
         {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'go.dev',
           desc: '大规模构建快速，可靠，高效的软件',
           url: 'https://go.dev/',
         },
         {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'awesome-go',
           desc: '精选的Go框架，库和软件的精选列表',
           url: 'https://github.com/jobbole/awesome-go-cn',
@@ -61,7 +59,6 @@ export default {
       title: 'WEB框架',
       nav: [
         {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'gin',
           desc: 'Gin是用Go（Golang）编写的Web框架。它具有类似于martini的API，其性能比httprouter快40倍。如果您需要性能和良好的生产率，您会喜欢Gin',
           url: 'https://learnku.com/docs/gin-gonic/2019/go-gin-document',
@@ -72,7 +69,6 @@ export default {
           ]
         },
         {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'beego',
           desc: 'beego是用于Go编程语言的开源，高性能Web框架',
           url: 'http://beego.me',
@@ -83,7 +79,6 @@ export default {
           ]
         },
         {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: 'martini',
           desc: 'Go的经典Web框架',
           url: 'http://martini.codegangsta.io',
@@ -125,53 +120,6 @@ export default {
             '',
             'https://github.com/gofiber/fiber'
           ]
-        },
-      ]
-    },
-    {
-      title: 'CLI',
-      nav: [
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'color',
-          desc: 'CLI 控制台颜色渲染工具库, 支持Windows',
-          url: 'https://github.com/fatih/color',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'cobra',
-          desc: 'Cobra既是用于创建功能强大的现代CLI应用程序的库，又是用于生成应用程序和命令文件的程序',
-          url: 'https://github.com/spf13/cobra',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'cli',
-          desc: '一个简单，快速且有趣的软件包，用于在Go中构建命令行应用',
-          url: 'https://github.com/urfave/cli/',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'promptui',
-          desc: '命令行应用程序的交互式提示',
-          url: 'https://github.com/manifoldco/promptui',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'pb',
-          desc: 'Golang的控制台进度栏',
-          url: 'https://github.com/cheggaaa/pb',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'godotenv',
-          desc: '从`.env`文件加载环境变量。',
-          url: 'https://github.com/joho/godotenv',
-        },
-        {
-          icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
-          name: 'go-prompt',
-          desc: '受python-prompt-toolkit启发，在Go中构建强大的交互式提示。',
-          url: 'https://github.com/c-bata/go-prompt',
         },
       ]
     },
