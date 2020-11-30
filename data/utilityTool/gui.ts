@@ -5,6 +5,12 @@ export default {
       title: 'GUI',
       nav: [
         {
+          icon: 'https://bitwarden.com/images/icons/favicon-32x32.png',
+          name: 'Bitwarden',
+          desc: '个人和企业在任何设备上存储，共享和保护敏感数据的最简单，最安全的方法',
+          url: 'https://bitwarden.com/',
+        },
+        {
           icon: 'https://typora.io/img/favicon-48.png',
           name: 'Typeora',
           desc: 'Typora是一款跨平台的最小Markdown编辑器，可为Markdown读者和作家提供无缝的体验',

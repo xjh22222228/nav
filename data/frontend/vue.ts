@@ -128,6 +128,17 @@ export default {
           ]
         },
         {
+          icon: 'https://avatars2.githubusercontent.com/u/12810740?s=200&v=4',
+          name: 'Element Plus',
+          desc: '支持Vue3.0的Element',
+          url: 'https://element-plus.org/#/zh-CN',
+          language: [
+            '',
+            '',
+            'https://github.com/element-plus/element-plus',
+          ]
+        },
+        {
           icon: 'https://avatars0.githubusercontent.com/u/22283362?s=200&v=4',
           name: 'Muse-UI',
           desc: '基于 Vue 2.0 优雅的 Material Design UI 组件库',
