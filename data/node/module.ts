@@ -1,12 +1,10 @@
 
-const DEFAULT_ICON = 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png';
-
 export default {
-  title: '常用模块',
+  title: '依赖包',
+  icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png',
   nav: [
     {
       title: '网络请求',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: 'request',
@@ -47,7 +45,6 @@ export default {
     },
     {
       title: '单元测试',
-      icon: DEFAULT_ICON,
       nav: [
         {
           icon: 'https://pptr.dev/favicons/apple-touch-icon.png',
@@ -152,7 +149,6 @@ export default {
     },
     {
       title: '数据库',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: 'node-mysql2',
@@ -231,7 +227,6 @@ export default {
     },
     {
       title: '图形相关',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: 'node-canvas',
@@ -262,7 +257,6 @@ export default {
     },
     {
       title: '代理',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: 'node-http-proxy',
@@ -278,7 +272,6 @@ export default {
     },
     {
       title: 'AST辅助工具',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: 'esprima',
@@ -299,7 +292,6 @@ export default {
     },
     {
       title: '文件相关',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: 'node-xlsx',
@@ -342,7 +334,6 @@ export default {
     },
     {
       title: '微信开发',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: 'wechat-oauth',
@@ -373,7 +364,6 @@ export default {
     },
     {
       title: 'CLI',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: 'Glob',
@@ -479,7 +469,6 @@ export default {
     },
     {
       title: '模板引擎',
-      icon: DEFAULT_ICON,
       nav: [
         {
           icon: 'https://handlebarsjs.com/images/favicon.png',
@@ -513,7 +502,6 @@ export default {
     },
     {
       title: '其他',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: 'node-xml2js',
