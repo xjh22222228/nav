@@ -104,6 +104,11 @@ export default {
           desc: '适用于Python和CLI的快速，可扩展的进度栏',
           url: 'https://github.com/tqdm/tqdm',
         },
+        {
+          name: 'paramiko',
+          desc: '领先的Python SSHv2协议库',
+          url: 'https://github.com/paramiko/paramiko',
+        },
       ]
     }
   ]
