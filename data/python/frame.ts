@@ -17,6 +17,17 @@ export default {
             'https://github.com/django/django'
           ]
         },
+        {
+          icon: 'https://avatars0.githubusercontent.com/u/16748505?s=200&v=4',
+          name: 'flask',
+          desc: '用于构建Web应用程序的Python微框架。',
+          url: 'https://palletsprojects.com/p/flask/',
+          language: [
+            '',
+            '',
+            'https://github.com/pallets/flask'
+          ]
+        },
       ]
     }
   ]

@@ -180,5 +180,22 @@ export default {
         }
       ]
     },
+    {
+      title: '飞机场',
+      nav: [
+        {
+          icon: 'https://avatars0.githubusercontent.com/u/14110142?s=200&v=4',
+          name: 'v2ray',
+          desc: '用于构建代理绕过网络限制的平台。',
+          url: 'https://github.com/v2ray/v2ray-core',
+        },
+        {
+          icon: 'https://github.com/Dreamacro/clash/raw/master/docs/logo.png',
+          name: 'clash',
+          desc: 'Go中基于规则的隧道',
+          url: 'https://github.com/Dreamacro/clash',
+        },
+      ]
+    },
   ]
 };
