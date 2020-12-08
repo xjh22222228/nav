@@ -44,6 +44,11 @@ export default {
           desc: 'Python大全备忘单',
           url: 'https://github.com/gto76/python-cheatsheet',
         },
+        {
+          name: 'awesome-python',
+          desc: '精选的Python框架，库，软件和资源的精选清单。',
+          url: 'https://github.com/vinta/awesome-python',
+        },
       ]
     },
   ]

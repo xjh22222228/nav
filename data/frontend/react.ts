@@ -334,11 +334,6 @@ export default {
           ]
         },
         {
-          name: 'react-beautiful-dnd',
-          desc: '漂亮的和可访问的拖放列表',
-          url: 'https://github.com/atlassian/react-beautiful-dnd',
-        },
-        {
           name: 'react-keeper',
           desc: '一个react路由库，更适合移动端使用，拥有缓存等功能',
           url: 'https://github.com/vifird/react-keeper',
@@ -457,6 +452,37 @@ export default {
             '',
             '',
             'https://github.com/jaredpalmer/formik'
+          ]
+        },
+      ]
+    },
+    {
+      title: '拖拽组件',
+      nav: [
+        {
+          icon: 'https://avatars2.githubusercontent.com/u/25307599?s=200&v=4',
+          name: 'react-dnd',
+          desc: 'React DnD是一组React实用程序，可帮助您构建复杂的拖放接口，同时保持组件分离',
+          url: 'https://react-dnd.github.io/react-dnd/about',
+          language: [
+            '',
+            '',
+            'https://github.com/react-dnd/react-dnd'
+          ]
+        },
+        {
+          name: 'react-beautiful-dnd',
+          desc: '漂亮的和可访问的拖放列表',
+          url: 'https://github.com/atlassian/react-beautiful-dnd',
+        },
+        {
+          name: 'react-rnd',
+          desc: '一个可调整大小且可拖动的React组件。',
+          url: 'bokuweb.github.io/react-rnd/stories',
+          language: [
+            '',
+            '',
+            'https://github.com/bokuweb/react-rnd'
           ]
         },
       ]
@@ -593,17 +619,6 @@ export default {
             'https://nextjs.org/',
             'https://www.nextjs.cn/',
             'https://github.com/zeit/next.js'
-          ]
-        },
-        {
-          icon: 'https://avatars2.githubusercontent.com/u/25307599?s=200&v=4',
-          name: 'react-dnd',
-          desc: 'React DnD是一组React实用程序，可帮助您构建复杂的拖放接口，同时保持组件分离',
-          url: 'https://react-dnd.github.io/react-dnd/about',
-          language: [
-            '',
-            '',
-            'https://github.com/react-dnd/react-dnd'
           ]
         },
         {

@@ -6,6 +6,16 @@ const nav = {
       title: '开发神器',
       nav: [
         {
+          name: 'Convert cURL',
+          desc: '将curl命令转换为Python，JavaScript，PHP，R，Go，Rust，Dart，JSON，Ansible，Elixir。',
+          url: 'https://curl.trillworks.com/',
+          language: [
+            '',
+            '',
+            'https://github.com/NickCarneiro/curlconverter'
+          ]
+        },
+        {
           name: 'Supervisor',
           desc: 'Supervisor是一个客户端/服务器系统，允许其用户监视和控制类似UNIX的操作系统上的多个进程。',
           url: 'http://supervisord.org/',

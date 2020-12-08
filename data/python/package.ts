@@ -75,6 +75,17 @@ export default {
       ]
     },
     {
+      title: '数据分析',
+      nav: [
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/21206976?s=200&v=4',
+          name: 'pandas',
+          desc: '功能强大的Python数据分析工具包',
+          url: 'https://github.com/pandas-dev/pandas',
+        },
+      ]
+    },
+    {
       title: 'CLI',
       nav: [
         {
@@ -86,6 +97,22 @@ export default {
           name: 'colorama',
           desc: 'Python中简单的跨平台彩色终端文本',
           url: 'https://pypi.org/project/colorama/',
+        },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/12731565?s=200&v=4',
+          name: 'tqdm',
+          desc: '适用于Python和CLI的快速，可扩展的进度栏',
+          url: 'https://github.com/tqdm/tqdm',
+        },
+        {
+          name: 'paramiko',
+          desc: '领先的Python SSHv2协议库',
+          url: 'https://github.com/paramiko/paramiko',
+        },
+        {
+          name: 'click',
+          desc: 'Python可组合命令行界面工具包',
+          url: 'https://github.com/pallets/click',
         },
       ]
     }

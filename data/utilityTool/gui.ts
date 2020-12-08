@@ -5,6 +5,12 @@ export default {
       title: 'GUI',
       nav: [
         {
+          icon: 'https://bitwarden.com/images/icons/favicon-32x32.png',
+          name: 'Bitwarden',
+          desc: '个人和企业在任何设备上存储，共享和保护敏感数据的最简单，最安全的方法',
+          url: 'https://bitwarden.com/',
+        },
+        {
           icon: 'https://typora.io/img/favicon-48.png',
           name: 'Typeora',
           desc: 'Typora是一款跨平台的最小Markdown编辑器，可为Markdown读者和作家提供无缝的体验',
@@ -172,6 +178,23 @@ export default {
           desc: '向日葵远程控制软件是一款免费的集远程控制电脑手机、远程桌面连接、远程开机、远程管理、支持内网穿透的一体化远程控制管理工具软件',
           url: 'https://sunlogin.oray.com/',
         }
+      ]
+    },
+    {
+      title: '飞机场',
+      nav: [
+        {
+          icon: 'https://avatars0.githubusercontent.com/u/14110142?s=200&v=4',
+          name: 'v2ray',
+          desc: '用于构建代理绕过网络限制的平台。',
+          url: 'https://github.com/v2ray/v2ray-core',
+        },
+        {
+          icon: 'https://github.com/Dreamacro/clash/raw/master/docs/logo.png',
+          name: 'clash',
+          desc: 'Go中基于规则的隧道',
+          url: 'https://github.com/Dreamacro/clash',
+        },
       ]
     },
   ]
