@@ -109,6 +109,11 @@ export default {
           desc: '领先的Python SSHv2协议库',
           url: 'https://github.com/paramiko/paramiko',
         },
+        {
+          name: 'click',
+          desc: 'Python可组合命令行界面工具包',
+          url: 'https://github.com/pallets/click',
+        },
       ]
     }
   ]
