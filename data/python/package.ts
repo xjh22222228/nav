@@ -75,6 +75,21 @@ export default {
       ]
     },
     {
+      title: '运算',
+      nav: [
+        {
+          name: 'numpy',
+          desc: '使用Python进行科学计算的基本软件包。',
+          url: 'https://numpy.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/numpy/numpy'
+          ]
+        },
+      ]
+    },
+    {
       title: '数据分析',
       nav: [
         {

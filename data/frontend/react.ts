@@ -478,7 +478,7 @@ export default {
         {
           name: 'react-rnd',
           desc: '一个可调整大小且可拖动的React组件。',
-          url: 'bokuweb.github.io/react-rnd/stories',
+          url: 'https://bokuweb.github.io/react-rnd/stories',
           language: [
             '',
             '',
