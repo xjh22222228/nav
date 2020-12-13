@@ -41,7 +41,6 @@ $width: 1200px;
   .wallpaper {
     height: 350px;
     background: url("../../../assets/img/wallpaper.jpg") no-repeat;
-    border-radius: 8px;
     background-position: top center;
     display: flex;
     justify-content: center;
@@ -158,6 +157,7 @@ $width: 1200px;
 
       .url-box {
         display: flex;
+        height: 100%;
 
         .right {
           flex: 1;
