@@ -33,8 +33,6 @@
       </aside>
 
       <div class="main">
-        <app-loading *ngIf="searchLoading"></app-loading>
-
         <app-search-engine (onSearch)="onSearch($event)"></app-search-engine>
  
         <ul *ngIf="currentList.length && currentList[0].nav">
