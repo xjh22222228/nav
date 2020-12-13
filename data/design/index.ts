@@ -3,10 +3,9 @@ const nav = {
   title: 'Design',
   nav: [
     {
-      title: '',
       nav: [
         {
-          title: '素材',
+          title: '材料',
           nav: [
             {
               icon: 'http://www.51yuansu.com/favicon.ico',
@@ -19,12 +18,6 @@ const nav = {
               name: '千库网',
               desc: '致力于为设计师提供最优质的素材',
               url: 'http://588ku.com/',
-            },
-            {
-              icon: 'https://www.iconfont.cn/favicon.ico',
-              name: 'iconfont',
-              desc: '阿里妈妈MUX倾力打造的矢量图标管理、交流平台',
-              url: 'http://www.iconfont.cn/',
             },
             {
               icon: 'https://huaban.com/img/touch-icon-ipad.png',
@@ -51,16 +44,6 @@ const nav = {
               url: 'https://www.artstation.com/',
             },
             {
-              name: 'SVG Logos',
-              desc: '超过1000+SVG Logos集合',
-              url: 'https://github.com/gilbarbara/logos/archive/master.zip',
-              language: [
-                '',
-                '',
-                'https://github.com/gilbarbara/logos/tree/master/logos'
-              ]
-            },
-            {
               icon: 'https://static.canva.com/static/images/favicon.ico',
               name: 'Design Templates - Canva',
               desc: '设计模板 - Canva',
@@ -77,12 +60,6 @@ const nav = {
               name: '稿定设计',
               desc: '电商素材、新媒体配图、手机海报等。',
               url: 'https://www.gaoding.com/',
-            },
-            {
-              icon: 'https://icons8.cn/vue-static/landings/primary-landings/favs/icons8_fav_96%C3%9796.png',
-              name: 'icons8',
-              desc: '下载免费图标，音乐，素材图片，矢量，UX插图和视频音乐',
-              url: 'https://icons8.cn/',
             },
             {
               icon: 'https://undraw.co/favicon-32x32.png',
@@ -103,22 +80,55 @@ const nav = {
               url: 'https://octodex.github.com/',
             },
             {
-              icon: 'https://www.shareicon.net/favicon.ico',
-              name: 'shareicon',
-              desc: '超过25万个icon免费集合',
-              url: 'https://www.shareicon.net/',
-            },
-            {
               icon: 'http://collectui.com/img/favicon.ico',
               name: 'Collect UI',
               desc: '从每日ui档案库及其他收集的每日灵感。 根据Dribbble拍摄的照片，手工挑选，每天更新',
               url: 'http://collectui.com/',
+            },
+          ]
+        },
+        {
+          title: '图标',
+          nav: [
+            {
+              icon: 'https://icons8.cn/vue-static/landings/primary-landings/favs/icons8_fav_96%C3%9796.png',
+              name: 'icons8',
+              desc: '下载免费图标，音乐，素材图片，矢量，UX插图和视频音乐',
+              url: 'https://icons8.cn/',
             },
             {
               icon: 'https://www.vectorlogo.zone/favicon.ico',
               name: 'vectorlogo',
               desc: '3000多种精美的SVG徽标，非常适合您的自述文件或积分页面',
               url: 'https://www.vectorlogo.zone/',
+            },
+            {
+              icon: 'https://www.shareicon.net/favicon.ico',
+              name: 'shareicon',
+              desc: '超过25万个icon免费集合',
+              url: 'https://www.shareicon.net/',
+            },
+            {
+              name: 'SVG Logos',
+              desc: '超过1000+SVG Logos集合',
+              url: 'https://github.com/gilbarbara/logos/archive/master.zip',
+              language: [
+                '',
+                '',
+                'https://github.com/gilbarbara/logos/tree/master/logos'
+              ]
+            },
+            {
+              icon: 'https://www.iconfont.cn/favicon.ico',
+              name: 'iconfont',
+              desc: '阿里妈妈MUX倾力打造的矢量图标管理、交流平台',
+              url: 'http://www.iconfont.cn/',
+            },
+            {
+              icon: 'https://iconscout.com/favicon.ico',
+              name: 'iconscount',
+              desc: '免费下载图标，插图和库存照片',
+              url: 'https://iconscout.com/',
             },
           ]
         },

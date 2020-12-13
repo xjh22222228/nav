@@ -228,6 +228,12 @@ const nav = {
           desc: '提供用户脚本的网站',
           url: 'https://greasyfork.org/zh-CN',
         },
+        {
+          icon: 'https://img.kuaidaili.com/img/favicon.ico?v=3',
+          name: '免费代理',
+          desc: '免费HTTP代理IP',
+          url: 'https://www.kuaidaili.com/free/inha/1/',
+        },
       ]
     },
     {
