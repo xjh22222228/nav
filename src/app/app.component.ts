@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { TONGJI_URL, TITLE, THEME } from '../../config'
+import { TONGJI_URL, TITLE } from '../../config'
 import { queryString, setLocation } from '../utils'
 
 @Component({
@@ -17,9 +17,7 @@ export class AppComponent {
     this.goRoute()
     this.appendTongji()
 
-    this.activatedRoute.queryParams.subscribe(() => {
-      setLocation()
-    })
+    this.activatedRoute.queryParams.subscribe(setLocation)
   }
 
   goRoute() {
@@ -29,8 +27,6 @@ export class AppComponent {
 
     if (screenWidth < 768) {
       this.router.navigate(['/app'], { queryParams })
-    } else {
-      this.router.navigate(['/' + THEME], { queryParams })
     }
   }
 
