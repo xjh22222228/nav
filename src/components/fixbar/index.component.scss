@@ -1,0 +1,23 @@
+.fixbar {
+  z-index: 9;
+  position: fixed;
+  bottom: 30px;
+  right: 15px;
+
+  .wrapper {
+    margin-top: 10px;
+    transition: .1s linear;
+    text-align: center;
+
+    &.active {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    transform: rotate(180deg);
+    cursor: pointer;
+  }
+}

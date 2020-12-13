@@ -1,17 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-no-data',
   templateUrl: './no-data.component.html',
   styleUrls: ['./no-data.component.scss']
 })
-export class NoDataComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class NoDataComponent {
   goBack = () => {
     history.go(-1);
   }

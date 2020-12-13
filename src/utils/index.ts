@@ -69,8 +69,12 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
   return searchResultList
 }
 
+let total = 0
 export function totalWeb(): number {
-  let total = 0;
+  if (total) {
+    return total
+  }
+
   function r(nav) {
     if (!Array.isArray(nav)) return
 
@@ -215,4 +219,9 @@ export function getDefaultSearchEngine(): ISearchEngineProps {
 
 export function setDefaultSearchEngine(engine: ISearchEngineProps) {
   window.localStorage.setItem('engine', JSON.stringify(engine))
+}
+
+export function imgErrorInRemove(e) {
+  const el = e.currentTarget;
+  el?.parentNode?.removeChild?.(el)
 }

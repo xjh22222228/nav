@@ -17,7 +17,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-overflow-scrolling: touch;
-  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", Arial, "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  font: 14px/1.5 -apple-system,BlinkSystemFont,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Helevetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei UI","Microsoft YaHei","Source Han Sans CN",sans-serif;
   font-size: 14px;
   color: #333;
 }
@@ -106,6 +106,20 @@ em {
 /* 搜索高亮关键字 */
 b {
   color: #f50 !important;
+}
+
+// 折叠箭头
+.down-arrow {
+  width: 15px;
+  height: 15px;
+  align-self: center;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: .1s linear;
+
+  &.active {
+    transform: rotate(-90deg);
+  }
 }
 
 .has-ripple{position:relative;overflow:hidden;-webkit-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}.ripple{display:block;position:absolute;pointer-events:none;border-radius:50%;-webkit-transform:scale(0);-o-transform:scale(0);transform:scale(0);background:#fff;opacity:1}.ripple-animate{-webkit-animation:ripple;-o-animation:ripple;animation:ripple}@-webkit-keyframes ripple{100%{opacity:0;-webkit-transform:scale(2);transform:scale(2)}}@-o-keyframes ripple{100%{opacity:0;-o-transform:scale(2);transform:scale(2)}}@keyframes ripple{100%{opacity:0;transform:scale(2)}}

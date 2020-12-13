@@ -1,25 +1,11 @@
 <div class="index-wrapper">
   <main class="homepage container">
-    <input 
-      type="text" 
-      class="search" 
-      placeholder="聚焦搜索" 
-      maxlength="50"
-      (input)="searchLoading = true; handleSearch()"
-      [(ngModel)]="searchKeyword"
-      *ngIf="showInput"
-      (blur)="showInput = false"
-    />
-
     <div
       class="fixed-collapse"
       (click)="onCollapseAll()"
       [class.active]="websiteList[page].nav[id].collapsed"
     >
-      <img
-        src="assets/img/collapse.svg"
-        alt=""
-      >
+      <img src="assets/img/collapse.svg">
     </div>
 
     <nav class="top-nav user-select-none">
@@ -27,7 +13,8 @@
         *ngFor="let item of websiteList; let i = index;" 
         (click)="handleCilckTopNav(i)" 
         [class.active]="page === i" 
-        class="ripple-btn">
+        class="ripple-btn"
+      >
         {{ item.title }}
       </a>
     </nav>
@@ -43,27 +30,22 @@
             <a class="ripple-btn" *ngIf="item.title">{{ item.title }}</a>
           </li>
         </ul>
-        <div class="icon-box">
-          <a href="javascript:;" (click)="handleOnClickSearch()">
-            <img src="assets/img/search.svg" alt="" class="icon" draggable="false">
-          </a>
-        </div>
       </aside>
 
       <div class="main">
         <app-loading *ngIf="searchLoading"></app-loading>
 
-        <app-search-engine></app-search-engine>
+        <app-search-engine (onSearch)="onSearch($event)"></app-search-engine>
  
         <ul *ngIf="currentList.length && currentList[0].nav">
           <li *ngFor="let item of currentList; let i=index">
-            <div class="title-wrapper" *ngIf="item.title || item.subtitle">
+            <div class="title-wrapper" *ngIf="item.title">
               <h2 class="block-title">
                 <span
                   (click)="onCollapse(item, i)"
                   class="cursor-pointer"
                 >
-                  {{ item.title || item.subtitle }} x {{ item.nav.length }}
+                  {{ item.title }} x {{ item.nav.length }}
                 </span>
 
                 <img

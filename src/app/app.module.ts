@@ -2,13 +2,16 @@ import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { FormsModule } from '@angular/forms'
+import { THEME } from '../../config'
 
 // components
 import { AppComponent } from './app.component'
 
 // views
-import HomeComponent from '../view/index/default/index.component'
+import LightComponent from '../view/index/light/index.component'
+import SimComponent from '../view/index/sim/index.component'
 import WebpComponent from '../view/app/default/app.component'
+import { FixbarComponent } from '../components/fixbar/index.component'
 import { FooterComponent } from '../components/footer/footer.component'
 import { IconGitComponent } from '../components/icon-git/icon-git.component'
 import { NoDataComponent } from '../components/no-data/no-data.component'
@@ -17,8 +20,12 @@ import { SearchEngineComponent } from '../components/search-engine/search-engine
 
 const appRoutes: Routes = [
   { 
-    path: 'index',
-    component: HomeComponent,
+    path: 'sim',
+    component: SimComponent,
+  },
+  { 
+    path: 'light',
+    component: LightComponent,
   },
   { 
     path: 'app',
@@ -26,7 +33,7 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/index',
+    redirectTo: '/' + THEME,
   },
 ]
 
@@ -34,8 +41,10 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    LightComponent,
+    SimComponent,
     WebpComponent,
+    FixbarComponent,
     FooterComponent,
     IconGitComponent,
     NoDataComponent,

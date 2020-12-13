@@ -1,7 +1,7 @@
 
 <p align="center">
   <a href="https://nav3.cn/?g">
-    <img src="src/assets/icon/logo.png" width="130" />
+    <img src="src/assets/logo.png" width="130" />
   </a>
   <br />
   <b>发现导航</b>
@@ -24,7 +24,23 @@
 [在线预览](https://nav3.cn/?g)
 
 
-![Preview](media/poster.png)
+![Preview](media/screenshot.png)
+
+
+
+
+## 内置
+- [TypeScript](https://www.typescriptlang.org/)
+- [Angular v9](https://angular.io/)
+- [jQuery](https://jquery.com/)
+
+
+
+## 主题
+- [sim](https://nav3.cn/#/sim)
+- [light](https://nav3.cn/#/light)
+
+
 
 
 
@@ -40,6 +56,7 @@
 - [√] 支持自定义引擎搜索。
 - [√] 纯静态, 提供自动化部署功能。
 - [√] 完全开源，轻松定制化。
+- [√] 多款主题。
 
 
 ## 贡献
@@ -60,7 +77,7 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 
 
 
-## Build Setup
+## 构建设置
 ``` bash
 # 下载
 git clone --depth=1 https://github.com/xjh22222228/nav.git

@@ -1,4 +1,8 @@
 
+export type ThemeType =
+  | 'light'
+  | 'sim'
+
 export interface INavFourProp {
   icon?: string | null
   name: string
@@ -29,7 +33,7 @@ export interface INavProps {
 
 export interface ISearchEngineProps {
   name: string
-  url: string
+  url?: string
   icon: string
   placeholder?: string
 }

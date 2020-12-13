@@ -3,12 +3,20 @@
  * @author xiejiahe
  * @url https://github.com/xjh22222228/nav
  */
-import { ISearchEngineProps } from '../src/types'
+import { ISearchEngineProps, ThemeType } from '../src/types'
+
+// 主题: light | sim
+export const THEME: ThemeType = 'sim'
 
 // 搜索引擎列表, 为空时不显示搜索引擎
 // 以下系统内置了一些，需要其他的自行添加
 // 自定义引擎 icon 建议使用网络图标 减少入侵
 export const SEARCH_ENGINE_LIST: ISearchEngineProps[] = [
+  {
+    name: '站内',
+    icon: 'assets/logo.png',
+    placeholder: '站内搜索'
+  },
   {
     name: '百度',
     url: 'https://www.baidu.com/s?wd=',
@@ -43,6 +51,9 @@ export const SEARCH_ENGINE_LIST: ISearchEngineProps[] = [
     placeholder: '书名、作者、ISBN'
   }
 ]
+
+// 网站标题
+export const TITLE = '发现导航 - 精选实用导航网站'
 
 // Git 仓库地址, 没有填空字符串
 export const GIT_REPO_URL = 'https://github.com/xjh22222228/nav'
