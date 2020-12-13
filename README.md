@@ -24,7 +24,9 @@
 [在线预览](https://nav3.cn/?g)
 
 
-![Preview](media/screenshot.png)
+![Preview](media/screenshot1.png)
+
+![Preview](media/screenshot2.png)
 
 
 
