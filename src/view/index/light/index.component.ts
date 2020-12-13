@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { INDEX_LANGUAGE, GIT_REPO_URL } from '../../../../config'
-import { annotate } from 'rough-notation'
 import { INavProps, INavThreeProp } from '../../../types'
 import {
   debounce,
@@ -12,9 +11,9 @@ import {
   getWebsiteList,
   setWebsiteList,
   toggleCollapseAll,
+  imgErrorInRemove
 } from '../../../utils'
-
-let ANNOTATE_EQUEUE = []
+import { initRipple, setAnnotate } from '../../../utils/ripple'
 
 @Component({
   selector: 'app-home',
@@ -31,7 +30,6 @@ export default class HomeComponent {
   page: number = 0
   searchKeyword: string = ''
   showInput = false
-  searchLoading = false
   language: string[] = INDEX_LANGUAGE
   GIT_REPO_URL: string = GIT_REPO_URL
 
@@ -51,13 +49,12 @@ export default class HomeComponent {
 
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
-        this.searchLoading = false
       } else {
         initList()
       }
 
       if (tempPage !== page) {
-        this.setAnnotate()
+        setAnnotate()
       }
 
       setWebsiteList(this.websiteList)
@@ -66,20 +63,22 @@ export default class HomeComponent {
     this.handleSearch = debounce(() => {
       if (!this.searchKeyword) {
         initList()
-        this.searchLoading = false
         return
       }
 
       const params = queryString()
-      this.router.navigate(['/index'], {
+      this.router.navigate(['/light'], {
         queryParams: {
           ...params,
           q: this.searchKeyword
         }
       })
+    }, 1000, true)
+  }
 
-      this.searchLoading = true
-    }, 1000, false)
+  onSearch(v) {
+    this.searchKeyword = v
+    this.handleSearch()
   }
 
   handleOnClickSearch() {
@@ -94,7 +93,7 @@ export default class HomeComponent {
 
   handleCilckTopNav(index) {
     const id = this.websiteList[index].id || 0
-    this.router.navigate(['/index'], {
+    this.router.navigate(['/light'], {
       queryParams: {
         page: index,
         id,
@@ -103,10 +102,10 @@ export default class HomeComponent {
     })
   }
 
-  handleSidebarNav (index) {
+  handleSidebarNav(index) {
     const { page } = queryString()
     this.websiteList[page].id = index
-    this.router.navigate(['/index'], { 
+    this.router.navigate(['/light'], { 
       queryParams: {
         page,
         id: index,
@@ -116,30 +115,8 @@ export default class HomeComponent {
   }
 
   ngAfterViewInit () {
-    this.setAnnotate();
-
-    (<any>window).$.ripple('.ripple-btn', {
-      multi: true,
-      debug: false,
-      opacity: .2,
-    })
-  }
-
-  setAnnotate() {
-    const elList = document.querySelectorAll('.top-nav .ripple-btn') || []
-    if (elList.length === 0) return
-
-    ANNOTATE_EQUEUE.forEach(item => item.hide())
-    ANNOTATE_EQUEUE = []
-
-    const annotation = annotate(elList[this.page], {
-      type: 'underline',
-      color: 'red',
-      padding: 3,
-      strokeWidth: 3
-    })
-    ANNOTATE_EQUEUE.push(annotation)
-    annotation.show()
+    setAnnotate();
+    initRipple()
   }
 
   onCollapse = (item, index) => {
@@ -154,11 +131,5 @@ export default class HomeComponent {
 
   handleSearch = null
   onImgError = onImgError
-
-  onSideLogoError(e) {
-    const el = e.currentTarget;
-    if (el) {
-      el?.parentNode?.removeChild(el)
-    }
-  }
+  onSideLogoError = imgErrorInRemove
 }

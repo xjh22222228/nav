@@ -1,31 +1,26 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Output, EventEmitter } from '@angular/core'
 import { SEARCH_ENGINE_LIST } from '../../../config'
-import { getDefaultSearchEngine, setDefaultSearchEngine } from '../../utils'
+import { getDefaultSearchEngine, setDefaultSearchEngine, queryString } from '../../utils'
 
 @Component({
   selector: 'app-search-engine',
   templateUrl: './search-engine.component.html',
   styleUrls: ['./search-engine.component.scss']
 })
-export class SearchEngineComponent implements OnInit {
+export class SearchEngineComponent {
   SEARCH_ENGINE_LIST = SEARCH_ENGINE_LIST
 
   currentEngine = getDefaultSearchEngine()
 
   showEngine = false
 
-  keyword = ''
+  keyword = queryString().q
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  @Output() onSearch = new EventEmitter<string>()
 
   inputFocus() {
     const inputEl = document.getElementById('search-engine-input')
-    if (inputEl) {
-      inputEl.focus()
-    }
+    inputEl?.focus?.()
   }
 
   ngAfterViewInit() {
@@ -37,6 +32,8 @@ export class SearchEngineComponent implements OnInit {
   }
 
   toggleEngine(e?: Event, isShow?: boolean) {
+    if (this.SEARCH_ENGINE_LIST.length <= 1) return
+
     if (e) {
       e.stopPropagation()
     }
@@ -52,13 +49,17 @@ export class SearchEngineComponent implements OnInit {
     setDefaultSearchEngine(this.currentEngine)
   }
 
-  onSearch() {
-    window.open(this.currentEngine.url + this.keyword)
+  triggerSearch() {
+    if (this.currentEngine.url) {
+      window.open(this.currentEngine.url + this.keyword)
+    }
+    
+    this.onSearch.emit(this.keyword)
   }
 
   onKey(event: KeyboardEvent) {
     if (event.code === 'Enter') {
-      this.onSearch()
+      this.triggerSearch()
     }
   }
 }

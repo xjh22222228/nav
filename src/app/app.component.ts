@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { TONGJI_URL } from '../../config'
+import { TONGJI_URL, TITLE, THEME } from '../../config'
 import { queryString, setLocation } from '../utils'
 
 @Component({
@@ -12,6 +12,8 @@ export class AppComponent {
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
+    document.title = TITLE
+
     this.goRoute()
     this.appendTongji()
 
@@ -28,12 +30,15 @@ export class AppComponent {
     if (screenWidth < 768) {
       this.router.navigate(['/app'], { queryParams })
     } else {
-      this.router.navigate(['/index'], { queryParams })
+      this.router.navigate(['/' + THEME], { queryParams })
     }
   }
 
   appendTongji() {
-    if (document.getElementById('tongji_url')) return
+    if (
+      document.getElementById('tongji_url') ||
+      window.location.hostname === 'localhost'
+    ) return
 
     const script = document.createElement('script')
     script.src = TONGJI_URL

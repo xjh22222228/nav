@@ -2,7 +2,7 @@
   <header class="header">
     <div class="header-top">
       <a href="https://github.com/xjh22222228/nav" target="_blank" class="logo">
-        <img src="assets/icon/logo.png" alt="logo">
+        <img src="assets/logo.png" alt="logo">
       </a>
       <div class="open" [class.active]="open" (click)="handleToggleOpen()">
         <i></i>
@@ -34,8 +34,8 @@
     </nav>
     <ul>
       <li *ngFor="let item of nav[page].nav[id].nav">
-        <h2 class="block-title" *ngIf="item.title || item.subtitle">
-          {{ item.title || item.subtitle }} x {{ item.nav.length }}
+        <h2 class="block-title" *ngIf="item.title">
+          {{ item.title }} x {{ item.nav.length }}
         </h2>
         <div class="row">
           <div class="item-list" *ngFor="let el of item.nav; index as i;">

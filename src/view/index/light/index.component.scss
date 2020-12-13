@@ -13,28 +13,13 @@
   overflow: hidden;
   transition: .1s linear;
 
-  .search {
-    z-index: 66666;
-    position: fixed;
-    top: 250px;
-    left: 50%;
-    width: 600px;
-    padding: 10px;
-    border-radius: 10px;
-    transform: translate(-50%, 0);
-    background: #e5e5ea;
-    font-size: 26px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px 1px #ccc;
-  }
-
   .fixed-collapse {
     z-index: 99999;
     position: absolute;
     bottom: 30px;
     right: 30px;
-    width: 50px;
-    height: 50px;
+    width: 39px;
+    height: 39px;
     background: #eee;
     border-radius: 50%;
     display: flex;
@@ -81,18 +66,6 @@
   position: relative;
   height: calc(100% - 52px);
   overflow: hidden;
-
-  .icon-box {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    text-align: center;
-
-    .icon {
-      width: 20px;
-    }
-  }
 
   // 侧边栏分类
   $sidebarWidth: 80px;
@@ -248,19 +221,6 @@
         .edit {
           display: inline-block;
         }
-      }
-    }
-
-    .down-arrow {
-      width: 15px;
-      height: 15px;
-      align-self: center;
-      margin-left: 15px;
-      cursor: pointer;
-      transition: .1s linear;
-
-      &.active {
-        transform: rotate(-90deg);
       }
     }
 
