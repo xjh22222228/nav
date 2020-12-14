@@ -112,6 +112,7 @@ $width: 1200px;
         padding: 10px 0;
         color: #3f51b5;
         font-weight: 500;
+        display: flex;
         cursor: pointer;
       }
 
@@ -156,22 +157,23 @@ $width: 1200px;
       }
 
       .url-box {
-        display: flex;
         height: 100%;
+
+        .box-wrapper {
+          display: flex;
+        }
 
         .right {
           flex: 1;
           margin-left: 10px;
-        }
-
-        .name {
           font-size: 16px;
           font-weight: 600;
           color: #273a52;
+          align-self: center;
         }
 
         .desc {
-          margin-top: 5px;
+          margin-top: 8px;
           color: #4c5d73;
         }
       }
