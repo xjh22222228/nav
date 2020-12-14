@@ -9,6 +9,7 @@ export class FixbarComponent {
 
   @Input() collapsed: boolean
   @Output() onCollapse = new EventEmitter()
+  isDark: boolean = false
 
   scrollTop() {
     window.scrollTo({
@@ -19,5 +20,9 @@ export class FixbarComponent {
 
   collapse() {
     this.onCollapse.emit()
+  }
+
+  toggleMode() {
+    this.isDark = !this.isDark
   }
 }

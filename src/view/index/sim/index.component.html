@@ -41,34 +41,29 @@
           <div class="title" *ngIf="item.title" (click)="onCollapse(item, i)">
             {{ item.title }} x {{ item.nav.length }}
 
-            <img
-              src="assets/img/down-arrow.svg"
-              class="down-arrow"
-              [class.active]="item.collapsed" 
-              draggable="false"
-            />
+            <i class="iconfont iconjiantouarrow483 down-arrow" [class.active]="item.collapsed"></i>
           </div>
 
           <ul class="ul" *ngIf="!item.collapsed">
             <li *ngFor="let ele of item.nav">
               <a class="url-box" [href]="ele.url" target="_blank" rel="noopener noreferer">
-                <div class="left">
-                  <img
-                    *ngIf="ele.icon || item.icon || websiteList[page].nav[id].icon; else icon"
-                    [src]="ele.icon || item.icon || websiteList[page].nav[id].icon"
-                    alt=""
-                    class="icon"
-                    (error)="onImgError($event)"
-                  >
-                  <ng-template #icon>
-                    <span class="icon"></span>
-                  </ng-template>
+                <div class="box-wrapper">
+                  <div class="left">
+                    <img
+                      *ngIf="ele.icon || item.icon || websiteList[page].nav[id].icon; else icon"
+                      [src]="ele.icon || item.icon || websiteList[page].nav[id].icon"
+                      class="icon"
+                      (error)="onImgError($event)"
+                    >
+                    <ng-template #icon>
+                      <span class="icon"></span>
+                    </ng-template>
+                  </div>
+  
+                  <div class="right" [innerHtml]="ele.name"></div>
                 </div>
 
-                <div class="right">
-                  <em class="name" [innerHtml]="ele.name"></em>
-                  <div class="desc" [innerHtml]="ele.desc"></div>
-                </div>
+                <div class="desc" [innerHtml]="ele.desc"></div>
               </a>
 
               <div class="mark" *ngIf="ele.language && ele.language.length > 0">

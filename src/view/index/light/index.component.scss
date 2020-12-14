@@ -26,17 +26,17 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transform: rotate(-180deg);
+    transform: rotate(-270deg);
     transition: .1s linear;
     overflow: hidden;
 
     &.active {
-      transform: rotate(-270deg);
+      transform: rotate(-360deg);
     }
 
-    img {
-      width: 25px;
-      height: 25px;
+    .iconfont {
+      font-size: 22px;
+      color: #666;
     }
   }
 
@@ -216,12 +216,6 @@
       padding: 10px 30px 10px 15px;
       display: flex;
       justify-content: space-between;
-
-      &:hover {
-        .edit {
-          display: inline-block;
-        }
-      }
     }
 
     .block-title {
@@ -230,19 +224,6 @@
       color: #3F51B5;
       align-self: center;
       display: flex;
-
-      .edit {
-        display: none;
-        position: absolute;
-        top: -2px;
-        right: -35px;
-        width: 15px;
-        height: 15px;
-        margin-left: 5px;
-        margin-top: 5px;
-        background: url("https://xiejiahe.gitee.io/nav/assets/img/edit.svg");
-        background-size: 15px;
-      }
     }
 
     .top {

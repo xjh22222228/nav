@@ -41,8 +41,8 @@
 
 
 ## 主题
-- [sim](https://nav3.cn/#/sim)
-- [light](https://nav3.cn/#/light)
+- [sim 预览](https://nav3.cn/#/sim)
+- [light 预览](https://nav3.cn/#/light)
 
 
 

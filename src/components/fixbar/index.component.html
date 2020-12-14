@@ -1,9 +1,13 @@
 <div class="fixbar">
-  <div class="wrapper" [class.active]="collapsed">
-    <img class="icon" src="assets/img/collapse.svg" (click)="collapse()">
+  <div class="wrapper" [class.active]="collapsed" (click)="collapse()">
+    <i class="iconfont iconweibiaoti25 collapse"></i>
   </div>
 
-  <div class="wrapper">
-    <img class="icon" src="assets/img/down-arrow.svg" (click)="scrollTop()">
+  <!-- <div class="wrapper" (click)="toggleMode()">
+    <i class="iconfont icondark" [class.iconA]="isDark" [class.dark]="!isDark"></i>
+  </div> -->
+
+  <div class="wrapper" (click)="scrollTop()">
+    <i class="iconfont iconjiantouarrow483 icon arrow"></i>
   </div>
 </div>
