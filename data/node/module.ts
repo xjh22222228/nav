@@ -613,6 +613,12 @@ export default {
           desc: 'Node.js的HTTP请求记录器中间件',
           url: 'https://github.com/expressjs/morgan',
         },
+        {
+          icon: 'https://avatars0.githubusercontent.com/u/9271229?s=200&v=4',
+          name: 'jsdom',
+          desc: '与Node.js一起使用的各种Web标准的JavaScript实现',
+          url: 'https://github.com/jsdom/jsdom',
+        },
       ]
     },
   ]
