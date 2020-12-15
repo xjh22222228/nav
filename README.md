@@ -23,8 +23,10 @@
 
 
 ## 预览
-[在线预览](https://nav3.cn/?g)
+**主题**
 
+- [sim 在线预览](https://nav3.cn/#/sim)
+- [light 在线预览](https://nav3.cn/#/light)
 
 ![Preview](media/screenshot1.png)
 
@@ -33,16 +35,14 @@
 
 
 
+
+
+
+
 ## 内置
 - [TypeScript](https://www.typescriptlang.org/)
 - [Angular v9](https://angular.io/)
 - [jQuery](https://jquery.com/)
-
-
-
-## 主题
-- [sim 预览](https://nav3.cn/#/sim)
-- [light 预览](https://nav3.cn/#/light)
 
 
 
