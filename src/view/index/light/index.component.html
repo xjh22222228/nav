@@ -70,13 +70,9 @@
                     <img
                       *ngIf="el.icon || item.icon || websiteList[page].nav[id].icon; else icon"
                       [src]="el.icon || item.icon || websiteList[page].nav[id].icon"
-                      alt=""
                       class="icon"
                       (error)="onImgError($event)"
                     >
-                    <ng-template #icon>
-                      <span class="icon"></span>
-                    </ng-template>
                     <em class="name" [innerHtml]="el.name"></em>
                   </div>
                   <div class="desc" [innerHtml]="el.desc"></div>
