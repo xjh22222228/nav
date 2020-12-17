@@ -6,6 +6,11 @@ const nav = {
       title: '开发神器',
       nav: [
         {
+          name: 'releasly',
+          desc: '在新的开源版本发布时收到通知，直接发送到您的电子邮件中。',
+          url: 'https://www.releasly.co/',
+        },
+        {
           name: 'Convert cURL',
           desc: '将curl命令转换为Python，JavaScript，PHP，R，Go，Rust，Dart，JSON，Ansible，Elixir。',
           url: 'https://curl.trillworks.com/',

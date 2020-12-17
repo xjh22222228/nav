@@ -60,7 +60,7 @@ export const GIT_REPO_URL = 'https://github.com/xjh22222228/nav'
 
 // 错误图标, 图标地址访问不了时显示
 // 建议使用网络地址，放在您任何服务器上, 减少入侵
-export const ERROR_ICON = 'assets/img/transparent.gif'
+export const ERROR_ICON = ''
 
 // 网站底部描述, 可以是 HTML
 // 可以是版权信息，备案号

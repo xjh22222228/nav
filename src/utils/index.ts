@@ -110,7 +110,12 @@ export function randomBgImg() {
 }
 
 export function onImgError(e: any) {
-  e.target.src = ERROR_ICON
+  if (ERROR_ICON) {
+    e.target.src = ERROR_ICON
+  } else {
+    const el = e.target
+    el.parentNode.removeChild(el)
+  }
 }
 
 export function queryString() {

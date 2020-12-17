@@ -814,6 +814,12 @@ export default {
             'https://github.com/apache/incubator-echarts'
           ]
         },
+        {
+          icon: 'https://avatars1.githubusercontent.com/u/1562726?s=200&v=4',
+          name: 'd3',
+          desc: '借助SVG，Canvas和HTML使数据栩栩如生。',
+          url: 'https://github.com/d3/d3',
+        },
       ]
     },
     {
