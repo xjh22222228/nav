@@ -162,6 +162,12 @@ export default {
           desc: '收集来自世界各地的5000多个公共IPTV频道',
           url: 'https://github.com/iptv-org/iptv',
         },
+        {
+          icon: 'https://www.linshiyouxiang.net/public/zh-CN/img/favicon.ico',
+          name: '临时邮箱',
+          desc: '10分钟邮箱，临时邮箱，临时邮，临时电子邮箱，24小时邮箱，一次性邮箱，匿名邮箱，安全邮箱',
+          url: 'https://www.linshiyouxiang.net/',
+        },
       ]
     },
   ]
