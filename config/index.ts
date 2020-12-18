@@ -6,7 +6,7 @@
 import { ISearchEngineProps, ThemeType } from '../src/types'
 
 // 主题: light | sim
-export const THEME: ThemeType = 'sim'
+export const THEME: ThemeType = 'light'
 
 // 搜索引擎列表, 为空时不显示搜索引擎
 // 以下系统内置了一些，需要其他的自行添加
