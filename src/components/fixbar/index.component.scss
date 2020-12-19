@@ -3,6 +3,7 @@
   position: fixed;
   bottom: 30px;
   right: 15px;
+  user-select: none;
 
   .wrapper {
     width: 40px;
@@ -21,6 +22,11 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, .15);
       transform: scale(1.2);
     }
+  }
+
+  img {
+    width: 25px;
+    height: 25px;
   }
 
   i {

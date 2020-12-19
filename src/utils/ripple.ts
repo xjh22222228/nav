@@ -21,7 +21,7 @@ export function setAnnotate(querySelector = '.top-nav .ripple-btn') {
 
   const annotation = annotate(elList[page], {
     type: 'underline',
-    color: 'red',
+    color: '#f9826c',
     padding: 3,
     strokeWidth: 3
   })

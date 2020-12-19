@@ -1,0 +1,31 @@
+<div class="mark dark-item-active" *ngIf="dataSource && dataSource.language && dataSource.language.length > 0">
+  <div class="button-box">
+    <a 
+      [href]="dataSource.language[0]" 
+      class="zh" 
+      target="_blank" 
+      *ngIf="dataSource.language[0]" 
+      rel="noopener noreferer"
+    >
+      {{ language[0] }}
+    </a>
+    <a 
+      [href]="dataSource.language[1]" 
+      class="zh" 
+      target="_blank" 
+      *ngIf="dataSource.language[1]" 
+      rel="noopener noreferer"
+    >
+      {{ language[1] }}
+    </a>
+    <a 
+      [href]="dataSource.language[2]" 
+      class="zh" 
+      target="_blank" 
+      *ngIf="dataSource.language[2]" 
+      rel="noopener noreferer"
+    >
+      {{ language[2] }}
+    </a>
+  </div>
+</div>

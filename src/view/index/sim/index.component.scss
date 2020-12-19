@@ -40,7 +40,7 @@ $width: 1200px;
 
   .wallpaper {
     height: 350px;
-    background: url("../../../assets/img/wallpaper.jpg") no-repeat;
+    background-repeat: no-repeat;
     background-position: top center;
     display: flex;
     justify-content: center;
@@ -139,7 +139,7 @@ $width: 1200px;
         &:hover {
           box-shadow: 2px 2px 25px -5px rgba(0,0,0,.2);
 
-          .mark {
+          ::ng-deep .mark {
             bottom: 0 !important;
           }
         }
@@ -166,10 +166,13 @@ $width: 1200px;
         .right {
           flex: 1;
           margin-left: 10px;
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 600;
           color: #273a52;
           align-self: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
         .desc {
@@ -177,62 +180,6 @@ $width: 1200px;
           color: #4c5d73;
         }
       }
-    }
-  }
-
-  .mark {
-    z-index: 28;
-    position: absolute;
-    bottom: -50px;
-    left: 0;
-    width: 100%;
-    padding: 10px 0 5px 0px;
-    background: #fbfbfb;
-    cursor: auto;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    transition: .1s linear;
-
-    .button-box {
-      width: 100%;
-      text-align: center;
-    }
-
-    a {
-      display: inline-block;
-      position: relative;
-      width: 50px;
-      font-size: 12px;
-      padding: 3px 0;
-      border: none;
-      background: #2db7f5;
-      color: #fff;
-      border-radius: 3px;
-      overflow: hidden;
-
-      &:not(:nth-last-child(1)) {
-        margin-right: 10px;
-      }
-
-      &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #000;
-        opacity: 0;
-      }
-
-      &:active:after {
-        opacity: .2;
-      }
-    }
-
-    .zh {
-      background: #26a2ff;
     }
   }
 }

@@ -15,7 +15,8 @@
         *ngFor="let item of nav; let i = index;" 
         (click)="handleCilckNav(i)" 
         [class.active]="page === i" 
-        class="nav-title">
+        class="nav-title"
+      >
         {{ item.title }}
       </div>
     </nav>
@@ -44,7 +45,6 @@
                 <img
                   *ngIf="el.icon || item.icon; else icon"
                   [src]="el.icon || item.icon"
-                  alt=""
                   class="icon"
                   (error)="onImgError($event)"
                 >

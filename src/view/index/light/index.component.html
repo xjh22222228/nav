@@ -1,48 +1,50 @@
 <div class="index-wrapper">
-  <main class="homepage container">
-    <div
-      class="fixed-collapse"
-      (click)="onCollapseAll()"
-      [class.active]="websiteList[page].nav[id].collapsed"
+  <main class="homepage dark-border-color">
+    <app-fixbar
+      (onCollapse)="onCollapseAll()"
+      [collapsed]="websiteList[page].nav[id].collapsed"
+      selector=".main"
+      [randomBg]="true"
     >
-      <i class="iconfont iconweibiaoti25"></i>
-    </div>
+    </app-fixbar>
 
-    <nav class="top-nav user-select-none">
+    <nav class="top-nav user-select-none dark-border-color dark-bg">
       <a 
         *ngFor="let item of websiteList; let i = index;" 
         (click)="handleCilckTopNav(i)" 
         [class.active]="page === i" 
-        class="ripple-btn"
+        [class.dark-text-active]="page === i" 
+        class="ripple-btn dark-text"
       >
         {{ item.title }}
       </a>
     </nav>
 
-    <section class="index-section user-select-none">
-      <aside class="sidebar" id="sidebar">
+    <section class="index-section user-select-none dark-bg">
+      <aside class="sidebar dark-bg dark-border-color" id="sidebar">
         <ul>
           <li 
-            class="tag" 
-            *ngFor="let item of websiteList[page].nav; let i = index" 
+            class="tag dark-text" 
             [class.active]="id === i" 
+            [class.dark-item-active]="id === i" 
             (click)="handleSidebarNav(i)"
+            *ngFor="let item of websiteList[page].nav; let i = index" 
           >
             <a class="ripple-btn" *ngIf="item.title">{{ item.title }}</a>
           </li>
         </ul>
       </aside>
 
-      <div class="main">
+      <div class="main dark-scrollbar">
         <app-search-engine (onSearch)="onSearch($event)"></app-search-engine>
  
         <ul *ngIf="currentList.length && currentList[0].nav">
           <li *ngFor="let item of currentList; let i=index">
-            <div class="title-wrapper" *ngIf="item.title">
+            <div class="title-wrapper dark-border-color" *ngIf="item.title">
               <h2 class="block-title">
                 <span
                   (click)="onCollapse(item, i)"
-                  class="cursor-pointer"
+                  class="cursor-pointer dark-primary"
                 >
                   {{ item.title }} x {{ item.nav.length }}
                 </span>
@@ -64,55 +66,21 @@
             </div>
 
             <div class="row" *ngIf="!item.collapsed">
-              <div class="click-btn" *ngFor="let el of item.nav">
+              <div class="click-btn dark-border-color" *ngFor="let el of item.nav">
                 <a [href]="el.url" target="_blank" rel="noopener noreferer">
                   <div class="top">
                     <img
                       *ngIf="el.icon || item.icon || websiteList[page].nav[id].icon; else icon"
                       [src]="el.icon || item.icon || websiteList[page].nav[id].icon"
-                      alt=""
-                      class="icon"
+                      class="icon dark-border-color"
                       (error)="onImgError($event)"
                     >
-                    <ng-template #icon>
-                      <span class="icon"></span>
-                    </ng-template>
-                    <em class="name" [innerHtml]="el.name"></em>
+                    <em class="name dark-primary" [innerHtml]="el.name" [title]="el.name"></em>
                   </div>
-                  <div class="desc" [innerHtml]="el.desc"></div>
+                  <div class="desc dark-border-color dark-text" [innerHtml]="el.desc"></div>
                 </a>
 
-                <div class="mark" *ngIf="el.language && el.language.length > 0">
-                  <div class="button-box">
-                    <a 
-                      [href]="el.language[0]" 
-                      class="zh" 
-                      target="_blank" 
-                      *ngIf="el.language[0]" 
-                      rel="noopener noreferer"
-                    >
-                      {{ language[0] }}
-                    </a>
-                    <a 
-                      [href]="el.language[1]" 
-                      class="zh" 
-                      target="_blank" 
-                      *ngIf="el.language[1]" 
-                      rel="noopener noreferer"
-                    >
-                      {{ language[1] }}
-                    </a>
-                    <a 
-                      [href]="el.language[2]" 
-                      class="zh" 
-                      target="_blank" 
-                      *ngIf="el.language[2]" 
-                      rel="noopener noreferer"
-                    >
-                      {{ language[2] }}
-                    </a>
-                  </div>
-                </div>
+                <app-multiple-site [dataSource]="ele"></app-multiple-site>
               </div>
             </div>
           </li>
@@ -128,3 +96,5 @@
 
   <app-footer></app-footer>
 </div>
+
+<div class="layer-bg dark-bg"></div>

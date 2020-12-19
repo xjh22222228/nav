@@ -1,5 +1,5 @@
 <div class="search-engine" *ngIf="SEARCH_ENGINE_LIST && SEARCH_ENGINE_LIST.length > 0">
-  <div class="input-wrapper">
+  <div class="input-wrapper dark-bg dark-border-color">
     <div
       class="left-icon"
       (click)="toggleEngine($event)"
@@ -9,6 +9,7 @@
 
     <input
       id="search-engine-input"
+      class="dark-input"
       type="text"
       autofocus
       [placeholder]="currentEngine.placeholder || ''"
@@ -16,7 +17,7 @@
       (keyup)="onKey($event)"
     />
 
-    <i class="search-icon iconfont iconsousuo" (click)="triggerSearch()"></i>
+    <i class="search-icon iconfont iconsousuo dark-text" (click)="triggerSearch()"></i>
   </div>
 
   <div class="engine-main" *ngIf="showEngine">

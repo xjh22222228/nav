@@ -1,0 +1,55 @@
+.mark {
+  z-index: 28;
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  padding: 10px 0 5px 0px;
+  background: #fbfbfb;
+  cursor: auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  transition: .1s linear;
+
+  .button-box {
+    width: 100%;
+    text-align: center;
+  }
+
+  a {
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    font-size: 12px;
+    padding: 3px 0;
+    border: none;
+    background: #2db7f5;
+    color: #fff;
+    border-radius: 3px;
+    overflow: hidden;
+
+    &:not(:nth-last-child(1)) {
+      margin-right: 10px;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #000;
+      opacity: 0;
+    }
+
+    &:active:after {
+      opacity: .2;
+    }
+  }
+
+  .zh {
+    background: #26a2ff;
+  }
+}

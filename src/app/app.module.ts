@@ -12,10 +12,10 @@ import LightComponent from '../view/index/light/index.component'
 import SimComponent from '../view/index/sim/index.component'
 import WebpComponent from '../view/app/default/app.component'
 import { FixbarComponent } from '../components/fixbar/index.component'
+import { MultipleSiteComponent } from '../components/multiple-site/index.component'
 import { FooterComponent } from '../components/footer/footer.component'
 import { IconGitComponent } from '../components/icon-git/icon-git.component'
 import { NoDataComponent } from '../components/no-data/no-data.component'
-import { LoadingComponent } from '../components/loading/loading.component'
 import { SearchEngineComponent } from '../components/search-engine/search-engine.component'
 
 const appRoutes: Routes = [
@@ -45,10 +45,10 @@ const appRoutes: Routes = [
     SimComponent,
     WebpComponent,
     FixbarComponent,
+    MultipleSiteComponent,
     FooterComponent,
     IconGitComponent,
     NoDataComponent,
-    LoadingComponent,
     SearchEngineComponent
   ],
   imports: [

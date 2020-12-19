@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { INDEX_LANGUAGE, GIT_REPO_URL } from '../../../../config'
+import { GIT_REPO_URL } from '../../../../config'
 import { INavProps, INavThreeProp } from '../../../types'
 import {
   debounce,
@@ -30,7 +30,6 @@ export default class HomeComponent {
   page: number = 0
   searchKeyword: string = ''
   showInput = false
-  language: string[] = INDEX_LANGUAGE
   GIT_REPO_URL: string = GIT_REPO_URL
 
   ngOnInit () {

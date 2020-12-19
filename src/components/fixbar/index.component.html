@@ -1,13 +1,14 @@
 <div class="fixbar">
-  <div class="wrapper" (click)="collapse()">
+  <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="collapse()">
     <i class="iconfont iconweibiaoti25 collapse" [class.active]="collapsed"></i>
   </div>
 
-  <!-- <div class="wrapper" (click)="toggleMode()">
-    <i class="iconfont icondark" [class.iconA]="isDark" [class.dark]="!isDark"></i>
-  </div> -->
+  <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleMode()">
+    <i class="iconfont icondark dark" *ngIf="!isDark"></i>
+    <img class="iconfont icondark" src="assets/img/light.svg" *ngIf="isDark">
+  </div>
 
-  <div class="wrapper" (click)="scrollTop()">
-    <i class="iconfont iconjiantouarrow483 icon arrow"></i>
+  <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="scrollTop()">
+    <i class="iconfont iconjiantouarrow483 arrow"></i>
   </div>
 </div>
