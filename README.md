@@ -29,8 +29,10 @@
 - [light 在线预览](https://nav3.cn/#/light)
 
 ![Preview](media/screenshot1.png)
-
 ![Preview](media/screenshot2.png)
+
+![Preview](media/screenshot3.png)
+![Preview](media/screenshot4.png)
 
 
 
@@ -190,6 +192,11 @@ server {
 如果有任何功能上的建议可通过 [issue](https://github.com/xjh22222228/nav/issues) 发起, Thank you.
 
 
+
+## 支持
+如果能帮到您，可以请作者喝杯咖啡~
+
+<img src="https://raw.sevencdn.com/xjh22222228/public/gh-pages/img/32.png" width="600">
 
 
 
