@@ -5,12 +5,17 @@
  */
 import { ISearchEngineProps, ThemeType } from '../src/types'
 
-// 主题: light | sim
+// 网站标题
+export const TITLE = '发现导航 - 精选实用导航网站'
+
+// 默认主题: light | sim
 export const THEME: ThemeType = 'light'
 
+// 海报图, 只支持 sim 主题
+export const POSTER_IMAGE = 'assets/img/wallpaper.jpg'
+
 // 搜索引擎列表, 为空时不显示搜索引擎
-// 以下系统内置了一些，需要其他的自行添加
-// 自定义引擎 icon 建议使用网络图标 减少入侵
+// 自定义引擎 icon 请使用网络图标
 export const SEARCH_ENGINE_LIST: ISearchEngineProps[] = [
   {
     name: '站内',
@@ -52,9 +57,6 @@ export const SEARCH_ENGINE_LIST: ISearchEngineProps[] = [
   }
 ]
 
-// 网站标题
-export const TITLE = '发现导航 - 精选实用导航网站'
-
 // Git 仓库地址, 没有填空字符串
 export const GIT_REPO_URL = 'https://github.com/xjh22222228/nav'
 
@@ -81,6 +83,7 @@ export const APP_LANGUAGE = [
   'Git'
 ]
 
+// 只支持 light 主题
 // http://www.nav3.cn/#/index?q=grabient
 export const BACKGROUND_LINEAR = [
   'linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)',

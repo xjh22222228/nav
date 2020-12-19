@@ -1,3 +1,12 @@
+.layer-bg {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .index-wrapper {
   display: flex;
   flex-direction: column;
@@ -6,39 +15,15 @@
 }
 
 .homepage {
+  width: 1000px;
+  margin: 0 auto;
   flex: 1;
   position: relative;
   background: rgb(251, 251, 251);
   border-radius: 5px;
   overflow: hidden;
   transition: .1s linear;
-
-  .fixed-collapse {
-    z-index: 99999;
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    width: 39px;
-    height: 39px;
-    background: #eee;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transform: rotate(-270deg);
-    transition: .1s linear;
-    overflow: hidden;
-
-    &.active {
-      transform: rotate(-360deg);
-    }
-
-    .iconfont {
-      font-size: 22px;
-      color: #666;
-    }
-  }
+  border: 1px solid transparent;
 
   .top-nav {
     padding: 10px;
@@ -137,7 +122,7 @@
 
     .name {
       display: inline-block;
-      font-size: 16px;
+      font-size: 15px;
       margin-left: 5px;
       width: calc(100% - 50px);
       white-space: nowrap;

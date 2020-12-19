@@ -91,8 +91,14 @@ export function totalWeb(): number {
   return total
 }
 
+let randomTimer
 export function randomBgImg() {
+  if (isDark()) return
+
+  clearInterval(randomTimer)
+
   const el = document.createElement('div')
+  el.id = 'random-light-bg'
   el.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:-3;transition: 1s linear;'
   el.style.backgroundImage = BACKGROUND_LINEAR[randomInt(BACKGROUND_LINEAR.length)]
   document.body.appendChild(el)
@@ -106,7 +112,7 @@ export function randomBgImg() {
     }, 1000)
   }
 
-  setInterval(setBg, 10000)
+  randomTimer = setInterval(setBg, 10000)
 }
 
 export function onImgError(e: any) {
@@ -229,4 +235,9 @@ export function setDefaultSearchEngine(engine: ISearchEngineProps) {
 export function imgErrorInRemove(e) {
   const el = e.currentTarget;
   el?.parentNode?.removeChild?.(el)
+}
+
+export function isDark(): boolean {
+  const isDark = Boolean(Number(window.localStorage.getItem('IS_DARK')))
+  return isDark
 }

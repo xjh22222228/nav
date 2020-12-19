@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { INDEX_LANGUAGE, GIT_REPO_URL, TITLE } from '../../../../config'
+import { GIT_REPO_URL, TITLE, POSTER_IMAGE } from '../../../../config'
 import { INavProps, INavThreeProp } from '../../../types'
 import {
   debounce,
@@ -31,10 +31,10 @@ export default class HomeComponent {
   id: number = 0
   page: number = 0
   searchKeyword: string = ''
-  language: string[] = INDEX_LANGUAGE
   GIT_REPO_URL: string = GIT_REPO_URL
   totalWeb: number = totalWeb()
   title: string = TITLE
+  POSTER_IMAGE: string = POSTER_IMAGE
 
   ngOnInit() {
     const initList = () => {
