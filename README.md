@@ -84,7 +84,7 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 
 
 
-## 构建设置
+## 开发构建
 ``` bash
 # 下载
 git clone --depth=1 https://github.com/xjh22222228/nav.git
@@ -100,7 +100,7 @@ npm run build
 ```
 
 
-## 如何部署？
+## 部署
 推荐使用 `github pages` 服务, 这样就不需要提供服务器, 并且项目里自带了自动化部署服务，像数 `321` 一样简单。
 
 1、Fork 当前项目。
@@ -132,6 +132,10 @@ server {
 ```
 
 
+## 配置
+所有可配置位于文件 `config/index.ts`。
+
+
 ## 更新数据
 只需要关注根目录 `data` 文件夹, 如果你使用了上面教程提供的自动化部署服务，那么当更新数据后大概5分钟即可看到。
 
@@ -157,9 +161,6 @@ server {
 ```
 
 
-
-## 配置
-所有可配置位于文件 `config/index.ts`。
 
 
 ## 图标

@@ -32,7 +32,7 @@ export default class HomeComponent {
   showInput = false
   GIT_REPO_URL: string = GIT_REPO_URL
 
-  ngOnInit () {
+  ngOnInit() {
     randomBgImg()
 
     const initList = () => {
