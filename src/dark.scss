@@ -1,6 +1,5 @@
 .dark-container {
   .dark {
-
     &-primary {
       color: #58a6ff !important;
       font-weight: 600;
@@ -28,6 +27,10 @@
       background-color: #0d1117 !important;
     }
 
+    &-bg-gary {
+      background-color: #21262d !important;
+    }
+
     &-text {
       color: #6e7681 !important;
     }
@@ -39,6 +42,10 @@
   
     &-border-color {
       border-color: #30363d !important;
+
+      &:after,&:before {
+        border-color: transparent !important;
+      }
     }
   
     &-item-active {
@@ -52,6 +59,11 @@
       &::-webkit-scrollbar {
         background-color: #0d1117 !important;
       }
+    }
+
+    &-item-hover:hover {
+      background-color: #30363d !important;
+      border: 1px solid #8b949e !important;
     }
   
     // fix-bar

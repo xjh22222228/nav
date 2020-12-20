@@ -30,7 +30,7 @@ $width: 500px;
       }
 
       &:focus {
-        border-color: #40a9ff !important;
+        border-color: #388bfd !important;
         box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
       }
     }
@@ -91,6 +91,9 @@ $width: 500px;
       cursor: pointer;
       margin-bottom: 15px;
       border-radius: 3px;
+      transition: .1s linear;
+      box-sizing: border-box;
+      border: 1px solid transparent;
 
       &:not(:nth-child(3n)) {
         margin-right: 15px;
