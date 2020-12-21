@@ -238,6 +238,12 @@ export function imgErrorInRemove(e) {
 }
 
 export function isDark(): boolean {
-  const isDark = Boolean(Number(window.localStorage.getItem('IS_DARK')))
-  return isDark
+  const storageVal = window.localStorage.getItem('IS_DARK')
+  const darkMode = window?.matchMedia?.('(prefers-color-scheme: dark)')?.matches
+
+  if (!storageVal && darkMode) {
+    return darkMode
+  }
+
+  return Boolean(Number(storageVal))
 }

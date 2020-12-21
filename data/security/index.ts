@@ -148,6 +148,11 @@ const nav = {
               desc: 'Web Pentesting Fuzz 字典',
               url: 'https://github.com/TheKingOfDuck/fuzzDicts',
             },
+            {
+              name: 'BurpSuitePro',
+              desc: '免费的BurpSuitePro版本',
+              url: 'https://github.com/TrojanAZhen/BurpSuitePro-2.1',
+            },
           ]
         },
         {
