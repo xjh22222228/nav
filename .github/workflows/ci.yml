@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - data
+      - dev
 jobs:
   build:
     runs-on: ubuntu-latest
