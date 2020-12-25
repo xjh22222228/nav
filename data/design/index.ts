@@ -85,6 +85,12 @@ const nav = {
               desc: '从每日ui档案库及其他收集的每日灵感。 根据Dribbble拍摄的照片，手工挑选，每天更新',
               url: 'http://collectui.com/',
             },
+            {
+              icon: 'https://multiavatar.com/img/favicon/favicon-32x32.png?v=001',
+              name: 'multiavatar',
+              desc: '120亿独特的多元文化头像',
+              url: 'https://multiavatar.com/',
+            },
           ]
         },
         {

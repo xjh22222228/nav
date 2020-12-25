@@ -153,6 +153,11 @@ const nav = {
               desc: '免费的BurpSuitePro版本',
               url: 'https://github.com/TrojanAZhen/BurpSuitePro-2.1',
             },
+            {
+              name: 'WebScan',
+              desc: '查询C段服务器IP上有多少个二级域名,C段查询,在线C段旁注查询网站,同IP站点查询,IP反查域名',
+              url: 'https://www.webscan.cc/',
+            },
           ]
         },
         {

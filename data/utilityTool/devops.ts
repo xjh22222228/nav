@@ -6,6 +6,11 @@ const nav = {
       title: '开发神器',
       nav: [
         {
+          name: 'EverSQL',
+          desc: '人工智能驱动的SQL查询优化和性能瓶颈预测',
+          url: 'https://www.eversql.com/',
+        },
+        {
           name: 'releasly',
           desc: '在新的开源版本发布时收到通知，直接发送到您的电子邮件中。',
           url: 'https://www.releasly.co/',
@@ -245,6 +250,11 @@ const nav = {
           desc: 'Google Workspace状态信息中心',
           url: 'https://www.google.com/appsstatus#hl=en&v=status',
         },
+        {
+          name: 'isometric-contributions',
+          desc: '浏览器扩展，用于渲染GitHub贡献图的等距像素艺术版本。',
+          url: 'https://github.com/jasonlong/isometric-contributions',
+        },
       ]
     },
     {
@@ -339,6 +349,17 @@ const nav = {
           name: 'Hoppscotch',
           desc: '一个免费，快速，美观的API请求构建器，供10万多个开发人员使用。(原名叫 Postwoman)',
           url: 'https://hoppscotch.io/',
+        },
+        {
+          icon: 'https://avatars0.githubusercontent.com/u/22632046?s=200&v=4',
+          name: 'storybook',
+          desc: 'UI组件浏览器。为React，Vue，Angular，Ember，Web Components等开发，记录和测试！',
+          url: 'https://storybook.js.org/',
+          language: [
+            '',
+            '',
+            'https://github.com/storybookjs/storybook'
+          ]
         },
       ]
     },
