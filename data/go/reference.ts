@@ -70,6 +70,11 @@ export default {
       title: '其他',
       nav: [
         {
+          name: 'learngo',
+          desc: '1000多种手工制作的Go示例，练习和测验',
+          url: 'https://github.com/inancgumus/learngo',
+        },
+        {
           icon: 'https://avatars1.githubusercontent.com/u/4314092?s=200&v=4',
           name: '100天从新手到大师',
           desc: 'Golang - 100天从新手到大师',
