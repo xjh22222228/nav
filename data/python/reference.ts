@@ -49,6 +49,11 @@ export default {
           desc: '精选的Python框架，库，软件和资源的精选清单。',
           url: 'https://github.com/vinta/awesome-python',
         },
+        {
+          name: 'TheAlgorithms',
+          desc: '用Python实现的所有算法（用于教育）',
+          url: 'https://github.com/TheAlgorithms/Python',
+        },
       ]
     },
   ]

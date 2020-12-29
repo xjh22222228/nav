@@ -485,6 +485,16 @@ export default {
             'https://github.com/bokuweb/react-rnd'
           ]
         },
+        {
+          name: 'react-moveable',
+          desc: '可移动、可拖动的，可调整大小的，可缩放的，可旋转的，可扭曲的，可捏的，可分组的，可捕捉的',
+          url: 'https://daybrush.com/moveable/',
+          language: [
+            '',
+            '',
+            'https://github.com/daybrush/moveable/tree/master/packages/react-moveable'
+          ]
+        },
       ]
     },
     {
