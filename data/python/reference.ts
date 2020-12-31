@@ -1,12 +1,10 @@
 
-const DEFAULT_ICON = 'https://www.python.org/static/favicon.ico'
-
 export default {
   title: '参考资料',
+  icon: 'https://www.python.org/static/favicon.ico',
   nav: [
     {
       title: '书籍',
-      icon: DEFAULT_ICON,
       nav: [
         {
           name: '简明 Python 教程',
@@ -17,8 +15,12 @@ export default {
     },
     {
       title: '文档资料',
-      icon: DEFAULT_ICON,
       nav: [
+        {
+          name: '草根学 Python',
+          desc: '最良心的 Python 教程',
+          url: 'https://www.readwithu.com/',
+        },
         {
           name: '100天从新手到大师',
           desc: 'Python - 100天从新手到大师',

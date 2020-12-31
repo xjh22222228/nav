@@ -164,6 +164,12 @@ const nav = {
               desc: '6500+免费字体下载',
               url: 'https://www.fontspace.com/',
             },
+            {
+              icon: 'https://www.logosc.cn/img/home/LOGOSC.ico',
+              name: 'LOGO设计神器',
+              desc: '"LOGO神器就像您的私人设计师；从LOGO设计，名片制作，到企业VI，它将助您快速打造一款个性，专业的公司标志和企业LOGO品牌。',
+              url: 'https://www.logosc.cn/',
+            },
           ]
         },
         {
