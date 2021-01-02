@@ -139,6 +139,11 @@ export default {
           desc: '基于标签对结构和各个字段实现值验证。',
           url: 'https://github.com/go-playground/validator',
         },
+        {
+          name: 'testify',
+          desc: '具有常见断言和模拟的工具箱，可与标准库很好地配合使用',
+          url: 'https://github.com/stretchr/testify',
+        },
       ]
     },
     {

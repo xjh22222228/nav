@@ -6,6 +6,11 @@ const nav = {
       title: '开发神器',
       nav: [
         {
+          name: 'Tutor',
+          desc: '可视化Python，Java，JavaScript，C，C ++，Ruby代码执行过程',
+          url: 'http://www.pythontutor.com/visualize.html#mode=edit',
+        },
+        {
           name: 'EverSQL',
           desc: '人工智能驱动的SQL查询优化和性能瓶颈预测',
           url: 'https://www.eversql.com/',
