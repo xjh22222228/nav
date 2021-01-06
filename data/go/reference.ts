@@ -71,6 +71,11 @@ export default {
           url: 'https://github.com/inancgumus/learngo',
         },
         {
+          name: 'night',
+          desc: 'Go 夜读｜由 SIG 成员维护｜通过 bilibili 在线直播的方式分享 Go 相关的技术话题，每天大家在微信/telegram/Slack 上及时沟通交流编程技术话题。',
+          url: 'https://github.com/talkgo/night',
+        },
+        {
           name: '100天从新手到大师',
           desc: 'Golang - 100天从新手到大师',
           url: 'https://www.qfgolang.com/',

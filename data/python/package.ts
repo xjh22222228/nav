@@ -104,6 +104,11 @@ export default {
       title: 'CLI',
       nav: [
         {
+          name: 'rich',
+          desc: 'Rich是一个Python库，用于在终端中提供富文本和精美的格式',
+          url: 'https://github.com/willmcgugan/rich',
+        },
+        {
           name: 'Fire',
           desc: 'Python Fire是一个用于从绝对任何Python对象自动生成命令行界面（CLI）的库。',
           url: 'https://github.com/google/python-fire',
