@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { GIT_REPO_URL } from '../../../../config'
+import config from '../../../../nav.config'
 import { INavProps, INavThreeProp } from '../../../types'
 import {
   debounce,
@@ -30,7 +30,7 @@ export default class HomeComponent {
   page: number = 0
   searchKeyword: string = ''
   showInput = false
-  GIT_REPO_URL: string = GIT_REPO_URL
+  gitRepoUrl: string = config.gitRepoUrl
 
   ngOnInit() {
     randomBgImg()

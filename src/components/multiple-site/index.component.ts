@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { INDEX_LANGUAGE } from '../../../config'
+import config from '../../../nav.config'
 import { INavFourProp } from '../../types'
 
 @Component({
@@ -10,5 +10,5 @@ import { INavFourProp } from '../../types'
 export class MultipleSiteComponent {
   @Input() dataSource: INavFourProp
 
-  language: string[] = INDEX_LANGUAGE
+  language: string[] = config.indexLanguage
 }

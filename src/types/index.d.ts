@@ -38,3 +38,17 @@ export interface ISearchEngineProps {
   icon: string
   placeholder?: string
 }
+
+export interface IConfig {
+  title: string
+  theme: ThemeType
+  posterImageUrl: string
+  searchEngineList: ISearchEngineProps[]
+  gitRepoUrl: string,
+  errorIconUrl: string
+  footerCopyright: string|null
+  tongjiUrl: string
+  indexLanguage: string[]
+  appLanguage: string[]
+  backgroundLinear: string[]
+}

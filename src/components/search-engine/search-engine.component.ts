@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core'
-import { SEARCH_ENGINE_LIST } from '../../../config'
+import config from '../../../nav.config'
 import { getDefaultSearchEngine, setDefaultSearchEngine, queryString } from '../../utils'
 
 @Component({
@@ -8,7 +8,7 @@ import { getDefaultSearchEngine, setDefaultSearchEngine, queryString } from '../
   styleUrls: ['./search-engine.component.scss']
 })
 export class SearchEngineComponent {
-  SEARCH_ENGINE_LIST = SEARCH_ENGINE_LIST
+  searchEngineList = config.searchEngineList
 
   currentEngine = getDefaultSearchEngine()
 
@@ -32,7 +32,7 @@ export class SearchEngineComponent {
   }
 
   toggleEngine(e?: Event, isShow?: boolean) {
-    if (this.SEARCH_ENGINE_LIST.length <= 1) return
+    if (this.searchEngineList.length <= 1) return
 
     if (e) {
       e.stopPropagation()
@@ -43,7 +43,7 @@ export class SearchEngineComponent {
   }
 
   clickEngineItem(index) {
-    this.currentEngine = SEARCH_ENGINE_LIST[index]
+    this.currentEngine = config.searchEngineList[index]
     this.toggleEngine()
     this.inputFocus()
     setDefaultSearchEngine(this.currentEngine)

@@ -1,4 +1,4 @@
-<div class="search-engine" *ngIf="SEARCH_ENGINE_LIST && SEARCH_ENGINE_LIST.length > 0">
+<div class="search-engine" *ngIf="searchEngineList && searchEngineList.length > 0">
   <div class="input-wrapper dark-bg dark-border-color">
     <div
       class="left-icon"
@@ -23,7 +23,7 @@
   <div class="engine-main dark-bg dark-border-color" *ngIf="showEngine">
     <div
       class="item dark-bg-gary dark-item-hover"
-      *ngFor="let item of SEARCH_ENGINE_LIST; let i=index"
+      *ngFor="let item of searchEngineList; let i=index"
       (click)="clickEngineItem(i)"
     >
       <img class="icon" [src]="item.icon" alt="" />

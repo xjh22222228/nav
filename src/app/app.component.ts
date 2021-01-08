@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { TONGJI_URL, TITLE } from '../../config'
+import config from '../../nav.config'
 import { queryString, setLocation } from '../utils'
 
 @Component({
@@ -12,7 +12,7 @@ export class AppComponent {
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    document.title = TITLE
+    document.title = config.title
 
     this.goRoute()
     this.appendTongji()
@@ -37,7 +37,7 @@ export class AppComponent {
     ) return
 
     const script = document.createElement('script')
-    script.src = TONGJI_URL
+    script.src = config.tongjiUrl
     script.id = 'tongji_url'
     script.async = true
     document.head.appendChild(script)

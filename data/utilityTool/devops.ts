@@ -6,6 +6,12 @@ const nav = {
       title: '开发神器',
       nav: [
         {
+          icon: 'https://avatars2.githubusercontent.com/u/7366472?s=200&v=4',
+          name: 'tldr',
+          desc: '控制台命令的协作备忘单',
+          url: 'https://github.com/tldr-pages/tldr',
+        },
+        {
           name: 'Tutor',
           desc: '可视化Python，Java，JavaScript，C，C ++，Ruby代码执行过程',
           url: 'http://www.pythontutor.com/visualize.html#mode=edit',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { GIT_REPO_URL, TITLE, POSTER_IMAGE } from '../../../../config'
+import config from '../../../../nav.config'
 import { INavProps, INavThreeProp } from '../../../types'
 import {
   debounce,
@@ -15,6 +15,7 @@ import {
 } from '../../../utils'
 import { initRipple, setAnnotate } from '../../../utils/ripple'
 
+const { gitRepoUrl, title, posterImageUrl } = config
 let sidebarEl: HTMLElement;
 
 @Component({
@@ -31,10 +32,10 @@ export default class HomeComponent {
   id: number = 0
   page: number = 0
   searchKeyword: string = ''
-  GIT_REPO_URL: string = GIT_REPO_URL
+  gitRepoUrl: string = gitRepoUrl
   totalWeb: number = totalWeb()
-  title: string = TITLE
-  POSTER_IMAGE: string = POSTER_IMAGE
+  title: string = title
+  posterImageUrl: string = posterImageUrl
 
   ngOnInit() {
     const initList = () => {

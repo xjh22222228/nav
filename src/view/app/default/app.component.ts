@@ -1,7 +1,7 @@
 import nav from '../../../../data'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { APP_LANGUAGE } from '../../../../config'
+import config from '../../../../nav.config'
 import { onImgError, queryString } from '../../../utils'
 import { INavProps } from '../../../types'
 
@@ -17,7 +17,7 @@ export default class WebpComponent {
   id: number = 0
   page: number = 0
   open: boolean = false
-  language: string[] = APP_LANGUAGE
+  language: string[] = config.appLanguage
 
   ngOnInit () {
     this.activatedRoute.queryParams.subscribe(() => {

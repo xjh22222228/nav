@@ -134,7 +134,7 @@ server {
 
 
 ## 配置
-所有可配置位于文件 `config/index.ts`。
+所有可配置位于文件 `nav.config.ts`。
 
 
 ## 更新数据

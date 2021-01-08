@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { FormsModule } from '@angular/forms'
-import { THEME } from '../../config'
+import config from '../../nav.config'
 
 // components
 import { AppComponent } from './app.component'
@@ -33,7 +33,7 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/' + THEME,
+    redirectTo: '/' + config.theme,
   },
 ]
 

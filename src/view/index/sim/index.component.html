@@ -1,5 +1,5 @@
 <div class="sim">
-  <div class="wallpaper" [ngStyle]="{ 'background-image': 'url(' + POSTER_IMAGE + ')' }">
+  <div class="wallpaper" [ngStyle]="{ 'background-image': 'url(' + posterImageUrl + ')' }">
     <h1 class="title dark-title">{{ title }}</h1>
     <h2 class="description dark-text-active">这里收录多达 <b>{{ totalWeb }}</b> 个优质网站， 助您工作、学习和生活</h2>
     <app-search-engine (onSearch)="onSearch($event)"></app-search-engine>

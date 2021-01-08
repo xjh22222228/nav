@@ -1,7 +1,9 @@
 import WEBSITE_LIST from '../../data'
 import qs from 'qs'
-import { BACKGROUND_LINEAR, ERROR_ICON, SEARCH_ENGINE_LIST } from '../../config'
+import config from '../../nav.config'
 import { INavProps, ISearchEngineProps } from '../types'
+
+const { backgroundLinear, errorIconUrl, searchEngineList } = config
 
 export function debounce(func, wait, immediate) {
   let timeout
@@ -100,11 +102,11 @@ export function randomBgImg() {
   const el = document.createElement('div')
   el.id = 'random-light-bg'
   el.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:-3;transition: 1s linear;'
-  el.style.backgroundImage = BACKGROUND_LINEAR[randomInt(BACKGROUND_LINEAR.length)]
+  el.style.backgroundImage = backgroundLinear[randomInt(backgroundLinear.length)]
   document.body.appendChild(el)
 
   function setBg() {
-    const randomBg = BACKGROUND_LINEAR[randomInt(BACKGROUND_LINEAR.length)]
+    const randomBg = backgroundLinear[randomInt(backgroundLinear.length)]
     el.style.opacity = '.3'
     setTimeout(() => {
       el.style.backgroundImage = randomBg
@@ -116,8 +118,8 @@ export function randomBgImg() {
 }
 
 export function onImgError(e: any) {
-  if (ERROR_ICON) {
-    e.target.src = ERROR_ICON
+  if (errorIconUrl) {
+    e.target.src = errorIconUrl
   } else {
     const el = e.target
     el.parentNode.removeChild(el)
@@ -218,7 +220,7 @@ export function setLocation() {
 }
 
 export function getDefaultSearchEngine(): ISearchEngineProps {
-  let DEFAULT = (SEARCH_ENGINE_LIST[0] || {}) as ISearchEngineProps
+  let DEFAULT = (searchEngineList[0] || {}) as ISearchEngineProps
   try {
     const engine = window.localStorage.getItem('engine');
     if (engine) {
