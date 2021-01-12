@@ -51,4 +51,8 @@ export class FixbarComponent {
       this.randomBg && randomBgImg()
     }
   }
+
+  onAdd() {
+    
+  }
 }

@@ -1,7 +1,9 @@
-import WEBSITE_LIST from '../../data'
 import qs from 'qs'
 import config from '../../nav.config'
 import { INavProps, ISearchEngineProps } from '../types'
+import * as db from '../../data/db.json'
+
+const WEBSITE_LIST = (db as any).default
 
 const { backgroundLinear, errorIconUrl, searchEngineList } = config
 
@@ -168,9 +170,17 @@ export function getWebsiteList() {
   const scriptUrl = scriptElAll[scriptElAll.length - 1].src
   const storageScriptUrl = window.localStorage.getItem('s_url')
 
-  // 更新数据
+  // 检测到网站更新，清除缓存
   if (storageScriptUrl !== scriptUrl) {
-    window.localStorage.clear()
+    const whiteList = ['token']
+    const len = window.localStorage.length
+    for (let i = 0; i < len; i++) {
+      const key = window.localStorage.key(i)
+      if (whiteList.includes(key)) {
+        continue
+      }
+      window.localStorage.removeItem(key)
+    }
     window.localStorage.setItem('s_url', scriptUrl)
     return webSiteList
   }
