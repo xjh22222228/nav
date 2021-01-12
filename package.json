@@ -28,6 +28,7 @@
     "@angular/platform-browser": "~11.0.5",
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
+    "ng-zorro-antd": "^11.0.1",
     "qs": "^6.9.4",
     "rough-notation": "^0.5.1",
     "rxjs": "~6.6.0",

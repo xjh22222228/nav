@@ -1,5 +1,5 @@
 <div class="fixbar">
-  <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="onAdd()">
+  <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleModal()">
     <i class="iconfont iconchuangjian"></i>
   </div>
 
@@ -16,3 +16,5 @@
     <i class="iconfont iconjiantouarrow483 arrow"></i>
   </div>
 </div>
+
+<app-create [visible]="showCreateModal" (onCancel)="toggleModal()"></app-create>

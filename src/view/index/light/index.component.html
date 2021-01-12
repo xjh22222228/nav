@@ -30,7 +30,7 @@
             (click)="handleSidebarNav(i)"
             *ngFor="let item of websiteList[page].nav; let i = index" 
           >
-            <a class="ripple-btn" *ngIf="item.title">{{ item.title }}</a>
+            <div class="ripple-btn" *ngIf="item.title">{{ item.title }}</div>
           </li>
         </ul>
       </aside>

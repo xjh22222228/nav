@@ -1,0 +1,53 @@
+<nz-modal
+  [(nzVisible)]="visible"
+  [nzTitle]="title"
+  (nzOnCancel)="hanldeCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <div *ngIf="isLogin">
+      <p>请在下方输入您的TOKEN进行登录校验</p>
+      <input nz-input placeholder="请输入TOKEN" [(ngModel)]="token" maxlength="100" />
+    </div>
+
+    <div *ngIf="!isLogin">
+      <nz-radio-group [(ngModel)]="radioType">
+        <label nz-radio nzValue="1">新增一级类目</label>
+        <label nz-radio nzValue="2">新增二级类目</label>
+        <label nz-radio nzValue="3">新增网站</label>
+      </nz-radio-group>
+
+      <div style="margin-top: 20px;">
+        <nz-select
+          nzShowSearch
+          nzPlaceHolder="请选择一级类目"
+          [(ngModel)]="oneSelectValue"
+          style="width: 100%;margin-bottom: 10px;"
+          (ngModelChange)="hanldeOneSelect()"
+        >
+          <nz-option
+            *ngFor="let item of websiteList; let i = index;"
+            [nzLabel]="item.title"
+            [nzValue]="item.title"
+          >
+          </nz-option>
+        </nz-select>
+
+        <nz-select
+          nzShowSearch
+          nzPlaceHolder="请选择二级类目"
+          [(ngModel)]="twoSelectValue"
+          style="width: 100%;margin-bottom: 10px;"
+        >
+          <nz-option
+            *ngFor="let item of twoList; let i = index;"
+            [nzLabel]="item.title"
+            [nzValue]="item.title"
+          >
+          </nz-option>
+        </nz-select>
+        <input nz-input placeholder="请输入名称" [(ngModel)]="token" maxlength="100" />
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

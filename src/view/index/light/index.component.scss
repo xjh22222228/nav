@@ -68,18 +68,18 @@
       &.active {
         color: #1890ff;
 
-        a:after {
+        div:after {
           top: 0;
           border-top: 1px dashed #ccc;
         }
 
-        a:before {
+        div:before {
           bottom: 0;
           border-bottom: 1px dashed #ccc;
         }
       }
 
-      a {
+      div {
         display: block;
         padding: 11px 0;
 
@@ -175,7 +175,7 @@
     }
 
     .click-btn {
-      z-index: 1111;
+      z-index: 111;
       position: relative;
       width: 200px;
       margin: 12px;

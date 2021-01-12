@@ -13,6 +13,7 @@ export class FixbarComponent {
   @Input() selector: string
   @Output() onCollapse = new EventEmitter()
   isDark: boolean = isDarkFn()
+  showCreateModal = false
 
   ngOnInit() {
     if (isDarkFn()) {
@@ -52,7 +53,7 @@ export class FixbarComponent {
     }
   }
 
-  onAdd() {
-    
+  toggleModal() {
+    this.showCreateModal = !this.showCreateModal
   }
 }
