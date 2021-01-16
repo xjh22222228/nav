@@ -1,10 +1,11 @@
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+
 import qs from 'qs'
 import config from '../../nav.config'
 import { INavProps, ISearchEngineProps } from '../types'
 import * as db from '../../data/db.json'
 
-const WEBSITE_LIST = (db as any).default
-
+export const websiteList = getWebsiteList()
 const { backgroundLinear, errorIconUrl, searchEngineList } = config
 
 export function debounce(func, wait, immediate) {
@@ -90,7 +91,7 @@ export function totalWeb(): number {
       }
     }
   }
-  r(WEBSITE_LIST)
+  r(websiteList)
 
   return total
 }
@@ -119,15 +120,6 @@ export function randomBgImg() {
   randomTimer = setInterval(setBg, 10000)
 }
 
-export function onImgError(e: any) {
-  if (errorIconUrl) {
-    e.target.src = errorIconUrl
-  } else {
-    const el = e.target
-    el.parentNode.removeChild(el)
-  }
-}
-
 export function queryString() {
   const { href } = window.location
   const search = href.slice(href.indexOf('?') + 1)
@@ -144,15 +136,15 @@ export function queryString() {
     } catch {}
   }
 
-  if (page > WEBSITE_LIST.length - 1) {
-    page = WEBSITE_LIST.length - 1;
+  if (page > websiteList.length - 1) {
+    page = websiteList.length - 1;
     id = 0;
   } else {
     page = page;
-    if (id <= WEBSITE_LIST[page].nav.length - 1) {
+    if (id <= websiteList[page].nav.length - 1) {
       id = id;
     } else {
-      id = WEBSITE_LIST[page].nav.length - 1;
+      id = websiteList[page].nav.length - 1;
     }
   }
 
@@ -165,7 +157,7 @@ export function queryString() {
 }
 
 export function getWebsiteList() {
-  let webSiteList = WEBSITE_LIST
+  let webSiteList = (db as any).default
   const scriptElAll = document.querySelectorAll('script')
   const scriptUrl = scriptElAll[scriptElAll.length - 1].src
   const storageScriptUrl = window.localStorage.getItem('s_url')
@@ -197,13 +189,13 @@ export function getWebsiteList() {
 }
 
 export function setWebsiteList(v?: INavProps[]) {
-  v = v || WEBSITE_LIST
+  v = v || websiteList
 
   window.localStorage.setItem('website', JSON.stringify(v))
 }
 
-export function toggleCollapseAll(websiteList?: INavProps[]): boolean {
-  websiteList = websiteList || WEBSITE_LIST
+export function toggleCollapseAll(wsList?: INavProps[]): boolean {
+  wsList = wsList || websiteList
 
   const { page, id } = queryString()
   const collapsed = !websiteList[page].nav[id].collapsed

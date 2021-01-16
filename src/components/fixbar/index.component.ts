@@ -1,5 +1,14 @@
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+
 import { Component, Output, EventEmitter, Input } from '@angular/core'
 import { isDark as isDarkFn, randomBgImg } from '../../utils'
+import { NzModalService } from 'ng-zorro-antd/modal'
+import { NzMessageService } from 'ng-zorro-antd/message'
+import { NzNotificationService } from 'ng-zorro-antd/notification'
+import { getToken } from '../../utils/user'
+import { updateFileContent } from '../../services'
+import { websiteList } from '../../store'
+import { DB_PATH } from '../../constants'
 
 @Component({
   selector: 'app-fixbar',
@@ -12,8 +21,18 @@ export class FixbarComponent {
   @Input() randomBg: boolean
   @Input() selector: string
   @Output() onCollapse = new EventEmitter()
+
+  websiteList = websiteList
   isDark: boolean = isDarkFn()
   showCreateModal = false
+  syncLoading = false
+  isLogin = !!getToken()
+
+  constructor(
+    private message: NzMessageService,
+    private notification: NzNotificationService,
+    private modal: NzModalService
+  ) {}
 
   ngOnInit() {
     if (isDarkFn()) {
@@ -55,5 +74,38 @@ export class FixbarComponent {
 
   toggleModal() {
     this.showCreateModal = !this.showCreateModal
+  }
+
+  handleSync() {
+    if (this.syncLoading) {
+      this.message.warning('请不要频繁操作')
+      return
+    }
+
+    this.modal.info({
+      nzTitle: '同步数据到远端',
+      nzContent: '确定将所有数据同步到远端吗？这可能需要消耗一定的时间。',
+      nzOnOk: () => {
+        this.syncLoading = true;
+
+        updateFileContent({
+          message: 'update db',
+          content: JSON.stringify(this.websiteList),
+          path: DB_PATH
+        })
+        .then(() => {
+          this.message.success('同步成功, 大约需要5分钟构建时间')
+        })
+        .catch(res => {
+          this.notification.error(
+            `错误: ${res?.response?.status ?? 404}`,
+            '同步失败, 请重试'
+          )
+        })
+        .finally(() => {
+          this.syncLoading = false
+        })
+      }
+    });
   }
 }

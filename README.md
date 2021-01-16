@@ -22,6 +22,15 @@
 <br />
 
 
+## 选择版本
+目前有2个版本供选择, [v3](https://github.com/xjh22222228/nav/tree/v3) 和 `v5`, 这2个版本都会长期维护:
+
+- v5 - 也就是当前分支, 需要依赖于Github配置, 提供自动维护数据功能(微后台)，但必须Fork到自己仓库里。
+- v3 - 无需依赖Github, 您可以将代码部署在任意服务器, 但数据需要手工维护。
+
+作者推荐您选择 `v5` 没有太多的心智负担。
+
+
 
 ## 预览
 **主题**
@@ -38,21 +47,9 @@
 
 
 
-
-
-
-
-## 内置
-- [TypeScript](https://www.typescriptlang.org/)
-- [Angular v9](https://angular.io/)
-- [jQuery](https://jquery.com/)
-
-
-
-
-
-
 ## 拥有出色的特性
+`发现导航` 的理念就是做一款无需依赖后端服务既简单又方便，没有繁杂的配置和数据库等配置概念, 做到开箱即用。
+
 - [√] 内置 `800+` 实用网站。
 - [√] 三叉树分类、结构清晰、分类清晰。
 - [√] 颜值与简约并存，不再是杀马特时代。
@@ -66,39 +63,6 @@
 - [√] 多款主题切换。
 - [√] 支持暗黑模式。
 
-
-## 贡献
-[点击这里](https://github.com/xjh22222228/nav/tree/master/data)
-
-Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), men.
-
-<a href="https://github.com/YutHelloWorld">
-  <img src="https://avatars1.githubusercontent.com/u/20860159?s=460&v=4" width="30px" height="30px" />
-</a>
-<a href="https://github.com/JJJTHuang">
-  <img src="https://avatars3.githubusercontent.com/u/22817432?s=460&v=4" width="30px" height="30px" />
-</a>
-<a href="https://github.com/Fechin">
-  <img src="https://avatars1.githubusercontent.com/u/2541482?s=460&v=4" width="30px" height="30px" />
-</a>
-
-
-
-
-## 开发构建
-``` bash
-# 下载
-git clone --depth=1 https://github.com/xjh22222228/nav.git
-
-# 安装依赖
-npm install
-
-# 启动[可选]
-npm start
-
-# 打包
-npm run build
-```
 
 
 ## 部署
@@ -189,6 +153,39 @@ server {
 
 
 
+## 开发构建
+``` bash
+# 下载
+git clone --depth=1 https://github.com/xjh22222228/nav.git
+
+# 安装依赖
+npm i
+
+# 启动
+npm start
+
+# 打包
+npm run build
+```
+
+
+
+## 贡献
+[点击这里](https://github.com/xjh22222228/nav/tree/master/data)
+
+Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), men.
+
+<a href="https://github.com/YutHelloWorld">
+  <img src="https://avatars1.githubusercontent.com/u/20860159?s=460&v=4" width="30px" height="30px" />
+</a>
+<a href="https://github.com/JJJTHuang">
+  <img src="https://avatars3.githubusercontent.com/u/22817432?s=460&v=4" width="30px" height="30px" />
+</a>
+<a href="https://github.com/Fechin">
+  <img src="https://avatars1.githubusercontent.com/u/2541482?s=460&v=4" width="30px" height="30px" />
+</a>
+
+
 
 ## 建议
 如果有任何功能上的建议可通过 [issue](https://github.com/xjh22222228/nav/issues) 发起, Thank you.
@@ -199,11 +196,3 @@ server {
 如果能帮到您，可以请作者喝杯咖啡~
 
 <img src="https://raw.sevencdn.com/xjh22222228/public/gh-pages/img/32.png" width="600">
-
-
-
-
-
-
-## License
-[MIT](https://opensource.org/licenses/MIT)

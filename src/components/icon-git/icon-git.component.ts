@@ -1,3 +1,5 @@
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+
 import { Component, OnInit } from '@angular/core';
 import config from '../../../nav.config';
 

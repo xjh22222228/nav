@@ -1,3 +1,4 @@
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
 export type ThemeType =
   | 'light'

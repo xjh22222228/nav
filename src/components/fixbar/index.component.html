@@ -1,4 +1,13 @@
 <div class="fixbar">
+  <div
+    class="wrapper dark-bg dark-border-color dark-action-hover"
+    (click)="handleSync()"
+    *ngIf="isLogin"
+    [class.rotate]="syncLoading"
+  >
+    <i class="iconfont iconwinfo-icon-tongbu"></i>
+  </div>
+
   <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleModal()">
     <i class="iconfont iconchuangjian"></i>
   </div>

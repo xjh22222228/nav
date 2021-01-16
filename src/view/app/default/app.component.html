@@ -12,7 +12,7 @@
     </div>
     <nav class="nav-open">
       <div 
-        *ngFor="let item of nav; let i = index;" 
+        *ngFor="let item of websiteList; let i = index;" 
         (click)="handleCilckNav(i)" 
         [class.active]="page === i" 
         class="nav-title"
@@ -23,10 +23,10 @@
   </header>
   
   <div class="wrapper">
-    <nav class="children-nav" *ngIf="nav[page].nav.length > 1">
+    <nav class="children-nav" *ngIf="websiteList[page].nav.length > 1">
       <a
         class="tag" 
-        *ngFor="let item of nav[page].nav; let i = index" 
+        *ngFor="let item of websiteList[page].nav; let i = index" 
         [class.active]="id === i" 
         (click)="handleSidebarNav(i)"
       >
@@ -34,7 +34,7 @@
       </a>
     </nav>
     <ul>
-      <li *ngFor="let item of nav[page].nav[id].nav">
+      <li *ngFor="let item of websiteList[page].nav[id].nav">
         <h2 class="block-title" *ngIf="item.title">
           {{ item.title }} x {{ item.nav.length }}
         </h2>
@@ -42,15 +42,11 @@
           <div class="item-list" *ngFor="let el of item.nav; index as i;">
             <a (click)="handleToWebsite(el, i, $event)" href="javascript:;">
               <div class="top">
-                <img
-                  *ngIf="el.icon || item.icon; else icon"
+                <app-logo
                   [src]="el.icon || item.icon"
-                  class="icon"
-                  (error)="onImgError($event)"
+                  [name]="el.name"
                 >
-                <ng-template #icon>
-                  <span class="icon"></span>
-                </ng-template>
+                </app-logo>
                 <em class="name" [title]="el.name">{{ el.name }}</em>
               </div>
               <div class="desc" [title]="el.desc">{{ el.desc }}</div>

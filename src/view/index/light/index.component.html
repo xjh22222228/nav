@@ -38,7 +38,7 @@
       <div class="main dark-scrollbar">
         <app-search-engine (onSearch)="onSearch($event)"></app-search-engine>
  
-        <ul *ngIf="currentList.length && currentList[0].nav">
+        <ul *ngIf="currentList.length && currentList[0].nav.length; else noData">
           <li *ngFor="let item of currentList; let i=index">
             <div class="title-wrapper dark-border-color" *ngIf="item.title">
               <h2 class="block-title">
@@ -69,12 +69,11 @@
               <div class="click-btn dark-border-color" *ngFor="let el of item.nav">
                 <a [href]="el.url" target="_blank" rel="noopener noreferer">
                   <div class="top">
-                    <img
-                      *ngIf="el.icon || item.icon || websiteList[page].nav[id].icon; else icon"
+                    <app-logo
                       [src]="el.icon || item.icon || websiteList[page].nav[id].icon"
-                      class="icon dark-border-color"
-                      (error)="onImgError($event)"
+                      [name]="el.name"
                     >
+                    </app-logo>
                     <em class="name dark-title" [innerHtml]="el.name" [title]="el.name"></em>
                   </div>
                   <div class="desc dark-border-color dark-text" [innerHtml]="el.desc"></div>
@@ -85,11 +84,10 @@
             </div>
           </li>
         </ul>
-  
-        <app-no-data
-          *ngIf="currentList.length && currentList[0].nav && !currentList[0].nav.length"
-        >
-        </app-no-data>
+        
+        <ng-template #noData>
+          <app-no-data></app-no-data>
+        </ng-template>
       </div>
     </section>
   </main>

@@ -1,19 +1,20 @@
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+
+import config from '../../../../nav.config'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import config from '../../../../nav.config'
 import { INavProps, INavThreeProp } from '../../../types'
 import {
   debounce,
   fuzzySearch,
-  onImgError,
   queryString,
-  getWebsiteList,
   setWebsiteList,
   toggleCollapseAll,
   totalWeb,
   imgErrorInRemove
 } from '../../../utils'
 import { initRipple, setAnnotate } from '../../../utils/ripple'
+import { websiteList } from '../../../store'
 
 const { gitRepoUrl, title, posterImageUrl } = config
 let sidebarEl: HTMLElement;
@@ -27,7 +28,7 @@ export default class HomeComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  websiteList: INavProps[] = getWebsiteList()
+  websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
@@ -40,6 +41,7 @@ export default class HomeComponent {
   ngOnInit() {
     const initList = () => {
       this.currentList = this.websiteList[this.page].nav[this.id].nav
+      
     }
 
     this.activatedRoute.queryParams.subscribe(() => {
@@ -51,6 +53,7 @@ export default class HomeComponent {
 
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
+        console.log(this.currentList)
       } else {
         initList()
       }
@@ -143,6 +146,5 @@ export default class HomeComponent {
   }
 
   handleSearch = null
-  onImgError = onImgError
   onSideLogoError = imgErrorInRemove
 }

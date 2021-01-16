@@ -1,9 +1,11 @@
-import nav from '../../../../data'
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+
+import config from '../../../../nav.config'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import config from '../../../../nav.config'
-import { onImgError, queryString } from '../../../utils'
+import { queryString } from '../../../utils'
 import { INavProps } from '../../../types'
+import { websiteList } from '../../../store'
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,7 @@ import { INavProps } from '../../../types'
 export default class WebpComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
-  nav: INavProps[] = nav
+  websiteList: INavProps[] = websiteList
   id: number = 0
   page: number = 0
   open: boolean = false
@@ -68,6 +70,4 @@ export default class WebpComponent {
     }
     $this.siblings('.bottom-slide').toggleClass('active')
   }
-
-  onImgError = onImgError
 }

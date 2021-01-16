@@ -1,3 +1,5 @@
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import config from '../../../../nav.config'
@@ -6,14 +8,13 @@ import {
   debounce,
   fuzzySearch,
   randomBgImg,
-  onImgError,
   queryString,
-  getWebsiteList,
   setWebsiteList,
   toggleCollapseAll,
   imgErrorInRemove
 } from '../../../utils'
 import { initRipple, setAnnotate } from '../../../utils/ripple'
+import { websiteList } from '../../../store'
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,7 @@ export default class HomeComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  websiteList: INavProps[] = getWebsiteList()
+  websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
@@ -129,6 +130,5 @@ export default class HomeComponent {
   }
 
   handleSearch = null
-  onImgError = onImgError
   onSideLogoError = imgErrorInRemove
 }
