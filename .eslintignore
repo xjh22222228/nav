@@ -1,0 +1,6 @@
+data/
+main.ts
+polyfills.ts
+test.ts
+environments/
+assets/

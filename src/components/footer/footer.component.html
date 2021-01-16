@@ -1,0 +1,7 @@
+<footer class="footer dark-text" [class]="className" >
+  <div class="total" [ngStyle]="{marginBottom: !footerCopyright && '5px'}">
+    共收录 {{ totalWeb }} 个网站
+  </div>
+  
+  <div class="copyright" *ngIf="footerCopyright" [innerHTML]="footerCopyright"></div>
+</footer>

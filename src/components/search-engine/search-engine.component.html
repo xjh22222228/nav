@@ -1,0 +1,33 @@
+<div class="search-engine" *ngIf="searchEngineList && searchEngineList.length > 0">
+  <div class="input-wrapper dark-bg dark-border-color">
+    <div
+      class="left-icon"
+      (click)="toggleEngine($event)"
+      [ngStyle]="{ 'background-image': 'url(' + currentEngine.icon + ')' }"
+    >
+    </div>
+
+    <input
+      id="search-engine-input"
+      class="dark-input"
+      type="text"
+      autofocus
+      [placeholder]="currentEngine.placeholder || ''"
+      [(ngModel)]="keyword"
+      (keyup)="onKey($event)"
+    />
+
+    <i class="search-icon iconfont iconsousuo dark-text" (click)="triggerSearch()"></i>
+  </div>
+
+  <div class="engine-main dark-bg dark-border-color" *ngIf="showEngine">
+    <div
+      class="item dark-bg-gary dark-item-hover"
+      *ngFor="let item of searchEngineList; let i=index"
+      (click)="clickEngineItem(i)"
+    >
+      <img class="icon" [src]="item.icon" alt="" />
+      <span class="name dark-text">{{ item.name }}</span>
+    </div>
+  </div>
+</div>

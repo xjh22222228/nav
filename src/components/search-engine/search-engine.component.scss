@@ -1,0 +1,114 @@
+$width: 500px;
+
+.search-engine {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+
+  .input-wrapper {
+    position: relative;
+    width: $width;
+    height: 40px;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+
+    input {
+      width: 100%;
+      height: 100%;
+      padding-left: 50px;
+      padding-right: 50px;
+      border-color: transparent;
+      font-size: 16px;
+      transition: all .3s;
+      background-color: transparent;
+
+      &::placeholder {
+        font-size: 14px;
+      }
+
+      &:focus {
+        border-color: #388bfd !important;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+      }
+    }
+
+    .left-icon {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      width: 20px;
+      height: 20px;
+      background-repeat: no-repeat;
+      background-size: 20px 20px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      font-size: 18px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  }
+
+  .engine-main {
+    z-index: 9999990;
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    width: $width;
+    padding: 15px 15px 0 15px;
+    background: #fff;
+    transform: translate(-50%, 0);
+    box-shadow: 0 1px 5px #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: -11px;
+      left: 17px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 10px 20px 10px;
+      border-color: transparent transparent #ffffff transparent;
+    }
+
+    .item {
+      width: calc(33.33% - 10px);
+      padding: 10px;
+      display: flex;
+      background: #f6f6f6;
+      cursor: pointer;
+      margin-bottom: 15px;
+      border-radius: 3px;
+      transition: .1s linear;
+      box-sizing: border-box;
+      border: 1px solid transparent;
+
+      &:not(:nth-child(3n)) {
+        margin-right: 15px;
+      }
+
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .name {
+        margin-left: 10px;
+        font-size: 16px;
+        align-self: center;
+      }
+    }
+  }
+}
