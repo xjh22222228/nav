@@ -1,0 +1,17 @@
+<div nz-dropdown [nzDropdownMenu]="menu" [nzDisabled]="!isEditing.value" [nzClickHide]="false">
+  <ng-content></ng-content>
+</div>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzSelectable>
+    <a
+      *ngIf="isLogin"
+      nz-popconfirm
+      nzPopconfirmPlacement="rightTop"
+      nzPopconfirmTitle="您确定要删除吗?"
+      nzPopconfirmPlacement="bottom"
+      (nzOnConfirm)="confirmDel($event)"
+    >
+      <li nz-menu-item nzDanger>删除</li>
+    </a>
+  </ul>
+</nz-dropdown-menu>

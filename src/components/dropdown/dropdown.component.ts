@@ -2,16 +2,16 @@ import { Component, OnInit, Input } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { getToken } from '../../utils/user'
 import { setWebsiteList, queryString } from '../../utils'
-import { websiteList } from '../../store'
+import { websiteList, isEditing } from '../../store'
 import { Router } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
 
 @Component({
-  selector: 'app-del',
-  templateUrl: './del.component.html',
-  styleUrls: ['./del.component.scss']
+  selector: 'app-dropdown',
+  templateUrl: './dropdown.component.html',
+  styleUrls: ['./dropdown.component.scss']
 })
-export class DelComponent implements OnInit {
+export class DropdownComponent implements OnInit {
   @Input() delIconStyle: string
   @Input() oIdx: number
   @Input() twoIdx: number
@@ -20,6 +20,7 @@ export class DelComponent implements OnInit {
 
   websiteList = websiteList
   isLogin: boolean = !!getToken()
+  isEditing = isEditing
 
   constructor(private message: NzMessageService, private router: Router) {}
 

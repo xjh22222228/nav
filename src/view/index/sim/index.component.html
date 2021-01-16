@@ -13,9 +13,9 @@
       class="ripple-btn dark-text"
       (click)="handleCilckTopNav(i)" 
     >
-      <app-del delIconStyle="top: -8px;right: -16px;" [oIdx]="i">
+      <app-dropdown delIconStyle="top: -8px;right: -16px;" [oIdx]="i">
         {{ item.title }}
-      </app-del>
+      </app-dropdown>
     </a>
   </nav>
 
@@ -29,9 +29,9 @@
           [class.dark-item-active]="id === i" 
           class="ripple-btn dark-text"
         >
-          <app-del delIconStyle="top: -10px;" [oIdx]="page" [twoIdx]="i">
+          <app-dropdown delIconStyle="top: -10px;" [oIdx]="page" [twoIdx]="i">
             {{ item.title }}
-          </app-del>
+          </app-dropdown>
         </div>
       </div>
     </nav>
@@ -39,7 +39,7 @@
     <aside class="site-box dark-bg">
       <div *ngFor="let item of currentList; let i=index">
         <div class="nav-wrapper">
-          <app-del [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
+          <app-dropdown [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
             <div
               class="title dark-primary dark-border-color"
               *ngIf="item.title"
@@ -48,6 +48,7 @@
               <app-logo
                 [src]="item.icon"
                 [name]="item.title"
+                colour="#ff4d4f"
               >
               </app-logo>
 
@@ -55,11 +56,11 @@
 
               <i class="iconfont iconjiantouarrow483 down-arrow" [class.active]="item.collapsed"></i>
             </div>
-          </app-del>
+          </app-dropdown>
 
           <ul class="ul" *ngIf="!item.collapsed">
             <li *ngFor="let ele of item.nav" class="dark-border-color">
-              <app-del [oIdx]="page" [twoIdx]="id" [threeIdx]="i" [fourIdx]="idx">
+              <app-dropdown [oIdx]="page" [twoIdx]="id" [threeIdx]="i" [fourIdx]="idx">
                 <a
                   class="url-box"
                   [href]="ele.url"
@@ -80,7 +81,7 @@
 
                   <div class="desc dark-text" [innerHtml]="ele.desc"></div>
                 </a>
-              </app-del>
+              </app-dropdown>
 
               <app-multiple-site [dataSource]="ele"></app-multiple-site>
             </li>

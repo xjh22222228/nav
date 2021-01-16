@@ -24,8 +24,8 @@ export class CreateComponent implements OnInit {
   twoList = []
   threeList = []
   token = ''
-  isLogin = false
-  radioType = '6'
+  isLogin = !!getToken()
+  radioType: '1'|'2'|'3'|'6' = '6'
   submiting = false
 
   constructor(
@@ -35,8 +35,6 @@ export class CreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLogin = !!getToken()
-
     this.validateForm = this.fb.group({
       title: [null, [Validators.required]],
       oneSelect: [null, [Validators.required]],

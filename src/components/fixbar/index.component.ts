@@ -7,7 +7,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
 import { updateFileContent } from '../../services'
-import { websiteList } from '../../store'
+import { websiteList, isEditing } from '../../store'
 import { DB_PATH } from '../../constants'
 
 @Component({
@@ -27,6 +27,7 @@ export class FixbarComponent {
   showCreateModal = false
   syncLoading = false
   isLogin = !!getToken()
+  isEditing = isEditing
 
   constructor(
     private message: NzMessageService,
@@ -37,7 +38,25 @@ export class FixbarComponent {
   ngOnInit() {
     if (isDarkFn()) {
       document.body.classList.add('dark-container')
+      this.toggleZorroDark(true)
     }
+  }
+
+  toggleZorroDark(dark: boolean) {
+    if (dark) {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = '/assets/ng-zorro-antd.dark.css'
+      link.id = 'NG-ZORRO-DARK'
+      document.body.append(link)
+    } else {
+      const findLink = document.getElementById('NG-ZORRO-DARK')
+      findLink.parentNode.removeChild(findLink)
+    }
+  }
+
+  toggleEditMode() {
+    this.isEditing.value = !this.isEditing.value
   }
 
   scrollTop() {
@@ -67,8 +86,10 @@ export class FixbarComponent {
     if (this.isDark) {
       const el = document.getElementById('random-light-bg')
       el?.parentNode?.removeChild?.(el)
+      this.toggleZorroDark(true)
     } else {
       this.randomBg && randomBgImg()
+      this.toggleZorroDark(false)
     }
   }
 

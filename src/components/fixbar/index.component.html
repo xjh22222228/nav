@@ -8,6 +8,12 @@
     <i class="iconfont iconwinfo-icon-tongbu"></i>
   </div>
 
+  <span *ngIf="isLogin" nz-tooltip [nzTooltipTitle]="isEditing.value ? '关闭编辑模式' : '开启编辑模式'">
+    <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleEditMode()">
+      <i class="iconfont iconsuo" [class.iconunlock]="isEditing.value"></i>
+    </div>
+  </span>
+  
   <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleModal()">
     <i class="iconfont iconchuangjian"></i>
   </div>

@@ -16,9 +16,9 @@
         [class.dark-text-active]="page === i" 
         class="ripple-btn dark-text"
       >
-        <app-del delIconStyle="top: -8px;right: -16px;" [oIdx]="i">
+        <app-dropdown delIconStyle="top: -8px;right: -16px;" [oIdx]="i">
           {{ item.title }}
-        </app-del>
+        </app-dropdown>
       </a>
     </nav>
 
@@ -32,9 +32,9 @@
             (click)="handleSidebarNav(i)"
             *ngFor="let item of websiteList[page].nav; let i = index" 
           >
-            <app-del [oIdx]="page" [twoIdx]="i">
+            <app-dropdown [oIdx]="page" [twoIdx]="i">
               <div class="ripple-btn">{{ item.title }}</div>
-            </app-del>
+            </app-dropdown>
           </li>
         </ul>
       </aside>
@@ -45,11 +45,12 @@
         <ul *ngIf="currentList.length > 0; else noData">
           <li *ngFor="let item of currentList; let i=index">
             <div class="title-wrapper dark-border-color" *ngIf="item.title">
-              <app-del delIconStyle="right: -20px;" [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
+              <app-dropdown delIconStyle="right: -20px;" [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
                 <h2 class="block-title">
                   <app-logo
                     [src]="item.icon"
                     [name]="item.title"
+                    colour="#ff4d4f"
                   >
                   </app-logo>
                   <span
@@ -67,12 +68,12 @@
                   >
                   </i>
                 </h2>
-              </app-del>
+              </app-dropdown>
             </div>
 
             <div class="row" *ngIf="!item.collapsed">
               <div class="click-btn dark-border-color" *ngFor="let el of item.nav; let idx=index">
-                <app-del [oIdx]="page" [twoIdx]="id" [threeIdx]="i" [fourIdx]="idx">
+                <app-dropdown [oIdx]="page" [twoIdx]="id" [threeIdx]="i" [fourIdx]="idx">
                   <a [href]="el.url" target="_blank" rel="noopener noreferer">
                     <div class="top">
                       <app-logo
@@ -86,7 +87,7 @@
                   </a>
   
                   <app-multiple-site [dataSource]="el"></app-multiple-site>
-                </app-del>
+                </app-dropdown>
               </div>
             </div>
           </li>

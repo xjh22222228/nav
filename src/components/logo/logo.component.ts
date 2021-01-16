@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core'
 export class LogoComponent implements OnInit {
   @Input() src: string
   @Input() name: string
+  @Input() colour: string
 
   hasError = false
   color = '#1890ff'
