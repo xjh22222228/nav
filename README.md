@@ -39,11 +39,11 @@
 - [sim 在线预览](https://nav3.cn/#/sim)
 - [light 在线预览](https://nav3.cn/#/light)
 
-![Preview](media/screenshot1.png)
-![Preview](media/screenshot2.png)
-
-![Preview](media/screenshot3.png)
-![Preview](media/screenshot4.png)
+![Preview](media/1.png)
+![Preview](media/2.png)
+![Preview](media/3.png)
+![Preview](media/4.png)
+![Preview](media/5.png)
 
 
 
