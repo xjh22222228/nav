@@ -2,6 +2,6 @@
 
 export const VERIFY_PATH = 'README.md'
 
-export const DB_PATH = 'README.md'
+export const DB_PATH = 'nav.verify.txt'
 
-export const VERSION = '5.0.0-beta.0'
+export const VERSION = 'data/db.json'
