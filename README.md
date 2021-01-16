@@ -1,3 +1,4 @@
+您当前看到的是正在公测 `v5` 版本, 稳定版本发布还需要一定时间，稳定版本请转移到 [v3](https://github.com/xjh22222228/nav/tree/v3)
 
 <p align="center">
   <a href="https://nav3.cn/?g">
