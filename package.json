@@ -1,6 +1,6 @@
 {
   "name": "nav",
-  "version": "5.0.0-beta.1",
+  "version": "5.0.0-beta.2",
   "author": "xiejiahe",
   "bugs": {
     "url": "https://github.com/xjh22222228/nav/issues"
@@ -9,7 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/xjh22222228/nav.git"
   },
-  "homepage": "https://xjh22222228.github.io/nav",
+  "homepage": "https://github.com/xjh22222228/nav",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
