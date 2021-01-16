@@ -101,55 +101,6 @@ server {
 所有可配置位于文件 `nav.config.ts`。
 
 
-## 更新数据
-只需要关注根目录 `data` 文件夹, 如果你使用了上面教程提供的自动化部署服务，那么当更新数据后大概5分钟即可看到。
-
-```js
-{
-  title: '工具',
-  icon: 'https://example/favicon.ico',
-  nav: [
-    {
-      title: '网站',
-      collapsed: false, // 默认展开，设置 false 折叠
-      showSideIcon: false, // 右侧边图标，如果设置Icon则默认显示
-      nav: [
-        {
-          name: '发现导航',
-          desc: '发现导航 - 精选实用导航网站',
-          url: 'https://nav3.cn',
-        }
-      ]
-    }
-  ]
-}
-```
-
-
-
-
-## 图标
-图标是支持继承的，每一级的 `icon` 字段都是可选，如果当前没有就会继承上一级Icon,
-
-```js
-{
-  title: 'Example',
-  icon: 'https://example/icon',
-  nav: [
-    {
-      showSideIcon: false, // 如果这层设置 icon 图标会默认在右侧边栏显示ICON, 设置 false 关闭显示
-      title: 'Example',
-      // icon: 'https://favicon.ico',
-      nav: [
-        {
-          // icon: 'https://favicon.ico',
-        },
-      ]
-    }
-  ]
-}
-```
-
 
 
 

@@ -44,7 +44,7 @@ export class CreateComponent implements OnInit {
       threeSelect: [null, [Validators.required]],
       url: [null, [Validators.required]],
       icon: [null],
-      description: [''],
+      desc: [''],
     });
   }
 
@@ -120,7 +120,7 @@ export class CreateComponent implements OnInit {
         this.validateForm.controls[i].updateValueAndValidity();
       }
   
-      let { title, icon, oneSelect, twoSelect, threeSelect, url, description } = this.validateForm.value
+      let { title, icon, oneSelect, twoSelect, threeSelect, url, desc } = this.validateForm.value
   
       if (!title) return
       title = title.trim()
@@ -198,7 +198,7 @@ export class CreateComponent implements OnInit {
             name: title,
             icon,
             url,
-            desc: description
+            desc
           })
           break
         }

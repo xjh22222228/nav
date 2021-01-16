@@ -1,8 +1,8 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
+import config from '../../../../nav.config'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import config from '../../../../nav.config'
 import { INavProps, INavThreeProp } from '../../../types'
 import {
   debounce,
@@ -11,7 +11,6 @@ import {
   queryString,
   setWebsiteList,
   toggleCollapseAll,
-  imgErrorInRemove
 } from '../../../utils'
 import { initRipple, setAnnotate } from '../../../utils/ripple'
 import { websiteList } from '../../../store'
@@ -37,7 +36,15 @@ export default class HomeComponent {
     randomBgImg()
 
     const initList = () => {
-      this.currentList = this.websiteList[this.page].nav[this.id].nav
+      try {
+        if (this.websiteList[this.page] && this.websiteList[this.page]?.nav?.length > 0) {
+          this.currentList = this.websiteList[this.page].nav[this.id].nav
+        } else {
+          this.currentList = []
+        }
+      } catch (error) {
+        this.currentList = []
+      }
     }
 
     this.activatedRoute.queryParams.subscribe(() => {
@@ -67,7 +74,7 @@ export default class HomeComponent {
       }
 
       const params = queryString()
-      this.router.navigate(['/light'], {
+      this.router.navigate([this.router.url.split('?')[0]], {
         queryParams: {
           ...params,
           q: this.searchKeyword
@@ -76,24 +83,22 @@ export default class HomeComponent {
     }, 1000, true)
   }
 
+  collapsed() {
+    try {
+      return websiteList[this.page].nav[this.id].collapsed
+    } catch (error) {
+      return false
+    }
+  }
+
   onSearch(v) {
     this.searchKeyword = v
     this.handleSearch()
   }
 
-  handleOnClickSearch() {
-    this.showInput = true
-    setTimeout(() => {
-      const searchEl = document.querySelector('.search') as HTMLInputElement
-      if (searchEl) {
-        searchEl.focus()
-      }
-    }, 0)
-  }
-
   handleCilckTopNav(index) {
     const id = this.websiteList[index].id || 0
-    this.router.navigate(['/light'], {
+    this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
         page: index,
         id,
@@ -105,7 +110,7 @@ export default class HomeComponent {
   handleSidebarNav(index) {
     const { page } = queryString()
     this.websiteList[page].id = index
-    this.router.navigate(['/light'], { 
+    this.router.navigate([this.router.url.split('?')[0]], { 
       queryParams: {
         page,
         id: index,
@@ -130,5 +135,4 @@ export default class HomeComponent {
   }
 
   handleSearch = null
-  onSideLogoError = imgErrorInRemove
 }

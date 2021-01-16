@@ -17,6 +17,7 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { ReactiveFormsModule } from '@angular/forms'
 import { NzAvatarModule } from 'ng-zorro-antd/avatar'
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 
 // components
 import { AppComponent } from './app.component'
@@ -38,7 +39,8 @@ import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LogoComponent } from '../components/logo/logo.component'
+import { LogoComponent } from '../components/logo/logo.component';
+import { DelComponent } from '../components/del/del.component'
 
 registerLocaleData(zh);
 
@@ -75,7 +77,8 @@ const appRoutes: Routes = [
     NoDataComponent,
     SearchEngineComponent,
     CreateComponent,
-    LogoComponent
+    LogoComponent,
+    DelComponent
   ],
   imports: [
     NzModalModule,
@@ -89,6 +92,7 @@ const appRoutes: Routes = [
     NzButtonModule,
     ReactiveFormsModule,
     NzAvatarModule,
+    NzPopconfirmModule,
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(

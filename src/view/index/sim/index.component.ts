@@ -11,7 +11,6 @@ import {
   setWebsiteList,
   toggleCollapseAll,
   totalWeb,
-  imgErrorInRemove
 } from '../../../utils'
 import { initRipple, setAnnotate } from '../../../utils/ripple'
 import { websiteList } from '../../../store'
@@ -40,8 +39,15 @@ export default class HomeComponent {
 
   ngOnInit() {
     const initList = () => {
-      this.currentList = this.websiteList[this.page].nav[this.id].nav
-      
+      try {
+        if (this.websiteList[this.page] && this.websiteList[this.page]?.nav?.length > 0) {
+          this.currentList = this.websiteList[this.page].nav[this.id].nav
+        } else {
+          this.currentList = []
+        }
+      } catch (error) {
+        this.currentList = []
+      }
     }
 
     this.activatedRoute.queryParams.subscribe(() => {
@@ -74,7 +80,7 @@ export default class HomeComponent {
       this.currentList = fuzzySearch(this.websiteList, this.searchKeyword)
 
       const params = queryString()
-      this.router.navigate(['/sim'], {
+      this.router.navigate([this.router.url.split('?')[0]], {
         queryParams: {
           ...params,
           q: this.searchKeyword
@@ -110,7 +116,7 @@ export default class HomeComponent {
   handleSidebarNav(index) {
     const { page } = queryString()
     this.websiteList[page].id = index
-    this.router.navigate(['/sim'], { 
+    this.router.navigate([this.router.url.split('?')[0]], { 
       queryParams: {
         page,
         id: index,
@@ -121,7 +127,7 @@ export default class HomeComponent {
 
   handleCilckTopNav(idx) {
     const id = this.websiteList[idx].id || 0
-    this.router.navigate(['/sim'], {
+    this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
         page: idx,
         id,
@@ -140,11 +146,18 @@ export default class HomeComponent {
     toggleCollapseAll(this.websiteList)
   }
 
+  collapsed() {
+    try {
+      return websiteList[this.page].nav[this.id].collapsed
+    } catch (error) {
+      return false
+    }
+  }
+
   onSearch(v) {
     this.searchKeyword = v
     this.handleSearch()
   }
 
   handleSearch = null
-  onSideLogoError = imgErrorInRemove
 }

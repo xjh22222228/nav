@@ -71,6 +71,10 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
 
   f()
 
+  if (searchResultList[0].nav.length <= 0) {
+    return[]
+  }
+
   return searchResultList
 }
 

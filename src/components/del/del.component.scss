@@ -1,0 +1,25 @@
+.container-slot {
+  position: relative;
+  height: 100%;
+
+  &:hover {
+    .del {
+      display: inline-block;
+    }
+  }
+
+  .del {
+    z-index: 9;
+    display: none;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: #f50;
+    transition: .1s linear;
+
+    &:hover {
+      transform: rotate(45deg) scale(1.2);
+    }
+  }
+}

@@ -2,7 +2,7 @@
   <main class="homepage dark-border-color">
     <app-fixbar
       (onCollapse)="onCollapseAll()"
-      [collapsed]="websiteList[page].nav[id].collapsed"
+      [collapsed]="collapsed()"
       selector=".main"
       [randomBg]="true"
     >
@@ -16,13 +16,15 @@
         [class.dark-text-active]="page === i" 
         class="ripple-btn dark-text"
       >
-        {{ item.title }}
+        <app-del delIconStyle="top: -8px;right: -16px;" [oIdx]="i">
+          {{ item.title }}
+        </app-del>
       </a>
     </nav>
 
     <section class="index-section user-select-none dark-bg">
       <aside class="sidebar dark-bg dark-border-color" id="sidebar">
-        <ul>
+        <ul *ngIf="websiteList[page]">
           <li 
             class="tag dark-text" 
             [class.active]="id === i" 
@@ -30,7 +32,9 @@
             (click)="handleSidebarNav(i)"
             *ngFor="let item of websiteList[page].nav; let i = index" 
           >
-            <div class="ripple-btn" *ngIf="item.title">{{ item.title }}</div>
+            <app-del [oIdx]="page" [twoIdx]="i">
+              <div class="ripple-btn">{{ item.title }}</div>
+            </app-del>
           </li>
         </ul>
       </aside>
@@ -38,48 +42,51 @@
       <div class="main dark-scrollbar">
         <app-search-engine (onSearch)="onSearch($event)"></app-search-engine>
  
-        <ul *ngIf="currentList.length && currentList[0].nav.length; else noData">
+        <ul *ngIf="currentList.length > 0; else noData">
           <li *ngFor="let item of currentList; let i=index">
             <div class="title-wrapper dark-border-color" *ngIf="item.title">
-              <h2 class="block-title">
-                <span
-                  (click)="onCollapse(item, i)"
-                  class="cursor-pointer dark-primary"
-                >
-                  {{ item.title }} x {{ item.nav.length }}
-                </span>
-
-                <i
-                  class="iconfont iconjiantouarrow483 down-arrow"
-                  [class.active]="item.collapsed"
-                  (click)="onCollapse(item, i)"
-                >
-                </i>
-              </h2>
-
-              <img
-                *ngIf="item.icon && item.showSideIcon !== false"
-                [src]="item.icon"
-                class="side-logo"
-                (error)="onSideLogoError($event)"
-              />
+              <app-del delIconStyle="right: -20px;" [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
+                <h2 class="block-title">
+                  <app-logo
+                    [src]="item.icon"
+                    [name]="item.title"
+                  >
+                  </app-logo>
+                  <span
+                    (click)="onCollapse(item, i)"
+                    class="cursor-pointer dark-primary"
+                    style="align-self: center; margin-left: 10px;"
+                  >
+                    {{ item.title }} x {{ item.nav.length }}
+                  </span>
+  
+                  <i
+                    class="iconfont iconjiantouarrow483 down-arrow"
+                    [class.active]="item.collapsed"
+                    (click)="onCollapse(item, i)"
+                  >
+                  </i>
+                </h2>
+              </app-del>
             </div>
 
             <div class="row" *ngIf="!item.collapsed">
-              <div class="click-btn dark-border-color" *ngFor="let el of item.nav">
-                <a [href]="el.url" target="_blank" rel="noopener noreferer">
-                  <div class="top">
-                    <app-logo
-                      [src]="el.icon || item.icon || websiteList[page].nav[id].icon"
-                      [name]="el.name"
-                    >
-                    </app-logo>
-                    <em class="name dark-title" [innerHtml]="el.name" [title]="el.name"></em>
-                  </div>
-                  <div class="desc dark-border-color dark-text" [innerHtml]="el.desc"></div>
-                </a>
-
-                <app-multiple-site [dataSource]="el"></app-multiple-site>
+              <div class="click-btn dark-border-color" *ngFor="let el of item.nav; let idx=index">
+                <app-del [oIdx]="page" [twoIdx]="id" [threeIdx]="i" [fourIdx]="idx">
+                  <a [href]="el.url" target="_blank" rel="noopener noreferer">
+                    <div class="top">
+                      <app-logo
+                        [src]="el.icon || item.icon || websiteList[page].nav[id].icon"
+                        [name]="el.name"
+                      >
+                      </app-logo>
+                      <em class="name dark-title" [innerHtml]="el.name" [title]="el.name"></em>
+                    </div>
+                    <div class="desc dark-border-color dark-text" [innerHtml]="el.desc"></div>
+                  </a>
+  
+                  <app-multiple-site [dataSource]="el"></app-multiple-site>
+                </app-del>
               </div>
             </div>
           </li>

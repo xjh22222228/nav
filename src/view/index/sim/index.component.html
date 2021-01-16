@@ -13,13 +13,15 @@
       class="ripple-btn dark-text"
       (click)="handleCilckTopNav(i)" 
     >
-      {{ item.title }}
+      <app-del delIconStyle="top: -8px;right: -16px;" [oIdx]="i">
+        {{ item.title }}
+      </app-del>
     </a>
   </nav>
 
   <div class="wrapper">
     <nav class="sidebar dark-bg" id="sidebar">
-      <div *ngIf="websiteList[page].nav.length">
+      <div *ngIf="websiteList[page]?.nav?.length > 0">
         <div 
           *ngFor="let item of websiteList[page].nav; let i = index" 
           (click)="handleSidebarNav(i)" 
@@ -27,7 +29,9 @@
           [class.dark-item-active]="id === i" 
           class="ripple-btn dark-text"
         >
-          {{ item.title || websiteList[page].title }}
+          <app-del delIconStyle="top: -10px;" [oIdx]="page" [twoIdx]="i">
+            {{ item.title }}
+          </app-del>
         </div>
       </div>
     </nav>
@@ -35,38 +39,48 @@
     <aside class="site-box dark-bg">
       <div *ngFor="let item of currentList; let i=index">
         <div class="nav-wrapper">
-          <div
-            class="title dark-primary dark-border-color"
-            *ngIf="item.title"
-            (click)="onCollapse(item, i)"
-          >
-            {{ item.title }} x {{ item.nav.length }}
+          <app-del [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
+            <div
+              class="title dark-primary dark-border-color"
+              *ngIf="item.title"
+              (click)="onCollapse(item, i)"
+            >
+              <app-logo
+                [src]="item.icon"
+                [name]="item.title"
+              >
+              </app-logo>
 
-            <i class="iconfont iconjiantouarrow483 down-arrow" [class.active]="item.collapsed"></i>
-          </div>
+              <span style="margin-left: 10px;align-self: center;">{{ item.title }} x {{ item.nav.length }}</span>
+
+              <i class="iconfont iconjiantouarrow483 down-arrow" [class.active]="item.collapsed"></i>
+            </div>
+          </app-del>
 
           <ul class="ul" *ngIf="!item.collapsed">
             <li *ngFor="let ele of item.nav" class="dark-border-color">
-              <a
-                class="url-box"
-                [href]="ele.url"
-                target="_blank"
-                rel="noopener noreferer"
-              >
-                <div class="box-wrapper">
-                  <div class="left">
-                    <app-logo
-                      [src]="ele.icon || item.icon || websiteList[page].nav[id].icon"
-                      [name]="ele.name"
-                    >
-                    </app-logo>
+              <app-del [oIdx]="page" [twoIdx]="id" [threeIdx]="i" [fourIdx]="idx">
+                <a
+                  class="url-box"
+                  [href]="ele.url"
+                  target="_blank"
+                  rel="noopener noreferer"
+                >
+                  <div class="box-wrapper">
+                    <div class="left">
+                      <app-logo
+                        [src]="ele.icon || item.icon || websiteList[page].nav[id].icon"
+                        [name]="ele.name"
+                      >
+                      </app-logo>
+                    </div>
+    
+                    <div class="right dark-title" [innerHtml]="ele.name" [title]="ele.name"></div>
                   </div>
-  
-                  <div class="right dark-title" [innerHtml]="ele.name" [title]="ele.name"></div>
-                </div>
 
-                <div class="desc dark-text" [innerHtml]="ele.desc"></div>
-              </a>
+                  <div class="desc dark-text" [innerHtml]="ele.desc"></div>
+                </a>
+              </app-del>
 
               <app-multiple-site [dataSource]="ele"></app-multiple-site>
             </li>
@@ -82,7 +96,7 @@
 <app-footer className="sim-footer"></app-footer>
 <app-fixbar
   (onCollapse)="onCollapseAll()"
-  [collapsed]="websiteList[page].nav[id].collapsed"
+  [collapsed]="collapsed()"
 >
 </app-fixbar>
 
