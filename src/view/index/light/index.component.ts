@@ -5,7 +5,6 @@ import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { INavProps, INavThreeProp } from '../../../types'
 import {
-  debounce,
   fuzzySearch,
   randomBgImg,
   queryString,
@@ -28,7 +27,6 @@ export default class HomeComponent {
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
-  searchKeyword: string = ''
   showInput = false
   gitRepoUrl: string = config.gitRepoUrl
 
@@ -50,7 +48,6 @@ export default class HomeComponent {
     this.activatedRoute.queryParams.subscribe(() => {
       const tempPage = this.page
       const { id, page, q } = queryString()
-      this.searchKeyword = q
       this.page = page
       this.id = id
 
@@ -66,21 +63,6 @@ export default class HomeComponent {
 
       setWebsiteList(this.websiteList)
     })
-
-    this.handleSearch = debounce(() => {
-      if (!this.searchKeyword) {
-        initList()
-        return
-      }
-
-      const params = queryString()
-      this.router.navigate([this.router.url.split('?')[0]], {
-        queryParams: {
-          ...params,
-          q: this.searchKeyword
-        }
-      })
-    }, 1000, true)
   }
 
   collapsed() {
@@ -89,11 +71,6 @@ export default class HomeComponent {
     } catch (error) {
       return false
     }
-  }
-
-  onSearch(v) {
-    this.searchKeyword = v
-    this.handleSearch()
   }
 
   handleCilckTopNav(index) {
@@ -133,6 +110,4 @@ export default class HomeComponent {
   onCollapseAll = () => {
     toggleCollapseAll(this.websiteList)
   }
-
-  handleSearch = null
 }

@@ -1,12 +1,19 @@
-<div nz-dropdown [nzDropdownMenu]="menu" [nzDisabled]="!isEditing.value" [nzClickHide]="false">
+<div
+  nz-dropdown
+  [nzDropdownMenu]="menu"
+  [nzDisabled]="(!isEditing.value || hasKeyword())"
+  [nzClickHide]="false"
+>
   <ng-content></ng-content>
 </div>
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <ul nz-menu nzSelectable>
+    <li nz-menu-item (click)="clickEdit()">编辑</li>
     <a
       *ngIf="isLogin"
       nz-popconfirm
       nzPopconfirmPlacement="rightTop"
+      nzOkType="danger"
       nzPopconfirmTitle="您确定要删除吗?"
       nzPopconfirmPlacement="bottom"
       (nzOnConfirm)="confirmDel($event)"
@@ -15,3 +22,44 @@
     </a>
   </ul>
 </nz-dropdown-menu>
+
+
+<nz-modal
+  [(nzVisible)]="showModal"
+  nzTitle="修改"
+  (nzOnCancel)="toggleModal()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="handleOk()">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>{{ radioType === '6' ? '网站名称' : '分类名称'}}</nz-form-label>
+        <nz-form-control [nzSpan]="20" nzErrorTip="请输入名称">
+          <input formControlName="title" nz-input placeholder="发现导航" maxlength="10" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item *ngIf="getEditType() === EditType.isWebsite">
+        <nz-form-label [nzSpan]="4" nzRequired>网站链接</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <input formControlName="url" nz-input placeholder="https://nav3.cn" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">图标地址</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <input formControlName="icon" nz-input placeholder="https://example.com/favicon.png" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item *ngIf="getEditType() === EditType.isWebsite">
+        <nz-form-label [nzSpan]="4">网站描述</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <input formControlName="desc" nz-input placeholder="发现导航, 精选实用导航网站" />
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>
+

@@ -11,6 +11,7 @@ const c: IConfig = {
   theme: 'light',
 
   // 海报图, 只支持 sim 主题
+  // 请不要放在项目里头, 填写Url
   posterImageUrl: 'assets/img/wallpaper.jpg',
 
   // 搜索引擎列表, 为空时不显示搜索引擎
@@ -55,10 +56,6 @@ const c: IConfig = {
       placeholder: '书名、作者、ISBN'
     }
   ],
-
-  // 错误图标, 图标地址访问不了时显示
-  // 建议使用网络地址，放在您任何服务器上, 减少入侵
-  errorIconUrl: '',
 
   // 网站底部描述, 可以是 HTML
   // 可以是版权信息，备案号

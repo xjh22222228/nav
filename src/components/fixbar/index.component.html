@@ -1,12 +1,14 @@
 <div class="fixbar">
-  <div
-    class="wrapper dark-bg dark-border-color dark-action-hover"
-    (click)="handleSync()"
-    *ngIf="isLogin"
-    [class.rotate]="syncLoading"
-  >
-    <i class="iconfont iconwinfo-icon-tongbu"></i>
-  </div>
+  <span *ngIf="isLogin" nz-tooltip nzTooltipTitle="同步数据">
+    <div
+      class="wrapper dark-bg dark-border-color dark-action-hover"
+      (click)="handleSync()"
+      [class.rotate]="syncLoading"
+    >
+      <i class="iconfont iconwinfo-icon-tongbu"></i>
+    </div>
+  </span>
+  
 
   <span *ngIf="isLogin" nz-tooltip [nzTooltipTitle]="isEditing.value ? '关闭编辑模式' : '开启编辑模式'">
     <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleEditMode()">
@@ -14,19 +16,25 @@
     </div>
   </span>
   
-  <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleModal()">
-    <i class="iconfont iconchuangjian"></i>
-  </div>
+  <span nz-tooltip nzTooltipTitle="新增数据">
+    <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleModal()">
+      <i class="iconfont iconchuangjian"></i>
+    </div>
+  </span>
+  
+  <span nz-tooltip [nzTooltipTitle]="collapsed ? '展开' : '折叠'">
+    <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="collapse()">
+      <i class="iconfont iconweibiaoti25 collapse" [class.active]="collapsed"></i>
+    </div>
+  </span>
 
-  <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="collapse()">
-    <i class="iconfont iconweibiaoti25 collapse" [class.active]="collapsed"></i>
-  </div>
-
-  <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleMode()">
-    <i class="iconfont icondark dark" *ngIf="!isDark"></i>
-    <img class="iconfont icondark" src="assets/img/light.svg" *ngIf="isDark">
-  </div>
-
+  <span nz-tooltip [nzTooltipTitle]="isDark ? '关闭暗黑' : '开启暗黑'">
+    <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleMode()">
+      <i class="iconfont icondark dark" *ngIf="!isDark"></i>
+      <img class="iconfont icondark" src="assets/img/light.svg" *ngIf="isDark">
+    </div>
+  </span>
+  
   <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="scrollTop()">
     <i class="iconfont iconjiantouarrow483 arrow"></i>
   </div>

@@ -1,23 +1,27 @@
 <div class="search-engine" *ngIf="searchEngineList && searchEngineList.length > 0">
   <div class="input-wrapper dark-bg dark-border-color">
-    <div
-      class="left-icon"
-      (click)="toggleEngine($event)"
-      [ngStyle]="{ 'background-image': 'url(' + currentEngine.icon + ')' }"
-    >
-    </div>
-
-    <input
-      id="search-engine-input"
-      class="dark-input"
-      type="text"
-      autofocus
-      [placeholder]="currentEngine.placeholder || ''"
-      [(ngModel)]="keyword"
-      (keyup)="onKey($event)"
-    />
-
-    <i class="search-icon iconfont iconsousuo dark-text" (click)="triggerSearch()"></i>
+    <nz-input-group [nzPrefix]="prefixIcon" [nzSuffix]="suffixIcon" nzSize="large">
+      <input
+        type="text"
+        nz-input
+        [placeholder]="currentEngine.placeholder || ''"
+        [(ngModel)]="keyword"
+        autofocus
+        id="search-engine-input"
+        (keyup)="onKey($event)"
+      />
+    </nz-input-group>
+    <ng-template #prefixIcon>
+      <div
+        class="left-icon"
+        (click)="toggleEngine($event)"
+        [ngStyle]="{ 'background-image': 'url(' + currentEngine.icon + ')' }"
+      >
+      </div>
+    </ng-template>
+    <ng-template #suffixIcon>
+      <i class="search-icon iconfont iconsousuo dark-text" (click)="triggerSearch()"></i>
+    </ng-template>
   </div>
 
   <div class="engine-main dark-bg dark-border-color" *ngIf="showEngine">

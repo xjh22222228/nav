@@ -1,8 +1,9 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
-import { Component, Output, EventEmitter } from '@angular/core'
 import config from '../../../nav.config'
+import { Component } from '@angular/core'
 import { getDefaultSearchEngine, setDefaultSearchEngine, queryString } from '../../utils'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-search-engine',
@@ -11,14 +12,11 @@ import { getDefaultSearchEngine, setDefaultSearchEngine, queryString } from '../
 })
 export class SearchEngineComponent {
   searchEngineList = config.searchEngineList
-
   currentEngine = getDefaultSearchEngine()
-
   showEngine = false
-
   keyword = queryString().q
 
-  @Output() onSearch = new EventEmitter<string>()
+  constructor (private router: Router) {}
 
   inputFocus() {
     const inputEl = document.getElementById('search-engine-input')
@@ -56,7 +54,13 @@ export class SearchEngineComponent {
       window.open(this.currentEngine.url + this.keyword)
     }
     
-    this.onSearch.emit(this.keyword)
+    const params = queryString()
+    this.router.navigate([this.router.url.split('?')[0]], {
+      queryParams: {
+        ...params,
+        q: this.keyword
+      }
+    })
   }
 
   onKey(event: KeyboardEvent) {

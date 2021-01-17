@@ -2,7 +2,7 @@
   <div class="wallpaper" [ngStyle]="{ 'background-image': 'url(' + posterImageUrl + ')' }">
     <h1 class="title dark-title">{{ title }}</h1>
     <h2 class="description dark-text-active">这里收录多达 <b>{{ totalWeb }}</b> 个优质网站， 助您工作、学习和生活</h2>
-    <app-search-engine (onSearch)="onSearch($event)"></app-search-engine>
+    <app-search-engine></app-search-engine>
   </div>
 
   <nav class="top-nav user-select-none dark-border-color">
@@ -59,7 +59,7 @@
           </app-dropdown>
 
           <ul class="ul" *ngIf="!item.collapsed">
-            <li *ngFor="let ele of item.nav" class="dark-border-color">
+            <li *ngFor="let ele of item.nav; let idx=index" class="dark-border-color">
               <app-dropdown [oIdx]="page" [twoIdx]="id" [threeIdx]="i" [fourIdx]="idx">
                 <a
                   class="url-box"

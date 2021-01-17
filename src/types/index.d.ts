@@ -27,16 +27,17 @@ export interface INavTwoProp {
   nav: INavThreeProp[]
 }
 
-export interface INavProps {
+export interface INavProps extends Object {
   title: string
   id?: number
+  icon?: string | null
   nav: INavTwoProp[]
 }
 
 export interface ISearchEngineProps {
   name: string
   url?: string
-  icon: string
+  icon: string | null
   placeholder?: string
 }
 
@@ -46,7 +47,6 @@ export interface IConfig {
   posterImageUrl: string
   searchEngineList: ISearchEngineProps[]
   gitRepoUrl: string,
-  errorIconUrl: string
   footerCopyright: string|null
   tongjiUrl: string
   indexLanguage: string[]

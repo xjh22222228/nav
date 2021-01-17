@@ -6,7 +6,9 @@ import { INavProps, ISearchEngineProps } from '../types'
 import * as db from '../../data/db.json'
 
 export const websiteList = getWebsiteList()
-const { backgroundLinear, errorIconUrl, searchEngineList } = config
+
+let total = 0
+const { backgroundLinear, searchEngineList } = config
 
 export function debounce(func, wait, immediate) {
   let timeout
@@ -78,7 +80,6 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
   return searchResultList
 }
 
-let total = 0
 export function totalWeb(): number {
   if (total) {
     return total

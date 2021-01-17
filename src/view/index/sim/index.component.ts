@@ -5,7 +5,6 @@ import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { INavProps, INavThreeProp } from '../../../types'
 import {
-  debounce,
   fuzzySearch,
   queryString,
   setWebsiteList,
@@ -31,7 +30,6 @@ export default class HomeComponent {
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
-  searchKeyword: string = ''
   gitRepoUrl: string = gitRepoUrl
   totalWeb: number = totalWeb()
   title: string = title
@@ -53,7 +51,6 @@ export default class HomeComponent {
     this.activatedRoute.queryParams.subscribe(() => {
       const tempPage = this.page
       const { id, page, q } = queryString()
-      this.searchKeyword = q
       this.page = page
       this.id = id
 
@@ -70,23 +67,6 @@ export default class HomeComponent {
 
       setWebsiteList(this.websiteList)
     })
-
-    this.handleSearch = debounce(() => {
-      if (!this.searchKeyword) {
-        initList()
-        return
-      }
-
-      this.currentList = fuzzySearch(this.websiteList, this.searchKeyword)
-
-      const params = queryString()
-      this.router.navigate([this.router.url.split('?')[0]], {
-        queryParams: {
-          ...params,
-          q: this.searchKeyword
-        }
-      })
-    }, 1000, true)
   }
 
   onScroll() {
@@ -153,11 +133,4 @@ export default class HomeComponent {
       return false
     }
   }
-
-  onSearch(v) {
-    this.searchKeyword = v
-    this.handleSearch()
-  }
-
-  handleSearch = null
 }

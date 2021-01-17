@@ -40,7 +40,7 @@
       </aside>
 
       <div class="main dark-scrollbar">
-        <app-search-engine (onSearch)="onSearch($event)"></app-search-engine>
+        <app-search-engine></app-search-engine>
  
         <ul *ngIf="currentList.length > 0; else noData">
           <li *ngFor="let item of currentList; let i=index">
