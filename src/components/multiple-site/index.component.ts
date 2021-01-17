@@ -1,7 +1,6 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
 import { Component, Input } from '@angular/core'
-import config from '../../../nav.config'
 import { INavFourProp } from '../../types'
 
 @Component({
@@ -12,5 +11,5 @@ import { INavFourProp } from '../../types'
 export class MultipleSiteComponent {
   @Input() dataSource: INavFourProp
 
-  language: string[] = config.indexLanguage
+  objectKeys = Object.keys
 }

@@ -24,7 +24,7 @@
     font-size: 12px;
     padding: 3px 0;
     border: none;
-    background: #2db7f5;
+    background: #26a2ff;
     color: #fff;
     border-radius: 3px;
     overflow: hidden;
@@ -47,9 +47,5 @@
     &:active:after {
       opacity: .2;
     }
-  }
-
-  .zh {
-    background: #26a2ff;
   }
 }

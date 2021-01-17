@@ -70,18 +70,6 @@ const c: IConfig = {
   // 百度统计
   baiduStatisticsUrl: 'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba',
 
-  indexLanguage: [
-    '英文',
-    '中文',
-    'GitHub'
-  ],
-
-  appLanguage: [
-    'EN',
-    'CN',
-    'Git'
-  ],
-
   // 只支持 light 主题
   // https://www.nav3.cn/#/index?q=grabient
   backgroundLinear: [

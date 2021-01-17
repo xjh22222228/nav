@@ -61,7 +61,7 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/' + config.theme,
+    redirectTo: '/' + config.theme.toLowerCase(),
   },
 ]
 

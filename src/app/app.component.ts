@@ -18,12 +18,14 @@ export class AppComponent {
   }
 
   goRoute() {
-    const { page, id, q } = queryString()
-    const screenWidth = window.innerWidth
-    const queryParams = { page, id, q }
+    if ('ontouchstart' in window) {
+      const url = (this.router.url.split('?')[0] || '').toLowerCase()
+      const { page, id, q } = queryString()
+      const queryParams = { page, id, q }
 
-    if (screenWidth < 768) {
-      this.router.navigate(['/app'], { queryParams })
+      if (!url.includes('/app')) {
+        this.router.navigate(['/app'], { queryParams })
+      }
     }
   }
 }

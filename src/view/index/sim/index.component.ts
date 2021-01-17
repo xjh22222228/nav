@@ -56,7 +56,6 @@ export default class HomeComponent {
 
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
-        console.log(this.currentList)
       } else {
         initList()
       }

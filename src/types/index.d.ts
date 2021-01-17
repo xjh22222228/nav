@@ -10,6 +10,9 @@ export interface INavFourProp {
   desc: string
   url?: string
   language?: string|null|undefined[]
+  urls?: {
+    [key: string]: string
+  }
 }
 
 export interface INavThreeProp {
@@ -51,7 +54,5 @@ export interface IConfig {
   gitRepoUrl: string,
   footerCopyright: string|null
   baiduStatisticsUrl: string
-  indexLanguage: string[]
-  appLanguage: string[]
   backgroundLinear: string[]
 }

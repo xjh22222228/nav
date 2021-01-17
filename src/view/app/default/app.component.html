@@ -1,9 +1,7 @@
 <section class="app-page user-select-none">
   <header class="header">
     <div class="header-top">
-      <a href="https://github.com/xjh22222228/nav" target="_blank" class="logo">
-        <img src="assets/logo.png" alt="logo">
-      </a>
+      <img src="assets/logo.png" class="logo" alt="logo">
       <div class="open" [class.active]="open" (click)="handleToggleOpen()">
         <i></i>
         <i></i>
@@ -51,20 +49,8 @@
               </div>
               <div class="desc" [title]="el.desc">{{ el.desc }}</div>
             </a>
-            <div class="bottom-slide">
-              <div class="wrapper-button" *ngIf="el.language && el.language.length">
-                <a
-                  [href]="el.url"
-                  *ngIf="el.language.length <= 3 && (!el.language[0] || !el.language[1])"
-                  target="_blank"
-                >
-                  默认
-                </a>
-                <a [href]="el.language[0]" *ngIf="el.language[0]" target="_blank">{{ language[0] }}</a>
-                <a [href]="el.language[1]" *ngIf="el.language[1]" target="_blank">{{ language[1] }}</a>
-                <a [href]="el.language[2]" *ngIf="el.language[2]" target="_blank">{{ language[2] }}</a>
-              </div>
-            </div>
+
+            <app-multiple-site [dataSource]="el"></app-multiple-site>
           </div>
         </div>
       </li>
