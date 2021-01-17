@@ -162,6 +162,7 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 <img src="https://raw.sevencdn.com/xjh22222228/public/gh-pages/img/32.png" width="600">
 
 感谢您的认可：
+| 姓名    | 支持金额              |
 | --------------------------------------- |----------- |
 | [aiyou9](https://github.com/aiyou9)     | ￥20.00     |
 
