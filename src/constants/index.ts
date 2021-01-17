@@ -4,4 +4,4 @@ export const VERIFY_PATH = 'nav.verify.txt'
 
 export const DB_PATH = 'data/db.json'
 
-export const VERSION = '5.0.0-beta.1'
+export const VERSION = '5.0.0'
