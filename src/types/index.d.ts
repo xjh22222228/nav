@@ -9,7 +9,6 @@ export interface INavFourProp {
   name: string
   desc: string
   url?: string
-  language?: string|null|undefined[]
   urls?: {
     [key: string]: string
   }

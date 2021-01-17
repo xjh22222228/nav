@@ -1,6 +1,5 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
-import config from '../../../../nav.config'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { queryString } from '../../../utils'
@@ -19,7 +18,6 @@ export default class WebpComponent {
   id: number = 0
   page: number = 0
   open: boolean = false
-  language: string[] = config.appLanguage
 
   ngOnInit () {
     this.activatedRoute.queryParams.subscribe(() => {
@@ -52,22 +50,5 @@ export default class WebpComponent {
   handleToggleOpen() {
     this.open = !this.open;
     (<any>window).$('.nav-open').slideToggle(200)
-  }
-
-  handleToWebsite(item, index, event) {
-    if (!Array.isArray(item.language)) {
-      window.open(item.url)
-      return
-    }
-    const el = (<any>window).$('.bottom-slide')
-    const $this = (<any>window).$(event.currentTarget)
-    const len = el.length
-    for (let i = 0; i < len; i++) {
-      if (i === index) {
-        continue
-      }
-      el.eq(i).removeClass('active')
-    }
-    $this.siblings('.bottom-slide').toggleClass('active')
   }
 }
