@@ -4,8 +4,12 @@ import fs from 'fs'
 import config from './nav.config.js'
 import path from 'path'
 
+function addZero(num) {
+  return num < 10 ? '0' + num : num
+}
+
 const now = new Date()
-const date = `${now.getMonth() + 1}-${now.getDate()}-${now.getDay()} ${now.getHours()}:${now.getMinutes()}`
+const date = `${now.getFullYear()}年${addZero(now.getMonth() + 1)}月${addZero(now.getDate())}日 ${addZero(now.getHours())}:${addZero(now.getMinutes())}`
 
 const { description, title, keywords, baiduStatisticsUrl } = config.default
 const htmlTemplate = `
