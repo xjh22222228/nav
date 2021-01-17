@@ -1,7 +1,7 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
 import { Component, Output, EventEmitter, Input } from '@angular/core'
-import { isDark as isDarkFn, randomBgImg } from '../../utils'
+import { isDark as isDarkFn, randomBgImg, queryString } from '../../utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
@@ -9,6 +9,8 @@ import { getToken } from '../../utils/user'
 import { updateFileContent } from '../../services'
 import { websiteList, isEditing } from '../../store'
 import { DB_PATH } from '../../constants'
+import { Router } from '@angular/router'
+import { setAnnotate } from '../../utils/ripple'
 
 @Component({
   selector: 'app-fixbar',
@@ -28,11 +30,22 @@ export class FixbarComponent {
   syncLoading = false
   isLogin = !!getToken()
   isEditing = isEditing
+  themeList = [
+    {
+      name: '切换到 Light',
+      url: '/light'
+    },
+    {
+      name: '切换到 Sim',
+      url: '/sim'
+    }
+  ]
 
   constructor(
     private message: NzMessageService,
     private notification: NzNotificationService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -40,6 +53,11 @@ export class FixbarComponent {
       document.body.classList.add('dark-container')
       this.toggleZorroDark(true)
     }
+
+    const url = this.router.url.split('?')[0]
+    this.themeList = this.themeList.filter(t => {
+      return t.url !== url
+    })
   }
 
   toggleZorroDark(dark: boolean) {
@@ -47,19 +65,30 @@ export class FixbarComponent {
       const link = document.createElement('link')
       link.rel = 'stylesheet'
       link.href = '/assets/ng-zorro-antd.dark.css'
-      link.id = 'NG-ZORRO-DARK'
+      link.className = 'NG-ZORRO-DARK'
       document.body.append(link)
     } else {
-      const findLink = document.getElementById('NG-ZORRO-DARK')
-      findLink.parentNode.removeChild(findLink)
+      const findLink = document.querySelectorAll('.NG-ZORRO-DARK')
+      findLink.forEach(child => {
+        child.parentNode.removeChild(child)
+      })
     }
+  }
+
+  toggleTheme(theme) {
+    this.router.navigate([theme.url], {
+      queryParams: queryString()
+    })
+    setTimeout(() => {
+      setAnnotate()
+    }, 100)
   }
 
   toggleEditMode() {
     this.isEditing.value = !this.isEditing.value
   }
 
-  scrollTop() {
+  goTop() {
     if (this.selector) {
       const el = document.querySelector(this.selector)
       if (el) {

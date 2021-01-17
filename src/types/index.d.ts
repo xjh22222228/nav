@@ -1,8 +1,8 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
 export type ThemeType =
-  | 'light'
-  | 'sim'
+  | 'Light'
+  | 'Sim'
 
 export interface INavFourProp {
   icon?: string | null
@@ -43,12 +43,14 @@ export interface ISearchEngineProps {
 
 export interface IConfig {
   title: string
+  description: string
+  keywords: string
   theme: ThemeType
   posterImageUrl: string
   searchEngineList: ISearchEngineProps[]
   gitRepoUrl: string,
   footerCopyright: string|null
-  tongjiUrl: string
+  baiduStatisticsUrl: string
   indexLanguage: string[]
   appLanguage: string[]
   backgroundLinear: string[]

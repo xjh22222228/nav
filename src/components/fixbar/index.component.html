@@ -1,4 +1,25 @@
 <div class="fixbar">
+  <div
+    class="wrapper dark-bg dark-border-color dark-action-hover"
+    (click)="toggleEditMode()"
+    nz-dropdown
+    [nzDropdownMenu]="menu"
+    nzPlacement="topLeft"
+  >
+    <img src="assets/img/theme.svg" />
+  </div>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li
+        nz-menu-item
+        *ngFor="let themeItem of themeList"
+        (click)="toggleTheme(themeItem)"
+      >
+        {{ themeItem.name }}
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+
   <span *ngIf="isLogin" nz-tooltip nzTooltipTitle="同步数据">
     <div
       class="wrapper dark-bg dark-border-color dark-action-hover"
@@ -8,7 +29,6 @@
       <i class="iconfont iconwinfo-icon-tongbu"></i>
     </div>
   </span>
-  
 
   <span *ngIf="isLogin" nz-tooltip [nzTooltipTitle]="isEditing.value ? '关闭编辑模式' : '开启编辑模式'">
     <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleEditMode()">
@@ -35,7 +55,7 @@
     </div>
   </span>
   
-  <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="scrollTop()">
+  <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="goTop()">
     <i class="iconfont iconjiantouarrow483 arrow"></i>
   </div>
 </div>

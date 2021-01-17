@@ -104,6 +104,13 @@ server {
 
 
 
+## 关于升级
+在升级之前请保存根目录下的 `data` 文件夹,最好把 `nav.config.ts` 配置文件也保存一份以防万一, 升级完后将替换即可。
+
+
+
+
+
 
 ## 开发构建
 ``` bash
@@ -136,6 +143,9 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 <a href="https://github.com/Fechin">
   <img src="https://avatars1.githubusercontent.com/u/2541482?s=460&v=4" width="30px" height="30px" />
 </a>
+<a href="https://github.com/setdiaoyong">
+  <img src="https://avatars1.githubusercontent.com/u/62551864?s=460&v=4" width="30px" height="30px" />
+</a>
 
 
 
@@ -145,6 +155,13 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 
 
 ## 支持
-如果能帮到您，可以请作者喝杯咖啡~
+项目成立于 2018 年到至今一直坚持维护和开源, 经过N次的迭代与优化, 如果项目能帮到您是我的荣幸。
+
+您可以请作者喝杯咖啡，继续战斗下去（请备注Github名字）~
 
 <img src="https://raw.sevencdn.com/xjh22222228/public/gh-pages/img/32.png" width="600">
+
+感谢您的认可：
+| --------------------------------------- |----------- |
+| [aiyou9](https://github.com/aiyou9)     | ￥20.00     |
+

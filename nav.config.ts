@@ -7,10 +7,16 @@ const c: IConfig = {
   // 网站标题
   title: '发现导航 - 精选实用导航网站',
 
-  // 默认主题: light | sim
-  theme: 'light',
+  // 网站描述
+  description: '发现导航 - 精选实用导航网站',
 
-  // 海报图, 只支持 sim 主题
+  // 网站关键字
+  keywords: '导航,前端资源,社区站点,设计师,实用工具,学习资源,运营,网络安全,node.js',
+
+  // 默认主题: Light | Sim
+  theme: 'Light',
+
+  // 海报图, 只支持 Sim 主题
   // 请不要放在项目里头, 填写Url
   posterImageUrl: 'assets/img/wallpaper.jpg',
 
@@ -62,7 +68,7 @@ const c: IConfig = {
   footerCopyright: '',
 
   // 百度统计
-  tongjiUrl: 'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba',
+  baiduStatisticsUrl: 'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba',
 
   indexLanguage: [
     '英文',

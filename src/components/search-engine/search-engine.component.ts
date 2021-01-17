@@ -19,8 +19,10 @@ export class SearchEngineComponent {
   constructor (private router: Router) {}
 
   inputFocus() {
-    const inputEl = document.getElementById('search-engine-input')
-    inputEl?.focus?.()
+    setTimeout(() => {
+      const inputEl = document.getElementById('search-engine-input')
+      inputEl?.focus?.()
+    }, 100)
   }
 
   ngAfterViewInit() {
