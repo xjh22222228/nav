@@ -35,8 +35,8 @@
 ## 预览
 **主题**
 
-- [sim 在线预览](https://nav3.cn/#/sim)
-- [light 在线预览](https://nav3.cn/#/light)
+- [Sim 在线预览](https://nav3.cn/#/sim)
+- [Light 在线预览](https://nav3.cn/#/light)
 
 ![Preview](media/1.png)
 ![Preview](media/2.png)

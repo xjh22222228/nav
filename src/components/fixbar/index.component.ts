@@ -60,6 +60,19 @@ export class FixbarComponent {
     })
   }
 
+  viewInfo() {
+    const date = document.getElementById('BUILD-DATE-NAV')?.dataset?.date
+
+    this.modal.info({
+      nzTitle: '以下信息只有您能查看，请放心！',
+      nzOkText: '知道了',
+      nzContent: `
+        <p>Token: ${getToken()}</p>
+        <p>上次构建时间: ${date || '未知'}</p>
+      `,
+    });
+  }
+
   toggleZorroDark(dark: boolean) {
     if (dark) {
       const link = document.createElement('link')

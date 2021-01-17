@@ -9,6 +9,7 @@ export class LogoComponent implements OnInit {
   @Input() src: string
   @Input() name: string
   @Input() colour: string
+  @Input() size: number
 
   hasError = false
   color = '#1890ff'

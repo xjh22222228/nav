@@ -1,4 +1,13 @@
 <div class="fixbar">
+  <span *ngIf="isLogin" nz-tooltip nzTooltipTitle="查看信息">
+    <div
+      class="wrapper dark-bg dark-border-color dark-action-hover"
+      (click)="viewInfo()"
+    >
+    <img src="assets/img/view.svg" />
+    </div>
+  </span>
+
   <div
     class="wrapper dark-bg dark-border-color dark-action-hover"
     (click)="toggleEditMode()"

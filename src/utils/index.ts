@@ -169,7 +169,7 @@ export function getWebsiteList() {
 
   // 检测到网站更新，清除缓存
   if (storageScriptUrl !== scriptUrl) {
-    const whiteList = ['token']
+    const whiteList = ['token', 'IS_DARK']
     const len = window.localStorage.length
     for (let i = 0; i < len; i++) {
       const key = window.localStorage.key(i)
@@ -255,4 +255,33 @@ export function isDark(): boolean {
   }
 
   return Boolean(Number(storageVal))
+}
+
+export async function getLogoUrl(url: string): Promise<boolean|string> {
+  try {
+    // const c = ['/favicon.ico', '/favicon.png', '/logo.png', '/favicon.svg', '/favicon.jpg']
+    const { origin } = new URL(url)
+    const iconUrl = origin + '/favicon.ico'
+
+    return new Promise(resolve => {
+      try {
+        const img = document.createElement('img')
+        img.src = iconUrl
+        img.style.display = 'none'
+        img.onload = () => {
+          img.parentNode.removeChild(img)
+          resolve(iconUrl)
+        }
+        img.onerror = () => {
+          img.parentNode.removeChild(img)
+          resolve(false)
+        }
+        document.body.append(img)
+      } catch (error) {
+        resolve(false)
+      }
+    })
+  } catch {
+    return false
+  }
 }

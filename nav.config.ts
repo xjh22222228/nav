@@ -71,7 +71,7 @@ const c: IConfig = {
   baiduStatisticsUrl: 'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba',
 
   // 只支持 Light 主题
-  // https://www.nav3.cn/#/index?q=grabient
+  // https://www.nav3.cn/#/light?q=grabient
   backgroundLinear: [
     'linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)',
     'linear-gradient(90deg, #FEE140 0%, #FA709A 100%)',

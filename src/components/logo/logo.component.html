@@ -3,14 +3,15 @@
   [src]="src"
   class="icon dark-border-color"
   (error)="onImgError($event)"
+  [ngStyle]="{ width: (size || 35) + 'px', height: (size || 35) + 'px' }"
 >
 
 <ng-template #noSrc>
   <nz-avatar
-    [nzSize]="35"
+    [nzSize]="size || 35"
     [nzGap]="gap"
     [ngStyle]="{ 'background-color': colour || color }"
-    [nzText]="name[0]"
+    [nzText]="name ? name[0] : ''"
     nzSize="large"
     style="vertical-align: middle;"
   >

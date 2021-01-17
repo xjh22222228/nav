@@ -4,6 +4,9 @@ import fs from 'fs'
 import config from './nav.config.js'
 import path from 'path'
 
+const now = new Date()
+const date = `${now.getMonth() + 1}-${now.getDate()}-${now.getDay()} ${now.getHours()}:${now.getMinutes()}`
+
 const { description, title, keywords, baiduStatisticsUrl } = config.default
 const htmlTemplate = `
   <title>${title}</title>
@@ -20,6 +23,7 @@ hm.src = '${baiduStatisticsUrl}';
 var s = document.getElementsByTagName("script")[0]; 
 s.parentNode.insertBefore(hm, s);
 </script>
+<span data-date="${date}" id="BUILD-DATE-NAV"></span>
 `.trim()
 
 try {

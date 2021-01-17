@@ -1,7 +1,7 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
-import { setWebsiteList } from '../../utils'
+import { setWebsiteList, getLogoUrl } from '../../utils'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { updateFileContent } from '../../services'
@@ -27,6 +27,7 @@ export class CreateComponent implements OnInit {
   isLogin = !!getToken()
   radioType: '1'|'2'|'3'|'6' = '6'
   submiting = false
+  iconUrl = ''
 
   constructor(
     private fb: FormBuilder,
@@ -34,7 +35,7 @@ export class CreateComponent implements OnInit {
     private notification: NzNotificationService,
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.validateForm = this.fb.group({
       title: [null, [Validators.required]],
       oneSelect: [null, [Validators.required]],
@@ -60,6 +61,12 @@ export class CreateComponent implements OnInit {
       case '6':
         return '新增网站'
     }
+  }
+
+  async onUrlBlur(e) {
+    const res = await getLogoUrl(e.target?.value)
+    this.iconUrl = (res || '') as string
+    this.validateForm.get('icon')!.setValue(res || '')
   }
 
   hanldeOneSelect(value) {
