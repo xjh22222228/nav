@@ -1,6 +1,6 @@
 {
   "name": "nav",
-  "version": "5.0.0-beta.2",
+  "version": "5.0.0-beta.3",
   "author": "xiejiahe",
   "bugs": {
     "url": "https://github.com/xjh22222228/nav/issues"
@@ -14,9 +14,7 @@
     "ng": "ng",
     "start": "ng serve --open",
     "build": "ng build --prod --base-href ./",
-    "test": "ng test",
-    "lint": "eslint --cache --ext .js,.ts ./src",
-    "e2e": "ng e2e"
+    "lint": "eslint --cache --ext .js,.ts ./src"
   },
   "private": true,
   "dependencies": {
