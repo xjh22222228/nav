@@ -1,13 +1,23 @@
 import { IConfig } from './src/types'
 
 const c: IConfig = {
+  // [必填], 请填写您的仓库地址
+  gitRepoUrl: 'https://github.com/xjh22222228/nav',
+
   // 网站标题
   title: '发现导航 - 精选实用导航网站',
 
-  // 默认主题: light | sim
-  theme: 'light',
+  // 网站描述
+  description: '发现导航 - 精选实用导航网站',
 
-  // 海报图, 只支持 sim 主题
+  // 网站关键字
+  keywords: '导航,前端资源,社区站点,设计师,实用工具,学习资源,运营,网络安全,node.js',
+
+  // 默认主题: Light | Sim
+  theme: 'Light',
+
+  // 海报图, 只支持 Sim 主题
+  // 请不要放在项目里头, 填写Url
   posterImageUrl: 'assets/img/wallpaper.jpg',
 
   // 搜索引擎列表, 为空时不显示搜索引擎
@@ -53,33 +63,14 @@ const c: IConfig = {
     }
   ],
 
-  // Git 仓库地址, 没有填空字符串
-  gitRepoUrl: 'https://github.com/xjh22222228/nav',
-
-  // 错误图标, 图标地址访问不了时显示
-  // 建议使用网络地址，放在您任何服务器上, 减少入侵
-  errorIconUrl: '',
-
   // 网站底部描述, 可以是 HTML
   // 可以是版权信息，备案号
   footerCopyright: '',
 
   // 百度统计
-  tongjiUrl: 'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba',
+  baiduStatisticsUrl: 'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba',
 
-  indexLanguage: [
-    '英文',
-    '中文',
-    'GitHub'
-  ],
-
-  appLanguage: [
-    'EN',
-    'CN',
-    'Git'
-  ],
-
-  // 只支持 light 主题
+  // 只支持 Light 主题
   // https://www.nav3.cn/#/index?q=grabient
   backgroundLinear: [
     'linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)',

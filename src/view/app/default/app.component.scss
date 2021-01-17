@@ -2,6 +2,7 @@ $bg-color: #fbfbfb;
 
 .app-page {
   padding: 45px 0;
+  min-height: 100vh;
   background: #f6f6f6;
 
   .header {
@@ -22,13 +23,10 @@ $bg-color: #fbfbfb;
 
       .logo {
         display: inline-block;
-
-        img {
-          width: 35px;
-          height: 35px;
-          margin-top: 4px;
-          pointer-events: none;
-        }
+        width: 35px;
+        height: 35px;
+        margin-top: 4px;
+        pointer-events: none;
       }
     }
 
@@ -102,6 +100,7 @@ $bg-color: #fbfbfb;
         padding: 3px 5px;
         margin: 0 3px 5px 0;
         transition: background .1s linear;
+        color: #333;
       }
 
       .active {
@@ -114,17 +113,6 @@ $bg-color: #fbfbfb;
       margin-bottom: 10px;
       background: $bg-color;
       box-shadow: 0 0 5px #ccc;
-    }
-
-    .icon {
-      display: inline-block;
-      width: 35px;
-      height: 35px;
-      vertical-align: middle;
-      border-radius: 50%;
-      pointer-events: none;
-      border: 1px solid #eee;
-      background-color: #fff;
     }
 
     .name {
@@ -168,7 +156,7 @@ $bg-color: #fbfbfb;
     }
 
     .item-list {
-      z-index: 1111;
+      z-index: 111;
       position: relative;
       width: calc(50% - 18px);
       margin: 12px;
@@ -183,38 +171,10 @@ $bg-color: #fbfbfb;
         margin-left: 6px;
       }
 
-      .bottom-slide {
+      &:hover {
 
-        &.active .wrapper-button {
-          transform: translate3d(0, 0, 0);
-        }
-      }
-
-      .wrapper-button {
-        display: flex;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: #fff;
-        text-align: center;
-        transition: .1s;
-        transform: translate3d(0, 110%, 0);
-        box-shadow: 0 -1px 1px #eee;
-
-        a {
-          flex: 1;
-          padding: 3px 0;
-          background: #2db7f5;
-          color: #fff;
-
-          &:active {
-            background: #26a2ff;
-          }
-
-          &:not(:nth-last-child(1)) {
-            margin-right: 3px;
-          }
+        ::ng-deep .mark {
+          bottom: 0 !important;
         }
       }
     }

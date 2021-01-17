@@ -68,18 +68,18 @@
       &.active {
         color: #1890ff;
 
-        a:after {
+        div:after {
           top: 0;
           border-top: 1px dashed #ccc;
         }
 
-        a:before {
+        div:before {
           bottom: 0;
           border-bottom: 1px dashed #ccc;
         }
       }
 
-      a {
+      div {
         display: block;
         padding: 11px 0;
 
@@ -102,23 +102,6 @@
     bottom: 30px;
     padding-bottom: 50px;
     overflow-y: auto;
-
-    .side-logo {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-    }
-
-    .icon {
-      display: inline-block;
-      width: 35px;
-      height: 35px;
-      vertical-align: middle;
-      border-radius: 50%;
-      pointer-events: none;
-      border: 1px solid #eee;
-      background-color: #fff;
-    }
 
     .name {
       display: inline-block;
@@ -175,7 +158,7 @@
     }
 
     .click-btn {
-      z-index: 1111;
+      z-index: 111;
       position: relative;
       width: 200px;
       margin: 12px;

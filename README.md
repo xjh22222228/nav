@@ -10,7 +10,7 @@
   <p align="center">
     <img src="https://img.shields.io/github/v/release/xjh22222228/nav" />
     <a href="https://github.com/xjh22222228/nav/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/nav" alt="Stars"/></a>
-    <img alt="Angular" src="https://img.shields.io/static/v1.svg?label=&message=Angular&style=flat-square&color=C82B38">
+    <img alt="Angular" src="https://img.shields.io/static/v1.svg?label=&message=Angular11&style=flat-square&color=C82B38">
     <img src="https://img.shields.io/github/license/xjh22222228/nav" />
     <a href="https://hits.dwyl.com/xjh22222228/nav">
       <img src="https://hits.dwyl.com/xjh22222228/nav.svg" />
@@ -22,6 +22,15 @@
 <br />
 
 
+## 选择版本
+目前有2个版本供选择, [v3](https://github.com/xjh22222228/nav/tree/v3) 和 `v5`, 这2个版本都会长期维护:
+
+- v5 - 也就是当前分支, 需要依赖于Github配置, 提供自动维护数据功能(微后台)，但必须Fork到自己仓库里。
+- v3 - 无需依赖Github, 您可以将代码部署在任意服务器, 但数据需要手工维护。
+
+作者推荐您选择 `v5` 没有太多的心智负担。
+
+
 
 ## 预览
 **主题**
@@ -29,30 +38,18 @@
 - [sim 在线预览](https://nav3.cn/#/sim)
 - [light 在线预览](https://nav3.cn/#/light)
 
-![Preview](media/screenshot1.png)
-![Preview](media/screenshot2.png)
-
-![Preview](media/screenshot3.png)
-![Preview](media/screenshot4.png)
-
-
-
-
-
-
-
-
-## 内置
-- [TypeScript](https://www.typescriptlang.org/)
-- [Angular v9](https://angular.io/)
-- [jQuery](https://jquery.com/)
-
-
+![Preview](media/1.png)
+![Preview](media/2.png)
+![Preview](media/3.png)
+![Preview](media/4.png)
+![Preview](media/5.png)
 
 
 
 
 ## 拥有出色的特性
+`发现导航` 的理念就是做一款无需依赖后端服务既简单又方便，没有繁杂的配置和数据库等配置概念, 做到开箱即用。
+
 - [√] 内置 `800+` 实用网站。
 - [√] 三叉树分类、结构清晰、分类清晰。
 - [√] 颜值与简约并存，不再是杀马特时代。
@@ -66,39 +63,6 @@
 - [√] 多款主题切换。
 - [√] 支持暗黑模式。
 
-
-## 贡献
-[点击这里](https://github.com/xjh22222228/nav/tree/master/data)
-
-Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), men.
-
-<a href="https://github.com/YutHelloWorld">
-  <img src="https://avatars1.githubusercontent.com/u/20860159?s=460&v=4" width="30px" height="30px" />
-</a>
-<a href="https://github.com/JJJTHuang">
-  <img src="https://avatars3.githubusercontent.com/u/22817432?s=460&v=4" width="30px" height="30px" />
-</a>
-<a href="https://github.com/Fechin">
-  <img src="https://avatars1.githubusercontent.com/u/2541482?s=460&v=4" width="30px" height="30px" />
-</a>
-
-
-
-
-## 开发构建
-``` bash
-# 下载
-git clone --depth=1 https://github.com/xjh22222228/nav.git
-
-# 安装依赖
-npm install
-
-# 启动[可选]
-npm start
-
-# 打包
-npm run build
-```
 
 
 ## 部署
@@ -137,56 +101,50 @@ server {
 所有可配置位于文件 `nav.config.ts`。
 
 
-## 更新数据
-只需要关注根目录 `data` 文件夹, 如果你使用了上面教程提供的自动化部署服务，那么当更新数据后大概5分钟即可看到。
 
-```js
-{
-  title: '工具',
-  icon: 'https://example/favicon.ico',
-  nav: [
-    {
-      title: '网站',
-      collapsed: false, // 默认展开，设置 false 折叠
-      showSideIcon: false, // 右侧边图标，如果设置Icon则默认显示
-      nav: [
-        {
-          name: '发现导航',
-          desc: '发现导航 - 精选实用导航网站',
-          url: 'https://nav3.cn',
-        }
-      ]
-    }
-  ]
-}
+
+## 关于升级
+在升级之前请保存根目录下的 `data` 文件夹,最好把 `nav.config.ts` 配置文件也保存一份以防万一, 升级完后替换即可。
+
+
+
+
+
+
+## 开发构建
+``` bash
+# 下载
+git clone --depth=1 https://github.com/xjh22222228/nav.git
+
+# 安装依赖
+npm i
+
+# 启动
+npm start
+
+# 打包
+npm run build
 ```
 
 
 
+## 贡献
+[点击这里](https://github.com/xjh22222228/nav/tree/master/data)
 
-## 图标
-图标是支持继承的，每一级的 `icon` 字段都是可选，如果当前没有就会继承上一级Icon,
+Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), men.
 
-```js
-{
-  title: 'Example',
-  icon: 'https://example/icon',
-  nav: [
-    {
-      showSideIcon: false, // 如果这层设置 icon 图标会默认在右侧边栏显示ICON, 设置 false 关闭显示
-      title: 'Example',
-      // icon: 'https://favicon.ico',
-      nav: [
-        {
-          // icon: 'https://favicon.ico',
-        },
-      ]
-    }
-  ]
-}
-```
-
-
+<a href="https://github.com/YutHelloWorld">
+  <img src="https://avatars1.githubusercontent.com/u/20860159?s=460&v=4" width="30px" height="30px" />
+</a>
+<a href="https://github.com/JJJTHuang">
+  <img src="https://avatars3.githubusercontent.com/u/22817432?s=460&v=4" width="30px" height="30px" />
+</a>
+<a href="https://github.com/Fechin">
+  <img src="https://avatars1.githubusercontent.com/u/2541482?s=460&v=4" width="30px" height="30px" />
+</a>
+<a href="https://github.com/setdiaoyong">
+  <img src="https://avatars1.githubusercontent.com/u/62551864?s=460&v=4" width="30px" height="30px" />
+</a>
 
 
 
@@ -196,14 +154,14 @@ server {
 
 
 ## 支持
-如果能帮到您，可以请作者喝杯咖啡~
+项目成立于 2018 年到至今一直坚持维护和开源, 经过N次的迭代与优化, 如果项目能帮到您是我的荣幸。
+
+您可以请作者喝杯咖啡，继续战斗下去（请备注Github名字）~
 
 <img src="https://raw.sevencdn.com/xjh22222228/public/gh-pages/img/32.png" width="600">
 
+感谢您的认可：
+| 姓名    | 支持金额              |
+| --------------------------------------- |----------- |
+| [aiyou9](https://github.com/aiyou9)     | ￥20.00     |
 
-
-
-
-
-## License
-[MIT](https://opensource.org/licenses/MIT)

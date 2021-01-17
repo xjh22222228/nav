@@ -1,19 +1,18 @@
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+
+import config from '../../../../nav.config'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import config from '../../../../nav.config'
 import { INavProps, INavThreeProp } from '../../../types'
 import {
-  debounce,
   fuzzySearch,
-  onImgError,
   queryString,
-  getWebsiteList,
   setWebsiteList,
   toggleCollapseAll,
   totalWeb,
-  imgErrorInRemove
 } from '../../../utils'
 import { initRipple, setAnnotate } from '../../../utils/ripple'
+import { websiteList } from '../../../store'
 
 const { gitRepoUrl, title, posterImageUrl } = config
 let sidebarEl: HTMLElement;
@@ -27,11 +26,10 @@ export default class HomeComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  websiteList: INavProps[] = getWebsiteList()
+  websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
-  searchKeyword: string = ''
   gitRepoUrl: string = gitRepoUrl
   totalWeb: number = totalWeb()
   title: string = title
@@ -39,13 +37,20 @@ export default class HomeComponent {
 
   ngOnInit() {
     const initList = () => {
-      this.currentList = this.websiteList[this.page].nav[this.id].nav
+      try {
+        if (this.websiteList[this.page] && this.websiteList[this.page]?.nav?.length > 0) {
+          this.currentList = this.websiteList[this.page].nav[this.id].nav
+        } else {
+          this.currentList = []
+        }
+      } catch (error) {
+        this.currentList = []
+      }
     }
 
     this.activatedRoute.queryParams.subscribe(() => {
       const tempPage = this.page
       const { id, page, q } = queryString()
-      this.searchKeyword = q
       this.page = page
       this.id = id
 
@@ -61,23 +66,6 @@ export default class HomeComponent {
 
       setWebsiteList(this.websiteList)
     })
-
-    this.handleSearch = debounce(() => {
-      if (!this.searchKeyword) {
-        initList()
-        return
-      }
-
-      this.currentList = fuzzySearch(this.websiteList, this.searchKeyword)
-
-      const params = queryString()
-      this.router.navigate(['/sim'], {
-        queryParams: {
-          ...params,
-          q: this.searchKeyword
-        }
-      })
-    }, 1000, true)
   }
 
   onScroll() {
@@ -107,7 +95,7 @@ export default class HomeComponent {
   handleSidebarNav(index) {
     const { page } = queryString()
     this.websiteList[page].id = index
-    this.router.navigate(['/sim'], { 
+    this.router.navigate([this.router.url.split('?')[0]], { 
       queryParams: {
         page,
         id: index,
@@ -118,7 +106,7 @@ export default class HomeComponent {
 
   handleCilckTopNav(idx) {
     const id = this.websiteList[idx].id || 0
-    this.router.navigate(['/sim'], {
+    this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
         page: idx,
         id,
@@ -137,12 +125,11 @@ export default class HomeComponent {
     toggleCollapseAll(this.websiteList)
   }
 
-  onSearch(v) {
-    this.searchKeyword = v
-    this.handleSearch()
+  collapsed() {
+    try {
+      return websiteList[this.page].nav[this.id].collapsed
+    } catch (error) {
+      return false
+    }
   }
-
-  handleSearch = null
-  onImgError = onImgError
-  onSideLogoError = imgErrorInRemove
 }

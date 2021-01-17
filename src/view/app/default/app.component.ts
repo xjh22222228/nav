@@ -1,9 +1,10 @@
-import nav from '../../../../data'
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import config from '../../../../nav.config'
-import { onImgError, queryString } from '../../../utils'
+import { queryString } from '../../../utils'
 import { INavProps } from '../../../types'
+import { websiteList } from '../../../store'
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,10 @@ import { INavProps } from '../../../types'
 export default class WebpComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
-  nav: INavProps[] = nav
+  websiteList: INavProps[] = websiteList
   id: number = 0
   page: number = 0
   open: boolean = false
-  language: string[] = config.appLanguage
 
   ngOnInit () {
     this.activatedRoute.queryParams.subscribe(() => {
@@ -51,23 +51,4 @@ export default class WebpComponent {
     this.open = !this.open;
     (<any>window).$('.nav-open').slideToggle(200)
   }
-
-  handleToWebsite(item, index, event) {
-    if (!Array.isArray(item.language)) {
-      window.open(item.url)
-      return
-    }
-    const el = (<any>window).$('.bottom-slide')
-    const $this = (<any>window).$(event.currentTarget)
-    const len = el.length
-    for (let i = 0; i < len; i++) {
-      if (i === index) {
-        continue
-      }
-      el.eq(i).removeClass('active')
-    }
-    $this.siblings('.bottom-slide').toggleClass('active')
-  }
-
-  onImgError = onImgError
 }

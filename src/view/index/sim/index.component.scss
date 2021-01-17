@@ -39,7 +39,7 @@ $width: 1200px;
   min-height: 100vh;
 
   .wallpaper {
-    height: 350px;
+    height: 300px;
     background-repeat: no-repeat;
     background-position: top center;
     display: flex;
@@ -142,17 +142,6 @@ $width: 1200px;
           ::ng-deep .mark {
             bottom: 0 !important;
           }
-        }
-
-        .icon {
-          display: inline-block;
-          width: 35px;
-          height: 35px;
-          vertical-align: middle;
-          border-radius: 50%;
-          pointer-events: none;
-          border: 1px solid #eee;
-          background-color: #fff;
         }
       }
 

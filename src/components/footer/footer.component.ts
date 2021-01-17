@@ -1,3 +1,5 @@
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+
 import { Component, Input } from '@angular/core'
 import config from '../../../nav.config'
 import { totalWeb } from '../../utils'

@@ -1,14 +1,17 @@
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
 export type ThemeType =
-  | 'light'
-  | 'sim'
+  | 'Light'
+  | 'Sim'
 
 export interface INavFourProp {
   icon?: string | null
   name: string
   desc: string
   url?: string
-  language?: string|null|undefined[]
+  urls?: {
+    [key: string]: string
+  }
 }
 
 export interface INavThreeProp {
@@ -26,29 +29,29 @@ export interface INavTwoProp {
   nav: INavThreeProp[]
 }
 
-export interface INavProps {
+export interface INavProps extends Object {
   title: string
   id?: number
+  icon?: string | null
   nav: INavTwoProp[]
 }
 
 export interface ISearchEngineProps {
   name: string
   url?: string
-  icon: string
+  icon: string | null
   placeholder?: string
 }
 
 export interface IConfig {
   title: string
+  description: string
+  keywords: string
   theme: ThemeType
   posterImageUrl: string
   searchEngineList: ISearchEngineProps[]
   gitRepoUrl: string,
-  errorIconUrl: string
   footerCopyright: string|null
-  tongjiUrl: string
-  indexLanguage: string[]
-  appLanguage: string[]
+  baiduStatisticsUrl: string
   backgroundLinear: string[]
 }
