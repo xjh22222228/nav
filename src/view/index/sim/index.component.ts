@@ -14,7 +14,7 @@ import {
 import { initRipple, setAnnotate } from '../../../utils/ripple'
 import { websiteList } from '../../../store'
 
-const { gitRepoUrl, title, posterImageUrls } = config
+const { gitRepoUrl, title, simThemeConfig } = config
 let sidebarEl: HTMLElement;
 
 @Component({
@@ -31,9 +31,9 @@ export default class HomeComponent {
   id: number = 0
   page: number = 0
   gitRepoUrl: string = gitRepoUrl
-  totalWeb: number = totalWeb()
   title: string = title
-  posterImageUrls?: string = posterImageUrls[0]
+  posterImageUrls?: string = simThemeConfig.posterImageUrls[0]
+  description: string = simThemeConfig.description.replace('${total}', String(totalWeb()))
 
   ngOnInit() {
     const initList = () => {

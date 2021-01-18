@@ -50,9 +50,16 @@ export interface IConfig {
   keywords: string
   theme: ThemeType
   searchEngineList: ISearchEngineProps[]
-  backgroundLinear: string[]
-  posterImageUrls: string[]
   footerContent?: string|null
   baiduStatisticsUrl?: string
   cnzzStatisticsUrl?: string
+
+  lightThemeConfig: {
+    backgroundLinear: string[]
+  },
+
+  simThemeConfig: {
+    posterImageUrls: string[]
+    description: string
+  }
 }

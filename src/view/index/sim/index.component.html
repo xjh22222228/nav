@@ -1,7 +1,7 @@
 <div class="sim">
   <div *ngIf="posterImageUrls" class="wallpaper" [ngStyle]="{ 'background-image': 'url(' + posterImageUrls + ')' }">
     <h1 class="title dark-title">{{ title }}</h1>
-    <h2 class="description dark-text-active">这里收录多达 <b>{{ totalWeb }}</b> 个优质网站， 助您工作、学习和生活</h2>
+    <h2 class="description dark-text-active" [innerHTML]="description"></h2>
     <app-search-engine></app-search-engine>
   </div>
 

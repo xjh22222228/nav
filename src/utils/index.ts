@@ -8,7 +8,8 @@ import * as db from '../../data/db.json'
 export const websiteList = getWebsiteList()
 
 let total = 0
-const { backgroundLinear, searchEngineList } = config
+const { lightThemeConfig, searchEngineList } = config
+const { backgroundLinear } = lightThemeConfig
 
 export function debounce(func, wait, immediate) {
   let timeout
