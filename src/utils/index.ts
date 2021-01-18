@@ -259,29 +259,39 @@ export function isDark(): boolean {
 
 export async function getLogoUrl(url: string): Promise<boolean|string> {
   try {
-    // const c = ['/favicon.ico', '/favicon.png', '/logo.png', '/favicon.svg', '/favicon.jpg']
+    const c = ['/favicon.png', '/favicon.svg', '/favicon.jpg', '/favicon.ico', '/logo.png']
     const { origin } = new URL(url)
-    const iconUrl = origin + '/favicon.ico'
 
-    return new Promise(resolve => {
-      try {
-        const img = document.createElement('img')
-        img.src = iconUrl
-        img.style.display = 'none'
-        img.onload = () => {
-          img.parentNode.removeChild(img)
-          resolve(iconUrl)
-        }
-        img.onerror = () => {
-          img.parentNode.removeChild(img)
+    const promises = c.map(url => {
+      const iconUrl = origin + url
+      return new Promise(resolve => {
+        try {
+          const img = document.createElement('img')
+          img.src = iconUrl
+          img.style.display = 'none'
+          img.onload = () => {
+            img.parentNode.removeChild(img)
+            resolve(iconUrl)
+          }
+          img.onerror = () => {
+            img.parentNode.removeChild(img)
+            resolve(false)
+          }
+          document.body.append(img)
+        } catch (error) {
           resolve(false)
         }
-        document.body.append(img)
-      } catch (error) {
-        resolve(false)
-      }
+      }) 
     })
+
+    const all = await Promise.all<any>(promises)
+    for (let i = 0; i < all.length; i++) {
+      if (all[i]) {
+        return all[i]
+      }
+    }
+    
   } catch {
-    return false
+    return null
   }
 }

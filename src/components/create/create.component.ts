@@ -69,6 +69,10 @@ export class CreateComponent implements OnInit {
     this.validateForm.get('icon')!.setValue(res || '')
   }
 
+  onIconBlur(e) {
+    this.iconUrl = e.target.value
+  }
+
   hanldeOneSelect(value) {
     if (!value) return
     

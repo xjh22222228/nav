@@ -64,6 +64,7 @@ export class FixbarComponent {
     const date = document.getElementById('BUILD-DATE-NAV')?.dataset?.date
 
     this.modal.info({
+      nzWidth: 500,
       nzTitle: '以下信息只有您能查看，请放心！',
       nzOkText: '知道了',
       nzContent: `

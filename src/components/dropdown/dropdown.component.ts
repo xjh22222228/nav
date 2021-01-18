@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
-import { setWebsiteList, queryString } from '../../utils'
+import { setWebsiteList, queryString, getLogoUrl } from '../../utils'
 import { websiteList, isEditing } from '../../store'
 import { Router } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
@@ -34,6 +34,7 @@ export class DropdownComponent implements OnInit {
   isEditing = isEditing
   showModal = false
   EditType = EditType
+  iconUrl = ''
 
   constructor(
     private fb: FormBuilder,
@@ -52,6 +53,16 @@ export class DropdownComponent implements OnInit {
       icon: [null],
       desc: [''],
     });
+  }
+
+  async onUrlBlur(e) {
+    const res = await getLogoUrl(e.target?.value)
+    this.iconUrl = (res || '') as string
+    this.validateForm.get('icon')!.setValue(res || '')
+  }
+
+  onIconBlur(e) {
+    this.iconUrl = e.target.value
   }
 
   hasKeyword() {

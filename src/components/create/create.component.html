@@ -91,7 +91,7 @@
           <nz-form-label [nzSpan]="4">图标地址</nz-form-label>
           <nz-form-control [nzSpan]="20">
             <nz-input-group [nzPrefix]="prefixIcon">
-              <input formControlName="icon" nz-input placeholder="https://example.com/favicon.png" (blur)="onUrlBlur($event)" />
+              <input formControlName="icon" nz-input placeholder="https://example.com/favicon.png" (blur)="onIconBlur($event)" />
             </nz-input-group>
 
             <ng-template #prefixIcon>

@@ -42,14 +42,20 @@
       <nz-form-item *ngIf="getEditType() === EditType.isWebsite">
         <nz-form-label [nzSpan]="4" nzRequired>网站链接</nz-form-label>
         <nz-form-control [nzSpan]="20">
-          <input formControlName="url" nz-input placeholder="https://nav3.cn" />
+          <input formControlName="url" nz-input placeholder="https://nav3.cn" (blur)="onUrlBlur($event)" />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-label [nzSpan]="4">图标地址</nz-form-label>
         <nz-form-control [nzSpan]="20">
-          <input formControlName="icon" nz-input placeholder="https://example.com/favicon.png" />
+          <nz-input-group [nzPrefix]="prefixIcon">
+            <input formControlName="icon" nz-input placeholder="https://example.com/favicon.png" (blur)="onIconBlur($event)" />
+          </nz-input-group>
+
+          <ng-template #prefixIcon>
+            <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl"></app-logo>
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
 
