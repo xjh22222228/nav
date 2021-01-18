@@ -10,7 +10,7 @@ import { totalWeb } from '../../utils'
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-  footerCopyright: string = config.footerCopyright;
+  footerContent: string = config.footerContent;
   totalWeb: number = totalWeb()
 
   @Input() className: string

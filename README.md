@@ -38,11 +38,11 @@
 - [Sim 在线预览](https://nav3.cn/#/sim)
 - [Light 在线预览](https://nav3.cn/#/light)
 
-![Preview](media/1.png)
-![Preview](media/2.png)
-![Preview](media/3.png)
-![Preview](media/4.png)
-![Preview](media/5.png)
+![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/1.png)
+![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/2.png)
+![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/3.png)
+![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/4.png)
+![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/5.png)
 
 
 
@@ -70,15 +70,17 @@
 
 1、Fork 当前项目。
 
-2、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中。
+2、修改项目配置文件 [nav.config.ts](nav.config.ts)
 
-3、到 https://github.com/用户名/nav/settings/secrets/new  添加刚刚申请的token， name填写 `TOKEN` 大写。
+3、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中。
 
-4、打开 https://github.com/用户名/nav/actions 点击 `绿色按钮`
+4、到 https://github.com/用户名/nav/settings/secrets/new  添加刚刚申请的token， name填写 `TOKEN` 大写。
 
-5、往仓库推送一条Commit (非常重要)。
+5、打开 https://github.com/用户名/nav/actions 点击 `绿色按钮`
 
-6、5分钟后打开 https://用户名.github.io/nav 就能看到一个非常强大的导航网站了。
+6、往仓库推送一条Commit (非常重要)。
+
+7、5分钟后打开 https://用户名.github.io/nav 就能看到一个非常强大的导航网站了。
 
 
 注：如果想部署到自己的域名，那么以上教程同样适合，因为它提供了自动化部署， 之后可以通过 `CNAME` 或 `反向代理` 实现：

@@ -44,14 +44,15 @@ export interface ISearchEngineProps {
 }
 
 export interface IConfig {
+  gitRepoUrl: string,
   title: string
   description: string
   keywords: string
   theme: ThemeType
-  posterImageUrl: string
   searchEngineList: ISearchEngineProps[]
-  gitRepoUrl: string,
-  footerCopyright: string|null
-  baiduStatisticsUrl: string
   backgroundLinear: string[]
+  posterImageUrls: string[]
+  footerContent?: string|null
+  baiduStatisticsUrl?: string
+  cnzzStatisticsUrl?: string
 }

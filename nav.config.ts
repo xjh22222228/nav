@@ -1,5 +1,6 @@
 import { IConfig } from './src/types'
 
+// 网站 LOGO 替换根目录下的 logo.png， 务必为 png 后缀
 const c: IConfig = {
   // [必填], 请填写您的仓库地址
   gitRepoUrl: 'https://github.com/xjh22222228/nav',
@@ -18,7 +19,9 @@ const c: IConfig = {
 
   // 海报图, 只支持 Sim 主题
   // 请不要放在项目里头, 填写Url
-  posterImageUrl: 'assets/img/wallpaper.jpg',
+  posterImageUrls: [
+    'assets/img/wallpaper.jpg'
+  ],
 
   // 搜索引擎列表, 为空时不显示搜索引擎
   // 自定义引擎 icon 请使用网络图标
@@ -63,12 +66,16 @@ const c: IConfig = {
     }
   ],
 
-  // 网站底部描述, 可以是 HTML
-  // 可以是版权信息，备案号
-  footerCopyright: '',
+  // 网站底部内容, 版权信息、备案号, 可以是 HTML
+  footerContent: '',
 
-  // 百度统计
+  // 百度统计地址
+  // https://tongji.baidu.com/web/welcome/login
   baiduStatisticsUrl: 'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba',
+
+  // CNZZ 统计地址
+  // https://www.cnzz.com/o_index.php?
+  cnzzStatisticsUrl: '',
 
   // 只支持 Light 主题
   // https://www.nav3.cn/#/light?q=grabient

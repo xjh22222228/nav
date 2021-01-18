@@ -14,7 +14,7 @@ import {
 import { initRipple, setAnnotate } from '../../../utils/ripple'
 import { websiteList } from '../../../store'
 
-const { gitRepoUrl, title, posterImageUrl } = config
+const { gitRepoUrl, title, posterImageUrls } = config
 let sidebarEl: HTMLElement;
 
 @Component({
@@ -33,7 +33,7 @@ export default class HomeComponent {
   gitRepoUrl: string = gitRepoUrl
   totalWeb: number = totalWeb()
   title: string = title
-  posterImageUrl: string = posterImageUrl
+  posterImageUrls?: string = posterImageUrls[0]
 
   ngOnInit() {
     const initList = () => {
@@ -68,16 +68,19 @@ export default class HomeComponent {
     })
   }
 
-  onScroll() {
+  onScroll = () => {
     const y = window.scrollY
     if (!sidebarEl) {
       sidebarEl = document.getElementById('sidebar')
     }
 
-    if (y >= 438) {
-      sidebarEl.classList.add('fix')
-    } else {
-      sidebarEl.classList.remove('fix')
+    if (sidebarEl) {
+      const height = this.posterImageUrls ? 438 : 10
+      if (y >= height) {
+        sidebarEl.classList.add('fix')
+      } else {
+        sidebarEl.classList.remove('fix')
+      }
     }
   }
 
@@ -85,7 +88,7 @@ export default class HomeComponent {
     window.removeEventListener('scroll',  this.onScroll)
   }
 
-  ngAfterViewInit () {
+  ngAfterViewInit() {
     initRipple()
     setAnnotate();
 
