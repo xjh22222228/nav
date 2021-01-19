@@ -2,8 +2,10 @@
 
 import qs from 'qs'
 import config from '../../nav.config'
+import hotkeys from 'hotkeys-js'
 import { INavProps, ISearchEngineProps } from '../types'
 import * as db from '../../data/db.json'
+import { KEY_MAP } from '../constants'
 
 export const websiteList = getWebsiteList()
 
@@ -75,7 +77,7 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
   f()
 
   if (searchResultList[0].nav.length <= 0) {
-    return[]
+    return []
   }
 
   return searchResultList
@@ -162,8 +164,26 @@ export function queryString() {
   }
 }
 
+export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
+  for (let i = 0; i < websiteList.length; i++) {
+    const item = websiteList[i]
+
+    if (Array.isArray(item.nav)) {
+      adapterWebsiteList(item.nav, item)
+    }
+
+    if (item.url) {
+      if (!item.icon && parentItem.icon) {
+        item.icon = parentItem.icon
+      }
+    }
+  }
+
+  return websiteList;
+}
+
 export function getWebsiteList() {
-  let webSiteList = (db as any).default
+  let webSiteList = adapterWebsiteList((db as any).default)
   const scriptElAll = document.querySelectorAll('script')
   const scriptUrl = scriptElAll[scriptElAll.length - 1].src
   const storageScriptUrl = window.localStorage.getItem('s_url')
@@ -240,11 +260,6 @@ export function getDefaultSearchEngine(): ISearchEngineProps {
 
 export function setDefaultSearchEngine(engine: ISearchEngineProps) {
   window.localStorage.setItem('engine', JSON.stringify(engine))
-}
-
-export function imgErrorInRemove(e) {
-  const el = e.currentTarget;
-  el?.parentNode?.removeChild?.(el)
 }
 
 export function isDark(): boolean {

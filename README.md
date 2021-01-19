@@ -62,6 +62,8 @@
 - [√] 完全开源，轻松定制化。
 - [√] 多款主题切换。
 - [√] 支持暗黑模式。
+- [√] 支持快捷键操作，一步到位。
+- [√] 支持在线新增数据, 没有传统的后台概念。
 
 
 
@@ -70,17 +72,15 @@
 
 1、Fork 当前项目。
 
-2、修改项目配置文件 [nav.config.ts](nav.config.ts)
+2、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存Token。
 
-3、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中。
+3、到 https://github.com/用户名/nav/settings/secrets/new  添加刚刚申请的token， name填写 `TOKEN` 大写。
 
-4、到 https://github.com/用户名/nav/settings/secrets/new  添加刚刚申请的token， name填写 `TOKEN` 大写。
+4、打开 https://github.com/用户名/nav/actions 点击 `绿色按钮`
 
-5、打开 https://github.com/用户名/nav/actions 点击 `绿色按钮`
+5、务必修改项目配置文件 [nav.config.ts](nav.config.ts)
 
-6、往仓库推送一条Commit (非常重要)。
-
-7、5分钟后打开 https://用户名.github.io/nav 就能看到一个非常强大的导航网站了。
+6、5分钟后打开 https://用户名.github.io/nav 就能看到一个非常强大的导航网站了。
 
 
 注：如果想部署到自己的域名，那么以上教程同样适合，因为它提供了自动化部署， 之后可以通过 `CNAME` 或 `反向代理` 实现：
@@ -108,6 +108,24 @@ server {
 ## 关于升级
 在升级之前请保存根目录下的 `data` 文件夹,最好把 `nav.config.ts` 配置文件也保存一份以防万一, 升级完后替换即可。
 
+点击右上角 `Watch` 按钮第一时间跟踪版本升级。
+
+
+
+## 更新日志
+[CHANGELOG](CHANGELOG.md)
+
+
+
+
+## 快捷键
+mac下是 `Command`，windows 下是 `Ctrl`
+
+- `ctrl+e` 开启或关闭编辑模式
+- `ctrl+v` 查看信息
+- `ctrl+d` 开启或关闭暗黑模式
+
+如对快捷键有特殊要求请发起 [issues](https://github.com/xjh22222228/nav/issues)
 
 
 
@@ -147,6 +165,9 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 <a href="https://github.com/setdiaoyong">
   <img src="https://avatars1.githubusercontent.com/u/62551864?s=460&v=4" width="30px" height="30px" />
 </a>
+
+
+
 
 
 

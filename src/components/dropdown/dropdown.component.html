@@ -33,9 +33,9 @@
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="validateForm" (ngSubmit)="handleOk()">
       <nz-form-item>
-        <nz-form-label [nzSpan]="4" nzRequired>{{ radioType === '6' ? '网站名称' : '分类名称'}}</nz-form-label>
+        <nz-form-label [nzSpan]="4" nzRequired>{{ getEditType() === EditType.isWebsite ? '网站名称' : '分类名称'}}</nz-form-label>
         <nz-form-control [nzSpan]="20" nzErrorTip="请输入名称">
-          <input formControlName="title" nz-input placeholder="发现导航" maxlength="10" />
+          <input formControlName="title" nz-input placeholder="发现导航" />
         </nz-form-control>
       </nz-form-item>
 

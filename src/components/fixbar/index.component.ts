@@ -1,5 +1,6 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
+import hotkeys from 'hotkeys-js'
 import { Component, Output, EventEmitter, Input } from '@angular/core'
 import { isDark as isDarkFn, randomBgImg, queryString } from '../../utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
@@ -8,7 +9,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
 import { updateFileContent } from '../../services'
 import { websiteList, isEditing } from '../../store'
-import { DB_PATH } from '../../constants'
+import { DB_PATH, KEY_MAP } from '../../constants'
 import { Router } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
 
@@ -57,6 +58,28 @@ export class FixbarComponent {
     const url = this.router.url.split('?')[0]
     this.themeList = this.themeList.filter(t => {
       return t.url !== url
+    })
+
+    this.initHotKeys()
+  }
+
+  ngOnDestroy() {
+    // @ts-ignore
+    hotkeys.unbind()
+  }
+
+  initHotKeys() {
+    hotkeys(KEY_MAP.view, (e) => {
+      e.preventDefault()
+      this.viewInfo()
+    })
+    hotkeys(KEY_MAP.edit, (e) => {
+      e.preventDefault()
+      this.isEditing.value = !this.isEditing.value
+    })
+    hotkeys(KEY_MAP.dark, (e) => {
+      e.preventDefault()
+      this.toggleMode()
     })
   }
 
@@ -163,7 +186,7 @@ export class FixbarComponent {
         })
         .catch(res => {
           this.notification.error(
-            `错误: ${res?.response?.status ?? 404}`,
+            `错误: ${res?.response?.status ?? 401}`,
             '同步失败, 请重试'
           )
         })

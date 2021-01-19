@@ -39,24 +39,25 @@
     <aside class="site-box dark-bg">
       <div *ngFor="let item of currentList; let i=index">
         <div class="nav-wrapper">
-          <app-dropdown [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
-            <div
-              class="title dark-primary dark-border-color"
-              *ngIf="item.title"
-              (click)="onCollapse(item, i)"
-            >
-              <app-logo
-                [src]="item.icon"
-                [name]="item.title"
-                colour="#ff4d4f"
-              >
-              </app-logo>
+          <div
+            class="title dark-primary dark-border-color"
+            *ngIf="item.title"
+          >
+            <app-dropdown [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
+              <span class="cursor-pointer" (click)="onCollapse(item, i)">
+                <app-logo
+                  [src]="item.icon"
+                  [name]="item.title"
+                  colour="#ff4d4f"
+                >
+                </app-logo>
 
-              <span style="margin-left: 10px;align-self: center;">{{ item.title }} x {{ item.nav.length }}</span>
+                <span style="margin-left: 10px;align-self: center;vertical-align: middle;">{{ item.title }} x {{ item.nav.length }}</span>
 
-              <i class="iconfont iconjiantouarrow483 down-arrow" [class.active]="item.collapsed"></i>
-            </div>
-          </app-dropdown>
+                <i class="iconfont iconjiantouarrow483 down-arrow" [class.active]="item.collapsed"></i>
+              </span>
+            </app-dropdown>
+          </div>
 
           <ul class="ul" *ngIf="!item.collapsed">
             <li *ngFor="let ele of item.nav; let idx=index" class="dark-border-color">
@@ -70,7 +71,7 @@
                   <div class="box-wrapper">
                     <div class="left">
                       <app-logo
-                        [src]="ele.icon || item.icon || websiteList[page].nav[id].icon"
+                        [src]="ele.icon"
                         [name]="ele.name"
                       >
                       </app-logo>

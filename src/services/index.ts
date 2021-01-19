@@ -20,9 +20,10 @@ try {
 
 // 获取文件信息
 export function getFileContent(path: string, authToken?: string) {
+  const _token = `${authToken ? authToken : token}`.trim()
   return http.get(`/repos/${authorName}/${branchName}/contents/${path}`, {
     headers: {
-      Authorization: `token ${authToken ? authToken : token}`
+      Authorization: `token ${_token}`
     }
   })
 }
@@ -37,15 +38,16 @@ export async function updateFileContent(
   { message, content, path }: Iupdate,
   authToken?: string
 ) {
-  const fileInfo = await getFileContent(path, authToken)
+  const _token = `${authToken ? authToken : token}`.trim()
+  const fileInfo = await getFileContent(path, _token)
 
   return http.put(`/repos/${authorName}/${branchName}/contents/${path}`, {
-    message: `rebot: ${message}`,
+    message: `rebot(CI): ${message}`,
     content: encode(content),
     sha: fileInfo.data.sha
   }, {
     headers: {
-      Authorization: `token ${authToken ? authToken : token}`
+      Authorization: `token ${_token}`
     }
   })
 }

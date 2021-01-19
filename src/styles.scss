@@ -115,6 +115,7 @@ b {
   cursor: pointer;
   transition: .1s linear;
   color: #666;
+  vertical-align: middle;
 
   &.active {
     transform: rotate(-90deg);
