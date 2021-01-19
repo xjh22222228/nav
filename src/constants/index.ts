@@ -7,7 +7,7 @@ export const VERIFY_PATH = 'nav.verify.txt'
 
 export const DB_PATH = 'data/db.json'
 
-export const VERSION = '5.0.2'
+export const VERSION = '5.0.3'
 
 // keyboard event
 const prefix = isMac() ? 'command' : 'ctrl'
