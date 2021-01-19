@@ -86,33 +86,18 @@ export class DropdownComponent implements OnInit {
       title = title.trim()
       
       if (type === EditType.isOne) {
-        const exists = this.websiteList.some(item => item.title === title)
-        if (exists) {
-          this.message.error('请不要重复添加')
-          return
-        }
         this.websiteList[this.oIdx].title = title
         this.websiteList[this.oIdx].icon = icon
       }
 
       if (type === EditType.isTwo) {
         const w = this.websiteList[this.oIdx].nav
-        const exists = w.some(item => item.title === title)
-        if (exists) {
-          this.message.error('请不要重复添加')
-          return
-        }
         w[this.twoIdx].title = title
         w[this.twoIdx].icon = icon
       }
 
       if (type === EditType.isThree) {
         const w = this.websiteList[this.oIdx].nav[this.twoIdx].nav
-        const exists = w.some(item => item.title === title)
-        if (exists) {
-          this.message.error('请不要重复添加')
-          return
-        }
         w[this.threeIdx].title = title
         w[this.threeIdx].icon= icon
       }
@@ -122,12 +107,6 @@ export class DropdownComponent implements OnInit {
           .nav[this.twoIdx]
           .nav[this.threeIdx]
           .nav
-        const exists = w.some(item => item.name === title)
-        if (exists) {
-          this.message.error('请不要重复添加')
-          return
-        }
-
         w[this.fourIdx].name = title
         w[this.fourIdx].icon = icon
         w[this.fourIdx].url = url

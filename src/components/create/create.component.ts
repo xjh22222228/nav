@@ -212,7 +212,8 @@ export class CreateComponent implements OnInit {
           break
         }
       }
-  
+      
+      this.iconUrl = ''
       this.validateForm.reset()
       setWebsiteList(this.websiteList)
       this.message.success('新增成功!')

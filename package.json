@@ -28,7 +28,7 @@
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
     "axios": "^0.21.1",
-    "hotkeys-js": "^3.8.1",
+    "hotkeys-js": "^3.8.2",
     "js-base64": "^3.6.0",
     "ng-zorro-antd": "^11.0.2",
     "qs": "^6.9.4",

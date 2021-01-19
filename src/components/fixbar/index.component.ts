@@ -64,7 +64,6 @@ export class FixbarComponent {
   }
 
   ngOnDestroy() {
-    // @ts-ignore
     hotkeys.unbind()
   }
 
