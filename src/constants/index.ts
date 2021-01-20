@@ -1,11 +1,13 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
+
 function isMac() {
   return /mac os x/i.test(navigator.userAgent.toLowerCase());
 }
 
 export const DB_PATH = 'data/db.json'
 
-export const VERSION = '5.0.3'
+export const VERSION = '5.0.5'
 
 // keyboard event
 const prefix = isMac() ? 'command' : 'ctrl'
