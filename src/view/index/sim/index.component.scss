@@ -123,11 +123,9 @@ $width: 1200px;
       li {
         position: relative;
         width: 225px;
-        padding: 15px;
         margin: 20px 20px 0 0;
         transition: .1s ease-out;
         border: 1px solid #eee;
-        overflow: hidden;
         border-radius: 3px;
         cursor: pointer;
 
@@ -140,6 +138,7 @@ $width: 1200px;
 
           ::ng-deep .mark {
             bottom: 0 !important;
+            display: flex;
           }
         }
       }
@@ -149,6 +148,7 @@ $width: 1200px;
 
         .box-wrapper {
           display: flex;
+          padding: 10px;
         }
 
         .right {
@@ -164,8 +164,9 @@ $width: 1200px;
         }
 
         .desc {
-          margin-top: 8px;
           color: #4c5d73;
+          padding: 10px;
+          font-size: 13px;
         }
       }
     }

@@ -1,10 +1,34 @@
 <div
+  class="container"
   nz-dropdown
   [nzDropdownMenu]="menu"
   [nzDisabled]="(!isEditing.value || hasKeyword())"
   [nzClickHide]="false"
 >
   <ng-content></ng-content>
+
+  <div *ngIf="getEditType() === EditType.isWebsite" class="icon-wrapper">
+    <div nz-tooltip [nzTooltipTitle]="copyPathDone ? '复制成功' : '分享网站'">
+      <i
+        class="iconfont"
+        [class.iconweibiaoti14]="copyPathDone"
+        [class.iconfenxiang]="!copyPathDone"
+        (click)="copyUrl($event, 1)"
+        (mouseout)="copyMouseout()"
+      >
+      </i>
+    </div>
+    <div nz-tooltip [nzTooltipTitle]="copyUrlDone ? '复制成功' : '复制链接'">
+      <i
+        class="iconfont copy"
+        [class.iconweibiaoti14]="copyUrlDone"
+        [class.iconcopy]="!copyUrlDone"
+        (click)="copyUrl($event, 2)"
+        (mouseout)="copyMouseout()"
+      >
+      </i>
+    </div>
+  </div>
 </div>
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <ul nz-menu nzSelectable>
@@ -68,4 +92,3 @@
     </form>
   </ng-container>
 </nz-modal>
-

@@ -2,10 +2,10 @@
 
 import qs from 'qs'
 import config from '../../nav.config'
-import hotkeys from 'hotkeys-js'
+import Clipboard from 'clipboard'
 import { INavProps, ISearchEngineProps } from '../types'
 import * as db from '../../data/db.json'
-import { KEY_MAP } from '../constants'
+import { Target } from '@angular/compiler'
 
 export const websiteList = getWebsiteList()
 
@@ -134,12 +134,13 @@ export function queryString() {
   const parseQs = qs.parse(search)
   let id = parseInt(parseQs.id) || 0
   let page = parseInt(parseQs.page) || 0
+  let localLocation = {}
 
   if (parseQs.id === undefined && parseQs.page === undefined) {
     try {
       const location = window.localStorage.getItem('location')
       if (location) {
-        return JSON.parse(location)
+        localLocation = JSON.parse(location)
       }
     } catch {}
   }
@@ -160,7 +161,8 @@ export function queryString() {
     ...parseQs,
     q: parseQs.q || '',
     id,
-    page
+    page,
+    ...localLocation
   }
 }
 
@@ -310,4 +312,26 @@ export async function getLogoUrl(url: string): Promise<boolean|string> {
   } catch {
     return null
   }
+}
+
+export function copyText(el: any, text: string): Promise<boolean> {
+  const target = el.target
+  const ranId = 'copy-' + randomInt(99999999)
+  target.id = ranId
+  target.setAttribute('data-clipboard-text', text)
+
+  return new Promise(resolve => {
+    const clipboard = new Clipboard(`#${ranId}`)
+    clipboard.on('success', function() {
+      clipboard?.destroy?.()
+      target.removeAttribute('id')
+      resolve(true)
+    });
+  
+    clipboard.on('error', function() {
+      clipboard?.destroy?.()
+      target.removeAttribute('id')
+      resolve(false)
+    });
+  })
 }

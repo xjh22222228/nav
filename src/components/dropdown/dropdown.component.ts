@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
-import { setWebsiteList, queryString, getLogoUrl } from '../../utils'
+import { setWebsiteList, queryString, getLogoUrl, copyText } from '../../utils'
 import { websiteList, isEditing } from '../../store'
 import { Router } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
 import { INavProps } from '../../types'
+import config from '../../../nav.config'
 
 enum EditType {
   isOne,
@@ -35,6 +36,8 @@ export class DropdownComponent implements OnInit {
   showModal = false
   EditType = EditType
   iconUrl = ''
+  copyUrlDone = false
+  copyPathDone = false
 
   constructor(
     private fb: FormBuilder,
@@ -59,6 +62,29 @@ export class DropdownComponent implements OnInit {
     const res = await getLogoUrl(e.target?.value)
     this.iconUrl = (res || '') as string
     this.validateForm.get('icon')!.setValue(res || '')
+  }
+
+  async copyUrl(e, type: number) {
+    if (this.fourIdx >= 0) {
+      const w = this.websiteList[this.oIdx]
+        .nav[this.twoIdx]
+        .nav[this.threeIdx]
+        .nav[this.fourIdx]
+      const { origin, hash, pathname } = window.location
+      const pathUrl = `${origin}${pathname}${hash}?q=${w.name}&url=${encodeURIComponent(w.url)}`
+      const isDone = await copyText(e, type === 1 ? pathUrl : w.url)
+
+      if (type === 1) {
+        this.copyPathDone = isDone
+      } else {
+        this.copyUrlDone = isDone
+      }
+    }
+  }
+
+  copyMouseout() {
+    this.copyUrlDone = false
+    this.copyPathDone = false
   }
 
   onIconBlur(e) {
@@ -86,18 +112,39 @@ export class DropdownComponent implements OnInit {
       title = title.trim()
       
       if (type === EditType.isOne) {
+        const exists = this.websiteList.some((item, idx) => (
+          item.title === title && idx !== this.oIdx
+        ))
+        if (exists) {
+          this.message.error(`已存在 ${title}, 不可重复添加`)
+          return
+        }
         this.websiteList[this.oIdx].title = title
         this.websiteList[this.oIdx].icon = icon
       }
 
       if (type === EditType.isTwo) {
         const w = this.websiteList[this.oIdx].nav
+        const exists = w.some((item, idx) => (
+          item.title === title && idx !== this.twoIdx
+        ))
+        if (exists) {
+          this.message.error(`已存在 ${title}, 不可重复添加`)
+          return
+        }
         w[this.twoIdx].title = title
         w[this.twoIdx].icon = icon
       }
 
       if (type === EditType.isThree) {
         const w = this.websiteList[this.oIdx].nav[this.twoIdx].nav
+        const exists = w.some((item, idx) => (
+          item.title === title && idx !== this.threeIdx
+        ))
+        if (exists) {
+          this.message.error(`已存在 ${title}, 不可重复添加`)
+          return
+        }
         w[this.threeIdx].title = title
         w[this.threeIdx].icon= icon
       }
@@ -107,6 +154,13 @@ export class DropdownComponent implements OnInit {
           .nav[this.twoIdx]
           .nav[this.threeIdx]
           .nav
+        const exists = w.some((item, idx) => (
+          item.name === title && idx !== this.fourIdx
+        ))
+        if (exists) {
+          this.message.error(`已存在 ${title}, 不可重复添加`)
+          return
+        }
         w[this.fourIdx].name = title
         w[this.fourIdx].icon = icon
         w[this.fourIdx].url = url

@@ -4,11 +4,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { setWebsiteList, getLogoUrl } from '../../utils'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { updateFileContent } from '../../services'
+import { verifyToken } from '../../services'
 import { getToken, setToken } from '../../utils/user'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { websiteList } from '../../store'
-import { VERIFY_PATH } from '../../constants'
 
 @Component({
   selector: 'app-create',
@@ -100,18 +99,14 @@ export class CreateComponent implements OnInit {
     }
 
     this.submiting = true
-    updateFileContent({
-      message: 'verify',
-      content: 'OK',
-      path: VERIFY_PATH
-    }, this.token)
+    verifyToken(this.token)
       .then(() => {
         setToken(this.token);
-        this.message.success('登录成功, 2秒后刷新!')
+        this.message.success('Token验证成功, 2秒后刷新!')
         setTimeout(() => window.location.reload(), 2000)
       })
       .catch(res => {
-        this.notification.error('登录失败, 请填写正确Token', res.message as string)
+        this.notification.error('Token 验证失败', res.message as string)
       })
       .finally(() => {
         this.submiting = false

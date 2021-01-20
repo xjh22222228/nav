@@ -1,0 +1,36 @@
+.container {
+  position: relative;
+
+  &:hover {
+    .icon-wrapper {
+      display: block;
+    }
+    .iconfont {
+      transform: translateX(0) !important;
+    }
+  }
+
+  .icon-wrapper {
+    position: absolute;
+    top: 0;
+    right: -18px;
+    height: 100%;
+    display: none;
+  }
+
+  .iconfont {
+    display: block;
+    font-size: 17px;
+    cursor: pointer;
+    transform: translateX(-100px);
+    transition: 1s linear;
+  }
+
+  .copy {
+    font-size: 18px;
+  }
+
+  .iconweibiaoti14 {
+    color: rgb(19, 247, 19);
+  }
+}

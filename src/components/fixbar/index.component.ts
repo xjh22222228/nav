@@ -1,4 +1,5 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
 
 import hotkeys from 'hotkeys-js'
 import { Component, Output, EventEmitter, Input } from '@angular/core'
@@ -9,7 +10,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
 import { updateFileContent } from '../../services'
 import { websiteList, isEditing } from '../../store'
-import { DB_PATH, KEY_MAP } from '../../constants'
+import { DB_PATH, KEY_MAP, VERSION } from '../../constants'
 import { Router } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
 
@@ -92,6 +93,8 @@ export class FixbarComponent {
       nzContent: `
         <p>Token: ${getToken()}</p>
         <p>上次构建时间: ${date || '未知'}</p>
+        <p>当前版本: <img src="https://img.shields.io/badge/release-v${VERSION}-red.svg?longCache=true&style=flat-square"></p>
+        <p>最新版本: <img src="https://img.shields.io/github/v/release/xjh22222228/nav" /></p>
       `,
     });
   }

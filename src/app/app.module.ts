@@ -103,7 +103,7 @@ const appRoutes: Routes = [
       appRoutes,
       {
         enableTracing: false,     // <-- debugging purposes only
-        useHash: true,
+        useHash: config.hashMode,
       }
     ),
     HttpClientModule,

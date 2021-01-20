@@ -18,6 +18,16 @@ try {
   branchName = p[2]
 } catch {}
 
+
+// 验证Token
+export function verifyToken(token: string) {
+  return http.get(`/users/${authorName}`, {
+    headers: {
+      Authorization: `token ${token}`
+    }
+  })
+}
+
 // 获取文件信息
 export function getFileContent(path: string, authToken?: string) {
   const _token = `${authToken ? authToken : token}`.trim()

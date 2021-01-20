@@ -1,18 +1,24 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
 
 import fs from 'fs'
 import config from '../nav.config.js'
 import path from 'path'
+
+const dbPath = path.join('.', 'data', 'db.json')
 
 function addZero(num) {
   return num < 10 ? '0' + num : num
 }
 
 const now = new Date()
+console.log('Timezone: ', now.getTimezoneOffset())
 now.setHours(now.getHours() + 8)
 const date = `${now.getFullYear()}年${addZero(now.getMonth() + 1)}月${addZero(now.getDate())}日 ${addZero(now.getHours())}:${addZero(now.getMinutes())}:${addZero(now.getSeconds())}`
 
 const {
+  gitRepoUrl,
+  homeUrl,
   description,
   title,
   keywords,
@@ -41,10 +47,39 @@ s.parentNode.insertBefore(hm, s);
 let scriptTemplate = `
 ${baiduScript}
 ${cnzzScript}
-<span data-date="${date}" id="BUILD-DATE-NAV"></span>
+<span style="display:none;" data-date="${date}" id="BUILD-DATE-NAV"></span>
 `.trim()
 
-try {
+let seoTemplate = `
+<div data-url="https://github.com/xjh22222228/nav" style="z-index:-1;position:fixed;top:-10000vh;left:-10000vh;">
+`
+
+async function buildSeo() {
+  const readDb = fs.readFileSync(dbPath).toString()
+  const parseDbJson = JSON.parse(readDb)
+
+  function r(navList) {
+    for (let value of navList) {
+      if (Array.isArray(value.nav)) {
+        r(value.nav)
+      }
+
+      seoTemplate += `<h3>${value.title || value.name || title}</h3>${value.icon ? `<img src="${value.icon}" alt="${homeUrl}" />` : ''}<p>${value.desc || description}</p><a href="${value.url || homeUrl || gitRepoUrl}"></a>`
+
+      if (value.urls && typeof value.urls === 'object') {
+        for (let k in value.urls) {
+          seoTemplate += `<a href="${value.urls[k] || homeUrl || gitRepoUrl}"></a>`
+        }
+      }
+    }
+  }
+
+  r(parseDbJson)
+
+  seoTemplate += '</div>'
+}
+
+async function build() {
   fs.copyFileSync(
     path.join('.', 'logo.png'),
     path.join('.', 'src', 'assets', 'logo.png')
@@ -58,9 +93,13 @@ try {
     t = t.replace('<!-- nav.script -->', scriptTemplate)
   }
 
+  t = t.replace('<!-- nav.seo -->', seoTemplate)
+
   fs.writeFileSync(htmlPath, t, { encoding: 'utf-8' })
   fs.unlinkSync('./nav.config.js')
   console.log('Build done!')
-} catch (error) {
-  console.log(error)
 }
+
+buildSeo()
+.finally(() => build())
+.catch(console.error)

@@ -163,12 +163,12 @@
       width: 200px;
       margin: 12px;
       border: 1px solid #eee;
-      overflow: hidden;
 
       &:hover {
 
         ::ng-deep .mark {
           bottom: 0 !important;
+          display: flex;
         }
       }
     }

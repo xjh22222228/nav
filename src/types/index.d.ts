@@ -44,7 +44,9 @@ export interface ISearchEngineProps {
 }
 
 export interface IConfig {
-  gitRepoUrl: string,
+  gitRepoUrl: string
+  hashMode: boolean
+  homeUrl?: string
   title: string
   description: string
   keywords: string

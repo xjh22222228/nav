@@ -28,6 +28,7 @@
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
     "axios": "^0.21.1",
+    "clipboard": "^2.0.6",
     "hotkeys-js": "^3.8.2",
     "js-base64": "^3.6.0",
     "ng-zorro-antd": "^11.0.2",
