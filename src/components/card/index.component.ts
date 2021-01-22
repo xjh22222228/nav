@@ -1,3 +1,6 @@
+// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
+
 import { Component, OnInit, Input } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -8,7 +11,6 @@ import { websiteList, isEditing } from '../../store'
 import { Router } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
 import { INavProps } from '../../types'
-import config from '../../../nav.config'
 
 enum EditType {
   isOne,
@@ -18,18 +20,19 @@ enum EditType {
 }
 
 @Component({
-  selector: 'app-dropdown',
-  templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss']
+  selector: 'app-card',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss']
 })
-export class DropdownComponent implements OnInit {
-  @Input() delIconStyle: string
+export class CardComponent implements OnInit {
   @Input() oIdx: number
   @Input() twoIdx: number
   @Input() threeIdx: number
   @Input() fourIdx: number
+  @Input() dataSource: object
 
   validateForm!: FormGroup;
+  objectKeys = Object.keys
   websiteList: INavProps[] = websiteList
   isLogin: boolean = !!getToken()
   isEditing = isEditing

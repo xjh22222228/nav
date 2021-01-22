@@ -178,6 +178,8 @@ export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
       if (!item.icon && parentItem.icon) {
         item.icon = parentItem.icon
       }
+
+      item.urls ||= {}
     }
   }
 

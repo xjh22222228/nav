@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  height: 100%;
+}
+
+::ng-deep {
+  .gutter-row .ant-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

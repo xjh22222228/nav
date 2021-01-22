@@ -113,67 +113,13 @@ $width: 1200px;
         color: #3f51b5;
         font-weight: 500;
         display: flex;
-      }
-
-      ul {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      li {
-        position: relative;
-        width: 225px;
-        margin: 20px 20px 0 0;
-        transition: .1s ease-out;
-        border: 1px solid #eee;
-        border-radius: 3px;
-        cursor: pointer;
-
-        &:nth-child(4n) {
-          margin-right: 0;
-        }
-
-        &:hover {
-          box-shadow: 2px 2px 25px -5px rgba(0,0,0,.2);
-
-          ::ng-deep .mark {
-            bottom: 0 !important;
-            display: flex;
-          }
-        }
-      }
-
-      .url-box {
-        height: 100%;
-
-        .box-wrapper {
-          display: flex;
-          padding: 10px;
-        }
-
-        .right {
-          flex: 1;
-          margin-left: 10px;
-          font-size: 15px;
-          font-weight: 600;
-          color: #273a52;
-          align-self: center;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-
-        .desc {
-          color: #4c5d73;
-          padding: 10px;
-          font-size: 13px;
-        }
+        margin-bottom: 15px;
       }
     }
   }
 }
 
-::ng-deep .sim-footer  {
+::ng-deep .copyright  {
   margin-bottom: 10px;
 
   & > * {

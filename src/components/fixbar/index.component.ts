@@ -11,7 +11,7 @@ import { getToken } from '../../utils/user'
 import { updateFileContent } from '../../services'
 import { websiteList, isEditing } from '../../store'
 import { DB_PATH, KEY_MAP, VERSION } from '../../constants'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
 
 @Component({
@@ -20,9 +20,7 @@ import { setAnnotate } from '../../utils/ripple'
   styleUrls: ['./index.component.scss']
 })
 export class FixbarComponent {
-
   @Input() collapsed: boolean
-  @Input() randomBg: boolean
   @Input() selector: string
   @Output() onCollapse = new EventEmitter()
 
@@ -47,7 +45,8 @@ export class FixbarComponent {
     private message: NzMessageService,
     private notification: NzNotificationService,
     private modal: NzModalService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -84,7 +83,7 @@ export class FixbarComponent {
   }
 
   viewInfo() {
-    const date = document.getElementById('BUILD-DATE-NAV')?.dataset?.date
+    const date = document.getElementById('META-NAV')?.dataset?.date
 
     this.modal.info({
       nzWidth: 500,
@@ -156,7 +155,8 @@ export class FixbarComponent {
       el?.parentNode?.removeChild?.(el)
       this.toggleZorroDark(true)
     } else {
-      this.randomBg && randomBgImg()
+      const { data } = this.activatedRoute.snapshot
+      data?.renderLinear && randomBgImg()
       this.toggleZorroDark(false)
     }
   }

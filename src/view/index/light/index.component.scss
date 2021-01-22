@@ -95,39 +95,21 @@
   }
 
   .main {
+    width: calc(100% - #{$sidebarWidth});
     position: absolute;
     top: 0;
     left: $sidebarWidth;
-    right: 0;
     bottom: 30px;
     padding-bottom: 50px;
+    overflow: hidden;
     overflow-y: auto;
 
-    .name {
-      display: inline-block;
-      font-size: 15px;
-      margin-left: 5px;
-      width: calc(100% - 50px);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      vertical-align: middle;
-    }
-
-    .desc {
-      padding: 5px 10px 5px 10px;
-      border-top: 1px solid #eee;
-      margin-top: 8px;
-      word-break: break-all;
-      word-wrap: break-word;
-      font-size: 12px;
-    }
-
     .title-wrapper {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #eee;
       padding: 10px 30px 10px 15px;
       display: flex;
       justify-content: space-between;
+      margin-bottom: 15px;
     }
 
     .block-title {
@@ -136,41 +118,6 @@
       color: #3F51B5;
       align-self: center;
       display: flex;
-    }
-
-    .top {
-      padding: 10px;
-    }
-  }
-
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    transition: .1s ease-out;
-    overflow: hidden;
-
-    a {
-      color: #333;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
-
-    .click-btn {
-      z-index: 111;
-      position: relative;
-      width: 200px;
-      margin: 12px;
-      border: 1px solid #eee;
-
-      &:hover {
-
-        ::ng-deep .mark {
-          bottom: 0 !important;
-          display: flex;
-        }
-      }
     }
   }
 }

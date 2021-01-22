@@ -96,7 +96,7 @@ export default class HomeComponent {
     })
   }
 
-  ngAfterViewInit () {
+  ngAfterViewInit() {
     setAnnotate();
     initRipple()
   }

@@ -67,7 +67,9 @@ const c: IConfig = {
   ],
 
   // 网站底部内容, 版权信息、备案号, 可以是 HTML
-  footerContent: '',
+  footerContent: `
+    <div style="font-weight: bold;">共收录\${total}个网站</div>
+  `,
 
   // 百度统计地址
   // https://tongji.baidu.com/web/welcome/login
@@ -112,6 +114,7 @@ const c: IConfig = {
 
   // Sim 主题配置
   simThemeConfig: {
+    // 海报图
     // 请不要放在项目里头, 填写Url
     posterImageUrls: [
       'assets/img/wallpaper.jpg'

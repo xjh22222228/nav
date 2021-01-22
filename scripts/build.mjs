@@ -6,6 +6,9 @@ import config from '../nav.config.js'
 import path from 'path'
 
 const dbPath = path.join('.', 'data', 'db.json')
+const pkgPath = path.join('package.json')
+
+const pkg = JSON.parse(fs.readFileSync(pkgPath).toString())
 
 function addZero(num) {
   return num < 10 ? '0' + num : num
@@ -47,7 +50,7 @@ s.parentNode.insertBefore(hm, s);
 let scriptTemplate = `
 ${baiduScript}
 ${cnzzScript}
-<span style="display:none;" data-date="${date}" id="BUILD-DATE-NAV"></span>
+<span style="display:none;" data-date="${date}" data-version="${pkg.version}" id="META-NAV"></span>
 `.trim()
 
 let seoTemplate = `
@@ -64,7 +67,7 @@ async function buildSeo() {
         r(value.nav)
       }
 
-      seoTemplate += `<h3>${value.title || value.name || title}</h3>${value.icon ? `<img src="${value.icon}" alt="${homeUrl}" />` : ''}<p>${value.desc || description}</p><a href="${value.url || homeUrl || gitRepoUrl}"></a>`
+      seoTemplate += `<h3>${value.title || value.name || title}</h3>${value.icon ? `<img data-src="${value.icon}" alt="${homeUrl}" />` : ''}<p>${value.desc || description}</p><a href="${value.url || homeUrl || gitRepoUrl}"></a>`
 
       if (value.urls && typeof value.urls === 'object') {
         for (let k in value.urls) {
