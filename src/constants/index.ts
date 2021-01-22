@@ -7,7 +7,7 @@ function isMac() {
 
 export const DB_PATH = 'data/db.json'
 
-export const VERSION = '5.0.5'
+export const VERSION = '5.0.6'
 
 // keyboard event
 const prefix = isMac() ? 'command' : 'ctrl'

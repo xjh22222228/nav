@@ -87,7 +87,7 @@
     class="container"
     nz-dropdown
     [nzDropdownMenu]="menu"
-    [nzDisabled]="(!isEditing.value || hasKeyword()) && !isLogin"
+    [nzDisabled]="!isEditing.value || hasKeyword() || !isLogin"
     [nzClickHide]="false"
   >
     <ng-content></ng-content>
