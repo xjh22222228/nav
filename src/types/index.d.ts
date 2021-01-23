@@ -6,6 +6,7 @@ export type ThemeType =
 
 export interface INavFourProp {
   icon?: string | null
+  createdAt?: string
   name: string
   desc: string
   url?: string
@@ -17,6 +18,7 @@ export interface INavFourProp {
 export interface INavThreeProp {
   title?: string
   icon?: string | null
+  createdAt?: string
   showSideIcon?: boolean
   collapsed?: boolean
   nav: INavFourProp[]
@@ -25,6 +27,7 @@ export interface INavThreeProp {
 export interface INavTwoProp {
   title?: string
   icon?: string | null
+  createdAt?: string
   collapsed?: boolean
   nav: INavThreeProp[]
 }
@@ -33,6 +36,7 @@ export interface INavProps extends Object {
   title: string
   id?: number
   icon?: string | null
+  createdAt?: string
   nav: INavTwoProp[]
 }
 

@@ -114,6 +114,9 @@ export class CreateComponent implements OnInit {
   }
 
   handleOk() {
+    const now = new Date()
+    const createdAt = now.toISOString()
+
     try {
       if (!this.isLogin) {
         return this.login();
@@ -146,6 +149,7 @@ export class CreateComponent implements OnInit {
           this.websiteList.push({
             title,
             icon,
+            createdAt,
             nav: []
           })
           break
@@ -163,6 +167,7 @@ export class CreateComponent implements OnInit {
           this.websiteList[findIdx].nav.push({
             title,
             icon,
+            createdAt,
             nav: []
           })
           break
@@ -182,6 +187,7 @@ export class CreateComponent implements OnInit {
           this.websiteList[oIdx].nav[tIdx].nav.unshift({
             title,
             icon,
+            createdAt,
             nav: []
           })
           break
@@ -202,6 +208,7 @@ export class CreateComponent implements OnInit {
             name: title,
             icon,
             url,
+            createdAt,
             desc
           })
           break

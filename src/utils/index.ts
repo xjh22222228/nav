@@ -167,15 +167,18 @@ export function queryString() {
 }
 
 export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
+  const now = new Date()
+
   for (let i = 0; i < websiteList.length; i++) {
     const item = websiteList[i]
+    item.createdAt ||= now.toISOString()
 
     if (Array.isArray(item.nav)) {
       adapterWebsiteList(item.nav, item)
     }
 
     if (item.url) {
-      if (!item.icon && parentItem.icon) {
+      if (!item.icon && parentItem?.icon) {
         item.icon = parentItem.icon
       }
 

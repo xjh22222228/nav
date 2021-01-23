@@ -14,8 +14,8 @@
     >
       <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
         <nz-card-meta
-          [nzTitle]="dataSource.name"
-          [nzDescription]="dataSource.desc"
+          [nzTitle]="title"
+          [nzDescription]="description"
           [nzAvatar]="avatarTemplate"
         >
         </nz-card-meta>
@@ -23,7 +23,10 @@
     </nz-card>
 
     <ng-template #title>
-      <h3 [innerHTML]="dataSource.title"></h3>
+      <div [innerHTML]="dataSource.name"></div>
+    </ng-template>
+    <ng-template #description>
+      <div [innerHTML]="dataSource.desc"></div>
     </ng-template>
     <ng-template #avatarTemplate>
       <app-logo [src]="dataSource.icon" [name]="dataSource.name"></app-logo>
