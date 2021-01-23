@@ -37,6 +37,7 @@
 
 - [Sim 在线预览](https://nav3.cn/#/sim)
 - [Light 在线预览](https://nav3.cn/#/light)
+- [Side 在线预览](https://nav3.cn/#/side)
 
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/1.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/2.png)
