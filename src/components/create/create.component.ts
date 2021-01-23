@@ -27,6 +27,10 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {}
 
+  hanldeCancel() {
+    this.onCancel.emit()
+  }
+
   login() {
     if (!this.token || this.token.length < 40) {
       return this.message.error('请填写正确的Token');
