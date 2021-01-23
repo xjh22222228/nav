@@ -82,7 +82,7 @@
 
         <nz-form-item *ngIf="radioType === '6'">
           <nz-form-label [nzSpan]="4" nzRequired>网站链接</nz-form-label>
-          <nz-form-control [nzSpan]="20">
+          <nz-form-control [nzSpan]="20" nzErrorTip="请输入网站链接">
             <input formControlName="url" nz-input placeholder="https://nav3.cn" (blur)="onUrlBlur($event)" />
           </nz-form-control>
         </nz-form-item>

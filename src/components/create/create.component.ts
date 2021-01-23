@@ -205,6 +205,7 @@ export class CreateComponent implements OnInit {
           }
 
           this.websiteList[oIdx].nav[tIdx].nav[eIdx].nav.unshift({
+            urls: {},
             name: title,
             icon,
             url,
