@@ -1,1 +1,363 @@
-<div>1</div>
+<div class="admin">
+  <button nz-button style="margin-bottom: 15px;" (click)="goBack()">返回主页</button>
+  <button nz-button style="margin-left: 15px;" (click)="handleSync()">同步到远端</button>
+  <button nz-button style="margin-left: 15px;" (click)="handleReset()">重置初始数据</button>
+
+  <nz-tabset *ngIf="isLogin" [nzSelectedIndex]="tabActive" (nzSelectedIndexChange)="onTabChange($event)">
+    <nz-tab nzTitle="管理一级分类">
+      <button nz-button nzType="primary" (click)="toggleCreateModal()">添加分类</button>
+      <nz-table #basicTable [nzData]="websiteList" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th>图标</th>
+            <th>分类名称</th>
+            <th>创建时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of websiteList; let idx = index">
+            <td>
+              <app-logo
+                [src]="data.icon"
+                [name]="data.title"
+              >
+              </app-logo>
+            </td>
+            <td>{{ data.title }}</td>
+            <td>{{ data.createdAt }}</td>
+            <td>
+              <a nz-button nzType="link" [disabled]="idx === 0" (click)="handleOneMoveUp(idx)">
+                上移
+              </a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a nz-button nzType="link" [disabled]="idx === websiteList.length - 1" (click)="handleOneMoveDown(idx)">
+                下移
+              </a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a (click)="handleEditBtn(data, idx)">编辑</a>
+              <a
+                nz-popconfirm
+                nzPopconfirmTitle="这会删除分类下的所有数据，您确定要删除吗?"
+                nzPopconfirmPlacement="bottom"
+                (nzOnConfirm)="handleConfirmDelOne(idx)"
+              >
+                <a nz-button nzType="link" nzDanger>删除</a>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+
+    <nz-tab nzTitle="管理二级分类">
+      <nz-select
+        [ngModel]="oneSelect"
+        nzShowSearch
+        nzPlaceHolder="请选择一级分类"
+        (ngModelChange)="hanldeOneSelect($event)"
+        style="width: 260px;"
+      >
+        <nz-option
+          *ngFor="let item of websiteList"
+          [nzLabel]="item.title"
+          [nzValue]="item.title"
+        >
+        </nz-option>
+      </nz-select>
+
+      <button
+        nz-button
+        nzType="primary"
+        (click)="toggleCreateModal()"
+        style="margin-left: 20px;"
+      >
+        添加分类
+      </button>
+
+      <nz-table #basicTable [nzData]="twoTableData" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th>图标</th>
+            <th>分类名称</th>
+            <th>创建时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of twoTableData; let idx = index">
+            <td>
+              <app-logo
+                [src]="data.icon"
+                [name]="data.title"
+              >
+              </app-logo>
+            </td>
+            <td>{{ data.title }}</td>
+            <td>{{ data.createdAt }}</td>
+            <td>
+              <a nz-button nzType="link" [disabled]="idx === 0" (click)="handleTwoMoveUp(idx)">
+                上移
+              </a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a nz-button nzType="link" [disabled]="idx === twoTableData.length - 1" (click)="handleTwoMoveDown(idx)">
+                下移
+              </a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a (click)="handleEditBtn(data, idx)">编辑</a>
+              <a
+                nz-popconfirm
+                nzPopconfirmTitle="这会删除分类下的所有数据，您确定要删除吗?"
+                nzPopconfirmPlacement="bottom"
+                (nzOnConfirm)="handleConfirmDelTwo(idx)"
+              >
+                <a nz-button nzType="link" nzDanger>删除</a>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+
+    <nz-tab nzTitle="管理三级分类">
+      <nz-select
+        [ngModel]="oneSelect"
+        nzShowSearch
+        nzPlaceHolder="请选择一级分类"
+        (ngModelChange)="hanldeOneSelect($event)"
+        style="width: 200px;"
+      >
+        <nz-option
+          *ngFor="let item of websiteList"
+          [nzLabel]="item.title"
+          [nzValue]="item.title"
+        >
+        </nz-option>
+      </nz-select>
+
+      <nz-select
+        [ngModel]="twoSelect"
+        nzShowSearch
+        nzPlaceHolder="请选择二级分类"
+        (ngModelChange)="hanldeTwoSelect($event)"
+        style="width: 200px; margin-left: 15px;"
+      >
+        <nz-option
+          *ngFor="let item of twoTableData"
+          [nzLabel]="item.title"
+          [nzValue]="item.title"
+        >
+        </nz-option>
+      </nz-select>
+
+      <button
+        nz-button
+        nzType="primary"
+        (click)="toggleCreateModal()"
+        style="margin-left: 20px;"
+      >
+        添加分类
+      </button>
+
+      <nz-table #basicTable [nzData]="threeTableData" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th>图标</th>
+            <th>分类名称</th>
+            <th>创建时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of threeTableData; let idx = index">
+            <td>
+              <app-logo
+                [src]="data.icon"
+                [name]="data.title"
+              >
+              </app-logo>
+            </td>
+            <td>{{ data.title }}</td>
+            <td>{{ data.createdAt }}</td>
+            <td>
+              <a nz-button nzType="link" [disabled]="idx === 0" (click)="handleThreeMoveUp(idx)">
+                上移
+              </a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a nz-button nzType="link" [disabled]="idx === threeTableData.length - 1" (click)="handleThreeMoveDown(idx)">
+                下移
+              </a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a (click)="handleEditBtn(data, idx)">编辑</a>
+              <a
+                nz-popconfirm
+                nzPopconfirmTitle="这会删除分类下的所有数据，您确定要删除吗?"
+                nzPopconfirmPlacement="bottom"
+                (nzOnConfirm)="handleConfirmDelThree(idx)"
+              >
+                <a nz-button nzType="link" nzDanger>删除</a>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+
+    <nz-tab nzTitle="管理网站">
+      <nz-select
+        [ngModel]="oneSelect"
+        nzShowSearch
+        nzPlaceHolder="请选择一级分类"
+        (ngModelChange)="hanldeOneSelect($event)"
+        style="width: 200px;"
+      >
+        <nz-option
+          *ngFor="let item of websiteList"
+          [nzLabel]="item.title"
+          [nzValue]="item.title"
+        >
+        </nz-option>
+      </nz-select>
+
+      <nz-select
+        [ngModel]="twoSelect"
+        nzShowSearch
+        nzPlaceHolder="请选择二级分类"
+        (ngModelChange)="hanldeTwoSelect($event)"
+        style="width: 200px; margin-left: 15px;"
+      >
+        <nz-option
+          *ngFor="let item of twoTableData"
+          [nzLabel]="item.title"
+          [nzValue]="item.title"
+        >
+        </nz-option>
+      </nz-select>
+
+      <nz-select
+        [ngModel]="threeSelect"
+        nzShowSearch
+        nzPlaceHolder="请选择三级分类"
+        (ngModelChange)="hanldeThreeSelect($event)"
+        style="width: 200px; margin-left: 15px;"
+      >
+        <nz-option
+          *ngFor="let item of threeTableData"
+          [nzLabel]="item.title"
+          [nzValue]="item.title"
+        >
+        </nz-option>
+      </nz-select>
+
+      <button
+        nz-button
+        nzType="primary"
+        (click)="toggleCreateModal()"
+        style="margin-left: 20px;"
+      >
+        添加网站
+      </button>
+
+      <nz-table #basicTable [nzData]="websiteTableData" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th>图标</th>
+            <th>网站名称</th>
+            <th nzWidth="300px">网站描述</th>
+            <th>创建时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of websiteTableData; let idx = index">
+            <td>
+              <app-logo
+                [src]="data.icon"
+                [name]="data.name"
+              >
+              </app-logo>
+            </td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.desc }}</td>
+            <td>{{ data.createdAt }}</td>
+            <td>
+              <a nz-button nzType="link" [disabled]="idx === 0" (click)="handleWebsiteMoveUp(idx)">
+                上移
+              </a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a
+                nz-button
+                nzType="link"
+                [disabled]="idx === websiteTableData.length - 1"
+                (click)="handleWebsiteMoveDown(idx)"
+              >
+                下移
+              </a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a (click)="handleEditBtn(data, idx)">编辑</a>
+              <a
+                nz-popconfirm
+                nzPopconfirmTitle="这会删除分类下的所有数据，您确定要删除吗?"
+                nzPopconfirmPlacement="bottom"
+                (nzOnConfirm)="handleConfirmDelWebsite(idx)"
+              >
+                <a nz-button nzType="link" nzDanger>删除</a>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+  </nz-tabset>
+</div>
+
+<nz-modal
+  [(nzVisible)]="showCreateModal"
+  [nzTitle]="isEdit ? '编辑' : '新增'"
+  (nzOnCancel)="toggleCreateModal()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="handleOk()">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>{{ tabActive === 3 ? '网站名称' : '分类名称'}}</nz-form-label>
+        <nz-form-control [nzSpan]="20" nzErrorTip="请输入名称">
+          <input formControlName="title" nz-input placeholder="发现导航" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item *ngIf="tabActive === 3">
+        <nz-form-label [nzSpan]="4" nzRequired>网站链接</nz-form-label>
+        <nz-form-control [nzSpan]="20" nzErrorTip="请输入网站链接">
+          <input formControlName="url" nz-input placeholder="https://nav3.cn" (blur)="onUrlBlur($event)" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">图标地址</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-input-group [nzPrefix]="prefixIcon">
+            <input formControlName="icon" nz-input placeholder="https://example.com/favicon.png" (blur)="onIconBlur($event)" />
+          </nz-input-group>
+
+          <ng-template #prefixIcon>
+            <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl"></app-logo>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item *ngIf="tabActive === 3">
+        <nz-form-label [nzSpan]="4">网站描述</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <textarea
+            formControlName="desc"
+            placeholder="发现导航, 精选实用导航网站"
+            nz-input
+            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+          >
+          </textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>

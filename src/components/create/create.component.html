@@ -1,114 +1,11 @@
 <nz-modal
   [(nzVisible)]="visible"
-  [nzTitle]="getTitle()"
+  nzTitle="请授权登录"
   [nzOkLoading]="submiting"
   (nzOnCancel)="hanldeCancel()"
-  (nzOnOk)="handleOk()"
+  (nzOnOk)="login()"
 >
   <ng-container *nzModalContent>
-    <div *ngIf="isLogin; else ab">
-      <p><b>请完成所有添加后点击右下角将所有数据同步到远端！</b></p>
-
-      <nz-radio-group [(ngModel)]="radioType" style="margin-bottom:15px;">
-        <label nz-radio nzValue="1">新增一级分类</label>
-        <label nz-radio nzValue="2">新增二级分类</label>
-        <label nz-radio nzValue="3">新增三级分类</label>
-        <label nz-radio nzValue="6">新增网站</label>
-      </nz-radio-group>
-
-      <form nz-form [formGroup]="validateForm" (ngSubmit)="handleOk()">
-        <nz-form-item *ngIf="radioType !== '1'">
-          <nz-form-label [nzSpan]="4" nzRequired>一级分类</nz-form-label>
-          <nz-form-control [nzSpan]="20" nzErrorTip="请选择一级分类">
-            <nz-select
-              formControlName="oneSelect"
-              nzShowSearch
-              nzPlaceHolder="请选择一级分类"
-              (ngModelChange)="hanldeOneSelect($event)"
-            >
-              <nz-option
-                *ngFor="let item of websiteList"
-                [nzLabel]="item.title"
-                [nzValue]="item.title"
-              >
-              </nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item *ngIf="radioType === '3' || radioType === '6'">
-          <nz-form-label [nzSpan]="4" nzRequired>二级分类</nz-form-label>
-          <nz-form-control [nzSpan]="20" nzErrorTip="请选择二级分类">
-            <nz-select
-              formControlName="twoSelect"
-              nzShowSearch
-              nzPlaceHolder="请选择二级分类"
-              (ngModelChange)="hanldeTwoSelect($event)"
-            >
-              <nz-option
-                *ngFor="let item of twoList"
-                [nzLabel]="item.title"
-                [nzValue]="item.title"
-              >
-              </nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item *ngIf="radioType === '6'">
-          <nz-form-label [nzSpan]="4" nzRequired>三级分类</nz-form-label>
-          <nz-form-control [nzSpan]="20" nzErrorTip="请选择三级分类">
-            <nz-select
-              formControlName="threeSelect"
-              nzShowSearch
-              nzPlaceHolder="请选择三级分类"
-            >
-              <nz-option
-                *ngFor="let item of threeList"
-                [nzLabel]="item.title"
-                [nzValue]="item.title"
-              >
-              </nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-label [nzSpan]="4" nzRequired>{{ radioType === '6' ? '网站名称' : '分类名称'}}</nz-form-label>
-          <nz-form-control [nzSpan]="20" nzErrorTip="请输入名称">
-            <input formControlName="title" nz-input placeholder="发现导航" />
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item *ngIf="radioType === '6'">
-          <nz-form-label [nzSpan]="4" nzRequired>网站链接</nz-form-label>
-          <nz-form-control [nzSpan]="20" nzErrorTip="请输入网站链接">
-            <input formControlName="url" nz-input placeholder="https://nav3.cn" (blur)="onUrlBlur($event)" />
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-label [nzSpan]="4">图标地址</nz-form-label>
-          <nz-form-control [nzSpan]="20">
-            <nz-input-group [nzPrefix]="prefixIcon">
-              <input formControlName="icon" nz-input placeholder="https://example.com/favicon.png" (blur)="onIconBlur($event)" />
-            </nz-input-group>
-
-            <ng-template #prefixIcon>
-              <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl"></app-logo>
-            </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item *ngIf="radioType === '6'">
-          <nz-form-label [nzSpan]="4">网站描述</nz-form-label>
-          <nz-form-control [nzSpan]="20">
-            <input formControlName="desc" nz-input placeholder="发现导航, 精选实用导航网站" />
-          </nz-form-control>
-        </nz-form-item>
-      </form>
-    </div>
-
     <ng-template #ab>
       <p>请在下方输入您的TOKEN进行登录校验</p>
       <input nz-input placeholder="请输入TOKEN" [(ngModel)]="token" maxlength="100" autofocus />

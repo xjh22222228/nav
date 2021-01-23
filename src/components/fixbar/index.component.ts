@@ -121,6 +121,7 @@ export class FixbarComponent {
     this.router.navigate([theme.url], {
       queryParams: queryString()
     })
+    this.removeBackground()
     setTimeout(() => {
       setAnnotate()
     }, 100)
@@ -149,14 +150,18 @@ export class FixbarComponent {
     this.onCollapse.emit()
   }
 
+  removeBackground() {
+    const el = document.getElementById('random-light-bg')
+    el?.parentNode?.removeChild?.(el)
+  }
+
   toggleMode() {
     this.isDark = !this.isDark
     window.localStorage.setItem('IS_DARK', String(Number(this.isDark)))
     document.body.classList.toggle('dark-container')
 
     if (this.isDark) {
-      const el = document.getElementById('random-light-bg')
-      el?.parentNode?.removeChild?.(el)
+      this.removeBackground()
       this.toggleZorroDark(true)
     } else {
       const { data } = this.activatedRoute.snapshot
@@ -166,6 +171,11 @@ export class FixbarComponent {
   }
 
   toggleModal() {
+    if (this.isLogin) {
+      this.removeBackground()
+      this.router.navigate(['admin'])
+      return
+    }
     this.showCreateModal = !this.showCreateModal
   }
 

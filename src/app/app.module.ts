@@ -26,6 +26,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzGridModule } from 'ng-zorro-antd/grid'
 import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
+import { NzTableModule } from 'ng-zorro-antd/table'
+import { NzTabsModule } from 'ng-zorro-antd/tabs'
+import { NzDividerModule } from 'ng-zorro-antd/divider'
 
 // components
 import { AppComponent } from './app.component'
@@ -90,6 +93,7 @@ const appRoutes: Routes = [
     LightComponent,
     SimComponent,
     SideComponent,
+    AdminComponent,
     WebpComponent,
     FixbarComponent,
     MultipleSiteComponent,
@@ -121,6 +125,9 @@ const appRoutes: Routes = [
     NzGridModule,
     NzLayoutModule,
     NzMenuModule,
+    NzTableModule,
+    NzTabsModule,
+    NzDividerModule,
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(
