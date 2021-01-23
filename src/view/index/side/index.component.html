@@ -1,0 +1,82 @@
+<nz-layout class="layout">
+  <nz-layout>
+    <nz-sider nzWidth="200px" nzTheme="light" class="sider">
+      <div class="logo dark-bg">
+        <img src="assets/logo.png" alt="发现导航nav3.cn">
+        <span class="site-title">{{ title }}</span>
+      </div>
+      <ul nz-menu nzMode="inline" class="sider-menu">
+        <li
+          nz-submenu
+          nzOpen
+          [nzTitle]="item.title"
+          *ngFor="let item of websiteList; let pageIdx = index;"
+        >
+          <ul>
+            <li
+              nz-menu-item *ngFor="let el of item.nav; let idIdx = index;"
+              [nzSelected]="page === pageIdx && id === idIdx"
+              (click)="handleSidebarNav(pageIdx, idIdx)" 
+            >
+              {{ el.title }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout class="inner-layout">
+      <nz-content class="content">
+        <app-search-engine></app-search-engine>
+
+        <div class="box">
+          <app-no-data *ngIf="currentList.length === 0 || currentList[0].nav.length === 0"></app-no-data>
+
+          <div *ngFor="let item of currentList; let i=index">
+            <div class="nav-wrapper">
+              <div
+                class="title dark-primary dark-border-color"
+                *ngIf="item.title"
+              >
+                <app-card [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
+                  <span class="cursor-pointer" (click)="onCollapse(item, i)">
+                    <app-logo
+                      [src]="item.icon"
+                      [name]="item.title"
+                      colour="#ff4d4f"
+                    >
+                    </app-logo>
+    
+                    <span style="margin-left: 10px;align-self: center;vertical-align: middle;">{{ item.title }} x {{ item.nav.length }}</span>
+    
+                    <i class="iconfont iconjiantouarrow483 down-arrow" [class.active]="item.collapsed"></i>
+                  </span>
+                </app-card>
+              </div>
+    
+              <div nz-row [nzGutter]="[16, 16]" *ngIf="!item.collapsed">
+                <div class="gutter-row" nz-col [nzSpan]="6" *ngFor="let el of item.nav; let idx=index">
+                  <app-card
+                    [oIdx]="page"
+                    [twoIdx]="id"
+                    [threeIdx]="i"
+                    [fourIdx]="idx"
+                    [dataSource]="el"
+                  >
+                  </app-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <app-footer className="side-footer"></app-footer>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>
+
+<app-fixbar
+  (onCollapse)="onCollapseAll()"
+  [collapsed]="collapsed()"
+>
+</app-fixbar>

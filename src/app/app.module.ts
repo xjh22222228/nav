@@ -24,6 +24,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { NzCardModule } from 'ng-zorro-antd/card'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzGridModule } from 'ng-zorro-antd/grid'
+import { NzLayoutModule } from 'ng-zorro-antd/layout'
+import { NzMenuModule } from 'ng-zorro-antd/menu'
 
 // components
 import { AppComponent } from './app.component'
@@ -32,6 +34,7 @@ import { AppComponent } from './app.component'
 import LightComponent from '../view/index/light/index.component'
 import SimComponent from '../view/index/sim/index.component'
 import AdminComponent from '../view/admin/index.component'
+import SideComponent from '../view/index/side/index.component'
 import WebpComponent from '../view/app/default/app.component'
 import { FixbarComponent } from '../components/fixbar/index.component'
 import { MultipleSiteComponent } from '../components/multiple-site/index.component'
@@ -55,6 +58,10 @@ const appRoutes: Routes = [
   { 
     path: 'sim',
     component: SimComponent,
+  },
+  { 
+    path: 'side',
+    component: SideComponent,
   },
   { 
     path: 'light',
@@ -82,6 +89,7 @@ const appRoutes: Routes = [
     AppComponent,
     LightComponent,
     SimComponent,
+    SideComponent,
     WebpComponent,
     FixbarComponent,
     MultipleSiteComponent,
@@ -111,6 +119,8 @@ const appRoutes: Routes = [
     NzCardModule,
     NzIconModule,
     NzGridModule,
+    NzLayoutModule,
+    NzMenuModule,
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(

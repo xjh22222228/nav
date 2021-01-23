@@ -20,7 +20,7 @@ const c: IConfig = {
   // 网站关键字
   keywords: '导航,前端资源,社区站点,设计师,实用工具,学习资源,运营,网络安全,node.js',
 
-  // 默认主题: Light | Sim
+  // 默认主题: Light | Sim | Side
   theme: 'Light',
 
   // 搜索引擎列表, 为空时不显示搜索引擎

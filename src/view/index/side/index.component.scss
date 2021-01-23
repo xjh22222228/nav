@@ -1,0 +1,73 @@
+.layout {
+  min-height: 100vh;
+
+  .inner-layout {
+    padding: 20px 70px 0 20px;
+    margin-left: 200px;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .box {
+    flex: 1;
+  }
+}
+
+.title {
+  font-size: 18px;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  color: #3f51b5;
+  font-weight: 500;
+  display: flex;
+  margin-top: 15px;
+}
+
+.logo {
+  padding: 10px;
+  padding-left: 15px;
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .site-title {
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+}
+
+.sider {
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 100%, .2);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: hsla(0, 0%, 100%, .15);
+    border-radius: 3px;
+  }
+}
+
+::ng-deep .side-footer  {
+  margin-top: 45px !important;
+  & > * {
+    color: #666 !important;
+  }
+}

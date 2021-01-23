@@ -119,10 +119,10 @@ $width: 1200px;
   }
 }
 
-::ng-deep .copyright  {
+::ng-deep .sim-footer  {
   margin-bottom: 10px;
 
   & > * {
-    color: #666;
+    color: #666 !important;
   }
 }

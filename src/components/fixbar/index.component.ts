@@ -38,6 +38,10 @@ export class FixbarComponent {
     {
       name: '切换到 Sim',
       url: '/sim'
+    },
+    {
+      name: '切换到 Side',
+      url: '/side'
     }
   ]
 

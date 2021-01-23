@@ -3,6 +3,7 @@
 export type ThemeType =
   | 'Light'
   | 'Sim'
+  | 'Side'
 
 export interface INavFourProp {
   icon?: string | null
