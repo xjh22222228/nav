@@ -69,6 +69,7 @@ const c: IConfig = {
   // 网站底部内容, 版权信息、备案号, 可以是 HTML
   footerContent: `
     <div style="font-weight: bold;">共收录\${total}个网站</div>
+    <div>Copyright © 2018-2021 nav3.cn, All Rights Reserved</div>
   `,
 
   // 百度统计地址
@@ -76,7 +77,7 @@ const c: IConfig = {
   baiduStatisticsUrl: 'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba',
 
   // CNZZ 统计地址
-  // https://www.cnzz.com/o_index.php?
+  // https://www.cnzz.com/o_index.php
   cnzzStatisticsUrl: '',
 
   // Light 主题配置

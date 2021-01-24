@@ -6,7 +6,7 @@
   <nz-tabset *ngIf="isLogin" [nzSelectedIndex]="tabActive" (nzSelectedIndexChange)="onTabChange($event)">
     <nz-tab nzTitle="管理一级分类">
       <button nz-button nzType="primary" (click)="toggleCreateModal()">添加分类</button>
-      <nz-table #basicTable [nzData]="websiteList" [nzShowPagination]="false">
+      <nz-table #basicTable [nzData]="websiteList" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
             <th>图标</th>
@@ -75,7 +75,7 @@
         添加分类
       </button>
 
-      <nz-table #basicTable [nzData]="twoTableData" [nzShowPagination]="false">
+      <nz-table #basicTable [nzData]="twoTableData" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
             <th>图标</th>
@@ -159,7 +159,7 @@
         添加分类
       </button>
 
-      <nz-table #basicTable [nzData]="threeTableData" [nzShowPagination]="false">
+      <nz-table #basicTable [nzData]="threeTableData" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
             <th>图标</th>
@@ -258,7 +258,7 @@
         添加网站
       </button>
 
-      <nz-table #basicTable [nzData]="websiteTableData" [nzShowPagination]="false">
+      <nz-table #basicTable [nzData]="websiteTableData" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
             <th>图标</th>
