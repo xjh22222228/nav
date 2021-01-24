@@ -3,7 +3,3 @@
 import { websiteList as w } from '../utils'
 
 export const websiteList = w
-
-export const isEditing = {
-  value: false
-}

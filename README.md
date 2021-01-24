@@ -123,7 +123,6 @@ server {
 ## 快捷键
 mac下是 `Command`，windows 下是 `Ctrl`
 
-- `ctrl+e` 开启或关闭编辑模式
 - `ctrl+v` 查看信息
 - `ctrl+d` 开启或关闭暗黑模式
 

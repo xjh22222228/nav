@@ -1,6 +1,6 @@
 <div class="admin">
   <button nz-button style="margin-bottom: 15px;" (click)="goBack()">返回主页</button>
-  <button nz-button style="margin-left: 15px;" (click)="handleSync()">同步到远端</button>
+  <button nz-button style="margin-left: 15px;" (click)="handleSync()" [nzLoading]="syncLoading">同步到远端</button>
   <button nz-button style="margin-left: 15px;" (click)="handleReset()">重置初始数据</button>
 
   <nz-tabset *ngIf="isLogin" [nzSelectedIndex]="tabActive" (nzSelectedIndexChange)="onTabChange($event)">

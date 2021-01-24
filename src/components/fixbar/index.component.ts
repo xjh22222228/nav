@@ -9,7 +9,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
 import { updateFileContent } from '../../services'
-import { websiteList, isEditing } from '../../store'
+import { websiteList } from '../../store'
 import { DB_PATH, KEY_MAP, VERSION } from '../../constants'
 import { Router, ActivatedRoute } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
@@ -29,7 +29,6 @@ export class FixbarComponent {
   showCreateModal = false
   syncLoading = false
   isLogin = !!getToken()
-  isEditing = isEditing
   themeList = [
     {
       name: '切换到 Light',
@@ -76,10 +75,6 @@ export class FixbarComponent {
       e.preventDefault()
       this.viewInfo()
     })
-    hotkeys(KEY_MAP.edit, (e) => {
-      e.preventDefault()
-      this.isEditing.value = !this.isEditing.value
-    })
     hotkeys(KEY_MAP.dark, (e) => {
       e.preventDefault()
       this.toggleMode()
@@ -125,10 +120,6 @@ export class FixbarComponent {
     setTimeout(() => {
       setAnnotate()
     }, 100)
-  }
-
-  toggleEditMode() {
-    this.isEditing.value = !this.isEditing.value
   }
 
   goTop() {

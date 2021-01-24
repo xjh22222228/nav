@@ -7,14 +7,11 @@ function isMac() {
 
 export const DB_PATH = 'data/db.json'
 
-export const VERSION = '5.0.7'
+export const VERSION = '5.0.8'
 
 // keyboard event
 const prefix = isMac() ? 'command' : 'ctrl'
 export const KEY_MAP = {
-  // 编辑模式
-  edit: `${prefix}+e`,
-
   // 查看信息
   view: `${prefix}+v`,
 

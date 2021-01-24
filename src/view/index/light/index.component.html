@@ -15,7 +15,7 @@
         [class.dark-text-active]="page === i" 
         class="ripple-btn dark-text"
       >
-        <app-card [oIdx]="i">
+        <app-card>
           {{ item.title }}
         </app-card>
       </a>
@@ -31,7 +31,7 @@
             (click)="handleSidebarNav(i)"
             *ngFor="let item of websiteList[page].nav; let i = index" 
           >
-            <app-card [oIdx]="page" [twoIdx]="i">
+            <app-card>
               <div class="ripple-btn">{{ item.title }}</div>
             </app-card>
           </li>
@@ -44,7 +44,7 @@
         <div *ngIf="currentList.length > 0; else noData">
           <div *ngFor="let item of currentList; let i=index">
             <div class="title-wrapper dark-border-color" *ngIf="item.title">
-              <app-card [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
+              <app-card>
                 <h2 class="block-title">
                   <app-logo
                     [src]="item.icon"

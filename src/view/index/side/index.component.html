@@ -37,7 +37,7 @@
                 class="title dark-primary dark-border-color"
                 *ngIf="item.title"
               >
-                <app-card [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
+                <app-card>
                   <span class="cursor-pointer" (click)="onCollapse(item, i)">
                     <app-logo
                       [src]="item.icon"

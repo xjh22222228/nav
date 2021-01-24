@@ -13,7 +13,7 @@
       class="ripple-btn dark-text"
       (click)="handleCilckTopNav(i)" 
     >
-      <app-card [oIdx]="i">
+      <app-card>
         {{ item.title }}
       </app-card>
     </a>
@@ -29,7 +29,7 @@
           [class.dark-item-active]="id === i" 
           class="ripple-btn dark-text"
         >
-          <app-card [oIdx]="page" [twoIdx]="i">
+          <app-card>
             {{ item.title }}
           </app-card>
         </div>
@@ -43,7 +43,7 @@
             class="title dark-primary dark-border-color"
             *ngIf="item.title"
           >
-            <app-card [oIdx]="page" [twoIdx]="id" [threeIdx]="i">
+            <app-card>
               <span class="cursor-pointer" (click)="onCollapse(item, i)">
                 <app-logo
                   [src]="item.icon"

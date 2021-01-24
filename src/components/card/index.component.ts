@@ -6,10 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
-import { setWebsiteList, queryString, getLogoUrl, copyText } from '../../utils'
-import { websiteList, isEditing } from '../../store'
-import { Router } from '@angular/router'
-import { setAnnotate } from '../../utils/ripple'
+import { setWebsiteList, getLogoUrl, copyText } from '../../utils'
+import { websiteList } from '../../store'
 import { INavProps } from '../../types'
 
 enum EditType {
@@ -35,7 +33,6 @@ export class CardComponent implements OnInit {
   objectKeys = Object.keys
   websiteList: INavProps[] = websiteList
   isLogin: boolean = !!getToken()
-  isEditing = isEditing
   showModal = false
   EditType = EditType
   iconUrl = ''
@@ -45,7 +42,6 @@ export class CardComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private message: NzMessageService,
-    private router: Router,
     private notification: NzNotificationService,
   ) {}
 
@@ -94,10 +90,6 @@ export class CardComponent implements OnInit {
     this.iconUrl = e.target.value
   }
 
-  hasKeyword() {
-    return !!queryString().q
-  }
-
   toggleModal() {
     this.showModal = !this.showModal
   }
@@ -114,44 +106,6 @@ export class CardComponent implements OnInit {
       if (!title) return
       title = title.trim()
       
-      if (type === EditType.isOne) {
-        const exists = this.websiteList.some((item, idx) => (
-          item.title === title && idx !== this.oIdx
-        ))
-        if (exists) {
-          this.message.error(`已存在 ${title}, 不可重复添加`)
-          return
-        }
-        this.websiteList[this.oIdx].title = title
-        this.websiteList[this.oIdx].icon = icon
-      }
-
-      if (type === EditType.isTwo) {
-        const w = this.websiteList[this.oIdx].nav
-        const exists = w.some((item, idx) => (
-          item.title === title && idx !== this.twoIdx
-        ))
-        if (exists) {
-          this.message.error(`已存在 ${title}, 不可重复添加`)
-          return
-        }
-        w[this.twoIdx].title = title
-        w[this.twoIdx].icon = icon
-      }
-
-      if (type === EditType.isThree) {
-        const w = this.websiteList[this.oIdx].nav[this.twoIdx].nav
-        const exists = w.some((item, idx) => (
-          item.title === title && idx !== this.threeIdx
-        ))
-        if (exists) {
-          this.message.error(`已存在 ${title}, 不可重复添加`)
-          return
-        }
-        w[this.threeIdx].title = title
-        w[this.threeIdx].icon= icon
-      }
-
       if (type === EditType.isWebsite) {
         const w = this.websiteList[this.oIdx]
           .nav[this.twoIdx]
@@ -161,7 +115,7 @@ export class CardComponent implements OnInit {
           item.name === title && idx !== this.fourIdx
         ))
         if (exists) {
-          this.message.error(`已存在 ${title}, 不可重复添加`)
+          this.message.error(`已存在 ${title}, 请修改`)
           return
         }
         w[this.fourIdx].name = title
@@ -183,26 +137,6 @@ export class CardComponent implements OnInit {
     const type = this.getEditType()
 
     try {
-      if (type === EditType.isOne) {
-        const { title, icon } = this.websiteList[this.oIdx]
-        this.validateForm.get('title')!.setValue(title)
-        this.validateForm.get('icon')!.setValue(icon)
-      }
-  
-      if (type === EditType.isTwo) {
-        const { title, icon } = this.websiteList[this.oIdx].nav[this.twoIdx]
-        this.validateForm.get('title')!.setValue(title)
-        this.validateForm.get('icon')!.setValue(icon)
-      }
-  
-      if (type === EditType.isThree) {
-        const { title, icon } = this.websiteList[this.oIdx]
-          .nav[this.twoIdx]
-          .nav[this.threeIdx]
-        this.validateForm.get('title')!.setValue(title)
-        this.validateForm.get('icon')!.setValue(icon)
-      }
-  
       if (type === EditType.isWebsite) {
         const { name, icon, url, desc } = this.websiteList[this.oIdx]
           .nav[this.twoIdx]
@@ -247,52 +181,10 @@ export class CardComponent implements OnInit {
   }
 
   confirmDel() {
-    const { page, id } = queryString()
-
     try {
       switch (this.getEditType() as EditType) {
         case EditType.isWebsite:
           this.websiteList[this.oIdx].nav[this.twoIdx].nav[this.threeIdx].nav.splice(this.fourIdx, 1)
-          break
-  
-        case EditType.isThree:
-          this.websiteList[this.oIdx].nav[this.twoIdx].nav.splice(this.threeIdx, 1)
-          break
-  
-        case EditType.isTwo:
-          // 删除二级分类
-          if (this.websiteList[this.oIdx]?.nav?.length <= 1) {
-            return this.message.error('至少保留一项, 请先添加再删除!')
-          }
-  
-          this.router.navigate([this.router.url.split('?')[0]], {
-            queryParams: {
-              page,
-              id: id > 0 ? id - 1 : 0,
-            }
-          })
-  
-          delete this.websiteList[this.oIdx].id
-          this.websiteList[this.oIdx].nav.splice(this.twoIdx, 1)
-          break
-  
-        case EditType.isOne:
-          if (this.websiteList.length === 1) {
-            this.message.error('至少保留一项, 请先添加再删除!')
-            return
-          }
-    
-          this.router.navigate([this.router.url.split('?')[0]], {
-            queryParams: {
-              page: page > 0 ? page - 1 : 0,
-              id: 0
-            }
-          })
-          
-          this.websiteList.splice(this.oIdx, 1)
-          setTimeout(() => {
-            setAnnotate()
-          }, 100)
           break
       }
   
