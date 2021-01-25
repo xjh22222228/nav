@@ -15,9 +15,7 @@
         [class.dark-text-active]="page === i" 
         class="ripple-btn dark-text"
       >
-        <app-card>
-          {{ item.title }}
-        </app-card>
+        {{ item.title }}
       </a>
     </nav>
 
@@ -31,9 +29,7 @@
             (click)="handleSidebarNav(i)"
             *ngFor="let item of websiteList[page].nav; let i = index" 
           >
-            <app-card>
-              <div class="ripple-btn">{{ item.title }}</div>
-            </app-card>
+            <div class="ripple-btn">{{ item.title }}</div>
           </li>
         </ul>
       </aside>

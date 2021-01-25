@@ -28,7 +28,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 import { NzTableModule } from 'ng-zorro-antd/table'
 import { NzTabsModule } from 'ng-zorro-antd/tabs'
-import { NzDividerModule } from 'ng-zorro-antd/divider'
+import { NzTagModule } from 'ng-zorro-antd/tag'
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 // components
 import { AppComponent } from './app.component'
@@ -127,7 +128,8 @@ const appRoutes: Routes = [
     NzMenuModule,
     NzTableModule,
     NzTabsModule,
-    NzDividerModule,
+    NzTagModule,
+    DragDropModule,
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(

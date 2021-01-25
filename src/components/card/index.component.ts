@@ -8,7 +8,10 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
 import { setWebsiteList, getLogoUrl, copyText } from '../../utils'
 import { websiteList } from '../../store'
-import { INavProps } from '../../types'
+import { INavProps, ITagProp } from '../../types'
+import * as __tag from '../../../data/tag.json'
+
+const tagMap: ITagProp = (__tag as any).default
 
 enum EditType {
   isOne,
@@ -38,6 +41,7 @@ export class CardComponent implements OnInit {
   iconUrl = ''
   copyUrlDone = false
   copyPathDone = false
+  tagMap = tagMap
 
   constructor(
     private fb: FormBuilder,

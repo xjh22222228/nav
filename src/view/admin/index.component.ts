@@ -2,7 +2,8 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
-import { INavProps, INavTwoProp, INavThreeProp, INavFourProp } from '../../types'
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
+import { INavProps, INavTwoProp, INavThreeProp, INavFourProp, ITagProp } from '../../types'
 import { websiteList } from '../../store'
 import { getToken } from '../../utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -12,6 +13,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { setWebsiteList, getLogoUrl } from '../../utils'
 import { updateFileContent } from '../../services'
 import { DB_PATH } from '../../constants'
+import * as __tag from '../../../data/tag.json'
+import config from '../../../nav.config'
+
+const tagMap: ITagProp = (__tag as any).default
+const tagKeys = Object.keys(tagMap)
 
 @Component({
   selector: 'app-admin',
@@ -21,6 +27,7 @@ import { DB_PATH } from '../../constants'
 export default class WebpComponent {
   validateForm!: FormGroup;
   websiteList: INavProps[] = websiteList
+  gitRepoUrl = config.gitRepoUrl
   isLogin = !!getToken()
   showCreateModal = false
   syncLoading = false
@@ -31,6 +38,10 @@ export default class WebpComponent {
   twoSelect = ''
   threeSelect = ''
   iconUrl = ''
+  urlArr = []
+  tags = tagKeys
+  tagMap = tagMap
+  objectKeys = Object.keys
 
   twoTableData: INavTwoProp[] = []
   threeTableData: INavThreeProp[] = []
@@ -47,17 +58,38 @@ export default class WebpComponent {
     this.validateForm = this.fb.group({
       title: ['', [Validators.required]],
       url: ['', [Validators.required]],
+      url0: [''],
+      url1: [''],
+      url2: [''],
+      tagVal0: [tagKeys[0]],
+      tagVal1: [tagKeys[0]],
+      tagVal2: [tagKeys[0]],
       icon: [''],
       desc: [''],
     });
   }
 
+  addMoreUrl() {
+    this.urlArr.push(null)
+  }
+
+  lessMoreUrl() {
+    this.urlArr.pop()
+  }
+
   handleReset() {
-    this.message.success('数据已重置回初始状态')
-    window.localStorage.removeItem('website')
-    setTimeout(() => {
-      window.location.reload()
-    }, 1500)
+    this.modal.info({
+      nzTitle: '重置初始数据',
+      nzOkText: '确定重置',
+      nzContent: '所有数据将还原初始状态，不可撤销！',
+      nzOnOk: () => {
+        this.message.success('数据已重置回初始状态')
+        window.localStorage.removeItem('website')
+        setTimeout(() => {
+          window.location.reload()
+        }, 1500)
+      }
+    });
   }
 
   goBack() {
@@ -81,6 +113,7 @@ export default class WebpComponent {
     this.isEdit = false
     this.showCreateModal = !this.showCreateModal
     this.validateForm.reset()
+    this.urlArr = []
   }
 
   onTabChange(index: number) {
@@ -98,35 +131,15 @@ export default class WebpComponent {
     setWebsiteList(this.websiteList)
   }
 
-  // 一级分类上移
-  handleOneMoveUp(idx) {
-    const copyItem = JSON.parse(JSON.stringify(this.websiteList[idx]))
-    this.websiteList.splice(idx, 1)
-    this.websiteList.splice(idx - 1, 0, copyItem)
+  // 拖拽一级分类
+  dropOne(event: CdkDragDrop<string[]>): void {
+    moveItemInArray(this.websiteList, event.previousIndex, event.currentIndex);
     setWebsiteList(this.websiteList)
   }
 
-  // 一级分类下移
-  handleOneMoveDown(idx) {
-    const copyItem = JSON.parse(JSON.stringify(this.websiteList[idx]))
-    this.websiteList.splice(idx, 1)
-    this.websiteList.splice(idx + 1, 0, copyItem)
-    setWebsiteList(this.websiteList)
-  }
-
-  // 二级分类上移
-  handleTwoMoveUp(idx) {
-    const copyItem = JSON.parse(JSON.stringify(this.twoTableData[idx]))
-    this.twoTableData.splice(idx, 1)
-    this.twoTableData.splice(idx - 1, 0, copyItem)
-    setWebsiteList(this.websiteList)
-  }
-
-  // 二级分类下移
-  handleTwoMoveDown(idx) {
-    const copyItem = JSON.parse(JSON.stringify(this.twoTableData[idx]))
-    this.twoTableData.splice(idx, 1)
-    this.twoTableData.splice(idx + 1, 0, copyItem)
+  // 拖拽二级分类
+  dropTwo(event: CdkDragDrop<string[]>): void {
+    moveItemInArray(this.twoTableData, event.previousIndex, event.currentIndex);
     setWebsiteList(this.websiteList)
   }
 
@@ -141,19 +154,9 @@ export default class WebpComponent {
     setWebsiteList(this.websiteList)
   }
 
-  // 三级分类上移
-  handleThreeMoveUp(idx) {
-    const copyItem = JSON.parse(JSON.stringify(this.threeTableData[idx]))
-    this.threeTableData.splice(idx, 1)
-    this.threeTableData.splice(idx - 1, 0, copyItem)
-    setWebsiteList(this.websiteList)
-  }
-
-  // 三级分类下移
-  handleThreeMoveDown(idx) {
-    const copyItem = JSON.parse(JSON.stringify(this.threeTableData[idx]))
-    this.threeTableData.splice(idx, 1)
-    this.threeTableData.splice(idx + 1, 0, copyItem)
+  // 拖拽三级分类
+  dropThree(event: CdkDragDrop<string[]>): void {
+    moveItemInArray(this.threeTableData, event.previousIndex, event.currentIndex);
     setWebsiteList(this.websiteList)
   }
 
@@ -168,19 +171,9 @@ export default class WebpComponent {
     setWebsiteList(this.websiteList)
   }
 
-  // 网站上移
-  handleWebsiteMoveUp(idx) {
-    const copyItem = JSON.parse(JSON.stringify(this.websiteTableData[idx]))
-    this.websiteTableData.splice(idx, 1)
-    this.websiteTableData.splice(idx - 1, 0, copyItem)
-    setWebsiteList(this.websiteList)
-  }
-
-  // 网站下移
-  handleWebsiteMoveDown(idx) {
-    const copyItem = JSON.parse(JSON.stringify(this.websiteTableData[idx]))
-    this.websiteTableData.splice(idx, 1)
-    this.websiteTableData.splice(idx + 1, 0, copyItem)
+  // 拖拽网站
+  dropWebsite(event: CdkDragDrop<string[]>): void {
+    moveItemInArray(this.websiteTableData, event.previousIndex, event.currentIndex);
     setWebsiteList(this.websiteList)
   }
 
@@ -227,14 +220,25 @@ export default class WebpComponent {
   }
 
   handleEditBtn(data, editIdx) {
-    let { title, icon, url, desc, name } = data
+    let { title, icon, url, desc, name, urls } = data
     this.toggleCreateModal()
     this.isEdit = true
     this.editIdx = editIdx
+    this.urlArr = []
     this.validateForm.get('title')!.setValue(title || name || '')
     this.validateForm.get('icon')!.setValue(icon || '')
     this.validateForm.get('url')!.setValue(url || '')
     this.validateForm.get('desc')!.setValue(desc || '')
+
+    if (typeof urls === 'object') {
+      let i = 0
+      for (let k in urls) {
+        this.urlArr.push(null)
+        this.validateForm.get(`url${i}`)!.setValue(urls[k])
+        this.validateForm.get(`tagVal${i}`)!.setValue(k)
+        i++
+      }
+    }
   }
 
   handleSync() {
@@ -275,7 +279,29 @@ export default class WebpComponent {
       this.validateForm.controls[i].updateValueAndValidity();
     }
 
-    let { title, icon, url, desc } = this.validateForm.value
+    const urls = {}
+    let {
+      title,
+      icon,
+      url,
+      desc,
+      tagVal0,
+      tagVal1,
+      tagVal2,
+      url0,
+      url1,
+      url2
+    } = this.validateForm.value
+
+    if (tagVal0 && url0) {
+      urls[tagVal0] = url0
+    }
+    if (tagVal1 && url1) {
+      urls[tagVal1] = url1
+    }
+    if (tagVal2 && url2) {
+      urls[tagVal2] = url2
+    }
 
     if (!title) {
       return
@@ -311,6 +337,7 @@ export default class WebpComponent {
           this.websiteTableData[this.editIdx].desc = desc
           this.websiteTableData[this.editIdx].url = url
           this.websiteTableData[this.editIdx].icon = icon
+          this.websiteTableData[this.editIdx].urls = urls
         }
           break
       }
@@ -380,7 +407,7 @@ export default class WebpComponent {
             icon,
             url,
             desc,
-            urls: {}
+            urls
           })
         }
           break
@@ -391,6 +418,7 @@ export default class WebpComponent {
     this.iconUrl = ''
     this.validateForm.reset()
     this.toggleCreateModal()
+    this.urlArr = []
     setWebsiteList(this.websiteList)
   }
 }

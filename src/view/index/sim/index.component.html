@@ -13,9 +13,7 @@
       class="ripple-btn dark-text"
       (click)="handleCilckTopNav(i)" 
     >
-      <app-card>
-        {{ item.title }}
-      </app-card>
+      {{ item.title }}
     </a>
   </nav>
 
@@ -29,9 +27,7 @@
           [class.dark-item-active]="id === i" 
           class="ripple-btn dark-text"
         >
-          <app-card>
-            {{ item.title }}
-          </app-card>
+          {{ item.title }}
         </div>
       </div>
     </nav>

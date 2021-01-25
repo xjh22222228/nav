@@ -1,88 +1,79 @@
 <!-- 网站 -->
 <div *ngIf="getEditType() === EditType.isWebsite; else card" class="container">
-  <div
-    nz-dropdown
-    [nzDropdownMenu]="menu"
-    class="container"
-    [nzDisabled]="objectKeys(dataSource.urls).length <= 0"
+  <nz-card
+    [nzActions]="isLogin ? [actionSetting, actionEdit, actionEllipsis] : [actionSetting, actionEdit]"
+    nzSize="small"
+    nzHoverable
+    nzType="inner"
   >
-    <nz-card
-      [nzActions]="isLogin ? [actionSetting, actionEdit, actionEllipsis] : [actionSetting, actionEdit]"
-      nzSize="small"
-      nzHoverable
-      nzType="inner"
-    >
-      <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
-        <nz-card-meta
-          [nzTitle]="title"
-          [nzDescription]="description"
-          [nzAvatar]="avatarTemplate"
-        >
-        </nz-card-meta>
-      </a>
-    </nz-card>
+    <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
+      <nz-card-meta
+        [nzTitle]="title"
+        [nzDescription]="description"
+        [nzAvatar]="avatarTemplate"
+      >
+      </nz-card-meta>
+    </a>
 
-    <ng-template #title>
-      <div [innerHTML]="dataSource.name"></div>
-    </ng-template>
-    <ng-template #description>
-      <div [innerHTML]="dataSource.desc"></div>
-    </ng-template>
-    <ng-template #avatarTemplate>
-      <app-logo [src]="dataSource.icon" [name]="dataSource.name"></app-logo>
-    </ng-template>
-    <ng-template #actionSetting>
-      <div nz-tooltip [nzTooltipTitle]="copyUrlDone ? '复制成功' : '复制链接'">
-        <i
-          nz-icon
-          [nzType]="copyUrlDone ? 'check' : 'copy'"
-          nzTheme="outline"
-          (click)="copyUrl($event, 2)"
-          (mouseout)="copyMouseout()"
-        >
-        </i>
-      </div>
-    </ng-template>
-    <ng-template #actionEdit>
-      <div nz-tooltip [nzTooltipTitle]="copyPathDone ? '复制成功' : '分享网站'">
-        <i
-          nz-icon
-          [nzType]="copyPathDone ? 'check' : 'share-alt'"
-          nzTheme="outline"
-          (click)="copyUrl($event, 1)"
-          (mouseout)="copyMouseout()"
-        >
-        </i>
-      </div>
-    </ng-template>
-    <ng-template #actionEllipsis>
-      <i nz-icon nzType="ellipsis" nz-dropdown [nzDropdownMenu]="menu" *ngIf="isLogin"></i>
-
-      <nz-dropdown-menu #menu="nzDropdownMenu">
-        <ul nz-menu nzSelectable>
-          <li nz-menu-item (click)="clickEdit()">编辑</li>
-          <a
-            nz-popconfirm
-            nzPopconfirmPlacement="rightTop"
-            nzOkType="danger"
-            nzPopconfirmTitle="您确定要删除吗?"
-            nzPopconfirmPlacement="bottom"
-            (nzOnConfirm)="confirmDel($event)"
-          >
-            <li nz-menu-item nzDanger>删除</li>
-          </a>
-        </ul>
-      </nz-dropdown-menu>
-    </ng-template>
-  </div>
-
-  <nz-dropdown-menu #menu="nzDropdownMenu">
-    <ul nz-menu nzSelectable>
-      <li nz-menu-item *ngFor="let key of objectKeys(dataSource.urls)" class="text-align-center">
+    <div style="margin-top: 15px;">
+      <nz-tag *ngFor="let key of objectKeys(dataSource.urls)" [nzColor]="tagMap[key].color || '#2db7f5'">
         <a [href]="dataSource.urls[key]" target="_blank">{{ key }}</a>
-      </li>
-    </ul>
-  </nz-dropdown-menu>
+      </nz-tag>
+    </div>
+  </nz-card>
+
+  <ng-template #title>
+    <div [innerHTML]="dataSource.name"></div>
+  </ng-template>
+  <ng-template #description>
+    <div [innerHTML]="dataSource.desc"></div>
+  </ng-template>
+  <ng-template #avatarTemplate>
+    <app-logo [src]="dataSource.icon" [name]="dataSource.name"></app-logo>
+  </ng-template>
+  <ng-template #actionSetting>
+    <div nz-tooltip [nzTooltipTitle]="copyUrlDone ? '复制成功' : '复制链接'">
+      <i
+        nz-icon
+        [nzType]="copyUrlDone ? 'check' : 'copy'"
+        nzTheme="outline"
+        (click)="copyUrl($event, 2)"
+        (mouseout)="copyMouseout()"
+      >
+      </i>
+    </div>
+  </ng-template>
+  <ng-template #actionEdit>
+    <div nz-tooltip [nzTooltipTitle]="copyPathDone ? '复制成功' : '分享网站'">
+      <i
+        nz-icon
+        [nzType]="copyPathDone ? 'check' : 'share-alt'"
+        nzTheme="outline"
+        (click)="copyUrl($event, 1)"
+        (mouseout)="copyMouseout()"
+      >
+      </i>
+    </div>
+  </ng-template>
+  <ng-template #actionEllipsis>
+    <i nz-icon nzType="ellipsis" nz-dropdown [nzDropdownMenu]="menu" *ngIf="isLogin"></i>
+
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item (click)="clickEdit()">编辑</li>
+        <a
+          nz-popconfirm
+          nzPopconfirmPlacement="rightTop"
+          nzOkType="danger"
+          nzPopconfirmTitle="您确定要删除吗?"
+          nzPopconfirmPlacement="bottom"
+          (nzOnConfirm)="confirmDel($event)"
+        >
+          <li nz-menu-item nzDanger>删除</li>
+        </a>
+      </ul>
+    </nz-dropdown-menu>
+  </ng-template>
 </div>
 
 <ng-template #card>

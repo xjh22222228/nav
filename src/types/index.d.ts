@@ -5,14 +5,21 @@ export type ThemeType =
   | 'Sim'
   | 'Side'
 
+export interface ITagProp {
+  [tagName: string]: {
+    color: string
+    createdAt: string
+  }
+}
+
 export interface INavFourProp {
   icon?: string | null
   createdAt?: string
   name: string
   desc: string
-  url?: string
+  url: string
   urls?: {
-    [key: string]: string
+    [tagName: string]: string
   }
 }
 

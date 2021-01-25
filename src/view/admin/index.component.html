@@ -3,6 +3,11 @@
   <button nz-button style="margin-left: 15px;" (click)="handleSync()" [nzLoading]="syncLoading">同步到远端</button>
   <button nz-button style="margin-left: 15px;" (click)="handleReset()">重置初始数据</button>
 
+  <div>
+    <p><b>1、所有数据设置完毕后点击 “同步到远端”，拖拽表格进行排序</b></p>
+    <p><b>2、网站分类需手动维护, 编辑 <a [href]="gitRepoUrl + '/edit/main/data/tag.json'" target="_blank">tag.json</a></b></p>
+  </div>
+
   <nz-tabset *ngIf="isLogin" [nzSelectedIndex]="tabActive" (nzSelectedIndexChange)="onTabChange($event)">
     <nz-tab nzTitle="管理一级分类">
       <button nz-button nzType="primary" (click)="toggleCreateModal()">添加分类</button>
@@ -15,8 +20,8 @@
             <th>操作</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let data of websiteList; let idx = index">
+        <tbody cdkDropList (cdkDropListDropped)="dropOne($event)">
+          <tr *ngFor="let data of websiteList; let idx = index" cdkDrag>
             <td>
               <app-logo
                 [src]="data.icon"
@@ -27,14 +32,6 @@
             <td>{{ data.title }}</td>
             <td>{{ data.createdAt }}</td>
             <td>
-              <a nz-button nzType="link" [disabled]="idx === 0" (click)="handleOneMoveUp(idx)">
-                上移
-              </a>
-              <nz-divider nzType="vertical"></nz-divider>
-              <a nz-button nzType="link" [disabled]="idx === websiteList.length - 1" (click)="handleOneMoveDown(idx)">
-                下移
-              </a>
-              <nz-divider nzType="vertical"></nz-divider>
               <a (click)="handleEditBtn(data, idx)">编辑</a>
               <a
                 nz-popconfirm
@@ -84,8 +81,8 @@
             <th>操作</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let data of twoTableData; let idx = index">
+        <tbody cdkDropList (cdkDropListDropped)="dropTwo($event)">
+          <tr *ngFor="let data of twoTableData; let idx = index" cdkDrag>
             <td>
               <app-logo
                 [src]="data.icon"
@@ -96,14 +93,6 @@
             <td>{{ data.title }}</td>
             <td>{{ data.createdAt }}</td>
             <td>
-              <a nz-button nzType="link" [disabled]="idx === 0" (click)="handleTwoMoveUp(idx)">
-                上移
-              </a>
-              <nz-divider nzType="vertical"></nz-divider>
-              <a nz-button nzType="link" [disabled]="idx === twoTableData.length - 1" (click)="handleTwoMoveDown(idx)">
-                下移
-              </a>
-              <nz-divider nzType="vertical"></nz-divider>
               <a (click)="handleEditBtn(data, idx)">编辑</a>
               <a
                 nz-popconfirm
@@ -168,8 +157,8 @@
             <th>操作</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let data of threeTableData; let idx = index">
+        <tbody cdkDropList (cdkDropListDropped)="dropThree($event)">
+          <tr *ngFor="let data of threeTableData; let idx = index" cdkDrag>
             <td>
               <app-logo
                 [src]="data.icon"
@@ -180,14 +169,6 @@
             <td>{{ data.title }}</td>
             <td>{{ data.createdAt }}</td>
             <td>
-              <a nz-button nzType="link" [disabled]="idx === 0" (click)="handleThreeMoveUp(idx)">
-                上移
-              </a>
-              <nz-divider nzType="vertical"></nz-divider>
-              <a nz-button nzType="link" [disabled]="idx === threeTableData.length - 1" (click)="handleThreeMoveDown(idx)">
-                下移
-              </a>
-              <nz-divider nzType="vertical"></nz-divider>
               <a (click)="handleEditBtn(data, idx)">编辑</a>
               <a
                 nz-popconfirm
@@ -263,13 +244,14 @@
           <tr>
             <th>图标</th>
             <th>网站名称</th>
+            <th>网站分类</th>
             <th nzWidth="300px">网站描述</th>
             <th>创建时间</th>
             <th>操作</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let data of websiteTableData; let idx = index">
+        <tbody cdkDropList (cdkDropListDropped)="dropWebsite($event)">
+          <tr *ngFor="let data of websiteTableData; let idx = index" cdkDrag>
             <td>
               <app-logo
                 [src]="data.icon"
@@ -277,27 +259,21 @@
               >
               </app-logo>
             </td>
-            <td>{{ data.name }}</td>
+            <td>
+              <a [href]="data.url" target="_blank">{{ data.name }}</a>
+            </td>
+            <td>
+              <nz-tag *ngFor="let key of objectKeys(data.urls)" [nzColor]="tagMap[key].color || '#2db7f5'">
+                <a [href]="data.urls[key]" target="_blank">{{ key }}</a>
+              </nz-tag>
+            </td>
             <td>{{ data.desc }}</td>
             <td>{{ data.createdAt }}</td>
             <td>
-              <a nz-button nzType="link" [disabled]="idx === 0" (click)="handleWebsiteMoveUp(idx)">
-                上移
-              </a>
-              <nz-divider nzType="vertical"></nz-divider>
-              <a
-                nz-button
-                nzType="link"
-                [disabled]="idx === websiteTableData.length - 1"
-                (click)="handleWebsiteMoveDown(idx)"
-              >
-                下移
-              </a>
-              <nz-divider nzType="vertical"></nz-divider>
               <a (click)="handleEditBtn(data, idx)">编辑</a>
               <a
                 nz-popconfirm
-                nzPopconfirmTitle="这会删除分类下的所有数据，您确定要删除吗?"
+                nzPopconfirmTitle="您确定要删除吗?"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelWebsite(idx)"
               >
@@ -318,7 +294,7 @@
   (nzOnOk)="handleOk()"
 >
   <ng-container *nzModalContent>
-    <form nz-form [formGroup]="validateForm" (ngSubmit)="handleOk()">
+    <form nz-form [formGroup]="validateForm">
       <nz-form-item>
         <nz-form-label [nzSpan]="4" nzRequired>{{ tabActive === 3 ? '网站名称' : '分类名称'}}</nz-form-label>
         <nz-form-control [nzSpan]="20" nzErrorTip="请输入名称">
@@ -356,6 +332,47 @@
             [nzAutosize]="{ minRows: 3, maxRows: 5 }"
           >
           </textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- more url -->
+      <div *ngIf="tabActive === 3">
+        <nz-form-item *ngFor="let n of urlArr; let idx = index">
+          <nz-form-label [nzSpan]="4" [nzNoColon]="true"></nz-form-label>
+          <nz-form-control [nzSpan]="20">
+            <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate" [nzAddOnAfter]="addOnAfterTemplate">
+              <input [formControlName]="'url' + idx" type="text" nz-input />
+            </nz-input-group>
+            <ng-template #addOnBeforeTemplate>
+              <nz-select style="width: 100px;" [formControlName]="'tagVal' + idx">
+                <nz-option
+                  *ngFor="let tag of tags"
+                  [nzLabel]="tag"
+                  [nzValue]="tag"
+                >
+                </nz-option>
+              </nz-select>
+            </ng-template>
+            <ng-template #addOnAfterTemplate>
+              <i
+                class="cursor-pointer"
+                nz-icon
+                nzType="minus"
+                nzTheme="outline"
+                (click)="lessMoreUrl()"
+              >
+              </i>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <nz-form-item *ngIf="tabActive === 3 && tags.length > 0 && urlArr.length < 3">
+        <nz-form-label [nzSpan]="4" [nzNoColon]="true"></nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <button nz-button nzType="default" nzBlock (click)="addMoreUrl()">
+            <i nz-icon nzType="plus"></i>其他网站
+          </button>
         </nz-form-control>
       </nz-form-item>
     </form>
