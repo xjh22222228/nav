@@ -1,4 +1,5 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
 
 export type ThemeType =
   | 'Light'
@@ -9,6 +10,7 @@ export interface ITagProp {
   [tagName: string]: {
     color: string
     createdAt: string
+    desc?: string
   }
 }
 
