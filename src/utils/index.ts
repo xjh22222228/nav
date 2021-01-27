@@ -5,7 +5,6 @@ import config from '../../nav.config'
 import Clipboard from 'clipboard'
 import { INavProps, ISearchEngineProps } from '../types'
 import * as db from '../../data/db.json'
-import { Target } from '@angular/compiler'
 
 export const websiteList = getWebsiteList()
 
@@ -134,13 +133,14 @@ export function queryString() {
   const parseQs = qs.parse(search)
   let id = parseInt(parseQs.id) || 0
   let page = parseInt(parseQs.page) || 0
-  let localLocation = {}
 
   if (parseQs.id === undefined && parseQs.page === undefined) {
     try {
       const location = window.localStorage.getItem('location')
       if (location) {
-        localLocation = JSON.parse(location)
+        const localLocation = JSON.parse(location)
+        page = localLocation.page || 0
+        id = localLocation.id || 0
       }
     } catch {}
   }
@@ -162,7 +162,6 @@ export function queryString() {
     q: parseQs.q || '',
     id,
     page,
-    ...localLocation
   }
 }
 

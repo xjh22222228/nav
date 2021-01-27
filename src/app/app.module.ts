@@ -41,7 +41,6 @@ import AdminComponent from '../view/admin/index.component'
 import SideComponent from '../view/index/side/index.component'
 import WebpComponent from '../view/app/default/app.component'
 import { FixbarComponent } from '../components/fixbar/index.component'
-import { MultipleSiteComponent } from '../components/multiple-site/index.component'
 import { FooterComponent } from '../components/footer/footer.component'
 import { IconGitComponent } from '../components/icon-git/icon-git.component'
 import { NoDataComponent } from '../components/no-data/no-data.component'
@@ -97,7 +96,6 @@ const appRoutes: Routes = [
     AdminComponent,
     WebpComponent,
     FixbarComponent,
-    MultipleSiteComponent,
     FooterComponent,
     IconGitComponent,
     NoDataComponent,
