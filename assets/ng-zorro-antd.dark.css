@@ -13679,9 +13679,6 @@ textarea.ant-input-number {
   left: -36px;
   border-radius: 2px 0 0 2px;
 }
-.ant-layout-sider-light {
-  background: #fff;
-}
 .ant-layout-sider-light .ant-layout-sider-trigger {
   color: rgba(255, 255, 255, 0.85);
   background: #fff;
