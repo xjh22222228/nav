@@ -1,6 +1,10 @@
 .container {
   position: relative;
   height: 100%;
+
+  .desc {
+    color: rgba(0,0,0,.45);
+  }
 }
 
 ::ng-deep {
