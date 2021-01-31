@@ -101,7 +101,7 @@ export class FixbarComponent {
     if (dark) {
       const link = document.createElement('link')
       link.rel = 'stylesheet'
-      link.href = '/assets/ng-zorro-antd.dark.css'
+      link.href = 'assets/ng-zorro-antd.dark.css'
       link.className = 'NG-ZORRO-DARK'
       document.body.append(link)
     } else {
