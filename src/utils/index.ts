@@ -41,33 +41,49 @@ export function randomInt(max: number) {
 
 export function fuzzySearch(navList: INavProps[], keyword: string) {
   let searchResultList = [{ nav: [] }]
+  let url: null|string = null
+
+  try {
+    const { hostname } = new URL(keyword)
+    url = hostname
+  } catch {}
 
   function f(arr?: any[]) {
     arr = arr || navList
 
     for (let i = 0; i < arr.length; i++) {
-
-      if (Array.isArray(arr[i].nav)) {
-        f(arr[i].nav)
+      const item = arr[i]
+      if (Array.isArray(item.nav)) {
+        f(item.nav)
       }
 
-      if (arr[i].name) {
-        const name = arr[i].name.toLowerCase()
-        const desc = arr[i].desc.toLowerCase()
+      if (item.name) {
+        const name = item.name.toLowerCase()
+        const desc = item.desc.toLowerCase()
         const search = keyword.toLowerCase()
+        const urls = Object.values(item.urls || {})
 
-        if (~name.indexOf(search) || ~desc.indexOf(search)) {
+        if (name.includes(search) || desc.includes(search)) {
           try {
-            let result = Object.assign({}, arr[i])
+            let result = Object.assign({}, item)
             const regex = new RegExp(`(${keyword})`, 'i')
             result.name = result.name.replace(regex, `$1`.bold())
             result.desc = result.desc.replace(regex, `$1`.bold())
 
-            const idx = searchResultList[0].nav.findIndex(item => item.name === result.name)
-            if (idx === -1) {
+            const exists = searchResultList[0].nav.some(item => item.name === result.name)
+            if (!exists) {
               searchResultList[0].nav.push(result)
             }
           } catch (err) {}
+        }
+
+        if (item.url?.includes?.(url)) {
+          searchResultList[0].nav.push(item)
+        }
+
+        const find = urls.some((item: string) => item.includes(url))
+        if (find) {
+          searchResultList[0].nav.push(item)
         }
       }
     }
