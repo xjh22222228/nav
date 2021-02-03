@@ -6,12 +6,10 @@
   (nzOnOk)="login()"
 >
   <ng-container *nzModalContent>
-    <ng-template #ab>
-      <p>请在下方输入您的TOKEN进行登录校验</p>
-      <input nz-input placeholder="请输入TOKEN" [(ngModel)]="token" maxlength="100" autofocus />
-      <p style="margin-top: 15px;">
-        不知道Token如何获取？<a href="https://github.com/xjh22222228/nav#%E9%83%A8%E7%BD%B2" target="_blank">请先阅读我们的指南</a>
-      </p>
-    </ng-template>
+    <p>请在下方输入您的TOKEN进行登录校验</p>
+    <input nz-input placeholder="请输入TOKEN" [(ngModel)]="token" maxlength="100" autofocus />
+    <p style="margin-top: 15px;">
+      不知道Token如何获取？<a href="https://github.com/xjh22222228/nav#%E9%83%A8%E7%BD%B2" target="_blank">请先阅读我们的指南</a>
+    </p>
   </ng-container>
 </nz-modal>
