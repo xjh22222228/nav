@@ -5,6 +5,7 @@ export type ThemeType =
   | 'Light'
   | 'Sim'
   | 'Side'
+  | 'App'
 
 export interface ITagProp {
   [tagName: string]: {

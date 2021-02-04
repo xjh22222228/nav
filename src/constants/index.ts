@@ -9,7 +9,9 @@ export const DB_PATH = 'data/db.json'
 
 export const TAG_PATH = 'data/tag.json'
 
-export const VERSION = '5.1.0'
+export const LOGO_PATH = 'logo.png'
+
+export const VERSION = '5.1.1'
 
 // keyboard event
 const prefix = isMac() ? 'command' : 'ctrl'

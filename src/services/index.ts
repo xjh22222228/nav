@@ -43,9 +43,10 @@ type Iupdate = {
   message: string
   content: string
   path: string
+  isEncode?: boolean
 }
 export async function updateFileContent(
-  { message, content, path }: Iupdate,
+  { message, content, path, isEncode = true }: Iupdate,
   authToken?: string
 ) {
   const _token = `${authToken ? authToken : token}`.trim()
@@ -53,7 +54,7 @@ export async function updateFileContent(
 
   return http.put(`/repos/${authorName}/${branchName}/contents/${path}`, {
     message: `rebot(CI): ${message}`,
-    content: encode(content),
+    content: isEncode ? encode(content) : content,
     sha: fileInfo.data.sha
   }, {
     headers: {

@@ -1,6 +1,5 @@
 import { IConfig } from './src/types'
 
-// 网站 LOGO 替换根目录下的 logo.png， 务必为 png 后缀
 const c: IConfig = {
   // [必填], 请填写您的仓库地址
   gitRepoUrl: 'https://github.com/xjh22222228/nav',
@@ -20,7 +19,7 @@ const c: IConfig = {
   // 网站关键字
   keywords: '导航,前端资源,社区站点,设计师,实用工具,学习资源,运营,网络安全,node.js',
 
-  // 默认主题: Light | Sim | Side
+  // 默认主题: Light | Sim | Side | App
   theme: 'Light',
 
   // 搜索引擎列表, 为空时不显示搜索引擎

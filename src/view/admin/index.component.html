@@ -3,9 +3,24 @@
   <button nz-button style="margin-left: 15px;" (click)="handleSync()" [nzLoading]="syncLoading">同步到远端</button>
   <button nz-button style="margin-left: 15px;" (click)="handleReset()">重置初始数据</button>
 
-  <div>
+  <div class="content">
     <p><b>1、所有数据设置完毕后点击 “同步到远端”，拖拽表格进行排序</b></p>
-    <p><b>2、网站分类需手动维护, 编辑 <a [href]="gitRepoUrl + '/edit/main/data/tag.json'" target="_blank">tag.json</a></b></p>
+    <p><b>2、网站分类需手动维护, <a [href]="gitRepoUrl + '/edit/main/data/tag.json'" target="_blank">点击编辑</a></b></p>
+    
+    <div class="logo-wrapper">
+      <label id="file">
+        <img src="assets/logo.png" alt="" class="logo">
+        <p style="white-space: nowrap; margin-top: 5px;">
+          {{ uploading ? '上传中...' : '更换LOGO, 仅支持 PNG' }}
+        </p>
+        <input
+          type="file"
+          name="file"
+          (change)="onFileChange($event)"
+          accept="image/png"
+        >
+      </label>
+    </div>
   </div>
 
   <nz-tabset *ngIf="isLogin" [nzSelectedIndex]="tabActive" (nzSelectedIndexChange)="onTabChange($event)">

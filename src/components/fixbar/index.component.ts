@@ -41,6 +41,10 @@ export class FixbarComponent {
     {
       name: '切换到 Side',
       url: '/side'
+    },
+    {
+      name: '切换到 App',
+      url: '/app'
     }
   ]
 

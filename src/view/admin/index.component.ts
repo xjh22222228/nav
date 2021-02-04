@@ -12,7 +12,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { setWebsiteList, getLogoUrl } from '../../utils'
 import { updateFileContent } from '../../services'
-import { DB_PATH } from '../../constants'
+import { DB_PATH, LOGO_PATH } from '../../constants'
 import * as __tag from '../../../data/tag.json'
 import config from '../../../nav.config'
 
@@ -31,6 +31,7 @@ export default class WebpComponent {
   isLogin = !!getToken()
   showCreateModal = false
   syncLoading = false
+  uploading = false
   tabActive = 0
   editIdx = 0
   isEdit = false
@@ -67,6 +68,44 @@ export default class WebpComponent {
       icon: [''],
       desc: [''],
     });
+  }
+
+  onFileChange(e) {
+    const that = this
+    const { files } = e.target
+    if (files.length <= 0) return;
+    const file = files[0]
+
+    if (file.type !== 'image/png') {
+      return this.message.error('仅支持 PNG 格式')
+    }
+
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = function() {
+      that.uploading = true
+      const url = (this.result as string).split(',')[1]
+      const logoEL = document.querySelector('.logo') as HTMLImageElement
+      const tempSrc = logoEL.src
+      logoEL.src = this.result as string
+
+      updateFileContent({
+        message: 'update logo',
+        content: url,
+        isEncode: false,
+        path: LOGO_PATH
+      }).then(() => {
+        that.message.success('更换成功，需要等待5分钟同步时间')
+      }).catch(res => {
+        logoEL.src = tempSrc
+        that.notification.error(
+          `错误: ${res?.response?.status ?? 401}`,
+          '更换LOGO失败，请重试！'
+        )
+      }).finally(() => {
+        that.uploading = false
+      })
+    }
   }
 
   addMoreUrl() {
