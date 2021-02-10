@@ -15,6 +15,7 @@ import { updateFileContent } from '../../services'
 import { DB_PATH, LOGO_PATH } from '../../constants'
 import * as __tag from '../../../data/tag.json'
 import config from '../../../nav.config'
+import { parseBookmark } from '../../utils/bookmark'
 
 const tagMap: ITagProp = (__tag as any).default
 const tagKeys = Object.keys(tagMap)
@@ -70,7 +71,31 @@ export default class WebpComponent {
     });
   }
 
-  onFileChange(e) {
+  onBookChange(e) {
+    const that = this
+    const { files } = e.target
+    if (files.length <= 0) return;
+    const file = files[0]
+    const fileReader = new FileReader()
+    fileReader.readAsText(file)
+    fileReader.onload = function() {
+      const html = this.result as string
+      const result = parseBookmark(html)
+      if (!Array.isArray(result)) {
+        that.notification.error(
+          `错误: 书签解析失败`,
+          `${result?.message ?? ''}`
+        )
+      } else {
+        that.message.success('导入成功，2秒后刷新！')
+        that.websiteList = result
+        setWebsiteList(that.websiteList)
+        setTimeout(() => window.location.reload(), 2000)
+      }
+    }
+  }
+
+  onLogoChange(e) {
     const that = this
     const { files } = e.target
     if (files.length <= 0) return;

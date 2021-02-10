@@ -16,8 +16,21 @@
         <input
           type="file"
           name="file"
-          (change)="onFileChange($event)"
+          (change)="onLogoChange($event)"
           accept="image/png"
+        >
+      </label>
+    </div>
+
+    <div class="book-wrapper">
+      <label id="file">
+        <img src="assets/img/bookmark.svg" alt="" class="logo">
+        <p style="white-space: nowrap; margin-top: 5px;">从Chrome书签导入</p>
+        <input
+          type="file"
+          name="file"
+          (change)="onBookChange($event)"
+          accept="text/html"
         >
       </label>
     </div>
