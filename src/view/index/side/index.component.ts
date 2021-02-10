@@ -27,6 +27,7 @@ export default class HomeComponent {
   id: number = 0
   page: number = 0
   title: string = config.title.trim().split(/\s/)[0]
+  openIndex = 0
 
   ngOnInit() {
     const initList = () => {

@@ -8,9 +8,10 @@
       <ul nz-menu nzMode="inline" class="sider-menu">
         <li
           nz-submenu
-          nzOpen
+          [(nzOpen)]="pageIdx === openIndex"
           [nzTitle]="item.title"
           *ngFor="let item of websiteList; let pageIdx = index;"
+          (nzOpenChange)="openIndex = pageIdx"
         >
           <ul>
             <li
