@@ -28,6 +28,7 @@ export default class HomeComponent {
   page: number = 0
   title: string = config.title.trim().split(/\s/)[0]
   openIndex = 0
+  contentEl: HTMLElement
 
   ngOnInit() {
     const initList = () => {
@@ -55,6 +56,26 @@ export default class HomeComponent {
 
       setWebsiteList(this.websiteList)
     })
+  }
+
+  ngAfterViewInit() {
+    window.addEventListener('scroll', this.scroll)
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('scroll', this.scroll)
+  }
+
+  scroll() {
+    const y = window.scrollY
+    if (!this.contentEl) {
+      this.contentEl = document.getElementById('content')
+    }
+    if (y > 100) {
+      this.contentEl.classList.add('fixed')
+    } else {
+      this.contentEl.classList.remove('fixed')
+    }
   }
 
   handleSidebarNav(page, id) {

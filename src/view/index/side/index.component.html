@@ -26,8 +26,10 @@
       </ul>
     </nz-sider>
     <nz-layout class="inner-layout">
-      <nz-content class="content">
-        <app-search-engine></app-search-engine>
+      <nz-content class="content" id="content">
+        <div class="search dark-bg dark-border-color">
+          <app-search-engine></app-search-engine>
+        </div>
 
         <div class="box">
           <app-no-data *ngIf="currentList.length === 0 || currentList[0].nav.length === 0"></app-no-data>
