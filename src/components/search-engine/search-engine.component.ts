@@ -1,5 +1,6 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
+import hotkeys from 'hotkeys-js'
 import config from '../../../nav.config'
 import { Component } from '@angular/core'
 import { getDefaultSearchEngine, setDefaultSearchEngine, queryString } from '../../utils'
@@ -31,6 +32,14 @@ export class SearchEngineComponent {
     document.addEventListener('click', () => {
       this.toggleEngine(null, false)
     })
+
+    hotkeys('enter', () => {
+      this.inputFocus()
+    })
+  }
+
+  ngOnDestroy() {
+    hotkeys.unbind()
   }
 
   toggleEngine(e?: Event, isShow?: boolean) {
