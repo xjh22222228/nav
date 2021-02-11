@@ -70,6 +70,7 @@ export interface IConfig {
   footerContent?: string|null
   baiduStatisticsUrl?: string
   cnzzStatisticsUrl?: string
+  showGithub: boolean
 
   lightThemeConfig: {
     backgroundLinear: string[]

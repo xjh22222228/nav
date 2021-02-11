@@ -11,10 +11,10 @@ import config from '../../../nav.config';
 export class IconGitComponent implements OnInit {
 
   gitRepoUrl: string = config.gitRepoUrl
+  showGithub = config.showGithub
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

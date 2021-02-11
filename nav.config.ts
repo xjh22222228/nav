@@ -7,7 +7,10 @@ const c: IConfig = {
   // 路由是否Hash模式, 如果是部署在github pages 务必设为 true
   hashMode: true,
 
-  // 您的网站地址，这对于SEO很重要
+  // 是否显示右上角的 Github 图标
+  showGithub: true,
+
+  // 您的网站地址，有利于SEO
   homeUrl: 'https://nav3.cn',
 
   // 网站标题
