@@ -1,9 +1,12 @@
+
+$sideWidth: 200px;
+
 .layout {
   min-height: 100vh;
 
   .inner-layout {
     padding: 20px 70px 0 20px;
-    margin-left: 200px;
+    margin-left: $sideWidth;
 
     .content {
       display: flex;
@@ -41,6 +44,11 @@
 }
 
 .logo {
+  z-index: 11;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $sideWidth;
   padding: 10px;
   padding-left: 15px;
 
@@ -62,6 +70,10 @@
   height: 100vh;
   left: 0;
   overflow: auto;
+
+  .sider-menu {
+    padding-top: 70px;
+  }
 
   &::-webkit-scrollbar {
     width: 6px;
