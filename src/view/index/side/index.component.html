@@ -27,11 +27,11 @@
     </nz-sider>
     <nz-layout class="inner-layout">
       <nz-content class="content" id="content">
-        <div class="search dark-bg dark-border-color">
+        <div class="search dark-bg-deep">
           <app-search-engine></app-search-engine>
         </div>
 
-        <div class="box">
+        <div class="box" [style.marginTop]="searchEngineList.length > 0 ? '80px' : '0'">
           <app-no-data *ngIf="currentList.length === 0 || currentList[0].nav.length === 0"></app-no-data>
 
           <div *ngFor="let item of currentList; let i=index">

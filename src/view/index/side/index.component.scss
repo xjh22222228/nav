@@ -12,16 +12,20 @@ $sideWidth: 200px;
       display: flex;
       flex-direction: column;
 
+      .search {
+        z-index: 9;
+        position: fixed;
+        top: 30px;
+        left: 201px;
+        right: 0;
+        text-align: center;
+        background-color: #fff;
+      }
+
       &.fixed {
         .search {
-          z-index: 9;
-          position: fixed;
           top: 0;
-          left: 201px;
-          right: 0;
-          text-align: center;
-          background-color: #fff;
-          border-bottom: 1px solid #ccc;
+          border-bottom: 1px solid #30363d;
         }
       }
     }

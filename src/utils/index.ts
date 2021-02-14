@@ -362,6 +362,10 @@ export async function isValidImg(url: string): Promise<boolean> {
 
   if (url === 'null' || url === 'undefined') return false
 
+  const { protocol } = window.location
+
+  if (protocol === 'https:' && url.startsWith('http:')) return false
+
   return new Promise(resolve => {
     const img = document.createElement('img')
     img.src = url

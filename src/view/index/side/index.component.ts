@@ -29,6 +29,7 @@ export default class HomeComponent {
   title: string = config.title.trim().split(/\s/)[0]
   openIndex = 0
   contentEl: HTMLElement
+  searchEngineList = config.searchEngineList
 
   ngOnInit() {
     const initList = () => {
@@ -59,7 +60,9 @@ export default class HomeComponent {
   }
 
   ngAfterViewInit() {
-    window.addEventListener('scroll', this.scroll)
+    if (this.searchEngineList.length > 0) {
+      window.addEventListener('scroll', this.scroll)
+    }
   }
 
   ngOnDestroy() {
