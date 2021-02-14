@@ -58,6 +58,8 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
         f(item.nav)
       }
 
+      if (searchResultList[0].nav.length > 50) break
+
       if (item.name) {
         const name = item.name.toLowerCase()
         const desc = item.desc.toLowerCase()

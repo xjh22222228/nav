@@ -1,5 +1,5 @@
 <!-- 网站 -->
-<div *ngIf="getEditType() === EditType.isWebsite; else card" class="container">
+<div class="container">
   <nz-card
     [nzActions]="isLogin ? [actionSetting, actionEdit, actionEllipsis] : [actionSetting, actionEdit]"
     nzSize="small"
@@ -60,8 +60,8 @@
 
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu nzSelectable>
-        <li nz-menu-item (click)="clickEdit()">编辑</li>
-        <a
+        <li nz-menu-item (click)="toggleModal()">编辑</li>
+        <!-- <a
           nz-popconfirm
           nzPopconfirmPlacement="rightTop"
           nzOkType="danger"
@@ -70,15 +70,11 @@
           (nzOnConfirm)="confirmDel($event)"
         >
           <li nz-menu-item nzDanger>删除</li>
-        </a>
+        </a> -->
       </ul>
     </nz-dropdown-menu>
   </ng-template>
 </div>
-
-<ng-template #card>
-  <ng-content></ng-content>
-</ng-template>
 
 <nz-modal
   [(nzVisible)]="showModal"

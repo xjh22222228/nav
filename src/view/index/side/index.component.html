@@ -40,29 +40,23 @@
                 class="title dark-primary dark-border-color"
                 *ngIf="item.title"
               >
-                <app-card>
-                  <span class="cursor-pointer" (click)="onCollapse(item, i)">
-                    <app-logo
-                      [src]="item.icon"
-                      [name]="item.title"
-                      colour="#ff4d4f"
-                    >
-                    </app-logo>
-    
-                    <span style="margin-left: 10px;align-self: center;vertical-align: middle;">{{ item.title }} x {{ item.nav.length }}</span>
-    
-                    <i class="iconfont iconjiantouarrow483 down-arrow" [class.active]="item.collapsed"></i>
-                  </span>
-                </app-card>
+                <span class="cursor-pointer" (click)="onCollapse(item, i)">
+                  <app-logo
+                    [src]="item.icon"
+                    [name]="item.title"
+                    colour="#ff4d4f"
+                  >
+                  </app-logo>
+  
+                  <span style="margin-left: 10px;align-self: center;vertical-align: middle;">{{ item.title }} x {{ item.nav.length }}</span>
+  
+                  <i class="iconfont iconjiantouarrow483 down-arrow" [class.active]="item.collapsed"></i>
+                </span>
               </div>
     
               <div nz-row [nzGutter]="[16, 16]" *ngIf="!item.collapsed">
                 <div class="gutter-row" nz-col [nzSpan]="6" *ngFor="let el of item.nav; let idx=index">
                   <app-card
-                    [oIdx]="page"
-                    [twoIdx]="id"
-                    [threeIdx]="i"
-                    [fourIdx]="idx"
                     [dataSource]="el"
                   >
                   </app-card>

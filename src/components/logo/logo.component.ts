@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { isValidImg } from '../../utils'
 
 @Component({
@@ -6,7 +6,7 @@ import { isValidImg } from '../../utils'
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss']
 })
-export class LogoComponent implements OnInit {
+export class LogoComponent {
   @Input() src: string
   @Input() name: string
   @Input() colour: string
@@ -17,10 +17,12 @@ export class LogoComponent implements OnInit {
 
   constructor() { }
 
-  async ngOnInit() {
-    const isValid = await isValidImg(this.src)
-    if (isValid) {
-      this.hasError = false
-    }
+  ngAfterViewInit() {
+    setTimeout(async() => {
+      const isValid = await isValidImg(this.src)
+      if (isValid) {
+        this.hasError = false
+      }
+    }, 1000)
   }
 }
