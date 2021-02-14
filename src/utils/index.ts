@@ -42,12 +42,6 @@ export function randomInt(max: number) {
 
 export function fuzzySearch(navList: INavProps[], keyword: string) {
   let searchResultList = [{ nav: [] }]
-  let url: null|string = null
-
-  try {
-    const { hostname } = new URL(keyword)
-    url = hostname
-  } catch {}
 
   function f(arr?: any[]) {
     arr = arr || navList
@@ -63,6 +57,7 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
       if (item.name) {
         const name = item.name.toLowerCase()
         const desc = item.desc.toLowerCase()
+        const url = item.url.toLowerCase()
         const search = keyword.toLowerCase()
         const urls = Object.values(item.urls || {})
 
@@ -80,11 +75,11 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
           } catch (err) {}
         }
 
-        if (item.url?.includes?.(url)) {
+        if (url?.includes?.(keyword.toLowerCase())) {
           searchResultList[0].nav.push(item)
         }
 
-        const find = urls.some((item: string) => item.includes(url))
+        const find = urls.some((item: string) => item.includes(keyword))
         if (find) {
           searchResultList[0].nav.push(item)
         }

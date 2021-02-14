@@ -19,13 +19,13 @@ $sideWidth: 200px;
         left: 201px;
         right: 0;
         text-align: center;
-        background-color: #fff;
       }
 
       &.fixed {
         .search {
           top: 0;
-          border-bottom: 1px solid #30363d;
+          background-color: #fff;
+          border-bottom: 1px solid #ccc;
         }
       }
     }

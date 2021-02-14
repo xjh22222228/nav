@@ -74,7 +74,7 @@ export default class HomeComponent {
     if (!this.contentEl) {
       this.contentEl = document.getElementById('content')
     }
-    if (y > 100) {
+    if (y > 70) {
       this.contentEl.classList.add('fixed')
     } else {
       this.contentEl.classList.remove('fixed')
