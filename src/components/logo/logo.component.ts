@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core'
+import { isValidImg } from '../../utils'
 
 @Component({
   selector: 'app-logo',
@@ -11,15 +12,15 @@ export class LogoComponent implements OnInit {
   @Input() colour: string
   @Input() size: number
 
-  hasError = false
+  hasError = true
   color = '#1890ff'
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
-  onImgError = () => {
-    this.hasError = true
+  async ngOnInit() {
+    const isValid = await isValidImg(this.src)
+    if (isValid) {
+      this.hasError = false
+    }
   }
 }

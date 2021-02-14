@@ -2,7 +2,6 @@
   *ngIf="src && !hasError; else noSrc"
   [src]="src"
   class="icon dark-border-color"
-  (error)="onImgError($event)"
   [ngStyle]="{ width: (size || 35) + 'px', height: (size || 35) + 'px' }"
 >
 

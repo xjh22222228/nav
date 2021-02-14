@@ -1,4 +1,5 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
 
 import qs from 'qs'
 import config from '../../nav.config'
@@ -353,5 +354,26 @@ export function copyText(el: any, text: string): Promise<boolean> {
       target.removeAttribute('id')
       resolve(false)
     });
+  })
+}
+
+export async function isValidImg(url: string): Promise<boolean> {
+  if (!url) return false
+
+  if (url === 'null' || url === 'undefined') return false
+
+  return new Promise(resolve => {
+    const img = document.createElement('img')
+    img.src = url
+    img.style.display = 'none'
+    img.onload = () => {
+      img.parentNode.removeChild(img)
+      resolve(true)
+    }
+    img.onerror = () => {
+      img.parentNode.removeChild(img)
+      resolve(false)
+    }
+    document.body.append(img)
   })
 }
