@@ -73,6 +73,7 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
               searchResultList[0].nav.push(result)
             }
           } catch (err) {}
+          continue
         }
 
         if (url?.includes?.(keyword.toLowerCase())) {
