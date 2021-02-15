@@ -30,7 +30,6 @@ export interface INavThreeProp {
   title?: string
   icon?: string | null
   createdAt?: string
-  showSideIcon?: boolean
   collapsed?: boolean
   nav: INavFourProp[]
 }
