@@ -103,21 +103,5 @@
     padding-bottom: 50px;
     overflow: hidden;
     overflow-y: auto;
-
-    .title-wrapper {
-      border-bottom: 1px solid #eee;
-      padding: 10px 30px 10px 15px;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 15px;
-    }
-
-    .block-title {
-      display: inline-block;
-      position: relative;
-      color: #3F51B5;
-      align-self: center;
-      display: flex;
-    }
   }
 }

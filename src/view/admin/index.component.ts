@@ -10,15 +10,14 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { setWebsiteList, getLogoUrl } from '../../utils'
+import { setWebsiteList } from '../../utils'
 import { updateFileContent } from '../../services'
 import { DB_PATH, LOGO_PATH } from '../../constants'
+import { parseBookmark } from '../../utils/bookmark'
 import * as __tag from '../../../data/tag.json'
 import config from '../../../nav.config'
-import { parseBookmark } from '../../utils/bookmark'
 
 const tagMap: ITagProp = (__tag as any).default
-const tagKeys = Object.keys(tagMap)
 
 @Component({
   selector: 'app-admin',
@@ -31,6 +30,7 @@ export default class WebpComponent {
   gitRepoUrl = config.gitRepoUrl
   isLogin = !!getToken()
   showCreateModal = false
+  showCreateWebModal = false
   syncLoading = false
   uploading = false
   tabActive = 0
@@ -39,11 +39,9 @@ export default class WebpComponent {
   oneSelect = ''
   twoSelect = ''
   threeSelect = ''
-  iconUrl = ''
-  urlArr = []
-  tags = tagKeys
   tagMap = tagMap
   objectKeys = Object.keys
+  websiteDetail: INavFourProp|null
 
   twoTableData: INavTwoProp[] = []
   threeTableData: INavThreeProp[] = []
@@ -59,16 +57,8 @@ export default class WebpComponent {
   ngOnInit () {
     this.validateForm = this.fb.group({
       title: ['', [Validators.required]],
-      url: ['', [Validators.required]],
-      url0: [''],
-      url1: [''],
-      url2: [''],
-      tagVal0: [tagKeys[0]],
-      tagVal1: [tagKeys[0]],
-      tagVal2: [tagKeys[0]],
       icon: [''],
-      desc: [''],
-    });
+    })
   }
 
   onBookChange(e) {
@@ -133,14 +123,6 @@ export default class WebpComponent {
     }
   }
 
-  addMoreUrl() {
-    this.urlArr.push(null)
-  }
-
-  lessMoreUrl() {
-    this.urlArr.pop()
-  }
-
   handleReset() {
     this.modal.info({
       nzTitle: '重置初始数据',
@@ -160,6 +142,15 @@ export default class WebpComponent {
     history.go(-1)
   }
 
+  toggleCreateWebModal() {
+    if (this.tabActive === 3 && !this.threeSelect) {
+      return this.message.error('请选择三级分类')
+    }
+
+    this.websiteDetail = null
+    this.showCreateWebModal = !this.showCreateWebModal
+  }
+
   toggleCreateModal() {
     // 检测是否有选择
     if (!this.showCreateModal) {
@@ -169,15 +160,30 @@ export default class WebpComponent {
       if (this.tabActive === 2 && !this.twoSelect) {
         return this.message.error('请选择二级分类')
       }
-      if (this.tabActive === 3 && !this.threeSelect) {
-        return this.message.error('请选择三级分类')
-      }
     }
 
     this.isEdit = false
     this.showCreateModal = !this.showCreateModal
     this.validateForm.reset()
-    this.urlArr = []
+  }
+
+  onOkCreateWeb(payload: INavFourProp) {
+    // 编辑
+    if (this.websiteDetail) {
+      this.websiteTableData[this.editIdx] = payload
+    } else {
+      // 创建
+      const exists = this.websiteTableData.some(item => item.name === payload.name)
+      if (exists) {
+        return this.message.error('请不要重复添加')
+      }
+
+      this.websiteTableData.unshift(payload)
+      this.message.success('新增成功!')
+    }
+
+    setWebsiteList(this.websiteList)
+    this.toggleCreateWebModal()
   }
 
   onTabChange(index: number) {
@@ -273,36 +279,13 @@ export default class WebpComponent {
     this.websiteTableData = findItem.nav
   }
 
-  async onUrlBlur(e) {
-    const res = await getLogoUrl(e.target?.value)
-    this.iconUrl = (res || '') as string
-    this.validateForm.get('icon')!.setValue(res || '')
-  }
-
-  onIconBlur(e) {
-    this.iconUrl = e.target.value
-  }
-
   handleEditBtn(data, editIdx) {
-    let { title, icon, url, desc, name, urls } = data
+    let { title, icon, name } = data
     this.toggleCreateModal()
     this.isEdit = true
     this.editIdx = editIdx
-    this.urlArr = []
     this.validateForm.get('title')!.setValue(title || name || '')
     this.validateForm.get('icon')!.setValue(icon || '')
-    this.validateForm.get('url')!.setValue(url || '')
-    this.validateForm.get('desc')!.setValue(desc || '')
-
-    if (typeof urls === 'object') {
-      let i = 0
-      for (let k in urls) {
-        this.urlArr.push(null)
-        this.validateForm.get(`url${i}`)!.setValue(urls[k])
-        this.validateForm.get(`tagVal${i}`)!.setValue(k)
-        i++
-      }
-    }
   }
 
   handleSync() {
@@ -343,33 +326,9 @@ export default class WebpComponent {
       this.validateForm.controls[i].updateValueAndValidity();
     }
 
-    const urls = {}
-    let {
-      title,
-      icon,
-      url,
-      desc,
-      tagVal0,
-      tagVal1,
-      tagVal2,
-      url0,
-      url1,
-      url2
-    } = this.validateForm.value
+    let { title, icon } = this.validateForm.value
 
-    if (tagVal0 && url0) {
-      urls[tagVal0] = url0
-    }
-    if (tagVal1 && url1) {
-      urls[tagVal1] = url1
-    }
-    if (tagVal2 && url2) {
-      urls[tagVal2] = url2
-    }
-
-    if (!title) {
-      return
-    }
+    if (!title) return
 
     if (this.isEdit) {
       switch (this.tabActive) {
@@ -391,17 +350,6 @@ export default class WebpComponent {
         case 2: {
           this.threeTableData[this.editIdx].title = title
           this.threeTableData[this.editIdx].icon = icon
-        }
-          break
-  
-        // 编辑网站
-        case 3: {
-          if (!url) return
-          this.websiteTableData[this.editIdx].name = title
-          this.websiteTableData[this.editIdx].desc = desc
-          this.websiteTableData[this.editIdx].url = url
-          this.websiteTableData[this.editIdx].icon = icon
-          this.websiteTableData[this.editIdx].urls = urls
         }
           break
       }
@@ -456,33 +404,12 @@ export default class WebpComponent {
           })
         }
           break
-  
-        // 新增网站
-        case 3: {
-          if (!url) return
-          const exists = this.websiteTableData.some(item => item.name === title)
-          if (exists) {
-            return this.message.error('请不要重复添加')
-          }
-  
-          this.websiteTableData.unshift({
-            createdAt,
-            name: title,
-            icon,
-            url,
-            desc,
-            urls
-          })
-        }
-          break
       }
       this.message.success('新增成功!')
     }
 
-    this.iconUrl = ''
     this.validateForm.reset()
     this.toggleCreateModal()
-    this.urlArr = []
     setWebsiteList(this.websiteList)
   }
 }

@@ -1,0 +1,29 @@
+<div
+  class="title dark-primary dark-border-color"
+  *ngIf="dataSource && dataSource.title"
+>
+  <span class="cursor-pointer" (click)="onCollapse.emit()">
+    <app-logo
+      [src]="dataSource.icon"
+      [name]="dataSource.title"
+      colour="#ff4d4f"
+    >
+    </app-logo>
+
+    <span style="margin-left: 10px;align-self: center;vertical-align: middle;">
+      {{ dataSource.title }} x {{ dataSource.nav.length }}
+    </span>
+
+    <i class="iconfont iconjiantouarrow483 down-arrow" [class.active]="dataSource.collapsed"></i>
+  </span>
+
+  <i nz-icon nzType="plus" nzTheme="outline" class="add-icon" (click)="toggleCreateModal()"></i>
+</div>
+
+<app-create-web
+  *ngIf="showCreateModal"
+  [visible]="showCreateModal"
+  (onCancel)="toggleCreateModal()"
+  (onOk)="handleAdd($event)"
+>
+</app-create-web>

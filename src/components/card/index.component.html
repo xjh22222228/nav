@@ -59,7 +59,7 @@
 
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu nzSelectable>
-        <li nz-menu-item (click)="toggleModal()">编辑</li>
+        <li nz-menu-item (click)="toggleModal(); detail = dataSource">编辑</li>
         <!-- <a
           nz-popconfirm
           nzPopconfirmPlacement="rightTop"
@@ -75,53 +75,11 @@
   </ng-template>
 </div>
 
-<nz-modal
-  [(nzVisible)]="showModal"
-  nzTitle="修改"
-  (nzOnCancel)="toggleModal()"
-  (nzOnOk)="handleOk()"
+<app-create-web
+  *ngIf="showModal"
+  [visible]="showModal"
+  (onCancel)="toggleModal()"
+  (onOk)="handleOk($event)"
+  [detail]="dataSource"
 >
-  <ng-container *nzModalContent>
-    <form nz-form [formGroup]="validateForm" (ngSubmit)="handleOk()">
-      <nz-form-item>
-        <nz-form-label [nzSpan]="4" nzRequired>网站名称</nz-form-label>
-        <nz-form-control [nzSpan]="20" nzErrorTip="请输入名称">
-          <input formControlName="title" nz-input placeholder="发现导航" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSpan]="4" nzRequired>网站链接</nz-form-label>
-        <nz-form-control [nzSpan]="20">
-          <input formControlName="url" nz-input placeholder="https://nav3.cn" (blur)="onUrlBlur($event)" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSpan]="4">图标地址</nz-form-label>
-        <nz-form-control [nzSpan]="20">
-          <nz-input-group [nzPrefix]="prefixIcon">
-            <input formControlName="icon" nz-input placeholder="https://example.com/favicon.png" (blur)="onIconBlur($event)" />
-          </nz-input-group>
-
-          <ng-template #prefixIcon>
-            <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl"></app-logo>
-          </ng-template>
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSpan]="4">网站描述</nz-form-label>
-        <nz-form-control [nzSpan]="20">
-          <textarea
-            formControlName="desc"
-            placeholder="发现导航, 精选实用导航网站"
-            nz-input
-            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-          >
-          </textarea>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
-  </ng-container>
-</nz-modal>
+</app-create-web>

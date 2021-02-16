@@ -8,11 +8,11 @@ import { verifyToken } from '../../services'
 import { getToken, setToken } from '../../utils/user'
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class CreateComponent implements OnInit {
+export class LoginComponent implements OnInit {
   @Input() visible: boolean
   @Output() onCancel = new EventEmitter()
 

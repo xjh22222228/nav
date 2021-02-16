@@ -1,0 +1,18 @@
+.title {
+  position: relative;
+  font-size: 18px;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  color: #3f51b5;
+  font-weight: 500;
+  display: flex;
+  margin-bottom: 15px;
+
+  .add-icon {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}

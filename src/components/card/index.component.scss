@@ -7,6 +7,18 @@
   }
 }
 
+.add-wrapper {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .add-icon {
+    font-size: 50px;
+    color: #ccc
+  }
+}
+
 ::ng-deep {
   .gutter-row .ant-card {
     height: 100%;

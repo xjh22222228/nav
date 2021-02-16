@@ -45,7 +45,9 @@ import { FooterComponent } from '../components/footer/footer.component'
 import { IconGitComponent } from '../components/icon-git/icon-git.component'
 import { NoDataComponent } from '../components/no-data/no-data.component'
 import { SearchEngineComponent } from '../components/search-engine/search-engine.component';
-import { CreateComponent } from '../components/create/create.component';
+import { LoginComponent } from '../components/login/login.component';
+import { CreateWebComponent } from '../components/create-web/index.component';
+import { ToolbarTitleWebComponent } from '../components/toolbar-title/index.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { zh_CN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -100,7 +102,9 @@ const appRoutes: Routes = [
     IconGitComponent,
     NoDataComponent,
     SearchEngineComponent,
-    CreateComponent,
+    LoginComponent,
+    CreateWebComponent,
+    ToolbarTitleWebComponent,
     LogoComponent,
     CardComponent
   ],
