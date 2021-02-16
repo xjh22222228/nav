@@ -60,7 +60,7 @@
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu nzSelectable>
         <li nz-menu-item (click)="toggleModal(); detail = dataSource">编辑</li>
-        <!-- <a
+        <a
           nz-popconfirm
           nzPopconfirmPlacement="rightTop"
           nzOkType="danger"
@@ -69,7 +69,7 @@
           (nzOnConfirm)="confirmDel($event)"
         >
           <li nz-menu-item nzDanger>删除</li>
-        </a> -->
+        </a>
       </ul>
     </nz-dropdown-menu>
   </ng-template>

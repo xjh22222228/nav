@@ -4,7 +4,7 @@
 import qs from 'qs'
 import config from '../../nav.config'
 import Clipboard from 'clipboard'
-import { INavProps, ISearchEngineProps } from '../types'
+import { INavFourProp, INavProps, ISearchEngineProps } from '../types'
 import * as db from '../../data/db.json'
 
 export const websiteList = getWebsiteList()
@@ -12,29 +12,6 @@ export const websiteList = getWebsiteList()
 let total = 0
 const { lightThemeConfig, searchEngineList } = config
 const { backgroundLinear } = lightThemeConfig
-
-export function debounce(func, wait, immediate) {
-  let timeout
-
-  return function () {
-    let context = this
-    let args = arguments
-
-    if (timeout) clearTimeout(timeout)
-
-    if (immediate) {
-      let callNow = !timeout
-      timeout = setTimeout(() => {
-        timeout = null
-      }, wait)
-      if (callNow) func.apply(context, args)
-    } else {
-      timeout = setTimeout(() => {
-        func.apply(context, args)
-      }, wait)
-    }
-  }
-}
 
 export function randomInt(max: number) {
   return Math.floor(Math.random() * max)
@@ -378,4 +355,36 @@ export async function isValidImg(url: string): Promise<boolean> {
     }
     document.body.append(img)
   })
+}
+
+export function deleteByWeb(data: INavFourProp) {
+  function f(arr: any[]) {
+    for (let i = 0; i < arr.length; i++) {
+      const item = arr[i]
+      if (Array.isArray(item.nav)) {
+        f(item.nav)
+        continue
+      }
+
+      if (item.name) {
+        const keys = Object.keys(item)
+        let eq = false
+        for (let key of keys) {
+          eq = item[key] === data[key]
+        }
+
+        if (eq) {
+          arr.splice(i, 1)
+
+          const { q } = queryString()
+          if (q) {
+            window.location.reload()
+          }
+        }
+      }
+    }
+  }
+
+  f(websiteList)
+  setWebsiteList(websiteList)
 }

@@ -4,7 +4,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { getToken } from '../../utils/user'
-import { setWebsiteList, copyText } from '../../utils'
+import { setWebsiteList, copyText, deleteByWeb } from '../../utils'
 import { websiteList } from '../../store'
 import { INavProps, ITagProp, INavFourProp } from '../../types'
 import * as __tag from '../../../data/tag.json'
@@ -68,5 +68,7 @@ export class CardComponent implements OnInit {
     this.toggleModal()
   }
 
-  confirmDel() {}
+  confirmDel() {
+    deleteByWeb(this.dataSource)
+  }
 }
