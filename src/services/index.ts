@@ -6,18 +6,11 @@ import { encode } from 'js-base64'
 import { getToken } from '../utils/user'
 
 const { gitRepoUrl } = config
+const s = gitRepoUrl.split('/')
 
-let authorName = ''
-let branchName = ''
+export const authorName = s[s.length - 2]
+export const branchName = s[s.length - 1]
 const token = getToken()
-
-try {
-  const { pathname } = new URL(gitRepoUrl)  
-  const p = pathname.split('/')
-  authorName = p[1]
-  branchName = p[2]
-} catch {}
-
 
 // 验证Token
 export function verifyToken(token: string) {
@@ -43,10 +36,11 @@ type Iupdate = {
   message: string
   content: string
   path: string
+  branch?: string
   isEncode?: boolean
 }
 export async function updateFileContent(
-  { message, content, path, isEncode = true }: Iupdate,
+  { message, content, path, branch, isEncode = true }: Iupdate,
   authToken?: string
 ) {
   const _token = `${authToken ? authToken : token}`.trim()
@@ -54,8 +48,26 @@ export async function updateFileContent(
 
   return http.put(`/repos/${authorName}/${branchName}/contents/${path}`, {
     message: `rebot(CI): ${message}`,
+    branch,
     content: isEncode ? encode(content) : content,
     sha: fileInfo.data.sha
+  }, {
+    headers: {
+      Authorization: `token ${_token}`
+    }
+  })
+}
+
+export async function createFile(
+  { message, content, path, branch, isEncode = true }: Iupdate,
+  authToken?: string
+) {
+  const _token = `${authToken ? authToken : token}`.trim()
+
+  return http.put(`/repos/${authorName}/${branchName}/contents/${path}`, {
+    message: `rebot(CI): ${message}`,
+    branch,
+    content: isEncode ? encode(content) : content,
   }, {
     headers: {
       Authorization: `token ${_token}`

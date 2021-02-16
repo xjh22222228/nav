@@ -3,6 +3,7 @@
   [nzTitle]="detail ? '编辑' : '新增'"
   (nzOnCancel)="handleCancel()"
   (nzOnOk)="handleOk()"
+  [nzOkLoading]="uploading"
 >
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="validateForm">
@@ -23,12 +24,27 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="4">图标地址</nz-form-label>
         <nz-form-control [nzSpan]="20">
-          <nz-input-group [nzPrefix]="prefixIcon">
+          <nz-input-group [nzPrefix]="prefixIcon" [nzSuffix]="suffixIconSearch">
             <input formControlName="icon" nz-input placeholder="https://example.com/favicon.png" (blur)="onIconBlur($event)" />
           </nz-input-group>
 
           <ng-template #prefixIcon>
             <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl"></app-logo>
+          </ng-template>
+          <ng-template #suffixIconSearch>
+            <i nz-icon nzType="loading" nzTheme="outline" *ngIf="uploading; else loading"></i>
+            <ng-template #loading>
+              <label id="file">
+                <i nz-icon nzType="upload" nzTheme="outline" class="cursor-pointer"></i>
+                <input
+                  type="file"
+                  name="file"
+                  (change)="handleUploadIcon($event)"
+                  accept="image/*"
+                  class="file-upload"
+                >
+              </label>
+            </ng-template>
           </ng-template>
         </nz-form-control>
       </nz-form-item>

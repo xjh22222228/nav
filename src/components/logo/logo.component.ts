@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { isValidImg } from '../../utils'
+import { authorName, branchName } from '../../services'
 
 @Component({
   selector: 'app-logo',
@@ -14,12 +15,21 @@ export class LogoComponent {
 
   hasError = true
   color = '#1890ff'
+  url: string
 
   constructor() { }
 
+  ngOnInit() {
+    if (this.src?.startsWith('nav-')) {
+      this.url = `https://raw.sevencdn.com/${authorName}/${branchName}/image/${this.src}`
+    } else {
+      this.url = this.src
+    }
+  }
+
   ngAfterViewInit() {
     setTimeout(async() => {
-      const isValid = await isValidImg(this.src)
+      const isValid = await isValidImg(this.url)
       if (isValid) {
         this.hasError = false
       }

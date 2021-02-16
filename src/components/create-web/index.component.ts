@@ -5,7 +5,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { getLogoUrl } from '../../utils'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ITagProp, INavFourProp } from '../../types'
+import { NzMessageService } from 'ng-zorro-antd/message'
+import { NzNotificationService } from 'ng-zorro-antd/notification'
 import * as __tag from '../../../data/tag.json'
+import { createFile } from '../../services'
 
 const tagMap: ITagProp = (__tag as any).default
 const tagKeys = Object.keys(tagMap)
@@ -26,9 +29,12 @@ export class CreateWebComponent implements OnInit {
   urlArr = []
   tags = tagKeys
   tagMap = tagMap
+  uploading = false
 
   constructor(
     private fb: FormBuilder,
+    private message: NzMessageService,
+    private notification: NzNotificationService,
   ) {}
 
   ngOnInit() {
@@ -88,6 +94,45 @@ export class CreateWebComponent implements OnInit {
 
   lessMoreUrl() {
     this.urlArr.pop()
+  }
+
+  handleUploadIcon(e) {
+    const that = this
+    const { files } = e.target
+    if (files.length <= 0) return;
+    const file = files[0]
+    const suffix = file.type.split('/').pop()
+
+    if (!file.type.startsWith('image')) {
+      return this.message.error('请不要上传非法图片')
+    }
+
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = function() {
+      that.uploading = true
+      that.iconUrl = this.result as string
+      const url = (this.result as string).split(',')[1]
+      const path = `nav-${Date.now()}.${suffix}`
+
+      createFile({
+        branch: 'image',
+        message: 'create image',
+        content: url,
+        isEncode: false,
+        path
+      }).then(() => {
+        that.validateForm.get('icon')!.setValue(path)
+        that.message.success('上传成功')
+      }).catch(res => {
+        that.notification.error(
+          `错误: ${res?.response?.status ?? 401}`,
+          '上传失败，请重试！'
+        )
+      }).finally(() => {
+        that.uploading = false
+      })
+    }
   }
 
   handleCancel() {
