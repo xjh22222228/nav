@@ -6,6 +6,7 @@ import { INavThreeProp, INavProps, INavFourProp } from '../../types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import * as __tag from '../../../data/tag.json'
 import { queryString, setWebsiteList } from '../../utils'
+import { getToken } from '../../utils/user'
 import { websiteList } from '../../store'
 
 @Component({
@@ -18,6 +19,7 @@ export class ToolbarTitleWebComponent implements OnInit {
   @Input() dataSource: INavThreeProp
   @Output() onCollapse = new EventEmitter()
 
+  isLogin = !!getToken()
   showCreateModal = false
   websiteList: INavProps[] = websiteList
 

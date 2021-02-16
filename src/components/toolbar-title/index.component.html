@@ -17,7 +17,15 @@
     <i class="iconfont iconjiantouarrow483 down-arrow" [class.active]="dataSource.collapsed"></i>
   </span>
 
-  <i nz-icon nzType="plus" nzTheme="outline" class="add-icon" (click)="toggleCreateModal()"></i>
+  <i
+    *ngIf="isLogin"
+    nz-icon
+    nzType="plus"
+    nzTheme="outline"
+    class="add-icon"
+    (click)="toggleCreateModal()"
+  >
+  </i>
 </div>
 
 <app-create-web
