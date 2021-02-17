@@ -12,6 +12,7 @@ export class LogoComponent {
   @Input() name: string
   @Input() colour: string
   @Input() size: number
+  @Input() check: boolean = true
 
   hasError = true
   color = '#1890ff'
@@ -28,6 +29,10 @@ export class LogoComponent {
   }
 
   ngAfterViewInit() {
+    if (!this.check) {
+      this.hasError = false
+      return
+    }
     setTimeout(async() => {
       const isValid = await isValidImg(this.url)
       if (isValid) {

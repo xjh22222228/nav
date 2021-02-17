@@ -318,8 +318,7 @@ export default class WebpComponent {
   }
 
   handleOk() {
-    const now = new Date()
-    const createdAt = now.toISOString()
+    const createdAt = new Date().toISOString()
 
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();

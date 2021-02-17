@@ -55,12 +55,18 @@ export class CardComponent implements OnInit {
     this.showModal = !this.showModal
   }
 
+  onRateChange(n: number) {
+    this.dataSource.rate = n
+    setWebsiteList(this.websiteList)
+  }
+
   handleOk(payload: INavFourProp) {
     this.dataSource.name = payload.name
     this.dataSource.createdAt = payload.createdAt
     this.dataSource.desc = payload.desc
     this.dataSource.icon = payload.icon
     this.dataSource.url = payload.url
+    this.dataSource.rate = payload.rate
     this.dataSource.urls = payload.urls
     this.message.success('修改成功!')
 

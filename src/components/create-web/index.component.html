@@ -22,6 +22,13 @@
       </nz-form-item>
 
       <nz-form-item>
+        <nz-form-label [nzSpan]="4">推荐指数</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-rate formControlName="rate" nzAllowHalf></nz-rate>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
         <nz-form-label [nzSpan]="4">图标地址</nz-form-label>
         <nz-form-control [nzSpan]="20">
           <nz-input-group [nzPrefix]="prefixIcon" [nzSuffix]="suffixIconSearch">
@@ -35,7 +42,7 @@
             <i nz-icon nzType="loading" nzTheme="outline" *ngIf="uploading; else loading"></i>
             <ng-template #loading>
               <label id="file">
-                <i nz-icon nzType="upload" nzTheme="outline" class="cursor-pointer"></i>
+                <i nz-icon nzType="upload" nzTheme="outline" class="cursor-pointer" title="上传"></i>
                 <input
                   type="file"
                   name="file"

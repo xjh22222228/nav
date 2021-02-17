@@ -6,6 +6,15 @@
     nzHoverable
     nzType="inner"
   >
+    <div class="rate">
+      <nz-rate
+        [ngModel]="dataSource.rate"
+        [nzDisabled]="!isLogin"
+        nzAllowHalf
+        (ngModelChange)="onRateChange($event)"
+      >
+      </nz-rate>
+    </div>
     <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
       <nz-card-meta
         [nzTitle]="title"

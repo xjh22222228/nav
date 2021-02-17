@@ -41,6 +41,7 @@ export class CreateWebComponent implements OnInit {
     this.validateForm = this.fb.group({
       title: ['', [Validators.required]],
       url: ['', [Validators.required]],
+      rate: [0],
       url0: [''],
       url1: [''],
       url2: [''],
@@ -63,6 +64,7 @@ export class CreateWebComponent implements OnInit {
         this.validateForm.get('title')!.setValue(detail.name)
         this.validateForm.get('icon')!.setValue(detail.icon || '')
         this.validateForm.get('url')!.setValue(detail.url || '')
+        this.validateForm.get('rate')!.setValue(detail.rate)
         this.validateForm.get('desc')!.setValue(detail.desc || '')
   
         if (typeof detail.urls === 'object') {
@@ -151,6 +153,7 @@ export class CreateWebComponent implements OnInit {
       title,
       icon,
       url,
+      rate,
       desc,
       url0,
       url1,
@@ -177,6 +180,7 @@ export class CreateWebComponent implements OnInit {
     const payload = {
       name: title,
       createdAt: (this.detail as any)?.createdAt ?? createdAt,
+      rate: rate ?? 0,
       desc: desc || '',
       icon,
       url,

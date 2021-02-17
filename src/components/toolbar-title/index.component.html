@@ -3,12 +3,12 @@
   *ngIf="dataSource && dataSource.title"
 >
   <span class="cursor-pointer" (click)="onCollapse.emit()">
-    <app-logo
+    <!-- <app-logo
       [src]="dataSource.icon"
       [name]="dataSource.title"
       colour="#ff4d4f"
     >
-    </app-logo>
+    </app-logo> -->
 
     <span style="margin-left: 10px;align-self: center;vertical-align: middle;">
       {{ dataSource.title }} x {{ dataSource.nav.length }}

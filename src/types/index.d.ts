@@ -18,6 +18,7 @@ export interface ITagProp {
 export interface INavFourProp {
   icon?: string | null
   createdAt?: string
+  rate?: number
   name: string
   desc: string
   url: string
