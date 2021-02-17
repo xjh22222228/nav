@@ -10,7 +10,7 @@
           nz-submenu
           [(nzOpen)]="pageIdx === openIndex"
           [nzTitle]="item.title"
-          *ngFor="let item of websiteList; let pageIdx = index;"
+          *ngFor="let item of websiteList; index as pageIdx;"
           (nzOpenChange)="openIndex = pageIdx"
         >
           <ul>
@@ -37,7 +37,7 @@
               <div class="nav-wrapper">
                 <app-toolbar-title [dataSource]="item" (onCollapse)="onCollapse(item, i)" [index]="i"></app-toolbar-title>
       
-                <div nz-row [nzGutter]="[16, 16]" *ngIf="!item.collapsed">
+                <div nz-row [nzGutter]="[16, 16]" [style.display]="item.collapsed ? 'none' : ''">
                   <div
                     *ngFor="let el of item.nav"
                     class="gutter-row"

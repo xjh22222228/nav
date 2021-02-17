@@ -38,7 +38,7 @@
           <div class="nav-wrapper">
             <app-toolbar-title [dataSource]="item" (onCollapse)="onCollapse(item, i)" [index]="i"></app-toolbar-title>
   
-            <div nz-row [nzGutter]="[16, 16]" *ngIf="!item.collapsed">
+            <div nz-row [nzGutter]="[16, 16]" [style.display]="item.collapsed ? 'none' : ''">
               <div class="gutter-row" nz-col [nzSpan]="8" *ngFor="let el of item.nav; let idx=index">
                 <app-card [dataSource]="el"></app-card>
               </div>
