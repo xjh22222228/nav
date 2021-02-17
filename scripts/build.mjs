@@ -89,17 +89,18 @@ async function buildSeo() {
 
 async function build() {
   const htmlPath = path.join('.', 'src', 'index.html')
-  const readHtml = fs.readFileSync(htmlPath).toString()
-  let t = readHtml.replace('<!-- nav.config -->', htmlTemplate)
-  t = readHtml.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
-  t = readHtml.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
-  t = readHtml.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
-  t = readHtml.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
-  t = readHtml.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
+  let t = fs.readFileSync(htmlPath).toString()
+  t = t.replace('<!-- nav.config -->', htmlTemplate)
 
   if (baiduStatisticsUrl) {
     t = t.replace('<!-- nav.script -->', scriptTemplate)
   }
+
+  t = t.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
+  t = t.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
+  t = t.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
+  t = t.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
+  t = t.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
 
   t = t.replace('<!-- nav.seo -->', seoTemplate)
 
