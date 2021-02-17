@@ -31,6 +31,14 @@ export class LogoComponent {
       this.hasError = false
       return
     }
+
+    // base64
+    const regex = /^data:image\/.*;base64,/
+    if (regex.test(this.url)) {
+      this.hasError = false
+      return
+    }
+
     setTimeout(async() => {
       const isValid = await isValidImg(this.url)
       if (isValid) {
