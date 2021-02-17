@@ -9,7 +9,7 @@ const { gitRepoUrl } = config
 const s = gitRepoUrl.split('/')
 
 export const authorName = s[s.length - 2]
-export const branchName = s[s.length - 1]
+export const repoName = s[s.length - 1]
 const token = getToken()
 
 // 验证Token
@@ -22,11 +22,14 @@ export function verifyToken(token: string) {
 }
 
 // 获取文件信息
-export function getFileContent(path: string, authToken?: string) {
+export function getFileContent(path: string, authToken?: string, branch?: string) {
   const _token = `${authToken ? authToken : token}`.trim()
-  return http.get(`/repos/${authorName}/${branchName}/contents/${path}`, {
+  return http.get(`/repos/${authorName}/${repoName}/contents/${path}`, {
     headers: {
       Authorization: `token ${_token}`
+    },
+    params: {
+      ref: branch
     }
   })
 }
@@ -44,9 +47,9 @@ export async function updateFileContent(
   authToken?: string
 ) {
   const _token = `${authToken ? authToken : token}`.trim()
-  const fileInfo = await getFileContent(path, _token)
+  const fileInfo = await getFileContent(path, _token, branch)
 
-  return http.put(`/repos/${authorName}/${branchName}/contents/${path}`, {
+  return http.put(`/repos/${authorName}/${repoName}/contents/${path}`, {
     message: `rebot(CI): ${message}`,
     branch,
     content: isEncode ? encode(content) : content,
@@ -64,7 +67,7 @@ export async function createFile(
 ) {
   const _token = `${authToken ? authToken : token}`.trim()
 
-  return http.put(`/repos/${authorName}/${branchName}/contents/${path}`, {
+  return http.put(`/repos/${authorName}/${repoName}/contents/${path}`, {
     message: `rebot(CI): ${message}`,
     branch,
     content: isEncode ? encode(content) : content,
@@ -73,4 +76,8 @@ export async function createFile(
       Authorization: `token ${_token}`
     }
   })
+}
+
+export function getCDN(path: string) {
+  return `https://raw.sevencdn.com/${authorName}/${repoName}/image/${path}`
 }

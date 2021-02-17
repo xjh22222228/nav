@@ -12,6 +12,7 @@ import {
   toggleCollapseAll,
 } from '../../../utils'
 import { websiteList } from '../../../store'
+import { LOGO_CDN } from '../../../constants'
 
 @Component({
   selector: 'app-home',
@@ -19,9 +20,7 @@ import { websiteList } from '../../../store'
   styleUrls: ['./index.component.scss']
 })
 export default class HomeComponent {
-
-  constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
-
+  LOGO_CDN = LOGO_CDN
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
   id: number = 0
@@ -30,6 +29,8 @@ export default class HomeComponent {
   openIndex = 0
   contentEl: HTMLElement
   searchEngineList = config.searchEngineList
+
+  constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     const initList = () => {

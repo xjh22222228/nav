@@ -12,7 +12,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { setWebsiteList } from '../../utils'
 import { updateFileContent } from '../../services'
-import { DB_PATH, LOGO_PATH } from '../../constants'
+import { DB_PATH, LOGO_PATH, LOGO_CDN } from '../../constants'
 import { parseBookmark } from '../../utils/bookmark'
 import * as __tag from '../../../data/tag.json'
 import config from '../../../nav.config'
@@ -28,6 +28,7 @@ export default class WebpComponent {
   validateForm!: FormGroup;
   websiteList: INavProps[] = websiteList
   gitRepoUrl = config.gitRepoUrl
+  LOGO_CDN = LOGO_CDN
   isLogin = !!getToken()
   showCreateModal = false
   showCreateWebModal = false
@@ -108,14 +109,15 @@ export default class WebpComponent {
         message: 'update logo',
         content: url,
         isEncode: false,
-        path: LOGO_PATH
+        path: LOGO_PATH,
+        branch: 'image'
       }).then(() => {
-        that.message.success('更换成功，需要等待5分钟同步时间')
+        that.message.success('更换成功, 由于CDN缓存问题预计至少需要10分钟才能看到最新')
       }).catch(res => {
         logoEL.src = tempSrc
         that.notification.error(
           `错误: ${res?.response?.status ?? 401}`,
-          '更换LOGO失败，请重试！'
+          `${res?.response?.data?.message ?? '更换LOGO失败，请重试！'}`
         )
       }).finally(() => {
         that.uploading = false

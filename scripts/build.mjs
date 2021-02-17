@@ -29,6 +29,11 @@ const {
   cnzzStatisticsUrl
 } = config.default
 
+const s = gitRepoUrl.split('/')
+
+const authorName = s[s.length - 2]
+const repoName = s[s.length - 1]
+
 const htmlTemplate = `
   <title>${title}</title>
   <meta name="description" content="${description}">
@@ -83,14 +88,14 @@ async function buildSeo() {
 }
 
 async function build() {
-  fs.copyFileSync(
-    path.join('.', 'logo.png'),
-    path.join('.', 'src', 'assets', 'logo.png')
-  )
-
   const htmlPath = path.join('.', 'src', 'index.html')
   const readHtml = fs.readFileSync(htmlPath).toString()
   let t = readHtml.replace('<!-- nav.config -->', htmlTemplate)
+  t = readHtml.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
+  t = readHtml.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
+  t = readHtml.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
+  t = readHtml.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
+  t = readHtml.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
 
   if (baiduStatisticsUrl) {
     t = t.replace('<!-- nav.script -->', scriptTemplate)

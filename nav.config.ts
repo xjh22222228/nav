@@ -26,44 +26,43 @@ const c: IConfig = {
   theme: 'Light',
 
   // 搜索引擎列表, 为空时不显示搜索引擎
-  // 自定义引擎 icon 请使用网络图标
   searchEngineList: [
     {
       name: '站内',
-      icon: 'assets/logo.png',
+      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/logo.png',
       placeholder: '站内搜索'
     },
     {
       name: '百度',
       url: 'https://www.baidu.com/s?wd=',
-      icon: 'assets/engine/baidu.svg',
+      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/baidu.svg',
       placeholder: '百度一下'
     },
     {
       name: 'Google',
       url: 'https://www.google.com/search?q=',
-      icon: 'assets/engine/google.svg',
+      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/google.svg',
     },
     {
       name: '必应',
       url: 'https://cn.bing.com/search?q=',
-      icon: 'assets/engine/bing.svg',
+      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/bing.svg',
     },
     {
       name: 'GitHub',
       url: 'https://github.com/search?q=',
-      icon: 'assets/engine/github.svg',
+      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/github.svg',
       placeholder: 'Search GitHub'
     },
     {
       name: '知乎',
       url: 'https://www.zhihu.com/search?type=content&q=',
-      icon: 'assets/engine/zhihu.svg',
+      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/zhihu.svg',
     },
     {
       name: '豆瓣',
       url: 'https://search.douban.com/book/subject_search?search_text=',
-      icon: 'assets/engine/douban.svg',
+      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/douban.svg',
       placeholder: '书名、作者、ISBN'
     }
   ],
@@ -118,9 +117,8 @@ const c: IConfig = {
   // Sim 主题配置
   simThemeConfig: {
     // 海报图
-    // 请不要放在项目里头, 填写Url
     posterImageUrls: [
-      'assets/img/wallpaper.jpg'
+      'https://raw.sevencdn.com/xjh22222228/nav/image/sim-wallpaper.jpg'
     ],
     description: '这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活'
   }

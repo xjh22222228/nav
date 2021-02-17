@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { queryString } from '../../../utils'
 import { INavProps } from '../../../types'
 import { websiteList } from '../../../store'
+import { LOGO_CDN } from '../../../constants'
 
 @Component({
   selector: 'app-home',
@@ -12,12 +13,13 @@ import { websiteList } from '../../../store'
   styleUrls: ['./app.component.scss']
 })
 export default class WebpComponent {
-
-  constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
   websiteList: INavProps[] = websiteList
   id: number = 0
   page: number = 0
   open: boolean = false
+  LOGO_CDN = LOGO_CDN
+
+  constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit () {
     this.activatedRoute.queryParams.subscribe(() => {
