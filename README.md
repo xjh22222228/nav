@@ -95,7 +95,7 @@ server {
 
 
 ## 书签导入
-支持从 Chrome 书签导入，必须满足三级分类，否则会导入失败：
+支持从 Chrome 书签导入（WebKit内核应该都是支持的~），会自动检测满足三级分类的导航，其他一律跳过：
 
 ![](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/import.png)
 

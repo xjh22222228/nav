@@ -26,9 +26,7 @@ export class LogoComponent {
     } else {
       this.url = this.src
     }
-  }
 
-  ngAfterViewInit() {
     if (!this.check) {
       this.hasError = false
       return
