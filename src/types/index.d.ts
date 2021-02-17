@@ -56,6 +56,7 @@ export interface ISearchEngineProps {
   url?: string
   icon: string | null
   placeholder?: string
+  blocked: boolean
 }
 
 export interface IConfig {
@@ -66,7 +67,6 @@ export interface IConfig {
   description: string
   keywords: string
   theme: ThemeType
-  searchEngineList: ISearchEngineProps[]
   footerContent?: string|null
   baiduStatisticsUrl?: string
   cnzzStatisticsUrl?: string

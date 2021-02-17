@@ -1,0 +1,47 @@
+[
+  {
+    "name": "站内",
+    "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/logo.png",
+    "placeholder": "站内搜索",
+    "blocked": false
+  },
+  {
+    "name": "百度",
+    "url": "https://www.baidu.com/s?wd=",
+    "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/baidu.svg",
+    "placeholder": "百度一下",
+    "blocked": false
+  },
+  {
+    "name": "Google",
+    "url": "https://www.google.com/search?q=",
+    "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/google.svg",
+    "blocked": false
+  },
+  {
+    "name": "必应",
+    "url": "https://cn.bing.com/search?q=",
+    "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/bing.svg",
+    "blocked": false
+  },
+  {
+    "name": "GitHub",
+    "url": "https://github.com/search?q=",
+    "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/github.svg",
+    "placeholder": "Search GitHub",
+    "blocked": false
+  },
+  {
+    "name": "知乎",
+    "url": "https://www.zhihu.com/search?type=content&q=",
+    "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/zhihu.svg",
+    "blocked": false
+  },
+  {
+    "name": "豆瓣",
+    "url": "https://search.douban.com/book/subject_search?search_text=",
+    "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/douban.svg",
+    "placeholder": "书名、作者、ISBN",
+    "blocked": false
+  }
+]

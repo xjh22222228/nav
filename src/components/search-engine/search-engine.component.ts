@@ -1,10 +1,10 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
 import hotkeys from 'hotkeys-js'
-import config from '../../../nav.config'
 import { Component } from '@angular/core'
 import { getDefaultSearchEngine, setDefaultSearchEngine, queryString } from '../../utils'
 import { Router } from '@angular/router'
+import * as searchEngineList from '../../../data/search.json'
 
 @Component({
   selector: 'app-search-engine',
@@ -12,7 +12,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./search-engine.component.scss']
 })
 export class SearchEngineComponent {
-  searchEngineList = config.searchEngineList
+  searchEngineList = (searchEngineList as any).default
   currentEngine = getDefaultSearchEngine()
   showEngine = false
   keyword = queryString().q
@@ -54,7 +54,7 @@ export class SearchEngineComponent {
   }
 
   clickEngineItem(index) {
-    this.currentEngine = config.searchEngineList[index]
+    this.currentEngine = this.searchEngineList[index]
     this.toggleEngine()
     this.inputFocus()
     setDefaultSearchEngine(this.currentEngine)

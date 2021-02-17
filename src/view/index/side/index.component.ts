@@ -4,7 +4,7 @@
 import config from '../../../../nav.config'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { INavProps, INavThreeProp } from '../../../types'
+import { INavProps, INavThreeProp, ISearchEngineProps } from '../../../types'
 import {
   fuzzySearch,
   queryString,
@@ -13,6 +13,9 @@ import {
 } from '../../../utils'
 import { websiteList } from '../../../store'
 import { LOGO_CDN } from '../../../constants'
+import * as s from '../../../../data/search.json'
+
+const searchEngineList: ISearchEngineProps[] = (s as any).default
 
 @Component({
   selector: 'app-home',
@@ -28,7 +31,7 @@ export default class HomeComponent {
   title: string = config.title.trim().split(/\s/)[0]
   openIndex = queryString().page
   contentEl: HTMLElement
-  searchEngineList = config.searchEngineList
+  searchEngineList = searchEngineList
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 

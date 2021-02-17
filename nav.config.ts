@@ -25,48 +25,6 @@ const c: IConfig = {
   // 默认主题: Light | Sim | Side | App
   theme: 'Light',
 
-  // 搜索引擎列表, 为空时不显示搜索引擎
-  searchEngineList: [
-    {
-      name: '站内',
-      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/logo.png',
-      placeholder: '站内搜索'
-    },
-    {
-      name: '百度',
-      url: 'https://www.baidu.com/s?wd=',
-      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/baidu.svg',
-      placeholder: '百度一下'
-    },
-    {
-      name: 'Google',
-      url: 'https://www.google.com/search?q=',
-      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/google.svg',
-    },
-    {
-      name: '必应',
-      url: 'https://cn.bing.com/search?q=',
-      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/bing.svg',
-    },
-    {
-      name: 'GitHub',
-      url: 'https://github.com/search?q=',
-      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/github.svg',
-      placeholder: 'Search GitHub'
-    },
-    {
-      name: '知乎',
-      url: 'https://www.zhihu.com/search?type=content&q=',
-      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/zhihu.svg',
-    },
-    {
-      name: '豆瓣',
-      url: 'https://search.douban.com/book/subject_search?search_text=',
-      icon: 'https://raw.sevencdn.com/xjh22222228/nav/image/douban.svg',
-      placeholder: '书名、作者、ISBN'
-    }
-  ],
-
   // 网站底部内容, 版权信息、备案号, 可以是 HTML
   footerContent: `
     <div style="font-weight: bold;">共收录\${total}个网站</div>

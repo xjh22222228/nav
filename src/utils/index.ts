@@ -6,12 +6,14 @@ import config from '../../nav.config'
 import Clipboard from 'clipboard'
 import { INavFourProp, INavProps, ISearchEngineProps } from '../types'
 import * as db from '../../data/db.json'
+import * as s from '../../data/search.json'
 
 export const websiteList = getWebsiteList()
 
 let total = 0
-const { lightThemeConfig, searchEngineList } = config
+const { lightThemeConfig } = config
 const { backgroundLinear } = lightThemeConfig
+const searchEngineList: ISearchEngineProps[] = (s as any).default
 
 export function randomInt(max: number) {
   return Math.floor(Math.random() * max)
