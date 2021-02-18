@@ -121,7 +121,12 @@ export function randomBgImg() {
   randomTimer = setInterval(setBg, 10000)
 }
 
-export function queryString() {
+export function queryString(): {
+  q: string
+  id: number,
+  page: number
+  [key: string]: any
+} {
   const { href } = window.location
   const search = href.slice(href.indexOf('?') + 1)
   const parseQs = qs.parse(search)
@@ -160,11 +165,11 @@ export function queryString() {
 }
 
 export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
-  const now = new Date()
+  const createdAt = new Date().toISOString()
 
   for (let i = 0; i < websiteList.length; i++) {
     const item = websiteList[i]
-    item.createdAt ||= now.toISOString()
+    item.createdAt ||= createdAt
 
     if (Array.isArray(item.nav)) {
       adapterWebsiteList(item.nav, item)
@@ -177,6 +182,7 @@ export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
 
       item.urls ||= {}
       item.rate ??= 5
+      item.top ??= false
     }
   }
 
@@ -364,26 +370,23 @@ export function deleteByWeb(data: INavFourProp) {
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
-      if (Array.isArray(item.nav)) {
-        f(item.nav)
+      if (item.name) {
+        if (
+          item.name === data.name &&
+          item.desc === data.desc &&
+          item.top === data.top &&
+          item.createdAt === data.createdAt
+        ) {
+          arr.splice(i, 1)
+          const { q } = queryString()
+          q && window.location.reload()
+          break
+        }
         continue
       }
 
-      if (item.name) {
-        const keys = Object.keys(item)
-        let eq = false
-        for (let key of keys) {
-          eq = item[key] === data[key]
-        }
-
-        if (eq) {
-          arr.splice(i, 1)
-
-          const { q } = queryString()
-          if (q) {
-            window.location.reload()
-          }
-        }
+      if (Array.isArray(item.nav)) {
+        f(item.nav)
       }
     }
   }
