@@ -19,6 +19,7 @@ export interface INavFourProp {
   icon?: string | null
   createdAt?: string
   rate?: number
+  top?: boolean
   name: string
   desc: string
   url: string
