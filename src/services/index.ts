@@ -7,6 +7,7 @@ import { getToken } from '../utils/user'
 
 const { gitRepoUrl } = config
 const s = gitRepoUrl.split('/')
+const DEFAULT_BRANCH = config.branch
 
 export const authorName = s[s.length - 2]
 export const repoName = s[s.length - 1]
@@ -22,7 +23,7 @@ export function verifyToken(token: string) {
 }
 
 // 获取文件信息
-export function getFileContent(path: string, authToken?: string, branch?: string) {
+export function getFileContent(path: string, authToken?: string, branch: string = DEFAULT_BRANCH) {
   const _token = `${authToken ? authToken : token}`.trim()
   return http.get(`/repos/${authorName}/${repoName}/contents/${path}`, {
     headers: {
@@ -43,7 +44,7 @@ type Iupdate = {
   isEncode?: boolean
 }
 export async function updateFileContent(
-  { message, content, path, branch, isEncode = true }: Iupdate,
+  { message, content, path, branch = DEFAULT_BRANCH, isEncode = true }: Iupdate,
   authToken?: string
 ) {
   const _token = `${authToken ? authToken : token}`.trim()
@@ -62,7 +63,7 @@ export async function updateFileContent(
 }
 
 export async function createFile(
-  { message, content, path, branch, isEncode = true }: Iupdate,
+  { message, content, path, branch = DEFAULT_BRANCH, isEncode = true }: Iupdate,
   authToken?: string
 ) {
   const _token = `${authToken ? authToken : token}`.trim()
