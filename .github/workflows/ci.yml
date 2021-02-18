@@ -7,6 +7,7 @@ on:
       - v5
       - v3
       - dev
+      - own
 jobs:
   build:
     runs-on: ubuntu-latest
