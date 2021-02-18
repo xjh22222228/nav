@@ -2,7 +2,7 @@
   *ngIf="url && !hasError; else noSrc"
   [src]="url"
   class="icon dark-border-color"
-  [ngStyle]="{ width: (size || 35) + 'px', height: (size || 35) + 'px' }"
+  [ngStyle]="{ width: size + 'px', height: size + 'px' }"
 >
 
 <ng-template #noSrc>

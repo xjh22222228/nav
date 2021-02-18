@@ -83,6 +83,8 @@ export function parseBookmark(htmlStr: string) {
                       url,
                       desc: '',
                       urls: {},
+                      rate: 5,
+                      top: false,
                       icon
                     })
                   }
