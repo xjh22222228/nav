@@ -32,10 +32,18 @@
         </div>
 
         <div class="box" [style.marginTop]="searchEngineList.length > 0 ? '80px' : '0'">
+          <app-web-list></app-web-list>
+
           <div *ngIf="currentList.length > 0; else noData">
             <div *ngFor="let item of currentList; let i=index">
               <div class="nav-wrapper">
-                <app-toolbar-title [dataSource]="item" (onCollapse)="onCollapse(item, i)" [index]="i"></app-toolbar-title>
+                <app-toolbar-title
+                  [dataSource]="item"
+                  (onCollapse)="onCollapse(item, i)"
+                  [index]="i"
+                  arrowType="2"
+                >
+                </app-toolbar-title>
       
                 <div nz-row [nzGutter]="[16, 16]" [style.display]="item.collapsed ? 'none' : ''">
                   <div

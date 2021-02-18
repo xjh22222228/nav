@@ -41,6 +41,7 @@ export class CreateWebComponent implements OnInit {
     this.validateForm = this.fb.group({
       title: ['', [Validators.required]],
       url: ['', [Validators.required]],
+      top: [false],
       rate: [0],
       url0: [''],
       url1: [''],
@@ -64,6 +65,7 @@ export class CreateWebComponent implements OnInit {
         this.validateForm.get('title')!.setValue(detail.name)
         this.validateForm.get('icon')!.setValue(detail.icon || '')
         this.validateForm.get('url')!.setValue(detail.url || '')
+        this.validateForm.get('top')!.setValue(detail.top ?? false)
         this.validateForm.get('rate')!.setValue(detail.rate)
         this.validateForm.get('desc')!.setValue(detail.desc || '')
   
@@ -153,6 +155,7 @@ export class CreateWebComponent implements OnInit {
       title,
       icon,
       url,
+      top,
       rate,
       desc,
       url0,
@@ -182,6 +185,7 @@ export class CreateWebComponent implements OnInit {
       createdAt: (this.detail as any)?.createdAt ?? createdAt,
       rate: rate ?? 0,
       desc: desc || '',
+      top: top ?? false,
       icon,
       url,
       urls

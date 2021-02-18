@@ -17,6 +17,7 @@ import { websiteList } from '../../store'
 export class ToolbarTitleWebComponent implements OnInit {
   @Input() index: number
   @Input() dataSource: INavThreeProp
+  @Input() arrowType: '1'|'2' = '1'
   @Output() onCollapse = new EventEmitter()
 
   isLogin = !!getToken()

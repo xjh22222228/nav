@@ -68,6 +68,7 @@ export class CardComponent implements OnInit {
     this.dataSource.url = payload.url
     this.dataSource.rate = payload.rate
     this.dataSource.urls = payload.urls
+    this.dataSource.top = payload.top
     this.message.success('修改成功!')
 
     setWebsiteList(this.websiteList)

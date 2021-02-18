@@ -30,6 +30,7 @@ import { NzTableModule } from 'ng-zorro-antd/table'
 import { NzTabsModule } from 'ng-zorro-antd/tabs'
 import { NzTagModule } from 'ng-zorro-antd/tag'
 import { NzRateModule } from 'ng-zorro-antd/rate'
+import { NzSwitchModule } from 'ng-zorro-antd/switch'
 import { DragDropModule } from '@angular/cdk/drag-drop'
 
 // components
@@ -49,6 +50,7 @@ import { SearchEngineComponent } from '../components/search-engine/search-engine
 import { LoginComponent } from '../components/login/login.component';
 import { CreateWebComponent } from '../components/create-web/index.component';
 import { ToolbarTitleWebComponent } from '../components/toolbar-title/index.component';
+import { WebListComponent } from '../components/web-list/index.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { zh_CN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -106,6 +108,7 @@ const appRoutes: Routes = [
     LoginComponent,
     CreateWebComponent,
     ToolbarTitleWebComponent,
+    WebListComponent,
     LogoComponent,
     CardComponent
   ],
@@ -133,6 +136,7 @@ const appRoutes: Routes = [
     NzTabsModule,
     NzTagModule,
     NzRateModule,
+    NzSwitchModule,
     DragDropModule,
     BrowserModule,
     FormsModule,

@@ -1,0 +1,33 @@
+.container {
+  margin-top: 50px;
+  margin-bottom: 15px;
+  display: flex;
+  padding: 0 15px;
+
+  .wrapper {
+    display: flex;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    cursor: pointer;
+    align-items: center;
+    flex-direction: column;
+    transition: transform .1s ease-in;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  .logo {
+    border-radius: 50%;
+    margin-bottom: 3px;
+  }
+
+  .name {
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
