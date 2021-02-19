@@ -17,7 +17,6 @@ import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzEmptyModule } from 'ng-zorro-antd/empty'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { ReactiveFormsModule } from '@angular/forms'
-import { NzAvatarModule } from 'ng-zorro-antd/avatar'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
@@ -123,7 +122,6 @@ const appRoutes: Routes = [
     NzEmptyModule,
     NzButtonModule,
     ReactiveFormsModule,
-    NzAvatarModule,
     NzPopconfirmModule,
     NzDropDownModule,
     NzToolTipModule,

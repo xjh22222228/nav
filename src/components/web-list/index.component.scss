@@ -1,13 +1,13 @@
 .container {
-  margin-top: 50px;
+  margin-top: 15px;
   margin-bottom: 15px;
   display: flex;
-  padding: 0 15px;
+  padding: 0 30px;
 
   .wrapper {
     display: flex;
     margin-right: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     text-align: center;
     cursor: pointer;
     align-items: center;
@@ -15,7 +15,7 @@
     transition: transform .1s ease-in;
 
     &:hover {
-      transform: translateY(-5px);
+      transform: translateY(-2px);
     }
   }
 
@@ -25,6 +25,7 @@
   }
 
   .name {
+    width: 60px;
     color: #666;
     white-space: nowrap;
     overflow: hidden;

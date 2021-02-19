@@ -6,13 +6,10 @@
 >
 
 <ng-template #noSrc>
-  <nz-avatar
-    [nzSize]="size || 35"
-    [nzGap]="gap"
-    [ngStyle]="{ 'background-color': colour || color }"
-    [nzText]="name ? name[0] : ''"
-    nzSize="large"
-    style="vertical-align: middle;"
+  <div
+    class="circle"
+    [ngStyle]="{ 'background-color': colour || color, 'width': size + 'px', 'height': size + 'px' }"
   >
-  </nz-avatar>
+    {{ name ? name[0] : '' }}
+  </div>
 </ng-template>

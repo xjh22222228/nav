@@ -1,10 +1,20 @@
 <div class="container" *ngIf="dataList.length > 0">
   <a [href]="item.url" target="_blank" *ngFor="let item of dataList">
-    <div class="wrapper">
+    <div
+      class="wrapper"
+      [nzTooltipTitle]="item.name"
+      nzTooltipPlacement="bottom"
+      nz-button
+      nz-tooltip
+    >
       <div class="logo">
         <app-logo [src]="item.icon" [name]="item.name" [size]="35"></app-logo>
       </div>
-      <div class="name dark-text">{{ item.name }}</div>
+      <div
+        class="name dark-text"
+      >
+        {{ item.name }}
+      </div>
     </div>
   </a>
 </div>

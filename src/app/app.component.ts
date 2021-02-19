@@ -1,4 +1,5 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
@@ -18,6 +19,7 @@ export class AppComponent {
   }
 
   goRoute() {
+    // is App
     if ('ontouchstart' in window) {
       const url = (this.router.url.split('?')[0] || '').toLowerCase()
       const { page, id, q } = queryString()

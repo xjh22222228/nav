@@ -27,13 +27,12 @@
     </nz-sider>
     <nz-layout class="inner-layout">
       <nz-content class="content" id="content">
-        <div class="search dark-bg-deep dark-border-color">
+        <div class="search-header dark-bg-deep dark-border-color">
           <app-search-engine></app-search-engine>
+          <app-web-list></app-web-list>
         </div>
 
-        <div class="box" [style.marginTop]="searchEngineList.length > 0 ? '80px' : '0'">
-          <app-web-list></app-web-list>
-
+        <div class="box" [style.marginTop]="marginTop + 'px'">
           <div *ngIf="currentList.length > 0; else noData">
             <div *ngFor="let item of currentList; let i=index">
               <div class="nav-wrapper">

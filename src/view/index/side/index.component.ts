@@ -32,6 +32,7 @@ export default class HomeComponent {
   openIndex = queryString().page
   contentEl: HTMLElement
   searchEngineList = searchEngineList
+  marginTop: number = 50
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -64,9 +65,10 @@ export default class HomeComponent {
   }
 
   ngAfterViewInit() {
-    if (this.searchEngineList.length > 0) {
-      window.addEventListener('scroll', this.scroll)
-    }
+    window.addEventListener('scroll', this.scroll)
+
+    const headerEl = document.querySelector('.search-header')
+    this.marginTop = headerEl.clientHeight
   }
 
   ngOnDestroy() {
@@ -78,7 +80,7 @@ export default class HomeComponent {
     if (!this.contentEl) {
       this.contentEl = document.getElementById('content')
     }
-    if (y > 70) {
+    if (y > 30) {
       this.contentEl.classList.add('fixed')
     } else {
       this.contentEl.classList.remove('fixed')

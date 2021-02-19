@@ -11,7 +11,7 @@ $sideWidth: 200px;
       display: flex;
       flex-direction: column;
 
-      .search {
+      .search-header {
         z-index: 9;
         position: fixed;
         top: 30px;
@@ -21,7 +21,7 @@ $sideWidth: 200px;
       }
 
       &.fixed {
-        .search {
+        .search-header {
           top: 0;
           background-color: #fff;
           border-bottom: 1px solid #ccc;
