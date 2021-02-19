@@ -2,7 +2,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
-import { getLogoUrl } from '../../utils'
+import { getLogoUrl, getTextContent } from '../../utils'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ITagProp, INavFourProp } from '../../types'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -62,14 +62,8 @@ export class CreateWebComponent implements OnInit {
   
       const detail = this.detail as INavFourProp
       if (this.detail && this.visible) {
-        const divEl = document.createElement('div')
-        divEl.innerHTML = detail.name
-        const name = divEl.innerText
-        divEl.innerHTML = detail.desc
-        const desc = divEl.innerText
-
-        this.validateForm.get('title')!.setValue(name)
-        this.validateForm.get('desc')!.setValue(desc)
+        this.validateForm.get('title')!.setValue(getTextContent(detail.name))
+        this.validateForm.get('desc')!.setValue(getTextContent(detail.desc))
         this.validateForm.get('icon')!.setValue(detail.icon || '')
         this.validateForm.get('url')!.setValue(detail.url || '')
         this.validateForm.get('top')!.setValue(detail.top ?? false)

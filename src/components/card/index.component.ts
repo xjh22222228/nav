@@ -4,7 +4,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { getToken } from '../../utils/user'
-import { setWebsiteList, copyText, deleteByWeb } from '../../utils'
+import { setWebsiteList, copyText, deleteByWeb, getTextContent, updateByWeb } from '../../utils'
 import { websiteList } from '../../store'
 import { INavProps, ITagProp, INavFourProp } from '../../types'
 import * as __tag from '../../../data/tag.json'
@@ -61,21 +61,26 @@ export class CardComponent implements OnInit {
   }
 
   handleOk(payload: INavFourProp) {
-    this.dataSource.name = payload.name
-    this.dataSource.createdAt = payload.createdAt
-    this.dataSource.desc = payload.desc
-    this.dataSource.icon = payload.icon
-    this.dataSource.url = payload.url
-    this.dataSource.rate = payload.rate
-    this.dataSource.urls = payload.urls
-    this.dataSource.top = payload.top
-    this.message.success('修改成功!')
+    updateByWeb({
+      ...this.dataSource,
+      name: getTextContent(this.dataSource.name),
+      desc: getTextContent(this.dataSource.desc)
+    }, payload)
 
-    setWebsiteList(this.websiteList)
+    const keys = Object.keys(payload)
+    for (let k of keys) {
+      this.dataSource[k] = payload[k]
+    }
+
+    this.message.success('修改成功!')
     this.toggleModal()
   }
 
   confirmDel() {
-    deleteByWeb(this.dataSource)
+    deleteByWeb({
+      ...this.dataSource,
+      name: getTextContent(this.dataSource.name),
+      desc: getTextContent(this.dataSource.desc)
+    })
   }
 }

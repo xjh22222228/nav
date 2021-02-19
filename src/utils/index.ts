@@ -395,3 +395,41 @@ export function deleteByWeb(data: INavFourProp) {
   f(websiteList)
   setWebsiteList(websiteList)
 }
+
+export function updateByWeb(prevData: INavFourProp, nextData: INavFourProp) {
+  const keys = Object.keys(nextData)
+
+  function f(arr: any[]) {
+    for (let i = 0; i < arr.length; i++) {
+      const item = arr[i]
+      if (item.name) {
+        if (
+          item.name === prevData.name &&
+          item.desc === prevData.desc &&
+          item.top === prevData.top &&
+          item.createdAt === prevData.createdAt
+        ) {
+          for (let k of keys) {
+            item[k] = nextData[k]
+          }
+          break
+        }
+        continue
+      }
+
+      if (Array.isArray(item.nav)) {
+        f(item.nav)
+      }
+    }
+  }
+
+  f(websiteList)
+  setWebsiteList(websiteList)
+}
+
+export function getTextContent(value: string): string {
+  if (!value) return ''
+  const div = document.createElement('div')
+  div.innerHTML = value
+  return div.textContent
+}
