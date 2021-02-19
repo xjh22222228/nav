@@ -5,6 +5,7 @@ import { Component } from '@angular/core'
 import { getDefaultSearchEngine, setDefaultSearchEngine, queryString } from '../../utils'
 import { Router } from '@angular/router'
 import * as searchEngineList from '../../../data/search.json'
+import { ISearchEngineProps } from '../../types'
 
 @Component({
   selector: 'app-search-engine',
@@ -12,7 +13,7 @@ import * as searchEngineList from '../../../data/search.json'
   styleUrls: ['./search-engine.component.scss']
 })
 export class SearchEngineComponent {
-  searchEngineList = (searchEngineList as any).default
+  searchEngineList: ISearchEngineProps[] = (searchEngineList as any).default
   currentEngine = getDefaultSearchEngine()
   showEngine = false
   keyword = queryString().q

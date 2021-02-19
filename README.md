@@ -38,6 +38,22 @@
 
 
 
+## 在线体验
+提供了一个测试在线体验，与最新版本保持同步，请文明体验：
+
+Token: `60fb4b7d7105477138d99ee97eef721edebdbd5e`
+
+访问以下任意一个网址：
+- [https://vacuum2021.github.io/nav/](https://vacuum2021.github.io/nav/)
+- [https://nav-git-main.vacuum2021.vercel.app/](https://nav-git-main.vacuum2021.vercel.app/)
+- [https://nav.vacuum2021.vercel.app/](https://nav.vacuum2021.vercel.app/)
+- [https://nav-beta.vercel.app/](https://nav-beta.vercel.app/)
+
+
+
+
+
+
 
 ## 特性
 `发现导航` 的理念就是做一款无需依赖后端服务既简单又方便，没有繁杂的配置和数据库等配置概念, 做到开箱即用。

@@ -1,7 +1,9 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
 
 @import "./dark.scss";
 @import "../node_modules/ng-zorro-antd/ng-zorro-antd.css";
+@import "./assets/ng-zorro-antd.dark.scss";
 
 * {
   margin: 0;
@@ -101,6 +103,13 @@ em {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.clamp3 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 /* 搜索高亮关键字 */

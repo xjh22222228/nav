@@ -12,7 +12,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { setWebsiteList } from '../../utils'
 import { updateFileContent } from '../../services'
-import { DB_PATH, LOGO_PATH, LOGO_CDN } from '../../constants'
+import { DB_PATH, LOGO_PATH, LOGO_CDN, STORAGE_KEY_MAP } from '../../constants'
 import { parseBookmark } from '../../utils/bookmark'
 import * as __tag from '../../../data/tag.json'
 import config from '../../../nav.config'
@@ -132,7 +132,7 @@ export default class WebpComponent {
       nzContent: '所有数据将还原初始状态，不可撤销！',
       nzOnOk: () => {
         this.message.success('数据已重置回初始状态')
-        window.localStorage.removeItem('website')
+        window.localStorage.removeItem(STORAGE_KEY_MAP.website)
         setTimeout(() => {
           window.location.reload()
         }, 1500)

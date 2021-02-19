@@ -10,13 +10,6 @@ module.exports = {
     jest: true,
     jasmine: true,
   },
-  globals: {
-    App: true,
-    wx: true,
-    Component: true,
-    getApp: true,
-    Page: true
-  },
   rules: {
     'semi': ['error', 'never'],
     'no-var': 2,

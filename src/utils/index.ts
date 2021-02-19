@@ -7,6 +7,7 @@ import Clipboard from 'clipboard'
 import { INavFourProp, INavProps, ISearchEngineProps } from '../types'
 import * as db from '../../data/db.json'
 import * as s from '../../data/search.json'
+import { STORAGE_KEY_MAP } from '../constants'
 
 export const websiteList = getWebsiteList()
 
@@ -135,7 +136,7 @@ export function queryString(): {
 
   if (parseQs.id === undefined && parseQs.page === undefined) {
     try {
-      const location = window.localStorage.getItem('location')
+      const location = window.localStorage.getItem(STORAGE_KEY_MAP.location)
       if (location) {
         const localLocation = JSON.parse(location)
         page = localLocation.page || 0
@@ -193,11 +194,11 @@ export function getWebsiteList() {
   let webSiteList = adapterWebsiteList((db as any).default)
   const scriptElAll = document.querySelectorAll('script')
   const scriptUrl = scriptElAll[scriptElAll.length - 1].src
-  const storageScriptUrl = window.localStorage.getItem('s_url')
+  const storageScriptUrl = window.localStorage.getItem(STORAGE_KEY_MAP.s_url)
 
   // 检测到网站更新，清除缓存
   if (storageScriptUrl !== scriptUrl) {
-    const whiteList = ['token', 'IS_DARK']
+    const whiteList = [STORAGE_KEY_MAP.token, STORAGE_KEY_MAP.isDark]
     const len = window.localStorage.length
     for (let i = 0; i < len; i++) {
       const key = window.localStorage.key(i)
@@ -206,12 +207,12 @@ export function getWebsiteList() {
       }
       window.localStorage.removeItem(key)
     }
-    window.localStorage.setItem('s_url', scriptUrl)
+    window.localStorage.setItem(STORAGE_KEY_MAP.s_url, scriptUrl)
     return webSiteList
   }
 
   try {
-    const w = window.localStorage.getItem('website')
+    const w = window.localStorage.getItem(STORAGE_KEY_MAP.website)
     const json = JSON.parse(w)
     if (Array.isArray(json)) {
       webSiteList = json
@@ -224,7 +225,7 @@ export function getWebsiteList() {
 export function setWebsiteList(v?: INavProps[]) {
   v = v || websiteList
 
-  window.localStorage.setItem('website', JSON.stringify(v))
+  window.localStorage.setItem(STORAGE_KEY_MAP.website, JSON.stringify(v))
 }
 
 export function toggleCollapseAll(wsList?: INavProps[]): boolean {
@@ -248,7 +249,7 @@ export function toggleCollapseAll(wsList?: INavProps[]): boolean {
 export function setLocation() {
   const { page, id } = queryString()
 
-  window.localStorage.setItem('location', JSON.stringify({
+  window.localStorage.setItem(STORAGE_KEY_MAP.location, JSON.stringify({
     page,
     id
   }))
@@ -257,7 +258,7 @@ export function setLocation() {
 export function getDefaultSearchEngine(): ISearchEngineProps {
   let DEFAULT = (searchEngineList[0] || {}) as ISearchEngineProps
   try {
-    const engine = window.localStorage.getItem('engine');
+    const engine = window.localStorage.getItem(STORAGE_KEY_MAP.engine);
     if (engine) {
       DEFAULT = JSON.parse(engine)
     }
@@ -266,11 +267,11 @@ export function getDefaultSearchEngine(): ISearchEngineProps {
 }
 
 export function setDefaultSearchEngine(engine: ISearchEngineProps) {
-  window.localStorage.setItem('engine', JSON.stringify(engine))
+  window.localStorage.setItem(STORAGE_KEY_MAP.engine, JSON.stringify(engine))
 }
 
 export function isDark(): boolean {
-  const storageVal = window.localStorage.getItem('IS_DARK')
+  const storageVal = window.localStorage.getItem(STORAGE_KEY_MAP.isDark)
   const darkMode = window?.matchMedia?.('(prefers-color-scheme: dark)')?.matches
 
   if (!storageVal && darkMode) {

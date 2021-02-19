@@ -62,12 +62,18 @@ export class CreateWebComponent implements OnInit {
   
       const detail = this.detail as INavFourProp
       if (this.detail && this.visible) {
-        this.validateForm.get('title')!.setValue(detail.name)
+        const divEl = document.createElement('div')
+        divEl.innerHTML = detail.name
+        const name = divEl.innerText
+        divEl.innerHTML = detail.desc
+        const desc = divEl.innerText
+
+        this.validateForm.get('title')!.setValue(name)
+        this.validateForm.get('desc')!.setValue(desc)
         this.validateForm.get('icon')!.setValue(detail.icon || '')
         this.validateForm.get('url')!.setValue(detail.url || '')
         this.validateForm.get('top')!.setValue(detail.top ?? false)
-        this.validateForm.get('rate')!.setValue(detail.rate)
-        this.validateForm.get('desc')!.setValue(detail.desc || '')
+        this.validateForm.get('rate')!.setValue(detail.rate ?? 5)
   
         if (typeof detail.urls === 'object') {
           let i = 0

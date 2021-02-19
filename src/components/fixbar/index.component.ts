@@ -10,7 +10,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
 import { updateFileContent } from '../../services'
 import { websiteList } from '../../store'
-import { DB_PATH, KEY_MAP, VERSION } from '../../constants'
+import { DB_PATH, KEY_MAP, VERSION, STORAGE_KEY_MAP } from '../../constants'
 import { Router, ActivatedRoute } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
 
@@ -58,8 +58,7 @@ export class FixbarComponent {
 
   ngOnInit() {
     if (isDarkFn()) {
-      document.body.classList.add('dark-container')
-      this.toggleZorroDark(true)
+      document.documentElement.classList.add('dark-container')
     }
 
     const url = this.router.url.split('?')[0]
@@ -101,21 +100,6 @@ export class FixbarComponent {
     });
   }
 
-  toggleZorroDark(dark: boolean) {
-    if (dark) {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = 'assets/ng-zorro-antd.dark.css'
-      link.className = 'NG-ZORRO-DARK'
-      document.body.append(link)
-    } else {
-      const findLink = document.querySelectorAll('.NG-ZORRO-DARK')
-      findLink.forEach(child => {
-        child.parentNode.removeChild(child)
-      })
-    }
-  }
-
   toggleTheme(theme) {
     this.router.navigate([theme.url], {
       queryParams: queryString()
@@ -152,16 +136,14 @@ export class FixbarComponent {
 
   toggleMode() {
     this.isDark = !this.isDark
-    window.localStorage.setItem('IS_DARK', String(Number(this.isDark)))
-    document.body.classList.toggle('dark-container')
+    window.localStorage.setItem(STORAGE_KEY_MAP.isDark, String(Number(this.isDark)))
+    document.documentElement.classList.toggle('dark-container')
 
     if (this.isDark) {
       this.removeBackground()
-      this.toggleZorroDark(true)
     } else {
       const { data } = this.activatedRoute.snapshot
       data?.renderLinear && randomBgImg()
-      this.toggleZorroDark(false)
     }
   }
 
@@ -197,7 +179,7 @@ export class FixbarComponent {
         })
         .catch(res => {
           this.notification.error(
-            `错误: ${res?.response?.status ?? 401}`,
+            `错误: ${res?.response?.status ?? 1401}`,
             '同步失败, 请重试'
           )
         })
