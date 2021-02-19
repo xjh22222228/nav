@@ -2,6 +2,7 @@
 // See https://github.com/xjh22222228/nav
 
 import hotkeys from 'hotkeys-js'
+import config from '../../../nav.config'
 import { Component, Output, EventEmitter, Input } from '@angular/core'
 import { isDark as isDarkFn, randomBgImg, queryString } from '../../utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
@@ -93,6 +94,7 @@ export class FixbarComponent {
       nzOkText: '知道了',
       nzContent: `
         <p>Token: ${getToken()}</p>
+        <p>部署分支: ${config.branch}</p>
         <p>上次构建时间: ${date || '未知'}</p>
         <p>当前版本: <img src="https://img.shields.io/badge/release-v${VERSION}-red.svg?longCache=true&style=flat-square"></p>
         <p>最新版本: <img src="https://img.shields.io/github/v/release/xjh22222228/nav" /></p>
