@@ -21,12 +21,24 @@
         </nz-form-control>
       </nz-form-item>
 
-      <nz-form-item>
-        <nz-form-label [nzSpan]="4" nzRequired>是否置顶</nz-form-label>
-        <nz-form-control [nzSpan]="20">
-          <nz-switch formControlName="top"></nz-switch>
-        </nz-form-control>
-      </nz-form-item>
+      <div class="row">
+        <div class="col">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8" nzRequired>是否置顶</nz-form-label>
+            <nz-form-control [nzSpan]="16">
+              <nz-switch formControlName="top"></nz-switch>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col">
+          <!-- <nz-form-item>
+            <nz-form-label [nzSpan]="8" nzRequired>是否公开</nz-form-label>
+            <nz-form-control [nzSpan]="16">
+              <nz-switch formControlName="public"></nz-switch>
+            </nz-form-control>
+          </nz-form-item> -->
+        </div>
+      </div>
 
       <nz-form-item>
         <nz-form-label [nzSpan]="4">推荐指数</nz-form-label>

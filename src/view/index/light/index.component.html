@@ -9,7 +9,7 @@
 
     <nav class="top-nav user-select-none dark-border-color dark-bg">
       <a 
-        *ngFor="let item of websiteList; let i = index;" 
+        *ngFor="let item of websiteList; index as i;" 
         (click)="handleCilckTopNav(i)" 
         [class.active]="page === i" 
         [class.dark-text-active]="page === i" 
@@ -27,7 +27,7 @@
             [class.active]="id === i" 
             [class.dark-item-active]="id === i" 
             (click)="handleSidebarNav(i)"
-            *ngFor="let item of websiteList[page].nav; let i = index" 
+            *ngFor="let item of websiteList[page].nav; index as i" 
           >
             <div class="ripple-btn">{{ item.title }}</div>
           </li>
@@ -38,10 +38,20 @@
         <app-search-engine></app-search-engine>
  
         <div *ngIf="currentList.length > 0; else noData">
-          <div *ngFor="let item of currentList; let i=index">
-            <app-toolbar-title [dataSource]="item" (onCollapse)="onCollapse(item, i)" [index]="i"></app-toolbar-title>
+          <div *ngFor="let item of currentList; index as i">
+            <app-toolbar-title
+              [dataSource]="item"
+              (onCollapse)="onCollapse(item, i)"
+              [index]="i"
+            >
+            </app-toolbar-title>
 
-            <div style="padding: 0 10px;" nz-row [nzGutter]="[16, 16]" [style.display]="item.collapsed ? 'none' : ''">
+            <div
+              style="padding: 0 10px;"
+              nz-row
+              [nzGutter]="[16, 16]"
+              [style.display]="item.collapsed ? 'none' : ''"
+            >
               <div class="gutter-row" nz-col [nzSpan]="8" *ngFor="let el of item.nav">
                 <app-card [dataSource]="el"></app-card>
               </div>

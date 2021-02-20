@@ -4,7 +4,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { INavThreeProp, INavProps, INavFourProp } from '../../types'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import * as __tag from '../../../data/tag.json'
 import { queryString, setWebsiteList } from '../../utils'
 import { getToken } from '../../utils/user'
 import { websiteList } from '../../store'

@@ -8,8 +8,9 @@
   }
 
   .desc {
-    color: rgba(0,0,0,.45);
+    color: rgba(0, 0, 0, .45);
     word-break: break-all;
+    white-space: pre-wrap;
   }
 
   .title {

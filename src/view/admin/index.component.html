@@ -295,7 +295,9 @@
                 <a [href]="data.urls[key]" target="_blank">{{ key }}</a>
               </nz-tag>
             </td>
-            <td>{{ data.desc }}</td>
+            <td>
+              <pre class="desc">{{ data.desc }}</pre>
+            </td>
             <td>{{ data.createdAt }}</td>
             <td>
               <a (click)="toggleCreateWebModal(); websiteDetail = data; editIdx = idx">编辑</a>

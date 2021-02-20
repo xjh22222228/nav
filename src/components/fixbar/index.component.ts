@@ -3,7 +3,7 @@
 
 import hotkeys from 'hotkeys-js'
 import config from '../../../nav.config'
-import { Component, Output, EventEmitter, Input } from '@angular/core'
+import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core'
 import { isDark as isDarkFn, randomBgImg, queryString } from '../../utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -18,7 +18,8 @@ import { setAnnotate } from '../../utils/ripple'
 @Component({
   selector: 'app-fixbar',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FixbarComponent {
   @Input() collapsed: boolean
@@ -72,6 +73,14 @@ export class FixbarComponent {
 
   ngOnDestroy() {
     hotkeys.unbind()
+  }
+
+  ngDoCheck() {
+    console.log('ngDoCheck')
+  }
+
+  ngAfterViewChecked() {
+    console.log('ngAfterViewChecked')
   }
 
   initHotKeys() {

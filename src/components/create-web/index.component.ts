@@ -1,7 +1,7 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core'
 import { getLogoUrl, getTextContent } from '../../utils'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ITagProp, INavFourProp } from '../../types'
@@ -16,7 +16,8 @@ const tagKeys = Object.keys(tagMap)
 @Component({
   selector: 'app-create-web',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateWebComponent implements OnInit {
   @Input() detail: object

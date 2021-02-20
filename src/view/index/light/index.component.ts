@@ -1,6 +1,6 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
 
-import config from '../../../../nav.config'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { INavProps, INavThreeProp } from '../../../types'
@@ -27,8 +27,6 @@ export default class HomeComponent {
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
-  showInput = false
-  gitRepoUrl: string = config.gitRepoUrl
 
   ngOnInit() {
     randomBgImg()
