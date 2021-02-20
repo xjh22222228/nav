@@ -95,6 +95,7 @@ export default class HomeComponent {
         id,
       }
     })
+    window.scrollTo(0, 0)
   }
 
   onCollapse = (item, index) => {

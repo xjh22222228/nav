@@ -75,14 +75,6 @@ export class FixbarComponent {
     hotkeys.unbind()
   }
 
-  ngDoCheck() {
-    console.log('ngDoCheck')
-  }
-
-  ngAfterViewChecked() {
-    console.log('ngAfterViewChecked')
-  }
-
   initHotKeys() {
     hotkeys(KEY_MAP.view, (e) => {
       e.preventDefault()
