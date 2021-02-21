@@ -35,7 +35,7 @@ export class LogoComponent {
     }
 
     if (this.url in effUrlMap) {
-      this.hasError =  false
+      this.hasError = effUrlMap[this.url]
       return
     }
 
