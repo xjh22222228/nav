@@ -41,13 +41,13 @@
 ## 在线体验
 提供了一个测试在线体验，与最新版本保持同步，请文明体验：
 
-Token: `60fb4b7d7105477138d99ee97eef721edebdbd5e`
+Token: `9f242d1a2497d8ec8d6ba7cbc49e92b360b14af1`
 
 访问以下任意一个网址：
-- [https://vacuum2021.github.io/nav/](https://vacuum2021.github.io/nav/)
 - [https://nav-git-main.vacuum2021.vercel.app/](https://nav-git-main.vacuum2021.vercel.app/)
 - [https://nav.vacuum2021.vercel.app/](https://nav.vacuum2021.vercel.app/)
 - [https://nav-beta.vercel.app/](https://nav-beta.vercel.app/)
+- [https://vacuum2021.github.io/nav/](https://vacuum2021.github.io/nav/)
 
 
 
