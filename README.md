@@ -41,7 +41,7 @@
 ## 在线体验
 提供了一个测试在线体验，与最新版本保持同步，请文明体验：
 
-Token: `9f242d1a2497d8ec8d6ba7cbc49e92b360b14af1`
+Token: `e029bffdc84a9b4a1ef873fe6880d7e9d67d2459`
 
 访问以下任意一个网址：
 - [https://nav-git-main.vacuum2021.vercel.app/](https://nav-git-main.vacuum2021.vercel.app/)
