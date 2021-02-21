@@ -43,7 +43,7 @@ export class CreateWebComponent implements OnInit {
       title: ['', [Validators.required]],
       url: ['', [Validators.required]],
       top: [false],
-      rate: [0],
+      rate: [5],
       url0: [''],
       url1: [''],
       url2: [''],
@@ -57,7 +57,7 @@ export class CreateWebComponent implements OnInit {
 
   ngOnChanges() {
     setTimeout(() => {
-      if (this.visible) {
+      if (!this.visible) {
         this.validateForm.reset()
       }
   
