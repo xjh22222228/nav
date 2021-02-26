@@ -3,12 +3,13 @@
   [src]="url"
   class="icon dark-border-color"
   [ngStyle]="{ width: size + 'px', height: size + 'px' }"
+  (error)="onError($event)"
 >
 
 <ng-template #noSrc>
   <div
     class="circle"
-    [ngStyle]="{ 'background-color': colour || color, 'width': size + 'px', 'height': size + 'px' }"
+    [ngStyle]="{ 'background-color': colour, 'width': size + 'px', 'height': size + 'px' }"
   >
     {{ name ? name[0] : '' }}
   </div>

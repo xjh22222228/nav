@@ -1,8 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { isValidImg } from '../../utils'
 import { getCDN } from '../../services'
-
-const effUrlMap = Object.create(null)
 
 @Component({
   selector: 'app-logo',
@@ -12,12 +9,11 @@ const effUrlMap = Object.create(null)
 export class LogoComponent {
   @Input() src: string
   @Input() name: string
-  @Input() colour: string
+  @Input() colour: string = '#1890ff'
   @Input() size: number = 35
   @Input() check: boolean = true
 
-  hasError = true
-  color = '#1890ff'
+  hasError = false
   url: string
 
   constructor() { }
@@ -28,30 +24,9 @@ export class LogoComponent {
     } else {
       this.url = this.src
     }
+  }
 
-    if (!this.check) {
-      this.hasError = false
-      return
-    }
-
-    if (this.url in effUrlMap) {
-      this.hasError = effUrlMap[this.url]
-      return
-    }
-
-    // base64
-    const regex = /^data:image\/.*;base64,/
-    if (regex.test(this.url)) {
-      this.hasError = false
-      return
-    }
-
-    setTimeout(async() => {
-      const isValid = await isValidImg(this.url)
-      effUrlMap[this.url] = isValid
-      if (isValid) {
-        this.hasError = false
-      }
-    }, 1000)
+  onError() {
+    this.hasError = true;
   }
 }
