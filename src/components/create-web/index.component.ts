@@ -1,7 +1,7 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { getLogoUrl, getTextContent } from '../../utils'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ITagProp, INavFourProp } from '../../types'
@@ -17,7 +17,6 @@ const tagKeys = Object.keys(tagMap)
   selector: 'app-create-web',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateWebComponent implements OnInit {
   @Input() detail: object
@@ -56,6 +55,7 @@ export class CreateWebComponent implements OnInit {
   }
 
   ngOnChanges() {
+    // 回显表单
     setTimeout(() => {
       if (!this.visible) {
         this.validateForm.reset()
@@ -85,11 +85,18 @@ export class CreateWebComponent implements OnInit {
 
   async onUrlBlur(e) {
     const res = await getLogoUrl(e.target?.value)
-    this.iconUrl = (res || '') as string
-    this.validateForm.get('icon')!.setValue(res || '')
+    if (res) {
+      this.iconUrl = (res || '') as string
+      this.validateForm.get('icon')!.setValue(res || '')
+    }
+  }
+
+  onIconFocus() {
+    document.addEventListener('paste', this.handlePasteImage)
   }
 
   onIconBlur(e) {
+    document.removeEventListener('paste', this.handlePasteImage)
     this.iconUrl = e.target.value
   }
 
@@ -101,17 +108,28 @@ export class CreateWebComponent implements OnInit {
     this.urlArr.pop()
   }
 
-  handleUploadIcon(e) {
-    const that = this
-    const { files } = e.target
-    if (files.length <= 0) return;
-    const file = files[0]
-    const suffix = file.type.split('/').pop()
+  handlePasteImage = event => {
+    const items = event.clipboardData?.items
+    let file = null
+    let suffix = ''
 
-    if (!file.type.startsWith('image')) {
-      return this.message.error('请不要上传非法图片')
+    if (items.length) {
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.startsWith('image')) {
+          file = items[i].getAsFile()
+          suffix = file.type.split('/').pop()
+          break;
+        }
+      }
     }
 
+    if (file) {
+      this.handleUploadImage(file, suffix)
+    }
+  }
+
+  handleUploadImage(file: Blob, suffix: string) {
+    const that = this
     const fileReader = new FileReader()
     fileReader.readAsDataURL(file)
     fileReader.onload = function() {
@@ -138,6 +156,18 @@ export class CreateWebComponent implements OnInit {
         that.uploading = false
       })
     }
+  }
+
+  onChangeFile(e) {
+    const { files } = e.target
+    if (files.length <= 0) return;
+    const file = files[0]
+    const suffix = file.type.split('/').pop()
+
+    if (!file.type.startsWith('image')) {
+      return this.message.error('请不要上传非法图片')
+    }
+    this.handleUploadImage(file, suffix)
   }
 
   handleCancel() {

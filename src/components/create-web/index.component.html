@@ -34,7 +34,7 @@
           <!-- <nz-form-item>
             <nz-form-label [nzSpan]="8" nzRequired>是否公开</nz-form-label>
             <nz-form-control [nzSpan]="16">
-              <nz-switch formControlName="public"></nz-switch>
+              <nz-switch formControlName="visible"></nz-switch>
             </nz-form-control>
           </nz-form-item> -->
         </div>
@@ -51,7 +51,13 @@
         <nz-form-label [nzSpan]="4">图标地址</nz-form-label>
         <nz-form-control [nzSpan]="20">
           <nz-input-group [nzPrefix]="prefixIcon" [nzSuffix]="suffixIconSearch">
-            <input formControlName="icon" nz-input placeholder="https://example.com/favicon.png" (blur)="onIconBlur($event)" />
+            <input
+              formControlName="icon"
+              nz-input
+              placeholder="支持将截图或复制图片粘贴此处上传"
+              (blur)="onIconBlur($event)"
+              (focus)="onIconFocus($event)"
+            />
           </nz-input-group>
 
           <ng-template #prefixIcon>
@@ -65,7 +71,7 @@
                 <input
                   type="file"
                   name="file"
-                  (change)="handleUploadIcon($event)"
+                  (change)="onChangeFile($event)"
                   accept="image/*"
                   class="file-upload"
                 >

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Create new issue
+    url: https://issue-helper.vercel.app/
+    about: The issue which is not created via https://issue-helper.vercel.app/ will be closed immediately.
