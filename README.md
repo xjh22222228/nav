@@ -138,13 +138,13 @@ mac下是 `Command`，windows 下是 `Ctrl`
 git clone --depth=1 https://github.com/xjh22222228/nav.git
 
 # 安装依赖
-npm i
+yarn
 
 # 启动
-npm start
+yarn start
 
 # 打包
-npm run build
+yarn build
 ```
 
 
