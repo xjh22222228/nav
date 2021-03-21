@@ -111,32 +111,30 @@ export class CreateWebComponent implements OnInit {
   handlePasteImage = event => {
     const items = event.clipboardData?.items
     let file = null
-    let suffix = ''
 
     if (items.length) {
       for (let i = 0; i < items.length; i++) {
         if (items[i].type.startsWith('image')) {
           file = items[i].getAsFile()
-          suffix = file.type.split('/').pop()
           break;
         }
       }
     }
 
     if (file) {
-      this.handleUploadImage(file, suffix)
+      this.handleUploadImage(file)
     }
   }
 
-  handleUploadImage(file: Blob, suffix: string) {
+  handleUploadImage(file: File) {
     const that = this
     const fileReader = new FileReader()
     fileReader.readAsDataURL(file)
     fileReader.onload = function() {
       that.uploading = true
       that.iconUrl = this.result as string
-      const url = (this.result as string).split(',')[1]
-      const path = `nav-${Date.now()}.${suffix}`
+      const url = that.iconUrl.split(',')[1]
+      const path = `nav-${Date.now()}-${file.name}`
 
       createFile({
         branch: 'image',
@@ -162,12 +160,11 @@ export class CreateWebComponent implements OnInit {
     const { files } = e.target
     if (files.length <= 0) return;
     const file = files[0]
-    const suffix = file.type.split('/').pop()
 
     if (!file.type.startsWith('image')) {
       return this.message.error('请不要上传非法图片')
     }
-    this.handleUploadImage(file, suffix)
+    this.handleUploadImage(file)
   }
 
   handleCancel() {
