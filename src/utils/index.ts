@@ -320,9 +320,9 @@ export async function getLogoUrl(url: string): Promise<boolean|string> {
   }
 }
 
-export function copyText(el: any, text: string): Promise<boolean> {
-  const target = el.target
-  const ranId = 'copy-' + randomInt(99999999)
+export function copyText(el: Event, text: string): Promise<boolean> {
+  const target = el.target as Element
+  const ranId = `copy-${Date.now()}`
   target.id = ranId
   target.setAttribute('data-clipboard-text', text)
 
@@ -330,13 +330,11 @@ export function copyText(el: any, text: string): Promise<boolean> {
     const clipboard = new Clipboard(`#${ranId}`)
     clipboard.on('success', function() {
       clipboard?.destroy?.()
-      target.removeAttribute('id')
       resolve(true)
     });
   
     clipboard.on('error', function() {
       clipboard?.destroy?.()
-      target.removeAttribute('id')
       resolve(false)
     });
   })

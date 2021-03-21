@@ -1,7 +1,7 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { getToken } from '../../utils/user'
 import { setWebsiteList, copyText, deleteByWeb, getTextContent, updateByWeb } from '../../utils'
@@ -15,7 +15,6 @@ const tagMap: ITagProp = (__tag as any).default
   selector: 'app-card',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent implements OnInit {
   @Input() dataSource: INavFourProp
