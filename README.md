@@ -145,6 +145,8 @@ mac下是 `Command`，windows 下是 `Ctrl`
 # 下载
 git clone --depth=1 https://github.com/xjh22222228/nav.git
 
+cd nav
+
 # 安装依赖
 yarn
 
