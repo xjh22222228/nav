@@ -4,34 +4,47 @@ import axios from 'axios'
 import NProgress from 'nprogress'
 import { getToken } from '../utils/user'
 
+const token = getToken()
+const DEFAULT_TITLE = document.title
+const headers: {[k: string]: string} = {}
+
+if (token) {
+  headers.Authorization = `token ${token}`
+}
+
 const httpInstance = axios.create({
   timeout: 60000 * 3,
-  baseURL: 'https://api.github.com'
+  baseURL: 'https://api.github.com',
+  headers
 })
-const token = getToken()
+
+function startLoad() {
+  NProgress.start()
+  document.title = 'Connecting...'
+}
+
+function stopLoad() {
+  NProgress.done()
+  document.title = DEFAULT_TITLE
+}
 
 Object.setPrototypeOf(httpInstance, axios)
 
 httpInstance.interceptors.request.use(function (config) {
-  NProgress.start()
-
-  config.headers = {
-    Authorization: `token ${token}`,
-    ...config.headers
-  }
+  startLoad()
 
   return config
 }, function (error) {
-  NProgress.done()
+  stopLoad()
   return Promise.reject(error)
 })
 
 
 httpInstance.interceptors.response.use(function (res) {
-  NProgress.done()
+  stopLoad()
   return res
 }, function (error) {
-  NProgress.done()
+  stopLoad()
   return Promise.reject(error)
 })
 

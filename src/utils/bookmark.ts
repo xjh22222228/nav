@@ -5,10 +5,51 @@ import { INavProps } from '../types'
 import { websiteList } from '../store'
 
 export function parseBookmark(htmlStr: string) {
+  const copyWebList = JSON.parse(JSON.stringify(websiteList))
   const data: INavProps[] = []
   const importEl = document.createElement('div')
   importEl.innerHTML = htmlStr
   const roolDL = importEl.querySelector('dl dl')
+
+  // 未分类
+  let hasNoCate = false
+  const cateCreateAt = new Date().toISOString()
+  const noCate: INavProps = {
+    title: '未分类',
+    createdAt: cateCreateAt,
+    nav: [
+      {
+        createdAt: cateCreateAt,
+        title: '未分类',
+        nav: [
+          {
+            title: '未分类',
+            nav: []
+          }
+        ]
+      }
+    ]
+  }
+
+  function findA(node: Element) {
+    let a = node.firstElementChild
+    if (!a && a.nodeName === 'a') return
+
+    hasNoCate = true
+    const name = a.textContent
+    const createdAt = new Date(Number(a.getAttribute('add_date')) * 1000).toISOString()
+    const icon = a.getAttribute('icon') || null
+    const url = a.getAttribute('href')
+    noCate.nav[0].nav[0].nav.push({
+      name,
+      createdAt,
+      icon,
+      url,
+      urls: {},
+      desc: '',
+      rate: 5
+    })
+  }
 
   let ii = 0
   let jj = 0
@@ -18,6 +59,7 @@ export function parseBookmark(htmlStr: string) {
     for (let i = 0; i < roolDL.childElementCount; i++) {
       const iItem = roolDL.childNodes[i] as any
       if (iItem && iItem.nodeName === 'DT') {
+        findA(iItem)
         const titleEl = iItem.querySelector('h3')
         if (!titleEl) continue
         ii++
@@ -36,6 +78,7 @@ export function parseBookmark(htmlStr: string) {
         for (let j = 0; j < DL.childElementCount; j++) {
           const jItem = DL.childNodes[j]
           if (jItem && jItem.nodeName === 'DT') {
+            findA(jItem)
             const titleEl = jItem.querySelector('h3')
             if (!titleEl) continue
             jj++
@@ -54,6 +97,7 @@ export function parseBookmark(htmlStr: string) {
             for (let k = 0; k < DL3.childElementCount; k++) {
               const kItem = DL3.childNodes[k]
               if (kItem && kItem.nodeName === 'DT') {
+                findA(kItem)
                 const titleEl = kItem.querySelector('h3')
                 if (!titleEl) continue
                 kk++
@@ -99,16 +143,30 @@ export function parseBookmark(htmlStr: string) {
     return error
   }
 
-  const mergeList = [...data, ...websiteList]
-  const newList = [];
-
-  for (let i = 0; i < mergeList.length; i++) {
-    const item = mergeList[i]
-    const exists = newList.some(el => el.title === item.title)
-    if (!exists) {
-      newList.push(item)
-    }
+  if (hasNoCate) {
+    data.push(noCate)
   }
 
-  return newList
+  // 增量导入
+  function r(data: any[], list: any[]) {
+    for (let i = 0; i < data.length; i++) {
+      const item = data[i] as any
+      const title = item.title || item?.name
+      const idx = list.findIndex(item => (item.title || item.name) === title)
+
+      // Repeat
+      if (idx !== -1) {
+        if (Array.isArray(item.nav)) {
+          r(item.nav, list[idx].nav)
+        }
+      } else {
+        list.push(item)
+      }
+    }
+  }
+  r(data, copyWebList)
+
+  console.log(copyWebList)
+
+  return copyWebList
 }

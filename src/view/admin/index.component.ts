@@ -112,7 +112,7 @@ export default class WebpComponent {
         path: LOGO_PATH,
         branch: 'image'
       }).then(() => {
-        that.message.success('更换成功, 由于CDN缓存问题预计至少需要10分钟才能看到最新')
+        that.message.success('更换成功, 由于CDN缓存问题需要次日更新')
       }).catch(res => {
         logoEL.src = tempSrc
         that.notification.error(
@@ -120,6 +120,7 @@ export default class WebpComponent {
           `${res?.response?.data?.message ?? '更换LOGO失败，请重试！'}`
         )
       }).finally(() => {
+        e.target.value = ''
         that.uploading = false
       })
     }

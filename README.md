@@ -65,8 +65,9 @@
 
 
 ## 部署
-推荐使用 `github pages` 服务, 这样就不需要提供服务器, 并且项目里自带了自动化部署服务，像数 `321` 一样简单。
+像数 `321` 一样简单。
 
+#### 方式一(gh-pages免费)
 1、Fork 当前项目。
 
 2、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存Token。
@@ -78,6 +79,13 @@
 5、务必修改项目配置文件 [nav.config.ts](nav.config.ts)
 
 6、5分钟后打开 https://用户名.github.io/nav 就能看到一个非常强大的导航网站了。
+
+### 推荐方式二(Vercel免费)
+和方式一的步骤一样，除了第4步不用。
+
+具体使用跟着步骤走即可 [https://github.com/apps/vercel](https://github.com/apps/vercel)
+
+
 
 
 注：如果想部署到自己的域名，那么以上教程同样适合，因为它提供了自动化部署， 之后可以通过 `CNAME` 或 `反向代理` 实现：
@@ -97,7 +105,7 @@ server {
 
 
 ## 书签导入
-支持从 Chrome 书签导入（WebKit内核应该都是支持的~），会自动检测满足三级分类的导航，其他一律跳过：
+支持从 Chrome 书签导入（WebKit内核应该都是支持的~），会自动检测满足三级分类的导航，其他一律设为未分类：
 
 ![](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/import.png)
 

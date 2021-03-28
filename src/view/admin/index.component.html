@@ -290,7 +290,7 @@
             <td>
               <a [href]="data.url" target="_blank">{{ data.name }}</a>
             </td>
-            <td>
+            <td nzWidth="100px">
               <nz-tag *ngFor="let key of objectKeys(data.urls)" [nzColor]="tagMap[key].color || '#2db7f5'">
                 <a [href]="data.urls[key]" target="_blank">{{ key }}</a>
               </nz-tag>
@@ -298,8 +298,8 @@
             <td>
               <pre class="desc">{{ data.desc }}</pre>
             </td>
-            <td>{{ data.createdAt }}</td>
-            <td>
+            <td nzWidth="200px">{{ data.createdAt }}</td>
+            <td nzWidth="100px">
               <a (click)="toggleCreateWebModal(); websiteDetail = data; editIdx = idx">编辑</a>
               <a
                 nz-popconfirm
