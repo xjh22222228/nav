@@ -33,7 +33,7 @@ export function parseBookmark(htmlStr: string) {
 
   function findA(node: Element) {
     let a = node.firstElementChild
-    if (!a && a.nodeName === 'a') return
+    if (!a && a.nodeName !== 'a') return
 
     hasNoCate = true
     const name = a.textContent
