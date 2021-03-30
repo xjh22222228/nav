@@ -192,11 +192,11 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 
 您可以请作者喝杯咖啡，继续战斗下去（请备注Github名字）~
 
-<img src="https://raw.sevencdn.com/xjh22222228/public/gh-pages/img/32.png" width="600">
+<img src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/32.png" width="600">
 
 感谢您的认可：
 | 姓名    | 支持金额              |
 | --------------------------------------- |----------- |
-| [aiyou9](https://github.com/aiyou9)     | ￥20.00     |
+| [aiyou9](https://github.com/aiyou9)     | ￥40.00     |
 | 路人甲     | ￥50.00     |
 

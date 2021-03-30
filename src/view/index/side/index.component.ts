@@ -32,7 +32,7 @@ export default class HomeComponent {
   openIndex = queryString().page
   contentEl: HTMLElement
   searchEngineList = searchEngineList
-  marginTop: number = 60
+  marginTop: number = 70
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -69,7 +69,7 @@ export default class HomeComponent {
 
     setTimeout(() => {
       const headerEl = document.querySelector('.search-header')
-      this.marginTop = headerEl.clientHeight
+      this.marginTop = headerEl.clientHeight + 10
     }, 26)
   }
 

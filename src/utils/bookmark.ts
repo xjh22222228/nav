@@ -39,7 +39,7 @@ export function parseBookmark(htmlStr: string) {
     const name = a.textContent
     const createdAt = new Date(Number(a.getAttribute('add_date')) * 1000).toISOString()
     const icon = a.getAttribute('icon') || null
-    const url = a.getAttribute('href')
+    const url = a.getAttribute('href') || ''
     noCate.nav[0].nav[0].nav.push({
       name,
       createdAt,
