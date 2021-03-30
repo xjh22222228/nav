@@ -32,7 +32,7 @@ export default class HomeComponent {
   openIndex = queryString().page
   contentEl: HTMLElement
   searchEngineList = searchEngineList
-  marginTop: number = 70
+  marginTop: number = searchEngineList.length > 0 ? 70 : 20
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -66,11 +66,6 @@ export default class HomeComponent {
 
   ngAfterContentInit() {
     window.addEventListener('scroll', this.scroll)
-
-    setTimeout(() => {
-      const headerEl = document.querySelector('.search-header')
-      this.marginTop = headerEl.clientHeight + 10
-    }, 26)
   }
 
   ngOnDestroy() {
