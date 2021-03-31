@@ -4,52 +4,61 @@
 import { INavProps } from '../types'
 import { websiteList } from '../store'
 
+function getCreatedAt(node?: Element): string {
+  if (!node) {
+    return new Date().toISOString()
+  }
+
+  return new Date(Number(node.getAttribute('add_date')) * 1000).toISOString()
+}
+
+function getTitle(node: Element) {
+  return node.textContent
+}
+
+function getUrl(node: Element) {
+  return node.getAttribute('href') || ''
+}
+
+function getIcon(node: Element) {
+  return node.getAttribute('icon') || null
+}
+
+const nowCratedAt = getCreatedAt()
+
+function findAllNoCate(roolDL: Element) {
+  const data = []
+  for (let i = 0; i < roolDL.childElementCount; i++) {
+    const iItem = roolDL.childNodes[i] as any
+
+    if (iItem && iItem.nodeName === 'DT') {
+      let a = iItem.firstElementChild
+      if (!a || a.nodeName !== 'A') continue
+
+      const name = getTitle(a)
+      const createdAt = getCreatedAt(a)
+      const icon = getIcon(a)
+      const url = getUrl(a)
+      data.push({
+        name,
+        createdAt,
+        icon,
+        url,
+        urls: {},
+        desc: '',
+        rate: 5
+      })
+    }
+  }
+  return data
+}
+
 export function parseBookmark(htmlStr: string) {
   const copyWebList = JSON.parse(JSON.stringify(websiteList))
   const data: INavProps[] = []
   const importEl = document.createElement('div')
   importEl.innerHTML = htmlStr
   const roolDL = importEl.querySelector('dl dl')
-
-  // 未分类
-  let hasNoCate = false
-  const cateCreateAt = new Date().toISOString()
-  const noCate: INavProps = {
-    title: '未分类',
-    createdAt: cateCreateAt,
-    nav: [
-      {
-        createdAt: cateCreateAt,
-        title: '未分类',
-        nav: [
-          {
-            title: '未分类',
-            nav: []
-          }
-        ]
-      }
-    ]
-  }
-
-  function findA(node: Element) {
-    let a = node.firstElementChild
-    if (!a && a.nodeName !== 'a') return
-
-    hasNoCate = true
-    const name = a.textContent
-    const createdAt = new Date(Number(a.getAttribute('add_date')) * 1000).toISOString()
-    const icon = a.getAttribute('icon') || null
-    const url = a.getAttribute('href') || ''
-    noCate.nav[0].nav[0].nav.push({
-      name,
-      createdAt,
-      icon,
-      url,
-      urls: {},
-      desc: '',
-      rate: 5
-    })
-  }
 
   let ii = 0
   let jj = 0
@@ -59,7 +68,6 @@ export function parseBookmark(htmlStr: string) {
     for (let i = 0; i < roolDL.childElementCount; i++) {
       const iItem = roolDL.childNodes[i] as any
       if (iItem && iItem.nodeName === 'DT') {
-        findA(iItem)
         const titleEl = iItem.querySelector('h3') as Element
         // PERSONAL_TOOLBAR_FOLDER 收藏栏
         if (
@@ -69,8 +77,8 @@ export function parseBookmark(htmlStr: string) {
         ) continue
 
         ii++
-        const title = titleEl.textContent
-        const createdAt = new Date(Number(titleEl.getAttribute('add_date')) * 1000).toISOString()
+        const title = getTitle(titleEl)
+        const createdAt = getCreatedAt(titleEl)
         data.push({
           title,
           createdAt,
@@ -81,15 +89,28 @@ export function parseBookmark(htmlStr: string) {
         // Two Level
         jj = 0
         const DL = iItem.querySelector('dl')
+        const allNoCateData = findAllNoCate(DL)
+        if (allNoCateData.length > 0) {
+          data[ii - 1].nav.push({
+            createdAt: nowCratedAt,
+            title: '未分类',
+            nav: [
+              {
+                title: '未分类',
+                nav: allNoCateData
+              }
+            ]
+          })
+        }
+
         for (let j = 0; j < DL.childElementCount; j++) {
           const jItem = DL.childNodes[j]
           if (jItem && jItem.nodeName === 'DT') {
-            findA(jItem)
             const titleEl = jItem.querySelector('h3')
             if (!titleEl) continue
             jj++
-            const title = titleEl.textContent
-            const createdAt = new Date(titleEl.getAttribute('add_date') * 1000).toISOString()
+            const title = getTitle(titleEl)
+            const createdAt = getCreatedAt(titleEl)
             data[ii - 1].nav.push({
               title,
               createdAt,
@@ -100,15 +121,22 @@ export function parseBookmark(htmlStr: string) {
             // Three Level
             kk = 0
             const DL3 = jItem.querySelector('dl')
+            const allNoCateData = findAllNoCate(DL3)
+            if (allNoCateData.length > 0) {
+              data[ii - 1].nav[jj - 1].nav.push({
+                createdAt: nowCratedAt,
+                title: '未分类',
+                nav: allNoCateData
+              })
+            }
             for (let k = 0; k < DL3.childElementCount; k++) {
               const kItem = DL3.childNodes[k]
               if (kItem && kItem.nodeName === 'DT') {
-                findA(kItem)
                 const titleEl = kItem.querySelector('h3')
                 if (!titleEl) continue
                 kk++
-                const title = titleEl.textContent
-                const createdAt = new Date(titleEl.getAttribute('add_date') * 1000).toISOString()
+                const title = getTitle(titleEl)
+                const createdAt = getCreatedAt(titleEl)
                 data[ii - 1].nav[jj - 1].nav.push({
                   title,
                   createdAt,
@@ -119,14 +147,14 @@ export function parseBookmark(htmlStr: string) {
                 // Website Level
                 const DL3 = kItem.querySelector('dl')
                 for (let b = 0; b < DL3.childElementCount; b++) {
-                  const kItem = DL3.childNodes[b]
-                  if (kItem && kItem.nodeName === 'DT') {
-                    const titleEl = kItem.querySelector('a')
+                  const wItem = DL3.childNodes[b]
+                  if (wItem && wItem.nodeName === 'DT') {
+                    const titleEl = wItem.querySelector('a')
                     if (!titleEl) continue
-                    const title = titleEl.textContent
-                    const createdAt = new Date(titleEl.getAttribute('add_date') * 1000).toISOString()
-                    const icon = titleEl.getAttribute('icon') || null
-                    const url = titleEl.getAttribute('href')
+                    const title = getTitle(titleEl)
+                    const createdAt = getCreatedAt(titleEl)
+                    const icon = getIcon(titleEl)
+                    const url = getUrl(titleEl)
                     data[ii - 1].nav[jj - 1].nav[kk - 1].nav.push({
                       name: title,
                       createdAt,
@@ -145,12 +173,29 @@ export function parseBookmark(htmlStr: string) {
         }
       }
     }
-  } catch (error) {
-    return error
-  }
 
-  if (hasNoCate) {
-    data.push(noCate)
+    const allNoCateData = findAllNoCate(roolDL)
+    if (allNoCateData.length > 0) {
+      data.push({
+        title: '未分类',
+        createdAt: nowCratedAt,
+        nav: [
+          {
+            createdAt: nowCratedAt,
+            title: '未分类',
+            nav: [
+              {
+                title: '未分类',
+                nav: allNoCateData
+              }
+            ]
+          }
+        ]
+      })
+    }
+  } catch (error) {
+    console.log(error)
+    return error
   }
 
   // 增量导入
@@ -171,8 +216,6 @@ export function parseBookmark(htmlStr: string) {
     }
   }
   r(data, copyWebList)
-
-  console.log(copyWebList)
 
   return copyWebList
 }
