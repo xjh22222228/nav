@@ -40,6 +40,7 @@ import LightComponent from '../view/index/light/index.component'
 import SimComponent from '../view/index/sim/index.component'
 import AdminComponent from '../view/admin/index.component'
 import SideComponent from '../view/index/side/index.component'
+import ShortcutComponent from '../view/index/shortcut/index.component'
 import WebpComponent from '../view/app/default/app.component'
 import { FixbarComponent } from '../components/fixbar/index.component'
 import { FooterComponent } from '../components/footer/footer.component'
@@ -71,6 +72,10 @@ const appRoutes: Routes = [
     component: SideComponent,
   },
   { 
+    path: 'shortcut',
+    component: ShortcutComponent,
+  },
+  { 
     path: 'light',
     component: LightComponent,
     data: {
@@ -97,6 +102,7 @@ const appRoutes: Routes = [
     LightComponent,
     SimComponent,
     SideComponent,
+    ShortcutComponent,
     AdminComponent,
     WebpComponent,
     FixbarComponent,

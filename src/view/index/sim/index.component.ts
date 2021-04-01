@@ -18,11 +18,11 @@ const { gitRepoUrl, title, simThemeConfig } = config
 let sidebarEl: HTMLElement;
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-sim',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export default class HomeComponent {
+export default class SimComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 

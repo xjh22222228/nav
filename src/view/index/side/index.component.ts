@@ -18,11 +18,11 @@ import * as s from '../../../../data/search.json'
 const searchEngineList: ISearchEngineProps[] = (s as any).default
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-side',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export default class HomeComponent {
+export default class SideComponent {
   LOGO_CDN = LOGO_CDN
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []

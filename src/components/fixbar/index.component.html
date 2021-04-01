@@ -1,7 +1,7 @@
 <div class="fixbar">
   <span *ngIf="isLogin" nz-tooltip nzTooltipTitle="查看信息">
     <div
-      class="wrapper dark-bg dark-border-color dark-action-hover"
+      class="wrapper dark-border-color dark-action-hover"
       (click)="viewInfo()"
     >
     <img src="assets/img/view.svg" />
@@ -44,7 +44,7 @@
     </div>
   </span>
   
-  <span nz-tooltip [nzTooltipTitle]="collapsed ? '展开' : '折叠'">
+  <span *ngIf="collapsed !== undefined" nz-tooltip [nzTooltipTitle]="collapsed ? '展开' : '折叠'">
     <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="collapse()">
       <i class="iconfont iconweibiaoti25 collapse" [class.active]="collapsed"></i>
     </div>

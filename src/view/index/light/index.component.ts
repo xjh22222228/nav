@@ -15,11 +15,11 @@ import { initRipple, setAnnotate } from '../../../utils/ripple'
 import { websiteList } from '../../../store'
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-light',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export default class HomeComponent {
+export default class LightComponent {
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 

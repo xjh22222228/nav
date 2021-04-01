@@ -1,8 +1,7 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit } from '@angular/core'
-import { getToken } from '../../utils/user'
+import { Component, OnInit, Input } from '@angular/core'
 import { websiteList } from '../../store'
 import { INavFourProp } from 'src/types'
 
@@ -12,7 +11,8 @@ import { INavFourProp } from 'src/types'
   styleUrls: ['./index.component.scss']
 })
 export class WebListComponent implements OnInit {
-  isLogin = !!getToken()
+  @Input() max: number = 99999
+
   dataList: INavFourProp[] = []
 
   constructor() {}
@@ -23,10 +23,16 @@ export class WebListComponent implements OnInit {
 
   getTopWeb() {
     const dataList: INavFourProp[] = []
+    const max = this.max
+
     function r(nav) {
       if (!Array.isArray(nav)) return
   
       for (let i = 0; i < nav.length; i++) {
+        if (dataList.length > max) {
+          break
+        }
+
         const item = nav[i]
         if (item.url) {
           if (item.top) {
