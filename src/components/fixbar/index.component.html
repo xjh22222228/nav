@@ -44,7 +44,7 @@
     </div>
   </span>
   
-  <span *ngIf="collapsed !== undefined" nz-tooltip [nzTooltipTitle]="collapsed ? '展开' : '折叠'">
+  <span *ngIf="showCollapse" nz-tooltip [nzTooltipTitle]="collapsed ? '展开' : '折叠'">
     <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="collapse()">
       <i class="iconfont iconweibiaoti25 collapse" [class.active]="collapsed"></i>
     </div>
