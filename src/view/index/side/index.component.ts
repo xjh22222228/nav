@@ -73,7 +73,7 @@ export default class HomeComponent {
         const headerEl = document.querySelector('.search-header')
         if (headerEl) {
           this.isFirst = true
-          this.marginTop = headerEl.clientHeight
+          this.marginTop = headerEl.clientHeight + 25
         }
       }, 26)
     }
