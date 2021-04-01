@@ -9,7 +9,13 @@ function getCreatedAt(node?: Element): string {
     return new Date().toISOString()
   }
 
-  return new Date(Number(node.getAttribute('add_date')) * 1000).toISOString()
+  const addDate = node.getAttribute('add_date')
+
+  if (!addDate) {
+    return new Date().toISOString()
+  }
+
+  return new Date(Number(addDate) * 1000).toISOString()
 }
 
 function getTitle(node: Element) {
@@ -70,11 +76,7 @@ export function parseBookmark(htmlStr: string) {
       if (iItem && iItem.nodeName === 'DT') {
         const titleEl = iItem.querySelector('h3') as Element
         // PERSONAL_TOOLBAR_FOLDER 收藏栏
-        if (
-          !titleEl ||
-          titleEl.getAttribute('personal_toolbar_folder') ||
-          titleEl.getAttribute('PERSONAL_TOOLBAR_FOLDER')
-        ) continue
+        if (!titleEl) continue
 
         ii++
         const title = getTitle(titleEl)
