@@ -20,6 +20,14 @@
               (click)="handleSidebarNav(pageIdx, idIdx)" 
             >
               {{ el.title }}
+
+              <i
+                class="iconfont iconweibiaoti25 collapse"
+                *ngIf="page === pageIdx && id === idIdx"
+                [class.active]="collapsed()"
+                (click)="onCollapseAll()"
+              >
+              </i>
             </li>
           </ul>
         </li>
