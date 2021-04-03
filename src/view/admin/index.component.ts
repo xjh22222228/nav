@@ -25,7 +25,7 @@ const tagMap: ITagProp = (__tag as any).default
   styleUrls: ['./index.component.scss']
 })
 export default class WebpComponent {
-  validateForm!: FormGroup;
+  validateForm!: FormGroup
   websiteList: INavProps[] = websiteList
   gitRepoUrl = config.gitRepoUrl
   LOGO_CDN = LOGO_CDN
@@ -65,7 +65,7 @@ export default class WebpComponent {
   onBookChange(e) {
     const that = this
     const { files } = e.target
-    if (files.length <= 0) return;
+    if (files.length <= 0) return
     const file = files[0]
     const fileReader = new FileReader()
     fileReader.readAsText(file)
@@ -89,7 +89,7 @@ export default class WebpComponent {
   onLogoChange(e) {
     const that = this
     const { files } = e.target
-    if (files.length <= 0) return;
+    if (files.length <= 0) return
     const file = files[0]
 
     if (file.type !== 'image/png') {
@@ -138,7 +138,7 @@ export default class WebpComponent {
           window.location.reload()
         }, 1500)
       }
-    });
+    })
   }
 
   goBack() {
@@ -206,20 +206,20 @@ export default class WebpComponent {
 
   // 拖拽一级分类
   dropOne(event: CdkDragDrop<string[]>): void {
-    moveItemInArray(this.websiteList, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.websiteList, event.previousIndex, event.currentIndex)
     setWebsiteList(this.websiteList)
   }
 
   // 拖拽二级分类
   dropTwo(event: CdkDragDrop<string[]>): void {
-    moveItemInArray(this.twoTableData, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.twoTableData, event.previousIndex, event.currentIndex)
     setWebsiteList(this.websiteList)
   }
 
   // 删除二级分类
   handleConfirmDelTwo(idx) {
     if (this.twoTableData.length === 1) {
-      return this.message.error('至少保留一项，请先添加!');
+      return this.message.error('至少保留一项，请先添加!')
     }
 
     this.twoTableData.splice(idx, 1)
@@ -229,14 +229,14 @@ export default class WebpComponent {
 
   // 拖拽三级分类
   dropThree(event: CdkDragDrop<string[]>): void {
-    moveItemInArray(this.threeTableData, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.threeTableData, event.previousIndex, event.currentIndex)
     setWebsiteList(this.websiteList)
   }
 
   // 删除三级分类
   handleConfirmDelThree(idx) {
     if (this.threeTableData.length === 1) {
-      return this.message.error('至少保留一项，请先添加!');
+      return this.message.error('至少保留一项，请先添加!')
     }
 
     this.threeTableData.splice(idx, 1)
@@ -246,14 +246,14 @@ export default class WebpComponent {
 
   // 拖拽网站
   dropWebsite(event: CdkDragDrop<string[]>): void {
-    moveItemInArray(this.websiteTableData, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.websiteTableData, event.previousIndex, event.currentIndex)
     setWebsiteList(this.websiteList)
   }
 
   // 删除网站
   handleConfirmDelWebsite(idx) {
     if (this.websiteTableData.length === 1) {
-      return this.message.error('至少保留一项，请先添加!');
+      return this.message.error('至少保留一项，请先添加!')
     }
 
     this.websiteTableData.splice(idx, 1)
@@ -297,7 +297,7 @@ export default class WebpComponent {
       nzOkText: '确定同步',
       nzContent: '确定将所有数据同步到远端吗？这可能需要消耗一定的时间。',
       nzOnOk: () => {
-        this.syncLoading = true;
+        this.syncLoading = true
 
         updateFileContent({
           message: 'update db',
@@ -317,15 +317,15 @@ export default class WebpComponent {
           this.syncLoading = false
         })
       }
-    });
+    })
   }
 
   handleOk() {
     const createdAt = new Date().toISOString()
 
     for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
+      this.validateForm.controls[i].markAsDirty()
+      this.validateForm.controls[i].updateValueAndValidity()
     }
 
     let { title, icon } = this.validateForm.value

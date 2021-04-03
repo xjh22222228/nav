@@ -1,20 +1,26 @@
-<div class="container" *ngIf="dataList.length > 0">
-  <a [href]="item.url" target="_blank" *ngFor="let item of dataList">
-    <div
-      class="wrapper"
-      [nzTooltipTitle]="item.name"
-      nzTooltipPlacement="bottom"
-      nz-button
-      nz-tooltip
-    >
-      <div class="logo">
-        <app-logo [src]="item.icon" [name]="item.name" [size]="35"></app-logo>
-      </div>
-      <div
-        class="name dark-white"
-      >
-        {{ item.name }}
-      </div>
+<div
+  class="container"
+  *ngIf="dataList.length > 0"
+  cdkDropList
+  (cdkDropListDropped)="handleDrop($event)"
+>
+  <div
+    class="wrapper"
+    [nzTooltipTitle]="item.name"
+    nzTooltipPlacement="bottom"
+    nz-button
+    nz-tooltip
+    *ngFor="let item of dataList"
+    cdkDrag
+    (click)="goUrl(item.url)"
+  >
+    <div class="logo">
+      <app-logo [src]="item.icon" [name]="item.name" [size]="35"></app-logo>
     </div>
-  </a>
+    <div
+      class="name dark-white"
+    >
+      {{ item.name }}
+    </div>
+  </div>
 </div>

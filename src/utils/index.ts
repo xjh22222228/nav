@@ -176,6 +176,7 @@ export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
       adapterWebsiteList(item.nav, item)
     }
 
+    // Four
     if (item.url) {
       if (!item.icon && parentItem?.icon) {
         item.icon = parentItem.icon
