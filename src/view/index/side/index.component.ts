@@ -112,7 +112,8 @@ export default class SideComponent {
     setWebsiteList(this.websiteList)
   }
 
-  onCollapseAll = () => {
+  onCollapseAll = (e: Event) => {
+    e?.stopPropagation()
     toggleCollapseAll(this.websiteList)
   }
 

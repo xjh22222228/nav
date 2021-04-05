@@ -21,13 +21,17 @@
             >
               {{ el.title }}
 
-              <i
-                class="iconfont iconweibiaoti25 collapse"
+              <div
                 *ngIf="page === pageIdx && id === idIdx"
-                [class.active]="collapsed()"
-                (click)="onCollapseAll()"
+                (click)="onCollapseAll($event)"
+                class="collapse-wrapper"
               >
-              </i>
+                <i
+                  class="iconfont iconweibiaoti25 collapse"
+                  [class.active]="collapsed()"
+                >
+                </i>
+              </div>
             </li>
           </ul>
         </li>

@@ -35,13 +35,19 @@ $sideWidth: 200px;
     transition: .1s linear;
   }
 
-  .collapse {
+  .collapse-wrapper {
     position: absolute;
-    right: 15px;
-    transform: rotate(-270deg);
-  
-    &.active {
-      transform: rotate(-360deg);
+    right: 0;
+    top: 0;
+    padding: 0 15px;
+
+    .collapse {
+      display: block;
+      transform: rotate(-270deg);
+    
+      &.active {
+        transform: rotate(-360deg);
+      }
     }
   }
 }
