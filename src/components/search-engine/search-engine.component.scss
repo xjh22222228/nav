@@ -81,3 +81,9 @@ $width: 500px;
     }
   }
 }
+
+@media screen and (max-width: 668px) {
+  .input-wrapper {
+    width: 90vw !important;
+  }
+}
