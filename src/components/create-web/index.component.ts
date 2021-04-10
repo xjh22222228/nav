@@ -86,8 +86,8 @@ export class CreateWebComponent implements OnInit {
   async onUrlBlur(e) {
     const res = await getLogoUrl(e.target?.value)
     if (res) {
-      this.iconUrl = (res || '') as string
-      this.validateForm.get('icon')!.setValue(res || '')
+      this.iconUrl = res as string
+      this.validateForm.get('icon')!.setValue(this.iconUrl)
     }
   }
 
@@ -109,7 +109,7 @@ export class CreateWebComponent implements OnInit {
   }
 
   handlePasteImage = event => {
-    const items = event.clipboardData?.items
+    const items = event.clipboardData.items
     let file = null
 
     if (items.length) {

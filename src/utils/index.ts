@@ -149,10 +149,7 @@ export function queryString(): {
     page = websiteList.length - 1;
     id = 0;
   } else {
-    page = page;
-    if (id <= websiteList[page].nav.length - 1) {
-      id = id;
-    } else {
+    if (!(id <= websiteList[page].nav.length - 1)) {
       id = websiteList[page].nav.length - 1;
     }
   }
@@ -230,19 +227,19 @@ export function setWebsiteList(v?: INavProps[]) {
 }
 
 export function toggleCollapseAll(wsList?: INavProps[]): boolean {
-  wsList = wsList || websiteList
+  wsList ||= websiteList
 
   const { page, id } = queryString()
-  const collapsed = !websiteList[page].nav[id].collapsed
+  const collapsed = !wsList[page].nav[id].collapsed
 
-  websiteList[page].nav[id].collapsed = collapsed
+  wsList[page].nav[id].collapsed = collapsed
 
-  websiteList[page].nav[id].nav.map(item => {
+  wsList[page].nav[id].nav.map(item => {
     item.collapsed = collapsed
     return item
   })
 
-  setWebsiteList(websiteList)
+  setWebsiteList(wsList)
 
   return collapsed
 }
@@ -330,12 +327,12 @@ export function copyText(el: Event, text: string): Promise<boolean> {
   return new Promise(resolve => {
     const clipboard = new Clipboard(`#${ranId}`)
     clipboard.on('success', function() {
-      clipboard?.destroy?.()
+      clipboard.destroy()
       resolve(true)
     });
   
     clipboard.on('error', function() {
-      clipboard?.destroy?.()
+      clipboard.destroy()
       resolve(false)
     });
   })

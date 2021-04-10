@@ -2,19 +2,8 @@
 
 import config from '../../../../nav.config'
 import { Component } from '@angular/core'
-import { Router, ActivatedRoute } from '@angular/router'
-import { INavProps, INavThreeProp } from '../../../types'
-import {
-  fuzzySearch,
-  queryString,
-  setWebsiteList,
-  toggleCollapseAll,
-  totalWeb,
-} from '../../../utils'
-import { initRipple, setAnnotate } from '../../../utils/ripple'
-import { websiteList } from '../../../store'
 
-const { gitRepoUrl, title, simThemeConfig } = config
+const { title } = config
 
 @Component({
   selector: 'app-shortcut',
@@ -24,5 +13,5 @@ const { gitRepoUrl, title, simThemeConfig } = config
 export default class ShortcutComponent {
   title = title
 
-  constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor () {}
 }
