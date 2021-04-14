@@ -93,6 +93,7 @@ export function parseBookmark(htmlStr: string) {
         const DL = iItem.querySelector('dl')
         const allNoCateData = findAllNoCate(DL)
         if (allNoCateData.length > 0) {
+          jj++
           data[ii - 1].nav.push({
             createdAt: nowCratedAt,
             title: '未分类',
@@ -125,6 +126,7 @@ export function parseBookmark(htmlStr: string) {
             const DL3 = jItem.querySelector('dl')
             const allNoCateData = findAllNoCate(DL3)
             if (allNoCateData.length > 0) {
+              kk++
               data[ii - 1].nav[jj - 1].nav.push({
                 createdAt: nowCratedAt,
                 title: '未分类',
