@@ -112,6 +112,12 @@ em {
   -webkit-box-orient: vertical;
 }
 
+.remove {
+  position: fixed !important;
+  top: -10000px !important;
+  left: -10000px !important;
+}
+
 /* 搜索高亮关键字 */
 b {
   color: #f50 !important;

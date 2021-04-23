@@ -25,6 +25,7 @@ export interface INavFourProp {
   rate?: number // 0-5
   top?: boolean
   index?: number // sort
+  ownVisible?: boolean
   urls?: {
     [tagName: string]: string
   }
@@ -35,6 +36,7 @@ export interface INavThreeProp {
   icon?: string | null
   createdAt?: string
   collapsed?: boolean
+  ownVisible?: boolean
   nav: INavFourProp[]
 }
 
@@ -43,6 +45,7 @@ export interface INavTwoProp {
   icon?: string | null
   createdAt?: string
   collapsed?: boolean
+  ownVisible?: boolean
   nav: INavThreeProp[]
 }
 
@@ -51,6 +54,7 @@ export interface INavProps extends Object {
   id?: number
   icon?: string | null
   createdAt?: string
+  ownVisible?: boolean
   nav: INavTwoProp[]
 }
 

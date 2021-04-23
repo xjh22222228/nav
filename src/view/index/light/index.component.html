@@ -13,6 +13,7 @@
         (click)="handleCilckTopNav(i)" 
         [class.active]="page === i" 
         [class.dark-text-active]="page === i" 
+        [class.remove]="!isLogin && item.ownVisible"
         class="ripple-btn dark-text"
       >
         {{ item.title }}
@@ -28,6 +29,7 @@
             [class.dark-item-active]="id === i" 
             (click)="handleSidebarNav(i)"
             *ngFor="let item of websiteList[page].nav; index as i" 
+            [class.remove]="!isLogin && item.ownVisible"
           >
             <div class="ripple-btn">{{ item.title }}</div>
           </li>
@@ -38,7 +40,7 @@
         <app-search-engine></app-search-engine>
  
         <div *ngIf="currentList.length > 0; else noData">
-          <div *ngFor="let item of currentList; index as i">
+          <div *ngFor="let item of currentList; index as i" [class.remove]="!isLogin && item.ownVisible">
             <app-toolbar-title
               [dataSource]="item"
               (onCollapse)="onCollapse(item, i)"
@@ -52,7 +54,13 @@
               [nzGutter]="[16, 16]"
               [style.display]="item.collapsed ? 'none' : ''"
             >
-              <div class="gutter-row" nz-col [nzSpan]="8" *ngFor="let el of item.nav">
+              <div
+                class="gutter-row"
+                nz-col
+                [nzSpan]="8"
+                *ngFor="let el of item.nav"
+                [class.remove]="!isLogin && el.ownVisible"
+              >
                 <app-card [dataSource]="el"></app-card>
               </div>
             </div>

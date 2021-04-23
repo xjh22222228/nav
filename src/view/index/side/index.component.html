@@ -11,11 +11,14 @@
           [(nzOpen)]="pageIdx === openIndex"
           [nzTitle]="item.title"
           *ngFor="let item of websiteList; index as pageIdx;"
+          [class.remove]="!isLogin && item.ownVisible"
           (nzOpenChange)="openIndex = pageIdx"
         >
           <ul>
             <li
-              nz-menu-item *ngFor="let el of item.nav; let idIdx = index;"
+              nz-menu-item
+              *ngFor="let el of item.nav; let idIdx = index;"
+              [class.remove]="!isLogin && item.ownVisible"
               [nzSelected]="page === pageIdx && id === idIdx"
               (click)="handleSidebarNav(pageIdx, idIdx)" 
             >
@@ -60,6 +63,7 @@
                   <div
                     *ngFor="let el of item.nav"
                     class="gutter-row"
+                    [class.remove]="!isLogin && el.ownVisible"
                     nz-col
                     [nzSpan]="6"
                     [nzXs]="24"

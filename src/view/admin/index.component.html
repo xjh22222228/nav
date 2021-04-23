@@ -1,7 +1,26 @@
 <div class="admin">
-  <button nz-button style="margin-bottom: 15px;" (click)="goBack()">返回主页</button>
-  <button nz-button style="margin-left: 15px;" (click)="handleSync()" [nzLoading]="syncLoading">同步到远端</button>
-  <button nz-button style="margin-left: 15px;" (click)="handleReset()">重置初始数据</button>
+  <button
+    nz-button
+    style="margin-bottom: 15px;"
+    (click)="goBack()"
+  >
+    返回主页
+  </button>
+  <button
+    nz-button
+    style="margin-left: 15px;"
+    (click)="handleSync()"
+    [nzLoading]="syncLoading"
+  >
+    同步到远端
+  </button>
+  <button
+    nz-button
+    style="margin-left: 15px;"
+    (click)="handleReset()"
+  >
+    重置初始数据
+  </button>
 
   <div class="content">
     <p><b>1、所有数据设置完毕后点击 “同步到远端”，拖拽表格进行排序</b></p>
@@ -44,6 +63,7 @@
           <tr>
             <th>图标</th>
             <th>分类名称</th>
+            <th>仅自己可见</th>
             <th>创建时间</th>
             <th>操作</th>
           </tr>
@@ -58,6 +78,9 @@
               </app-logo>
             </td>
             <td>{{ data.title }}</td>
+            <td>
+              <i *ngIf="data.ownVisible" nz-icon nzType="check" nzTheme="outline"></i>
+            </td>
             <td>{{ data.createdAt }}</td>
             <td>
               <a (click)="handleEditBtn(data, idx)">编辑</a>
@@ -105,6 +128,7 @@
           <tr>
             <th>图标</th>
             <th>分类名称</th>
+            <th>仅自己可见</th>
             <th>创建时间</th>
             <th>操作</th>
           </tr>
@@ -119,6 +143,9 @@
               </app-logo>
             </td>
             <td>{{ data.title }}</td>
+            <td>
+              <i *ngIf="data.ownVisible" nz-icon nzType="check" nzTheme="outline"></i>
+            </td>
             <td>{{ data.createdAt }}</td>
             <td>
               <a (click)="handleEditBtn(data, idx)">编辑</a>
@@ -181,6 +208,7 @@
           <tr>
             <th>图标</th>
             <th>分类名称</th>
+            <th>仅自己可见</th>
             <th>创建时间</th>
             <th>操作</th>
           </tr>
@@ -195,6 +223,9 @@
               </app-logo>
             </td>
             <td>{{ data.title }}</td>
+            <td>
+              <i *ngIf="data.ownVisible" nz-icon nzType="check" nzTheme="outline"></i>
+            </td>
             <td>{{ data.createdAt }}</td>
             <td>
               <a (click)="handleEditBtn(data, idx)">编辑</a>
@@ -273,6 +304,7 @@
             <th>图标</th>
             <th>网站名称</th>
             <th>网站分类</th>
+            <th>仅自己可见</th>
             <th nzWidth="300px">网站描述</th>
             <th>创建时间</th>
             <th>操作</th>
@@ -294,6 +326,9 @@
               <nz-tag *ngFor="let key of objectKeys(data.urls)" [nzColor]="tagMap[key].color || '#2db7f5'">
                 <a [href]="data.urls[key]" target="_blank">{{ key }}</a>
               </nz-tag>
+            </td>
+            <td>
+              <i *ngIf="data.ownVisible" nz-icon nzType="check" nzTheme="outline"></i>
             </td>
             <td>
               <pre class="desc">{{ data.desc }}</pre>
@@ -334,15 +369,22 @@
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="validateForm">
       <nz-form-item>
-        <nz-form-label [nzSpan]="4" nzRequired>分类名称</nz-form-label>
-        <nz-form-control [nzSpan]="20" nzErrorTip="请输入名称">
+        <nz-form-label [nzSpan]="6" nzRequired>分类名称</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="请输入名称">
           <input formControlName="title" nz-input placeholder="发现导航" />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="4">图标地址</nz-form-label>
-        <nz-form-control [nzSpan]="20">
+        <nz-form-label [nzSpan]="6" nzRequired>仅自己可见</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <nz-switch formControlName="ownVisible"></nz-switch>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">图标地址</nz-form-label>
+        <nz-form-control [nzSpan]="18">
           <nz-input-group [nzPrefix]="prefixIcon">
             <input formControlName="icon" nz-input placeholder="https://example.com/favicon.png" />
           </nz-input-group>

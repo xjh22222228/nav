@@ -8,3 +8,5 @@ export function getToken() {
 export function setToken(token: string) {
   return window.localStorage.setItem('token', token)
 }
+
+export const isLogin: boolean = !!getToken()

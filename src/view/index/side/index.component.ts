@@ -10,7 +10,9 @@ import {
   queryString,
   setWebsiteList,
   toggleCollapseAll,
+  matchCurrentList
 } from '../../../utils'
+import { isLogin } from '../../../utils/user'
 import { websiteList } from '../../../store'
 import { LOGO_CDN } from '../../../constants'
 import * as s from '../../../../data/search.json'
@@ -34,22 +36,11 @@ export default class SideComponent {
   searchEngineList = searchEngineList
   marginTop: number = searchEngineList.length > 0 ? 157 : 50
   isFirst = false
+  isLogin = isLogin
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    const initList = () => {
-      try {
-        if (this.websiteList[this.page] && this.websiteList[this.page]?.nav?.length > 0) {
-          this.currentList = this.websiteList[this.page].nav[this.id].nav
-        } else {
-          this.currentList = []
-        }
-      } catch (error) {
-        this.currentList = []
-      }
-    }
-
     this.activatedRoute.queryParams.subscribe(() => {
       const { id, page, q } = queryString()
       this.page = page
@@ -58,7 +49,7 @@ export default class SideComponent {
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
       } else {
-        initList()
+        this.currentList = matchCurrentList()
       }
 
       setWebsiteList(this.websiteList)

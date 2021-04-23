@@ -10,6 +10,7 @@
       *ngFor="let item of websiteList; let i = index;" 
       [class.active]="page === i" 
       [class.dark-text-active]="page === i" 
+      [class.remove]="!isLogin && item.ownVisible"
       class="ripple-btn dark-text"
       (click)="handleCilckTopNav(i)" 
     >
@@ -25,6 +26,7 @@
           (click)="handleSidebarNav(i)" 
           [class.active]="id === i" 
           [class.dark-item-active]="id === i" 
+          [class.remove]="!isLogin && item.ownVisible"
           class="ripple-btn dark-text"
         >
           {{ item.title }}
@@ -39,7 +41,13 @@
             <app-toolbar-title [dataSource]="item" (onCollapse)="onCollapse(item, i)" [index]="i"></app-toolbar-title>
   
             <div nz-row [nzGutter]="[16, 16]" [style.display]="item.collapsed ? 'none' : ''">
-              <div class="gutter-row" nz-col [nzSpan]="8" *ngFor="let el of item.nav; let idx=index">
+              <div
+                class="gutter-row"
+                nz-col
+                [nzSpan]="8"
+                *ngFor="let el of item.nav; let idx=index"
+                [class.remove]="!isLogin && el.ownVisible"
+              >
                 <app-card [dataSource]="el"></app-card>
               </div>
             </div>

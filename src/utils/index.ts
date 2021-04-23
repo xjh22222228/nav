@@ -4,12 +4,13 @@
 import qs from 'qs'
 import config from '../../nav.config'
 import Clipboard from 'clipboard'
-import { INavFourProp, INavProps, ISearchEngineProps } from '../types'
+import { INavFourProp, INavThreeProp, INavProps, ISearchEngineProps } from '../types'
 import * as db from '../../data/db.json'
 import * as s from '../../data/search.json'
 import { STORAGE_KEY_MAP } from '../constants'
+import { isLogin } from './user'
 
-export const websiteList = getWebsiteList()
+export const websiteList: INavProps[] = getWebsiteList()
 
 let total = 0
 const { lightThemeConfig } = config
@@ -188,7 +189,7 @@ export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
   return websiteList;
 }
 
-export function getWebsiteList() {
+export function getWebsiteList(): INavProps[] {
   let webSiteList = adapterWebsiteList((db as any).default)
   const scriptElAll = document.querySelectorAll('script')
   const scriptUrl = scriptElAll[scriptElAll.length - 1].src
@@ -247,10 +248,13 @@ export function toggleCollapseAll(wsList?: INavProps[]): boolean {
 export function setLocation() {
   const { page, id } = queryString()
 
-  window.localStorage.setItem(STORAGE_KEY_MAP.location, JSON.stringify({
-    page,
-    id
-  }))
+  window.localStorage.setItem(
+    STORAGE_KEY_MAP.location,
+    JSON.stringify({
+      page,
+      id
+    }
+  ))
 }
 
 export function getDefaultSearchEngine(): ISearchEngineProps {
@@ -265,7 +269,10 @@ export function getDefaultSearchEngine(): ISearchEngineProps {
 }
 
 export function setDefaultSearchEngine(engine: ISearchEngineProps) {
-  window.localStorage.setItem(STORAGE_KEY_MAP.engine, JSON.stringify(engine))
+  window.localStorage.setItem(
+    STORAGE_KEY_MAP.engine,
+    JSON.stringify(engine)
+  )
 }
 
 export function isDark(): boolean {
@@ -428,4 +435,25 @@ export function getTextContent(value: string): string {
   const div = document.createElement('div')
   div.innerHTML = value
   return div.textContent
+}
+
+export function matchCurrentList(): INavThreeProp[] {
+  const { id, page } = queryString()
+  let data = []
+
+  try {
+    if (
+      websiteList[page] &&
+      websiteList[page]?.nav?.length > 0 &&
+      (isLogin || !websiteList[page].nav[id].ownVisible)
+    ) {
+      data = websiteList[page].nav[id].nav
+    } else {
+      data = []
+    }
+  } catch {
+    data = []
+  }
+
+  return data
 }

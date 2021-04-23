@@ -10,7 +10,9 @@ import {
   setWebsiteList,
   toggleCollapseAll,
   totalWeb,
+  matchCurrentList
 } from '../../../utils'
+import { isLogin } from '../../../utils/user'
 import { initRipple, setAnnotate } from '../../../utils/ripple'
 import { websiteList } from '../../../store'
 
@@ -34,20 +36,9 @@ export default class SimComponent {
   title: string = title
   posterImageUrls?: string = simThemeConfig.posterImageUrls[0]
   description: string = simThemeConfig.description.replace('${total}', String(totalWeb()))
+  isLogin = isLogin
 
   ngOnInit() {
-    const initList = () => {
-      try {
-        if (this.websiteList[this.page] && this.websiteList[this.page]?.nav?.length > 0) {
-          this.currentList = this.websiteList[this.page].nav[this.id].nav
-        } else {
-          this.currentList = []
-        }
-      } catch (error) {
-        this.currentList = []
-      }
-    }
-
     this.activatedRoute.queryParams.subscribe(() => {
       const tempPage = this.page
       const { id, page, q } = queryString()
@@ -57,7 +48,7 @@ export default class SimComponent {
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
       } else {
-        initList()
+        this.currentList = matchCurrentList()
       }
 
       if (tempPage !== page) {

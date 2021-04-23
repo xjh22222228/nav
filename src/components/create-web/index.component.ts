@@ -42,6 +42,7 @@ export class CreateWebComponent implements OnInit {
       title: ['', [Validators.required]],
       url: ['', [Validators.required]],
       top: [false],
+      ownVisible: [false],
       rate: [5],
       url0: [''],
       url1: [''],
@@ -68,6 +69,7 @@ export class CreateWebComponent implements OnInit {
         this.validateForm.get('icon')!.setValue(detail.icon || '')
         this.validateForm.get('url')!.setValue(detail.url || '')
         this.validateForm.get('top')!.setValue(detail.top ?? false)
+        this.validateForm.get('ownVisible')!.setValue(detail.ownVisible ?? false)
         this.validateForm.get('rate')!.setValue(detail.rate ?? 5)
   
         if (typeof detail.urls === 'object') {
@@ -184,6 +186,7 @@ export class CreateWebComponent implements OnInit {
       icon,
       url,
       top,
+      ownVisible,
       rate,
       desc,
       url0,
@@ -214,6 +217,7 @@ export class CreateWebComponent implements OnInit {
       rate: rate ?? 0,
       desc: desc || '',
       top: top ?? false,
+      ownVisible: ownVisible ?? false,
       icon,
       url,
       urls

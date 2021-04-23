@@ -59,6 +59,7 @@ export default class WebpComponent {
     this.validateForm = this.fb.group({
       title: ['', [Validators.required]],
       icon: [''],
+      ownVisible: [false],
     })
   }
 
@@ -295,7 +296,7 @@ export default class WebpComponent {
     this.modal.info({
       nzTitle: '同步数据到远端',
       nzOkText: '确定同步',
-      nzContent: '确定将所有数据同步到远端吗？这可能需要消耗一定的时间。',
+      nzContent: '确定将所有数据同步到远端吗？',
       nzOnOk: () => {
         this.syncLoading = true
 
@@ -328,7 +329,7 @@ export default class WebpComponent {
       this.validateForm.controls[i].updateValueAndValidity()
     }
 
-    let { title, icon } = this.validateForm.value
+    let { title, icon, ownVisible } = this.validateForm.value
 
     if (!title) return
 
@@ -338,6 +339,7 @@ export default class WebpComponent {
         case 0: {
           this.websiteList[this.editIdx].title = title
           this.websiteList[this.editIdx].icon = icon
+          this.websiteList[this.editIdx].ownVisible = ownVisible
         }
           break
   
@@ -345,6 +347,7 @@ export default class WebpComponent {
         case 1: {
           this.twoTableData[this.editIdx].title = title
           this.twoTableData[this.editIdx].icon = icon
+          this.twoTableData[this.editIdx].ownVisible = ownVisible
         }
           break
   
@@ -352,6 +355,7 @@ export default class WebpComponent {
         case 2: {
           this.threeTableData[this.editIdx].title = title
           this.threeTableData[this.editIdx].icon = icon
+          this.threeTableData[this.editIdx].ownVisible = ownVisible
         }
           break
       }
@@ -370,6 +374,7 @@ export default class WebpComponent {
             createdAt,
             title,
             icon,
+            ownVisible,
             nav: []
           })
         }
@@ -386,6 +391,7 @@ export default class WebpComponent {
             createdAt,
             title,
             icon,
+            ownVisible,
             nav: []
           })
         }
@@ -402,6 +408,7 @@ export default class WebpComponent {
             createdAt,
             title,
             icon,
+            ownVisible,
             nav: []
           })
         }

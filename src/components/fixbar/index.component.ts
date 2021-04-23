@@ -173,7 +173,7 @@ export class FixbarComponent {
     this.modal.info({
       nzTitle: '同步数据到远端',
       nzOkText: '确定同步',
-      nzContent: '确定将所有数据同步到远端吗？这可能需要消耗一定的时间。',
+      nzContent: '确定将所有数据同步到远端吗？',
       nzOnOk: () => {
         this.syncLoading = true;
 

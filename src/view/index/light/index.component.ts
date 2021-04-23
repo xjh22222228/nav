@@ -10,7 +10,9 @@ import {
   queryString,
   setWebsiteList,
   toggleCollapseAll,
+  matchCurrentList
 } from '../../../utils'
+import { isLogin } from '../../../utils/user'
 import { initRipple, setAnnotate } from '../../../utils/ripple'
 import { websiteList } from '../../../store'
 
@@ -27,21 +29,10 @@ export default class LightComponent {
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
+  isLogin = isLogin
 
   ngOnInit() {
     randomBgImg()
-
-    const initList = () => {
-      try {
-        if (this.websiteList[this.page] && this.websiteList[this.page]?.nav?.length > 0) {
-          this.currentList = this.websiteList[this.page].nav[this.id].nav
-        } else {
-          this.currentList = []
-        }
-      } catch (error) {
-        this.currentList = []
-      }
-    }
 
     this.activatedRoute.queryParams.subscribe(() => {
       const tempPage = this.page
@@ -52,7 +43,7 @@ export default class LightComponent {
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
       } else {
-        initList()
+        this.currentList = matchCurrentList()
       }
 
       if (tempPage !== page) {
