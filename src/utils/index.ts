@@ -87,10 +87,11 @@ export function totalWeb(): number {
     if (!Array.isArray(nav)) return
 
     for (let i = 0; i < nav.length; i++) {
-      if (nav[i].url) {
+      const item = nav[i]
+      if (item.url && (isLogin || !item.ownVisible)) {
         total += 1
       } else {
-        r(nav[i].nav)
+        r(item.nav)
       }
     }
   }

@@ -6,6 +6,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
 import { websiteList } from '../../store'
 import { INavFourProp } from 'src/types'
 import { setWebsiteList } from '../../utils'
+import { isLogin } from '../../utils/user'
 
 @Component({
   selector: 'app-web-list',
@@ -37,7 +38,7 @@ export class WebListComponent implements OnInit {
 
         const item = nav[i]
         if (item.url) {
-          if (item.top) {
+          if (item.top && (isLogin || !item.ownVisible)) {
             dataList.push(item)
           }
         } else {
