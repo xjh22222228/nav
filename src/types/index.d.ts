@@ -80,10 +80,6 @@ export interface IConfig {
   cnzzStatisticsUrl?: string
   showGithub: boolean
 
-  lightThemeConfig: {
-    backgroundLinear: string[]
-  },
-
   simThemeConfig: {
     posterImageUrls: string[]
     description: string

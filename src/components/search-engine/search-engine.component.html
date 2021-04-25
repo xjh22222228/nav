@@ -1,6 +1,11 @@
 <div class="search-engine" *ngIf="searchEngineList && searchEngineList.length > 0">
   <div class="input-wrapper dark-bg dark-border-color">
-    <nz-input-group [nzPrefix]="prefixIcon" [nzSuffix]="suffixIcon" nzSize="large">
+    <nz-input-group
+      [nzPrefix]="prefixIcon"
+      [nzSuffix]="suffixIcon"
+      nzSize="large"
+      [nzAddOnBefore]="addOnBeforeTemplate"
+    >
       <input
         type="text"
         nz-input
@@ -22,6 +27,13 @@
     </ng-template>
     <ng-template #suffixIcon>
       <i class="search-icon iconfont iconsousuo dark-text" (click)="triggerSearch()"></i>
+    </ng-template>
+    <ng-template #addOnBeforeTemplate>
+      <nz-select [(ngModel)]="searchTypeValue" *ngIf="!currentEngine.url">
+        <nz-option nzLabel="标题" [nzValue]="SearchType.Title"></nz-option>
+        <nz-option nzLabel="描述" [nzValue]="SearchType.Desc"></nz-option>
+        <nz-option nzLabel="链接" [nzValue]="SearchType.Url"></nz-option>
+      </nz-select>
     </ng-template>
   </div>
 

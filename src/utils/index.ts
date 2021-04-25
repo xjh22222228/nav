@@ -2,19 +2,20 @@
 // See https://github.com/xjh22222228/nav
 
 import qs from 'qs'
-import config from '../../nav.config'
 import Clipboard from 'clipboard'
-import { INavFourProp, INavThreeProp, INavProps, ISearchEngineProps } from '../types'
+import {
+  INavFourProp, INavThreeProp, INavProps,
+  ISearchEngineProps
+} from '../types'
 import * as db from '../../data/db.json'
 import * as s from '../../data/search.json'
 import { STORAGE_KEY_MAP } from '../constants'
 import { isLogin } from './user'
+import { SearchType } from '../components/search-engine/index'
 
 export const websiteList: INavProps[] = getWebsiteList()
 
 let total = 0
-const { lightThemeConfig } = config
-const { backgroundLinear } = lightThemeConfig
 const searchEngineList: ISearchEngineProps[] = (s as any).default
 
 export function randomInt(max: number) {
@@ -22,7 +23,9 @@ export function randomInt(max: number) {
 }
 
 export function fuzzySearch(navList: INavProps[], keyword: string) {
-  let searchResultList = [{ nav: [] }]
+  const sType = Number(queryString().type) || SearchType.Title
+  const navData = []
+  const resultList = [{ nav: navData }]
 
   function f(arr?: any[]) {
     arr = arr || navList
@@ -33,7 +36,7 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
         f(item.nav)
       }
 
-      if (searchResultList[0].nav.length > 50) break
+      if (navData.length > 50) break
 
       if (item.name) {
         const name = item.name.toLowerCase()
@@ -42,28 +45,47 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
         const search = keyword.toLowerCase()
         const urls = Object.values(item.urls || {})
 
-        if (name.includes(search) || desc.includes(search)) {
-          try {
-            let result = Object.assign({}, item)
-            const regex = new RegExp(`(${keyword})`, 'i')
-            result.name = result.name.replace(regex, `$1`.bold())
-            result.desc = result.desc.replace(regex, `$1`.bold())
+        try {
+          switch (sType) {
+            case SearchType.Url:
+              if (url?.includes?.(keyword.toLowerCase())) {
+                navData.push(item)
+              }
+      
+              const find = urls.some((item: string) => item.includes(keyword))
+              if (find) {
+                navData.push(item)
+              }
+              break
 
-            const exists = searchResultList[0].nav.some(item => item.name === result.name)
-            if (!exists) {
-              searchResultList[0].nav.push(result)
-            }
-          } catch (err) {}
-          continue
-        }
+            case SearchType.Title:
+              if (name.includes(search)) {
+                let result = { ...item }
+                const regex = new RegExp(`(${keyword})`, 'i')
+                result.name = result.name.replace(regex, `$1`.bold())
 
-        if (url?.includes?.(keyword.toLowerCase())) {
-          searchResultList[0].nav.push(item)
-        }
+                const exists = navData.some(item => item.name === result.name)
+                if (!exists) {
+                  navData.push(result)
+                }
+              }
+              break
 
-        const find = urls.some((item: string) => item.includes(keyword))
-        if (find) {
-          searchResultList[0].nav.push(item)
+            case SearchType.Desc:
+              if (desc.includes(search)) {
+                let result = { ...item }
+                const regex = new RegExp(`(${keyword})`, 'i')
+                result.desc = result.desc.replace(regex, `$1`.bold())
+
+                const exists = navData.some(item => item.desc === result.desc)
+                if (!exists) {
+                  navData.push(result)
+                }
+              }
+              break
+          }
+        } catch (error) {
+          console.error(error)
         }
       }
     }
@@ -71,11 +93,11 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
 
   f()
 
-  if (searchResultList[0].nav.length <= 0) {
+  if (navData.length <= 0) {
     return []
   }
 
-  return searchResultList
+  return resultList
 }
 
 export function totalWeb(): number {
@@ -100,6 +122,14 @@ export function totalWeb(): number {
   return total
 }
 
+function randomColor(): string {
+  const r = randomInt(255)
+  const g = randomInt(255)
+  const b = randomInt(255)
+  const c = `#${r.toString(16)}${g.toString(16)}${b.toString(16)}000`
+  return c.slice(0, 7)
+}
+
 let randomTimer
 export function randomBgImg() {
   if (isDark()) return
@@ -107,13 +137,16 @@ export function randomBgImg() {
   clearInterval(randomTimer)
 
   const el = document.createElement('div')
+  const deg = randomInt(360)
   el.id = 'random-light-bg'
   el.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:-3;transition: 1s linear;'
-  el.style.backgroundImage = backgroundLinear[randomInt(backgroundLinear.length)]
+  el.style.backgroundImage =
+    `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
   document.body.appendChild(el)
 
   function setBg() {
-    const randomBg = backgroundLinear[randomInt(backgroundLinear.length)]
+    const randomBg =
+    `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
     el.style.opacity = '.3'
     setTimeout(() => {
       el.style.backgroundImage = randomBg
@@ -131,7 +164,7 @@ export function queryString(): {
   [key: string]: any
 } {
   const { href } = window.location
-  const search = href.slice(href.indexOf('?') + 1)
+  const search = href.split('?')[1] || ''
   const parseQs = qs.parse(search)
   let id = parseInt(parseQs.id) || 0
   let page = parseInt(parseQs.page) || 0

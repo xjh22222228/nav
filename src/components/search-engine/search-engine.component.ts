@@ -6,6 +6,7 @@ import { getDefaultSearchEngine, setDefaultSearchEngine, queryString } from '../
 import { Router } from '@angular/router'
 import * as searchEngineList from '../../../data/search.json'
 import { ISearchEngineProps } from '../../types'
+import { SearchType } from './index'
 
 @Component({
   selector: 'app-search-engine',
@@ -14,7 +15,9 @@ import { ISearchEngineProps } from '../../types'
 })
 export class SearchEngineComponent {
   searchEngineList: ISearchEngineProps[] = (searchEngineList as any).default
-  currentEngine = getDefaultSearchEngine()
+  currentEngine: ISearchEngineProps = getDefaultSearchEngine()
+  SearchType = SearchType
+  searchTypeValue = SearchType.Title
   showEngine = false
   keyword = queryString().q
 
@@ -22,8 +25,7 @@ export class SearchEngineComponent {
 
   inputFocus() {
     setTimeout(() => {
-      const inputEl = document.getElementById('search-engine-input')
-      inputEl?.focus?.()
+      document.getElementById('search-engine-input')?.focus?.()
     }, 100)
   }
 
@@ -70,7 +72,8 @@ export class SearchEngineComponent {
     this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
         ...params,
-        q: this.keyword
+        q: this.keyword,
+        type: this.searchTypeValue
       }
     })
   }
