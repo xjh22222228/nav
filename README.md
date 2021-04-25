@@ -123,7 +123,7 @@ server {
 
 
 ## 更新日志
-[CHANGELOG](CHANGELOG.md)
+[CHANGELOG](https://github.com/xjh22222228/nav/releases)
 
 
 
