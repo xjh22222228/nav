@@ -17,7 +17,7 @@ export class SearchEngineComponent {
   searchEngineList: ISearchEngineProps[] = (searchEngineList as any).default
   currentEngine: ISearchEngineProps = getDefaultSearchEngine()
   SearchType = SearchType
-  searchTypeValue = SearchType.Title
+  searchTypeValue = SearchType.All
   showEngine = false
   keyword = queryString().q
 

@@ -22,10 +22,12 @@ export function randomInt(max: number) {
   return Math.floor(Math.random() * max)
 }
 
-export function fuzzySearch(navList: INavProps[], keyword: string) {
-  const sType = Number(queryString().type) || SearchType.Title
+export function fuzzySearch(navList: INavProps[], keyword: string): INavThreeProp[] {
+  const { type, page, id } = queryString()
+  const sType = Number(type) || SearchType.Title
   const navData = []
   const resultList = [{ nav: navData }]
+  const urlRecordMap = {}
 
   function f(arr?: any[]) {
     arr = arr || navList
@@ -45,44 +47,73 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
         const search = keyword.toLowerCase()
         const urls = Object.values(item.urls || {})
 
+        function searchTitle(): boolean {
+          if (name.includes(search)) {
+            let result = { ...item }
+            const regex = new RegExp(`(${keyword})`, 'i')
+            result.name = result.name.replace(regex, `$1`.bold())
+
+            if (!urlRecordMap[result.url]) {
+              urlRecordMap[result.url] = true
+              navData.push(result)
+              return true
+            }
+          }
+          return false
+        }
+
+        function searchUrl() {
+          if (url?.includes?.(keyword.toLowerCase())) {
+            if (!urlRecordMap[item.url]) {
+              urlRecordMap[item.url] = true
+              navData.push(item)
+              return true
+            }
+          }
+  
+          const find = urls.some((item: string) => item.includes(keyword))
+          if (find) {
+            if (!urlRecordMap[item.url]) {
+              urlRecordMap[item.url] = true
+              navData.push(item)
+              return true
+            }
+          }
+        }
+
+        function searchDesc(): boolean {
+          if (desc.includes(search)) {
+            let result = { ...item }
+            const regex = new RegExp(`(${keyword})`, 'i')
+            result.desc = result.desc.replace(regex, `$1`.bold())
+
+            if (!urlRecordMap[result.url]) {
+              urlRecordMap[result.url] = true
+              navData.push(result)
+              return true
+            }
+          }
+          return false
+        }
+
         try {
           switch (sType) {
             case SearchType.Url:
-              if (url?.includes?.(keyword.toLowerCase())) {
-                navData.push(item)
-              }
-      
-              const find = urls.some((item: string) => item.includes(keyword))
-              if (find) {
-                navData.push(item)
-              }
+              searchUrl()
               break
 
             case SearchType.Title:
-              if (name.includes(search)) {
-                let result = { ...item }
-                const regex = new RegExp(`(${keyword})`, 'i')
-                result.name = result.name.replace(regex, `$1`.bold())
-
-                const exists = navData.some(item => item.name === result.name)
-                if (!exists) {
-                  navData.push(result)
-                }
-              }
+              searchTitle()
               break
 
             case SearchType.Desc:
-              if (desc.includes(search)) {
-                let result = { ...item }
-                const regex = new RegExp(`(${keyword})`, 'i')
-                result.desc = result.desc.replace(regex, `$1`.bold())
-
-                const exists = navData.some(item => item.desc === result.desc)
-                if (!exists) {
-                  navData.push(result)
-                }
-              }
+              searchDesc()
               break
+
+            default:
+              searchTitle()
+              searchDesc()
+              searchUrl()
           }
         } catch (error) {
           console.error(error)
@@ -91,7 +122,11 @@ export function fuzzySearch(navList: INavProps[], keyword: string) {
     }
   }
 
-  f()
+  if (sType === SearchType.Current) {
+    f(navList[page].nav[id].nav)
+  } else {
+    f()
+  }
 
   if (navData.length <= 0) {
     return []

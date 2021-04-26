@@ -4,4 +4,5 @@ export enum SearchType {
   Title,
   Desc,
   Url,
+  Current
 }

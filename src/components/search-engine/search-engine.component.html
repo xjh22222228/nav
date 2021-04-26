@@ -30,9 +30,11 @@
     </ng-template>
     <ng-template #addOnBeforeTemplate>
       <nz-select [(ngModel)]="searchTypeValue" *ngIf="!currentEngine.url">
+        <nz-option nzLabel="默认" [nzValue]="SearchType.All"></nz-option>
         <nz-option nzLabel="标题" [nzValue]="SearchType.Title"></nz-option>
         <nz-option nzLabel="描述" [nzValue]="SearchType.Desc"></nz-option>
         <nz-option nzLabel="链接" [nzValue]="SearchType.Url"></nz-option>
+        <nz-option nzLabel="当前" [nzValue]="SearchType.Current"></nz-option>
       </nz-select>
     </ng-template>
   </div>
