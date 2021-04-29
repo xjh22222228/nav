@@ -44,6 +44,7 @@ import ShortcutComponent from '../view/index/shortcut/index.component'
 import WebpComponent from '../view/app/default/app.component'
 import { FixbarComponent } from '../components/fixbar/index.component'
 import { FooterComponent } from '../components/footer/footer.component'
+import { EllipsisComponent } from '../components/ellipsis/index.component'
 import { IconGitComponent } from '../components/icon-git/icon-git.component'
 import { NoDataComponent } from '../components/no-data/no-data.component'
 import { SearchEngineComponent } from '../components/search-engine/search-engine.component';
@@ -107,6 +108,7 @@ const appRoutes: Routes = [
     WebpComponent,
     FixbarComponent,
     FooterComponent,
+    EllipsisComponent,
     IconGitComponent,
     NoDataComponent,
     SearchEngineComponent,

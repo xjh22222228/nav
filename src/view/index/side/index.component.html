@@ -22,7 +22,7 @@
               [nzSelected]="page === pageIdx && id === idIdx"
               (click)="handleSidebarNav(pageIdx, idIdx)" 
             >
-              {{ el.title }}
+              <app-ellipsis [text]="el.title"></app-ellipsis>
 
               <div
                 *ngIf="page === pageIdx && id === idIdx"

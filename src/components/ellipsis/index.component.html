@@ -1,0 +1,14 @@
+<div #box>
+  <div
+    nz-tooltip
+    [nzTooltipTitle]="text"
+    class="box"
+    *ngIf="isOver; else over"
+  >
+    {{ text }}
+  </div>
+
+  <ng-template #over>
+    {{ text }}
+  </ng-template>
+</div>
