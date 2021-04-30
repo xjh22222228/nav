@@ -9,11 +9,16 @@
         <li
           nz-submenu
           [(nzOpen)]="pageIdx === openIndex"
-          [nzTitle]="item.title"
           *ngFor="let item of websiteList; index as pageIdx;"
           [class.remove]="!isLogin && item.ownVisible"
           (nzOpenChange)="openIndex = pageIdx"
+          [nzTitle]="titleTpl"
         >
+          <ng-template #titleTpl>
+            <i nz-icon [nzIconfont]="item.icon" *ngIf="item.icon"></i>
+            <span>{{ item.title }}</span>
+          </ng-template>
+
           <ul>
             <li
               nz-menu-item
@@ -22,7 +27,11 @@
               [nzSelected]="page === pageIdx && id === idIdx"
               (click)="handleSidebarNav(pageIdx, idIdx)" 
             >
-              <app-ellipsis [text]="el.title"></app-ellipsis>
+              <app-ellipsis
+                [text]="el.title"
+                [icon]="el.icon"
+              >
+              </app-ellipsis>
 
               <div
                 *ngIf="page === pageIdx && id === idIdx"
@@ -40,6 +49,7 @@
         </li>
       </ul>
     </nz-sider>
+
     <nz-layout class="inner-layout">
       <nz-content class="content" id="content">
         <div class="search-header dark-bg-deep dark-border-color">

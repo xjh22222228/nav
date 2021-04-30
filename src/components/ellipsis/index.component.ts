@@ -25,13 +25,14 @@ function getWidthInText(str) {
 })
 export class EllipsisComponent {
   @Input() text: string
-  @ViewChild('box') box: ElementRef;
+  @Input() icon: string
+  @ViewChild('box') box: ElementRef<Element>;
 
   isOver = false
 
   ngOnInit() {
     queueMicrotask(() => {
-      const el = this.box?.nativeElement as HTMLElement
+      const el = this.box?.nativeElement
       if (!el) return
 
       const textWidth = el.clientWidth

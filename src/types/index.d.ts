@@ -78,6 +78,7 @@ export interface IConfig {
   footerContent?: string|null
   baiduStatisticsUrl?: string
   cnzzStatisticsUrl?: string
+  iconfontUrl?: string
   showGithub: boolean
 
   simThemeConfig: {

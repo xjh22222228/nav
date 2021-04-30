@@ -16,6 +16,7 @@ import { isLogin } from '../../../utils/user'
 import { websiteList } from '../../../store'
 import { LOGO_CDN } from '../../../constants'
 import * as s from '../../../../data/search.json'
+import { NzIconService } from 'ng-zorro-antd/icon'
 
 const searchEngineList: ISearchEngineProps[] = (s as any).default
 
@@ -38,7 +39,17 @@ export default class SideComponent {
   isFirst = false
   isLogin = isLogin
 
-  constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor (
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private iconService: NzIconService
+  ) {
+    if (config.iconfontUrl) {
+      this.iconService.fetchFromIconfont({
+        scriptUrl: config.iconfontUrl
+      })
+    }
+  }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(() => {
