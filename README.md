@@ -58,7 +58,6 @@
 - 🍰 支持自定义引擎搜索。
 - 🍰 多款主题切换。
 - 🍰 支持暗黑模式。
-- 🍰 支持快捷键操作，一步到位。
 - 🍰 支持后台管理, 无需部署。
 - 🍰 支持从Chrome书签导入
 
@@ -125,16 +124,6 @@ server {
 ## 更新日志
 [CHANGELOG](https://github.com/xjh22222228/nav/releases)
 
-
-
-
-## 快捷键
-mac下是 `Command`，windows 下是 `Ctrl`
-
-- `ctrl+v` 查看信息
-- `ctrl+d` 开启或关闭暗黑模式
-
-如对快捷键有特殊要求请发起 [issues](https://github.com/xjh22222228/nav/issues)
 
 
 

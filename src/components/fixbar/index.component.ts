@@ -1,7 +1,6 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import hotkeys from 'hotkeys-js'
 import config from '../../../nav.config'
 import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core'
 import { isDark as isDarkFn, randomBgImg, queryString } from '../../utils'
@@ -71,23 +70,6 @@ export class FixbarComponent {
     const url = this.router.url.split('?')[0]
     this.themeList = this.themeList.filter(t => {
       return t.url !== url
-    })
-
-    this.initHotKeys()
-  }
-
-  ngOnDestroy() {
-    hotkeys.unbind()
-  }
-
-  initHotKeys() {
-    hotkeys(KEY_MAP.view, (e) => {
-      e.preventDefault()
-      this.viewInfo()
-    })
-    hotkeys(KEY_MAP.dark, (e) => {
-      e.preventDefault()
-      this.toggleMode()
     })
   }
 
