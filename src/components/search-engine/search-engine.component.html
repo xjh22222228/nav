@@ -1,5 +1,8 @@
 <div class="search-engine" *ngIf="searchEngineList && searchEngineList.length > 0">
-  <div class="input-wrapper dark-bg dark-border-color">
+  <div
+    class="input-wrapper dark-bg dark-border-color"
+    [class.removeAddon]="currentEngine.url"
+  >
     <nz-input-group
       [nzPrefix]="prefixIcon"
       [nzSuffix]="suffixIcon"

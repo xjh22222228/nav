@@ -85,6 +85,10 @@ $width: 500px;
       }
     }
   }
+
+  ::ng-deep .removeAddon .ant-input-group-addon {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 668px) {
