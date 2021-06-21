@@ -15,7 +15,7 @@ export const LOGO_PATH = 'logo.png'
 
 export const LOGO_CDN = getCDN('logo.png')
 
-export const VERSION = '5.3.2'
+export const VERSION = '5.3.3'
 
 // keyboard event
 const prefix = isMac() ? 'command' : 'ctrl'
