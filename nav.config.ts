@@ -52,7 +52,7 @@ const c: IConfig = {
     posterImageUrls: [
       'https://raw.sevencdn.com/xjh22222228/nav/image/sim-wallpaper.jpg'
     ],
-    description: '这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活'
+    description: '这里收录多达 <b>${total}</b> 个优质网站， 助您生活愉快'
   }
 }
 
