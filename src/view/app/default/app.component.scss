@@ -95,6 +95,7 @@ $bg-color: #fbfbfb;
       box-shadow: 0 0 3px #ccc;
 
       a {
+        position: relative;
         display: inline-block;
         font-size: 14px;
         padding: 3px 5px;
@@ -103,9 +104,16 @@ $bg-color: #fbfbfb;
         color: #333;
       }
 
-      .active {
+      .active::after {
+        content: "";
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        width: 50%;
+        transform: translateX(-50%);
+        height: 3px;
+        border-radius: 2px;
         background: #20a0ff;
-        color: #fff;
       }
     }
 
@@ -117,7 +125,7 @@ $bg-color: #fbfbfb;
 
     .name {
       display: inline-block;
-      font-size: 16px;
+      font-size: 14px;
       margin-left: 5px;
       width: calc(100% - 50px);
       white-space: nowrap;
@@ -144,6 +152,8 @@ $bg-color: #fbfbfb;
 
     .top {
       padding: 10px;
+      display: flex;
+      align-items: center;
     }
   }
 
