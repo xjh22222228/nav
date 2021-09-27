@@ -4,6 +4,7 @@
 import fs from 'fs'
 import config from '../nav.config.js'
 import path from 'path'
+import LOAD_MAP from './loading.js'
 
 const dbPath = path.join('.', 'data', 'db.json')
 const pkgPath = path.join('package.json')
@@ -26,7 +27,8 @@ const {
   title,
   keywords,
   baiduStatisticsUrl,
-  cnzzStatisticsUrl
+  cnzzStatisticsUrl,
+  loading
 } = config.default
 
 const s = gitRepoUrl.split('/')
@@ -35,6 +37,7 @@ const authorName = s[s.length - 2]
 const repoName = s[s.length - 1]
 
 const htmlTemplate = `
+  <!-- https://github.com/xjh22222228/nav -->
   <title>${title}</title>
   <meta name="description" content="${description}">
   <meta name="keywords" content="${keywords}">
@@ -103,6 +106,7 @@ async function build() {
   t = t.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
 
   t = t.replace('<!-- nav.seo -->', seoTemplate)
+  t = t.replace('<!-- nav.loading -->', LOAD_MAP[getLoadKey()] || '')
 
   fs.writeFileSync(htmlPath, t, { encoding: 'utf-8' })
   fs.unlinkSync('./nav.config.js')
@@ -112,3 +116,10 @@ async function build() {
 buildSeo()
 .finally(() => build())
 .catch(console.error)
+
+function getLoadKey() {
+  const keys = Object.keys(LOAD_MAP)
+  const rand = Math.floor(Math.random() * keys.length)
+  const loadingKey = loading === 'random' ? keys[rand] : loading
+  return loadingKey
+}

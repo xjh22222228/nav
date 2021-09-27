@@ -69,6 +69,7 @@ export interface ISearchEngineProps {
 export interface IConfig {
   gitRepoUrl: string
   branch: string
+  loading?: string
   hashMode: boolean
   homeUrl?: string
   title: string

@@ -7,6 +7,10 @@ const c: IConfig = {
   // 部署分支
   branch: 'main',
 
+  // 页面Loading: loading1 | loading2 | loading3 | random
+  // 如果您有好看的加载Loading请联系我们！
+  loading: 'random', // 随机加载
+
   // 路由是否Hash模式, 如果是部署在github pages 务必设为 true
   hashMode: true,
 
