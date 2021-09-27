@@ -60,6 +60,8 @@
 - 🍰 支持暗黑模式。
 - 🍰 支持后台管理, 无需部署。
 - 🍰 支持从Chrome书签导入
+- 🍰 多种Loading加载动画
+
 
 
 
@@ -109,6 +111,14 @@ server {
 ![](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/import.png)
 
 浏览器打开 [chrome://bookmarks/](chrome://bookmarks/) 导出书签得到 html 文件, 接着从导航网站后台导入即可。
+
+
+## 选择适合您的Loading
+在[配置文件](nav.config.ts)修改 `loading` 字段。
+
+<img src="media/loading1.png" width="400px" />
+<img src="media/loading2.png" width="400px" />
+<img src="media/loading3.png" width="400px" />
 
 
 
