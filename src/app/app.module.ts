@@ -54,16 +54,10 @@ import { ToolbarTitleWebComponent } from '../components/toolbar-title/index.comp
 import { WebListComponent } from '../components/web-list/index.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { zh_CN } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
-import zh from '@angular/common/locales/zh';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoComponent } from '../components/logo/logo.component';
 import { CardComponent } from '../components/card/index.component'
-
-if (config.language === 'zh-CN') {
-  registerLocaleData(zh);
-}
 
 const appRoutes: Routes = [
   { 

@@ -86,5 +86,16 @@ export default {
   _webName: '网站名称',
   _webTag: '网站分类',
   _webDesc: '网站描述',
-  _requiredName: '请输入名称'
+  _webLink: '网站链接',
+  _requiredName: '请输入名称',
+  _requiredLink: '请输入网站链接',
+  _uploadSuccess: '上传成功',
+  _uploadFail: '上传失败，请重试！',
+  _notUpload: '请不要上传非法图片',
+  _shortcut: '快捷方式',
+  _recommend: '推荐指数',
+  _iconAddr: '图标地址',
+  _copyUpload: '支持将截图或复制图片粘贴此处上传',
+  _upload: '上传',
+  _continueAdd: '继续添加关联链接'
 }

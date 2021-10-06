@@ -1,7 +1,7 @@
 <nz-modal
   [nzWidth]="560"
   [(nzVisible)]="visible"
-  [nzTitle]="detail ? '编辑' : '新增'"
+  [nzTitle]="detail ? $t('_edit') : $t('_add')"
   (nzOnCancel)="handleCancel()"
   (nzOnOk)="handleOk()"
   [nzOkLoading]="uploading"
@@ -9,15 +9,15 @@
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="validateForm">
       <nz-form-item>
-        <nz-form-label [nzSpan]="4" nzRequired>网站名称</nz-form-label>
-        <nz-form-control [nzSpan]="20" nzErrorTip="请输入名称">
-          <input formControlName="title" nz-input placeholder="发现导航" />
+        <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_webName') }}</nz-form-label>
+        <nz-form-control [nzSpan]="20" [nzErrorTip]="$t('_requiredName')">
+          <input formControlName="title" nz-input [placeholder]="$t('_webTitle')" />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="4" nzRequired>网站链接</nz-form-label>
-        <nz-form-control [nzSpan]="20" nzErrorTip="请输入网站链接">
+        <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_webLink') }}</nz-form-label>
+        <nz-form-control [nzSpan]="20" [nzErrorTip]="$t('_requiredLink')">
           <input formControlName="url" nz-input placeholder="https://nav3.cn" (blur)="onUrlBlur($event)" />
         </nz-form-control>
       </nz-form-item>
@@ -25,7 +25,7 @@
       <div class="row">
         <div class="col">
           <nz-form-item>
-            <nz-form-label [nzSpan]="15" nzRequired>快捷方式</nz-form-label>
+            <nz-form-label [nzSpan]="15" nzRequired>{{ $t('_shortcut') }}</nz-form-label>
             <nz-form-control [nzSpan]="9">
               <nz-switch formControlName="top"></nz-switch>
             </nz-form-control>
@@ -33,7 +33,7 @@
         </div>
         <div class="col">
           <nz-form-item>
-            <nz-form-label [nzSpan]="15" nzRequired>仅自己可见</nz-form-label>
+            <nz-form-label [nzSpan]="15" nzRequired>{{ $t('_onlyOwnVisible') }}</nz-form-label>
             <nz-form-control [nzSpan]="9">
               <nz-switch formControlName="ownVisible"></nz-switch>
             </nz-form-control>
@@ -41,7 +41,7 @@
         </div>
         <div class="col">
           <nz-form-item>
-            <nz-form-label [nzSpan]="8">推荐指数</nz-form-label>
+            <nz-form-label [nzSpan]="8">{{ $t('_recommend') }}</nz-form-label>
             <nz-form-control [nzSpan]="24">
               <nz-rate formControlName="rate" nzAllowHalf></nz-rate>
             </nz-form-control>
@@ -50,13 +50,13 @@
       </div>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="4">图标地址</nz-form-label>
+        <nz-form-label [nzSpan]="4">{{ $t('_iconAddr') }}</nz-form-label>
         <nz-form-control [nzSpan]="20">
           <nz-input-group [nzPrefix]="prefixIcon" [nzSuffix]="suffixIconSearch">
             <input
               formControlName="icon"
               nz-input
-              placeholder="支持将截图或复制图片粘贴此处上传"
+              [placeholder]="$t('_copyUpload')"
               (blur)="onIconBlur($event)"
               (focus)="onIconFocus($event)"
             />
@@ -69,7 +69,7 @@
             <i nz-icon nzType="loading" nzTheme="outline" *ngIf="uploading; else loading"></i>
             <ng-template #loading>
               <label id="file">
-                <i nz-icon nzType="upload" nzTheme="outline" class="cursor-pointer" title="上传"></i>
+                <i nz-icon nzType="upload" nzTheme="outline" class="cursor-pointer" [title]="$t('_upload')"></i>
                 <input
                   type="file"
                   name="file"
@@ -84,7 +84,7 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="4">网站描述</nz-form-label>
+        <nz-form-label [nzSpan]="4">{{ $t('_webDesc') }}</nz-form-label>
         <nz-form-control [nzSpan]="20">
           <textarea
             formControlName="desc"
@@ -132,7 +132,7 @@
         <nz-form-label [nzSpan]="4" [nzNoColon]="true"></nz-form-label>
         <nz-form-control [nzSpan]="20">
           <button nz-button nzType="default" nzBlock (click)="addMoreUrl()">
-            <i nz-icon nzType="plus"></i>继续添加关联链接
+            <i nz-icon nzType="plus"></i>{{ $t('_continueAdd') }}
           </button>
         </nz-form-control>
       </nz-form-item>
