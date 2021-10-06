@@ -8,6 +8,7 @@ import { setWebsiteList, copyText, deleteByWeb, getTextContent, updateByWeb } fr
 import { websiteList } from '../../store'
 import { INavProps, ITagProp, INavFourProp } from '../../types'
 import * as __tag from '../../../data/tag.json'
+import { $t } from '../../locale'
 
 const tagMap: ITagProp = (__tag as any).default
 
@@ -19,6 +20,7 @@ const tagMap: ITagProp = (__tag as any).default
 export class CardComponent implements OnInit {
   @Input() dataSource: INavFourProp
 
+  $t = $t
   objectKeys = Object.keys
   websiteList: INavProps[] = websiteList
   isLogin: boolean = !!getToken()
@@ -72,7 +74,7 @@ export class CardComponent implements OnInit {
       this.dataSource[k] = payload[k]
     }
 
-    this.message.success('修改成功!')
+    this.message.success($t('_modifySuccess'))
     this.toggleModal()
   }
 

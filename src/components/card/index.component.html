@@ -40,7 +40,7 @@
     <app-logo [src]="dataSource.icon" [name]="dataSource.name"></app-logo>
   </ng-template>
   <ng-template #actionSetting>
-    <div nz-tooltip [nzTooltipTitle]="copyUrlDone ? '复制成功' : '复制链接'">
+    <div nz-tooltip [nzTooltipTitle]="copyUrlDone ? $t('_copySuccess') : $t('_copyUrl')">
       <i
         nz-icon
         [nzType]="copyUrlDone ? 'check' : 'copy'"
@@ -52,7 +52,7 @@
     </div>
   </ng-template>
   <ng-template #actionEdit>
-    <div nz-tooltip [nzTooltipTitle]="copyPathDone ? '复制成功' : '分享网站'">
+    <div nz-tooltip [nzTooltipTitle]="copyPathDone ? $t('_copySuccess') : $t('_shareWeb')">
       <i
         nz-icon
         [nzType]="copyPathDone ? 'check' : 'share-alt'"
@@ -68,16 +68,16 @@
 
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu nzSelectable>
-        <li nz-menu-item (click)="toggleModal(); detail = dataSource">编辑</li>
+        <li nz-menu-item (click)="toggleModal(); detail = dataSource">{{ $t('_edit') }}</li>
         <a
           nz-popconfirm
           nzPopconfirmPlacement="rightTop"
           nzOkType="danger"
-          nzPopconfirmTitle="您确定要删除吗?"
+          [nzPopconfirmTitle]="$t('_confirmDel')"
           nzPopconfirmPlacement="bottom"
           (nzOnConfirm)="confirmDel($event)"
         >
-          <li nz-menu-item nzDanger>删除</li>
+          <li nz-menu-item nzDanger>{{ $t('_del') }}</li>
         </a>
       </ul>
     </nz-dropdown-menu>

@@ -67,6 +67,7 @@ export interface ISearchEngineProps {
 }
 
 export interface IConfig {
+  language?: 'zh-CN' | 'en'
   gitRepoUrl: string
   branch: string
   loading?: string

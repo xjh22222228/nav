@@ -61,7 +61,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoComponent } from '../components/logo/logo.component';
 import { CardComponent } from '../components/card/index.component'
 
-registerLocaleData(zh);
+if (config.language === 'zh-CN') {
+  registerLocaleData(zh);
+}
 
 const appRoutes: Routes = [
   { 

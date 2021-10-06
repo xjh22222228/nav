@@ -6,6 +6,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { verifyToken } from '../../services'
 import { getToken, setToken } from '../../utils/user'
+import { $t } from 'src/locale'
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   @Input() visible: boolean
   @Output() onCancel = new EventEmitter()
 
+  $t = $t
   token = ''
   isLogin = !!getToken()
   submiting = false
@@ -33,18 +35,18 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (!this.token || this.token.length < 40) {
-      return this.message.error('请填写正确的Token');
+      return this.message.error($t('_pleaseInputToken'))
     }
 
     this.submiting = true
     verifyToken(this.token)
       .then(() => {
         setToken(this.token);
-        this.message.success('Token验证成功, 2秒后刷新!')
+        this.message.success($t('_tokenVerSuc'))
         setTimeout(() => window.location.reload(), 2000)
       })
       .catch(res => {
-        this.notification.error('Token 验证失败', res.message as string)
+        this.notification.error($t('_tokenVerFail'), res.message as string)
       })
       .finally(() => {
         this.submiting = false

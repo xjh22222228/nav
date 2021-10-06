@@ -4,7 +4,7 @@
     style="margin-bottom: 15px;"
     (click)="goBack()"
   >
-    返回主页
+    {{ $t('_backHome') }}
   </button>
   <button
     nz-button
@@ -12,25 +12,25 @@
     (click)="handleSync()"
     [nzLoading]="syncLoading"
   >
-    同步到远端
+    {{ $t('_syncRemote') }}
   </button>
   <button
     nz-button
     style="margin-left: 15px;"
     (click)="handleReset()"
   >
-    重置初始数据
+    {{ $t('_resetInitData') }}
   </button>
 
   <div class="content">
-    <p><b>1、所有数据设置完毕后点击 “同步到远端”，拖拽表格进行排序</b></p>
-    <p><b>2、网站分类需手动维护, <a [href]="gitRepoUrl + '/edit/main/data/tag.json'" target="_blank">点击编辑</a></b></p>
+    <p><b>{{ $t('_allContentMsg1') }}</b></p>
+    <p><b>{{ $t('_allContentMsg2') }} <a [href]="gitRepoUrl + '/edit/main/data/tag.json'" target="_blank">{{ $t('_clickEdit') }}</a></b></p>
     
     <div class="logo-wrapper">
       <label id="file">
         <img [src]="LOGO_CDN" alt="" class="logo">
         <p style="white-space: nowrap; margin-top: 5px;">
-          {{ uploading ? '上传中...' : '更换LOGO, 仅支持 PNG' }}
+          {{ uploading ? $t('_uploading') : $t('_updateLogo') }}
         </p>
         <input
           type="file"
@@ -44,7 +44,7 @@
     <div class="book-wrapper">
       <label id="file">
         <img src="assets/img/bookmark.svg" alt="" class="logo">
-        <p style="white-space: nowrap; margin-top: 5px;">从Chrome书签导入</p>
+        <p style="white-space: nowrap; margin-top: 5px;">{{ $t('_importChrome') }}</p>
         <input
           type="file"
           name="file"
@@ -56,16 +56,16 @@
   </div>
 
   <nz-tabset *ngIf="isLogin" [nzSelectedIndex]="tabActive" (nzSelectedIndexChange)="onTabChange($event)">
-    <nz-tab nzTitle="管理一级分类">
-      <button nz-button nzType="primary" (click)="toggleCreateModal()">添加分类</button>
+    <nz-tab [nzTitle]="$t('_mgr1')">
+      <button nz-button nzType="primary" (click)="toggleCreateModal()">{{ $t('_addTag') }}</button>
       <nz-table #basicTable [nzData]="websiteList" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
-            <th>图标</th>
-            <th>分类名称</th>
-            <th>仅自己可见</th>
-            <th>创建时间</th>
-            <th>操作</th>
+            <th>{{ $t('_icon') }}</th>
+            <th>{{ $t('_tagName') }}</th>
+            <th>{{ $t('_onlyOwnVisible') }}</th>
+            <th>{{ $t('_createAt') }}</th>
+            <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropOne($event)">
@@ -83,14 +83,14 @@
             </td>
             <td>{{ data.createdAt }}</td>
             <td>
-              <a (click)="handleEditBtn(data, idx)">编辑</a>
+              <a (click)="handleEditBtn(data, idx)">{{ $t('_edit') }}</a>
               <a
                 nz-popconfirm
-                nzPopconfirmTitle="这会删除分类下的所有数据，您确定要删除吗?"
+                [nzPopconfirmTitle]="$t('_delWarn')"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelOne(idx)"
               >
-                <a nz-button nzType="link" nzDanger>删除</a>
+                <a nz-button nzType="link" nzDanger>{{ $t('_del') }}</a>
               </a>
             </td>
           </tr>
@@ -98,11 +98,11 @@
       </nz-table>
     </nz-tab>
 
-    <nz-tab nzTitle="管理二级分类">
+    <nz-tab [nzTitle]="$t('_mgr2')">
       <nz-select
         [ngModel]="oneSelect"
         nzShowSearch
-        nzPlaceHolder="请选择一级分类"
+        [nzPlaceHolder]="$t('_sel1')"
         (ngModelChange)="hanldeOneSelect($event)"
         style="width: 260px;"
       >
@@ -120,17 +120,17 @@
         (click)="toggleCreateModal()"
         style="margin-left: 20px;"
       >
-        添加分类
+        {{ $t('_addTag') }}
       </button>
 
       <nz-table #basicTable [nzData]="twoTableData" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
-            <th>图标</th>
-            <th>分类名称</th>
-            <th>仅自己可见</th>
-            <th>创建时间</th>
-            <th>操作</th>
+            <th>{{ $t('_icon') }}</th>
+            <th>{{ $t('_tagName') }}</th>
+            <th>{{ $t('_onlyOwnVisible') }}</th>
+            <th>{{ $t('_createAt') }}</th>
+            <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropTwo($event)">
@@ -148,14 +148,14 @@
             </td>
             <td>{{ data.createdAt }}</td>
             <td>
-              <a (click)="handleEditBtn(data, idx)">编辑</a>
+              <a (click)="handleEditBtn(data, idx)">{{ $t('_edit') }}</a>
               <a
                 nz-popconfirm
-                nzPopconfirmTitle="这会删除分类下的所有数据，您确定要删除吗?"
+                [nzPopconfirmTitle]="$t('_delWarn')"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelTwo(idx)"
               >
-                <a nz-button nzType="link" nzDanger>删除</a>
+                <a nz-button nzType="link" nzDanger>{{ $t('_del') }}</a>
               </a>
             </td>
           </tr>
@@ -163,11 +163,11 @@
       </nz-table>
     </nz-tab>
 
-    <nz-tab nzTitle="管理三级分类">
+    <nz-tab [nzTitle]="$t('_mgr3')">
       <nz-select
         [ngModel]="oneSelect"
         nzShowSearch
-        nzPlaceHolder="请选择一级分类"
+        [nzPlaceHolder]="$t('_sel1')"
         (ngModelChange)="hanldeOneSelect($event)"
         style="width: 200px;"
       >
@@ -182,7 +182,7 @@
       <nz-select
         [ngModel]="twoSelect"
         nzShowSearch
-        nzPlaceHolder="请选择二级分类"
+        [nzPlaceHolder]="$t('_sel2')"
         (ngModelChange)="hanldeTwoSelect($event)"
         style="width: 200px; margin-left: 15px;"
       >
@@ -200,17 +200,17 @@
         (click)="toggleCreateModal()"
         style="margin-left: 20px;"
       >
-        添加分类
+        {{ $t('_addTag') }}
       </button>
 
       <nz-table #basicTable [nzData]="threeTableData" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
-            <th>图标</th>
-            <th>分类名称</th>
-            <th>仅自己可见</th>
-            <th>创建时间</th>
-            <th>操作</th>
+            <th>{{ $t('_icon') }}</th>
+            <th>{{ $t('_tagName') }}</th>
+            <th>{{ $t('_onlyOwnVisible') }}</th>
+            <th>{{ $t('_createAt') }}</th>
+            <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropThree($event)">
@@ -228,14 +228,14 @@
             </td>
             <td>{{ data.createdAt }}</td>
             <td>
-              <a (click)="handleEditBtn(data, idx)">编辑</a>
+              <a (click)="handleEditBtn(data, idx)">{{ $t('_edit') }}</a>
               <a
                 nz-popconfirm
-                nzPopconfirmTitle="这会删除分类下的所有数据，您确定要删除吗?"
+                [nzPopconfirmTitle]="$t('_delWarn')"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelThree(idx)"
               >
-                <a nz-button nzType="link" nzDanger>删除</a>
+                <a nz-button nzType="link" nzDanger>{{ $t('_del') }}</a>
               </a>
             </td>
           </tr>
@@ -243,11 +243,11 @@
       </nz-table>
     </nz-tab>
 
-    <nz-tab nzTitle="管理网站">
+    <nz-tab [nzTitle]="$t('_mgrWeb')">
       <nz-select
         [ngModel]="oneSelect"
         nzShowSearch
-        nzPlaceHolder="请选择一级分类"
+        [nzPlaceHolder]="$t('_sel1')"
         (ngModelChange)="hanldeOneSelect($event)"
         style="width: 200px;"
       >
@@ -262,7 +262,7 @@
       <nz-select
         [ngModel]="twoSelect"
         nzShowSearch
-        nzPlaceHolder="请选择二级分类"
+        [nzPlaceHolder]="$t('_sel2')"
         (ngModelChange)="hanldeTwoSelect($event)"
         style="width: 200px; margin-left: 15px;"
       >
@@ -277,7 +277,7 @@
       <nz-select
         [ngModel]="threeSelect"
         nzShowSearch
-        nzPlaceHolder="请选择三级分类"
+        [nzPlaceHolder]="$t('_sel3')"
         (ngModelChange)="hanldeThreeSelect($event)"
         style="width: 200px; margin-left: 15px;"
       >
@@ -295,19 +295,19 @@
         (click)="toggleCreateWebModal()"
         style="margin-left: 20px;"
       >
-        添加网站
+        {{ $t('_addWeb') }}
       </button>
 
       <nz-table #basicTable [nzData]="websiteTableData" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
-            <th>图标</th>
-            <th>网站名称</th>
-            <th>网站分类</th>
-            <th>仅自己可见</th>
-            <th nzWidth="300px">网站描述</th>
-            <th>创建时间</th>
-            <th>操作</th>
+            <th>{{ $t('_icon') }}</th>
+            <th>{{ $t('_webName') }}</th>
+            <th>{{ $t('_webTag') }}</th>
+            <th>{{ $t('_onlyOwnVisible') }}</th>
+            <th nzWidth="300px">{{ $t('_webDesc') }}</th>
+            <th>{{ $t('_createAt') }}</th>
+            <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropWebsite($event)">
@@ -335,14 +335,14 @@
             </td>
             <td nzWidth="200px">{{ data.createdAt }}</td>
             <td nzWidth="100px">
-              <a (click)="toggleCreateWebModal(); websiteDetail = data; editIdx = idx">编辑</a>
+              <a (click)="toggleCreateWebModal(); websiteDetail = data; editIdx = idx">{{ $t('_edit') }}</a>
               <a
                 nz-popconfirm
-                nzPopconfirmTitle="您确定要删除吗?"
+                [nzPopconfirmTitle]="$t('_confirmDel')"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelWebsite(idx)"
               >
-                <a nz-button nzType="link" nzDanger>删除</a>
+                <a nz-button nzType="link" nzDanger>{{ $t('_del') }}</a>
               </a>
             </td>
           </tr>
@@ -362,28 +362,28 @@
 
 <nz-modal
   [(nzVisible)]="showCreateModal"
-  [nzTitle]="isEdit ? '编辑' : '新增'"
+  [nzTitle]="isEdit ? $t('_edit') : $t('_add')"
   (nzOnCancel)="toggleCreateModal()"
   (nzOnOk)="handleOk()"
 >
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="validateForm">
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzRequired>分类名称</nz-form-label>
-        <nz-form-control [nzSpan]="18" nzErrorTip="请输入名称">
-          <input formControlName="title" nz-input placeholder="发现导航" />
+        <nz-form-label [nzSpan]="6" nzRequired>{{ $t('_tagName') }}</nz-form-label>
+        <nz-form-control [nzSpan]="18" [nzErrorTip]="$t('_requiredName')">
+          <input formControlName="title" nz-input [placeholder]="$t('_webTitle')" />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzRequired>仅自己可见</nz-form-label>
+        <nz-form-label [nzSpan]="6" nzRequired>{{ $t('_onlyOwnVisible') }}</nz-form-label>
         <nz-form-control [nzSpan]="18">
           <nz-switch formControlName="ownVisible"></nz-switch>
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="6">图标</nz-form-label>
+        <nz-form-label [nzSpan]="6">{{ $t('_icon') }}</nz-form-label>
         <nz-form-control [nzSpan]="18">
           <nz-input-group [nzPrefix]="prefixIcon">
             <input formControlName="icon" nz-input />

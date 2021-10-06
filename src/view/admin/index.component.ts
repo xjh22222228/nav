@@ -16,6 +16,7 @@ import { DB_PATH, LOGO_PATH, LOGO_CDN, STORAGE_KEY_MAP } from '../../constants'
 import { parseBookmark } from '../../utils/bookmark'
 import * as __tag from '../../../data/tag.json'
 import config from '../../../nav.config'
+import { $t } from 'src/locale'
 
 const tagMap: ITagProp = (__tag as any).default
 
@@ -25,6 +26,7 @@ const tagMap: ITagProp = (__tag as any).default
   styleUrls: ['./index.component.scss']
 })
 export default class WebpComponent {
+  $t = $t
   validateForm!: FormGroup
   websiteList: INavProps[] = websiteList
   gitRepoUrl = config.gitRepoUrl
@@ -75,11 +77,11 @@ export default class WebpComponent {
       const result = parseBookmark(html)
       if (!Array.isArray(result)) {
         that.notification.error(
-          `错误: 书签解析失败`,
+          $t('_errorBookTip'),
           `${result?.message ?? ''}`
         )
       } else {
-        that.message.success('导入成功，2秒后刷新！')
+        that.message.success($t('_importSuccess'))
         that.websiteList = result
         setWebsiteList(that.websiteList)
         setTimeout(() => window.location.reload(), 2000)
@@ -94,7 +96,7 @@ export default class WebpComponent {
     const file = files[0]
 
     if (file.type !== 'image/png') {
-      return this.message.error('仅支持 PNG 格式')
+      return this.message.error($t('_acceptPng'))
     }
 
     const fileReader = new FileReader()
@@ -113,12 +115,12 @@ export default class WebpComponent {
         path: LOGO_PATH,
         branch: 'image'
       }).then(() => {
-        that.message.success('更换成功, 由于CDN缓存问题需要次日更新')
+        that.message.success($t('_updateLogoSuccess'))
       }).catch(res => {
         logoEL.src = tempSrc
         that.notification.error(
-          `错误: ${res?.response?.status ?? 401}`,
-          `${res?.response?.data?.message ?? '更换LOGO失败，请重试！'}`
+          `${$t('_error')}: ${res?.response?.status ?? 401}`,
+          `${res?.response?.data?.message ?? $t('_updateLogoFail')}`
         )
       }).finally(() => {
         e.target.value = ''
@@ -129,11 +131,11 @@ export default class WebpComponent {
 
   handleReset() {
     this.modal.info({
-      nzTitle: '重置初始数据',
-      nzOkText: '确定重置',
-      nzContent: '所有数据将还原初始状态，不可撤销！',
+      nzTitle: $t('_resetInitData'),
+      nzOkText: $t('_confirmReset'),
+      nzContent: $t('_warnReset'),
       nzOnOk: () => {
-        this.message.success('数据已重置回初始状态')
+        this.message.success($t('_resetSuccess'))
         window.localStorage.removeItem(STORAGE_KEY_MAP.website)
         setTimeout(() => {
           window.location.reload()
@@ -148,7 +150,7 @@ export default class WebpComponent {
 
   toggleCreateWebModal() {
     if (this.tabActive === 3 && !this.threeSelect) {
-      return this.message.error('请选择三级分类')
+      return this.message.error($t('_sel3'))
     }
 
     this.websiteDetail = null
@@ -159,10 +161,10 @@ export default class WebpComponent {
     // 检测是否有选择
     if (!this.showCreateModal) {
       if (this.tabActive === 1 && !this.oneSelect) {
-        return this.message.error('请选择一级分类')
+        return this.message.error($t('_sel1'))
       }
       if (this.tabActive === 2 && !this.twoSelect) {
-        return this.message.error('请选择二级分类')
+        return this.message.error($t('_sel2'))
       }
     }
 
@@ -179,11 +181,11 @@ export default class WebpComponent {
       // 创建
       const exists = this.websiteTableData.some(item => item.name === payload.name)
       if (exists) {
-        return this.message.error('请不要重复添加')
+        return this.message.error($t('_repeatAdd'))
       }
 
       this.websiteTableData.unshift(payload)
-      this.message.success('新增成功!')
+      this.message.success($t('_addSuccess'))
     }
 
     setWebsiteList(this.websiteList)
@@ -197,11 +199,11 @@ export default class WebpComponent {
   // 删除一级分类
   handleConfirmDelOne(idx) {
     if (this.websiteList.length === 1) {
-      return this.message.error('至少保留一项，请先添加!')
+      return this.message.error($t('_reserveOne'))
     }
 
     this.websiteList.splice(idx, 1)
-    this.message.success('删除成功')
+    this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
   }
 
@@ -220,11 +222,11 @@ export default class WebpComponent {
   // 删除二级分类
   handleConfirmDelTwo(idx) {
     if (this.twoTableData.length === 1) {
-      return this.message.error('至少保留一项，请先添加!')
+      return this.message.error($t('_reserveOne'))
     }
 
     this.twoTableData.splice(idx, 1)
-    this.message.success('删除成功')
+    this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
   }
 
@@ -237,11 +239,11 @@ export default class WebpComponent {
   // 删除三级分类
   handleConfirmDelThree(idx) {
     if (this.threeTableData.length === 1) {
-      return this.message.error('至少保留一项，请先添加!')
+      return this.message.error($t('_reserveOne'))
     }
 
     this.threeTableData.splice(idx, 1)
-    this.message.success('删除成功')
+    this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
   }
 
@@ -254,11 +256,11 @@ export default class WebpComponent {
   // 删除网站
   handleConfirmDelWebsite(idx) {
     if (this.websiteTableData.length === 1) {
-      return this.message.error('至少保留一项，请先添加!')
+      return this.message.error($t('_reserveOne'))
     }
 
     this.websiteTableData.splice(idx, 1)
-    this.message.success('删除成功')
+    this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
   }
 
@@ -294,9 +296,9 @@ export default class WebpComponent {
 
   handleSync() {
     this.modal.info({
-      nzTitle: '同步数据到远端',
-      nzOkText: '确定同步',
-      nzContent: '确定将所有数据同步到远端吗？',
+      nzTitle: $t('_syncDataOut'),
+      nzOkText: $t('_confirmSync'),
+      nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
         this.syncLoading = true
 
@@ -306,12 +308,12 @@ export default class WebpComponent {
           path: DB_PATH
         })
         .then(() => {
-          this.message.success('同步成功, 大约需要5分钟构建时间')
+          this.message.success($t('_syncSuccessTip'))
         })
         .catch(res => {
           this.notification.error(
-            `错误: ${res?.response?.status ?? 401}`,
-            '同步失败, 请重试'
+            `${$t('_error')}: ${res?.response?.status ?? 401}`,
+            $t('_syncFailTip')
           )
         })
         .finally(() => {
@@ -360,14 +362,14 @@ export default class WebpComponent {
           break
       }
 
-      this.message.success('保存成功!')
+      this.message.success($t('_saveSuccess'))
     } else {
       switch (this.tabActive) {
         // 新增一级分类
         case 0: {
           const exists = this.websiteList.some(item => item.title === title)
           if (exists) {
-            return this.message.error('请不要重复添加')
+            return this.message.error($t('_repeatAdd'))
           }
   
           this.websiteList.unshift({
@@ -384,7 +386,7 @@ export default class WebpComponent {
         case 1: {
           const exists = this.twoTableData.some(item => item.title === title)
           if (exists) {
-            return this.message.error('请不要重复添加')
+            return this.message.error($t('_repeatAdd'))
           }
   
           this.twoTableData.unshift({
@@ -401,7 +403,7 @@ export default class WebpComponent {
         case 2: {
           const exists = this.threeTableData.some(item => item.title === title)
           if (exists) {
-            return this.message.error('请不要重复添加')
+            return this.message.error($t('_repeatAdd'))
           }
   
           this.threeTableData.unshift({
@@ -414,7 +416,7 @@ export default class WebpComponent {
         }
           break
       }
-      this.message.success('新增成功!')
+      this.message.success($t('_addSuccess'))
     }
 
     this.validateForm.reset()

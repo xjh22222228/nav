@@ -10,9 +10,10 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
 import { updateFileContent } from '../../services'
 import { websiteList } from '../../store'
-import { DB_PATH, KEY_MAP, VERSION, STORAGE_KEY_MAP } from '../../constants'
+import { DB_PATH, VERSION, STORAGE_KEY_MAP } from '../../constants'
 import { Router, ActivatedRoute } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
+import { $t, getLocale } from 'src/locale'
 
 @Component({
   selector: 'app-fixbar',
@@ -26,6 +27,8 @@ export class FixbarComponent {
   @Input() selector: string
   @Output() onCollapse = new EventEmitter()
 
+  $t = $t
+  language = getLocale()
   websiteList = websiteList
   isDark: boolean = isDarkFn()
   showCreateModal = false
@@ -33,23 +36,23 @@ export class FixbarComponent {
   isLogin = !!getToken()
   themeList = [
     {
-      name: '切换到 Light',
+      name: $t('_switchTo') + ' Light',
       url: '/light'
     },
     {
-      name: '切换到 Sim',
+      name: $t('_switchTo') + ' Sim',
       url: '/sim'
     },
     {
-      name: '切换到 Side',
+      name: $t('_switchTo') + ' Side',
       url: '/side'
     },
     {
-      name: '切换到 Shortcut',
+      name: $t('_switchTo') + ' Shortcut',
       url: '/shortcut'
     },
     {
-      name: '切换到 App',
+      name: $t('_switchTo') + ' App',
       url: '/app'
     }
   ]
@@ -78,14 +81,14 @@ export class FixbarComponent {
 
     this.modal.info({
       nzWidth: 500,
-      nzTitle: '以下信息只有您能查看，请放心！',
-      nzOkText: '知道了',
+      nzTitle: $t('_infoTip'),
+      nzOkText: $t('_know'),
       nzContent: `
         <p>Token: ${getToken()}</p>
-        <p>部署分支: ${config.branch}</p>
-        <p>上次构建时间: ${date || '未知'}</p>
-        <p>当前版本: <img src="https://img.shields.io/badge/release-v${VERSION}-red.svg?longCache=true&style=flat-square"></p>
-        <p>最新版本: <img src="https://img.shields.io/github/v/release/xjh22222228/nav" /></p>
+        <p>${$t('_devBranch')}: ${config.branch}</p>
+        <p>${$t('_prevDevTime')}: ${date || $t('_unknow')}</p>
+        <p>${$t('_curVer')}: <img src="https://img.shields.io/badge/release-v${VERSION}-red.svg?longCache=true&style=flat-square"></p>
+        <p>${$t('_newVer')}: <img src="https://img.shields.io/github/v/release/xjh22222228/nav" /></p>
       `,
     });
   }
@@ -148,14 +151,14 @@ export class FixbarComponent {
 
   handleSync() {
     if (this.syncLoading) {
-      this.message.warning('请不要频繁操作')
+      this.message.warning($t('_repeatOper'))
       return
     }
 
     this.modal.info({
-      nzTitle: '同步数据到远端',
-      nzOkText: '确定同步',
-      nzContent: '确定将所有数据同步到远端吗？',
+      nzTitle: $t('_syncDataOut'),
+      nzOkText: $t('_confirmSync'),
+      nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
         this.syncLoading = true;
 
@@ -165,12 +168,12 @@ export class FixbarComponent {
           path: DB_PATH
         })
         .then(() => {
-          this.message.success('同步成功, 大约需要5分钟构建时间')
+          this.message.success($t('_syncSuccessTip'))
         })
         .catch(res => {
           this.notification.error(
-            `错误: ${res?.response?.status ?? 1401}`,
-            '同步失败, 请重试'
+            `${$t('_error')}: ${res?.response?.status ?? 1401}`,
+            $t('_syncFailTip')
           )
         })
         .finally(() => {
@@ -178,5 +181,11 @@ export class FixbarComponent {
         })
       }
     });
+  }
+
+  toggleLocale() {
+    const l = this.language === 'en' ? 'zh-CN' : 'en'
+    window.localStorage.setItem(STORAGE_KEY_MAP.language, l)
+    window.location.reload()
   }
 }

@@ -33,5 +33,6 @@ export const STORAGE_KEY_MAP = {
   s_url: 's_url',
   isDark: 'isDark',
   website: 'website',
-  engine: 'engine'
+  engine: 'engine',
+  language: 'language'
 }
