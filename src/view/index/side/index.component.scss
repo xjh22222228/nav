@@ -65,6 +65,9 @@ $sideWidth: 200px;
   padding: 10px;
   padding-left: 15px;
   background-color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   img {
     width: 50px;
