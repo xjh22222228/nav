@@ -240,6 +240,9 @@ export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
     item.createdAt ||= createdAt
 
     if (Array.isArray(item.nav)) {
+      if (item.nav[0]?.url) {
+        item.nav = item.nav.filter(item => !item.ownVisible || isLogin);
+      }
       adapterWebsiteList(item.nav, item)
     }
 
