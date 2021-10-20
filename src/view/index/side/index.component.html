@@ -71,7 +71,7 @@
       
                 <div nz-row [nzGutter]="[16, 16]" [style.display]="item.collapsed ? 'none' : ''">
                   <div
-                    *ngFor="let el of item.nav"
+                    *ngFor="let el of item.nav; let i=j"
                     class="gutter-row"
                     [class.remove]="!isLogin && el.ownVisible"
                     nz-col
@@ -83,7 +83,7 @@
                     [nzXl]="6"
                     [nzXXl]="6"
                   >
-                    <app-card [dataSource]="el"></app-card>
+                    <app-card [dataSource]="el" [indexs]="[page, id, i, j]"></app-card>
                   </div>
                 </div>
               </div>

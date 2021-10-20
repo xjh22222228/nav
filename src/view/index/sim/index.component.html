@@ -45,10 +45,10 @@
                 class="gutter-row"
                 nz-col
                 [nzSpan]="8"
-                *ngFor="let el of item.nav; let idx=index"
+                *ngFor="let el of item.nav; let idx=index; let i=j"
                 [class.remove]="!isLogin && el.ownVisible"
               >
-                <app-card [dataSource]="el"></app-card>
+                <app-card [dataSource]="el" [indexs]="[page, id, i, j]"></app-card>
               </div>
             </div>
           </div>

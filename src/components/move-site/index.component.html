@@ -1,0 +1,58 @@
+<nz-modal
+  [nzWidth]="560"
+  [(nzVisible)]="visible"
+  [nzTitle]="$t('_moveTo')"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="hanldeOk()"
+>
+  <ng-container *nzModalContent>
+    <nz-select
+      [ngModel]="oneSelect"
+      nzShowSearch
+      [nzPlaceHolder]="$t('_sel1')"
+      (ngModelChange)="hanldeOneSelect($event)"
+      style="width: 160px;"
+    >
+      <nz-option
+        *ngFor="let item of websiteList; index as idx"
+        [nzLabel]="item.title"
+        [nzValue]="idx"
+      >
+      </nz-option>
+    </nz-select>
+
+    <nz-select
+      [ngModel]="twoSelect"
+      nzShowSearch
+      [nzPlaceHolder]="$t('_sel2')"
+      (ngModelChange)="hanldeTwoSelect($event)"
+      style="width: 160px; margin-left: 15px;"
+    >
+      <nz-option
+        *ngFor="let item of twoOptList; index as idx"
+        [nzLabel]="item.title"
+        [nzValue]="idx"
+      >
+      </nz-option>
+    </nz-select>
+
+    <nz-select
+      [ngModel]="threeSelect"
+      nzShowSearch
+      [nzPlaceHolder]="$t('_sel3')"
+      (ngModelChange)="hanldeThreeSelect($event)"
+      style="width: 160px; margin-left: 15px;"
+    >
+      <nz-option
+        *ngFor="let item of threeOptList; index as idx"
+        [nzLabel]="item.title"
+        [nzValue]="idx"
+      >
+      </nz-option>
+    </nz-select>
+
+    <div class="act">
+      <label nz-checkbox [(ngModel)]="checked">{{ $t('_copy') }}</label>
+    </div>
+  </ng-container>
+</nz-modal>

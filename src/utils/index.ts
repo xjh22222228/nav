@@ -216,11 +216,11 @@ export function queryString(): {
   }
 
   if (page > websiteList.length - 1) {
-    page = websiteList.length - 1;
-    id = 0;
+    page = websiteList.length - 1
+    id = 0
   } else {
     if (!(id <= websiteList[page].nav.length - 1)) {
-      id = websiteList[page].nav.length - 1;
+      id = websiteList[page].nav.length - 1
     }
   }
 
@@ -241,7 +241,7 @@ export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
 
     if (Array.isArray(item.nav)) {
       if (item.nav[0]?.url) {
-        item.nav = item.nav.filter(item => !item.ownVisible || isLogin);
+        item.nav = item.nav.filter(item => !item.ownVisible || isLogin)
       }
       adapterWebsiteList(item.nav, item)
     }

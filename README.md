@@ -152,8 +152,6 @@ yarn build
 
 
 ## contribute
-[Click Here](https://github.com/xjh22222228/nav/tree/master/data)
-
 Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), men.
 
 <a href="https://github.com/YutHelloWorld">

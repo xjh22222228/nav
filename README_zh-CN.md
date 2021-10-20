@@ -159,8 +159,6 @@ yarn build
 
 
 ## 贡献
-[点击这里](https://github.com/xjh22222228/nav/tree/master/data)
-
 Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), men.
 
 <a href="https://github.com/YutHelloWorld">

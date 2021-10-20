@@ -31,6 +31,7 @@ import { NzTagModule } from 'ng-zorro-antd/tag'
 import { NzRateModule } from 'ng-zorro-antd/rate'
 import { NzSwitchModule } from 'ng-zorro-antd/switch'
 import { DragDropModule } from '@angular/cdk/drag-drop'
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 
 // components
 import { AppComponent } from './app.component'
@@ -58,6 +59,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoComponent } from '../components/logo/logo.component';
 import { CardComponent } from '../components/card/index.component'
+import { MoveSiteComponent } from '../components/move-site/index.component'
 
 const appRoutes: Routes = [
   { 
@@ -113,7 +115,8 @@ const appRoutes: Routes = [
     ToolbarTitleWebComponent,
     WebListComponent,
     LogoComponent,
-    CardComponent
+    CardComponent,
+    MoveSiteComponent
   ],
   imports: [
     NzModalModule,
@@ -138,6 +141,7 @@ const appRoutes: Routes = [
     NzTabsModule,
     NzTagModule,
     NzRateModule,
+    NzCheckboxModule,
     NzSwitchModule,
     DragDropModule,
     BrowserModule,

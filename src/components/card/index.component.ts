@@ -1,7 +1,7 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, Input, ViewChildren, QueryList } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { getToken } from '../../utils/user'
 import { setWebsiteList, copyText, deleteByWeb, getTextContent, updateByWeb } from '../../utils'
@@ -9,6 +9,7 @@ import { websiteList } from '../../store'
 import { INavProps, ITagProp, INavFourProp } from '../../types'
 import * as __tag from '../../../data/tag.json'
 import { $t } from '../../locale'
+import { MoveSiteComponent } from '../move-site/index.component'
 
 const tagMap: ITagProp = (__tag as any).default
 
@@ -19,12 +20,17 @@ const tagMap: ITagProp = (__tag as any).default
 })
 export class CardComponent implements OnInit {
   @Input() dataSource: INavFourProp
+  @Input() indexs: Array<number>
+
+  @ViewChildren(MoveSiteComponent)
+  moveSiteChild: QueryList<MoveSiteComponent>
 
   $t = $t
   objectKeys = Object.keys
   websiteList: INavProps[] = websiteList
   isLogin: boolean = !!getToken()
-  showModal = false
+  showCreateModal = false
+  showMoveModal = false
   copyUrlDone = false
   copyPathDone = false
   tagMap = tagMap
@@ -33,7 +39,8 @@ export class CardComponent implements OnInit {
     private message: NzMessageService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   async copyUrl(e, type: number) {
     const w = this.dataSource
@@ -53,8 +60,12 @@ export class CardComponent implements OnInit {
     this.copyPathDone = false
   }
 
-  toggleModal() {
-    this.showModal = !this.showModal
+  toggleCreateModal() {
+    this.showCreateModal = !this.showCreateModal
+  }
+
+  toggleMoveModal() {
+    this.showMoveModal = !this.showMoveModal
   }
 
   onRateChange(n: number) {
@@ -62,7 +73,7 @@ export class CardComponent implements OnInit {
     setWebsiteList(this.websiteList)
   }
 
-  handleOk(payload: INavFourProp) {
+  handleUpdateSiteOk(payload: INavFourProp) {
     updateByWeb({
       ...this.dataSource,
       name: getTextContent(this.dataSource.name),
@@ -75,7 +86,7 @@ export class CardComponent implements OnInit {
     }
 
     this.message.success($t('_modifySuccess'))
-    this.toggleModal()
+    this.toggleCreateModal()
   }
 
   confirmDel() {
@@ -84,5 +95,13 @@ export class CardComponent implements OnInit {
       name: getTextContent(this.dataSource.name),
       desc: getTextContent(this.dataSource.desc)
     })
+  }
+
+  handleMove() {
+    this.moveSiteChild.changes.subscribe((comps: QueryList<MoveSiteComponent>) =>
+    {
+      comps.first?.pushMoveSites([this.dataSource])
+    });
+    this.showMoveModal = true
   }
 }

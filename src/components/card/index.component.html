@@ -68,7 +68,8 @@
 
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu nzSelectable>
-        <li nz-menu-item (click)="toggleModal(); detail = dataSource">{{ $t('_edit') }}</li>
+        <li nz-menu-item (click)="toggleCreateModal(); detail = dataSource">{{ $t('_edit') }}</li>
+        <li nz-menu-item (click)="handleMove()">{{ $t('_move') }}</li>
         <a
           nz-popconfirm
           nzPopconfirmPlacement="rightTop"
@@ -85,10 +86,19 @@
 </div>
 
 <app-create-web
-  *ngIf="showModal"
-  [visible]="showModal"
-  (onCancel)="toggleModal()"
-  (onOk)="handleOk($event)"
+  *ngIf="showCreateModal"
+  [visible]="showCreateModal"
+  (onCancel)="toggleCreateModal()"
+  (onOk)="handleUpdateSiteOk($event)"
   [detail]="dataSource"
 >
 </app-create-web>
+
+<app-move-site
+  #moveSite
+  *ngIf="showMoveModal"
+  [indexs]="indexs"
+  [visible]="showMoveModal"
+  (onCancel)="toggleMoveModal()"
+>
+</app-move-site>
