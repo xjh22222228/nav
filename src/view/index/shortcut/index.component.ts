@@ -2,6 +2,8 @@
 
 import config from '../../../../nav.config'
 import { Component } from '@angular/core'
+import { isDark as isDarkFn } from 'src/utils'
+import mitt from 'src/utils/mitt'
 
 const { title } = config
 
@@ -12,6 +14,11 @@ const { title } = config
 })
 export default class ShortcutComponent {
   title = title
+  isDark: boolean = isDarkFn()
 
-  constructor () {}
+  constructor () {
+    mitt.on('dark', (isDark: boolean) => {
+      this.isDark = isDark
+    })
+  }
 }

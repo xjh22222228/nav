@@ -32,6 +32,7 @@
     "clipboard": "^2.0.8",
     "hotkeys-js": "^3.8.3",
     "js-base64": "^3.6.0",
+    "mitt": "^3.0.0",
     "ng-zorro-antd": "^11.4.1",
     "nprogress": "^0.2.0",
     "qs": "^6.10.1",

@@ -14,6 +14,7 @@ import { DB_PATH, VERSION, STORAGE_KEY_MAP } from '../../constants'
 import { Router, ActivatedRoute } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
 import { $t, getLocale } from 'src/locale'
+import mitt from 'src/utils/mitt'
 
 @Component({
   selector: 'app-fixbar',
@@ -66,7 +67,7 @@ export class FixbarComponent {
   ) {}
 
   ngOnInit() {
-    if (isDarkFn()) {
+    if (this.isDark) {
       document.documentElement.classList.add('dark-container')
     }
 
@@ -129,6 +130,7 @@ export class FixbarComponent {
 
   toggleMode() {
     this.isDark = !this.isDark
+    mitt.emit('dark', this.isDark)
     window.localStorage.setItem(STORAGE_KEY_MAP.isDark, String(Number(this.isDark)))
     document.documentElement.classList.toggle('dark-container')
 
