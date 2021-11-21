@@ -59,7 +59,7 @@ export default class SystemSearchComponent {
     this.submitting = true
     updateFileContent({
       message: 'Update Search',
-      content: JSON.stringify(o, null, 2),
+      content: JSON.stringify(this.searchList, null, 2),
       path: SEARCH_PATH
     })
       .then(() => {

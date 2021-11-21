@@ -100,7 +100,8 @@ export default class SystemSettingComponent {
 
     const values = {
       ...this.validateForm.value,
-      simThemeImages: this.settings.simThemeImages
+      simThemeImages: this.settings.simThemeImages,
+      shortcutThemeImage: this.settings.shortcutThemeImage
     }
 
     this.submitting = true

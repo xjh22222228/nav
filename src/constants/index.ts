@@ -15,7 +15,7 @@ export const LOGO_PATH = 'logo.png'
 
 export const LOGO_CDN = getCDN('logo.png')
 
-export const VERSION = '5.3.3'
+export const VERSION = '6.0.0'
 
 export const STORAGE_KEY_MAP = {
   token: 'token',
