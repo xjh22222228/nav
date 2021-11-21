@@ -1,0 +1,35 @@
+#file {
+  cursor: pointer;
+  input {
+    display: none;
+  }
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+}
+.preview {
+  width: 300px;
+}
+.save-tip {
+  margin-top: 10px;
+  color: #f50;
+}
+.divider {
+  height: 1px;
+  width: 100%;
+  margin: 20px 0;
+  background-color: #eee;
+}
+.title {
+  margin-bottom: 20px;
+}
+.sim-ban {
+  img {
+    width: 100px;
+    margin-right: 20px;
+  }
+  ::ng-deep .anticon {
+    font-size: 30px;
+  }
+}

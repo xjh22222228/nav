@@ -76,7 +76,8 @@ em {
   -webkit-user-select: none;
   -moz-user-select: none;
 }
-.white-space-nowrap {
+.white-space-nowrap,
+.nowrap {
   white-space: nowrap;
 }
 .text-align-center {
@@ -110,6 +111,9 @@ em {
   overflow: hidden;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+.ml10 {
+  margin-left: 10px;
 }
 
 .remove {

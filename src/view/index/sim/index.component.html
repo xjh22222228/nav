@@ -1,8 +1,12 @@
 <div class="sim">
-  <div *ngIf="posterImageUrls" class="wallpaper" [ngStyle]="{ 'background-image': 'url(' + posterImageUrls + ')' }">
-    <h1 class="title dark-title">{{ title }}</h1>
-    <h2 class="description dark-text-active" [innerHTML]="description"></h2>
-    <app-search-engine></app-search-engine>
+  <div class="wallpaper">
+    <div class="bg" [ngStyle]="{ 'background-image': 'url(' + posterImageUrls + ')' }" (click)="handleJumpUrl"></div>
+
+    <div class="bar">
+      <h1 class="title dark-title">{{ title }}</h1>
+      <h2 class="description dark-text-active" [innerHTML]="description"></h2>
+      <app-search-engine></app-search-engine>
+    </div>
   </div>
 
   <nav class="top-nav user-select-none dark-border-color">

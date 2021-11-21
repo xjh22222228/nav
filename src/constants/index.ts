@@ -3,29 +3,19 @@
 
 import { getCDN } from '../services'
 
-function isMac() {
-  return /mac os x/i.test(navigator.userAgent.toLowerCase());
-}
-
 export const DB_PATH = 'data/db.json'
 
 export const TAG_PATH = 'data/tag.json'
+
+export const SETTING_PATH = 'data/settings.json'
+
+export const SEARCH_PATH = 'data/search.json'
 
 export const LOGO_PATH = 'logo.png'
 
 export const LOGO_CDN = getCDN('logo.png')
 
 export const VERSION = '5.3.3'
-
-// keyboard event
-const prefix = isMac() ? 'command' : 'ctrl'
-export const KEY_MAP = {
-  // 查看信息
-  view: `${prefix}+v`,
-
-  // 暗黑模式
-  dark: `${prefix}+d`
-}
 
 export const STORAGE_KEY_MAP = {
   token: 'token',

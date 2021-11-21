@@ -2,13 +2,13 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
-import { getLogoUrl, getTextContent } from '../../utils'
+import { getLogoUrl, getTextContent } from 'src/utils'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { ITagProp, INavFourProp } from '../../types'
+import { ITagProp, INavFourProp } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import * as __tag from '../../../data/tag.json'
-import { createFile } from '../../services'
+import { createFile } from 'src/services'
 import { $t } from 'src/locale'
 
 const tagMap: ITagProp = (__tag as any).default

@@ -98,6 +98,9 @@ server {
 }
 ```
 
+## Backstage
+Modify the routing address to `system`, such as: https://www.nav3.cn/#/light Change to https://www.nav3.cn/#/system
+
 
 ## Bookmark import
 
@@ -108,18 +111,9 @@ Support importing from Chrome bookmarks (WebKit kernel should be supported~), it
 The browser opens chrome://bookmarks/ to export the bookmarks to get the html file, and then import it from the background of the navigation website.
 
 
-## Choose the Loading that suits you
-Modify the `loading` field in [Configuration File](nav.config.ts).
-
-<img src="media/loading1.png" width="400px" />
-<img src="media/loading2.png" width="400px" />
-<img src="media/loading3.png" width="400px" />
 
 
-
-
-
-##upgrade
+## Upgrade
 Before upgrading, please back up the `data` folder and `nav.config.ts` in the root directory, and replace them after the upgrade.
 Click the `Watch` button in the upper right corner to track the version upgrade for the first time.
 
@@ -174,3 +168,8 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 
 ## Suggest
 If you have any functional suggestions, you can initiate an [issue](https://github.com/xjh22222228/nav/issues), Thank you.
+
+## LICENSE
+Commercial use is prohibited without the consent of the author.
+
+[MIT](./LICENSE)

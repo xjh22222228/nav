@@ -13,7 +13,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { setWebsiteList } from '../../utils'
 import { updateFileContent } from '../../services'
 import { DB_PATH, LOGO_PATH, LOGO_CDN, STORAGE_KEY_MAP } from '../../constants'
-import { parseBookmark } from '../../utils/bookmark'
 import * as __tag from '../../../data/tag.json'
 import config from '../../../nav.config'
 import { $t } from 'src/locale'
@@ -63,30 +62,6 @@ export default class WebpComponent {
       icon: [''],
       ownVisible: [false],
     })
-  }
-
-  onBookChange(e) {
-    const that = this
-    const { files } = e.target
-    if (files.length <= 0) return
-    const file = files[0]
-    const fileReader = new FileReader()
-    fileReader.readAsText(file)
-    fileReader.onload = function() {
-      const html = this.result as string
-      const result = parseBookmark(html)
-      if (!Array.isArray(result)) {
-        that.notification.error(
-          $t('_errorBookTip'),
-          `${result?.message ?? ''}`
-        )
-      } else {
-        that.message.success($t('_importSuccess'))
-        that.websiteList = result
-        setWebsiteList(that.websiteList)
-        setTimeout(() => window.location.reload(), 2000)
-      }
-    }
   }
 
   onLogoChange(e) {

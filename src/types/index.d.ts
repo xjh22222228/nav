@@ -8,12 +8,17 @@ export type ThemeType =
   | 'App'
   | 'Shortcut'
 
+
+export interface ITagPropValues {
+  name?: string
+  color: string
+  createdAt: string
+  desc: string
+  isInner: boolean
+}
+
 export interface ITagProp {
-  [tagName: string]: {
-    color: string
-    createdAt: string
-    desc?: string
-  }
+  [tagName: string]: ITagPropValues
 }
 
 export interface INavFourProp {
@@ -66,12 +71,9 @@ export interface ISearchEngineProps {
   blocked: boolean
 }
 
-export interface IConfig {
-  language?: 'zh-CN' | 'en'
-  gitRepoUrl: string
-  branch: string
-  loading?: string
-  hashMode: boolean
+export interface ISettings {
+  language: 'zh-CN' | 'en'
+  loading: string
   homeUrl?: string
   title: string
   description: string
@@ -82,9 +84,15 @@ export interface IConfig {
   cnzzStatisticsUrl?: string
   iconfontUrl?: string
   showGithub: boolean
+  showWeather: boolean
 
-  simThemeConfig: {
-    posterImageUrls: string[]
-    description: string
-  }
+  simThemeImages: Record<string, string>[]
+  simThemeDesc: string
+  shortcutThemeImage: string
+}
+
+export interface IConfig {
+  gitRepoUrl: string
+  branch: string
+  hashMode: boolean
 }

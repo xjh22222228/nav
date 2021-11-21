@@ -7,9 +7,11 @@ import path from 'path'
 import LOAD_MAP from './loading.js'
 
 const dbPath = path.join('.', 'data', 'db.json')
+const setPath = path.join('.', 'data', 'settings.json')
 const pkgPath = path.join('package.json')
 
 const pkg = JSON.parse(fs.readFileSync(pkgPath).toString())
+const settings = JSON.parse(fs.readFileSync(setPath).toString())
 
 function addZero(num) {
   return num < 10 ? '0' + num : num
@@ -21,14 +23,17 @@ now.setHours(now.getHours() + 8)
 const date = `${now.getFullYear()}年${addZero(now.getMonth() + 1)}月${addZero(now.getDate())}日 ${addZero(now.getHours())}:${addZero(now.getMinutes())}:${addZero(now.getSeconds())}`
 
 const {
-  gitRepoUrl,
-  homeUrl,
   description,
   title,
   keywords,
   baiduStatisticsUrl,
   cnzzStatisticsUrl,
   loading
+} = settings
+
+const {
+  gitRepoUrl,
+  homeUrl,
 } = config.default
 
 const s = gitRepoUrl.split('/')
@@ -93,6 +98,7 @@ async function buildSeo() {
 async function build() {
   const htmlPath = path.join('.', 'src', 'index.html')
   let t = fs.readFileSync(htmlPath).toString()
+  t = t.replace(/<title>.*<\/title>/i, '')
   t = t.replace('<!-- nav.config -->', htmlTemplate)
 
   if (baiduStatisticsUrl) {

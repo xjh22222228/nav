@@ -1,24 +1,21 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import config from '../../../../nav.config'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { INavProps, INavThreeProp, ISearchEngineProps } from '../../../types'
+import { INavProps, INavThreeProp } from 'src/types'
 import {
   fuzzySearch,
   queryString,
   setWebsiteList,
   toggleCollapseAll,
   matchCurrentList
-} from '../../../utils'
-import { isLogin } from '../../../utils/user'
-import { websiteList } from '../../../store'
-import { LOGO_CDN } from '../../../constants'
-import * as s from '../../../../data/search.json'
+} from 'src/utils'
+import { isLogin } from 'src/utils/user'
+import { websiteList } from 'src/store'
+import { LOGO_CDN } from 'src/constants'
 import { NzIconService } from 'ng-zorro-antd/icon'
-
-const searchEngineList: ISearchEngineProps[] = (s as any).default
+import { settings, searchEngineList } from 'src/store'
 
 @Component({
   selector: 'app-side',
@@ -31,7 +28,7 @@ export default class SideComponent {
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
-  title: string = config.title.trim().split(/\s/)[0]
+  title: string = settings.title.trim().split(/\s/)[0]
   openIndex = queryString().page
   contentEl: HTMLElement
   searchEngineList = searchEngineList
@@ -44,9 +41,9 @@ export default class SideComponent {
     private activatedRoute: ActivatedRoute,
     private iconService: NzIconService
   ) {
-    if (config.iconfontUrl) {
+    if (settings.iconfontUrl) {
       this.iconService.fetchFromIconfont({
-        scriptUrl: config.iconfontUrl
+        scriptUrl: settings.iconfontUrl
       })
     }
   }

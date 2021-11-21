@@ -1,7 +1,6 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import config from '../../../nav.config'
 import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core'
 import { isDark as isDarkFn, randomBgImg, queryString } from '../../utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
@@ -10,7 +9,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
 import { updateFileContent } from '../../services'
 import { websiteList } from '../../store'
-import { DB_PATH, VERSION, STORAGE_KEY_MAP } from '../../constants'
+import { DB_PATH, STORAGE_KEY_MAP } from '../../constants'
 import { Router, ActivatedRoute } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
 import { $t, getLocale } from 'src/locale'
@@ -32,7 +31,6 @@ export class FixbarComponent {
   language = getLocale()
   websiteList = websiteList
   isDark: boolean = isDarkFn()
-  showCreateModal = false
   syncLoading = false
   isLogin = !!getToken()
   themeList = [
@@ -75,23 +73,6 @@ export class FixbarComponent {
     this.themeList = this.themeList.filter(t => {
       return t.url !== url
     })
-  }
-
-  viewInfo() {
-    const date = document.getElementById('META-NAV')?.dataset?.date
-
-    this.modal.info({
-      nzWidth: 500,
-      nzTitle: $t('_infoTip'),
-      nzOkText: $t('_know'),
-      nzContent: `
-        <p>Token: ${getToken()}</p>
-        <p>${$t('_devBranch')}: ${config.branch}</p>
-        <p>${$t('_prevDevTime')}: ${date || $t('_unknow')}</p>
-        <p>${$t('_curVer')}: <img src="https://img.shields.io/badge/release-v${VERSION}-red.svg?longCache=true&style=flat-square"></p>
-        <p>${$t('_newVer')}: <img src="https://img.shields.io/github/v/release/xjh22222228/nav" /></p>
-      `,
-    });
   }
 
   toggleTheme(theme) {
@@ -142,13 +123,8 @@ export class FixbarComponent {
     }
   }
 
-  toggleModal() {
-    if (this.isLogin) {
-      this.removeBackground()
-      this.router.navigate(['admin'])
-      return
-    }
-    this.showCreateModal = !this.showCreateModal
+  goSystemPage() {
+    this.router.navigate(['system'])
   }
 
   handleSync() {

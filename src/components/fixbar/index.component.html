@@ -1,13 +1,4 @@
 <div class="fixbar">
-  <span *ngIf="isLogin" nz-tooltip [nzTooltipTitle]="$t('_viewInfo')">
-    <div
-      class="wrapper dark-border-color dark-action-hover"
-      (click)="viewInfo()"
-    >
-    <img src="assets/img/view.svg" />
-    </div>
-  </span>
-
   <div
     class="wrapper dark-bg dark-border-color dark-action-hover"
     nz-dropdown
@@ -38,8 +29,8 @@
     </div>
   </span>
 
-  <span nz-tooltip [nzTooltipTitle]="$t('_addData')">
-    <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleModal()">
+  <span *ngIf="isLogin" nz-tooltip [nzTooltipTitle]="$t('_addData')">
+    <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="goSystemPage()">
       <i class="iconfont iconchuangjian"></i>
     </div>
   </span>
@@ -68,5 +59,3 @@
     <i class="iconfont iconjiantouarrow483 arrow"></i>
   </div>
 </div>
-
-<app-login [visible]="showCreateModal" (onCancel)="toggleModal()"></app-login>

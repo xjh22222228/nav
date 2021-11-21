@@ -1,0 +1,14 @@
+<div class="book-wrapper">
+  <div [innerHTML]="$t('_bookImportTip')"></div>
+
+  <label id="file">
+    <img src="assets/img/bookmark.svg" draggable="false" class="logo">
+    <p style="white-space: nowrap; margin-top: 5px;">{{ $t('_importChrome') }}</p>
+    <input
+      type="file"
+      name="file"
+      (change)="onBookChange($event)"
+      accept="text/html"
+    >
+  </label>
+</div>

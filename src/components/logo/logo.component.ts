@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { getCDN } from '../../services'
+import { getCDN } from 'src/services'
 
 @Component({
   selector: 'app-logo',

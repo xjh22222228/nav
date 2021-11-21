@@ -23,22 +23,6 @@
     }
   }
 
-  .book-wrapper {
-    position: absolute;
-    top: -45px;
-    left: 830px;
-    width: 180px;
-    text-align: center;
-    cursor: pointer;
-    text-align: center;
-
-    .logo {
-      width: 100px;
-      height: 100px;
-      cursor: pointer;
-    }
-  }
-
   input[type="file"] {
     display: none;
   }

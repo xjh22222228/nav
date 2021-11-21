@@ -1,0 +1,36 @@
+<nz-layout class="system-layout" *ngIf="isLogin">
+  <nz-layout>
+    <nz-sider nzWidth="200px" nzTheme="light">
+      <ul nz-menu nzMode="inline" class="sider-menu">
+        <li nz-submenu nzOpen nzTitle="SYSTEM">
+          <ul>
+            <li nz-menu-item [nzSelected]="currentMenu === 'web'" (click)="goRoute('/system/web')">{{ $t('_websiteMang') }}</li>
+            <li nz-menu-item [nzSelected]="currentMenu === 'tag'" (click)="goRoute('/system/tag')">{{ $t('_tagSettings') }}</li>
+            <li nz-menu-item [nzSelected]="currentMenu === 'bookmark'" (click)="goRoute('/system/bookmark')">{{ $t('_bookmarkImport') }}</li>
+            <li nz-menu-item [nzSelected]="currentMenu === 'search'" (click)="goRoute('/system/search')">{{ $t('_searchEngines') }}</li>
+            <li nz-menu-item [nzSelected]="currentMenu === 'setting'" (click)="goRoute('/system/setting')">{{ $t('_systemSet') }}</li>
+            <li nz-menu-item [nzSelected]="currentMenu === 'info'" (click)="goRoute('/system/info')">{{ $t('_webInfo') }}</li>
+            <li nz-menu-item [nzSelected]="currentMenu === 'about'" (click)="goRoute('system/about')">{{ $t('_about') }}</li>
+          </ul>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout class="inner-layout">
+      <nz-content class="content">
+        <div>
+          <button
+            nz-button
+            style="margin-bottom: 15px;"
+            (click)="goBack()"
+          >
+            {{ $t('_backHome') }}
+          </button>
+        </div>
+
+        <router-outlet></router-outlet>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>
+
+<app-login [visible]="showLoginModal"></app-login>

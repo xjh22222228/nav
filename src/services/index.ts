@@ -15,7 +15,7 @@ export const repoName = s[s.length - 1]
 export function verifyToken(token: string) {
   return http.get(`/users/${authorName}`, {
     headers: {
-      Authorization: `token ${token}`
+      Authorization: `token ${token.trim()}`
     }
   })
 }
@@ -39,7 +39,7 @@ type Iupdate = {
 }
 export async function updateFileContent(
   {
-    message,
+    message = 'update',
     content,
     path,
     branch = DEFAULT_BRANCH,
@@ -72,6 +72,7 @@ export async function createFile(
   })
 }
 
-export function getCDN(path: string) {
-  return `https://raw.sevencdn.com/${authorName}/${repoName}/image/${path}`
+export function getCDN(path: string, branch = 'image') {
+  return `https://cdn.jsdelivr.net/gh/${authorName}/${repoName}@${branch}/${path}`
+  // return `https://raw.sevencdn.com/${authorName}/${repoName}/image/${path}`
 }

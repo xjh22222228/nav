@@ -40,19 +40,6 @@
         >
       </label>
     </div>
-
-    <div class="book-wrapper">
-      <label id="file">
-        <img src="assets/img/bookmark.svg" alt="" class="logo">
-        <p style="white-space: nowrap; margin-top: 5px;">{{ $t('_importChrome') }}</p>
-        <input
-          type="file"
-          name="file"
-          (change)="onBookChange($event)"
-          accept="text/html"
-        >
-      </label>
-    </div>
   </div>
 
   <nz-tabset *ngIf="isLogin" [nzSelectedIndex]="tabActive" (nzSelectedIndexChange)="onTabChange($event)">

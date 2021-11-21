@@ -3,7 +3,7 @@
 import config from '../../../../nav.config'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { INavProps, INavThreeProp } from '../../../types'
+import { INavProps, INavThreeProp } from 'src/types'
 import {
   fuzzySearch,
   queryString,
@@ -11,12 +11,14 @@ import {
   toggleCollapseAll,
   totalWeb,
   matchCurrentList
-} from '../../../utils'
-import { isLogin } from '../../../utils/user'
-import { initRipple, setAnnotate } from '../../../utils/ripple'
-import { websiteList } from '../../../store'
+} from 'src/utils'
+import { isLogin } from 'src/utils/user'
+import { initRipple, setAnnotate } from 'src/utils/ripple'
+import { websiteList } from 'src/store'
+import { settings } from 'src/store'
 
-const { gitRepoUrl, title, simThemeConfig } = config
+const { gitRepoUrl } = config
+const { title } = settings
 let sidebarEl: HTMLElement;
 
 @Component({
@@ -34,8 +36,9 @@ export default class SimComponent {
   page: number = 0
   gitRepoUrl: string = gitRepoUrl
   title: string = title
-  posterImageUrls?: string = simThemeConfig.posterImageUrls[0]
-  description: string = simThemeConfig.description.replace('${total}', String(totalWeb()))
+  posterImageUrls?: string = settings.simThemeImages[0].src
+  jumpUrl = settings.simThemeImages[0].url
+  description: string = settings.simThemeDesc.replace('${total}', String(totalWeb()))
   isLogin = isLogin
 
   ngOnInit() {
@@ -57,6 +60,12 @@ export default class SimComponent {
 
       setWebsiteList(this.websiteList)
     })
+  }
+
+  handleJumpUrl() {
+    if (this.jumpUrl) {
+      window.open(this.jumpUrl)
+    }
   }
 
   onScroll = () => {

@@ -1,7 +1,7 @@
-import config from '../../nav.config'
 import english from "./english"
 import zh_CN from "./zh_CN"
 import { STORAGE_KEY_MAP } from 'src/constants'
+import { settings } from 'src/store'
 
 const o = {
   en: english,
@@ -9,14 +9,16 @@ const o = {
 }
 
 export function getLocale(): string {
-  return window.localStorage.getItem(STORAGE_KEY_MAP.language) || config.language
+  return window.localStorage.getItem(STORAGE_KEY_MAP.language) || settings.language
 }
 
+const l = getLocale()
+
 export function $t(s): string {
-  if (getLocale() === 'zh-CN') {
+  if (l === 'zh-CN') {
     return o.cn[s]
   }
-  return o.en[s]
+  return o.en[s] ?? o.cn[s]
 }
 
 export default o

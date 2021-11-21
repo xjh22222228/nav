@@ -6,14 +6,15 @@ import { websiteList } from '../store'
 import { $t } from '../locale'
 
 function getCreatedAt(node?: Element): string {
+  const now = new Date().toISOString()
   if (!node) {
-    return new Date().toISOString()
+    return now
   }
 
   const addDate = node.getAttribute('add_date')
 
   if (!addDate) {
-    return new Date().toISOString()
+    return now
   }
 
   return new Date(Number(addDate) * 1000).toISOString()

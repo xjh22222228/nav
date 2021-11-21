@@ -1,11 +1,11 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 
-import config from '../../../../nav.config'
 import { Component } from '@angular/core'
 import { isDark as isDarkFn } from 'src/utils'
+import { settings } from 'src/store'
 import mitt from 'src/utils/mitt'
 
-const { title } = config
+const { title, showWeather, shortcutThemeImage } = settings
 
 @Component({
   selector: 'app-shortcut',
@@ -15,6 +15,8 @@ const { title } = config
 export default class ShortcutComponent {
   title = title
   isDark: boolean = isDarkFn()
+  showWeather = showWeather
+  shortcutThemeImage = shortcutThemeImage
 
   constructor () {
     mitt.on('dark', (isDark: boolean) => {

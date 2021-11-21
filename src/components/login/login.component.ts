@@ -5,7 +5,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { verifyToken } from '../../services'
-import { getToken, setToken } from '../../utils/user'
+import { setToken } from '../../utils/user'
 import { $t } from 'src/locale'
 
 @Component({
@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
   $t = $t
   token = ''
-  isLogin = !!getToken()
   submiting = false
 
   constructor(

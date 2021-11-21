@@ -1,0 +1,71 @@
+<button
+  nz-button
+  (click)="handleAdd()"
+  [nzLoading]="submitting"
+  class="add-btn"
+>
+  {{ $t('_addRow') }}
+</button>
+
+<button
+  nz-button
+  nzType="primary"
+  (click)="handleSubmit()"
+  [nzLoading]="submitting"
+>
+  {{ $t('_save') }}
+</button>
+
+
+<nz-table #basicTable [nzData]="searchList">
+  <thead>
+    <tr>
+      <th>{{ $t('_engineName') }}</th>
+      <th>{{ $t('_engineUrl') }}</th>
+      <th>{{ $t('_icon') }}</th>
+      <th>{{ $t('_desc') }}</th>
+      <th>{{ $t('_isDisable') }}</th>
+      <th>{{ $t('_action') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of searchList; index as idx">
+      <td width="150px">
+        <input nz-input [(ngModel)]="data.name" maxlength="10" />
+      </td>
+      <td width="220px">
+        <input *ngIf="data.url" nz-input [(ngModel)]="data.url" maxlength="300" />
+      </td>
+      <td width="260px" class="nowrap">
+        <img [src]="data.icon" class="icon" />
+        <input
+          nz-input
+          type="text"
+          [(ngModel)]="data.icon"
+          style="width: 180px;"
+        />
+        <app-upload (onChange)="onChangeUpload($event, idx)"></app-upload>
+      </td>
+      <td width="220px">
+        <input nz-input [(ngModel)]="data.placeholder" maxlength="50" />
+      </td>
+      <td width="100px">
+        <nz-switch [(ngModel)]="data.blocked"></nz-switch>
+      </td>
+      <td>
+        <div *ngIf="data.url">
+          <a
+            nz-popconfirm
+            nzPopconfirmPlacement="rightTop"
+            nzOkType="danger"
+            [nzPopconfirmTitle]="$t('_confirmDel')"
+            nzPopconfirmPlacement="bottom"
+            (nzOnConfirm)="handleDelete(idx)"
+          >
+            <a>{{ $t('_del') }}</a>
+          </a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

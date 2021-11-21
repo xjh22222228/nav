@@ -6,7 +6,7 @@ import { getToken } from '../utils/user'
 
 const token = getToken()
 const DEFAULT_TITLE = document.title
-const headers: {[k: string]: string} = {}
+const headers: Record<string, string> = {}
 
 if (token) {
   headers.Authorization = `token ${token}`

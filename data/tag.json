@@ -2,16 +2,19 @@
   "中文": {
     "color": "#2db7f5",
     "createdAt": "2018-01-25T07:56:31.372Z",
-    "desc": "系统内置不可删除, 请在末尾添加"
+    "desc": "系统内置不可删除",
+    "isInner": true
   },
   "英文": {
     "color": "#f50",
     "createdAt": "2018-01-25T07:56:31.372Z",
-    "desc": "系统内置不可删除, 请在末尾添加"
+    "desc": "系统内置不可删除",
+    "isInner": true
   },
   "Github": {
     "color": "#108ee9",
     "createdAt": "2018-01-25T07:56:31.372Z",
-    "desc": "系统内置不可删除, 请在末尾添加"
+    "desc": "系统内置不可删除",
+    "isInner": true
   }
 }

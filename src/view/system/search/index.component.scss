@@ -1,0 +1,19 @@
+.add-btn {
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+::ng-deep #file {
+  vertical-align: middle;
+  margin-left: 10px;
+  .anticon {
+    font-size: 20px;
+  }
+}

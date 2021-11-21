@@ -39,13 +39,25 @@ $width: 1200px;
   min-height: 100vh;
 
   .wallpaper {
+    position: relative;
     height: 300px;
-    background-repeat: no-repeat;
-    background-position: top center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    .bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-repeat: no-repeat;
+      background-position: top center;
+    }
+    .bar {
+      z-index: 2;
+      position: relative;
+    }
 
     .title {
       color: #fff;

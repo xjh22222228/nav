@@ -2,6 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import config from '../../../nav.config';
+import { settings } from 'src/store'
 
 @Component({
   selector: 'app-icon-git',
@@ -11,7 +12,7 @@ import config from '../../../nav.config';
 export class IconGitComponent implements OnInit {
 
   gitRepoUrl: string = config.gitRepoUrl
-  showGithub = config.showGithub
+  showGithub = settings.showGithub
 
   constructor() { }
 
