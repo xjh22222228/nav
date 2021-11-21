@@ -13,7 +13,6 @@ import {
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { websiteList } from 'src/store'
-import { LOGO_CDN } from 'src/constants'
 import { NzIconService } from 'ng-zorro-antd/icon'
 import { settings, searchEngineList } from 'src/store'
 
@@ -23,7 +22,7 @@ import { settings, searchEngineList } from 'src/store'
   styleUrls: ['./index.component.scss']
 })
 export default class SideComponent {
-  LOGO_CDN = LOGO_CDN
+  LOGO_CDN = settings.favicon
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
   id: number = 0

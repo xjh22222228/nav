@@ -6,7 +6,7 @@ import { $t } from 'src/locale'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { LOGO_PATH, LOGO_CDN, SETTING_PATH } from 'src/constants'
+import { SETTING_PATH } from 'src/constants'
 import { updateFileContent } from 'src/services'
 import { settings } from 'src/store'
 
@@ -18,8 +18,6 @@ import { settings } from 'src/store'
 export default class SystemSettingComponent {
   $t = $t
   validateForm!: FormGroup;
-  LOGO_CDN: string = LOGO_CDN
-  uploading: boolean = false
   submitting: boolean = false
   settings = settings
 
@@ -35,55 +33,15 @@ export default class SystemSettingComponent {
     })
   }
 
-  onLogoChange(e) {
-    const that = this
-    const { files } = e.target
-    if (files.length <= 0) return
-    const file = files[0]
-
-    if (file.type !== 'image/png') {
-      return this.message.error($t('_acceptPng'))
-    }
-
-    const fileReader = new FileReader()
-    fileReader.readAsDataURL(file)
-    fileReader.onload = function() {
-      that.uploading = true
-      const url = (this.result as string).split(',')[1]
-      const logoEL = document.querySelector('.logo') as HTMLImageElement
-      const tempSrc = logoEL.src
-      logoEL.src = this.result as string
-
-      updateFileContent({
-        message: 'update logo',
-        content: url,
-        isEncode: false,
-        path: LOGO_PATH,
-        branch: 'image'
-      }).then(() => {
-        that.message.success($t('_updateLogoSuccess'))
-      }).catch(res => {
-        logoEL.src = tempSrc
-        that.notification.error(
-          `${$t('_error')}: ${res?.response?.status ?? 401}`,
-          `${res?.response?.data?.message ?? $t('_updateLogoFail')}`
-        )
-      }).finally(() => {
-        e.target.value = ''
-        that.uploading = false
-      })
-    }
+  onLogoChange(data) {
+    this.settings.favicon = data.cdn
   }
 
   onSimBannerChange(data, idx) {
     this.settings.simThemeImages[idx].src = data.cdn
   }
 
-  onShortcutImgChange(data) {
-    this.settings.shortcutThemeImage = data.cdn
-  }
-
-  onChangeBannerUrl(e, idx) {
+  onChangeSimBannerUrl(e, idx) {
     const value = e.target.value.trim()
     this.settings.simThemeImages[idx].src = value
   }
@@ -91,6 +49,20 @@ export default class SystemSettingComponent {
   onChangeJumpUrl(e, idx) {
     const value = e.target.value.trim()
     this.settings.simThemeImages[idx].url = value
+  }
+
+  onDeleteSimBanner(idx: number) {
+    this.settings.simThemeImages.splice(idx, 1)
+  }
+
+  onAddSimBanner() {
+    this.settings.simThemeImages.push({
+      ...this.settings.simThemeImages[0]
+    })
+  }
+
+  onShortcutImgChange(data) {
+    this.settings.shortcutThemeImages[0].src = data.cdn
   }
 
   handleSubmit() {
@@ -101,7 +73,7 @@ export default class SystemSettingComponent {
     const values = {
       ...this.validateForm.value,
       simThemeImages: this.settings.simThemeImages,
-      shortcutThemeImage: this.settings.shortcutThemeImage
+      shortcutThemeImages: this.settings.shortcutThemeImages
     }
 
     this.submitting = true

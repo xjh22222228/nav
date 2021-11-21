@@ -3,16 +3,11 @@
     <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_webLogo') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label id="file">
-        <img [src]="LOGO_CDN" class="logo">
+        <img [src]="settings.favicon" class="logo">
         <span style="white-space: nowrap; margin-top: 5px;">
-          {{ uploading ? $t('_uploading') : $t('_updateLogo') }}
+          {{ $t('_updateLogo') }}
         </span>
-        <input
-          type="file"
-          name="file"
-          (change)="onLogoChange($event)"
-          accept="image/png"
-        >
+        <app-upload (onChange)="onLogoChange($event)"></app-upload>
       </label>
     </nz-form-control>
   </nz-form-item>
@@ -154,33 +149,18 @@
     </nz-form-control>
   </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{ $t('_showWeather') }}</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <label nz-checkbox formControlName="showWeather"></label>
-      <i
-        class="ml10"
-        nz-icon
-        nzType="question-circle"
-        nzTheme="outline"
-        nz-tooltip
-        [nzTooltipTitle]="$t('_weatherTip')"
-      >
-      </i>
-    </nz-form-control>
-  </nz-form-item>
-
   <div class="divider"></div>
   <h2 class="title">Sim {{ $t('_theme') }}</h2>
 
   <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4">Banner</nz-form-label>
+    <nz-form-label [nzSpan]="4" nzRequired>Banner</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-table #basicTable [nzData]="settings.simThemeImages" [nzShowPagination]="false">
         <thead>
           <tr>
             <th>{{ $t('_backgroundImage') }}</th>
             <th>{{ $t('_jumpAddr') }}</th>
+            <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -192,7 +172,7 @@
                 type="text"
                 [value]="data.src"
                 style="width: 180px;margin-right: 10px;"
-                (change)="onChangeBannerUrl($event, idx)"
+                (change)="onChangeSimBannerUrl($event, idx)"
               />
               <app-upload (onChange)="onSimBannerChange($event, idx)"></app-upload>
             </td>
@@ -204,9 +184,39 @@
                 (change)="onChangeJumpUrl($event, idx)"
               />
             </td>
+            <td>
+              <a
+                nz-popconfirm
+                nzPopconfirmPlacement="rightTop"
+                nzOkType="danger"
+                [nzPopconfirmTitle]="$t('_confirmDel')"
+                nzPopconfirmPlacement="bottom"
+                *ngIf="settings.simThemeImages.length > 1"
+                (nzOnConfirm)="onDeleteSimBanner(idx)"
+              >
+                <a>
+                  {{ $t('_del') }}
+                </a>
+              </a>
+              <a (click)="onAddSimBanner()">{{ $t('_add') }}</a>
+            </td>
           </tr>
         </tbody>
       </nz-table>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_autoPlay') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <label nz-checkbox formControlName="simThemeAutoplay"></label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_bannerHeight') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <nz-slider formControlName="simThemeHeight" [nzMin]="100" [nzMax]="1000"></nz-slider>
     </nz-form-control>
   </nz-form-item>
 
@@ -220,13 +230,22 @@
   <div class="divider"></div>
   <h2 class="title">Shortcut {{ $t('_theme') }}</h2>
 
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{ $t('_showWeather') }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <label nz-checkbox formControlName="shortcutThemeShowWeather"></label>
+    </nz-form-control>
+  </nz-form-item>
+
   <nz-form-item class="sim-ban">
     <nz-form-label [nzSpan]="4">{{ $t('_backgroundImage') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
-      <img *ngIf="settings.shortcutThemeImage" [src]="settings.shortcutThemeImage" />
+      <img [src]="settings.shortcutThemeImages[0].src" />
       <app-upload (onChange)="onShortcutImgChange($event)"></app-upload>
     </nz-form-control>
   </nz-form-item>
+
+  <div class="divider"></div>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4" [nzNoColon]="true"></nz-form-label>

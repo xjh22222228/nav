@@ -34,6 +34,8 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch'
 import { DragDropModule } from '@angular/cdk/drag-drop'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
+import { NzSliderModule } from 'ng-zorro-antd/slider'
+import { NzCarouselModule } from 'ng-zorro-antd/carousel'
 
 // components
 import { AppComponent } from './app.component'
@@ -201,6 +203,8 @@ const appRoutes: Routes = [
     NzRateModule,
     NzCheckboxModule,
     NzPopoverModule,
+    NzSliderModule,
+    NzCarouselModule,
     NzSwitchModule,
     DragDropModule,
     BrowserModule,

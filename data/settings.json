@@ -1,4 +1,5 @@
 {
+  "favicon": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/logo.png",
   "language": "zh-CN",
   "loading": "random",
   "showGithub": true,
@@ -14,10 +15,21 @@
     {
       "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
       "url": ""
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
+      "url": ""
     }
   ],
   "simThemeDesc": "这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活",
+  "simThemeHeight": 300,
+  "simThemeAutoplay": true,
   "homeUrl": "https://nav3.cn",
-  "showWeather": true,
-  "shortcutThemeImage": ""
+  "shortcutThemeShowWeather": true,
+  "shortcutThemeImages": [
+    {
+      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637462542538-0ed801fb13f9e4c29cdfface91eb6c44.jpeg",
+      "url": ""
+    }
+  ]
 }

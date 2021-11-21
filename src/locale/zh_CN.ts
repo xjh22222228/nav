@@ -134,5 +134,7 @@ export default {
   _engineUrl: '引擎地址',
   _actionSuccess: '操作成功',
   _jumpAddr: '跳转地址',
-  _backup: '下载备份'
+  _backup: '下载备份',
+  _bannerHeight: 'Banner高度',
+  _autoPlay: '自动切换'
 }

@@ -5,7 +5,7 @@ import { isDark as isDarkFn } from 'src/utils'
 import { settings } from 'src/store'
 import mitt from 'src/utils/mitt'
 
-const { title, showWeather, shortcutThemeImage } = settings
+const { title, shortcutThemeShowWeather, shortcutThemeImages } = settings
 
 @Component({
   selector: 'app-shortcut',
@@ -15,8 +15,8 @@ const { title, showWeather, shortcutThemeImage } = settings
 export default class ShortcutComponent {
   title = title
   isDark: boolean = isDarkFn()
-  showWeather = showWeather
-  shortcutThemeImage = shortcutThemeImage
+  shortcutThemeShowWeather = shortcutThemeShowWeather
+  shortcutThemeImage = shortcutThemeImages[0].src
 
   constructor () {
     mitt.on('dark', (isDark: boolean) => {

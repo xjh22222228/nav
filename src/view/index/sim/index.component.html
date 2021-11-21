@@ -1,6 +1,23 @@
 <div class="sim">
-  <div class="wallpaper">
-    <div class="bg" [ngStyle]="{ 'background-image': 'url(' + posterImageUrls + ')' }" (click)="handleJumpUrl"></div>
+  <div class="wallpaper" [ngStyle]="{height: simThemeHeight + 'px'}">
+    <div class="bg">
+      <nz-carousel
+        nzEffect="scrollx"
+        [nzAutoPlay]="simThemeAutoplay"
+        [nzDots]="simThemeImages.length > 1"
+        [nzEnableSwipe]="simThemeImages.length > 1"
+        [nzAutoPlaySpeed]="5000"
+      >
+        <div
+          class="bg-item"
+          nz-carousel-content
+          *ngFor="let item of simThemeImages"
+          [ngStyle]="{ 'background-image': 'url(' + item.src + ')' }"
+          (click)="handleJumpUrl(item)"
+        >
+        </div>
+      </nz-carousel>
+    </div>
 
     <div class="bar">
       <h1 class="title dark-title">{{ title }}</h1>

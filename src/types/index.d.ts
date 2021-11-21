@@ -72,6 +72,7 @@ export interface ISearchEngineProps {
 }
 
 export interface ISettings {
+  favicon: string
   language: 'zh-CN' | 'en'
   loading: string
   homeUrl?: string
@@ -84,11 +85,14 @@ export interface ISettings {
   cnzzStatisticsUrl?: string
   iconfontUrl?: string
   showGithub: boolean
-  showWeather: boolean
 
   simThemeImages: Record<string, string>[]
   simThemeDesc: string
-  shortcutThemeImage: string
+  simThemeHeight: number
+  simThemeAutoplay: boolean
+
+  shortcutThemeImages: Record<string, string>[]
+  shortcutThemeShowWeather: boolean
 }
 
 export interface IConfig {

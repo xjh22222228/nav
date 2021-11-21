@@ -12,7 +12,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { setWebsiteList } from 'src/utils'
 import { updateFileContent } from 'src/services'
-import { DB_PATH, LOGO_CDN, STORAGE_KEY_MAP } from 'src/constants'
+import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import config from '../../../../nav.config'
 import { $t } from 'src/locale'
 import { tagMap } from 'src/store'
@@ -28,7 +28,6 @@ export default class WebpComponent {
   validateForm!: FormGroup
   websiteList: INavProps[] = websiteList
   gitRepoUrl = config.gitRepoUrl
-  LOGO_CDN = LOGO_CDN
   isLogin = !!getToken()
   showCreateModal = false
   showCreateWebModal = false

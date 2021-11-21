@@ -134,5 +134,7 @@ export default {
   _engineUrl: 'Engine URL',
   _actionSuccess: 'Succeeded',
   _jumpAddr: 'Jump address',
-  _backup: 'Backup'
+  _backup: 'Backup',
+  _bannerHeight: 'Banner height',
+  _autoPlay: 'Auto play'
 }

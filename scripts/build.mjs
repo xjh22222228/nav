@@ -28,7 +28,8 @@ const {
   keywords,
   baiduStatisticsUrl,
   cnzzStatisticsUrl,
-  loading
+  loading,
+  favicon
 } = settings
 
 const {
@@ -46,6 +47,8 @@ const htmlTemplate = `
   <title>${title}</title>
   <meta name="description" content="${description}">
   <meta name="keywords" content="${keywords}">
+  <link rel="icon" href="${favicon}">
+  <link rel ="apple-touch-icon" href="${favicon}">
 `.trim()
 
 const cnzzScript = !cnzzStatisticsUrl ? '' : `<script src="${cnzzStatisticsUrl}"></script>`
@@ -99,17 +102,12 @@ async function build() {
   const htmlPath = path.join('.', 'src', 'index.html')
   let t = fs.readFileSync(htmlPath).toString()
   t = t.replace(/<title>.*<\/title>/i, '')
+  t = t.replace('<link rel="icon" href="assets/logo.png">', '')
   t = t.replace('<!-- nav.config -->', htmlTemplate)
 
   if (baiduStatisticsUrl) {
     t = t.replace('<!-- nav.script -->', scriptTemplate)
   }
-
-  t = t.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
-  t = t.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
-  t = t.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
-  t = t.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
-  t = t.replace('assets/logo.png', `https://raw.sevencdn.com/${authorName}/${repoName}/image/logo.png`)
 
   t = t.replace('<!-- nav.seo -->', seoTemplate)
   t = t.replace('<!-- nav.loading -->', LOAD_MAP[getLoadKey()] || '')

@@ -51,8 +51,10 @@ $width: 1200px;
       left: 0;
       right: 0;
       bottom: 0;
-      background-repeat: no-repeat;
-      background-position: top center;
+      .bg-item {
+        background-repeat: no-repeat;
+        background-position: top center;
+      }
     }
     .bar {
       z-index: 2;
