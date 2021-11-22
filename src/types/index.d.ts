@@ -91,6 +91,10 @@ export interface ISettings {
   simThemeHeight: number
   simThemeAutoplay: boolean
 
+  sideThemeImages: Record<string, string>[]
+  sideThemeHeight: number
+  sideThemeAutoplay: boolean
+
   shortcutThemeImages: Record<string, string>[]
   shortcutThemeShowWeather: boolean
 }

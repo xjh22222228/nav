@@ -181,7 +181,7 @@
                 nz-input
                 [value]="data.url"
                 maxlength="200"
-                (change)="onChangeJumpUrl($event, idx)"
+                (change)="onChangeSimJumpUrl($event, idx)"
               />
             </td>
             <td>
@@ -242,6 +242,77 @@
     <nz-form-control [nzSpan]="10">
       <img [src]="settings.shortcutThemeImages[0].src" />
       <app-upload (onChange)="onShortcutImgChange($event)"></app-upload>
+    </nz-form-control>
+  </nz-form-item>
+
+  <div class="divider"></div>
+  <h2 class="title">Side {{ $t('_theme') }}</h2>
+
+  <nz-form-item class="sim-ban">
+    <nz-form-label [nzSpan]="4" nzRequired>Banner</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-table #basicTable [nzData]="settings.sideThemeImages" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th>{{ $t('_backgroundImage') }}</th>
+            <th>{{ $t('_jumpAddr') }}</th>
+            <th>{{ $t('_action') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of settings.sideThemeImages; index as idx">
+            <td width="260px" class="nowrap">
+              <img [src]="data.src" class="icon" />
+              <input
+                nz-input
+                type="text"
+                [value]="data.src"
+                style="width: 180px;margin-right: 10px;"
+                (change)="onChangeSideBannerUrl($event, idx)"
+              />
+              <app-upload (onChange)="onSideBannerChange($event, idx)"></app-upload>
+            </td>
+            <td>
+              <input
+                nz-input
+                [value]="data.url"
+                maxlength="200"
+                (change)="onChangeSideJumpUrl($event, idx)"
+              />
+            </td>
+            <td>
+              <a
+                nz-popconfirm
+                nzPopconfirmPlacement="rightTop"
+                nzOkType="danger"
+                [nzPopconfirmTitle]="$t('_confirmDel')"
+                nzPopconfirmPlacement="bottom"
+                *ngIf="settings.simThemeImages.length > 1"
+                (nzOnConfirm)="onDeleteSideBanner(idx)"
+              >
+                <a>
+                  {{ $t('_del') }}
+                </a>
+              </a>
+              <a (click)="onAddSideBanner()">{{ $t('_add') }}</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_autoPlay') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <label nz-checkbox formControlName="sideThemeAutoplay"></label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_bannerHeight') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <nz-slider formControlName="sideThemeHeight" [nzMin]="100" [nzMax]="1000"></nz-slider>
     </nz-form-control>
   </nz-form-item>
 

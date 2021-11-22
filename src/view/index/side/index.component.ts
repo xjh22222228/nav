@@ -29,11 +29,11 @@ export default class SideComponent {
   page: number = 0
   title: string = settings.title.trim().split(/\s/)[0]
   openIndex = queryString().page
-  contentEl: HTMLElement
   searchEngineList = searchEngineList
-  marginTop: number = searchEngineList.length > 0 ? 157 : 50
-  isFirst = false
   isLogin = isLogin
+  sideThemeImages = settings.sideThemeImages
+  sideThemeHeight = settings.sideThemeHeight
+  sideThemeAutoplay = settings.sideThemeAutoplay
 
   constructor (
     private router: Router,
@@ -61,36 +61,6 @@ export default class SideComponent {
 
       setWebsiteList(this.websiteList)
     })
-  }
-
-  ngAfterContentInit() {
-    window.addEventListener('scroll', this.scroll)
-
-    if (!this.isFirst) {
-      setTimeout(() => {
-        const headerEl = document.querySelector('.search-header')
-        if (headerEl) {
-          this.isFirst = true
-          this.marginTop = headerEl.clientHeight + 25
-        }
-      }, 26)
-    }
-  }
-
-  ngOnDestroy() {
-    window.removeEventListener('scroll', this.scroll)
-  }
-
-  scroll() {
-    const y = window.scrollY
-    if (!this.contentEl) {
-      this.contentEl = document.getElementById('content')
-    }
-    if (y > 30) {
-      this.contentEl.classList.add('fixed')
-    } else {
-      this.contentEl.classList.remove('fixed')
-    }
   }
 
   handleSidebarNav(page, id) {

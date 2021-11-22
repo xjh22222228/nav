@@ -4,28 +4,33 @@ $sideWidth: 200px;
   min-height: 100vh;
 
   .inner-layout {
-    padding: 20px 70px 0 20px;
     margin-left: $sideWidth;
-
     .content {
+      padding: 20px 70px 0 20px;
       display: flex;
       flex-direction: column;
-
-      .search-header {
-        z-index: 9;
-        position: fixed;
-        top: 30px;
-        left: 201px;
+    }
+    .search-header {
+      z-index: 9;
+      position: relative;
+      text-align: center;
+      height: 350px;
+      .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
         right: 0;
-        text-align: center;
+        bottom: 0;
       }
-
-      &.fixed {
-        .search-header {
-          top: 0;
-          background-color: #fff;
-          border-bottom: 1px solid #ccc;
-        }
+      .bg-item {
+        background-repeat: no-repeat;
+      }
+      ::ng-deep .search-engine {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -20px;
+        transform: translate(-50%, -50%);
       }
     }
   }

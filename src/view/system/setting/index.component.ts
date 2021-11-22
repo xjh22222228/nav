@@ -37,6 +37,7 @@ export default class SystemSettingComponent {
     this.settings.favicon = data.cdn
   }
 
+// Sim ===========================
   onSimBannerChange(data, idx) {
     this.settings.simThemeImages[idx].src = data.cdn
   }
@@ -46,7 +47,7 @@ export default class SystemSettingComponent {
     this.settings.simThemeImages[idx].src = value
   }
 
-  onChangeJumpUrl(e, idx) {
+  onChangeSimJumpUrl(e, idx) {
     const value = e.target.value.trim()
     this.settings.simThemeImages[idx].url = value
   }
@@ -58,6 +59,31 @@ export default class SystemSettingComponent {
   onAddSimBanner() {
     this.settings.simThemeImages.push({
       ...this.settings.simThemeImages[0]
+    })
+  }
+
+// Side ===========================
+  onSideBannerChange(data, idx) {
+    this.settings.sideThemeImages[idx].src = data.cdn
+  }
+
+  onChangeSideBannerUrl(e, idx) {
+    const value = e.target.value.trim()
+    this.settings.sideThemeImages[idx].src = value
+  }
+
+  onChangeSideJumpUrl(e, idx) {
+    const value = e.target.value.trim()
+    this.settings.sideThemeImages[idx].url = value
+  }
+
+  onDeleteSideBanner(idx: number) {
+    this.settings.sideThemeImages.splice(idx, 1)
+  }
+
+  onAddSideBanner() {
+    this.settings.sideThemeImages.push({
+      ...this.settings.sideThemeImages[0]
     })
   }
 
@@ -73,7 +99,8 @@ export default class SystemSettingComponent {
     const values = {
       ...this.validateForm.value,
       simThemeImages: this.settings.simThemeImages,
-      shortcutThemeImages: this.settings.shortcutThemeImages
+      shortcutThemeImages: this.settings.shortcutThemeImages,
+      sideThemeImages: this.settings.sideThemeImages
     }
 
     this.submitting = true
