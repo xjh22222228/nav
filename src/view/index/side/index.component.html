@@ -76,7 +76,7 @@
       <nz-content class="content" id="content">
         <app-web-list></app-web-list>
 
-        <div class="box" [style.marginTop]="marginTop + 'px'">
+        <div class="box">
           <div *ngIf="currentList.length > 0; else noData">
             <div *ngFor="let item of currentList; let i=index">
               <div class="nav-wrapper">
