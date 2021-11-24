@@ -26,5 +26,15 @@ module.exports = {
   loading3: `
 <style>.l__1{z-index:999;position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;}.l__2{width:200px;height:200px;background:url("https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/0020f4d5-9f70-4b7f-87d4-61310d1db8d1.svg");background-repeat:repeat;}.l__3{font-size:18px;margin-top:15px;font-weight:bold;color:#000;}</style>
 <div class="l__1"><div class="l__2"></div><div class="l__3">......</div></div>  
-`.trim()
+`.trim(),
+
+  loading4: `
+<style>
+  @keyframes my-rotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes loading-dash{0%{stroke-dasharray:1,200;stroke-dashoffset:0}50%{stroke-dasharray:90,150;stroke-dashoffset:-40px}100%{stroke-dasharray:90,150;stroke-dashoffset:-120px}}.g-loading{z-index:999;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;display: flex;justify-content: center;align-items: center;}.circular{width:30px;height:30px;animation:my-rotate 2s linear infinite;}.path{stroke-dasharray:90,150;stroke-dashoffset:0;stroke-width:5;stroke:#409eff;stroke-linecap:round;animation:loading-dash 1.5s ease-in-out infinite}
+</style><div class="g-loading">
+    <svg viewBox="25 25 50 50" class="circular">
+      <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+    </svg>
+  </div>  
+`
 }
