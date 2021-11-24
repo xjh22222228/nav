@@ -136,5 +136,7 @@ export default {
   _jumpAddr: '跳转地址',
   _backup: '下载备份',
   _bannerHeight: 'Banner高度',
-  _autoPlay: '自动切换'
+  _autoPlay: '自动切换',
+  _importBackup: '导入备份',
+  _importBackupTip: '导入后会将当前所有网站数据清空并导入'
 }

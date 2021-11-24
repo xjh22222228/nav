@@ -76,10 +76,35 @@ export default class WebpComponent {
     })
   }
 
-  handleBackup() {
+  handleDownloadBackup() {
     const value = JSON.stringify(this.websiteList)
     const blob = new Blob([value], {type: "text/plain;charset=utf-8"});
     saveAs(blob, "db.json");
+  }
+
+  handleUploadBackup(e) {
+    const that = this
+    const files = e.target.files
+    if (files.length <= 0) {
+      return
+    }
+    const file = files[0]
+    const fileReader = new FileReader()
+    fileReader.readAsText(file)
+    fileReader.onload = function(data) {
+      try {
+        const { result } = data.target
+        that.websiteList = JSON.parse(result as string)
+        setWebsiteList(that.websiteList)
+        e.target.value = '';
+        that.message.success($t('_actionSuccess'))
+      } catch (error) {
+        that.notification.error(
+          $t('_error'),
+          error.message
+        )
+      }
+    }
   }
 
   goBack() {

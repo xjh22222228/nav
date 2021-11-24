@@ -17,6 +17,7 @@ export class UploadComponent {
 
   $t = $t
   uploading: boolean = false
+  id = `f${Date.now()}`
 
   constructor(
     private message: NzMessageService,

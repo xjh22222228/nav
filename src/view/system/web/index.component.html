@@ -16,10 +16,23 @@
   </button>
   <button
     nz-button
-    (click)="handleBackup()"
+    (click)="handleDownloadBackup()"
   >
     {{ $t('_backup') }}
   </button>
+
+  <label id="file2">
+    <button nz-button nz-tooltip [nzTooltipTitle]="$t('_importBackupTip')">
+      {{ $t('_importBackup') }}
+    </button>
+    <input
+      type="file"
+      name="file2"
+      (change)="handleUploadBackup($event)"
+      accept=".json"
+      class="file-upload"
+    >
+  </label>
 
   <nz-tabset *ngIf="isLogin" [nzSelectedIndex]="tabActive" (nzSelectedIndexChange)="onTabChange($event)">
     <nz-tab [nzTitle]="$t('_mgr1')">

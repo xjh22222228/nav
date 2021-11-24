@@ -136,5 +136,7 @@ export default {
   _jumpAddr: 'Jump address',
   _backup: 'Backup',
   _bannerHeight: 'Banner height',
-  _autoPlay: 'Auto play'
+  _autoPlay: 'Auto play',
+  _importBackup: '导入备份',
+  _importBackupTip: 'After importing, all current website data will be cleared and imported'
 }
