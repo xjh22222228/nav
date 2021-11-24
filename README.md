@@ -84,19 +84,11 @@ The steps are the same as the first method, except that the fourth step is not n
 For specific use, follow the steps [https://github.com/apps/vercel](https://github.com/apps/vercel)
 
 
-Note: If you want to deploy your own domain name, then the above tutorial is also suitable, as it provides automated deployment, and then through CNAME or Revers Proxy implementation:
-```conf
-# nginx
+### Method 3 (Free Netlify)
+[https://www.netlify.com/](https://www.netlify.com/)
 
-server {
-    listen       80;
-    server_name  www.nav3.cn nav3.cn;
 
-    location / {
-        proxy_pass https://xjh22222228.github.io/nav/;
-    }
-}
-```
+
 
 ## Backstage
 Modify the routing address to `system`, such as: https://www.nav3.cn/#/light Change to https://www.nav3.cn/#/system

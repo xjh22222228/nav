@@ -88,21 +88,10 @@
 
 
 
+### 推荐方式三(Netlify免费)
+[https://www.netlify.com/](https://www.netlify.com/)
 
-注：如果想部署到自己的域名，那么以上教程同样适合，因为它提供了自动化部署， 之后可以通过 `CNAME` 或 `反向代理` 实现：
 
-```conf
-# nginx
-
-server {
-    listen       80;
-    server_name  www.nav3.cn nav3.cn;
-
-    location / {
-        proxy_pass https://xjh22222228.github.io/nav/;
-    }
-}
-```
 
 ## 后台
 将路由地址修改为 `system` 即可进入，如: https://www.nav3.cn/#/light 修改为 https://www.nav3.cn/#/system
