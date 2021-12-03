@@ -48,7 +48,30 @@
     </div>
   </span>
 
-  <span>
+  <div *ngIf="settings.mirrorList.length > 0">
+    <div
+      class="wrapper dark-bg dark-border-color dark-action-hover"
+      nz-dropdown
+      [nzDropdownMenu]="menuMirror"
+      nzPlacement="topRight"
+    >
+      <img src="assets/img/mirror.svg" />
+    </div>
+    <nz-dropdown-menu #menuMirror="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li
+          nz-menu-item
+          *ngFor="let item of settings.mirrorList"
+        >
+          <a [href]="item.url">
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+
+  <span *ngIf="settings.showLanguage">
     <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleLocale()">
       <img class="iconfont" src="assets/img/china.svg" *ngIf="language === 'zh-CN'">
       <img class="iconfont" src="assets/img/ua.svg" *ngIf="!language || language === 'en'">

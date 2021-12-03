@@ -137,6 +137,10 @@ export default {
   _backup: 'Backup',
   _bannerHeight: 'Banner height',
   _autoPlay: 'Auto play',
-  _importBackup: '导入备份',
-  _importBackupTip: 'After importing, all current website data will be cleared and imported'
+  _importBackup: 'Import backup',
+  _importBackupTip: 'After importing, all current website data will be cleared and imported',
+  _showLanguage: "Display switch language",
+  _mirrorList: "Mirror list",
+  _mirrorAddr: "Mirror Address",
+  _mirrorName: "Mirror Name"
 }

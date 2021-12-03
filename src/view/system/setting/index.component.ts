@@ -87,6 +87,33 @@ export default class SystemSettingComponent {
     })
   }
 
+// Mirror ===========================
+  onMirrorBannerChange(data, idx) {
+    this.settings.sideThemeImages[idx].src = data.cdn
+  }
+
+  onAddMirror() {
+    this.settings.mirrorList.push({
+      url: '',
+      icon: '',
+      name: ''
+    })
+  }
+
+  onDelMirror(idx) {
+    this.settings.mirrorList.splice(idx, 1)
+  }
+
+  onChangeMirrorUrl(e, idx) {
+    const value = e.target.value.trim()
+    this.settings.mirrorList[idx].url = value
+  }
+
+  onChangeMirrorName(e, idx) {
+    const value = e.target.value.trim()
+    this.settings.mirrorList[idx].name = value
+  }
+
   onShortcutImgChange(data) {
     this.settings.shortcutThemeImages[0].src = data.cdn
   }
@@ -100,7 +127,10 @@ export default class SystemSettingComponent {
       ...this.validateForm.value,
       simThemeImages: this.settings.simThemeImages,
       shortcutThemeImages: this.settings.shortcutThemeImages,
-      sideThemeImages: this.settings.sideThemeImages
+      sideThemeImages: this.settings.sideThemeImages,
+      mirrorList: this.settings.mirrorList.filter(item => (
+        item.url && item.name
+      ))
     }
 
     this.submitting = true

@@ -8,7 +8,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getToken } from '../../utils/user'
 import { updateFileContent } from '../../services'
-import { websiteList } from '../../store'
+import { websiteList, settings } from '../../store'
 import { DB_PATH, STORAGE_KEY_MAP } from '../../constants'
 import { Router, ActivatedRoute } from '@angular/router'
 import { setAnnotate } from '../../utils/ripple'
@@ -28,6 +28,7 @@ export class FixbarComponent {
   @Output() onCollapse = new EventEmitter()
 
   $t = $t
+  settings = settings
   language = getLocale()
   websiteList = websiteList
   isDark: boolean = isDarkFn()

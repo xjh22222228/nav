@@ -85,6 +85,7 @@ export interface ISettings {
   cnzzStatisticsUrl?: string
   iconfontUrl?: string
   showGithub: boolean
+  showLanguage: boolean
 
   simThemeImages: Record<string, string>[]
   simThemeDesc: string
@@ -97,6 +98,8 @@ export interface ISettings {
 
   shortcutThemeImages: Record<string, string>[]
   shortcutThemeShowWeather: boolean
+
+  mirrorList: Record<string, string>[]
 }
 
 export interface IConfig {

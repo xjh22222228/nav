@@ -138,5 +138,9 @@ export default {
   _bannerHeight: 'Banner高度',
   _autoPlay: '自动切换',
   _importBackup: '导入备份',
-  _importBackupTip: '导入后会将当前所有网站数据清空并导入'
+  _importBackupTip: '导入后会将当前所有网站数据清空并导入',
+  _showLanguage: "显示切换语言",
+  _mirrorList: "镜像列表",
+  _mirrorAddr: "镜像地址",
+  _mirrorName: "镜像名称"
 }
