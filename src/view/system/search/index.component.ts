@@ -31,7 +31,8 @@ export default class SystemSearchComponent {
       url: '',
       icon: '',
       placeholder: '',
-      blocked: false
+      blocked: false,
+      isInner: false
     })
   }
 

@@ -126,6 +126,9 @@ export class FixbarComponent {
 
   goSystemPage() {
     this.router.navigate(['system'])
+    setTimeout(() => {
+      window.location.reload()
+    }, 500)
   }
 
   handleSync() {

@@ -69,6 +69,7 @@ export interface ISearchEngineProps {
   icon: string | null
   placeholder?: string
   blocked: boolean
+  isInner: boolean
 }
 
 export interface ISettings {

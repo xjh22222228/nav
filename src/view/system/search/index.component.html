@@ -34,10 +34,10 @@
         <input nz-input [(ngModel)]="data.name" maxlength="10" />
       </td>
       <td width="220px">
-        <input *ngIf="data.url" nz-input [(ngModel)]="data.url" maxlength="300" />
+        <input *ngIf="!data.isInner" nz-input [(ngModel)]="data.url" maxlength="300" />
       </td>
       <td width="260px" class="nowrap">
-        <img [src]="data.icon" class="icon" />
+        <img *ngIf="data.icon" [src]="data.icon" class="icon" />
         <input
           nz-input
           type="text"
