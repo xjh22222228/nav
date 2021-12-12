@@ -71,7 +71,19 @@ export default class SideComponent {
         id,
       }
     })
-    window.scrollTo(0, 0)
+
+    
+    setTimeout(() => {
+      const el = document.querySelector('.search-header') as HTMLDivElement
+      if (el) {
+        const h = el.offsetHeight;
+        window.scroll({
+          top: h,
+          left: 0,
+          behavior: 'smooth'
+        })
+      }
+    }, 10)
   }
 
   onCollapse = (item, index) => {
