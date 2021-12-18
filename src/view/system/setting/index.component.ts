@@ -6,6 +6,7 @@ import { $t } from 'src/locale'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
+import { NzModalService } from 'ng-zorro-antd/modal'
 import { SETTING_PATH } from 'src/constants'
 import { updateFileContent } from 'src/services'
 import { settings } from 'src/store'
@@ -25,6 +26,7 @@ export default class SystemSettingComponent {
     private fb: FormBuilder,
     private notification: NzNotificationService,
     private message: NzMessageService,
+    private modal: NzModalService,
   ) {}
 
   ngOnInit () {
@@ -123,30 +125,37 @@ export default class SystemSettingComponent {
       return
     }
 
-    const values = {
-      ...this.validateForm.value,
-      simThemeImages: this.settings.simThemeImages,
-      shortcutThemeImages: this.settings.shortcutThemeImages,
-      sideThemeImages: this.settings.sideThemeImages,
-      mirrorList: this.settings.mirrorList.filter(item => (
-        item.url && item.name
-      ))
-    }
+    this.modal.info({
+      nzTitle: $t('_syncDataOut'),
+      nzOkText: $t('_confirmSync'),
+      nzContent: $t('_confirmSyncTip'),
+      nzOnOk: () => {
+        const values = {
+          ...this.validateForm.value,
+          simThemeImages: this.settings.simThemeImages,
+          shortcutThemeImages: this.settings.shortcutThemeImages,
+          sideThemeImages: this.settings.sideThemeImages,
+          mirrorList: this.settings.mirrorList.filter(item => (
+            item.url && item.name
+          ))
+        }
 
-    this.submitting = true
-    updateFileContent({
-      message: 'Update settings',
-      content: JSON.stringify(values, null, 2),
-      path: SETTING_PATH
+        this.submitting = true
+        updateFileContent({
+          message: 'Update settings',
+          content: JSON.stringify(values, null, 2),
+          path: SETTING_PATH
+        })
+          .then(() => {
+            this.message.success($t('_saveSuccess'))
+          })
+          .catch(res => {
+            this.notification.error($t('_error'), res.message as string)
+          })
+          .finally(() => {
+            this.submitting = false
+          })
+      }
     })
-      .then(() => {
-        this.message.success($t('_saveSuccess'))
-      })
-      .catch(res => {
-        this.notification.error($t('_error'), res.message as string)
-      })
-      .finally(() => {
-        this.submitting = false
-      })
   }
 }

@@ -162,6 +162,4 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 If you have any functional suggestions, you can initiate an [issue](https://github.com/xjh22222228/nav/issues), Thank you.
 
 ## LICENSE
-Commercial use is prohibited without the consent of the author.
-
 [MIT](./LICENSE)

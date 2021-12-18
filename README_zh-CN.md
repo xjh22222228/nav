@@ -183,6 +183,4 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 
 
 ## 协议
-未经作者同意，禁止商业用途。
-
 [MIT](./LICENSE)

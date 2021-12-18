@@ -7,6 +7,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { ISearchEngineProps } from 'src/types'
 import { updateFileContent } from 'src/services'
+import { NzModalService } from 'ng-zorro-antd/modal'
 import { SEARCH_PATH } from 'src/constants'
 import { searchEngineList } from 'src/store'
 
@@ -23,6 +24,7 @@ export default class SystemSearchComponent {
   constructor (
     private message: NzMessageService,
     private notification: NzNotificationService,
+    private modal: NzModalService,
   ) {}
 
   handleAdd() {
@@ -45,33 +47,40 @@ export default class SystemSearchComponent {
       return
     }
 
-    const o = {}
-    this.searchList.forEach(item => {
-      if (item.name.trim()) {
-        o[item.name] = null
+    this.modal.info({
+      nzTitle: $t('_syncDataOut'),
+      nzOkText: $t('_confirmSync'),
+      nzContent: $t('_confirmSyncTip'),
+      nzOnOk: () => {
+        const o = {}
+        this.searchList.forEach(item => {
+          if (item.name.trim()) {
+            o[item.name] = null
+          }
+        })
+
+        if (Object.keys(o).length !== this.searchList.length) {
+          this.message.error($t('_repeatAdd'))
+          return
+        }
+
+        this.submitting = true
+        updateFileContent({
+          message: 'Update Search',
+          content: JSON.stringify(this.searchList, null, 2),
+          path: SEARCH_PATH
+        })
+          .then(() => {
+            this.message.success($t('_saveSuccess'))
+          })
+          .catch(res => {
+            this.notification.error($t('_error'), res.message as string)
+          })
+          .finally(() => {
+            this.submitting = false
+          })
       }
     })
-
-    if (Object.keys(o).length !== this.searchList.length) {
-      this.message.error($t('_repeatAdd'))
-      return
-    }
-
-    this.submitting = true
-    updateFileContent({
-      message: 'Update Search',
-      content: JSON.stringify(this.searchList, null, 2),
-      path: SEARCH_PATH
-    })
-      .then(() => {
-        this.message.success($t('_saveSuccess'))
-      })
-      .catch(res => {
-        this.notification.error($t('_error'), res.message as string)
-      })
-      .finally(() => {
-        this.submitting = false
-      })
   }
 
   onChangeUpload(path, idx: number) {
