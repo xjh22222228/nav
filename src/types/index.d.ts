@@ -100,6 +100,7 @@ export interface ISettings {
   shortcutThemeImages: Record<string, string>[]
   shortcutThemeShowWeather: boolean
 
+  showRate: boolean
   mirrorList: Record<string, string>[]
 }
 

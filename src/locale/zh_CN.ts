@@ -142,5 +142,6 @@ export default {
   _showLanguage: "显示切换语言",
   _mirrorList: "镜像列表",
   _mirrorAddr: "镜像地址",
-  _mirrorName: "镜像名称"
+  _mirrorName: "镜像名称",
+  _showRate: "显示评分"
 }

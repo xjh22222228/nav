@@ -10,6 +10,7 @@ import { INavProps, ITagProp, INavFourProp } from '../../types'
 import * as __tag from '../../../data/tag.json'
 import { $t } from '../../locale'
 import { MoveSiteComponent } from '../move-site/index.component'
+import { settings } from 'src/store'
 
 const tagMap: ITagProp = (__tag as any).default
 
@@ -27,6 +28,7 @@ export class CardComponent implements OnInit {
 
   $t = $t
   objectKeys = Object.keys
+  settings = settings
   websiteList: INavProps[] = websiteList
   isLogin: boolean = !!getToken()
   showCreateModal = false

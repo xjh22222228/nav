@@ -55,5 +55,6 @@
     }
   ],
   "showLanguage": true,
+  "showRate": true,
   "mirrorList": []
 }

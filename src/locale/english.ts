@@ -142,5 +142,6 @@ export default {
   _showLanguage: "Display switch language",
   _mirrorList: "Mirror list",
   _mirrorAddr: "Mirror Address",
-  _mirrorName: "Mirror Name"
+  _mirrorName: "Mirror Name",
+  _showRate: "Show rate"
 }

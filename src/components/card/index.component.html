@@ -6,7 +6,7 @@
     nzHoverable
     nzType="inner"
   >
-    <div class="rate">
+    <div class="rate" *ngIf="settings.showRate">
       <nz-rate
         [ngModel]="dataSource.rate"
         [nzDisabled]="!isLogin"
