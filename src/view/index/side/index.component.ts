@@ -71,10 +71,13 @@ export default class SideComponent {
         id,
       }
     })
+    this.handlePositionTop()
+  }
 
-    
+  handlePositionTop() {
     setTimeout(() => {
       const el = document.querySelector('.search-header') as HTMLDivElement
+      console.log(el)
       if (el) {
         const h = el.offsetHeight;
         window.scroll({
@@ -95,6 +98,7 @@ export default class SideComponent {
   onCollapseAll = (e: Event) => {
     e?.stopPropagation()
     toggleCollapseAll(this.websiteList)
+    this.handlePositionTop()
   }
 
   collapsed() {
