@@ -28,8 +28,8 @@
       <th>{{ $t('_action') }}</th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let data of searchList; index as idx">
+  <tbody cdkDropList (cdkDropListDropped)="onDrop($event)">
+    <tr *ngFor="let data of searchList; index as idx" cdkDrag>
       <td width="150px">
         <input nz-input [(ngModel)]="data.name" maxlength="10" />
       </td>

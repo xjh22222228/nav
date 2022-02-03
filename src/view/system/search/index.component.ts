@@ -1,4 +1,4 @@
-// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
@@ -10,6 +10,7 @@ import { updateFileContent } from 'src/services'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { SEARCH_PATH } from 'src/constants'
 import { searchEngineList } from 'src/store'
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
 
 @Component({
   selector: 'system-tag',
@@ -85,5 +86,9 @@ export default class SystemSearchComponent {
 
   onChangeUpload(path, idx: number) {
     this.searchList[idx].icon = path.cdn
+  }
+
+  onDrop(event: CdkDragDrop<string[]>): void {
+    moveItemInArray(this.searchList, event.previousIndex, event.currentIndex)
   }
 }

@@ -1,4 +1,4 @@
-// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
 
 import axios from 'axios'
 import NProgress from 'nprogress'

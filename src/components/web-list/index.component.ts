@@ -1,4 +1,4 @@
-// Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component, OnInit, Input } from '@angular/core'
