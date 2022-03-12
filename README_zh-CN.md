@@ -176,7 +176,7 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 感谢您的认可：
 | 姓名    | 支持金额              |
 | --------------------------------------- |----------- |
-| [aiyou9](https://github.com/aiyou9)     | ￥50.00     |
+| [aiyou9](https://github.com/aiyou9)     | ￥50.00、￥50.00     |
 | [lastares](https://github.com/lastares)       | ￥25.00     |
 | [MrJxySteven](https://github.com/MrJxySteven) | ￥20.00     |
 | 路人甲     | ￥50.00     |

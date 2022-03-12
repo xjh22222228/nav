@@ -3,10 +3,13 @@
 
 import { Component, OnInit, Input } from '@angular/core'
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
-import { websiteList } from '../../store'
-import { INavFourProp } from 'src/types'
-import { setWebsiteList } from '../../utils'
-import { isLogin } from '../../utils/user'
+import { websiteList } from 'src/store'
+import { INavFourProp, INavProps } from 'src/types'
+import { setWebsiteList, queryString, fuzzySearch } from 'src/utils'
+import { isLogin } from 'src/utils/user'
+import { ActivatedRoute } from '@angular/router'
+
+let DEFAULT_WEBSITE = []
 
 @Component({
   selector: 'app-web-list',
@@ -14,16 +17,34 @@ import { isLogin } from '../../utils/user'
   styleUrls: ['./index.component.scss']
 })
 export class WebListComponent implements OnInit {
-  @Input() max: number = 99999
+  @Input() max: number = 110
 
+  websiteList: INavProps[] = websiteList
   dataList: INavFourProp[] = []
 
-  constructor() {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.getTopWeb()
+
+    this.activatedRoute.queryParams.subscribe(() => {
+      const { q } = queryString()
+      const result = fuzzySearch(this.websiteList, q)
+
+      if (q.trim()) {
+        if (result.length === 0) {
+          this.dataList = [];
+        } else {
+          this.dataList = result[0].nav.slice(0, this.max);
+        }
+      } else {
+        this.dataList = DEFAULT_WEBSITE
+      }
+      setWebsiteList(this.websiteList)
+    })
   }
 
+  // 获取置顶WEB
   getTopWeb() {
     const dataList: INavFourProp[] = []
     const max = this.max
@@ -49,6 +70,7 @@ export class WebListComponent implements OnInit {
     r(websiteList)
 
     this.dataList = dataList.sort((a, b) => a.index - b.index)
+    DEFAULT_WEBSITE = this.dataList
   }
 
   handleDrop(event: CdkDragDrop<string[]>): void {
