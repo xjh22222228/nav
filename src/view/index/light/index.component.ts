@@ -13,7 +13,7 @@ import {
   matchCurrentList
 } from '../../../utils'
 import { isLogin } from '../../../utils/user'
-import { initRipple, setAnnotate } from '../../../utils/ripple'
+import { initRipple } from '../../../utils/ripple'
 import { websiteList } from '../../../store'
 
 @Component({
@@ -30,27 +30,24 @@ export default class LightComponent {
   id: number = 0
   page: number = 0
   isLogin = isLogin
+  sliceMax = 1
 
   ngOnInit() {
     randomBgImg()
 
     this.activatedRoute.queryParams.subscribe(() => {
-      const tempPage = this.page
       const { id, page, q } = queryString()
       this.page = page
       this.id = id
-
+      this.sliceMax = 1
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
       } else {
         this.currentList = matchCurrentList()
       }
-
-      if (tempPage !== page) {
-        setAnnotate()
-      }
-
-      setWebsiteList(this.websiteList)
+      setTimeout(() => {
+        this.sliceMax = Number.MAX_SAFE_INTEGER
+      }, 100)
     })
   }
 
@@ -86,7 +83,6 @@ export default class LightComponent {
   }
 
   ngAfterViewInit() {
-    setAnnotate();
     initRipple()
   }
 

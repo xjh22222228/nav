@@ -34,6 +34,7 @@ export default class SideComponent {
   sideThemeImages = settings.sideThemeImages
   sideThemeHeight = settings.sideThemeHeight
   sideThemeAutoplay = settings.sideThemeAutoplay
+  sliceMax = 1
 
   constructor (
     private router: Router,
@@ -52,14 +53,16 @@ export default class SideComponent {
       const { id, page, q } = queryString()
       this.page = page
       this.id = id
+      this.sliceMax = 1
 
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
       } else {
         this.currentList = matchCurrentList()
       }
-
-      setWebsiteList(this.websiteList)
+      setTimeout(() => {
+        this.sliceMax = Number.MAX_SAFE_INTEGER
+      }, 25)
     })
   }
 
@@ -86,7 +89,7 @@ export default class SideComponent {
           behavior: 'smooth'
         })
       }
-    }, 10)
+    }, 100)
   }
 
   onCollapse = (item, index) => {

@@ -13,7 +13,7 @@ import {
   matchCurrentList
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
-import { initRipple, setAnnotate } from 'src/utils/ripple'
+import { initRipple } from 'src/utils/ripple'
 import { websiteList } from 'src/store'
 import { settings } from 'src/store'
 
@@ -36,27 +36,25 @@ export default class SimComponent {
   simThemeAutoplay = settings.simThemeAutoplay
   description: string = settings.simThemeDesc.replace('${total}', String(totalWeb()))
   isLogin = isLogin
+  sliceMax = 1
 
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(() => {
-      const tempPage = this.page
       const { id, page, q } = queryString()
       this.page = page
       this.id = id
+      this.sliceMax = 1
 
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
       } else {
         this.currentList = matchCurrentList()
       }
-
-      if (tempPage !== page) {
-        setAnnotate()
-      }
-
-      setWebsiteList(this.websiteList)
+      setTimeout(() => {
+        this.sliceMax = Number.MAX_SAFE_INTEGER
+      }, 100)
     })
   }
 
@@ -88,8 +86,6 @@ export default class SimComponent {
 
   ngAfterViewInit() {
     initRipple()
-    setAnnotate();
-
     window.addEventListener('scroll', this.onScroll)
   }
 

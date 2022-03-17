@@ -78,7 +78,7 @@
 
         <div class="box">
           <div *ngIf="currentList.length > 0; else noData">
-            <div *ngFor="let item of currentList; let i=index">
+            <div *ngFor="let item of currentList.slice(0, sliceMax); let i=index">
               <div class="nav-wrapper">
                 <app-toolbar-title
                   [dataSource]="item"
@@ -90,7 +90,7 @@
       
                 <div nz-row [nzGutter]="[16, 16]" [style.display]="item.collapsed ? 'none' : ''">
                   <div
-                    *ngFor="let el of item.nav; let i=j"
+                    *ngFor="let el of item.nav.slice(0, sliceMax); let i=j"
                     class="gutter-row"
                     [class.remove]="!isLogin && el.ownVisible"
                     nz-col

@@ -15,7 +15,6 @@ import { SearchType } from '../components/search-engine/index'
 
 export const websiteList: INavProps[] = getWebsiteList()
 
-let total = 0
 const searchEngineList: ISearchEngineProps[] = (s as any).default
 
 export function randomInt(max: number) {
@@ -142,10 +141,11 @@ export function fuzzySearch(navList: INavProps[], keyword: string): INavThreePro
 }
 
 export function totalWeb(): number {
-  if (total) {
-    return total
+  const localTotal = localStorage.getItem(STORAGE_KEY_MAP.total)
+  if (localTotal) {
+    return Number(localTotal)
   }
-
+  let total = 0
   function r(nav) {
     if (!Array.isArray(nav)) return
 
@@ -159,7 +159,7 @@ export function totalWeb(): number {
     }
   }
   r(websiteList)
-
+  localStorage.setItem(STORAGE_KEY_MAP.total, String(total))
   return total
 }
 

@@ -24,5 +24,6 @@ export const STORAGE_KEY_MAP = {
   isDark: 'isDark',
   website: 'website',
   engine: 'engine',
-  language: 'language'
+  language: 'language',
+  total: 'total'
 }

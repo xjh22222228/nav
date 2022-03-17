@@ -40,7 +40,7 @@
         <app-search-engine></app-search-engine>
  
         <div *ngIf="currentList.length > 0; else noData">
-          <div *ngFor="let item of currentList; index as i" [class.remove]="!isLogin && item.ownVisible">
+          <div *ngFor="let item of currentList.slice(0, sliceMax); index as i" [class.remove]="!isLogin && item.ownVisible">
             <app-toolbar-title
               [dataSource]="item"
               (onCollapse)="onCollapse(item, i)"
@@ -58,7 +58,7 @@
                 class="gutter-row"
                 nz-col
                 [nzSpan]="8"
-                *ngFor="let el of item.nav; index as j"
+                *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
                 [class.remove]="!isLogin && el.ownVisible"
               >
                 <app-card [dataSource]="el" [indexs]="[page, id, i, j]"></app-card>

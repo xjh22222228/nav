@@ -354,20 +354,21 @@
           <tr>
             <th>{{ $t('_mirrorAddr') }}</th>
             <th>{{ $t('_mirrorName') }}</th>
+            <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of settings.mirrorList; index as idx">
-            <td width="260px" class="nowrap">
+            <td class="nowrap">
               <input
                 nz-input
                 type="text"
                 [value]="data.url"
                 (change)="onChangeMirrorUrl($event, idx)"
-                style="width: 180px;margin-right: 10px;"
+                style="width: 100%;margin-right: 10px;"
               />
             </td>
-            <td>
+            <td width="400px">
               <input
                 nz-input
                 [value]="data.name"

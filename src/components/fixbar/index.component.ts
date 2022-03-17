@@ -11,7 +11,6 @@ import { updateFileContent } from '../../services'
 import { websiteList, settings } from '../../store'
 import { DB_PATH, STORAGE_KEY_MAP } from '../../constants'
 import { Router, ActivatedRoute } from '@angular/router'
-import { setAnnotate } from '../../utils/ripple'
 import { $t, getLocale } from 'src/locale'
 import mitt from 'src/utils/mitt'
 
@@ -81,9 +80,6 @@ export class FixbarComponent {
       queryParams: queryString()
     })
     this.removeBackground()
-    setTimeout(() => {
-      setAnnotate()
-    }, 100)
   }
 
   goTop() {

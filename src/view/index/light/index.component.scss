@@ -31,17 +31,26 @@
     white-space: nowrap;
     border-bottom: 1px solid #eee;
     text-align: center;
-
     a {
+      position: relative;
       display: inline-block;
       padding: 10px 15px;
       color: #000;
       cursor: pointer;
       border-radius: 5px;
       overflow: hidden;
-
       &:hover {
         text-decoration: none;
+      }
+      &.active::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 20%;
+        right: 20%;
+        height: 3px;
+        border-radius: 2px;
+        background-color: rgb(16, 142, 233);
       }
     }
   }
