@@ -43,6 +43,7 @@ export interface INavThreeProp {
   collapsed?: boolean
   ownVisible?: boolean
   nav: INavFourProp[]
+  [key: string]: any
 }
 
 export interface INavTwoProp {
@@ -52,6 +53,7 @@ export interface INavTwoProp {
   collapsed?: boolean
   ownVisible?: boolean
   nav: INavThreeProp[]
+  [key: string]: any
 }
 
 export interface INavProps extends Object {
@@ -61,6 +63,7 @@ export interface INavProps extends Object {
   createdAt?: string
   ownVisible?: boolean
   nav: INavTwoProp[]
+  [key: string]: any
 }
 
 export interface ISearchEngineProps {

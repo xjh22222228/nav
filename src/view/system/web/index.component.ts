@@ -47,6 +47,9 @@ export default class WebpComponent {
   threeTableData: INavThreeProp[] = []
   websiteTableData: INavFourProp[] = []
 
+  checkedAll = false
+  setOfCheckedId = new Set<string>();
+
   constructor (
     private fb: FormBuilder,
     private modal: NzModalService,
@@ -60,6 +63,116 @@ export default class WebpComponent {
       icon: [''],
       ownVisible: [false],
     })
+  }
+
+  onAllChecked(checked, type: 1|2|3|4) {
+    this.setOfCheckedId.clear()
+    switch (type) {
+      case 1:
+        this.websiteList.forEach((item) => {
+          if (checked) {
+            this.setOfCheckedId.add(item.title)
+          } else {
+            this.setOfCheckedId.delete(item.title)
+          }
+        })
+        break;
+
+      case 2:
+        this.twoTableData.forEach((item) => {
+          if (checked) {
+            this.setOfCheckedId.add(item.title)
+          } else {
+            this.setOfCheckedId.delete(item.title)
+          }
+        })
+        break;
+
+      case 3:
+        this.threeTableData.forEach((item) => {
+          if (checked) {
+            this.setOfCheckedId.add(item.title)
+          } else {
+            this.setOfCheckedId.delete(item.title)
+          }
+        })
+        break;
+
+      case 4:
+        this.websiteTableData.forEach((item) => {
+          if (checked) {
+            this.setOfCheckedId.add(item.name)
+          } else {
+            this.setOfCheckedId.delete(item.name)
+          }
+        })
+        break;
+    }
+  }
+
+  onItemChecked(idStr, checked) {
+    if (checked) {
+      this.setOfCheckedId.add(idStr)
+    } else {
+      this.setOfCheckedId.delete(idStr)
+    }
+  }
+
+  onBatchDelete(type: 1|2|3|4) {
+    switch (type) {
+      case 1:
+        this.setOfCheckedId.forEach(value => {
+          const idx = this.websiteList.findIndex(item => item.title === value)
+          if (idx >= 0) {
+            this.websiteList.splice(idx, 1)
+          }
+        })
+        break;
+
+      case 2: {
+        this.twoTableData = this.twoTableData.filter(item => {
+          return !this.setOfCheckedId.has(item.title)
+        })
+        const idx = this.websiteList.findIndex(item => item.title === this.oneSelect)
+        if (idx >= 0) {
+          this.websiteList[idx].nav = this.twoTableData
+        }
+      }
+        break;
+
+      case 3: {
+        this.threeTableData = this.threeTableData.filter(item => {
+          return !this.setOfCheckedId.has(item.title)
+        })
+        const idx = this.websiteList.findIndex(item => item.title === this.oneSelect)
+        if (idx >= 0) {
+          const idx2 = this.websiteList[idx].nav.findIndex(item => item.title === this.twoSelect)
+          if (idx2 >= 0) {
+            this.websiteList[idx].nav[idx2].nav = this.threeTableData
+          }
+        }
+      }
+        break;
+
+      case 4: {
+        this.websiteTableData = this.websiteTableData.filter(item => {
+          return !this.setOfCheckedId.has(item.name)
+        })
+        const idx = this.websiteList.findIndex(item => item.title === this.oneSelect)
+        if (idx >= 0) {
+          const idx2 = this.websiteList[idx].nav.findIndex(item => item.title === this.twoSelect)
+          if (idx2 >= 0) {
+            const idx3 = this.websiteList[idx].nav[idx2].nav.findIndex(item => item.title === this.threeSelect)
+            if (idx3 >= 0) {
+              this.websiteList[idx].nav[idx2].nav[idx3].nav = this.websiteTableData
+            }
+          }
+        }
+      }
+        break;
+    }
+    this.onTabChange()
+    setWebsiteList(this.websiteList)
   }
 
   handleReset() {
@@ -155,16 +268,22 @@ export default class WebpComponent {
     this.toggleCreateWebModal()
   }
 
-  onTabChange(index: number) {
-    this.tabActive = index
+  onTabChange(index?: number) {
+    this.tabActive = index ?? this.tabActive
+    this.setOfCheckedId.clear()
+    // Fuck hack
+    if (!this.checkedAll) {
+      setTimeout(() => {
+        this.checkedAll = !this.checkedAll
+        setTimeout(() => {
+          this.checkedAll = !this.checkedAll
+        })
+      })
+    }
   }
 
   // 删除一级分类
   handleConfirmDelOne(idx) {
-    if (this.websiteList.length === 1) {
-      return this.message.error($t('_reserveOne'))
-    }
-
     this.websiteList.splice(idx, 1)
     this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
@@ -184,10 +303,6 @@ export default class WebpComponent {
 
   // 删除二级分类
   handleConfirmDelTwo(idx) {
-    if (this.twoTableData.length === 1) {
-      return this.message.error($t('_reserveOne'))
-    }
-
     this.twoTableData.splice(idx, 1)
     this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
@@ -201,10 +316,6 @@ export default class WebpComponent {
 
   // 删除三级分类
   handleConfirmDelThree(idx) {
-    if (this.threeTableData.length === 1) {
-      return this.message.error($t('_reserveOne'))
-    }
-
     this.threeTableData.splice(idx, 1)
     this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
@@ -218,10 +329,6 @@ export default class WebpComponent {
 
   // 删除网站
   handleConfirmDelWebsite(idx) {
-    if (this.websiteTableData.length === 1) {
-      return this.message.error($t('_reserveOne'))
-    }
-
     this.websiteTableData.splice(idx, 1)
     this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
@@ -233,6 +340,7 @@ export default class WebpComponent {
     this.twoTableData = findItem.nav
     this.twoSelect = ''
     this.threeSelect = ''
+    this.onTabChange()
   }
 
   hanldeTwoSelect(value) {
@@ -240,12 +348,14 @@ export default class WebpComponent {
     const findItem = this.twoTableData.find(item => item.title === value)
     this.threeTableData = findItem.nav
     this.threeSelect = ''
+    this.onTabChange()
   }
 
   hanldeThreeSelect(value) {
     this.threeSelect = value
     const findItem = this.threeTableData.find(item => item.title === value)
     this.websiteTableData = findItem.nav
+    this.onTabChange()
   }
 
   handleEditBtn(data, editIdx) {

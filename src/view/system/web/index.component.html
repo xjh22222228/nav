@@ -37,9 +37,32 @@
   <nz-tabset *ngIf="isLogin" [nzSelectedIndex]="tabActive" (nzSelectedIndexChange)="onTabChange($event)">
     <nz-tab [nzTitle]="$t('_mgr1')">
       <button nz-button nzType="primary" (click)="toggleCreateModal()">{{ $t('_addTag') }}</button>
-      <nz-table #basicTable [nzData]="websiteList" [nzShowPagination]="false" style="margin-top: 15px;">
+      <a
+        nz-popconfirm
+        [nzPopconfirmTitle]="$t('_confirmDel')"
+        nzPopconfirmPlacement="bottom"
+        (nzOnConfirm)="onBatchDelete(1)"
+      >
+        <button
+          nz-button
+          nzDanger
+          class="ml10"
+          [disabled]="setOfCheckedId.size <= 0"
+        >
+          {{ $t('_batchDel') }}
+        </button>
+      </a>
+      
+      <nz-table
+        #rowSelectionTable
+        #basicTable
+        [nzData]="websiteList"
+        [nzShowPagination]="false"
+        style="margin-top: 15px;"
+      >
         <thead>
           <tr>
+            <th [nzChecked]="checkedAll" (nzCheckedChange)="onAllChecked($event, 1)"></th>
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
@@ -49,6 +72,11 @@
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropOne($event)">
           <tr *ngFor="let data of websiteList; let idx = index" cdkDrag>
+            <td
+              [nzChecked]="setOfCheckedId.has(data.title)"
+              (nzCheckedChange)="onItemChecked(data.title, $event)"
+            >
+            </td>
             <td>
               <app-logo
                 [src]="data.icon"
@@ -101,10 +129,32 @@
       >
         {{ $t('_addTag') }}
       </button>
+      <a
+        nz-popconfirm
+        [nzPopconfirmTitle]="$t('_confirmDel')"
+        nzPopconfirmPlacement="bottom"
+        (nzOnConfirm)="onBatchDelete(2)"
+      >
+        <button
+          nz-button
+          nzDanger
+          class="ml10"
+          [disabled]="setOfCheckedId.size <= 0"
+        >
+          {{ $t('_batchDel') }}
+        </button>
+      </a>
 
-      <nz-table #basicTable [nzData]="twoTableData" [nzShowPagination]="false" style="margin-top: 15px;">
+      <nz-table
+        #rowSelectionTable
+        #basicTable
+        [nzData]="twoTableData"
+        [nzShowPagination]="false"
+        style="margin-top: 15px;"
+      >
         <thead>
           <tr>
+            <th [nzChecked]="checkedAll" (nzCheckedChange)="onAllChecked($event, 2)"></th>
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
@@ -114,6 +164,11 @@
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropTwo($event)">
           <tr *ngFor="let data of twoTableData; let idx = index" cdkDrag>
+            <td
+              [nzChecked]="setOfCheckedId.has(data.title)"
+              (nzCheckedChange)="onItemChecked(data.title, $event)"
+            >
+            </td>
             <td>
               <app-logo
                 [src]="data.icon"
@@ -181,10 +236,32 @@
       >
         {{ $t('_addTag') }}
       </button>
+      <a
+        nz-popconfirm
+        [nzPopconfirmTitle]="$t('_confirmDel')"
+        nzPopconfirmPlacement="bottom"
+        (nzOnConfirm)="onBatchDelete(3)"
+      >
+        <button
+          nz-button
+          nzDanger
+          class="ml10"
+          [disabled]="setOfCheckedId.size <= 0"
+        >
+          {{ $t('_batchDel') }}
+        </button>
+      </a>
 
-      <nz-table #basicTable [nzData]="threeTableData" [nzShowPagination]="false" style="margin-top: 15px;">
+      <nz-table
+        #rowSelectionTable
+        #basicTable
+        [nzData]="threeTableData"
+        [nzShowPagination]="false"
+        style="margin-top: 15px;"
+      >
         <thead>
           <tr>
+            <th [nzChecked]="checkedAll" (nzCheckedChange)="onAllChecked($event, 3)"></th>
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
@@ -194,6 +271,11 @@
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropThree($event)">
           <tr *ngFor="let data of threeTableData; let idx = index" cdkDrag>
+            <td
+              [nzChecked]="setOfCheckedId.has(data.title)"
+              (nzCheckedChange)="onItemChecked(data.title, $event)"
+            >
+            </td>
             <td>
               <app-logo
                 [src]="data.icon"
@@ -276,10 +358,32 @@
       >
         {{ $t('_addWeb') }}
       </button>
+      <a
+        nz-popconfirm
+        [nzPopconfirmTitle]="$t('_confirmDel')"
+        nzPopconfirmPlacement="bottom"
+        (nzOnConfirm)="onBatchDelete(4)"
+      >
+        <button
+          nz-button
+          nzDanger
+          class="ml10"
+          [disabled]="setOfCheckedId.size <= 0"
+        >
+          {{ $t('_batchDel') }}
+        </button>
+      </a>
 
-      <nz-table #basicTable [nzData]="websiteTableData" [nzShowPagination]="false" style="margin-top: 15px;">
+      <nz-table
+        #rowSelectionTable
+        #basicTable
+        [nzData]="websiteTableData"
+        [nzShowPagination]="false"
+        style="margin-top: 15px;"
+      >
         <thead>
           <tr>
+            <th [nzChecked]="checkedAll" (nzCheckedChange)="onAllChecked($event, 4)"></th>
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_webName') }}</th>
             <th>{{ $t('_webTag') }}</th>
@@ -291,6 +395,11 @@
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropWebsite($event)">
           <tr *ngFor="let data of websiteTableData; let idx = index" cdkDrag>
+            <td
+              [nzChecked]="setOfCheckedId.has(data.name)"
+              (nzCheckedChange)="onItemChecked(data.name, $event)"
+            >
+            </td>
             <td>
               <app-logo
                 [src]="data.icon"
@@ -350,7 +459,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="6" nzRequired>{{ $t('_tagName') }}</nz-form-label>
         <nz-form-control [nzSpan]="18" [nzErrorTip]="$t('_requiredName')">
-          <input formControlName="title" nz-input [placeholder]="$t('_webTitle')" />
+          <input formControlName="title" nz-input [placeholder]="$t('_webTitle')" [maxlength]="50" />
         </nz-form-control>
       </nz-form-item>
 

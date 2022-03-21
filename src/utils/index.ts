@@ -222,13 +222,16 @@ export function queryString(): {
   }
 
   if (page > websiteList.length - 1) {
-    page = websiteList.length - 1
+    page = 0
     id = 0
   } else {
-    if (!(id <= websiteList[page].nav.length - 1)) {
+    if (websiteList[page] && !(id <= websiteList[page].nav.length - 1)) {
       id = websiteList[page].nav.length - 1
     }
   }
+
+  page = page < 0 ? 0 : page
+  id = id < 0 ? 0 : id
 
   return {
     ...parseQs,

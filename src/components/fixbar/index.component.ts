@@ -122,9 +122,8 @@ export class FixbarComponent {
 
   goSystemPage() {
     this.router.navigate(['system'])
-    setTimeout(() => {
-      window.location.reload()
-    }, 200)
+    const html = document.documentElement
+    html.classList.remove('dark-container')
   }
 
   handleSync() {

@@ -20,7 +20,7 @@
     </nav>
   </header>
   
-  <div class="wrapper">
+  <div class="wrapper" *ngIf="websiteList[page]">
     <nav class="children-nav" *ngIf="websiteList[page].nav.length > 1">
       <a
         class="tag" 
