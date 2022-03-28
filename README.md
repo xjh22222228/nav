@@ -71,13 +71,13 @@ Its as easy as counting numbers "3 2 1" that simple!
 
 2、[https://github.com/settings/tokens](https://github.com/settings/tokens) apply for a token, check the corresponding permissions, if you don’t understand, select all, copy and save the token.
 
-3、https://github.com/askfriends/nav/settings/secrets/actions/new  Create a new application token, name fill in TOKEN (All are uppercase).
+3、https://github.com/username/nav/settings/secrets/actions/new  Create a new application token, name fill in TOKEN (All are uppercase).
 
-4、Go to https://github.com/askfriends/nav/actions click "Green Button"
+4、Go to https://github.com/username/nav/actions click "Green Button"
 
 5、Be sure to modify the project configuration file [nav.config.ts](nav.config.ts)
 
-6、After 5 minutes, open https://askfriends.github.io/nav , you will see a very powerful navigation website.
+6、After 5 minutes, open https://username.github.io/nav , you will see a very powerful navigation website.
 
 ### Method 2 (Free Vercel)
 The steps are the same as the first method, except that the fourth step is not needed.
