@@ -2,8 +2,8 @@
 
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { queryString } from '../../../utils'
-import { INavProps } from '../../../types'
+import { queryString, fuzzySearch, matchCurrentList } from '../../../utils'
+import { INavProps, INavThreeProp } from '../../../types'
 import { websiteList, settings } from '../../../store'
 
 @Component({
@@ -13,6 +13,7 @@ import { websiteList, settings } from '../../../store'
 })
 export default class WebpComponent {
   websiteList: INavProps[] = websiteList
+  currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
   open: boolean = false
@@ -22,9 +23,14 @@ export default class WebpComponent {
 
   ngOnInit () {
     this.activatedRoute.queryParams.subscribe(() => {
-      const { page, id } = queryString()
+      const { page, id, q } = queryString()
       this.page = page
       this.id = id
+      if (q) {
+        this.currentList = fuzzySearch(this.websiteList, q)
+      } else {
+        this.currentList = matchCurrentList()
+      }
     })
   }
 
