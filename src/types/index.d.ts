@@ -84,6 +84,7 @@ export interface ISettings {
   description: string
   keywords: string
   theme: ThemeType
+  appTheme: ThemeType
   footerContent?: string|null
   baiduStatisticsUrl?: string
   cnzzStatisticsUrl?: string

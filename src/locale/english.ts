@@ -125,6 +125,7 @@ export default {
   _noSet: 'No set',
   _showGithub: 'Show Github',
   _defTheme: 'Default Theme',
+  _appTheme: 'App Theme',
   _keywords: 'Keywords',
   _footHtml: 'Foot HTML',
   _showWeather: 'Show weather',

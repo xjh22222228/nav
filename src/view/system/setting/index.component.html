@@ -129,21 +129,24 @@
     <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{ $t('_defTheme') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-radio-group formControlName="theme">
-        <label nz-radio nzValue="Light">
-          Light
-        </label>
-        <label nz-radio nzValue="Sim">
-          Sim
-        </label>
-        <label nz-radio nzValue="Side">
-          Side
-        </label>
-        <label nz-radio nzValue="App">
-          App
-        </label>
-        <label nz-radio nzValue="Shortcut">
-          Shortcut
-        </label>
+        <label nz-radio nzValue="Light">Light</label>
+        <label nz-radio nzValue="Sim">Sim</label>
+        <label nz-radio nzValue="Side">Side</label>
+        <label nz-radio nzValue="App">App</label>
+        <label nz-radio nzValue="Shortcut">Shortcut</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{ $t('_appTheme') }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-radio-group formControlName="appTheme">
+        <label nz-radio nzValue="Light">Light</label>
+        <label nz-radio nzValue="Sim">Sim</label>
+        <label nz-radio nzValue="Side">Side</label>
+        <label nz-radio nzValue="App">App</label>
+        <label nz-radio nzValue="Shortcut">Shortcut</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>

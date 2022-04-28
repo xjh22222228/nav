@@ -125,6 +125,7 @@ export default {
   _noSet: '不设置',
   _showGithub: '显示Github',
   _defTheme: '默认主题',
+  _appTheme: 'App主题',
   _keywords: '网站关键字',
   _footHtml: '底部HTML',
   _showWeather: '显示天气',
