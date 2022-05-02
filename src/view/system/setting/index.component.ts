@@ -132,6 +132,7 @@ export default class SystemSettingComponent {
       nzOnOk: () => {
         const values = {
           ...this.validateForm.value,
+          favicon: this.settings.favicon,
           simThemeImages: this.settings.simThemeImages,
           shortcutThemeImages: this.settings.shortcutThemeImages,
           sideThemeImages: this.settings.sideThemeImages,
