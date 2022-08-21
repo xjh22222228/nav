@@ -145,5 +145,6 @@ export default {
   _mirrorList: "Mirror list",
   _mirrorAddr: "Mirror Address",
   _mirrorName: "Mirror Name",
-  _showRate: "Show rate"
+  _showRate: "Show rate",
+  _angleMark: "Angle Mark"
 }

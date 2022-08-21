@@ -10,7 +10,8 @@
             <li nz-menu-item [nzSelected]="currentMenu === 'search'" (click)="goRoute('/system/search')">{{ $t('_searchEngines') }}</li>
             <li nz-menu-item [nzSelected]="currentMenu === 'setting'" (click)="goRoute('/system/setting')">{{ $t('_systemSet') }}</li>
             <li nz-menu-item [nzSelected]="currentMenu === 'info'" (click)="goRoute('/system/info')">{{ $t('_webInfo') }}</li>
-            <li nz-menu-item [nzSelected]="currentMenu === 'about'" (click)="goRoute('system/about')">{{ $t('_about') }}</li>
+            <!-- <li nz-menu-item [nzSelected]="currentMenu === 'angle'" (click)="goRoute('/system/angle')">{{ $t('_angleMark') }}</li> -->
+            <li nz-menu-item [nzSelected]="currentMenu === 'about'" (click)="goRoute('/system/about')">{{ $t('_about') }}</li>
           </ul>
         </li>
       </ul>

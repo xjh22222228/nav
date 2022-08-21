@@ -26,7 +26,10 @@
 }
 .sim-ban {
   img {
+    display: inline-block;
     width: 100px;
+    min-height: 60px;
+    object-fit: cover;
     margin-right: 20px;
   }
   ::ng-deep .anticon {

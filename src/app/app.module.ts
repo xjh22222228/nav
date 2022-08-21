@@ -52,6 +52,7 @@ import SystemTagComponent from '../view/system/tag/index.component'
 import SystemSearchComponent from '../view/system/search/index.component'
 import SystemSettingComponent from '../view/system/setting/index.component'
 import SystemWebComponent from '../view/system/web/index.component'
+import SystemAngleMarkComponent from '../view/system/angle-mark/index.component'
 import SideComponent from '../view/index/side/index.component'
 import ShortcutComponent from '../view/index/shortcut/index.component'
 import WebpComponent from '../view/app/default/app.component'
@@ -131,6 +132,10 @@ const appRoutes: Routes = [
         component: SystemSettingComponent
       },
       {
+        path: 'angle',
+        component: SystemAngleMarkComponent
+      },
+      {
         path: 'web',
         component: SystemWebComponent
       },
@@ -161,6 +166,7 @@ const appRoutes: Routes = [
     SystemTagComponent,
     SystemSearchComponent,
     SystemSettingComponent,
+    SystemAngleMarkComponent,
     SystemWebComponent,
     WebpComponent,
     FixbarComponent,
