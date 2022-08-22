@@ -26,6 +26,14 @@
           >
             {{ $t('_backHome') }}
           </button>
+
+          <button
+            nz-button
+            style="margin-left: 15px;"
+            (click)="logout()"
+          >
+            {{ $t('_logout') }}
+          </button>
         </div>
 
         <router-outlet></router-outlet>

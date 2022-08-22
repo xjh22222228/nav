@@ -146,5 +146,6 @@ export default {
   _mirrorAddr: "Mirror Address",
   _mirrorName: "Mirror Name",
   _showRate: "Show rate",
-  _angleMark: "Angle Mark"
+  _angleMark: "Angle Mark",
+  _logout: 'Logout'
 }

@@ -146,5 +146,6 @@ export default {
   _mirrorAddr: "镜像地址",
   _mirrorName: "镜像名称",
   _showRate: "显示评分",
-  _angleMark: "角标设置"
+  _angleMark: "角标设置",
+  _logout: '登出'
 }

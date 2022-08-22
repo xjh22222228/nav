@@ -5,6 +5,7 @@ import { Component } from '@angular/core'
 import { $t } from 'src/locale'
 import { isLogin } from 'src/utils/user'
 import { Router } from '@angular/router'
+import { STORAGE_KEY_MAP } from 'src/constants'
 
 @Component({
   selector: 'app-system',
@@ -32,5 +33,13 @@ export default class SystemComponent {
 
   goRoute(to: string) {
     this.router.navigate([to])
+  }
+
+  logout() {
+    localStorage.removeItem(STORAGE_KEY_MAP.token)
+    this.router.navigate(['/'])
+    setTimeout(() => {
+      location.reload()
+    }, 26)
   }
 }
