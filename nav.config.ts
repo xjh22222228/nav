@@ -2,7 +2,7 @@ import { IConfig } from './src/types'
 
 const c: IConfig = {
   // [Mondatory], Please replace following Github url with your own Github address which you forked in.
-  // [必填], 请填写您的仓库地址 这就是仓库
+  // [必填], 请填写您的仓库地址 这就是仓库 是这样的
   gitRepoUrl: 'https://github.com/jqzhang0126/nav',
 
   // Deployment branch name
