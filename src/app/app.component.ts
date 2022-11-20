@@ -7,6 +7,8 @@ import { queryString, setLocation } from '../utils'
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n'
 import { getLocale } from 'src/locale'
 import { settings } from 'src/store'
+import { verifyToken } from 'src/services'
+import { getToken, removeToken } from 'src/utils/user'
 
 @Component({
   selector: 'app-xiejiahe',
@@ -28,6 +30,14 @@ export class AppComponent {
       this.i18n.setLocale(zh_CN);
     } else {
       this.i18n.setLocale(en_US);
+    }
+
+    const token = getToken()
+    if (token) {
+      verifyToken(token).catch(() => {
+        removeToken()
+        location.reload()
+      })
     }
   }
 
