@@ -55,6 +55,7 @@ $width: 1200px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-size: cover;
     .bg {
       position: absolute;
       top: 0;
@@ -63,7 +64,8 @@ $width: 1200px;
       bottom: 0;
       .bg-item {
         background-repeat: no-repeat;
-        background-position: top center;
+        background-position: center;
+        background-size: cover;
       }
     }
     .bar {
