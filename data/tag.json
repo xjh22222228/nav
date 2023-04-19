@@ -1,18 +1,18 @@
 {
   "中文": {
-    "color": "#2db7f5",
+    "color": "#2a7892",
     "createdAt": "2018-01-25T07:56:31.372Z",
     "desc": "系统内置不可删除",
     "isInner": true
   },
   "英文": {
-    "color": "#f50",
+    "color": "#362124",
     "createdAt": "2018-01-25T07:56:31.372Z",
     "desc": "系统内置不可删除",
     "isInner": true
   },
   "Github": {
-    "color": "#108ee9",
+    "color": "#1c2435",
     "createdAt": "2018-01-25T07:56:31.372Z",
     "desc": "系统内置不可删除",
     "isInner": true
