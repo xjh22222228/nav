@@ -1,5 +1,5 @@
 {
-  "favicon": "http://cloudreve.private.hehouhui.cn/uploads/2023/nav/logo.png",
+  "favicon": "https://cdn.jsdelivr.net/gh/listener-He/nav@image/logo.png",
   "homeUrl": "https://nav.hehouhui.cn",
   "language": "zh-CN",
   "loading": "random",
