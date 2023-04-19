@@ -1,5 +1,5 @@
 {
-  "favicon": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/logo.png",
+  "favicon": "https://cdn.jsdelivr.net/gh/listener-He/nav@image/logo.png",
   "homeUrl": "https://nav3.cn",
   "language": "zh-CN",
   "loading": "random",
@@ -9,19 +9,19 @@
   "keywords": "Honesty导航,Honesty前端资源,Honesty社区站点,Honesty设计师,Honesty实用工具,Honesty学习资源,Honesty运营,Honesty网络安全,Honesty node.js",
   "theme": "Side",
   "appTheme": "App",
-  "footerContent": "<div style=\"font-weight: bold;\">共收录${total}个网站</div><div>Copyright © 2018-2022 nav3.cn, All Rights Reserved</div>",
+  "footerContent": "<div style=\"font-weight: bold;\">共收录${total}个网站</div><div>Copyright © 2020-2023 nav.hehouhui.cn, All Rights Reserved</div>",
   "iconfontUrl": "//at.alicdn.com/t/font_2522843_wl70o31sy6.js",
   "baiduStatisticsUrl": "",
   "cnzzStatisticsUrl": "",
   "simThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
+      "src": "https://cdn.jsdelivr.net/gh/listener-He/nav@image/sim-wallpaper.jpg",
       "url": "",
       "width": null,
       "height": null
     },
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637490885331-ChMkKWF4tn6IeIGwAD5r3l1JSDcAAU-5QFAFu4APmv2924.jpeg",
+      "src": "https://cdn.jsdelivr.net/gh/listener-He/nav@image/nav-1637490885331-ChMkKWF4tn6IeIGwAD5r3l1JSDcAAU-5QFAFu4APmv2924.jpeg",
       "url": "",
       "width": null,
       "height": null
@@ -32,13 +32,13 @@
   "simThemeAutoplay": true,
   "sideThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637490885331-ChMkKWF4tn6IeIGwAD5r3l1JSDcAAU-5QFAFu4APmv2924.jpeg",
+      "src": "https://cdn.jsdelivr.net/gh/listener-He/nav@image/nav-1637490885331-ChMkKWF4tn6IeIGwAD5r3l1JSDcAAU-5QFAFu4APmv2924.jpeg",
       "url": "",
       "width": null,
       "height": null
     },
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
+      "src": "https://cdn.jsdelivr.net/gh/listener-He/nav@image/sim-wallpaper.jpg",
       "url": "",
       "width": null,
       "height": null
@@ -49,7 +49,7 @@
   "shortcutThemeShowWeather": true,
   "shortcutThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637462542538-0ed801fb13f9e4c29cdfface91eb6c44.jpeg",
+      "src": "https://cdn.jsdelivr.net/gh/listener-He/nav@image/nav-1637462542538-0ed801fb13f9e4c29cdfface91eb6c44.jpeg",
       "url": "",
       "width": null,
       "height": null
