@@ -1,5 +1,13 @@
 [
   {
+    "name": "小红书",
+    "url": "https://www.xiaohongshu.com/search_result?keyword=",
+    "icon": "https://picasso-static.xiaohongshu.com/fe-platform/db90fda25cb0c9541b0fe8d2624c3688216d808e.png",
+    "placeholder": "小红书",
+    "blocked": false,
+    "isInner": false
+  },
+  {
     "name": "站内",
     "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/logo.png",
     "placeholder": "站内搜索",
