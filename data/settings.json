@@ -15,14 +15,14 @@
   "cnzzStatisticsUrl": "",
   "simThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
-      "url": "",
+      "src": "https://cdn.jsdelivr.net/gh/listener-He/nav@image/nav-1681991653634-gl.jpeg",
+      "url": "https://blog.hehouhui.cn",
       "width": null,
       "height": null
     },
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637490885331-ChMkKWF4tn6IeIGwAD5r3l1JSDcAAU-5QFAFu4APmv2924.jpeg",
-      "url": "",
+      "src": "https://bing.ioliu.cn/v1/rand",
+      "url": "https://www.hehouhui.cn",
       "width": null,
       "height": null
     }
@@ -32,24 +32,24 @@
   "simThemeAutoplay": true,
   "sideThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637490885331-ChMkKWF4tn6IeIGwAD5r3l1JSDcAAU-5QFAFu4APmv2924.jpeg",
-      "url": "",
+      "src": "https://cdn.jsdelivr.net/gh/listener-He/nav@image/nav-1681991653634-gl.jpeg",
+      "url": "https://blog.hehouhui.cn",
       "width": null,
       "height": null
     },
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
-      "url": "",
+      "src": "https://bing.ioliu.cn/v1/rand",
+      "url": "https://www.hehouhui.cn",
       "width": null,
       "height": null
     }
   ],
-  "sideThemeHeight": 350,
+  "sideThemeHeight": 388,
   "sideThemeAutoplay": true,
   "shortcutThemeShowWeather": true,
   "shortcutThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637462542538-0ed801fb13f9e4c29cdfface91eb6c44.jpeg",
+      "src": "https://cdn.jsdelivr.net/gh/listener-He/nav@image/nav-1681991653634-gl.jpeg",
       "url": "",
       "width": null,
       "height": null
