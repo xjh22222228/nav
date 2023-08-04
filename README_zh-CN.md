@@ -128,7 +128,7 @@ git clone --depth=1 https://github.com/xjh22222228/nav.git
 
 cd nav
 
-# 安装依赖
+# 安装依赖 NODE: v14
 yarn
 
 # 启动

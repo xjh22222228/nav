@@ -8,6 +8,13 @@
           {{ $t('_updateLogo') }}
         </span>
         <app-upload (onChange)="onLogoChange($event)"></app-upload>
+        <div>
+          <input
+            nz-input
+            [value]="settings.favicon"
+            (change)="onLogoChange($event)"
+          />
+        </div>
       </label>
     </nz-form-control>
   </nz-form-item>

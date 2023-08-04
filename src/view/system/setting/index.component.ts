@@ -35,8 +35,8 @@ export default class SystemSettingComponent {
     })
   }
 
-  onLogoChange(data) {
-    this.settings.favicon = data.cdn
+  onLogoChange(data: any) {
+    this.settings.favicon = data.cdn ?? data.target.value
   }
 
 // Sim ===========================
