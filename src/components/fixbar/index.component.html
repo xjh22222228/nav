@@ -63,8 +63,8 @@
           nz-menu-item
           *ngFor="let item of settings.mirrorList"
         >
-          <a [href]="item.url">
-            {{ item.name }}
+          <a [href]="item['url']">
+            {{ item['name'] }}
           </a>
         </li>
       </ul>

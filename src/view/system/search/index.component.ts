@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
@@ -39,7 +40,7 @@ export default class SystemSearchComponent {
     })
   }
 
-  handleDelete(idx) {
+  handleDelete(idx: number) {
     this.searchList.splice(idx, 1)
   }
 
@@ -56,6 +57,7 @@ export default class SystemSearchComponent {
         const o = {}
         this.searchList.forEach(item => {
           if (item.name.trim()) {
+            // @ts-ignore
             o[item.name] = null
           }
         })
@@ -84,7 +86,7 @@ export default class SystemSearchComponent {
     })
   }
 
-  onChangeUpload(path, idx: number) {
+  onChangeUpload(path: any, idx: number) {
     this.searchList[idx].icon = path.cdn
   }
 

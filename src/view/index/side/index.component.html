@@ -8,11 +8,11 @@
       <ul nz-menu nzMode="inline" class="sider-menu">
         <li
           nz-submenu
-          [(nzOpen)]="pageIdx === openIndex"
           *ngFor="let item of websiteList; index as pageIdx;"
           [class.remove]="!isLogin && item.ownVisible"
-          (nzOpenChange)="openIndex = pageIdx"
+          (nzOpenChange)="openMenu(item, pageIdx)"
           [nzTitle]="titleTpl"
+          [nzOpen]="item['collapsed']"
         >
           <ng-template #titleTpl>
             <i nz-icon [nzIconfont]="item.icon" *ngIf="item.icon"></i>
@@ -28,8 +28,8 @@
               (click)="handleSidebarNav(pageIdx, idIdx)" 
             >
               <app-ellipsis
-                [text]="el.title"
-                [icon]="el.icon"
+                [text]="el.title || ''"
+                [icon]="el.icon || ''"
               >
               </app-ellipsis>
 
@@ -64,7 +64,7 @@
               class="bg-item"
               nz-carousel-content
               *ngFor="let item of sideThemeImages"
-              [ngStyle]="{ 'background-image': 'url(' + item.src + ')' }"
+              [ngStyle]="{ 'background-image': 'url(' + item['src'] + ')' }"
               (click)="handleJumpUrl(item)"
             >
             </div>
@@ -90,7 +90,7 @@
       
                 <div nz-row [nzGutter]="[16, 16]" [style.display]="item.collapsed ? 'none' : ''">
                   <div
-                    *ngFor="let el of item.nav.slice(0, sliceMax); let i=j"
+                    *ngFor="let el of item.nav.slice(0, sliceMax); index as j;"
                     class="gutter-row"
                     [class.remove]="!isLogin && el.ownVisible"
                     nz-col

@@ -119,13 +119,14 @@ Click the `Watch` button in the upper right corner to track the version upgrade 
 
 
 ## Development and construction
+NODE: v18
 ``` bash
 # Download
 git clone --depth=1 https://github.com/xjh22222228/nav.git
 
 cd nav
 
-# Installation dependencies
+# Installation dependencies(Node:v18)
 yarn
 
 # Start

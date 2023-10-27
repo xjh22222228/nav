@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
@@ -34,7 +35,7 @@ export default class WebpComponent {
     })
   }
 
-  handleSidebarNav (index) {
+  handleSidebarNav(index: number) {
     const { page } = queryString()
     this.router.navigate(['/app'], { 
       queryParams: {
@@ -44,7 +45,7 @@ export default class WebpComponent {
     })
   }
 
-  handleCilckNav (index) {
+  handleCilckNav(index: number) {
     this.router.navigate(['/app'], {
       queryParams: {
         page: index,

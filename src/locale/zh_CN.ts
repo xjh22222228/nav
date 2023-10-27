@@ -1,4 +1,4 @@
-export default {
+const zhCN: Record<string, string> = {
   _webTitle: '发现导航',
   _uncategorized: '未分类',
   _modifySuccess: '修改成功！',
@@ -74,7 +74,7 @@ export default {
   _importChrome: '从Chrome书签导入',
   _allContentMsg1: '1、所有数据设置完毕后点击 “同步到远端”，拖拽表格进行排序',
   _allContentMsg2: '2、网站分类需手动维护,',
-  _updateLogo: '更换LOGO, 推荐 PNG, 200x200',
+  _updateLogo: '更换LOGO, 仅支持 PNG, 200x200',
   _tagName: '标签名称',
   _onlyOwnVisible: '仅自己可见',
   _createAt: '创建时间',
@@ -149,3 +149,5 @@ export default {
   _angleMark: "角标设置",
   _logout: '登出'
 }
+
+export default zhCN;

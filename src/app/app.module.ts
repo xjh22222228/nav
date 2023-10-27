@@ -1,12 +1,11 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
-// See https://github.com/xjh22222228/nav
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { BrowserModule } from '@angular/platform-browser'
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms'
-import { settings } from 'src/store'
-import config from '../../nav.config'
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzInputModule } from 'ng-zorro-antd/input'
@@ -36,11 +35,26 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
 import { NzCarouselModule } from 'ng-zorro-antd/carousel'
+import { IconDefinition } from '@ant-design/icons-angular';
 
-// components
-import { AppComponent } from './app.component'
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { zh_CN } from 'ng-zorro-antd/i18n';
 
-// views
+import { FixbarComponent } from '../components/fixbar/index.component'
+import { FooterComponent } from '../components/footer/footer.component'
+import { UploadComponent } from '../components/upload/index.component'
+import { EllipsisComponent } from '../components/ellipsis/index.component'
+import { IconGitComponent } from '../components/icon-git/icon-git.component'
+import { NoDataComponent } from '../components/no-data/no-data.component'
+import { SearchEngineComponent } from '../components/search-engine/search-engine.component';
+import { LoginComponent } from '../components/login/login.component';
+import { CreateWebComponent } from '../components/create-web/index.component';
+import { ToolbarTitleWebComponent } from '../components/toolbar-title/index.component';
+import { WebListComponent } from '../components/web-list/index.component';
+import { LogoComponent } from '../components/logo/logo.component';
+import { CardComponent } from '../components/card/index.component'
+import { MoveSiteComponent } from '../components/move-site/index.component'
+
 import LightComponent from '../view/index/light/index.component'
 import SimComponent from '../view/index/sim/index.component'
 import AdminComponent from '../view/admin/index.component'
@@ -56,100 +70,11 @@ import SystemAngleMarkComponent from '../view/system/angle-mark/index.component'
 import SideComponent from '../view/index/side/index.component'
 import ShortcutComponent from '../view/index/shortcut/index.component'
 import WebpComponent from '../view/app/default/app.component'
-import { FixbarComponent } from '../components/fixbar/index.component'
-import { FooterComponent } from '../components/footer/footer.component'
-import { UploadComponent } from '../components/upload/index.component'
-import { EllipsisComponent } from '../components/ellipsis/index.component'
-import { IconGitComponent } from '../components/icon-git/icon-git.component'
-import { NoDataComponent } from '../components/no-data/no-data.component'
-import { SearchEngineComponent } from '../components/search-engine/search-engine.component';
-import { LoginComponent } from '../components/login/login.component';
-import { CreateWebComponent } from '../components/create-web/index.component';
-import { ToolbarTitleWebComponent } from '../components/toolbar-title/index.component';
-import { WebListComponent } from '../components/web-list/index.component';
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { zh_CN } from 'ng-zorro-antd/i18n';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LogoComponent } from '../components/logo/logo.component';
-import { CardComponent } from '../components/card/index.component'
-import { MoveSiteComponent } from '../components/move-site/index.component'
 
-const appRoutes: Routes = [
-  { 
-    path: 'sim',
-    component: SimComponent,
-  },
-  { 
-    path: 'side',
-    component: SideComponent,
-  },
-  { 
-    path: 'shortcut',
-    component: ShortcutComponent,
-  },
-  { 
-    path: 'light',
-    component: LightComponent,
-    data: {
-      renderLinear: true
-    }
-  },
-  { 
-    path: 'app',
-    component: WebpComponent,
-  },
-  { 
-    path: 'admin',
-    component: AdminComponent,
-  },
-  { 
-    path: 'system',
-    component: SystemComponent,
-    children: [
-      {
-        path: 'info',
-        component: SystemInfoComponent
-      },
-      {
-        path: 'bookmark',
-        component: SystemBookmarkComponent
-      },
-      {
-        path: 'about',
-        component: SystemAboutComponent
-      },
-      {
-        path: 'tag',
-        component: SystemTagComponent
-      },
-      {
-        path: 'search',
-        component: SystemSearchComponent
-      },
-      {
-        path: 'setting',
-        component: SystemSettingComponent
-      },
-      {
-        path: 'angle',
-        component: SystemAngleMarkComponent
-      },
-      {
-        path: 'web',
-        component: SystemWebComponent
-      },
-      {
-        path: '**',
-        redirectTo: '/system/web'
-      },
-    ]
-  },
-  {
-    path: '**',
-    redirectTo: '/' + settings.theme.toLowerCase(),
-  },
-]
+
+import { CheckOutline, CopyOutline, ShareAltOutline, EllipsisOutline, LoadingOutline, UploadOutline, MinusOutline, PlusOutline } from '@ant-design/icons-angular/icons';
+
+const icons: IconDefinition[] = [ CheckOutline, CopyOutline, ShareAltOutline, EllipsisOutline, LoadingOutline, UploadOutline, MinusOutline, PlusOutline ];
 
 @NgModule({
   declarations: [
@@ -185,6 +110,8 @@ const appRoutes: Routes = [
     MoveSiteComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    HttpClientModule,
     NzModalModule,
     NzInputModule,
     NzRadioModule,
@@ -199,7 +126,7 @@ const appRoutes: Routes = [
     NzDropDownModule,
     NzToolTipModule,
     NzCardModule,
-    NzIconModule,
+    NzIconModule.forRoot(icons),
     NzGridModule,
     NzLayoutModule,
     NzMenuModule,
@@ -215,20 +142,10 @@ const appRoutes: Routes = [
     DragDropModule,
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(
-      appRoutes,
-      {
-        enableTracing: false,     // <-- debugging purposes only
-        useHash: config.hashMode,
-      }
-    ),
-    HttpClientModule,
-    BrowserAnimationsModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
-  bootstrap: [
-    AppComponent,
-  ],
+  bootstrap: [AppComponent]
 })
-
 export class AppModule { }

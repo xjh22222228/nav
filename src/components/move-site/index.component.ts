@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input, Output, EventEmitter } from '@angular/core'
@@ -14,8 +15,8 @@ import { NzMessageService } from 'ng-zorro-antd/message'
   styleUrls: ['./index.component.scss']
 })
 export class MoveSiteComponent {
-  @Input() visible: boolean
-  @Input() indexs: Array<number>
+  @Input() visible: boolean = false
+  @Input() indexs: Array<number> = []
   @Output() onCancel = new EventEmitter()
 
   $t = $t

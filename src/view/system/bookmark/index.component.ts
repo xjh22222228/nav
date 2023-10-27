@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
@@ -27,7 +28,7 @@ export default class SystemBookmarkComponent {
   ngOnInit () {
   }
 
-  onBookChange(e) {
+  onBookChange(e: any) {
     const that = this
     const { files } = e.target
     if (files.length <= 0) return

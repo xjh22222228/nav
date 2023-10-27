@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
@@ -43,7 +44,7 @@ export default class WebpComponent {
   threeSelect = ''
   tagMap = tagMap
   objectKeys = Object.keys
-  websiteDetail: INavFourProp|null
+  websiteDetail: any
 
   twoTableData: INavTwoProp[] = []
   threeTableData: INavThreeProp[] = []
@@ -64,7 +65,7 @@ export default class WebpComponent {
     })
   }
 
-  onLogoChange(e) {
+  onLogoChange(e: any) {
     const that = this
     const { files } = e.target
     if (files.length <= 0) return
@@ -172,7 +173,7 @@ export default class WebpComponent {
   }
 
   // 删除一级分类
-  handleConfirmDelOne(idx) {
+  handleConfirmDelOne(idx: number) {
     if (this.websiteList.length === 1) {
       return this.message.error($t('_reserveOne'))
     }
@@ -195,7 +196,7 @@ export default class WebpComponent {
   }
 
   // 删除二级分类
-  handleConfirmDelTwo(idx) {
+  handleConfirmDelTwo(idx: number) {
     if (this.twoTableData.length === 1) {
       return this.message.error($t('_reserveOne'))
     }
@@ -212,7 +213,7 @@ export default class WebpComponent {
   }
 
   // 删除三级分类
-  handleConfirmDelThree(idx) {
+  handleConfirmDelThree(idx: number) {
     if (this.threeTableData.length === 1) {
       return this.message.error($t('_reserveOne'))
     }
@@ -229,7 +230,7 @@ export default class WebpComponent {
   }
 
   // 删除网站
-  handleConfirmDelWebsite(idx) {
+  handleConfirmDelWebsite(idx: number) {
     if (this.websiteTableData.length === 1) {
       return this.message.error($t('_reserveOne'))
     }
@@ -239,28 +240,34 @@ export default class WebpComponent {
     setWebsiteList(this.websiteList)
   }
 
-  hanldeOneSelect(value) {
+  hanldeOneSelect(value: any) {
     this.oneSelect = value
     const findItem = this.websiteList.find(item => item.title === value)
-    this.twoTableData = findItem.nav
+    if (findItem) {
+      this.twoTableData = findItem.nav
+    }
     this.twoSelect = ''
     this.threeSelect = ''
   }
 
-  hanldeTwoSelect(value) {
+  hanldeTwoSelect(value: any) {
     this.twoSelect = value
     const findItem = this.twoTableData.find(item => item.title === value)
-    this.threeTableData = findItem.nav
+    if (findItem) {
+      this.threeTableData = findItem.nav
+    }
     this.threeSelect = ''
   }
 
-  hanldeThreeSelect(value) {
+  hanldeThreeSelect(value: any) {
     this.threeSelect = value
     const findItem = this.threeTableData.find(item => item.title === value)
-    this.websiteTableData = findItem.nav
+    if (findItem) {
+      this.websiteTableData = findItem.nav
+    }
   }
 
-  handleEditBtn(data, editIdx) {
+  handleEditBtn(data: any, editIdx: number) {
     let { title, icon, name } = data
     this.toggleCreateModal()
     this.isEdit = true

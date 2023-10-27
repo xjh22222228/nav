@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
 import axios from 'axios'
 import NProgress from 'nprogress'
@@ -9,7 +10,7 @@ const DEFAULT_TITLE = document.title
 const headers: Record<string, string> = {}
 
 if (token) {
-  headers.Authorization = `token ${token}`
+  headers['Authorization'] = `token ${token}`
 }
 
 const httpInstance = axios.create({

@@ -1,4 +1,4 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component, EventEmitter, Output } from '@angular/core'
@@ -24,7 +24,7 @@ export class UploadComponent {
     private notification: NzNotificationService,
   ) {}
 
-  onChangeFile(e) {
+  onChangeFile(e: any) {
     if (this.uploading) {
       return
     }

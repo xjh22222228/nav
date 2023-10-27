@@ -122,13 +122,14 @@
 
 
 ## 开发构建
+NODE: v18
 ``` bash
 # 下载
 git clone --depth=1 https://github.com/xjh22222228/nav.git
 
 cd nav
 
-# 安装依赖 NODE: v14
+# 安装依赖 NODE: v18
 yarn
 
 # 启动

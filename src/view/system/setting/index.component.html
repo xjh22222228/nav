@@ -8,13 +8,6 @@
           {{ $t('_updateLogo') }}
         </span>
         <app-upload (onChange)="onLogoChange($event)"></app-upload>
-        <div>
-          <input
-            nz-input
-            [value]="settings.favicon"
-            (change)="onLogoChange($event)"
-          />
-        </div>
       </label>
     </nz-form-control>
   </nz-form-item>
@@ -203,11 +196,11 @@
         <tbody>
           <tr *ngFor="let data of settings.simThemeImages; index as idx">
             <td width="260px" class="nowrap">
-              <img [src]="data.src" class="icon" />
+              <img [src]="data['src']" class="icon" />
               <input
                 nz-input
                 type="text"
-                [value]="data.src"
+                [value]="data['src']"
                 style="width: 180px;margin-right: 10px;"
                 (change)="onChangeSimBannerUrl($event, idx)"
               />
@@ -216,7 +209,7 @@
             <td>
               <input
                 nz-input
-                [value]="data.url"
+                [value]="data['url']"
                 maxlength="200"
                 (change)="onChangeSimJumpUrl($event, idx)"
               />
@@ -277,13 +270,13 @@
   <nz-form-item class="sim-ban">
     <nz-form-label [nzSpan]="4">{{ $t('_backgroundImage') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
-      <img [src]="settings.shortcutThemeImages[0].src" />
+      <img [src]="settings.shortcutThemeImages[0]['src']" />
       <app-upload (onChange)="onShortcutImgChange($event)"></app-upload>
 
       <input
         nz-input
         type="text"
-        [value]="settings.shortcutThemeImages[0].src"
+        [value]="settings.shortcutThemeImages[0]['src']"
         (change)="onShortcutImgChange($event)"
         style="width: 300px;margin-top: 10px;"
       />
@@ -307,11 +300,11 @@
         <tbody>
           <tr *ngFor="let data of settings.sideThemeImages; index as idx">
             <td width="260px" class="nowrap">
-              <img [src]="data.src" class="icon" />
+              <img [src]="data['src']" class="icon" />
               <input
                 nz-input
                 type="text"
-                [value]="data.src"
+                [value]="data['src']"
                 style="width: 180px;margin-right: 10px;"
                 (change)="onChangeSideBannerUrl($event, idx)"
               />
@@ -320,7 +313,7 @@
             <td>
               <input
                 nz-input
-                [value]="data.url"
+                [value]="data['url']"
                 maxlength="200"
                 (change)="onChangeSideJumpUrl($event, idx)"
               />
@@ -381,7 +374,7 @@
               <input
                 nz-input
                 type="text"
-                [value]="data.url"
+                [value]="data['url']"
                 (change)="onChangeMirrorUrl($event, idx)"
                 style="width: 100%;margin-right: 10px;"
               />
@@ -389,7 +382,7 @@
             <td width="400px">
               <input
                 nz-input
-                [value]="data.name"
+                [value]="data['name']"
                 maxlength="200"
                 (change)="onChangeMirrorName($event, idx)"
               />

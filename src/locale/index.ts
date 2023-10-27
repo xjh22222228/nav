@@ -14,7 +14,7 @@ export function getLocale(): string {
 
 const l = getLocale()
 
-export function $t(s): string {
+export function $t(s: string): string {
   if (l === 'zh-CN') {
     return o.cn[s]
   }

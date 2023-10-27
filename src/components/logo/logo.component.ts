@@ -7,14 +7,14 @@ import { getCDN } from 'src/services'
   styleUrls: ['./logo.component.scss']
 })
 export class LogoComponent {
-  @Input() src: string
-  @Input() name: string
+  @Input() src: string = ''
+  @Input() name: string = ''
   @Input() colour: string = '#1890ff'
   @Input() size: number = 35
   @Input() check: boolean = true
 
   hasError = false
-  url: string
+  url: string = ''
 
   constructor() { }
 

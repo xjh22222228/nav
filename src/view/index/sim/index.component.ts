@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
 import config from '../../../../nav.config'
 import { Component } from '@angular/core'
@@ -17,7 +18,7 @@ import { initRipple } from 'src/utils/ripple'
 import { websiteList } from 'src/store'
 import { settings } from 'src/store'
 
-let sidebarEl: HTMLElement;
+let sidebarEl: HTMLElement|null;
 
 @Component({
   selector: 'app-sim',
@@ -58,7 +59,8 @@ export default class SimComponent {
     })
   }
 
-  handleJumpUrl(data) {
+  handleJumpUrl(data: any) {
+    console.log(data)
     if (data.url) {
       window.open(data.url)
     }
@@ -89,7 +91,7 @@ export default class SimComponent {
     window.addEventListener('scroll', this.onScroll)
   }
 
-  handleSidebarNav(index) {
+  handleSidebarNav(index: number) {
     const { page } = queryString()
     this.websiteList[page].id = index
     this.router.navigate([this.router.url.split('?')[0]], { 
@@ -101,7 +103,7 @@ export default class SimComponent {
     })
   }
 
-  handleCilckTopNav(idx) {
+  handleCilckTopNav(idx: number) {
     const id = this.websiteList[idx].id || 0
     this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
@@ -112,7 +114,7 @@ export default class SimComponent {
     })
   }
 
-  onCollapse = (item, index) => {
+  onCollapse = (item: any, index: number) => {
     item.collapsed = !item.collapsed
     this.websiteList[this.page].nav[this.id].nav[index] = item
     setWebsiteList(this.websiteList)
@@ -124,7 +126,7 @@ export default class SimComponent {
 
   collapsed() {
     try {
-      return websiteList[this.page].nav[this.id].collapsed
+      return !!websiteList[this.page].nav[this.id].collapsed
     } catch (error) {
       return false
     }
