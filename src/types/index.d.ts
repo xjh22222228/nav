@@ -94,6 +94,8 @@ export interface ISettings {
   iconfontUrl?: string
   showGithub: boolean
   showLanguage: boolean
+  showCopy: Boolean|undefined
+  showShare: Boolean|undefined
 
   simThemeImages: Record<string, string>[]
   simThemeDesc: string
