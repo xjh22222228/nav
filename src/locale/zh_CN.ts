@@ -128,6 +128,7 @@ const zhCN: Record<string, string> = {
   _appTheme: 'App主题',
   _keywords: '网站关键字',
   _footHtml: '底部HTML',
+  _headHtml: '头部HTML',
   _showWeather: '显示天气',
   _weatherTip: '目前只支持 "Shortcut" 主题',
   _setSaveTip: '注意：保存成功后至少需要等待5分钟构建时间方可生效！',
@@ -138,7 +139,7 @@ const zhCN: Record<string, string> = {
   _jumpAddr: '跳转地址',
   _backup: '下载备份',
   _bannerHeight: 'Banner高度',
-  _autoPlay: '自动切换',
+  _autoPlay: '自动轮播',
   _importBackup: '导入备份',
   _importBackupTip: '导入后会将当前所有网站数据清空并导入',
   _showLanguage: "显示切换语言",
@@ -146,6 +147,8 @@ const zhCN: Record<string, string> = {
   _mirrorAddr: "镜像地址",
   _mirrorName: "镜像名称",
   _showRate: "显示评分",
+  _showCopy: "显示卡片复制",
+  _showShare: "显示卡片分享",
   _angleMark: "角标设置",
   _logout: '登出'
 }

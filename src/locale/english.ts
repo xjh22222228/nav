@@ -129,6 +129,7 @@ const english: Record<string, string> = {
   _appTheme: 'App Theme',
   _keywords: 'Keywords',
   _footHtml: 'Foot HTML',
+  _headHtml: 'Head HTML',
   _showWeather: 'Show weather',
   _weatherTip: 'Currently only the "Shortcut" theme is supported',
   _setSaveTip: 'Note: after saving successfully, you need to wait at least 5 minutes for the build time to take effect!',
@@ -147,6 +148,8 @@ const english: Record<string, string> = {
   _mirrorAddr: "Mirror Address",
   _mirrorName: "Mirror Name",
   _showRate: "Show rate",
+  _showCopy: "显示卡片复制",
+  _showShare: "显示卡片分享",
   _angleMark: "Angle Mark",
   _logout: 'Logout'
 }

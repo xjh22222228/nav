@@ -8,6 +8,14 @@
           {{ $t('_updateLogo') }}
         </span>
         <app-upload (onChange)="onLogoChange($event)"></app-upload>
+        <div>
+          <input
+            class="logo-input"
+            nz-input
+            [value]="settings.favicon"
+            (change)="onLogoChange($event)"
+          />
+        </div>
       </label>
     </nz-form-control>
   </nz-form-item>
@@ -169,6 +177,13 @@
     <nz-form-label [nzSpan]="4">IconFont</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <input nz-input formControlName="iconfontUrl" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_headHtml') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <textarea nz-input formControlName="headerContent" [nzAutosize]="{ minRows: 3, maxRows: 5 }" placeholder="位于 head 标签尾部，你可以在这里插入脚本代码"></textarea>
     </nz-form-control>
   </nz-form-item>
 

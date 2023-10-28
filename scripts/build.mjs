@@ -18,7 +18,6 @@ function addZero(num) {
 }
 
 const now = new Date()
-console.log('Timezone: ', now.getTimezoneOffset())
 now.setHours(now.getHours() + 8)
 const date = `${now.getFullYear()}年${addZero(now.getMonth() + 1)}月${addZero(now.getDate())}日 ${addZero(now.getHours())}:${addZero(now.getMinutes())}:${addZero(now.getSeconds())}`
 
@@ -29,7 +28,8 @@ const {
   baiduStatisticsUrl,
   cnzzStatisticsUrl,
   loading,
-  favicon
+  favicon,
+  headerContent
 } = settings
 
 const {
@@ -104,6 +104,7 @@ async function build() {
   t = t.replace(/<title>.*<\/title>/i, '')
   t = t.replace('<link rel="icon" href="assets/logo.png">', '')
   t = t.replace('<!-- nav.config -->', htmlTemplate)
+  t = t.replace('<!-- nav.headerContent -->', headerContent || '111')
 
   if (baiduStatisticsUrl) {
     t = t.replace('<!-- nav.script -->', scriptTemplate)

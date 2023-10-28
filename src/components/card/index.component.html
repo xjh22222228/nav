@@ -1,7 +1,9 @@
 <!-- 网站 -->
 <div class="container">
   <nz-card
-    [nzActions]="isLogin ? [actionSetting, actionEdit, actionEllipsis] : [actionSetting, actionEdit]"
+    [nzActions]="
+      isLogin ? [actionCopy, actionShare, actionEllipsis] : [actionCopy, actionShare]
+    "
     nzSize="small"
     nzHoverable
     nzType="inner"
@@ -39,7 +41,7 @@
   <ng-template #avatarTemplate>
     <app-logo [src]="dataSource.icon || ''" [name]="dataSource.name"></app-logo>
   </ng-template>
-  <ng-template #actionSetting>
+  <ng-template #actionCopy>
     <div nz-tooltip [nzTooltipTitle]="copyUrlDone ? $t('_copySuccess') : $t('_copyUrl')">
       <i
         nz-icon
@@ -51,7 +53,7 @@
       </i>
     </div>
   </ng-template>
-  <ng-template #actionEdit>
+  <ng-template #actionShare>
     <div nz-tooltip [nzTooltipTitle]="copyPathDone ? $t('_copySuccess') : $t('_shareWeb')">
       <i
         nz-icon
