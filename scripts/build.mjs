@@ -104,7 +104,9 @@ async function build() {
   t = t.replace(/<title>.*<\/title>/i, '')
   t = t.replace('<link rel="icon" href="assets/logo.png">', '')
   t = t.replace('<!-- nav.config -->', htmlTemplate)
-  t = t.replace('<!-- nav.headerContent -->', headerContent || '111')
+  if (headerContent) {
+    t = t.replace('<!-- nav.headerContent -->', headerContent)
+  }
 
   if (baiduStatisticsUrl) {
     t = t.replace('<!-- nav.script -->', scriptTemplate)
