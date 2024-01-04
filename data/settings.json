@@ -16,6 +16,12 @@
   "cnzzStatisticsUrl": "",
   "simThemeImages": [
     {
+      "src": "https://cdn.jsdelivr.net/gh/NeegoT/nav@image/nav-1704353913941-BG.jpg",
+      "url": "",
+      "width": null,
+      "height": null
+    },
+    {
       "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
       "url": "",
       "width": null,
@@ -26,6 +32,12 @@
   "simThemeHeight": 150,
   "simThemeAutoplay": false,
   "sideThemeImages": [
+    {
+      "src": "https://cdn.jsdelivr.net/gh/NeegoT/nav@image/nav-1704353935570-BG.jpg",
+      "url": "",
+      "width": null,
+      "height": null
+    },
     {
       "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
       "url": "",
