@@ -3,7 +3,7 @@
     "name": "站内",
     "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/logo.png",
     "placeholder": "站内搜索",
-    "blocked": false,
+    "blocked": true,
     "isInner": true
   },
   {
