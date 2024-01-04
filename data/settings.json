@@ -10,7 +10,7 @@
   "theme": "Side",
   "appTheme": "App",
   "headerContent": "",
-  "footerContent": "<div style=\"font-weight: bold;\">共收录${total}个网站</div><div>Copyright © 2018-present nav3.cn, All Rights Reserved</div>",
+  "footerContent": "<div style=\"font-weight: bold;\">共收录${total}个网站</div><div>Copyright © 2024-present nav3.cn, All Rights Reserved</div>",
   "iconfontUrl": "//at.alicdn.com/t/font_2522843_wl70o31sy6.js",
   "baiduStatisticsUrl": "https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba",
   "cnzzStatisticsUrl": "",
@@ -23,7 +23,7 @@
     }
   ],
   "simThemeDesc": "这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活",
-  "simThemeHeight": 170,
+  "simThemeHeight": 150,
   "simThemeAutoplay": false,
   "sideThemeImages": [
     {
@@ -33,7 +33,7 @@
       "height": null
     }
   ],
-  "sideThemeHeight": 170,
+  "sideThemeHeight": 150,
   "sideThemeAutoplay": false,
   "shortcutThemeShowWeather": true,
   "shortcutThemeImages": [
@@ -45,6 +45,6 @@
     }
   ],
   "showLanguage": false,
-  "showRate": true,
+  "showRate": false,
   "mirrorList": []
 }
