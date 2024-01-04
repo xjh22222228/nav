@@ -6,7 +6,7 @@
   "showGithub": false,
   "title": "Neego导航网站",
   "description": "Neego导航网站",
-  "keywords": "导航,前端资源,社区站点,设计师,实用工具,学习资源,运营,网络安全,node.js",
+  "keywords": "导航,无人机,大疆,DJI,UAV,UOM",
   "theme": "Side",
   "appTheme": "App",
   "headerContent": "",
@@ -17,12 +17,6 @@
   "simThemeImages": [
     {
       "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
-      "url": "",
-      "width": null,
-      "height": null
-    },
-    {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637490885331-ChMkKWF4tn6IeIGwAD5r3l1JSDcAAU-5QFAFu4APmv2924.jpeg",
       "url": "",
       "width": null,
       "height": null
@@ -51,6 +45,6 @@
     }
   ],
   "showLanguage": false,
-  "showRate": false,
+  "showRate": true,
   "mirrorList": []
 }
