@@ -1,10 +1,12 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
 import { annotate } from 'rough-notation'
+import type { RoughAnnotation } from 'rough-notation/lib/model'
 import { queryString } from './index'
 import { websiteList } from '../store'
 
-let ANNOTATE_EQUEUE = []
+let ANNOTATE_EQUEUE: RoughAnnotation[] = []
 
 export function initRipple() {
   (<any>window).$.ripple('.ripple-btn', {
@@ -24,7 +26,7 @@ export function setAnnotate(querySelector = '.top-nav .ripple-btn') {
 
   if (page >= websiteList.length || page < 0) return
 
-  const annotation = annotate(elList[page], {
+  const annotation = annotate(elList[page] as HTMLElement, {
     type: 'underline',
     color: '#f9826c',
     padding: 3,

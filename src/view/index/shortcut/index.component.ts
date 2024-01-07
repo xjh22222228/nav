@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
 import { Component } from '@angular/core'
 import { isDark as isDarkFn } from 'src/utils'
@@ -16,7 +17,7 @@ export default class ShortcutComponent {
   title = title
   isDark: boolean = isDarkFn()
   shortcutThemeShowWeather = shortcutThemeShowWeather
-  shortcutThemeImage = shortcutThemeImages[0].src
+  shortcutThemeImage = shortcutThemeImages[0]['src']
 
   constructor () {
     mitt.on('dark', (isDark: boolean) => {

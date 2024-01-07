@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import qs from 'qs'
@@ -171,7 +172,7 @@ function randomColor(): string {
   return c.slice(0, 7)
 }
 
-let randomTimer
+let randomTimer: NodeJS.Timer
 export function randomBgImg() {
   if (isDark()) return
 
@@ -207,10 +208,10 @@ export function queryString(): {
   const { href } = window.location
   const search = href.split('?')[1] || ''
   const parseQs = qs.parse(search)
-  let id = parseInt(parseQs.id) || 0
-  let page = parseInt(parseQs.page) || 0
+  let id = parseInt(parseQs['id'] as string) || 0
+  let page = parseInt(parseQs['page'] as string) || 0
 
-  if (parseQs.id === undefined && parseQs.page === undefined) {
+  if (parseQs['id'] === undefined && parseQs['page'] === undefined) {
     try {
       const location = window.localStorage.getItem(STORAGE_KEY_MAP.location)
       if (location) {
@@ -235,7 +236,7 @@ export function queryString(): {
 
   return {
     ...parseQs,
-    q: parseQs.q || '',
+    q: (parseQs['q'] || '') as string,
     id,
     page,
   }
@@ -367,7 +368,7 @@ export function isDark(): boolean {
   return Boolean(Number(storageVal))
 }
 
-export async function getLogoUrl(url: string): Promise<boolean|string> {
+export async function getLogoUrl(url: string): Promise<boolean|string|null> {
   try {
     const c = ['/favicon.png', '/favicon.svg', '/favicon.jpg', '/favicon.ico', '/logo.png']
     const { origin } = new URL(url)
@@ -380,11 +381,11 @@ export async function getLogoUrl(url: string): Promise<boolean|string> {
           img.src = iconUrl
           img.style.display = 'none'
           img.onload = () => {
-            img.parentNode.removeChild(img)
+            img.parentNode?.removeChild(img)
             resolve(iconUrl)
           }
           img.onerror = () => {
-            img.parentNode.removeChild(img)
+            img.parentNode?.removeChild(img)
             resolve(false)
           }
           document.body.append(img)
@@ -404,6 +405,7 @@ export async function getLogoUrl(url: string): Promise<boolean|string> {
   } catch {
     return null
   }
+  return null;
 }
 
 export function copyText(el: Event, text: string): Promise<boolean> {
@@ -440,11 +442,11 @@ export async function isValidImg(url: string): Promise<boolean> {
     img.src = url
     img.style.display = 'none'
     img.onload = () => {
-      img.parentNode.removeChild(img)
+      img.parentNode?.removeChild(img)
       resolve(true)
     }
     img.onerror = () => {
-      img.parentNode.removeChild(img)
+      img.parentNode?.removeChild(img)
       resolve(false)
     }
     document.body.append(img)
@@ -515,7 +517,7 @@ export function getTextContent(value: string): string {
   if (!value) return ''
   const div = document.createElement('div')
   div.innerHTML = value
-  return div.textContent
+  return div.textContent ?? ''
 }
 
 export function matchCurrentList(): INavThreeProp[] {

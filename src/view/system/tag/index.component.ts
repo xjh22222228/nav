@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
@@ -38,7 +39,7 @@ export default class SystemTagComponent {
     this.tagList = list
   }
 
-  onColorChange(e, idx: number) {
+  onColorChange(e: any, idx: number) {
     const color = e.target.value
     this.tagList[idx].color = color
   }
@@ -53,7 +54,7 @@ export default class SystemTagComponent {
     })
   }
 
-  handleDelete(idx) {
+  handleDelete(idx: number) {
     this.tagList.splice(idx, 1)
   }
 
@@ -68,8 +69,9 @@ export default class SystemTagComponent {
       nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
         const o = {}
-        this.tagList.forEach(item => {
-          if (item.name.trim()) {
+        this.tagList.forEach((item: ITagPropValues) => {
+          if (item.name?.trim()) {
+            // @ts-ignore
             o[item.name] = {
               ...item,
               name: undefined

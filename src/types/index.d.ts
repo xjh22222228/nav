@@ -1,4 +1,4 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 export type ThemeType =
@@ -22,6 +22,8 @@ export interface ITagProp {
 }
 
 export interface INavFourProp {
+  __name__: string | undefined
+  __desc__: string | undefined
   name: string
   desc: string
   url: string
@@ -62,6 +64,7 @@ export interface INavProps extends Object {
   icon?: string | null
   createdAt?: string
   ownVisible?: boolean
+  collapsed?: boolean
   nav: INavTwoProp[]
   [key: string]: any
 }
@@ -86,11 +89,14 @@ export interface ISettings {
   theme: ThemeType
   appTheme: ThemeType
   footerContent?: string|null
+  headerContent?: string|null
   baiduStatisticsUrl?: string
   cnzzStatisticsUrl?: string
   iconfontUrl?: string
   showGithub: boolean
   showLanguage: boolean
+  showCopy: Boolean|undefined
+  showShare: Boolean|undefined
 
   simThemeImages: Record<string, string>[]
   simThemeDesc: string

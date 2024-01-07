@@ -9,19 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         persist-credentials: false
-    - name: Install
-      uses: sergioramos/yarn-actions/install@v6
+    - name: Set Node.js 18.x
+      uses: actions/setup-node@v3
       with:
-        frozen-lockfile: true
+        node-version: 18.x
+    - name: Install
+      uses: borales/actions-yarn@v4
+      with:
+        cmd: install
     - name: Build
       run: |
         npm run build
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        ACCESS_TOKEN: ${{ secrets.TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: dist
+        token: ${{ secrets.TOKEN }}
+        branch: gh-pages
+        folder: dist

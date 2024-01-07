@@ -1,4 +1,4 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
 import config from '../../nav.config'
 import http from '../utils/http'

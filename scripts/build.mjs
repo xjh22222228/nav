@@ -1,4 +1,4 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import fs from 'fs'
@@ -18,7 +18,6 @@ function addZero(num) {
 }
 
 const now = new Date()
-console.log('Timezone: ', now.getTimezoneOffset())
 now.setHours(now.getHours() + 8)
 const date = `${now.getFullYear()}年${addZero(now.getMonth() + 1)}月${addZero(now.getDate())}日 ${addZero(now.getHours())}:${addZero(now.getMinutes())}:${addZero(now.getSeconds())}`
 
@@ -29,7 +28,8 @@ const {
   baiduStatisticsUrl,
   cnzzStatisticsUrl,
   loading,
-  favicon
+  favicon,
+  headerContent
 } = settings
 
 const {
@@ -104,6 +104,9 @@ async function build() {
   t = t.replace(/<title>.*<\/title>/i, '')
   t = t.replace('<link rel="icon" href="assets/logo.png">', '')
   t = t.replace('<!-- nav.config -->', htmlTemplate)
+  if (headerContent) {
+    t = t.replace('<!-- nav.headerContent -->', headerContent)
+  }
 
   if (baiduStatisticsUrl) {
     t = t.replace('<!-- nav.script -->', scriptTemplate)

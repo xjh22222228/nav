@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
@@ -53,13 +54,13 @@ export default class LightComponent {
 
   collapsed() {
     try {
-      return websiteList[this.page].nav[this.id].collapsed
+      return !!websiteList[this.page].nav[this.id].collapsed
     } catch (error) {
       return false
     }
   }
 
-  handleCilckTopNav(index) {
+  handleCilckTopNav(index: number) {
     const id = this.websiteList[index].id || 0
     this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
@@ -70,7 +71,7 @@ export default class LightComponent {
     })
   }
 
-  handleSidebarNav(index) {
+  handleSidebarNav(index: number) {
     const { page } = queryString()
     this.websiteList[page].id = index
     this.router.navigate([this.router.url.split('?')[0]], { 
@@ -86,7 +87,7 @@ export default class LightComponent {
     initRipple()
   }
 
-  onCollapse = (item, index) => {
+  onCollapse = (item: any, index: number) => {
     item.collapsed = !item.collapsed
     this.websiteList[this.page].nav[this.id].nav[index] = item
     setWebsiteList(this.websiteList)

@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
@@ -15,7 +16,7 @@ import { $t } from 'src/locale'
   styleUrls: ['./index.component.scss']
 })
 export class ToolbarTitleWebComponent implements OnInit {
-  @Input() index: number
+  @Input() index: number = 0
   @Input() dataSource: INavThreeProp
   @Input() arrowType: '1'|'2' = '1'
   @Output() onCollapse = new EventEmitter()

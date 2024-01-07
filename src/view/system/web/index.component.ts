@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
@@ -41,7 +42,7 @@ export default class WebpComponent {
   threeSelect = ''
   tagMap = tagMap
   objectKeys = Object.keys
-  websiteDetail: INavFourProp|null
+  websiteDetail: any = []
 
   twoTableData: INavTwoProp[] = []
   threeTableData: INavThreeProp[] = []
@@ -65,7 +66,7 @@ export default class WebpComponent {
     })
   }
 
-  onAllChecked(checked, type: 1|2|3|4) {
+  onAllChecked(checked: boolean, type: 1|2|3|4) {
     this.setOfCheckedId.clear()
     switch (type) {
       case 1:
@@ -81,9 +82,9 @@ export default class WebpComponent {
       case 2:
         this.twoTableData.forEach((item) => {
           if (checked) {
-            this.setOfCheckedId.add(item.title)
+            this.setOfCheckedId.add(item.title as string)
           } else {
-            this.setOfCheckedId.delete(item.title)
+            this.setOfCheckedId.delete(item.title as string)
           }
         })
         break;
@@ -91,9 +92,9 @@ export default class WebpComponent {
       case 3:
         this.threeTableData.forEach((item) => {
           if (checked) {
-            this.setOfCheckedId.add(item.title)
+            this.setOfCheckedId.add(item.title as string)
           } else {
-            this.setOfCheckedId.delete(item.title)
+            this.setOfCheckedId.delete(item.title as string)
           }
         })
         break;
@@ -110,7 +111,7 @@ export default class WebpComponent {
     }
   }
 
-  onItemChecked(idStr, checked) {
+  onItemChecked(idStr: any, checked: boolean) {
     if (checked) {
       this.setOfCheckedId.add(idStr)
     } else {
@@ -131,7 +132,7 @@ export default class WebpComponent {
 
       case 2: {
         this.twoTableData = this.twoTableData.filter(item => {
-          return !this.setOfCheckedId.has(item.title)
+          return !this.setOfCheckedId.has(item.title as string)
         })
         const idx = this.websiteList.findIndex(item => item.title === this.oneSelect)
         if (idx >= 0) {
@@ -142,7 +143,7 @@ export default class WebpComponent {
 
       case 3: {
         this.threeTableData = this.threeTableData.filter(item => {
-          return !this.setOfCheckedId.has(item.title)
+          return !this.setOfCheckedId.has(item.title as string)
         })
         const idx = this.websiteList.findIndex(item => item.title === this.oneSelect)
         if (idx >= 0) {
@@ -195,7 +196,7 @@ export default class WebpComponent {
     saveAs(blob, "db.json");
   }
 
-  handleUploadBackup(e) {
+  handleUploadBackup(e: any) {
     const that = this
     const files = e.target.files
     if (files.length <= 0) {
@@ -206,12 +207,12 @@ export default class WebpComponent {
     fileReader.readAsText(file)
     fileReader.onload = function(data) {
       try {
-        const { result } = data.target
+        const { result } = data.target as any
         that.websiteList = JSON.parse(result as string)
         setWebsiteList(that.websiteList)
         e.target.value = '';
         that.message.success($t('_actionSuccess'))
-      } catch (error) {
+      } catch (error: any) {
         that.notification.error(
           $t('_error'),
           error.message
@@ -283,7 +284,7 @@ export default class WebpComponent {
   }
 
   // 删除一级分类
-  handleConfirmDelOne(idx) {
+  handleConfirmDelOne(idx: number) {
     this.websiteList.splice(idx, 1)
     this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
@@ -302,7 +303,7 @@ export default class WebpComponent {
   }
 
   // 删除二级分类
-  handleConfirmDelTwo(idx) {
+  handleConfirmDelTwo(idx: number) {
     this.twoTableData.splice(idx, 1)
     this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
@@ -315,7 +316,7 @@ export default class WebpComponent {
   }
 
   // 删除三级分类
-  handleConfirmDelThree(idx) {
+  handleConfirmDelThree(idx: number) {
     this.threeTableData.splice(idx, 1)
     this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
@@ -328,37 +329,43 @@ export default class WebpComponent {
   }
 
   // 删除网站
-  handleConfirmDelWebsite(idx) {
+  handleConfirmDelWebsite(idx: number) {
     this.websiteTableData.splice(idx, 1)
     this.message.success($t('_delSuccess'))
     setWebsiteList(this.websiteList)
   }
 
-  hanldeOneSelect(value) {
+  hanldeOneSelect(value: any) {
     this.oneSelect = value
     const findItem = this.websiteList.find(item => item.title === value)
-    this.twoTableData = findItem.nav
+    if (findItem) {
+      this.twoTableData = findItem.nav
+    }
     this.twoSelect = ''
     this.threeSelect = ''
     this.onTabChange()
   }
 
-  hanldeTwoSelect(value) {
+  hanldeTwoSelect(value: any) {
     this.twoSelect = value
     const findItem = this.twoTableData.find(item => item.title === value)
-    this.threeTableData = findItem.nav
+    if (findItem) {
+      this.threeTableData = findItem.nav
+    }
     this.threeSelect = ''
     this.onTabChange()
   }
 
-  hanldeThreeSelect(value) {
+  hanldeThreeSelect(value: any) {
     this.threeSelect = value
     const findItem = this.threeTableData.find(item => item.title === value)
-    this.websiteTableData = findItem.nav
+    if (findItem) {
+      this.websiteTableData = findItem.nav
+    }
     this.onTabChange()
   }
 
-  handleEditBtn(data, editIdx) {
+  handleEditBtn(data: any, editIdx: number) {
     let { title, icon, name } = data
     this.toggleCreateModal()
     this.isEdit = true

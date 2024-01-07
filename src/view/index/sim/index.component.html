@@ -12,7 +12,7 @@
           class="bg-item"
           nz-carousel-content
           *ngFor="let item of simThemeImages"
-          [ngStyle]="{ 'background-image': 'url(' + item.src + ')' }"
+          [ngStyle]="{ 'background-image': 'url(' + item['src'] + ')' }"
           (click)="handleJumpUrl(item)"
         >
         </div>
@@ -41,7 +41,7 @@
 
   <div class="wrapper">
     <nav class="sidebar dark-bg" id="sidebar">
-      <div *ngIf="websiteList[page]?.nav?.length > 0">
+      <div *ngIf="websiteList[page]?.nav?.length">
         <div 
           *ngFor="let item of websiteList[page].nav; let i = index" 
           (click)="handleSidebarNav(i)" 
@@ -66,7 +66,7 @@
                 class="gutter-row"
                 nz-col
                 [nzSpan]="8"
-                *ngFor="let el of item.nav.slice(0, sliceMax); let idx=index; let i=j"
+                *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
                 [class.remove]="!isLogin && el.ownVisible"
               >
                 <app-card [dataSource]="el" [indexs]="[page, id, i, j]"></app-card>

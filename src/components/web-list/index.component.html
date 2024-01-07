@@ -20,7 +20,7 @@
       {{ item.__desc__ || item.desc }}
     </ng-template>
     <div class="logo">
-      <app-logo [src]="item.icon" [name]="item.__name__ || item.name" [size]="35"></app-logo>
+      <app-logo [src]="item.icon || ''" [name]="item.__name__ || item.name" [size]="35"></app-logo>
     </div>
     <div
       class="name dark-white"

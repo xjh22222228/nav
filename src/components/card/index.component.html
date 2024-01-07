@@ -1,7 +1,9 @@
 <!-- 网站 -->
 <div class="container">
   <nz-card
-    [nzActions]="isLogin ? [actionSetting, actionEdit, actionEllipsis] : [actionSetting, actionEdit]"
+    [nzActions]="
+      isLogin ? [actionCopy, actionShare, actionEllipsis] : [actionCopy, actionShare]
+    "
     nzSize="small"
     nzHoverable
     nzType="inner"
@@ -27,8 +29,8 @@
     </a>
 
     <div style="margin-top: 15px;">
-      <nz-tag *ngFor="let key of objectKeys(dataSource.urls)" [nzColor]="tagMap[key].color || '#2db7f5'">
-        <a [href]="dataSource.urls[key]" target="_blank">{{ key }}</a>
+      <nz-tag *ngFor="let key of objectKeys(dataSource.urls || {})" [nzColor]="tagMap[key].color || '#2db7f5'">
+        <a [href]="dataSource.urls && dataSource.urls[key]" target="_blank">{{ key }}</a>
       </nz-tag>
     </div>
   </nz-card>
@@ -37,9 +39,9 @@
     <div [innerHTML]="dataSource.name" class="title"></div>
   </ng-template>
   <ng-template #avatarTemplate>
-    <app-logo [src]="dataSource.icon" [name]="dataSource.name"></app-logo>
+    <app-logo [src]="dataSource.icon || ''" [name]="dataSource.name"></app-logo>
   </ng-template>
-  <ng-template #actionSetting>
+  <ng-template #actionCopy>
     <div nz-tooltip [nzTooltipTitle]="copyUrlDone ? $t('_copySuccess') : $t('_copyUrl')">
       <i
         nz-icon
@@ -51,7 +53,7 @@
       </i>
     </div>
   </ng-template>
-  <ng-template #actionEdit>
+  <ng-template #actionShare>
     <div nz-tooltip [nzTooltipTitle]="copyPathDone ? $t('_copySuccess') : $t('_shareWeb')">
       <i
         nz-icon
@@ -68,7 +70,7 @@
 
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu nzSelectable>
-        <li nz-menu-item (click)="toggleCreateModal(); detail = dataSource">{{ $t('_edit') }}</li>
+        <li nz-menu-item (click)="toggleCreateModal()">{{ $t('_edit') }}</li>
         <li nz-menu-item (click)="handleMove()">{{ $t('_move') }}</li>
         <a
           nz-popconfirm
@@ -76,7 +78,7 @@
           nzOkType="danger"
           [nzPopconfirmTitle]="$t('_confirmDel')"
           nzPopconfirmPlacement="bottom"
-          (nzOnConfirm)="confirmDel($event)"
+          (nzOnConfirm)="confirmDel()"
         >
           <li nz-menu-item nzDanger>{{ $t('_del') }}</li>
         </a>

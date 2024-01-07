@@ -1,4 +1,4 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { getCDN } from '../services'
@@ -15,7 +15,7 @@ export const LOGO_PATH = 'logo.png'
 
 export const LOGO_CDN = getCDN('logo.png')
 
-export const VERSION = '6.0.1'
+export const VERSION = '7.0.0'
 
 export const STORAGE_KEY_MAP = {
   token: 'token',

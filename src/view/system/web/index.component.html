@@ -79,7 +79,7 @@
             </td>
             <td>
               <app-logo
-                [src]="data.icon"
+                [src]="data.icon || ''"
                 [name]="data.title"
               >
               </app-logo>
@@ -165,14 +165,14 @@
         <tbody cdkDropList (cdkDropListDropped)="dropTwo($event)">
           <tr *ngFor="let data of twoTableData; let idx = index" cdkDrag>
             <td
-              [nzChecked]="setOfCheckedId.has(data.title)"
+              [nzChecked]="setOfCheckedId.has(data.title || '')"
               (nzCheckedChange)="onItemChecked(data.title, $event)"
             >
             </td>
             <td>
               <app-logo
-                [src]="data.icon"
-                [name]="data.title"
+                [src]="data.icon || ''"
+                [name]="data.title || ''"
               >
               </app-logo>
             </td>
@@ -222,7 +222,7 @@
       >
         <nz-option
           *ngFor="let item of twoTableData"
-          [nzLabel]="item.title"
+          [nzLabel]="item.title || ''"
           [nzValue]="item.title"
         >
         </nz-option>
@@ -272,14 +272,14 @@
         <tbody cdkDropList (cdkDropListDropped)="dropThree($event)">
           <tr *ngFor="let data of threeTableData; let idx = index" cdkDrag>
             <td
-              [nzChecked]="setOfCheckedId.has(data.title)"
+              [nzChecked]="setOfCheckedId.has(data.title || '')"
               (nzCheckedChange)="onItemChecked(data.title, $event)"
             >
             </td>
             <td>
               <app-logo
-                [src]="data.icon"
-                [name]="data.title"
+                [src]="data.icon || ''"
+                [name]="data.title || ''"
               >
               </app-logo>
             </td>
@@ -329,7 +329,7 @@
       >
         <nz-option
           *ngFor="let item of twoTableData"
-          [nzLabel]="item.title"
+          [nzLabel]="item.title || ''"
           [nzValue]="item.title"
         >
         </nz-option>
@@ -344,8 +344,8 @@
       >
         <nz-option
           *ngFor="let item of threeTableData"
-          [nzLabel]="item.title"
-          [nzValue]="item.title"
+          [nzLabel]="item.title || ''"
+          [nzValue]="item.title || ''"
         >
         </nz-option>
       </nz-select>
@@ -402,6 +402,7 @@
             </td>
             <td>
               <app-logo
+                *ngIf="data.icon"
                 [src]="data.icon"
                 [name]="data.name"
               >
@@ -411,8 +412,8 @@
               <a [href]="data.url" target="_blank">{{ data.name }}</a>
             </td>
             <td nzWidth="100px">
-              <nz-tag *ngFor="let key of objectKeys(data.urls)" [nzColor]="tagMap[key].color || '#2db7f5'">
-                <a [href]="data.urls[key]" target="_blank">{{ key }}</a>
+              <nz-tag *ngFor="let key of objectKeys(data.urls || {})" [nzColor]="tagMap[key].color || '#2db7f5'">
+                <a [href]="data.urls?.[key]" target="_blank">{{ key }}</a>
               </nz-tag>
             </td>
             <td>
@@ -471,15 +472,11 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="6">{{ $t('_icon') }}</nz-form-label>
+        <nz-form-label [nzSpan]="6">IconFont {{ $t('_icon') }}</nz-form-label>
         <nz-form-control [nzSpan]="18">
-          <nz-input-group [nzPrefix]="prefixIcon">
+          <nz-input-group>
             <input formControlName="icon" nz-input />
           </nz-input-group>
-
-          <ng-template #prefixIcon>
-            <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl"></app-logo>
-          </ng-template>
         </nz-form-control>
       </nz-form-item>
     </form>

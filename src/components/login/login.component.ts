@@ -1,4 +1,4 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
@@ -14,7 +14,7 @@ import { $t } from 'src/locale'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @Input() visible: boolean
+  @Input() visible: boolean = false
   @Output() onCancel = new EventEmitter()
 
   $t = $t

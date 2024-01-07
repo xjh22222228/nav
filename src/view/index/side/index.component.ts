@@ -1,4 +1,5 @@
-// Copyright @ 2018-2022 xiejiahe. All rights reserved. MIT license.
+// @ts-nocheck
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
@@ -28,7 +29,6 @@ export default class SideComponent {
   id: number = 0
   page: number = 0
   title: string = settings.title.trim().split(/\s/)[0]
-  openIndex = queryString().page
   searchEngineList = searchEngineList
   isLogin = isLogin
   sideThemeImages = settings.sideThemeImages
@@ -66,7 +66,7 @@ export default class SideComponent {
     })
   }
 
-  handleSidebarNav(page, id) {
+  handleSidebarNav(page: any, id: any) {
     this.websiteList[page].id = id
     this.router.navigate([this.router.url.split('?')[0]], { 
       queryParams: {
@@ -80,7 +80,6 @@ export default class SideComponent {
   handlePositionTop() {
     setTimeout(() => {
       const el = document.querySelector('.search-header') as HTMLDivElement
-      console.log(el)
       if (el) {
         const h = el.offsetHeight;
         window.scroll({
@@ -92,7 +91,18 @@ export default class SideComponent {
     }, 100)
   }
 
-  onCollapse = (item, index) => {
+  openMenu(item: any, index: number) {
+    this.websiteList.forEach((data, idx) => {
+      if (idx === index) {
+        data.collapsed = !data.collapsed
+      } else {
+        data.collapsed = false
+      }
+    })
+    setWebsiteList(this.websiteList)
+  }
+
+  onCollapse = (item: any, index: number) => {
     item.collapsed = !item.collapsed
     this.websiteList[this.page].nav[this.id].nav[index] = item
     setWebsiteList(this.websiteList)
@@ -104,9 +114,15 @@ export default class SideComponent {
     this.handlePositionTop()
   }
 
+  handleJumpUrl(data) {
+    if (data.url) {
+      window.open(data.url)
+    }
+  }
+
   collapsed() {
     try {
-      return websiteList[this.page].nav[this.id].collapsed
+      return !!websiteList[this.page].nav[this.id].collapsed
     } catch (error) {
       return false
     }
