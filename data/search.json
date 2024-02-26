@@ -11,7 +11,7 @@
     "url": "https://www.baidu.com/s?wd=",
     "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/baidu.svg",
     "placeholder": "百度一下",
-    "blocked": false,
+    "blocked": true,
     "isInner": false
   },
   {
@@ -25,7 +25,7 @@
     "name": "必应",
     "url": "https://cn.bing.com/search?q=",
     "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/bing.svg",
-    "blocked": false,
+    "blocked": true,
     "isInner": false
   },
   {
@@ -33,14 +33,14 @@
     "url": "https://github.com/search?q=",
     "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/github.svg",
     "placeholder": "Search GitHub",
-    "blocked": false,
+    "blocked": true,
     "isInner": false
   },
   {
     "name": "知乎",
     "url": "https://www.zhihu.com/search?type=content&q=",
     "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/zhihu.svg",
-    "blocked": false,
+    "blocked": true,
     "isInner": false
   },
   {
@@ -48,7 +48,7 @@
     "url": "https://search.douban.com/book/subject_search?search_text=",
     "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/douban.svg",
     "placeholder": "书名、作者、ISBN",
-    "blocked": false,
+    "blocked": true,
     "isInner": false
   }
 ]
