@@ -35,20 +35,5 @@
     "placeholder": "Search GitHub",
     "blocked": true,
     "isInner": false
-  },
-  {
-    "name": "知乎",
-    "url": "https://www.zhihu.com/search?type=content&q=",
-    "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/zhihu.svg",
-    "blocked": true,
-    "isInner": false
-  },
-  {
-    "name": "豆瓣",
-    "url": "https://search.douban.com/book/subject_search?search_text=",
-    "icon": "https://raw.sevencdn.com/xjh22222228/nav/image/douban.svg",
-    "placeholder": "书名、作者、ISBN",
-    "blocked": true,
-    "isInner": false
   }
 ]
