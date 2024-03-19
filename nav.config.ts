@@ -6,7 +6,7 @@ const c: IConfig = {
   gitRepoUrl: 'https://github.com/2018520520/nav',
 
   // Deployment branch name
-  // 部署分支
+  // 部署分支 main
   branch: 'main',
 
   // Whether the route is in Hash mode, if it is deployed on github pages, it must be set to true
