@@ -3,7 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { INavProps } from '../types'
-import { websiteList } from '../store'
+import { websiteList, settings } from '../store'
 import { $t } from '../locale'
 
 function getCreatedAt(node?: Element): string {
@@ -29,8 +29,14 @@ function getUrl(node: Element) {
   return node.getAttribute('href') || ''
 }
 
+function getIconFromUrl(url) {
+  if (!url) return null;
+  const hostname = (new URL(url)).hostname;
+  return hostname && `https://icons.bitwarden.net/${hostname}/icon.png`
+}
+
 function getIcon(node: Element) {
-  return node.getAttribute('icon') || null
+  return node.getAttribute('icon') || getIconFromUrl(getUrl(node))
 }
 
 const nowCratedAt = getCreatedAt()
