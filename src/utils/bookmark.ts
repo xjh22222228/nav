@@ -3,7 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { INavProps } from '../types'
-import { websiteList, settings } from '../store'
+import { websiteList } from '../store'
 import { $t } from '../locale'
 
 function getCreatedAt(node?: Element): string {
