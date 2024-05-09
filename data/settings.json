@@ -30,7 +30,7 @@
   ],
   "simThemeDesc": "这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活",
   "simThemeHeight": 350,
-  "simThemeAutoplay": true,
+  "simThemeAutoplay": false,
   "sideThemeImages": [
     {
       "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637490885331-ChMkKWF4tn6IeIGwAD5r3l1JSDcAAU-5QFAFu4APmv2924.jpeg",
@@ -46,7 +46,7 @@
     }
   ],
   "sideThemeHeight": 350,
-  "sideThemeAutoplay": true,
+  "sideThemeAutoplay": false,
   "shortcutThemeShowWeather": true,
   "shortcutThemeImages": [
     {
@@ -56,7 +56,7 @@
       "height": null
     }
   ],
-  "showLanguage": true,
+  "showLanguage": false,
   "showRate": true,
   "mirrorList": []
 }
