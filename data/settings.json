@@ -7,7 +7,7 @@
   "title": "篇章岛 - 一站式读书学习实用导航网站-聚合电子书和科研文档搜索",
   "description": "篇章岛，聚合电子书、文档搜索引擎，一站式搜索导航，方便快速导航搜索全网资源，读书学习必备导航站。",
   "keywords": "读书导航,学习导航,电子书导航,找书",
-  "theme": "Side",
+  "theme": "Light",
   "appTheme": "App",
   "headerContent": "",
   "footerContent": "<div style=\"font-weight: bold;\">共收录${total}个网站</div><div><b>声明：网站上的服务均为第三方提供，与本站无关。请用户注意甄别服务质量，避免上当受骗。</b><br/>本站内容源自互联网，如有内容侵犯了你的权益，请联系删除相关内容，联系邮箱：admin@nav8.top <br/>&copy; 2021 - 2024 By <a href=\"/\">篇章岛</a>  版权所有，未经授权禁止复制或建立镜像！ | <a href=\"https://support.qq.com/product/622347\" target=\"_blank\">吐槽建议</a> | <a href=\"mailto:admin@nav8.top\" target=\"_blank\">推广合作</a> | <a href=\"/privacy/\" target=\"_blank\">隐私政策</a><br/></div>",
@@ -22,7 +22,7 @@
       "height": null
     },
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637490885331-ChMkKWF4tn6IeIGwAD5r3l1JSDcAAU-5QFAFu4APmv2924.jpeg",
+      "src": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1715406791303-f0d4f536-b06d-5acb-966b-e7a30c27a3ce_0.png",
       "url": "",
       "width": null,
       "height": null
@@ -30,16 +30,16 @@
   ],
   "simThemeDesc": "这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活",
   "simThemeHeight": 350,
-  "simThemeAutoplay": false,
+  "simThemeAutoplay": true,
   "sideThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637490885331-ChMkKWF4tn6IeIGwAD5r3l1JSDcAAU-5QFAFu4APmv2924.jpeg",
+      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
       "url": "",
       "width": null,
       "height": null
     },
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
+      "src": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1715406848128-f0d4f536-b06d-5acb-966b-e7a30c27a3ce_0.png",
       "url": "",
       "width": null,
       "height": null
