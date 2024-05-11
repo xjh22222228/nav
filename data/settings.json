@@ -16,12 +16,6 @@
   "cnzzStatisticsUrl": "",
   "simThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
-      "url": "",
-      "width": null,
-      "height": null
-    },
-    {
       "src": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1715406791303-f0d4f536-b06d-5acb-966b-e7a30c27a3ce_0.png",
       "url": "",
       "width": null,
@@ -32,12 +26,6 @@
   "simThemeHeight": 350,
   "simThemeAutoplay": false,
   "sideThemeImages": [
-    {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/sim-wallpaper.jpg",
-      "url": "",
-      "width": null,
-      "height": null
-    },
     {
       "src": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1715406848128-f0d4f536-b06d-5acb-966b-e7a30c27a3ce_0.png",
       "url": "",
@@ -50,7 +38,7 @@
   "shortcutThemeShowWeather": true,
   "shortcutThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/nav-1637462542538-0ed801fb13f9e4c29cdfface91eb6c44.jpeg",
+      "src": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1715411338780-f0d4f536-b06d-5acb-966b-e7a30c27a3ce_0.png",
       "url": "",
       "width": null,
       "height": null
