@@ -1,4 +1,7 @@
-<div class="search-engine" *ngIf="searchEngineList && searchEngineList.length > 0">
+<div
+  class="search-engine"
+  *ngIf="searchEngineList && searchEngineList.length > 0"
+>
   <div
     class="input-wrapper dark-bg dark-border-color"
     [class.removeAddon]="currentEngine.url"
@@ -25,19 +28,36 @@
         class="left-icon"
         (click)="toggleEngine($event)"
         [ngStyle]="{ 'background-image': 'url(' + currentEngine.icon + ')' }"
-      >
-      </div>
+      ></div>
     </ng-template>
     <ng-template #suffixIcon>
-      <i class="search-icon iconfont iconsousuo dark-text" (click)="triggerSearch()"></i>
+      <i
+        class="search-icon iconfont iconsousuo dark-text"
+        (click)="triggerSearch()"
+      ></i>
     </ng-template>
     <ng-template #addOnBeforeTemplate>
       <nz-select [(ngModel)]="searchTypeValue" *ngIf="!currentEngine.url">
-        <nz-option [nzLabel]="$t('_default')" [nzValue]="SearchType.All"></nz-option>
-        <nz-option [nzLabel]="$t('_title')" [nzValue]="SearchType.Title"></nz-option>
-        <nz-option [nzLabel]="$t('_desc')" [nzValue]="SearchType.Desc"></nz-option>
-        <nz-option [nzLabel]="$t('_link')" [nzValue]="SearchType.Url"></nz-option>
-        <nz-option [nzLabel]="$t('_current')" [nzValue]="SearchType.Current"></nz-option>
+        <nz-option
+          [nzLabel]="$t('_default')"
+          [nzValue]="SearchType.All"
+        ></nz-option>
+        <nz-option
+          [nzLabel]="$t('_title')"
+          [nzValue]="SearchType.Title"
+        ></nz-option>
+        <nz-option
+          [nzLabel]="$t('_desc')"
+          [nzValue]="SearchType.Desc"
+        ></nz-option>
+        <nz-option
+          [nzLabel]="$t('_link')"
+          [nzValue]="SearchType.Url"
+        ></nz-option>
+        <nz-option
+          [nzLabel]="$t('_current')"
+          [nzValue]="SearchType.Current"
+        ></nz-option>
       </nz-select>
     </ng-template>
   </div>
@@ -45,7 +65,7 @@
   <div class="engine-main dark-bg dark-border-color" *ngIf="showEngine">
     <div
       class="item dark-bg-gary dark-item-hover"
-      *ngFor="let item of searchEngineList; let i=index"
+      *ngFor="let item of searchEngineList; let i = index"
       (click)="clickEngineItem(i)"
     >
       <app-logo [src]="item.icon || ''" [size]="20" [check]="false"></app-logo>

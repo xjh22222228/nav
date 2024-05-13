@@ -1,4 +1,3 @@
-
 <p align="center">
   <a href="https://nav3.cn/?g">
     <img src="src/assets/logo.png" width="130" />
@@ -13,7 +12,7 @@
     </a>
     <img src="https://img.shields.io/github/v/release/xjh22222228/nav" />
     <a href="https://github.com/xjh22222228/nav/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/nav" alt="Stars"/></a>
-    <img alt="Angular" src="https://img.shields.io/static/v1.svg?label=&message=Angular11&style=flat-square&color=C82B38">
+    <img alt="Angular" src="https://img.shields.io/static/v1.svg?label=&message=Angular&style=flat-square&color=C82B38">
     <img src="https://img.shields.io/github/license/xjh22222228/nav" />
   </p>
 </p>
@@ -21,8 +20,8 @@
 <br />
 <br />
 
-
 ## Preview
+
 **Themes**
 
 - [Sim online preview](https://nav3.cn/#/sim)
@@ -36,14 +35,9 @@
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/4.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/5.png)
 
-
-
-
-
-
 ## Features
-`Discovery Navigation The idea is to make it simple and convenient without relying on back-end services, without complicated configuration and database configuration concepts, so it can be used out of the box.
 
+`Discovery Navigation The idea is to make it simple and convenient without relying on back-end services, without complicated configuration and database configuration concepts, so it can be used out of the box.
 
 - 🍰 Built-in 800+utility sites.
 - 🍰 Support SEO.
@@ -62,18 +56,19 @@
 - 🍰 Support background management, no need to deploy.
 - 🍰 Support import from Chrome bookmarks
 
-
 ## Deploy
+
 Its as easy as counting numbers "3 2 1" that simple!
 
 #### Method one (github-pages free)
+
 1、Fork the current project.
 
 2、Click on the `main` branch on the warehouse page and enter `image` in the input box to create a branch. Otherwise, uploading images will result in a 404 phenomenon.
 
 3、[https://github.com/settings/tokens](https://github.com/settings/tokens) apply for a token, check the corresponding permissions, if you don’t understand, select all, copy and save the token.
 
-4、https://github.com/username/nav/settings/secrets/actions/new  Create a new application token, name fill in TOKEN (All are uppercase).
+4、https://github.com/username/nav/settings/secrets/actions/new Create a new application token, name fill in TOKEN (All are uppercase).
 
 5、Go to https://github.com/username/nav/actions click "Green Button"
 
@@ -82,19 +77,17 @@ Its as easy as counting numbers "3 2 1" that simple!
 7、After 5 minutes, open https://username.github.io/nav , you will see a very powerful navigation website.
 
 ### Method 2 (Free Vercel)
+
 The steps are the same as the first method, except that the fourth step is not needed.
 For specific use, follow the steps [https://github.com/apps/vercel](https://github.com/apps/vercel)
 
-
 ### Method 3 (Free Netlify)
+
 [https://www.netlify.com/](https://www.netlify.com/)
 
-
-
-
 ## Backstage
-Modify the routing address to `system`, such as: https://www.nav3.cn/#/light Change to https://www.nav3.cn/#/system
 
+Modify the routing address to `system`, such as: https://www.nav3.cn/#/light Change to https://www.nav3.cn/#/system
 
 ## Bookmark import
 
@@ -104,25 +97,20 @@ Support importing from Chrome bookmarks (WebKit kernel should be supported~), it
 
 The browser opens chrome://bookmarks/ to export the bookmarks to get the html file, and then import it from the background of the navigation website.
 
-
-
-
 ## Upgrade
+
 Before upgrading, please back up the `data` folder and `nav.config.ts` in the root directory, and replace them after the upgrade.
 Click the `Watch` button in the upper right corner to track the version upgrade for the first time.
 
-
 ## Update log
+
 [CHANGELOG](https://github.com/xjh22222228/nav/releases)
 
-
-
-
-
-
 ## Development and construction
+
 NODE: v18
-``` bash
+
+```bash
 # Download
 git clone --depth=1 https://github.com/xjh22222228/nav.git
 
@@ -138,9 +126,8 @@ yarn start
 yarn build
 ```
 
-
-
 ## contribute
+
 Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), men.
 
 <a href="https://github.com/YutHelloWorld">
@@ -156,13 +143,10 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
   <img src="https://avatars1.githubusercontent.com/u/62551864?s=460&v=4" width="30px" height="30px" />
 </a>
 
-
-
-
-
-
 ## Suggest
+
 If you have any functional suggestions, you can initiate an [issue](https://github.com/xjh22222228/nav/issues), Thank you.
 
 ## LICENSE
+
 [MIT](./LICENSE)

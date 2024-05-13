@@ -9,23 +9,38 @@
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="validateForm">
       <nz-form-item>
-        <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_webName') }}</nz-form-label>
+        <nz-form-label [nzSpan]="4" nzRequired>{{
+          $t('_webName')
+        }}</nz-form-label>
         <nz-form-control [nzSpan]="20" [nzErrorTip]="$t('_requiredName')">
-          <input formControlName="title" nz-input [placeholder]="$t('_webTitle')" />
+          <input
+            formControlName="title"
+            nz-input
+            [placeholder]="$t('_webTitle')"
+          />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_webLink') }}</nz-form-label>
+        <nz-form-label [nzSpan]="4" nzRequired>{{
+          $t('_webLink')
+        }}</nz-form-label>
         <nz-form-control [nzSpan]="20" [nzErrorTip]="$t('_requiredLink')">
-          <input formControlName="url" nz-input placeholder="https://nav3.cn" (blur)="onUrlBlur($event)" />
+          <input
+            formControlName="url"
+            nz-input
+            placeholder="https://nav3.cn"
+            (blur)="onUrlBlur($event)"
+          />
         </nz-form-control>
       </nz-form-item>
 
       <div class="row">
         <div class="col">
           <nz-form-item>
-            <nz-form-label [nzSpan]="15" nzRequired>{{ $t('_shortcut') }}</nz-form-label>
+            <nz-form-label [nzSpan]="15" nzRequired>{{
+              $t('_shortcut')
+            }}</nz-form-label>
             <nz-form-control [nzSpan]="9">
               <nz-switch formControlName="top"></nz-switch>
             </nz-form-control>
@@ -33,7 +48,9 @@
         </div>
         <div class="col">
           <nz-form-item>
-            <nz-form-label [nzSpan]="15" nzRequired>{{ $t('_onlyOwnVisible') }}</nz-form-label>
+            <nz-form-label [nzSpan]="15" nzRequired>{{
+              $t('_onlyOwnVisible')
+            }}</nz-form-label>
             <nz-form-control [nzSpan]="9">
               <nz-switch formControlName="ownVisible"></nz-switch>
             </nz-form-control>
@@ -66,17 +83,28 @@
             <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl"></app-logo>
           </ng-template>
           <ng-template #suffixIconSearch>
-            <i nz-icon nzType="loading" nzTheme="outline" *ngIf="uploading; else loading"></i>
+            <i
+              nz-icon
+              nzType="loading"
+              nzTheme="outline"
+              *ngIf="uploading; else loading"
+            ></i>
             <ng-template #loading>
               <label id="file">
-                <i nz-icon nzType="upload" nzTheme="outline" class="cursor-pointer" [title]="$t('_upload')"></i>
+                <i
+                  nz-icon
+                  nzType="upload"
+                  nzTheme="outline"
+                  class="cursor-pointer"
+                  [title]="$t('_upload')"
+                ></i>
                 <input
                   type="file"
                   name="file"
                   (change)="onChangeFile($event)"
                   accept="image/*"
                   class="file-upload"
-                >
+                />
               </label>
             </ng-template>
           </ng-template>
@@ -97,15 +125,26 @@
       </nz-form-item>
 
       <!-- more url -->
-      <div>
-        <nz-form-item *ngFor="let n of urlArr; let idx = index">
+      <div formArrayName="urlArr">
+        <nz-form-item
+          *ngFor="let n of urlArray.controls; let idx = index"
+          [formGroupName]="idx"
+        >
           <nz-form-label [nzSpan]="4" [nzNoColon]="true"></nz-form-label>
           <nz-form-control [nzSpan]="20">
-            <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate" [nzAddOnAfter]="addOnAfterTemplate">
-              <input [formControlName]="'url' + idx" type="text" nz-input />
+            <nz-input-group
+              [nzAddOnBefore]="addOnBeforeTemplate"
+              [nzAddOnAfter]="addOnAfterTemplate"
+            >
+              <input
+                formControlName="url"
+                type="text"
+                nz-input
+                placeholder="可以为空当作一个普通标签"
+              />
             </nz-input-group>
             <ng-template #addOnBeforeTemplate>
-              <nz-select style="width: 100px;" [formControlName]="'tagVal' + idx">
+              <nz-select style="width: 100px" formControlName="name">
                 <nz-option
                   *ngFor="let tag of tags"
                   [nzLabel]="tag"
@@ -120,7 +159,7 @@
                 nz-icon
                 nzType="minus"
                 nzTheme="outline"
-                (click)="lessMoreUrl()"
+                (click)="lessMoreUrl(idx)"
               >
               </i>
             </ng-template>
@@ -128,7 +167,7 @@
         </nz-form-item>
       </div>
 
-      <nz-form-item *ngIf="tags.length > 0 && urlArr.length < 3">
+      <nz-form-item *ngIf="tags.length > 0">
         <nz-form-label [nzSpan]="4" [nzNoColon]="true"></nz-form-label>
         <nz-form-control [nzSpan]="20">
           <button nz-button nzType="default" nzBlock (click)="addMoreUrl()">

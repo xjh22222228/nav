@@ -7,17 +7,10 @@
   >
     {{ $t('_save') }}
   </button>
-  <button
-    nz-button
-    style="margin: 0 15px 20px 15px;"
-    (click)="handleReset()"
-  >
+  <button nz-button style="margin: 0 15px 20px 15px" (click)="handleReset()">
     {{ $t('_resetInitData') }}
   </button>
-  <button
-    nz-button
-    (click)="handleDownloadBackup()"
-  >
+  <button nz-button (click)="handleDownloadBackup()">
     {{ $t('_backup') }}
   </button>
 
@@ -31,12 +24,18 @@
       (change)="handleUploadBackup($event)"
       accept=".json"
       class="file-upload"
-    >
+    />
   </label>
 
-  <nz-tabset *ngIf="isLogin" [nzSelectedIndex]="tabActive" (nzSelectedIndexChange)="onTabChange($event)">
+  <nz-tabset
+    *ngIf="isLogin"
+    [nzSelectedIndex]="tabActive"
+    (nzSelectedIndexChange)="onTabChange($event)"
+  >
     <nz-tab [nzTitle]="$t('_mgr1')">
-      <button nz-button nzType="primary" (click)="toggleCreateModal()">{{ $t('_addTag') }}</button>
+      <button nz-button nzType="primary" (click)="toggleCreateModal()">
+        {{ $t('_addTag') }}
+      </button>
       <a
         nz-popconfirm
         [nzPopconfirmTitle]="$t('_confirmDel')"
@@ -52,17 +51,20 @@
           {{ $t('_batchDel') }}
         </button>
       </a>
-      
+
       <nz-table
         #rowSelectionTable
         #basicTable
         [nzData]="websiteList"
         [nzShowPagination]="false"
-        style="margin-top: 15px;"
+        style="margin-top: 15px"
       >
         <thead>
           <tr>
-            <th [nzChecked]="checkedAll" (nzCheckedChange)="onAllChecked($event, 1)"></th>
+            <th
+              [nzChecked]="checkedAll"
+              (nzCheckedChange)="onAllChecked($event, 1)"
+            ></th>
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
@@ -75,18 +77,18 @@
             <td
               [nzChecked]="setOfCheckedId.has(data.title)"
               (nzCheckedChange)="onItemChecked(data.title, $event)"
-            >
-            </td>
+            ></td>
             <td>
-              <app-logo
-                [src]="data.icon || ''"
-                [name]="data.title"
-              >
-              </app-logo>
+              <app-logo [src]="data.icon || ''" [name]="data.title"> </app-logo>
             </td>
             <td>{{ data.title }}</td>
             <td>
-              <i *ngIf="data.ownVisible" nz-icon nzType="check" nzTheme="outline"></i>
+              <i
+                *ngIf="data.ownVisible"
+                nz-icon
+                nzType="check"
+                nzTheme="outline"
+              ></i>
             </td>
             <td>{{ data.createdAt }}</td>
             <td>
@@ -111,7 +113,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel1')"
         (ngModelChange)="hanldeOneSelect($event)"
-        style="width: 260px;"
+        style="width: 260px"
       >
         <nz-option
           *ngFor="let item of websiteList"
@@ -125,7 +127,7 @@
         nz-button
         nzType="primary"
         (click)="toggleCreateModal()"
-        style="margin-left: 20px;"
+        style="margin-left: 20px"
       >
         {{ $t('_addTag') }}
       </button>
@@ -150,11 +152,14 @@
         #basicTable
         [nzData]="twoTableData"
         [nzShowPagination]="false"
-        style="margin-top: 15px;"
+        style="margin-top: 15px"
       >
         <thead>
           <tr>
-            <th [nzChecked]="checkedAll" (nzCheckedChange)="onAllChecked($event, 2)"></th>
+            <th
+              [nzChecked]="checkedAll"
+              (nzCheckedChange)="onAllChecked($event, 2)"
+            ></th>
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
@@ -167,18 +172,19 @@
             <td
               [nzChecked]="setOfCheckedId.has(data.title || '')"
               (nzCheckedChange)="onItemChecked(data.title, $event)"
-            >
-            </td>
+            ></td>
             <td>
-              <app-logo
-                [src]="data.icon || ''"
-                [name]="data.title || ''"
-              >
+              <app-logo [src]="data.icon || ''" [name]="data.title || ''">
               </app-logo>
             </td>
             <td>{{ data.title }}</td>
             <td>
-              <i *ngIf="data.ownVisible" nz-icon nzType="check" nzTheme="outline"></i>
+              <i
+                *ngIf="data.ownVisible"
+                nz-icon
+                nzType="check"
+                nzTheme="outline"
+              ></i>
             </td>
             <td>{{ data.createdAt }}</td>
             <td>
@@ -203,7 +209,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel1')"
         (ngModelChange)="hanldeOneSelect($event)"
-        style="width: 200px;"
+        style="width: 200px"
       >
         <nz-option
           *ngFor="let item of websiteList"
@@ -218,7 +224,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel2')"
         (ngModelChange)="hanldeTwoSelect($event)"
-        style="width: 200px; margin-left: 15px;"
+        style="width: 200px; margin-left: 15px"
       >
         <nz-option
           *ngFor="let item of twoTableData"
@@ -232,7 +238,7 @@
         nz-button
         nzType="primary"
         (click)="toggleCreateModal()"
-        style="margin-left: 20px;"
+        style="margin-left: 20px"
       >
         {{ $t('_addTag') }}
       </button>
@@ -257,11 +263,14 @@
         #basicTable
         [nzData]="threeTableData"
         [nzShowPagination]="false"
-        style="margin-top: 15px;"
+        style="margin-top: 15px"
       >
         <thead>
           <tr>
-            <th [nzChecked]="checkedAll" (nzCheckedChange)="onAllChecked($event, 3)"></th>
+            <th
+              [nzChecked]="checkedAll"
+              (nzCheckedChange)="onAllChecked($event, 3)"
+            ></th>
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
@@ -274,18 +283,19 @@
             <td
               [nzChecked]="setOfCheckedId.has(data.title || '')"
               (nzCheckedChange)="onItemChecked(data.title, $event)"
-            >
-            </td>
+            ></td>
             <td>
-              <app-logo
-                [src]="data.icon || ''"
-                [name]="data.title || ''"
-              >
+              <app-logo [src]="data.icon || ''" [name]="data.title || ''">
               </app-logo>
             </td>
             <td>{{ data.title }}</td>
             <td>
-              <i *ngIf="data.ownVisible" nz-icon nzType="check" nzTheme="outline"></i>
+              <i
+                *ngIf="data.ownVisible"
+                nz-icon
+                nzType="check"
+                nzTheme="outline"
+              ></i>
             </td>
             <td>{{ data.createdAt }}</td>
             <td>
@@ -310,7 +320,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel1')"
         (ngModelChange)="hanldeOneSelect($event)"
-        style="width: 200px;"
+        style="width: 200px"
       >
         <nz-option
           *ngFor="let item of websiteList"
@@ -325,7 +335,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel2')"
         (ngModelChange)="hanldeTwoSelect($event)"
-        style="width: 200px; margin-left: 15px;"
+        style="width: 200px; margin-left: 15px"
       >
         <nz-option
           *ngFor="let item of twoTableData"
@@ -340,7 +350,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel3')"
         (ngModelChange)="hanldeThreeSelect($event)"
-        style="width: 200px; margin-left: 15px;"
+        style="width: 200px; margin-left: 15px"
       >
         <nz-option
           *ngFor="let item of threeTableData"
@@ -354,7 +364,7 @@
         nz-button
         nzType="primary"
         (click)="toggleCreateWebModal()"
-        style="margin-left: 20px;"
+        style="margin-left: 20px"
       >
         {{ $t('_addWeb') }}
       </button>
@@ -379,11 +389,14 @@
         #basicTable
         [nzData]="websiteTableData"
         [nzShowPagination]="false"
-        style="margin-top: 15px;"
+        style="margin-top: 15px"
       >
         <thead>
           <tr>
-            <th [nzChecked]="checkedAll" (nzCheckedChange)="onAllChecked($event, 4)"></th>
+            <th
+              [nzChecked]="checkedAll"
+              (nzCheckedChange)="onAllChecked($event, 4)"
+            ></th>
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_webName') }}</th>
             <th>{{ $t('_webTag') }}</th>
@@ -398,33 +411,45 @@
             <td
               [nzChecked]="setOfCheckedId.has(data.name)"
               (nzCheckedChange)="onItemChecked(data.name, $event)"
-            >
-            </td>
+            ></td>
             <td>
-              <app-logo
-                *ngIf="data.icon"
-                [src]="data.icon"
-                [name]="data.name"
-              >
+              <app-logo *ngIf="data.icon" [src]="data.icon" [name]="data.name">
               </app-logo>
             </td>
             <td>
               <a [href]="data.url" target="_blank">{{ data.name }}</a>
             </td>
             <td nzWidth="100px">
-              <nz-tag *ngFor="let key of objectKeys(data.urls || {})" [nzColor]="tagMap[key].color || '#2db7f5'">
-                <a [href]="data.urls?.[key]" target="_blank">{{ key }}</a>
+              <nz-tag
+                *ngFor="let key of objectKeys(data.urls || {})"
+                [nzColor]="tagMap[key].color || '#2db7f5'"
+              >
+                <a
+                  [href]="data.urls?.[key] || 'javascript:void(0)'"
+                  [target]="data.urls?.[key] ? '_blank' : ''"
+                  >{{ key }}</a
+                >
               </nz-tag>
             </td>
             <td>
-              <i *ngIf="data.ownVisible" nz-icon nzType="check" nzTheme="outline"></i>
+              <i
+                *ngIf="data.ownVisible"
+                nz-icon
+                nzType="check"
+                nzTheme="outline"
+              ></i>
             </td>
             <td>
               <pre class="desc">{{ data.desc }}</pre>
             </td>
             <td nzWidth="200px">{{ data.createdAt }}</td>
             <td nzWidth="100px">
-              <a (click)="toggleCreateWebModal(); websiteDetail = data; editIdx = idx">{{ $t('_edit') }}</a>
+              <a
+                (click)="
+                  toggleCreateWebModal(); websiteDetail = data; editIdx = idx
+                "
+                >{{ $t('_edit') }}</a
+              >
               <a
                 nz-popconfirm
                 [nzPopconfirmTitle]="$t('_confirmDel')"
@@ -458,14 +483,23 @@
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="validateForm">
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzRequired>{{ $t('_tagName') }}</nz-form-label>
+        <nz-form-label [nzSpan]="6" nzRequired>{{
+          $t('_tagName')
+        }}</nz-form-label>
         <nz-form-control [nzSpan]="18" [nzErrorTip]="$t('_requiredName')">
-          <input formControlName="title" nz-input [placeholder]="$t('_webTitle')" [maxlength]="50" />
+          <input
+            formControlName="title"
+            nz-input
+            [placeholder]="$t('_webTitle')"
+            [maxlength]="50"
+          />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzRequired>{{ $t('_onlyOwnVisible') }}</nz-form-label>
+        <nz-form-label [nzSpan]="6" nzRequired>{{
+          $t('_onlyOwnVisible')
+        }}</nz-form-label>
         <nz-form-control [nzSpan]="18">
           <nz-switch formControlName="ownVisible"></nz-switch>
         </nz-form-control>

@@ -2,10 +2,22 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit, Input, ViewChildren, QueryList } from '@angular/core'
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChildren,
+  QueryList,
+} from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { getToken } from '../../utils/user'
-import { setWebsiteList, copyText, deleteByWeb, getTextContent, updateByWeb } from '../../utils'
+import {
+  setWebsiteList,
+  copyText,
+  deleteByWeb,
+  getTextContent,
+  updateByWeb,
+} from '../../utils'
 import { websiteList } from '../../store'
 import { INavProps, ITagProp, INavFourProp } from '../../types'
 import * as __tag from '../../../data/tag.json'
@@ -38,17 +50,16 @@ export class CardComponent implements OnInit {
   copyPathDone = false
   tagMap = tagMap
 
-  constructor(
-    private message: NzMessageService,
-  ) {}
+  constructor(private message: NzMessageService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async copyUrl(e, type: number) {
     const w = this.dataSource
     const { origin, hash, pathname } = window.location
-    const pathUrl = `${origin}${pathname}${hash}?q=${w.name}&url=${encodeURIComponent(w.url)}`
+    const pathUrl = `${origin}${pathname}${hash}?q=${
+      w.name
+    }&url=${encodeURIComponent(w.url)}`
     const isDone = await copyText(e, type === 1 ? pathUrl : w.url)
 
     if (type === 1) {
@@ -77,11 +88,14 @@ export class CardComponent implements OnInit {
   }
 
   handleUpdateSiteOk(payload: INavFourProp) {
-    updateByWeb({
-      ...this.dataSource,
-      name: getTextContent(this.dataSource.name),
-      desc: getTextContent(this.dataSource.desc)
-    }, payload)
+    updateByWeb(
+      {
+        ...this.dataSource,
+        name: getTextContent(this.dataSource.name),
+        desc: getTextContent(this.dataSource.desc),
+      },
+      payload
+    )
 
     const keys = Object.keys(payload)
     for (let k of keys) {
@@ -96,15 +110,16 @@ export class CardComponent implements OnInit {
     deleteByWeb({
       ...this.dataSource,
       name: getTextContent(this.dataSource.name),
-      desc: getTextContent(this.dataSource.desc)
+      desc: getTextContent(this.dataSource.desc),
     })
   }
 
   handleMove() {
-    this.moveSiteChild.changes.subscribe((comps: QueryList<MoveSiteComponent>) =>
-    {
-      comps.first?.pushMoveSites([this.dataSource])
-    });
+    this.moveSiteChild.changes.subscribe(
+      (comps: QueryList<MoveSiteComponent>) => {
+        comps.first?.pushMoveSites([this.dataSource])
+      }
+    )
     this.showMoveModal = true
   }
 }

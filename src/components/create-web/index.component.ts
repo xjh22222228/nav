@@ -4,7 +4,13 @@
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { getLogoUrl, getTextContent } from 'src/utils'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormArray,
+  FormControl,
+} from '@angular/forms'
 import { ITagProp, INavFourProp } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
@@ -29,39 +35,35 @@ export class CreateWebComponent implements OnInit {
   $t = $t
   validateForm!: FormGroup
   iconUrl = ''
-  urlArr = []
   tags = tagKeys
-  tagMap = tagMap
   uploading = false
 
   constructor(
     private fb: FormBuilder,
     private message: NzMessageService,
     private notification: NzNotificationService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.validateForm = this.fb.group({
       title: ['', [Validators.required]],
       url: ['', [Validators.required]],
       top: [false],
       ownVisible: [false],
       rate: [5],
-      url0: [''],
-      url1: [''],
-      url2: [''],
-      tagVal0: [tagKeys[0]],
-      tagVal1: [tagKeys[0]],
-      tagVal2: [tagKeys[0]],
       icon: [''],
       desc: [''],
+      urlArr: this.fb.array([]),
     })
+  }
+
+  get urlArray(): FormArray {
+    return this.validateForm.get('urlArr') as FormArray
   }
 
   ngOnChanges() {
     // 回显表单
     setTimeout(() => {
       if (!this.visible) {
+        this.validateForm.get('urlArr').controls = []
         this.validateForm.reset()
       }
 
@@ -76,14 +78,14 @@ export class CreateWebComponent implements OnInit {
           .get('ownVisible')!
           .setValue(detail.ownVisible ?? false)
         this.validateForm.get('rate')!.setValue(detail.rate ?? 5)
-
         if (typeof detail.urls === 'object') {
-          let i = 0
           for (let k in detail.urls) {
-            this.urlArr.push(null)
-            this.validateForm.get(`url${i}`)!.setValue(detail.urls[k])
-            this.validateForm.get(`tagVal${i}`)!.setValue(k)
-            i++
+            this.validateForm.get('urlArr').push(
+              this.fb.group({
+                name: k,
+                url: detail.urls[k],
+              })
+            )
           }
         }
       }
@@ -108,11 +110,16 @@ export class CreateWebComponent implements OnInit {
   }
 
   addMoreUrl() {
-    this.urlArr.push(null)
+    this.validateForm.get('urlArr').push(
+      this.fb.group({
+        name: '',
+        url: '',
+      })
+    )
   }
 
-  lessMoreUrl() {
-    this.urlArr.pop()
+  lessMoreUrl(idx) {
+    this.validateForm.get('urlArr').removeAt(idx)
   }
 
   handlePasteImage = (event) => {
@@ -189,35 +196,18 @@ export class CreateWebComponent implements OnInit {
 
     const createdAt = new Date().toISOString()
     let urls = {}
-    let {
-      title,
-      icon,
-      url,
-      top,
-      ownVisible,
-      rate,
-      desc,
-      url0,
-      url1,
-      url2,
-      tagVal0,
-      tagVal1,
-      tagVal2,
-    } = this.validateForm.value
+    let { title, icon, url, top, ownVisible, rate, desc } =
+      this.validateForm.value
 
     if (!title || !url) return
 
     title = title.trim()
-
-    if (tagVal0 && url0) {
-      urls[tagVal0] = url0
-    }
-    if (tagVal1 && url1) {
-      urls[tagVal1] = url1
-    }
-    if (tagVal2 && url2) {
-      urls[tagVal2] = url2
-    }
+    const urlArr = this.validateForm.get('urlArr')?.value || []
+    urlArr.forEach((item) => {
+      if (item.name) {
+        urls[item.name] = item.url
+      }
+    })
 
     const payload = {
       name: title,

@@ -2,7 +2,9 @@
 <div class="container">
   <nz-card
     [nzActions]="
-      isLogin ? [actionCopy, actionShare, actionEllipsis] : [actionCopy, actionShare]
+      isLogin
+        ? [actionCopy, actionShare, actionEllipsis]
+        : [actionCopy, actionShare]
     "
     nzSize="small"
     nzHoverable
@@ -18,19 +20,25 @@
       </nz-rate>
     </div>
     <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
-      <nz-card-meta
-        [nzTitle]="title"
-        [nzAvatar]="avatarTemplate"
-      >
+      <nz-card-meta [nzTitle]="title" [nzAvatar]="avatarTemplate">
       </nz-card-meta>
 
-      <div style="opacity: 0;height: 10px;">&nbsp;</div>
+      <div style="opacity: 0; height: 10px">&nbsp;</div>
       <pre class="desc dark-text" [innerHTML]="dataSource.desc"></pre>
     </a>
 
-    <div style="margin-top: 15px;">
-      <nz-tag *ngFor="let key of objectKeys(dataSource.urls || {})" [nzColor]="tagMap[key].color || '#2db7f5'">
-        <a [href]="dataSource.urls && dataSource.urls[key]" target="_blank">{{ key }}</a>
+    <div style="margin-top: 15px">
+      <nz-tag
+        *ngFor="let key of objectKeys(dataSource.urls || {})"
+        [nzColor]="(tagMap[key] && tagMap[key].color) || '#2db7f5'"
+      >
+        <a
+          [href]="dataSource.urls?.[key] || 'javascript:void(0)'"
+          [target]="
+            dataSource.urls?.[key] ? '_blank' : ''
+          "
+          >{{ key }}</a
+        >
       </nz-tag>
     </div>
   </nz-card>
@@ -42,7 +50,10 @@
     <app-logo [src]="dataSource.icon || ''" [name]="dataSource.name"></app-logo>
   </ng-template>
   <ng-template #actionCopy>
-    <div nz-tooltip [nzTooltipTitle]="copyUrlDone ? $t('_copySuccess') : $t('_copyUrl')">
+    <div
+      nz-tooltip
+      [nzTooltipTitle]="copyUrlDone ? $t('_copySuccess') : $t('_copyUrl')"
+    >
       <i
         nz-icon
         [nzType]="copyUrlDone ? 'check' : 'copy'"
@@ -54,7 +65,10 @@
     </div>
   </ng-template>
   <ng-template #actionShare>
-    <div nz-tooltip [nzTooltipTitle]="copyPathDone ? $t('_copySuccess') : $t('_shareWeb')">
+    <div
+      nz-tooltip
+      [nzTooltipTitle]="copyPathDone ? $t('_copySuccess') : $t('_shareWeb')"
+    >
       <i
         nz-icon
         [nzType]="copyPathDone ? 'check' : 'share-alt'"
@@ -66,7 +80,13 @@
     </div>
   </ng-template>
   <ng-template #actionEllipsis>
-    <i nz-icon nzType="ellipsis" nz-dropdown [nzDropdownMenu]="menu" *ngIf="isLogin"></i>
+    <i
+      nz-icon
+      nzType="ellipsis"
+      nz-dropdown
+      [nzDropdownMenu]="menu"
+      *ngIf="isLogin"
+    ></i>
 
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu nzSelectable>
