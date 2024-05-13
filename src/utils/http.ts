@@ -5,18 +5,13 @@ import axios from 'axios'
 import NProgress from 'nprogress'
 import { getToken } from '../utils/user'
 
-const token = getToken()
 const DEFAULT_TITLE = document.title
 const headers: Record<string, string> = {}
-
-if (token) {
-  headers['Authorization'] = `token ${token}`
-}
 
 const httpInstance = axios.create({
   timeout: 60000 * 3,
   baseURL: 'https://api.github.com',
-  headers
+  headers,
 })
 
 function startLoad() {
@@ -31,22 +26,31 @@ function stopLoad() {
 
 Object.setPrototypeOf(httpInstance, axios)
 
-httpInstance.interceptors.request.use(function (config) {
-  startLoad()
+httpInstance.interceptors.request.use(
+  function (config) {
+    const token = getToken()
+    if (token) {
+      config.headers['Authorization'] = `token ${token}`
+    }
+    startLoad()
 
-  return config
-}, function (error) {
-  stopLoad()
-  return Promise.reject(error)
-})
+    return config
+  },
+  function (error) {
+    stopLoad()
+    return Promise.reject(error)
+  }
+)
 
-
-httpInstance.interceptors.response.use(function (res) {
-  stopLoad()
-  return res
-}, function (error) {
-  stopLoad()
-  return Promise.reject(error)
-})
+httpInstance.interceptors.response.use(
+  function (res) {
+    stopLoad()
+    return res
+  },
+  function (error) {
+    stopLoad()
+    return Promise.reject(error)
+  }
+)
 
 export default httpInstance

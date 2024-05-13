@@ -27,7 +27,7 @@ export class CreateWebComponent implements OnInit {
   @Output() onOk = new EventEmitter()
 
   $t = $t
-  validateForm!: FormGroup;
+  validateForm!: FormGroup
   iconUrl = ''
   urlArr = []
   tags = tagKeys
@@ -37,7 +37,7 @@ export class CreateWebComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private message: NzMessageService,
-    private notification: NzNotificationService,
+    private notification: NzNotificationService
   ) {}
 
   ngOnInit() {
@@ -64,7 +64,7 @@ export class CreateWebComponent implements OnInit {
       if (!this.visible) {
         this.validateForm.reset()
       }
-  
+
       const detail = this.detail as INavFourProp
       if (this.detail && this.visible) {
         this.validateForm.get('title')!.setValue(getTextContent(detail.name))
@@ -72,9 +72,11 @@ export class CreateWebComponent implements OnInit {
         this.validateForm.get('icon')!.setValue(detail.icon || '')
         this.validateForm.get('url')!.setValue(detail.url || '')
         this.validateForm.get('top')!.setValue(detail.top ?? false)
-        this.validateForm.get('ownVisible')!.setValue(detail.ownVisible ?? false)
+        this.validateForm
+          .get('ownVisible')!
+          .setValue(detail.ownVisible ?? false)
         this.validateForm.get('rate')!.setValue(detail.rate ?? 5)
-  
+
         if (typeof detail.urls === 'object') {
           let i = 0
           for (let k in detail.urls) {
@@ -113,7 +115,7 @@ export class CreateWebComponent implements OnInit {
     this.urlArr.pop()
   }
 
-  handlePasteImage = event => {
+  handlePasteImage = (event) => {
     const items = event.clipboardData.items
     let file = null
 
@@ -121,7 +123,7 @@ export class CreateWebComponent implements OnInit {
       for (let i = 0; i < items.length; i++) {
         if (items[i].type.startsWith('image')) {
           file = items[i].getAsFile()
-          break;
+          break
         }
       }
     }
@@ -135,7 +137,7 @@ export class CreateWebComponent implements OnInit {
     const that = this
     const fileReader = new FileReader()
     fileReader.readAsDataURL(file)
-    fileReader.onload = function() {
+    fileReader.onload = function () {
       that.uploading = true
       that.iconUrl = this.result as string
       const url = that.iconUrl.split(',')[1]
@@ -146,24 +148,27 @@ export class CreateWebComponent implements OnInit {
         message: 'create image',
         content: url,
         isEncode: false,
-        path
-      }).then(() => {
-        that.validateForm.get('icon')!.setValue(path)
-        that.message.success($t('_uploadSuccess'))
-      }).catch(res => {
-        that.notification.error(
-          `${$t('_error')}: ${res?.response?.status ?? 401}`,
-          $t('_uploadFail')
-        )
-      }).finally(() => {
-        that.uploading = false
+        path,
       })
+        .then(() => {
+          that.validateForm.get('icon')!.setValue(path)
+          that.message.success($t('_uploadSuccess'))
+        })
+        .catch((res) => {
+          that.notification.error(
+            `${$t('_error')}: ${res?.response?.status ?? 401}`,
+            `${$t('_uploadFail')}：${res.message || ''}`
+          )
+        })
+        .finally(() => {
+          that.uploading = false
+        })
     }
   }
 
   onChangeFile(e) {
     const { files } = e.target
-    if (files.length <= 0) return;
+    if (files.length <= 0) return
     const file = files[0]
 
     if (!file.type.startsWith('image')) {
@@ -178,8 +183,8 @@ export class CreateWebComponent implements OnInit {
 
   handleOk() {
     for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
+      this.validateForm.controls[i].markAsDirty()
+      this.validateForm.controls[i].updateValueAndValidity()
     }
 
     const createdAt = new Date().toISOString()
@@ -197,7 +202,7 @@ export class CreateWebComponent implements OnInit {
       url2,
       tagVal0,
       tagVal1,
-      tagVal2
+      tagVal2,
     } = this.validateForm.value
 
     if (!title || !url) return
@@ -223,7 +228,7 @@ export class CreateWebComponent implements OnInit {
       ownVisible: ownVisible ?? false,
       icon,
       url,
-      urls
+      urls,
     }
 
     this.iconUrl = ''

@@ -4,14 +4,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { verifyToken } from '../../services'
-import { setToken } from '../../utils/user'
+import { verifyToken, updateFileContent } from '../../services'
+import { setToken, removeToken } from '../../utils/user'
 import { $t } from 'src/locale'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   @Input() visible: boolean = false
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private message: NzMessageService,
-    private notification: NzNotificationService,
+    private notification: NzNotificationService
   ) {}
 
   ngOnInit() {}
@@ -40,14 +40,29 @@ export class LoginComponent implements OnInit {
     this.submiting = true
     verifyToken(this.token)
       .then(() => {
-        setToken(this.token);
-        this.message.success($t('_tokenVerSuc'))
-        setTimeout(() => window.location.reload(), 2000)
+        setToken(this.token)
+        updateFileContent({
+          message: 'auth',
+          path: '.navauth',
+          content: 'OK',
+        })
+          .then(() => {
+            this.message.success($t('_tokenVerSuc'))
+            setTimeout(() => window.location.reload(), 2000)
+          })
+          .catch((res) => {
+            this.notification.error(
+              `${$t('_error')}: ${res?.response?.status ?? 401}`,
+              res.message
+            )
+            removeToken()
+          })
+          .finally(() => {
+            this.submiting = false
+          })
       })
-      .catch(res => {
+      .catch((res) => {
         this.notification.error($t('_tokenVerFail'), res.message as string)
-      })
-      .finally(() => {
         this.submiting = false
       })
   }
