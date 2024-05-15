@@ -31,6 +31,7 @@
       <nz-tag
         *ngFor="let key of objectKeys(dataSource.urls || {})"
         [nzColor]="(tagMap[key] && tagMap[key].color) || '#2db7f5'"
+        style="margin-bottom: 5px"
       >
         <a
           [href]="dataSource.urls?.[key] || 'javascript:void(0)'"

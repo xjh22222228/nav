@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
 import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { NzModalModule } from 'ng-zorro-antd/modal'
@@ -35,10 +35,10 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
 import { NzCarouselModule } from 'ng-zorro-antd/carousel'
-import { IconDefinition } from '@ant-design/icons-angular';
+import { IconDefinition } from '@ant-design/icons-angular'
 
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { zh_CN } from 'ng-zorro-antd/i18n';
+import { NZ_I18N } from 'ng-zorro-antd/i18n'
+import { zh_CN } from 'ng-zorro-antd/i18n'
 
 import { FixbarComponent } from '../components/fixbar/index.component'
 import { FooterComponent } from '../components/footer/footer.component'
@@ -46,12 +46,12 @@ import { UploadComponent } from '../components/upload/index.component'
 import { EllipsisComponent } from '../components/ellipsis/index.component'
 import { IconGitComponent } from '../components/icon-git/icon-git.component'
 import { NoDataComponent } from '../components/no-data/no-data.component'
-import { SearchEngineComponent } from '../components/search-engine/search-engine.component';
-import { LoginComponent } from '../components/login/login.component';
-import { CreateWebComponent } from '../components/create-web/index.component';
-import { ToolbarTitleWebComponent } from '../components/toolbar-title/index.component';
-import { WebListComponent } from '../components/web-list/index.component';
-import { LogoComponent } from '../components/logo/logo.component';
+import { SearchEngineComponent } from '../components/search-engine/search-engine.component'
+import { LoginComponent } from '../components/login/login.component'
+import { CreateWebComponent } from '../components/create-web/index.component'
+import { ToolbarTitleWebComponent } from '../components/toolbar-title/index.component'
+import { WebListComponent } from '../components/web-list/index.component'
+import { LogoComponent } from '../components/logo/logo.component'
 import { CardComponent } from '../components/card/index.component'
 import { MoveSiteComponent } from '../components/move-site/index.component'
 
@@ -71,10 +71,27 @@ import SideComponent from '../view/index/side/index.component'
 import ShortcutComponent from '../view/index/shortcut/index.component'
 import WebpComponent from '../view/app/default/app.component'
 
+import {
+  CheckOutline,
+  CopyOutline,
+  ShareAltOutline,
+  EllipsisOutline,
+  LoadingOutline,
+  UploadOutline,
+  MinusOutline,
+  PlusOutline,
+} from '@ant-design/icons-angular/icons'
 
-import { CheckOutline, CopyOutline, ShareAltOutline, EllipsisOutline, LoadingOutline, UploadOutline, MinusOutline, PlusOutline } from '@ant-design/icons-angular/icons';
-
-const icons: IconDefinition[] = [ CheckOutline, CopyOutline, ShareAltOutline, EllipsisOutline, LoadingOutline, UploadOutline, MinusOutline, PlusOutline ];
+const icons: IconDefinition[] = [
+  CheckOutline,
+  CopyOutline,
+  ShareAltOutline,
+  EllipsisOutline,
+  LoadingOutline,
+  UploadOutline,
+  MinusOutline,
+  PlusOutline,
+]
 
 @NgModule({
   declarations: [
@@ -107,7 +124,7 @@ const icons: IconDefinition[] = [ CheckOutline, CopyOutline, ShareAltOutline, El
     WebListComponent,
     LogoComponent,
     CardComponent,
-    MoveSiteComponent
+    MoveSiteComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -143,9 +160,9 @@ const icons: IconDefinition[] = [ CheckOutline, CopyOutline, ShareAltOutline, El
     BrowserModule,
     FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

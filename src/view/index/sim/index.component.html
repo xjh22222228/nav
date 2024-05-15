@@ -1,5 +1,5 @@
 <div class="sim">
-  <div class="wallpaper" [ngStyle]="{height: simThemeHeight + 'px'}">
+  <div class="wallpaper" [ngStyle]="{ height: simThemeHeight + 'px' }">
     <div class="bg">
       <nz-carousel
         nzEffect="scrollx"
@@ -14,8 +14,7 @@
           *ngFor="let item of simThemeImages"
           [ngStyle]="{ 'background-image': 'url(' + item['src'] + ')' }"
           (click)="handleJumpUrl(item)"
-        >
-        </div>
+        ></div>
       </nz-carousel>
     </div>
 
@@ -27,13 +26,13 @@
   </div>
 
   <nav class="top-nav user-select-none dark-border-color">
-    <a 
-      *ngFor="let item of websiteList; let i = index;" 
-      [class.active]="page === i" 
-      [class.dark-text-active]="page === i" 
+    <a
+      *ngFor="let item of websiteList; let i = index"
+      [class.active]="page === i"
+      [class.dark-text-active]="page === i"
       [class.remove]="!isLogin && item.ownVisible"
       class="ripple-btn dark-text"
-      (click)="handleCilckTopNav(i)" 
+      (click)="handleCilckTopNav(i)"
     >
       {{ item.title }}
     </a>
@@ -42,26 +41,45 @@
   <div class="wrapper">
     <nav class="sidebar dark-bg" id="sidebar">
       <div *ngIf="websiteList[page]?.nav?.length">
-        <div 
-          *ngFor="let item of websiteList[page].nav; let i = index" 
-          (click)="handleSidebarNav(i)" 
-          [class.active]="id === i" 
-          [class.dark-item-active]="id === i" 
+        <div
+          *ngFor="let item of websiteList[page].nav; let i = index"
+          (click)="handleSidebarNav(i)"
+          [class.active]="id === i"
+          [class.dark-item-active]="id === i"
           [class.remove]="!isLogin && item.ownVisible"
           class="ripple-btn dark-text"
         >
           {{ item.title }}
         </div>
+        <div class="ripple-btn dark-text">asdfasfd</div>
+        <div class="ripple-btn dark-text">asdfasfd</div>
+        <div class="ripple-btn dark-text">asdfasfd</div>
+        <div class="ripple-btn dark-text">asdfasfd</div>
+        <div class="ripple-btn dark-text">asdfasfd</div>
+        <div class="ripple-btn dark-text">asdfasfd</div>
+        <div class="ripple-btn dark-text">asdfasfd</div>
+        <div class="ripple-btn dark-text">asdfasfd</div>
+        <div class="ripple-btn dark-text">asdfasfd</div>
+        <div class="ripple-btn dark-text">asdfasfd</div>
+        <div class="ripple-btn dark-text">asdfasfd</div>
       </div>
     </nav>
 
     <aside class="site-box dark-bg">
       <div *ngIf="currentList.length > 0; else noData">
-        <div *ngFor="let item of currentList.slice(0, sliceMax); let i=index">
+        <div *ngFor="let item of currentList.slice(0, sliceMax); let i = index">
           <div class="nav-wrapper">
-            <app-toolbar-title [dataSource]="item" (onCollapse)="onCollapse(item, i)" [index]="i"></app-toolbar-title>
-  
-            <div nz-row [nzGutter]="[16, 16]" [style.display]="item.collapsed ? 'none' : ''">
+            <app-toolbar-title
+              [dataSource]="item"
+              (onCollapse)="onCollapse(item, i)"
+              [index]="i"
+            ></app-toolbar-title>
+
+            <div
+              nz-row
+              [nzGutter]="[16, 16]"
+              [style.display]="item.collapsed ? 'none' : ''"
+            >
               <div
                 class="gutter-row"
                 nz-col
@@ -69,7 +87,10 @@
                 *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
                 [class.remove]="!isLogin && el.ownVisible"
               >
-                <app-card [dataSource]="el" [indexs]="[page, id, i, j]"></app-card>
+                <app-card
+                  [dataSource]="el"
+                  [indexs]="[page, id, i, j]"
+                ></app-card>
               </div>
             </div>
           </div>
@@ -84,10 +105,7 @@
 </div>
 
 <app-footer className="sim-footer"></app-footer>
-<app-fixbar
-  (onCollapse)="onCollapseAll()"
-  [collapsed]="collapsed()"
->
+<app-fixbar (onCollapse)="onCollapseAll()" [collapsed]="collapsed()">
 </app-fixbar>
 
 <div class="sim-bg dark-bg"></div>

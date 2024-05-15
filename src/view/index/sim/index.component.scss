@@ -31,7 +31,7 @@ $width: 1200px;
       text-decoration: none;
     }
     &.active::after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0;
       left: 20%;
@@ -93,6 +93,9 @@ $width: 1200px;
     margin: 0 auto;
 
     .sidebar {
+      position: sticky;
+      top: 10px;
+      left: 0;
       width: 180px;
       height: min-content;
       padding: 10px 0;
@@ -101,18 +104,14 @@ $width: 1200px;
       float: left;
       background-color: #fff;
       box-shadow: 0 0 1px #ccc;
-
-      &.fix {
-        position: fixed;
-        top: 10px;
-      }
-
+      max-height: calc(100vh - 50px);
+      overflow-y: auto;
       .ripple-btn {
         padding: 10px 0;
         margin-bottom: 10px;
         cursor: pointer;
         border-radius: 5px;
-        transition: .1s linear;
+        transition: 0.1s linear;
         user-select: none;
         font-weight: 500;
 
@@ -134,7 +133,7 @@ $width: 1200px;
   }
 }
 
-::ng-deep .sim-footer  {
+::ng-deep .sim-footer {
   margin-bottom: 10px;
 
   & > * {

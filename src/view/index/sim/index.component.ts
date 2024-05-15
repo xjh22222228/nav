@@ -11,19 +11,17 @@ import {
   setWebsiteList,
   toggleCollapseAll,
   totalWeb,
-  matchCurrentList
+  matchCurrentList,
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { initRipple } from 'src/utils/ripple'
 import { websiteList } from 'src/store'
 import { settings } from 'src/store'
 
-let sidebarEl: HTMLElement|null;
-
 @Component({
   selector: 'app-sim',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export default class SimComponent {
   websiteList: INavProps[] = websiteList
@@ -35,11 +33,14 @@ export default class SimComponent {
   simThemeImages = settings.simThemeImages
   simThemeHeight = settings.simThemeHeight
   simThemeAutoplay = settings.simThemeAutoplay
-  description: string = settings.simThemeDesc.replace('${total}', String(totalWeb()))
+  description: string = settings.simThemeDesc.replace(
+    '${total}',
+    String(totalWeb())
+  )
   isLogin = isLogin
   sliceMax = 1
 
-  constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(() => {
@@ -60,46 +61,26 @@ export default class SimComponent {
   }
 
   handleJumpUrl(data: any) {
-    console.log(data)
     if (data.url) {
       window.open(data.url)
     }
   }
 
-  onScroll = () => {
-    const y = window.scrollY
-    if (!sidebarEl) {
-      sidebarEl = document.getElementById('sidebar')
-    }
-
-    if (sidebarEl) {
-      const height = settings.simThemeHeight + 138
-      if (y >= height) {
-        sidebarEl.classList.add('fix')
-      } else {
-        sidebarEl.classList.remove('fix')
-      }
-    }
-  }
-
-  ngOnDestroy() {
-    window.removeEventListener('scroll',  this.onScroll)
-  }
+  ngOnDestroy() {}
 
   ngAfterViewInit() {
     initRipple()
-    window.addEventListener('scroll', this.onScroll)
   }
 
   handleSidebarNav(index: number) {
     const { page } = queryString()
     this.websiteList[page].id = index
-    this.router.navigate([this.router.url.split('?')[0]], { 
+    this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
         page,
         id: index,
-        _: Date.now()
-      }
+        _: Date.now(),
+      },
     })
   }
 
@@ -109,8 +90,8 @@ export default class SimComponent {
       queryParams: {
         page: idx,
         id,
-        _: Date.now()
-      }
+        _: Date.now(),
+      },
     })
   }
 
