@@ -5,8 +5,10 @@
 import qs from 'qs'
 import Clipboard from 'clipboard'
 import {
-  INavFourProp, INavThreeProp, INavProps,
-  ISearchEngineProps
+  INavFourProp,
+  INavThreeProp,
+  INavProps,
+  ISearchEngineProps,
 } from '../types'
 import * as db from '../../data/db.json'
 import * as s from '../../data/search.json'
@@ -22,7 +24,10 @@ export function randomInt(max: number) {
   return Math.floor(Math.random() * max)
 }
 
-export function fuzzySearch(navList: INavProps[], keyword: string): INavThreeProp[] {
+export function fuzzySearch(
+  navList: INavProps[],
+  keyword: string
+): INavThreeProp[] {
   if (!keyword.trim()) {
     return []
   }
@@ -75,7 +80,7 @@ export function fuzzySearch(navList: INavProps[], keyword: string): INavThreePro
               return true
             }
           }
-  
+
           const find = urls.some((item: string) => item.includes(keyword))
           if (find) {
             if (!urlRecordMap[item.url]) {
@@ -141,29 +146,6 @@ export function fuzzySearch(navList: INavProps[], keyword: string): INavThreePro
   return resultList
 }
 
-export function totalWeb(): number {
-  const localTotal = localStorage.getItem(STORAGE_KEY_MAP.total)
-  if (localTotal) {
-    return Number(localTotal)
-  }
-  let total = 0
-  function r(nav) {
-    if (!Array.isArray(nav)) return
-
-    for (let i = 0; i < nav.length; i++) {
-      const item = nav[i]
-      if (item.url && (isLogin || !item.ownVisible)) {
-        total += 1
-      } else {
-        r(item.nav)
-      }
-    }
-  }
-  r(websiteList)
-  localStorage.setItem(STORAGE_KEY_MAP.total, String(total))
-  return total
-}
-
 function randomColor(): string {
   const r = randomInt(255)
   const g = randomInt(255)
@@ -181,14 +163,13 @@ export function randomBgImg() {
   const el = document.createElement('div')
   const deg = randomInt(360)
   el.id = 'random-light-bg'
-  el.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:-3;transition: 1s linear;'
-  el.style.backgroundImage =
-    `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
+  el.style.cssText =
+    'position:fixed;top:0;left:0;right:0;bottom:0;z-index:-3;transition: 1s linear;'
+  el.style.backgroundImage = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
   document.body.appendChild(el)
 
   function setBg() {
-    const randomBg =
-    `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
+    const randomBg = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
     el.style.opacity = '.3'
     setTimeout(() => {
       el.style.backgroundImage = randomBg
@@ -201,7 +182,7 @@ export function randomBgImg() {
 
 export function queryString(): {
   q: string
-  id: number,
+  id: number
   page: number
   [key: string]: any
 } {
@@ -251,7 +232,7 @@ export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
 
     if (Array.isArray(item.nav)) {
       if (item.nav[0]?.url) {
-        item.nav = item.nav.filter(item => !item.ownVisible || isLogin)
+        item.nav = item.nav.filter((item) => !item.ownVisible || isLogin)
       }
       adapterWebsiteList(item.nav, item)
     }
@@ -268,7 +249,7 @@ export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
     }
   }
 
-  return websiteList;
+  return websiteList
 }
 
 export function getWebsiteList(): INavProps[] {
@@ -317,7 +298,7 @@ export function toggleCollapseAll(wsList?: INavProps[]): boolean {
 
   wsList[page].nav[id].collapsed = collapsed
 
-  wsList[page].nav[id].nav.map(item => {
+  wsList[page].nav[id].nav.map((item) => {
     item.collapsed = collapsed
     return item
   })
@@ -334,15 +315,15 @@ export function setLocation() {
     STORAGE_KEY_MAP.location,
     JSON.stringify({
       page,
-      id
-    }
-  ))
+      id,
+    })
+  )
 }
 
 export function getDefaultSearchEngine(): ISearchEngineProps {
   let DEFAULT = (searchEngineList[0] || {}) as ISearchEngineProps
   try {
-    const engine = window.localStorage.getItem(STORAGE_KEY_MAP.engine);
+    const engine = window.localStorage.getItem(STORAGE_KEY_MAP.engine)
     if (engine) {
       DEFAULT = JSON.parse(engine)
     }
@@ -351,10 +332,7 @@ export function getDefaultSearchEngine(): ISearchEngineProps {
 }
 
 export function setDefaultSearchEngine(engine: ISearchEngineProps) {
-  window.localStorage.setItem(
-    STORAGE_KEY_MAP.engine,
-    JSON.stringify(engine)
-  )
+  window.localStorage.setItem(STORAGE_KEY_MAP.engine, JSON.stringify(engine))
 }
 
 export function isDark(): boolean {
@@ -368,14 +346,22 @@ export function isDark(): boolean {
   return Boolean(Number(storageVal))
 }
 
-export async function getLogoUrl(url: string): Promise<boolean|string|null> {
+export async function getLogoUrl(
+  url: string
+): Promise<boolean | string | null> {
   try {
-    const c = ['/favicon.png', '/favicon.svg', '/favicon.jpg', '/favicon.ico', '/logo.png']
+    const c = [
+      '/favicon.png',
+      '/favicon.svg',
+      '/favicon.jpg',
+      '/favicon.ico',
+      '/logo.png',
+    ]
     const { origin } = new URL(url)
 
-    const promises = c.map(url => {
+    const promises = c.map((url) => {
       const iconUrl = origin + url
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         try {
           const img = document.createElement('img')
           img.src = iconUrl
@@ -392,7 +378,7 @@ export async function getLogoUrl(url: string): Promise<boolean|string|null> {
         } catch (error) {
           resolve(false)
         }
-      }) 
+      })
     })
 
     const all = await Promise.all<any>(promises)
@@ -401,11 +387,10 @@ export async function getLogoUrl(url: string): Promise<boolean|string|null> {
         return all[i]
       }
     }
-    
   } catch {
     return null
   }
-  return null;
+  return null
 }
 
 export function copyText(el: Event, text: string): Promise<boolean> {
@@ -414,17 +399,17 @@ export function copyText(el: Event, text: string): Promise<boolean> {
   target.id = ranId
   target.setAttribute('data-clipboard-text', text)
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const clipboard = new Clipboard(`#${ranId}`)
-    clipboard.on('success', function() {
+    clipboard.on('success', function () {
       clipboard.destroy()
       resolve(true)
-    });
-  
-    clipboard.on('error', function() {
+    })
+
+    clipboard.on('error', function () {
       clipboard.destroy()
       resolve(false)
-    });
+    })
   })
 }
 
@@ -437,7 +422,7 @@ export async function isValidImg(url: string): Promise<boolean> {
 
   if (protocol === 'https:' && url.startsWith('http:')) return false
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const img = document.createElement('img')
     img.src = url
     img.style.display = 'none'

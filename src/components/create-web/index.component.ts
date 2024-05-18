@@ -4,19 +4,14 @@
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { getLogoUrl, getTextContent } from 'src/utils'
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormArray,
-  FormControl,
-} from '@angular/forms'
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { ITagProp, INavFourProp } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import * as __tag from '../../../data/tag.json'
 import { createFile } from 'src/services'
 import { $t } from 'src/locale'
+import { settings } from 'src/store'
 
 const tagMap: ITagProp = (__tag as any).default
 const tagKeys = Object.keys(tagMap)
@@ -37,6 +32,7 @@ export class CreateWebComponent implements OnInit {
   iconUrl = ''
   tags = tagKeys
   uploading = false
+  settings = settings
 
   constructor(
     private fb: FormBuilder,

@@ -1,13 +1,7 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-export type ThemeType =
-  | 'Light'
-  | 'Sim'
-  | 'Side'
-  | 'App'
-  | 'Shortcut'
-
+export type ThemeType = 'Light' | 'Sim' | 'Side' | 'App' | 'Shortcut'
 
 export interface ITagPropValues {
   name?: string
@@ -88,15 +82,15 @@ export interface ISettings {
   keywords: string
   theme: ThemeType
   appTheme: ThemeType
-  footerContent?: string|null
-  headerContent?: string|null
+  footerContent?: string | null
+  headerContent?: string | null
   baiduStatisticsUrl?: string
   cnzzStatisticsUrl?: string
   iconfontUrl?: string
   showGithub: boolean
   showLanguage: boolean
-  showCopy: Boolean|undefined
-  showShare: Boolean|undefined
+  showCopy: Boolean | undefined
+  showShare: Boolean | undefined
 
   simThemeImages: Record<string, string>[]
   simThemeDesc: string
@@ -118,4 +112,9 @@ export interface IConfig {
   gitRepoUrl: string
   branch: string
   hashMode: boolean
+}
+
+export type internalProps = {
+  loginViewCount: number
+  userViewCount: number
 }

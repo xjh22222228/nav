@@ -3,8 +3,8 @@
     <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_webLogo') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label id="file">
-        <img [src]="settings.favicon" class="logo">
-        <span style="white-space: nowrap; margin-top: 5px;">
+        <img [src]="settings.favicon" class="logo" />
+        <span style="white-space: nowrap; margin-top: 5px">
           {{ $t('_updateLogo') }}
         </span>
         <app-upload (onChange)="onLogoChange($event)"></app-upload>
@@ -42,7 +42,9 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_defLanguage') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4" nzRequired>{{
+      $t('_defLanguage')
+    }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-select formControlName="language">
         <nz-option nzValue="zh-CN" nzLabel="简体中文"></nz-option>
@@ -113,28 +115,36 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{ $t('_showGithub') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+      $t('_showGithub')
+    }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label nz-checkbox formControlName="showGithub"></label>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{ $t('_showLanguage') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+      $t('_showLanguage')
+    }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label nz-checkbox formControlName="showLanguage"></label>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{ $t('_showRate') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+      $t('_showRate')
+    }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label nz-checkbox formControlName="showRate"></label>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{ $t('_defTheme') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+      $t('_defTheme')
+    }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-radio-group formControlName="theme">
         <label nz-radio nzValue="Light">Light</label>
@@ -147,7 +157,9 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{ $t('_appTheme') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+      $t('_appTheme')
+    }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-radio-group formControlName="appTheme">
         <label nz-radio nzValue="Light">Light</label>
@@ -176,21 +188,35 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="4">IconFont</nz-form-label>
     <nz-form-control [nzSpan]="10">
-      <input nz-input formControlName="iconfontUrl" />
+      <input
+        nz-input
+        formControlName="iconfontUrl"
+        placeholder="用于某些主题侧边栏icon"
+      />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_headHtml') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
-      <textarea nz-input formControlName="headerContent" [nzAutosize]="{ minRows: 3, maxRows: 5 }" placeholder="位于 head 标签尾部，你可以在这里插入脚本代码"></textarea>
+      <textarea
+        nz-input
+        formControlName="headerContent"
+        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+        placeholder="位于 head 标签尾部，你可以在这里插入脚本代码"
+      ></textarea>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
-      <textarea nz-input formControlName="footerContent" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
+      <textarea
+        nz-input
+        formControlName="footerContent"
+        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+        placeholder="现有变量：${total} = 网站数量"
+      ></textarea>
     </nz-form-control>
   </nz-form-item>
 
@@ -200,7 +226,11 @@
   <nz-form-item class="sim-ban">
     <nz-form-label [nzSpan]="4" nzRequired>Banner</nz-form-label>
     <nz-form-control [nzSpan]="20">
-      <nz-table #basicTable [nzData]="settings.simThemeImages" [nzShowPagination]="false">
+      <nz-table
+        #basicTable
+        [nzData]="settings.simThemeImages"
+        [nzShowPagination]="false"
+      >
         <thead>
           <tr>
             <th>{{ $t('_backgroundImage') }}</th>
@@ -216,10 +246,12 @@
                 nz-input
                 type="text"
                 [value]="data['src']"
-                style="width: 180px;margin-right: 10px;"
+                style="width: 180px; margin-right: 10px"
                 (change)="onChangeSimBannerUrl($event, idx)"
               />
-              <app-upload (onChange)="onSimBannerChange($event, idx)"></app-upload>
+              <app-upload
+                (onChange)="onSimBannerChange($event, idx)"
+              ></app-upload>
             </td>
             <td>
               <input
@@ -259,16 +291,26 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_bannerHeight') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4" nzRequired>{{
+      $t('_bannerHeight')
+    }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
-      <nz-slider formControlName="simThemeHeight" [nzMin]="100" [nzMax]="1000"></nz-slider>
+      <nz-slider
+        formControlName="simThemeHeight"
+        [nzMin]="100"
+        [nzMax]="1000"
+      ></nz-slider>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_desc') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
-      <textarea nz-input formControlName="simThemeDesc" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
+      <textarea
+        nz-input
+        formControlName="simThemeDesc"
+        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+      ></textarea>
     </nz-form-control>
   </nz-form-item>
 
@@ -276,7 +318,9 @@
   <h2 class="title">Shortcut {{ $t('_theme') }}</h2>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{ $t('_showWeather') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+      $t('_showWeather')
+    }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label nz-checkbox formControlName="shortcutThemeShowWeather"></label>
     </nz-form-control>
@@ -293,7 +337,7 @@
         type="text"
         [value]="settings.shortcutThemeImages[0]['src']"
         (change)="onShortcutImgChange($event)"
-        style="width: 300px;margin-top: 10px;"
+        style="width: 300px; margin-top: 10px"
       />
     </nz-form-control>
   </nz-form-item>
@@ -304,7 +348,11 @@
   <nz-form-item class="sim-ban">
     <nz-form-label [nzSpan]="4" nzRequired>Banner</nz-form-label>
     <nz-form-control [nzSpan]="20">
-      <nz-table #basicTable [nzData]="settings.sideThemeImages" [nzShowPagination]="false">
+      <nz-table
+        #basicTable
+        [nzData]="settings.sideThemeImages"
+        [nzShowPagination]="false"
+      >
         <thead>
           <tr>
             <th>{{ $t('_backgroundImage') }}</th>
@@ -320,10 +368,12 @@
                 nz-input
                 type="text"
                 [value]="data['src']"
-                style="width: 180px;margin-right: 10px;"
+                style="width: 180px; margin-right: 10px"
                 (change)="onChangeSideBannerUrl($event, idx)"
               />
-              <app-upload (onChange)="onSideBannerChange($event, idx)"></app-upload>
+              <app-upload
+                (onChange)="onSideBannerChange($event, idx)"
+              ></app-upload>
             </td>
             <td>
               <input
@@ -363,9 +413,15 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_bannerHeight') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4" nzRequired>{{
+      $t('_bannerHeight')
+    }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
-      <nz-slider formControlName="sideThemeHeight" [nzMin]="100" [nzMax]="1000"></nz-slider>
+      <nz-slider
+        formControlName="sideThemeHeight"
+        [nzMin]="100"
+        [nzMax]="1000"
+      ></nz-slider>
     </nz-form-control>
   </nz-form-item>
 
@@ -375,7 +431,11 @@
   <nz-form-item class="sim-ban">
     <nz-form-label [nzSpan]="4">{{ $t('_mirrorList') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
-      <nz-table #basicTable [nzData]="settings.mirrorList" [nzShowPagination]="false">
+      <nz-table
+        #basicTable
+        [nzData]="settings.mirrorList"
+        [nzShowPagination]="false"
+      >
         <thead>
           <tr>
             <th>{{ $t('_mirrorAddr') }}</th>
@@ -391,7 +451,7 @@
                 type="text"
                 [value]="data['url']"
                 (change)="onChangeMirrorUrl($event, idx)"
-                style="width: 100%;margin-right: 10px;"
+                style="width: 100%; margin-right: 10px"
               />
             </td>
             <td width="400px">
@@ -441,5 +501,3 @@
     </nz-form-control>
   </nz-form-item>
 </form>
-
-

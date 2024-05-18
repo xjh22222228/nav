@@ -1,5 +1,5 @@
 <nz-modal
-  [nzWidth]="560"
+  [nzWidth]="570"
   [(nzVisible)]="visible"
   [nzTitle]="detail ? $t('_edit') : $t('_add')"
   (nzOnCancel)="handleCancel()"
@@ -116,7 +116,7 @@
         <nz-form-control [nzSpan]="20">
           <textarea
             formControlName="desc"
-            placeholder="发现导航, 精选实用导航网站"
+            [placeholder]="settings.description"
             nz-input
             [nzAutosize]="{ minRows: 3, maxRows: 5 }"
           >

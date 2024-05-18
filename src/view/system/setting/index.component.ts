@@ -15,24 +15,24 @@ import { settings } from 'src/store'
 @Component({
   selector: 'system-setting',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export default class SystemSettingComponent {
   $t = $t
-  validateForm!: FormGroup;
+  validateForm!: FormGroup
   submitting: boolean = false
   settings = settings
 
-  constructor (
+  constructor(
     private fb: FormBuilder,
     private notification: NzNotificationService,
     private message: NzMessageService,
-    private modal: NzModalService,
+    private modal: NzModalService
   ) {}
 
-  ngOnInit () {
+  ngOnInit() {
     this.validateForm = this.fb.group({
-      ...settings
+      ...settings,
     })
   }
 
@@ -40,7 +40,7 @@ export default class SystemSettingComponent {
     this.settings.favicon = data.cdn || data.target?.value || ''
   }
 
-// Sim ===========================
+  // Sim ===========================
   onSimBannerChange(data: any, idx: number) {
     this.settings.simThemeImages[idx]['src'] = data.cdn
   }
@@ -61,11 +61,11 @@ export default class SystemSettingComponent {
 
   onAddSimBanner() {
     this.settings.simThemeImages.push({
-      ...this.settings.simThemeImages[0]
+      ...this.settings.simThemeImages[0],
     })
   }
 
-// Side ===========================
+  // Side ===========================
   onSideBannerChange(data: any, idx: number) {
     this.settings.sideThemeImages[idx]['src'] = data.cdn
   }
@@ -86,11 +86,11 @@ export default class SystemSettingComponent {
 
   onAddSideBanner() {
     this.settings.sideThemeImages.push({
-      ...this.settings.sideThemeImages[0]
+      ...this.settings.sideThemeImages[0],
     })
   }
 
-// Mirror ===========================
+  // Mirror ===========================
   onMirrorBannerChange(data: any, idx: number) {
     this.settings.sideThemeImages[idx]['src'] = data.cdn
   }
@@ -99,7 +99,7 @@ export default class SystemSettingComponent {
     this.settings.mirrorList.push({
       url: '',
       icon: '',
-      name: ''
+      name: '',
     })
   }
 
@@ -141,27 +141,27 @@ export default class SystemSettingComponent {
           simThemeImages: this.settings.simThemeImages,
           shortcutThemeImages: this.settings.shortcutThemeImages,
           sideThemeImages: this.settings.sideThemeImages,
-          mirrorList: this.settings.mirrorList.filter(item => (
-            item['url'] && item['name']
-          ))
+          mirrorList: this.settings.mirrorList.filter(
+            (item) => item['url'] && item['name']
+          ),
         }
 
         this.submitting = true
         updateFileContent({
           message: 'Update settings',
           content: JSON.stringify(values, null, 2),
-          path: SETTING_PATH
+          path: SETTING_PATH,
         })
           .then(() => {
             this.message.success($t('_saveSuccess'))
           })
-          .catch(res => {
+          .catch((res) => {
             this.notification.error($t('_error'), res.message as string)
           })
           .finally(() => {
             this.submitting = false
           })
-      }
+      },
     })
   }
 }

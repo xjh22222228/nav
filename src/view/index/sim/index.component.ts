@@ -10,13 +10,12 @@ import {
   queryString,
   setWebsiteList,
   toggleCollapseAll,
-  totalWeb,
   matchCurrentList,
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { initRipple } from 'src/utils/ripple'
 import { websiteList } from 'src/store'
-import { settings } from 'src/store'
+import { settings, internal } from 'src/store'
 
 @Component({
   selector: 'app-sim',
@@ -35,7 +34,7 @@ export default class SimComponent {
   simThemeAutoplay = settings.simThemeAutoplay
   description: string = settings.simThemeDesc.replace(
     '${total}',
-    String(totalWeb())
+    String(isLogin ? internal.loginViewCount : internal.userViewCount)
   )
   isLogin = isLogin
   sliceMax = 1
