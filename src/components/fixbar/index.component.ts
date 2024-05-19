@@ -2,7 +2,13 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core'
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core'
 import { isDark as isDarkFn, randomBgImg, queryString } from '../../utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -37,24 +43,24 @@ export class FixbarComponent {
   themeList = [
     {
       name: $t('_switchTo') + ' Light',
-      url: '/light'
+      url: '/light',
     },
     {
       name: $t('_switchTo') + ' Sim',
-      url: '/sim'
+      url: '/sim',
     },
     {
       name: $t('_switchTo') + ' Side',
-      url: '/side'
+      url: '/side',
     },
     {
       name: $t('_switchTo') + ' Shortcut',
-      url: '/shortcut'
+      url: '/shortcut',
     },
     {
       name: $t('_switchTo') + ' App',
-      url: '/app'
-    }
+      url: '/app',
+    },
   ]
 
   constructor(
@@ -63,22 +69,22 @@ export class FixbarComponent {
     private modal: NzModalService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
-
-  ngOnInit() {
+  ) {
     if (this.isDark) {
       document.documentElement.classList.add('dark-container')
     }
 
     const url = this.router.url.split('?')[0]
-    this.themeList = this.themeList.filter(t => {
+    this.themeList = this.themeList.filter((t) => {
       return t.url !== url
     })
   }
 
+  ngOnInit() {}
+
   toggleTheme(theme) {
     this.router.navigate([theme.url], {
-      queryParams: queryString()
+      queryParams: queryString(),
     })
     this.removeBackground()
   }
@@ -94,7 +100,7 @@ export class FixbarComponent {
 
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }
 
@@ -110,7 +116,10 @@ export class FixbarComponent {
   toggleMode() {
     this.isDark = !this.isDark
     mitt.emit('dark', this.isDark)
-    window.localStorage.setItem(STORAGE_KEY_MAP.isDark, String(Number(this.isDark)))
+    window.localStorage.setItem(
+      STORAGE_KEY_MAP.isDark,
+      String(Number(this.isDark))
+    )
     document.documentElement.classList.toggle('dark-container')
 
     if (this.isDark) {
@@ -138,27 +147,27 @@ export class FixbarComponent {
       nzOkText: $t('_confirmSync'),
       nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
-        this.syncLoading = true;
+        this.syncLoading = true
 
         updateFileContent({
           message: 'update db',
           content: JSON.stringify(this.websiteList),
-          path: DB_PATH
+          path: DB_PATH,
         })
-        .then(() => {
-          this.message.success($t('_syncSuccessTip'))
-        })
-        .catch(res => {
-          this.notification.error(
-            `${$t('_error')}: ${res?.response?.status ?? 1401}`,
-            $t('_syncFailTip')
-          )
-        })
-        .finally(() => {
-          this.syncLoading = false
-        })
-      }
-    });
+          .then(() => {
+            this.message.success($t('_syncSuccessTip'))
+          })
+          .catch((res) => {
+            this.notification.error(
+              `${$t('_error')}: ${res?.response?.status ?? 1401}`,
+              $t('_syncFailTip')
+            )
+          })
+          .finally(() => {
+            this.syncLoading = false
+          })
+      },
+    })
   }
 
   toggleLocale() {

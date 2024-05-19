@@ -6,3 +6,11 @@
   display: flex;
   justify-content: space-around;
 }
+.breadcrumb1 {
+  margin-bottom: 10px;
+  padding-left: 5px;
+  font-weight: bold;
+  .arrow {
+    margin: 0 8px 0 5px;
+  }
+}

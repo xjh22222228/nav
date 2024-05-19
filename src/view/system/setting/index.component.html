@@ -142,6 +142,15 @@
   </nz-form-item>
 
   <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired
+      >显示切换主题</nz-form-label
+    >
+    <nz-form-control [nzSpan]="20">
+      <label nz-checkbox formControlName="showThemeToggle"></label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
     <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
       $t('_defTheme')
     }}</nz-form-label>

@@ -22,7 +22,7 @@ const tagKeys = Object.keys(tagMap)
   styleUrls: ['./index.component.scss'],
 })
 export class CreateWebComponent implements OnInit {
-  @Input() detail: object
+  @Input() detail
   @Input() visible: boolean
   @Output() onCancel = new EventEmitter()
   @Output() onOk = new EventEmitter()
@@ -208,7 +208,7 @@ export class CreateWebComponent implements OnInit {
     const payload = {
       name: title,
       createdAt: (this.detail as any)?.createdAt ?? createdAt,
-      rate: rate ?? 0,
+      rate: rate ?? 5,
       desc: desc || '',
       top: top ?? false,
       ownVisible: ownVisible ?? false,

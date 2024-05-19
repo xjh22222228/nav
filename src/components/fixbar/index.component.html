@@ -4,6 +4,7 @@
     nz-dropdown
     [nzDropdownMenu]="menu"
     nzPlacement="topLeft"
+    *ngIf="settings.showThemeToggle"
   >
     <img src="assets/img/theme.svg" />
   </div>
@@ -30,21 +31,44 @@
   </span>
 
   <span *ngIf="isLogin" nz-tooltip [nzTooltipTitle]="$t('_addData')">
-    <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="goSystemPage()">
+    <div
+      class="wrapper dark-bg dark-border-color dark-action-hover"
+      (click)="goSystemPage()"
+    >
       <i class="iconfont iconchuangjian"></i>
     </div>
   </span>
-  
-  <span *ngIf="showCollapse" nz-tooltip [nzTooltipTitle]="collapsed ? $t('_collapse') : $t('_put')">
-    <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="collapse()">
-      <i class="iconfont iconweibiaoti25 collapse" [class.active]="collapsed"></i>
+
+  <span
+    *ngIf="showCollapse"
+    nz-tooltip
+    [nzTooltipTitle]="collapsed ? $t('_collapse') : $t('_put')"
+  >
+    <div
+      class="wrapper dark-bg dark-border-color dark-action-hover"
+      (click)="collapse()"
+    >
+      <i
+        class="iconfont iconweibiaoti25 collapse"
+        [class.active]="collapsed"
+      ></i>
     </div>
   </span>
 
-  <span nz-tooltip [nzTooltipTitle]="isDark ? $t('_closeDark') : $t('_openDark')">
-    <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleMode()">
+  <span
+    nz-tooltip
+    [nzTooltipTitle]="isDark ? $t('_closeDark') : $t('_openDark')"
+  >
+    <div
+      class="wrapper dark-bg dark-border-color dark-action-hover"
+      (click)="toggleMode()"
+    >
       <i class="iconfont icondark dark" *ngIf="!isDark"></i>
-      <img class="iconfont icondark" src="assets/img/light.svg" *ngIf="isDark">
+      <img
+        class="iconfont icondark"
+        src="assets/img/light.svg"
+        *ngIf="isDark"
+      />
     </div>
   </span>
 
@@ -59,10 +83,7 @@
     </div>
     <nz-dropdown-menu #menuMirror="nzDropdownMenu">
       <ul nz-menu nzSelectable>
-        <li
-          nz-menu-item
-          *ngFor="let item of settings.mirrorList"
-        >
+        <li nz-menu-item *ngFor="let item of settings.mirrorList">
           <a [href]="item['url']">
             {{ item['name'] }}
           </a>
@@ -72,13 +93,27 @@
   </div>
 
   <span *ngIf="settings.showLanguage">
-    <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="toggleLocale()">
-      <img class="iconfont" src="assets/img/china.svg" *ngIf="language === 'zh-CN'">
-      <img class="iconfont" src="assets/img/ua.svg" *ngIf="!language || language === 'en'">
+    <div
+      class="wrapper dark-bg dark-border-color dark-action-hover"
+      (click)="toggleLocale()"
+    >
+      <img
+        class="iconfont"
+        src="assets/img/china.svg"
+        *ngIf="language === 'zh-CN'"
+      />
+      <img
+        class="iconfont"
+        src="assets/img/ua.svg"
+        *ngIf="!language || language === 'en'"
+      />
     </div>
   </span>
-  
-  <div class="wrapper dark-bg dark-border-color dark-action-hover" (click)="goTop()">
+
+  <div
+    class="wrapper dark-bg dark-border-color dark-action-hover"
+    (click)="goTop()"
+  >
     <i class="iconfont iconjiantouarrow483 arrow"></i>
   </div>
 </div>

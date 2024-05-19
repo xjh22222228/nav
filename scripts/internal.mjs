@@ -6,9 +6,14 @@ import path from 'path'
 
 const dbPath = path.join('.', 'data', 'db.json')
 const internalPath = path.join('.', 'data', 'internal.json')
+const settingsPath = path.join('.', 'data', 'settings.json')
 
 const internal = JSON.parse(fs.readFileSync(internalPath).toString())
 const db = JSON.parse(fs.readFileSync(dbPath).toString())
+const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
+
+settings.showThemeToggle ??= true
+fs.writeFileSync(settingsPath, JSON.stringify(settings), { encoding: 'utf-8' })
 
 // 统计网站数量
 export function getWebCount(websiteList) {
@@ -64,3 +69,42 @@ userViewCount: ${internal.userViewCount}
 loginViewCount: ${internal.loginViewCount}
 `)
 fs.writeFileSync(internalPath, JSON.stringify(internal), { encoding: 'utf-8' })
+
+// 设置网站的面包屑类目显示
+function setWeb(nav) {
+  if (!Array.isArray(nav)) return
+
+  for (let i = 0; i < nav.length; i++) {
+    const item = nav[i]
+
+    if (item.nav) {
+      for (let j = 0; j < item.nav.length; j++) {
+        const navItem = item.nav[j]
+        if (navItem.nav) {
+          for (let k = 0; k < navItem.nav.length; k++) {
+            const navItemItem = navItem.nav[k]
+            if (navItemItem.nav) {
+              for (let l = 0; l < navItemItem.nav.length; l++) {
+                let breadcrumb = []
+                const navItemItemItem = navItemItem.nav[l]
+                breadcrumb.push(item.title, navItem.title, navItemItem.title)
+                breadcrumb = breadcrumb.filter(Boolean)
+                navItemItemItem.breadcrumb = breadcrumb
+
+                // 新字段补充
+                navItemItemItem.urls ||= {}
+                navItemItemItem.rate ??= 5
+                navItemItemItem.top ??= false
+                navItemItemItem.ownVisible ??= false
+                navItemItemItem.desc ||= ''
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return nav
+}
+const data = setWeb(db)
+fs.writeFileSync(dbPath, JSON.stringify(data), { encoding: 'utf-8' })

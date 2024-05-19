@@ -7,6 +7,15 @@
   [nzOkLoading]="uploading"
 >
   <ng-container *nzModalContent>
+    <div class="breadcrumb1" *ngIf="detail?.breadcrumb">
+      <span *ngFor="let n of detail.breadcrumb; let idx = index"
+        >{{ n }}
+        <span class="arrow" *ngIf="idx !== detail.breadcrumb.length - 1"
+          >/</span
+        ></span
+      >
+    </div>
+
     <form nz-form [formGroup]="validateForm">
       <nz-form-item>
         <nz-form-label [nzSpan]="4" nzRequired>{{

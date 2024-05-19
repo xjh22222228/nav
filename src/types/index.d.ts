@@ -27,6 +27,7 @@ export interface INavFourProp {
   top?: boolean
   index?: number // sort
   ownVisible?: boolean
+  breadcrumb: string[]
   urls?: {
     [tagName: string]: string
   }
@@ -91,6 +92,7 @@ export interface ISettings {
   showLanguage: boolean
   showCopy: Boolean | undefined
   showShare: Boolean | undefined
+  showThemeToggle: Boolean
   actionUrl?: string | null
 
   simThemeImages: Record<string, string>[]

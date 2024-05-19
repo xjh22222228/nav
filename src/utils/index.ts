@@ -246,10 +246,6 @@ export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
       if (!item.icon && parentItem?.icon) {
         item.icon = parentItem.icon
       }
-
-      item.urls ||= {}
-      item.rate ??= 5
-      item.top ??= false
     }
   }
 

@@ -146,7 +146,7 @@ const zhCN: Record<string, string> = {
   _mirrorList: '镜像列表',
   _mirrorAddr: '镜像地址',
   _mirrorName: '镜像名称',
-  _showRate: '显示评分',
+  _showRate: '显示卡片评分',
   _showCopy: '显示卡片复制',
   _showShare: '显示卡片分享',
   _angleMark: '角标设置',
