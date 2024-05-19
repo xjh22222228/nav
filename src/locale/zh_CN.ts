@@ -56,7 +56,7 @@ const zhCN: Record<string, string> = {
   _acceptPng: '仅支持 PNG 格式',
   _updateLogoSuccess: '更换成功, 由于CDN缓存问题需要次日更新',
   _updateLogoFail: '更换LOGO失败，请重试！',
-  _resetInitData: '撤销所有操作',
+  _resetInitData: '撤销本次所有操作',
   _confirmReset: '确定重置',
   _warnReset: '当前所有操作将还原到上次构建状态',
   _resetSuccess: '数据已重置回初始状态',
@@ -74,7 +74,7 @@ const zhCN: Record<string, string> = {
   _importChrome: '从Chrome书签导入',
   _allContentMsg1: '1、所有数据设置完毕后点击 “同步到远端”，拖拽表格进行排序',
   _allContentMsg2: '2、网站分类需手动维护,',
-  _updateLogo: '更换LOGO, 仅支持 PNG, 200x200',
+  _updateLogo: '更换LOGO, 建议200x200',
   _tagName: '标签名称',
   _onlyOwnVisible: '仅自己可见',
   _createAt: '创建时间',
@@ -142,15 +142,15 @@ const zhCN: Record<string, string> = {
   _autoPlay: '自动轮播',
   _importBackup: '导入备份',
   _importBackupTip: '导入后会将当前所有网站数据清空并导入',
-  _showLanguage: "显示切换语言",
-  _mirrorList: "镜像列表",
-  _mirrorAddr: "镜像地址",
-  _mirrorName: "镜像名称",
-  _showRate: "显示评分",
-  _showCopy: "显示卡片复制",
-  _showShare: "显示卡片分享",
-  _angleMark: "角标设置",
-  _logout: '登出'
+  _showLanguage: '显示切换语言',
+  _mirrorList: '镜像列表',
+  _mirrorAddr: '镜像地址',
+  _mirrorName: '镜像名称',
+  _showRate: '显示评分',
+  _showCopy: '显示卡片复制',
+  _showShare: '显示卡片分享',
+  _angleMark: '角标设置',
+  _logout: '登出',
 }
 
-export default zhCN;
+export default zhCN

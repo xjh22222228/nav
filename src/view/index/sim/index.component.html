@@ -30,7 +30,6 @@
       *ngFor="let item of websiteList; let i = index"
       [class.active]="page === i"
       [class.dark-text-active]="page === i"
-      [class.remove]="!isLogin && item.ownVisible"
       class="ripple-btn dark-text"
       (click)="handleCilckTopNav(i)"
     >
@@ -46,7 +45,6 @@
           (click)="handleSidebarNav(i)"
           [class.active]="id === i"
           [class.dark-item-active]="id === i"
-          [class.remove]="!isLogin && item.ownVisible"
           class="ripple-btn dark-text"
         >
           {{ item.title }}
@@ -74,7 +72,6 @@
                 nz-col
                 [nzSpan]="8"
                 *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
-                [class.remove]="!isLogin && el.ownVisible"
               >
                 <app-card
                   [dataSource]="el"

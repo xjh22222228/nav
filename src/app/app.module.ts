@@ -57,7 +57,6 @@ import { MoveSiteComponent } from '../components/move-site/index.component'
 
 import LightComponent from '../view/index/light/index.component'
 import SimComponent from '../view/index/sim/index.component'
-import AdminComponent from '../view/admin/index.component'
 import SystemComponent from '../view/system/index.component'
 import SystemInfoComponent from '../view/system/info/index.component'
 import SystemBookmarkComponent from '../view/system/bookmark/index.component'
@@ -100,7 +99,6 @@ const icons: IconDefinition[] = [
     SimComponent,
     SideComponent,
     ShortcutComponent,
-    AdminComponent,
     SystemComponent,
     SystemInfoComponent,
     SystemBookmarkComponent,

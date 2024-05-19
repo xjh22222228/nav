@@ -8,12 +8,11 @@
     </app-fixbar>
 
     <nav class="top-nav user-select-none dark-border-color dark-bg">
-      <a 
-        *ngFor="let item of websiteList; index as i;" 
-        (click)="handleCilckTopNav(i)" 
-        [class.active]="page === i" 
-        [class.dark-text-active]="page === i" 
-        [class.remove]="!isLogin && item.ownVisible"
+      <a
+        *ngFor="let item of websiteList; index as i"
+        (click)="handleCilckTopNav(i)"
+        [class.active]="page === i"
+        [class.dark-text-active]="page === i"
         class="ripple-btn dark-text"
       >
         {{ item.title }}
@@ -23,13 +22,12 @@
     <section class="index-section user-select-none dark-bg">
       <aside class="sidebar dark-bg dark-border-color" id="sidebar">
         <ul *ngIf="websiteList[page]">
-          <li 
-            class="tag dark-text" 
-            [class.active]="id === i" 
-            [class.dark-item-active]="id === i" 
+          <li
+            class="tag dark-text"
+            [class.active]="id === i"
+            [class.dark-item-active]="id === i"
             (click)="handleSidebarNav(i)"
-            *ngFor="let item of websiteList[page].nav; index as i" 
-            [class.remove]="!isLogin && item.ownVisible"
+            *ngFor="let item of websiteList[page].nav; index as i"
           >
             <div class="ripple-btn">{{ item.title }}</div>
           </li>
@@ -38,9 +36,9 @@
 
       <div class="main dark-scrollbar">
         <app-search-engine></app-search-engine>
- 
+
         <div *ngIf="currentList.length > 0; else noData">
-          <div *ngFor="let item of currentList.slice(0, sliceMax); index as i" [class.remove]="!isLogin && item.ownVisible">
+          <div *ngFor="let item of currentList.slice(0, sliceMax); index as i">
             <app-toolbar-title
               [dataSource]="item"
               (onCollapse)="onCollapse(item, i)"
@@ -49,7 +47,7 @@
             </app-toolbar-title>
 
             <div
-              style="padding: 0 10px;"
+              style="padding: 0 10px"
               nz-row
               [nzGutter]="[16, 16]"
               [style.display]="item.collapsed ? 'none' : ''"
@@ -59,14 +57,16 @@
                 nz-col
                 [nzSpan]="8"
                 *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
-                [class.remove]="!isLogin && el.ownVisible"
               >
-                <app-card [dataSource]="el" [indexs]="[page, id, i, j]"></app-card>
+                <app-card
+                  [dataSource]="el"
+                  [indexs]="[page, id, i, j]"
+                ></app-card>
               </div>
             </div>
           </div>
         </div>
-        
+
         <ng-template #noData>
           <app-no-data></app-no-data>
         </ng-template>

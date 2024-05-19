@@ -12,7 +12,10 @@ import {
   internalProps,
 } from 'src/types'
 
-export const settings: ISettings = (__settings as any).default
+export const settings: ISettings = {
+  ...(__settings as any).default,
+  actionUrl: '',
+}
 
 export const searchEngineList: ISearchEngineProps[] = (s as any).default
 

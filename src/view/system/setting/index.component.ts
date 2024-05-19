@@ -28,13 +28,13 @@ export default class SystemSettingComponent {
     private notification: NzNotificationService,
     private message: NzMessageService,
     private modal: NzModalService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.validateForm = this.fb.group({
       ...settings,
     })
   }
+
+  ngOnInit() {}
 
   onLogoChange(data: any) {
     this.settings.favicon = data.cdn || data.target?.value || ''
@@ -149,7 +149,7 @@ export default class SystemSettingComponent {
         this.submitting = true
         updateFileContent({
           message: 'Update settings',
-          content: JSON.stringify(values, null, 2),
+          content: JSON.stringify(values),
           path: SETTING_PATH,
         })
           .then(() => {

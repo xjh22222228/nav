@@ -91,6 +91,7 @@ export interface ISettings {
   showLanguage: boolean
   showCopy: Boolean | undefined
   showShare: Boolean | undefined
+  actionUrl?: string | null
 
   simThemeImages: Record<string, string>[]
   simThemeDesc: string

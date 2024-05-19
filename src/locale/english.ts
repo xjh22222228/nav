@@ -1,4 +1,3 @@
-
 const english: Record<string, string> = {
   _webTitle: 'Discovery Navigation',
   _uncategorized: 'Unclassified',
@@ -37,7 +36,8 @@ const english: Record<string, string> = {
   _syncDataOut: 'Synchronize data to remote',
   _confirmSync: 'OK to sync',
   _confirmSyncTip: 'Are you sure to synchronize all data to the remote end?',
-  _syncSuccessTip: 'The synchronization is successful. It takes about 5 minutes to build',
+  _syncSuccessTip:
+    'The synchronization is successful. It takes about 5 minutes to build',
   _error: 'Error',
   _syncFailTip: 'Synchronization failed, please try again',
   _inputToken: 'Please enter token',
@@ -55,7 +55,8 @@ const english: Record<string, string> = {
   _errorBookTip: 'Error: bookmark resolution failed',
   _importSuccess: 'Import succeeded!',
   _acceptPng: 'Only PNG format is supported',
-  _updateLogoSuccess: 'The replacement was successful. It needs to be updated the next day due to CDN cache problems',
+  _updateLogoSuccess:
+    'The replacement was successful. It needs to be updated the next day due to CDN cache problems',
   _updateLogoFail: 'Failed to replace logo, please try again!',
   _resetInitData: 'Undo all actions',
   _confirmReset: 'OK reset',
@@ -73,14 +74,16 @@ const english: Record<string, string> = {
   _addWeb: 'Add site',
   _clickEdit: 'Click Edit',
   _importChrome: 'Import from Chrome bookmarks',
-  _allContentMsg1: '1. After setting all data, click "synchronize to remote end" and drag the table to sort',
+  _allContentMsg1:
+    '1. After setting all data, click "synchronize to remote end" and drag the table to sort',
   _allContentMsg2: '2. Website category needs to be maintained manually,',
-  _updateLogo: 'Replace logo, only PNG is supported, 200x200',
+  _updateLogo: 'Replace logo, 200x200',
   _tagName: 'Category name',
   _onlyOwnVisible: 'Only Self',
   _createAt: 'Create At',
   _action: 'Action',
-  _delWarn: 'This will delete all data under the category. Are you sure you want to delete it?',
+  _delWarn:
+    'This will delete all data under the category. Are you sure you want to delete it?',
   _mgr1: 'Management level 1 category',
   _mgr2: 'Management level 2 category',
   _mgr3: 'Management level 3 category',
@@ -132,7 +135,8 @@ const english: Record<string, string> = {
   _headHtml: 'Head HTML',
   _showWeather: 'Show weather',
   _weatherTip: 'Currently only the "Shortcut" theme is supported',
-  _setSaveTip: 'Note: after saving successfully, you need to wait at least 5 minutes for the build time to take effect!',
+  _setSaveTip:
+    'Note: after saving successfully, you need to wait at least 5 minutes for the build time to take effect!',
   _theme: 'Theme',
   _backgroundImage: 'Background picture',
   _engineUrl: 'Engine URL',
@@ -142,16 +146,17 @@ const english: Record<string, string> = {
   _bannerHeight: 'Banner height',
   _autoPlay: 'Auto play',
   _importBackup: 'Import backup',
-  _importBackupTip: 'After importing, all current website data will be cleared and imported',
-  _showLanguage: "Display switch language",
-  _mirrorList: "Mirror list",
-  _mirrorAddr: "Mirror Address",
-  _mirrorName: "Mirror Name",
-  _showRate: "Show rate",
-  _showCopy: "显示卡片复制",
-  _showShare: "显示卡片分享",
-  _angleMark: "Angle Mark",
-  _logout: 'Logout'
+  _importBackupTip:
+    'After importing, all current website data will be cleared and imported',
+  _showLanguage: 'Display switch language',
+  _mirrorList: 'Mirror list',
+  _mirrorAddr: 'Mirror Address',
+  _mirrorName: 'Mirror Name',
+  _showRate: 'Show rate',
+  _showCopy: '显示卡片复制',
+  _showShare: '显示卡片分享',
+  _angleMark: 'Angle Mark',
+  _logout: 'Logout',
 }
 
 export default english

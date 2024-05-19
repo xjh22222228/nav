@@ -8,8 +8,7 @@
       <ul nz-menu nzMode="inline" class="sider-menu">
         <li
           nz-submenu
-          *ngFor="let item of websiteList; index as pageIdx;"
-          [class.remove]="!isLogin && item.ownVisible"
+          *ngFor="let item of websiteList; index as pageIdx"
           (nzOpenChange)="openMenu(item, pageIdx)"
           [nzTitle]="titleTpl"
           [nzOpen]="item['collapsed']"
@@ -22,15 +21,11 @@
           <ul>
             <li
               nz-menu-item
-              *ngFor="let el of item.nav; let idIdx = index;"
-              [class.remove]="!isLogin && item.ownVisible"
+              *ngFor="let el of item.nav; let idIdx = index"
               [nzSelected]="page === pageIdx && id === idIdx"
-              (click)="handleSidebarNav(pageIdx, idIdx)" 
+              (click)="handleSidebarNav(pageIdx, idIdx)"
             >
-              <app-ellipsis
-                [text]="el.title || ''"
-                [icon]="el.icon || ''"
-              >
+              <app-ellipsis [text]="el.title || ''" [icon]="el.icon || ''">
               </app-ellipsis>
 
               <div
@@ -51,7 +46,10 @@
     </nz-sider>
 
     <nz-layout class="inner-layout">
-      <div class="search-header dark-bg-deep dark-border-color" [ngStyle]="{height: sideThemeHeight + 'px'}">
+      <div
+        class="search-header dark-bg-deep dark-border-color"
+        [ngStyle]="{ height: sideThemeHeight + 'px' }"
+      >
         <div class="bg">
           <nz-carousel
             nzEffect="scrollx"
@@ -66,8 +64,7 @@
               *ngFor="let item of sideThemeImages"
               [ngStyle]="{ 'background-image': 'url(' + item['src'] + ')' }"
               (click)="handleJumpUrl(item)"
-            >
-            </div>
+            ></div>
           </nz-carousel>
         </div>
         <app-search-engine></app-search-engine>
@@ -78,7 +75,9 @@
 
         <div class="box">
           <div *ngIf="currentList.length > 0; else noData">
-            <div *ngFor="let item of currentList.slice(0, sliceMax); let i=index">
+            <div
+              *ngFor="let item of currentList.slice(0, sliceMax); let i = index"
+            >
               <div class="nav-wrapper">
                 <app-toolbar-title
                   [dataSource]="item"
@@ -87,12 +86,15 @@
                   arrowType="2"
                 >
                 </app-toolbar-title>
-      
-                <div nz-row [nzGutter]="[16, 16]" [style.display]="item.collapsed ? 'none' : ''">
+
+                <div
+                  nz-row
+                  [nzGutter]="[16, 16]"
+                  [style.display]="item.collapsed ? 'none' : ''"
+                >
                   <div
-                    *ngFor="let el of item.nav.slice(0, sliceMax); index as j;"
+                    *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
                     class="gutter-row"
-                    [class.remove]="!isLogin && el.ownVisible"
                     nz-col
                     [nzSpan]="6"
                     [nzXs]="24"
@@ -102,7 +104,10 @@
                     [nzXl]="6"
                     [nzXXl]="6"
                   >
-                    <app-card [dataSource]="el" [indexs]="[page, id, i, j]"></app-card>
+                    <app-card
+                      [dataSource]="el"
+                      [indexs]="[page, id, i, j]"
+                    ></app-card>
                   </div>
                 </div>
               </div>
@@ -120,8 +125,5 @@
   </nz-layout>
 </nz-layout>
 
-<app-fixbar
-  (onCollapse)="onCollapseAll($event)"
-  [collapsed]="collapsed()"
->
+<app-fixbar (onCollapse)="onCollapseAll($event)" [collapsed]="collapsed()">
 </app-fixbar>

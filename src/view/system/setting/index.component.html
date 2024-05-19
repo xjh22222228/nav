@@ -220,6 +220,17 @@
     </nz-form-control>
   </nz-form-item>
 
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">请求地址</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <input
+        nz-input
+        formControlName="actionUrl"
+        placeholder="通常用于部署自有服务器，当点击保存按钮时会发出GET请求填写的地址"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
   <div class="divider"></div>
   <h2 class="title">Sim {{ $t('_theme') }}</h2>
 

@@ -10,7 +10,7 @@
   <button nz-button style="margin: 0 15px 20px 15px" (click)="handleReset()">
     {{ $t('_resetInitData') }}
   </button>
-  <button nz-button (click)="handleDownloadBackup()">
+  <button nz-button (click)="handleDownloadBackup()" style="margin-right: 15px">
     {{ $t('_backup') }}
   </button>
 
@@ -509,7 +509,11 @@
         <nz-form-label [nzSpan]="6">IconFont {{ $t('_icon') }}</nz-form-label>
         <nz-form-control [nzSpan]="18">
           <nz-input-group>
-            <input formControlName="icon" nz-input />
+            <input
+              formControlName="icon"
+              nz-input
+              placeholder="用于某些主题侧边栏icon"
+            />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
