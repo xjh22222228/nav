@@ -16,7 +16,6 @@
   {{ $t('_save') }}
 </button>
 
-
 <nz-table #basicTable [nzData]="searchList">
   <thead>
     <tr>
@@ -34,7 +33,7 @@
         <input nz-input [(ngModel)]="data.name" maxlength="10" />
       </td>
       <td width="220px">
-        <input *ngIf="!data.isInner" nz-input [(ngModel)]="data.url" maxlength="300" />
+        <input *ngIf="!data.isInner" nz-input [(ngModel)]="data.url" />
       </td>
       <td width="260px" class="nowrap">
         <img *ngIf="data.icon" [src]="data.icon" class="icon" />
@@ -42,7 +41,7 @@
           nz-input
           type="text"
           [(ngModel)]="data.icon"
-          style="width: 180px;"
+          style="width: 180px"
         />
         <app-upload (onChange)="onChangeUpload($event, idx)"></app-upload>
       </td>
@@ -53,7 +52,7 @@
         <nz-switch [(ngModel)]="data.blocked"></nz-switch>
       </td>
       <td>
-        <div *ngIf="data.url">
+        <div *ngIf="!data.isInner">
           <a
             nz-popconfirm
             nzPopconfirmPlacement="rightTop"
