@@ -24,15 +24,16 @@
 
 **Themes**
 
-- [Sim online preview](https://nav3.cn/#/sim)
-- [Light online preview](https://nav3.cn/#/light)
-- [Side online preview](https://nav3.cn/#/side)
-- [App online preview](https://nav3.cn/#/app)
+- [Sim preview](https://nav3.cn/#/sim)
+- [Light preview](https://nav3.cn/#/light)
+- [Side preview](https://nav3.cn/#/side)
+- [App preview](https://nav3.cn/#/app)
 
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/1.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/2.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/3.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/4.png)
+![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/6.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/5.png)
 
 ## Features

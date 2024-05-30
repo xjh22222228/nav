@@ -29,11 +29,12 @@
 - [Side 在线预览](https://nav3.cn/#/side)
 - [App 在线预览](https://nav3.cn/#/app)
 
-![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/1.png)
-![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/2.png)
-![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/3.png)
-![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/4.png)
-![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/5.png)
+![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/1.png)
+![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/2.png)
+![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/3.png)
+![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/4.png)
+![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/6.png)
+![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/5.png)
 
 ## 特性
 
