@@ -95,14 +95,18 @@ export interface ISettings {
   showThemeToggle: Boolean
   actionUrl?: string | null
 
+  lightCardStyle: string
+
   simThemeImages: Record<string, string>[]
   simThemeDesc: string
   simThemeHeight: number
   simThemeAutoplay: boolean
+  simCardStyle: string
 
   sideThemeImages: Record<string, string>[]
   sideThemeHeight: number
   sideThemeAutoplay: boolean
+  sideCardStyle: string
 
   shortcutThemeImages: Record<string, string>[]
   shortcutThemeShowWeather: boolean

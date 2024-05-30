@@ -1,13 +1,15 @@
 .title {
   position: relative;
   font-size: 16px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   padding: 10px 0;
   padding-left: 5px;
   color: #3f51b5;
   font-weight: 500;
   display: flex;
   margin-bottom: 15px;
+  user-select: none;
+  margin-top: 10px;
 
   .add-icon {
     position: absolute;

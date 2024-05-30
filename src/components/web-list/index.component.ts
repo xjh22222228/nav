@@ -15,10 +15,11 @@ let DEFAULT_WEBSITE = []
 @Component({
   selector: 'app-web-list',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export class WebListComponent implements OnInit {
   @Input() max: number = 110
+  @Input() search = true
 
   websiteList: INavProps[] = websiteList
   dataList: INavFourProp[] = []
@@ -32,11 +33,11 @@ export class WebListComponent implements OnInit {
       const { q } = queryString()
       const result = fuzzySearch(this.websiteList, q)
 
-      if (q.trim()) {
+      if (this.search && q.trim()) {
         if (result.length === 0) {
-          this.dataList = [];
+          this.dataList = []
         } else {
-          this.dataList = result[0].nav.slice(0, this.max);
+          this.dataList = result[0].nav.slice(0, this.max)
         }
       } else {
         this.dataList = DEFAULT_WEBSITE
@@ -52,7 +53,7 @@ export class WebListComponent implements OnInit {
 
     function r(nav) {
       if (!Array.isArray(nav)) return
-  
+
       for (let i = 0; i < nav.length; i++) {
         if (dataList.length > max) {
           break
@@ -86,7 +87,7 @@ export class WebListComponent implements OnInit {
 
     function r(nav) {
       if (!Array.isArray(nav)) return
-  
+
       for (let i = 0; i < nav.length; i++) {
         const item = nav[i]
         if (item.url) {

@@ -31,9 +31,7 @@ export default class SideComponent {
   title: string = settings.title.trim().split(/\s/)[0]
   searchEngineList = searchEngineList
   isLogin = isLogin
-  sideThemeImages = settings.sideThemeImages
-  sideThemeHeight = settings.sideThemeHeight
-  sideThemeAutoplay = settings.sideThemeAutoplay
+  settings = settings
   sliceMax = 1
 
   constructor(

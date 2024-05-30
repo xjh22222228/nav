@@ -1,5 +1,5 @@
 <div
-  class="title dark-primary dark-border-color"
+  class="title tool-title dark-primary dark-border-color"
   *ngIf="dataSource && dataSource.title"
 >
   <span class="cursor-pointer" (click)="onCollapse.emit()">
@@ -24,7 +24,7 @@
       </i>
     </ng-template>
 
-    <span style="margin-left: 10px;align-self: center;vertical-align: middle;">
+    <span style="margin-left: 10px; align-self: center; vertical-align: middle">
       {{ dataSource.title }} x {{ dataSource.nav.length }}
     </span>
   </span>

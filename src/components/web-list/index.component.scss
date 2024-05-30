@@ -5,16 +5,16 @@
   padding: 0 30px;
   max-width: 960px;
   flex-wrap: wrap;
+  gap: 25px;
 
   .wrapper {
     display: flex;
-    margin-right: 15px;
     margin-bottom: 20px;
     text-align: center;
     cursor: pointer;
     align-items: center;
     flex-direction: column;
-    transition: transform .1s ease-in;
+    transition: transform 0.1s ease-in;
 
     &:hover {
       transform: translateY(-2px);

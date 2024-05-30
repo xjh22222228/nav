@@ -59,6 +59,7 @@
                 *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
               >
                 <app-card
+                  [cardStyle]="settings.lightCardStyle"
                   [dataSource]="el"
                   [indexs]="[page, id, i, j]"
                 ></app-card>

@@ -1,6 +1,14 @@
-<div class="shortcut dark-bg-gary2" [ngStyle]="{'background-image': 'url(' + shortcutThemeImage + ')'}">
+<div
+  class="shortcut dark-bg-gary2"
+  [ngStyle]="{ 'background-image': 'url(' + shortcutThemeImage + ')' }"
+>
   <div>
-    <h1 class="title dark-white" [ngStyle]="{color: shortcutThemeImage ? '#fff' : ''}">{{ title }}</h1>
+    <h1
+      class="title dark-white"
+      [ngStyle]="{ color: shortcutThemeImage ? '#fff' : '' }"
+    >
+      {{ title }}
+    </h1>
 
     <app-search-engine></app-search-engine>
 
@@ -12,10 +20,26 @@
 
 <div *ngIf="shortcutThemeShowWeather">
   <!-- 白色 -->
-  <iframe *ngIf="(isDark || shortcutThemeImage); else other_content" class="tianqi" allowtransparency="true" frameborder="0" width="290" height="96" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=2&bd=0&k=&f=ffffff&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=290&h=96&align=center"></iframe>
+  <iframe
+    *ngIf="isDark || shortcutThemeImage; else other_content"
+    class="tianqi"
+    allowtransparency="true"
+    frameborder="0"
+    width="290"
+    height="96"
+    scrolling="no"
+    src="//tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=2&bd=0&k=&f=ffffff&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=290&h=96&align=center"
+  ></iframe>
 
   <ng-template #other_content>
-    <iframe class="tianqi" allowtransparency="true" frameborder="0" width="290" height="96" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=2&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=290&h=96&align=center"></iframe>
+    <iframe
+      class="tianqi"
+      allowtransparency="true"
+      frameborder="0"
+      width="290"
+      height="96"
+      scrolling="no"
+      src="//tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=2&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=290&h=96&align=center"
+    ></iframe>
   </ng-template>
 </div>
-

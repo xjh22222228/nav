@@ -28,10 +28,7 @@ export default class SimComponent {
   id: number = 0
   page: number = 0
   gitRepoUrl: string = config.gitRepoUrl
-  title: string = settings.title
-  simThemeImages = settings.simThemeImages
-  simThemeHeight = settings.simThemeHeight
-  simThemeAutoplay = settings.simThemeAutoplay
+  settings = settings
   description: string = settings.simThemeDesc.replace(
     '${total}',
     String(isLogin ? internal.loginViewCount : internal.userViewCount)

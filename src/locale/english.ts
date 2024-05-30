@@ -157,6 +157,7 @@ const english: Record<string, string> = {
   _showShare: '显示卡片分享',
   _angleMark: 'Angle Mark',
   _logout: 'Logout',
+  _cardStyle: 'Card style',
 }
 
 export default english

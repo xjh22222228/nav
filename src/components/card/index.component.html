@@ -1,5 +1,5 @@
 <!-- 网站 -->
-<div class="container">
+<div class="container" *ngIf="cardStyle === 'standard'">
   <nz-card
     [nzActions]="
       isLogin
@@ -106,22 +106,36 @@
       </ul>
     </nz-dropdown-menu>
   </ng-template>
+
+  <app-create-web
+    *ngIf="showCreateModal"
+    [visible]="showCreateModal"
+    (onCancel)="toggleCreateModal()"
+    (onOk)="handleUpdateSiteOk($event)"
+    [detail]="dataSource"
+  >
+  </app-create-web>
+
+  <app-move-site
+    #moveSite
+    *ngIf="showMoveModal"
+    [indexs]="indexs"
+    [visible]="showMoveModal"
+    (onCancel)="toggleMoveModal()"
+  >
+  </app-move-site>
 </div>
 
-<app-create-web
-  *ngIf="showCreateModal"
-  [visible]="showCreateModal"
-  (onCancel)="toggleCreateModal()"
-  (onOk)="handleUpdateSiteOk($event)"
-  [detail]="dataSource"
+<a
+  [href]="dataSource.url"
+  target="_blank"
+  rel="noreferer noopener"
+  class="container example2 ellipsis dark-bg dark-white"
+  *ngIf="cardStyle === 'example'"
 >
-</app-create-web>
-
-<app-move-site
-  #moveSite
-  *ngIf="showMoveModal"
-  [indexs]="indexs"
-  [visible]="showMoveModal"
-  (onCancel)="toggleMoveModal()"
->
-</app-move-site>
+  <app-logo [src]="dataSource.icon || ''" [name]="dataSource.name"></app-logo>
+  <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
+    <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
+    <pre class="desc dark-text ellipsis" [innerHTML]="dataSource.desc"></pre>
+  </div>
+</a>

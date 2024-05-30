@@ -151,6 +151,7 @@ const zhCN: Record<string, string> = {
   _showShare: '显示卡片分享',
   _angleMark: '角标设置',
   _logout: '登出',
+  _cardStyle: '卡片风格',
 }
 
 export default zhCN

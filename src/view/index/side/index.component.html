@@ -45,22 +45,24 @@
 
     <nz-layout class="inner-layout">
       <div
-        *ngIf="sideThemeImages.length > 0 && sideThemeHeight > 0"
+        *ngIf="
+          settings.sideThemeImages.length > 0 && settings.sideThemeHeight > 0
+        "
         class="search-header dark-bg-deep dark-border-color"
-        [ngStyle]="{ height: sideThemeHeight + 'px' }"
+        [ngStyle]="{ height: settings.sideThemeHeight + 'px' }"
       >
         <div class="bg">
           <nz-carousel
             nzEffect="scrollx"
-            [nzAutoPlay]="sideThemeAutoplay"
-            [nzDots]="sideThemeImages.length > 1"
-            [nzEnableSwipe]="sideThemeImages.length > 1"
+            [nzAutoPlay]="settings.sideThemeAutoplay"
+            [nzDots]="settings.sideThemeImages.length > 1"
+            [nzEnableSwipe]="settings.sideThemeImages.length > 1"
             [nzAutoPlaySpeed]="5000"
           >
             <div
               class="bg-item"
               nz-carousel-content
-              *ngFor="let item of sideThemeImages"
+              *ngFor="let item of settings.sideThemeImages"
               [ngStyle]="{ 'background-image': 'url(' + item['src'] + ')' }"
               (click)="handleJumpUrl(item)"
             ></div>
@@ -70,7 +72,7 @@
       </div>
 
       <nz-content class="content" id="content">
-        <app-web-list></app-web-list>
+        <app-web-list [search]="false"></app-web-list>
 
         <div class="box">
           <div *ngIf="currentList.length > 0; else noData">
@@ -101,9 +103,10 @@
                     [nzMd]="12"
                     [nzLg]="8"
                     [nzXl]="6"
-                    [nzXXl]="6"
+                    [nzXXl]="settings.sideCardStyle === 'example' ? 4 : 6"
                   >
                     <app-card
+                      [cardStyle]="settings.sideCardStyle"
                       [dataSource]="el"
                       [indexs]="[page, id, i, j]"
                     ></app-card>

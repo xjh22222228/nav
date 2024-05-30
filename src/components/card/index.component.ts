@@ -35,6 +35,7 @@ const tagMap: ITagProp = (__tag as any).default
 export class CardComponent implements OnInit {
   @Input() dataSource: INavFourProp
   @Input() indexs: Array<number>
+  @Input() cardStyle: string = 'standard'
 
   @ViewChildren(MoveSiteComponent)
   moveSiteChild: QueryList<MoveSiteComponent>

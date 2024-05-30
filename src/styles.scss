@@ -1,9 +1,9 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-@import "./dark.scss";
-@import "../node_modules/ng-zorro-antd/ng-zorro-antd.css";
-@import "./assets/ng-zorro-antd.dark.scss";
+@import './dark.scss';
+@import '../node_modules/ng-zorro-antd/ng-zorro-antd.css';
+@import './assets/ng-zorro-antd.dark.scss';
 
 * {
   margin: 0;
@@ -22,7 +22,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-overflow-scrolling: touch;
-  font: 14px/1.5 -apple-system,BlinkSystemFont,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Helevetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei UI","Microsoft YaHei","Source Han Sans CN",sans-serif;
+  font: 14px/1.5 -apple-system, BlinkSystemFont, 'Segoe UI', Roboto, Ubuntu,
+    'Helvetica Neue', Helevetica, Arial, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei UI', 'Microsoft YaHei', 'Source Han Sans CN', sans-serif;
   font-size: 14px;
   color: #333;
 }
@@ -60,7 +62,7 @@ textarea {
   font-size: 100%;
 }
 
-input[type="text"],
+input[type='text'],
 button {
   -webkit-appearance: none;
   outline: none;
@@ -100,7 +102,7 @@ em {
   overflow: hidden;
 }
 .touch-active:active {
-  background: rgba(0, 0, 0, .2) !important;
+  background: rgba(0, 0, 0, 0.2) !important;
 }
 
 .cursor-pointer {
@@ -134,7 +136,7 @@ b {
   align-self: center;
   margin-left: 15px;
   cursor: pointer;
-  transition: .1s linear;
+  transition: 0.1s linear;
   color: #666;
   vertical-align: middle;
 
@@ -161,8 +163,49 @@ textarea.ant-input {
   word-break: break-all;
 }
 
-.has-ripple{position:relative;overflow:hidden;-webkit-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}.ripple{display:block;position:absolute;pointer-events:none;border-radius:50%;-webkit-transform:scale(0);-o-transform:scale(0);transform:scale(0);background:#fff;opacity:1}.ripple-animate{-webkit-animation:ripple;-o-animation:ripple;animation:ripple}@-webkit-keyframes ripple{100%{opacity:0;-webkit-transform:scale(2);transform:scale(2)}}@-o-keyframes ripple{100%{opacity:0;-o-transform:scale(2);transform:scale(2)}}@keyframes ripple{100%{opacity:0;transform:scale(2)}}
-
+.has-ripple {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.ripple {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  -webkit-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  background: #fff;
+  opacity: 1;
+}
+.ripple-animate {
+  -webkit-animation: ripple;
+  -o-animation: ripple;
+  animation: ripple;
+}
+@-webkit-keyframes ripple {
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2);
+    transform: scale(2);
+  }
+}
+@-o-keyframes ripple {
+  100% {
+    opacity: 0;
+    -o-transform: scale(2);
+    transform: scale(2);
+  }
+}
+@keyframes ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
 
 /* NProgress Make clicks pass-through */
 #nprogress {
@@ -189,11 +232,11 @@ textarea.ant-input {
   width: 100px;
   height: 100%;
   box-shadow: 0 0 10px #29d, 0 0 5px #29d;
-  opacity: 1.0;
+  opacity: 1;
 
   -webkit-transform: rotate(3deg) translate(0px, -4px);
-      -ms-transform: rotate(3deg) translate(0px, -4px);
-          transform: rotate(3deg) translate(0px, -4px);
+  -ms-transform: rotate(3deg) translate(0px, -4px);
+  transform: rotate(3deg) translate(0px, -4px);
 }
 
 /* Remove these to get rid of the spinner */
@@ -216,7 +259,7 @@ textarea.ant-input {
   border-radius: 50%;
 
   -webkit-animation: nprogress-spinner 400ms linear infinite;
-          animation: nprogress-spinner 400ms linear infinite;
+  animation: nprogress-spinner 400ms linear infinite;
 }
 
 .nprogress-custom-parent {
@@ -230,11 +273,32 @@ textarea.ant-input {
 }
 
 @-webkit-keyframes nprogress-spinner {
-  0%   { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 @keyframes nprogress-spinner {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
+.ellipsis {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.ellipsis2 {
+  word-break: break-all;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

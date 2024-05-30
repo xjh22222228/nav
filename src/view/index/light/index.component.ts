@@ -11,20 +11,19 @@ import {
   queryString,
   setWebsiteList,
   toggleCollapseAll,
-  matchCurrentList
+  matchCurrentList,
 } from '../../../utils'
 import { isLogin } from '../../../utils/user'
 import { initRipple } from '../../../utils/ripple'
-import { websiteList } from '../../../store'
+import { websiteList, settings } from '../../../store'
 
 @Component({
   selector: 'app-light',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export default class LightComponent {
-
-  constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
@@ -32,6 +31,7 @@ export default class LightComponent {
   page: number = 0
   isLogin = isLogin
   sliceMax = 1
+  settings = settings
 
   ngOnInit() {
     randomBgImg()
@@ -66,20 +66,20 @@ export default class LightComponent {
       queryParams: {
         page: index,
         id,
-        _: Date.now()
-      }
+        _: Date.now(),
+      },
     })
   }
 
   handleSidebarNav(index: number) {
     const { page } = queryString()
     this.websiteList[page].id = index
-    this.router.navigate([this.router.url.split('?')[0]], { 
+    this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
         page,
         id: index,
-        _: Date.now()
-      }
+        _: Date.now(),
+      },
     })
   }
 

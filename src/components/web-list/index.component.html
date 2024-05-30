@@ -1,5 +1,5 @@
 <div
-  class="container"
+  class="container web-list"
   *ngIf="dataList.length > 0"
   cdkDropList
   (cdkDropListDropped)="handleDrop($event)"
@@ -20,12 +20,12 @@
       {{ item.__desc__ || item.desc }}
     </ng-template>
     <div class="logo">
-      <app-logo [src]="item.icon || ''" [name]="item.__name__ || item.name" [size]="35"></app-logo>
+      <app-logo
+        [src]="item.icon || ''"
+        [name]="item.__name__ || item.name"
+        [size]="35"
+      ></app-logo>
     </div>
-    <div
-      class="name dark-white"
-      [innerHTML]="item.__name__ || item.name"
-    >
-    </div>
+    <div class="name dark-white" [innerHTML]="item.__name__ || item.name"></div>
   </div>
 </div>

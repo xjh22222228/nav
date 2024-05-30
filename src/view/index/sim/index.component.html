@@ -1,17 +1,21 @@
 <div class="sim">
-  <div class="wallpaper" [ngStyle]="{ height: simThemeHeight + 'px' }">
+  <div
+    class="wallpaper"
+    *ngIf="settings.simThemeImages.length > 0 && settings.simThemeHeight > 0"
+    [ngStyle]="{ height: settings.simThemeHeight + 'px' }"
+  >
     <div class="bg">
       <nz-carousel
         nzEffect="scrollx"
-        [nzAutoPlay]="simThemeAutoplay"
-        [nzDots]="simThemeImages.length > 1"
-        [nzEnableSwipe]="simThemeImages.length > 1"
+        [nzAutoPlay]="settings.simThemeAutoplay"
+        [nzDots]="settings.simThemeImages.length > 1"
+        [nzEnableSwipe]="settings.simThemeImages.length > 1"
         [nzAutoPlaySpeed]="5000"
       >
         <div
           class="bg-item"
           nz-carousel-content
-          *ngFor="let item of simThemeImages"
+          *ngFor="let item of settings.simThemeImages"
           [ngStyle]="{ 'background-image': 'url(' + item['src'] + ')' }"
           (click)="handleJumpUrl(item)"
         ></div>
@@ -19,7 +23,7 @@
     </div>
 
     <div class="bar">
-      <h1 class="title dark-title">{{ title }}</h1>
+      <h1 class="title dark-title">{{ settings.title }}</h1>
       <h2 class="description dark-text-active" [innerHTML]="description"></h2>
       <app-search-engine></app-search-engine>
     </div>
@@ -74,6 +78,7 @@
                 *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
               >
                 <app-card
+                  [cardStyle]="settings.simCardStyle"
                   [dataSource]="el"
                   [indexs]="[page, id, i, j]"
                 ></app-card>

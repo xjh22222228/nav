@@ -6,7 +6,7 @@ $sideWidth: 200px;
   .inner-layout {
     margin-left: $sideWidth;
     .content {
-      padding: 20px 70px 0 20px;
+      padding: 10px 70px 0 20px;
       display: flex;
       flex-direction: column;
     }
@@ -58,6 +58,10 @@ $sideWidth: 200px;
 
   .ant-menu-item {
     padding-right: 40px;
+  }
+
+  ::ng-deep .web-list {
+    max-width: 100% !important;
   }
 }
 

@@ -241,7 +241,34 @@
   </nz-form-item>
 
   <div class="divider"></div>
+  <h2 class="title">Light {{ $t('_theme') }}</h2>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>{{
+      $t('_cardStyle')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <nz-radio-group formControlName="lightCardStyle">
+        <label nz-radio nzValue="standard">标准</label>
+        <label nz-radio nzValue="example">简约</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <div class="divider"></div>
   <h2 class="title">Sim {{ $t('_theme') }}</h2>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>{{
+      $t('_cardStyle')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <nz-radio-group formControlName="simCardStyle">
+        <label nz-radio nzValue="standard">标准</label>
+        <label nz-radio nzValue="example">简约</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
 
   <nz-form-item class="sim-ban">
     <nz-form-label [nzSpan]="4" nzRequired>Banner</nz-form-label>
@@ -288,7 +315,6 @@
                 nzOkType="danger"
                 [nzPopconfirmTitle]="$t('_confirmDel')"
                 nzPopconfirmPlacement="bottom"
-                *ngIf="settings.simThemeImages.length > 1"
                 (nzOnConfirm)="onDeleteSimBanner(idx)"
               >
                 <a>
@@ -317,7 +343,7 @@
     <nz-form-control [nzSpan]="10">
       <nz-slider
         formControlName="simThemeHeight"
-        [nzMin]="100"
+        [nzMin]="0"
         [nzMax]="1000"
       ></nz-slider>
     </nz-form-control>
@@ -365,6 +391,18 @@
   <div class="divider"></div>
   <h2 class="title">Side {{ $t('_theme') }}</h2>
 
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>{{
+      $t('_cardStyle')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <nz-radio-group formControlName="sideCardStyle">
+        <label nz-radio nzValue="standard">标准</label>
+        <label nz-radio nzValue="example">简约</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
   <nz-form-item class="sim-ban">
     <nz-form-label [nzSpan]="4" nzRequired>Banner</nz-form-label>
     <nz-form-control [nzSpan]="20">
@@ -410,7 +448,6 @@
                 nzOkType="danger"
                 [nzPopconfirmTitle]="$t('_confirmDel')"
                 nzPopconfirmPlacement="bottom"
-                *ngIf="settings.sideThemeImages.length > 1"
                 (nzOnConfirm)="onDeleteSideBanner(idx)"
               >
                 <a>
@@ -439,7 +476,7 @@
     <nz-form-control [nzSpan]="10">
       <nz-slider
         formControlName="sideThemeHeight"
-        [nzMin]="100"
+        [nzMin]="0"
         [nzMax]="1000"
       ></nz-slider>
     </nz-form-control>

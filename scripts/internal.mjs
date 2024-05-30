@@ -13,6 +13,9 @@ const db = JSON.parse(fs.readFileSync(dbPath).toString())
 const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
 
 settings.showThemeToggle ??= true
+settings.lightCardStyle ||= 'standard'
+settings.simCardStyle ||= 'standard'
+settings.sideCardStyle ||= 'standard'
 fs.writeFileSync(settingsPath, JSON.stringify(settings), { encoding: 'utf-8' })
 
 // 统计网站数量
