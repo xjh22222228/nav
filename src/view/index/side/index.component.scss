@@ -37,7 +37,7 @@ $sideWidth: 200px;
 
   .box {
     flex: 1;
-    transition: .1s linear;
+    transition: 0.1s linear;
   }
 
   .collapse-wrapper {
@@ -49,13 +49,13 @@ $sideWidth: 200px;
     .collapse {
       display: block;
       transform: rotate(-270deg);
-    
+
       &.active {
         transform: rotate(-360deg);
       }
     }
   }
-  
+
   .ant-menu-item {
     padding-right: 40px;
   }
@@ -93,28 +93,25 @@ $sideWidth: 200px;
   height: 100vh;
   left: 0;
   overflow: auto;
-
-  .sider-menu {
-    padding-top: 70px;
-  }
-
+  width: 200px;
+  padding-top: 70px;
   &::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: hsla(0, 0%, 100%, .2);
+    background-color: hsla(0, 0%, 100%, 0.2);
     border-radius: 3px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: hsla(0, 0%, 100%, .15);
+    background-color: hsla(0, 0%, 100%, 0.15);
     border-radius: 3px;
   }
 }
 
-::ng-deep .side-footer  {
+::ng-deep .side-footer {
   margin-top: 45px !important;
   & > * {
     color: #666 !important;

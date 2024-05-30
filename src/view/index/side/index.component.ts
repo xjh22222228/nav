@@ -10,7 +10,7 @@ import {
   queryString,
   setWebsiteList,
   toggleCollapseAll,
-  matchCurrentList
+  matchCurrentList,
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { websiteList } from 'src/store'
@@ -20,7 +20,7 @@ import { settings, searchEngineList } from 'src/store'
 @Component({
   selector: 'app-side',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export default class SideComponent {
   LOGO_CDN = settings.favicon
@@ -36,14 +36,14 @@ export default class SideComponent {
   sideThemeAutoplay = settings.sideThemeAutoplay
   sliceMax = 1
 
-  constructor (
+  constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private iconService: NzIconService
   ) {
     if (settings.iconfontUrl) {
       this.iconService.fetchFromIconfont({
-        scriptUrl: settings.iconfontUrl
+        scriptUrl: settings.iconfontUrl,
       })
     }
   }
@@ -68,11 +68,11 @@ export default class SideComponent {
 
   handleSidebarNav(page: any, id: any) {
     this.websiteList[page].id = id
-    this.router.navigate([this.router.url.split('?')[0]], { 
+    this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
         page,
         id,
-      }
+      },
     })
     this.handlePositionTop()
   }
@@ -81,14 +81,14 @@ export default class SideComponent {
     setTimeout(() => {
       const el = document.querySelector('.search-header') as HTMLDivElement
       if (el) {
-        const h = el.offsetHeight;
+        const h = el.offsetHeight
         window.scroll({
           top: h,
           left: 0,
-          behavior: 'smooth'
+          behavior: 'smooth',
         })
       }
-    }, 100)
+    }, 30)
   }
 
   openMenu(item: any, index: number) {
