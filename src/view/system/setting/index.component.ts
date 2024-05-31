@@ -22,6 +22,7 @@ export default class SystemSettingComponent {
   validateForm!: FormGroup
   submitting: boolean = false
   settings = settings
+  checkUrl = false
 
   constructor(
     private fb: FormBuilder,
@@ -137,6 +138,7 @@ export default class SystemSettingComponent {
       nzOnOk: () => {
         const values = {
           ...this.validateForm.value,
+          checkUrl: this.checkUrl,
           favicon: this.settings.favicon,
           simThemeImages: this.settings.simThemeImages,
           shortcutThemeImages: this.settings.shortcutThemeImages,

@@ -28,6 +28,7 @@ export interface INavFourProp {
   index?: number // sort
   ownVisible?: boolean
   breadcrumb: string[]
+  ok?: boolean
   urls?: {
     [tagName: string]: string
   }
@@ -94,6 +95,8 @@ export interface ISettings {
   showShare: Boolean | undefined
   showThemeToggle: Boolean
   actionUrl?: string | null
+  checkUrl?: boolean
+  errorUrlCount?: number
 
   lightCardStyle: string
 

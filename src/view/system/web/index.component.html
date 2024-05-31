@@ -27,7 +27,13 @@
     />
   </label>
 
-  <div class="tip2">拖动可排序</div>
+  <div class="tip2">
+    拖动可排序；
+    <span
+      >上次检测出
+      {{ settings.errorUrlCount || 0 }} 个网站链接失效，具体到管理网站查看</span
+    >
+  </div>
 
   <nz-tabset
     *ngIf="isLogin"
@@ -370,6 +376,14 @@
       >
         {{ $t('_addWeb') }}
       </button>
+      <!-- <button
+        nz-button
+        nzType="primary"
+        (click)="getAllErrorWeb()"
+        style="margin-left: 20px"
+      >
+        检索所有异常网站
+      </button> -->
       <a
         nz-popconfirm
         [nzPopconfirmTitle]="$t('_confirmDel')"
@@ -396,15 +410,18 @@
         <thead>
           <tr>
             <th
+              nzWidth="70px"
               [nzChecked]="checkedAll"
               (nzCheckedChange)="onAllChecked($event, 4)"
             ></th>
-            <th>{{ $t('_icon') }}</th>
-            <th>{{ $t('_webName') }}</th>
-            <th>{{ $t('_webTag') }}</th>
-            <th>{{ $t('_onlyOwnVisible') }}</th>
+            <th nzWidth="70px">状态</th>
+            <th nzWidth="80px">{{ $t('_icon') }}</th>
+            <th nzWidth="100px">{{ $t('_webName') }}</th>
+            <th nzWidth="100px">{{ $t('_webTag') }}</th>
+            <th nzWidth="120px">{{ $t('_onlyOwnVisible') }}</th>
             <th nzWidth="300px">{{ $t('_webDesc') }}</th>
-            <th>{{ $t('_createAt') }}</th>
+            <th nzWidth="300px">分类位置</th>
+            <th nzWidth="160px">{{ $t('_createAt') }}</th>
             <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
@@ -415,13 +432,22 @@
               (nzCheckedChange)="onItemChecked(data.name, $event)"
             ></td>
             <td>
+              <span
+                *ngIf="data.ok === false"
+                nz-icon
+                nzType="close"
+                nzTheme="outline"
+                style="color: red"
+              ></span>
+            </td>
+            <td>
               <app-logo *ngIf="data.icon" [src]="data.icon" [name]="data.name">
               </app-logo>
             </td>
             <td>
               <a [href]="data.url" target="_blank">{{ data.name }}</a>
             </td>
-            <td nzWidth="100px">
+            <td>
               <nz-tag
                 *ngFor="let key of objectKeys(data.urls || {})"
                 [nzColor]="tagMap[key].color || '#2db7f5'"
@@ -444,8 +470,9 @@
             <td>
               <pre class="desc">{{ data.desc }}</pre>
             </td>
-            <td nzWidth="200px">{{ formatDate(data.createdAt) }}</td>
-            <td nzWidth="100px">
+            <th nzWidth="300px">{{ data.breadcrumb }}</th>
+            <td>{{ formatDate(data.createdAt) }}</td>
+            <td>
               <a
                 (click)="
                   toggleCreateWebModal(); websiteDetail = data; editIdx = idx

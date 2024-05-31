@@ -16,6 +16,7 @@ settings.showThemeToggle ??= true
 settings.lightCardStyle ||= 'standard'
 settings.simCardStyle ||= 'standard'
 settings.sideCardStyle ||= 'standard'
+
 fs.writeFileSync(settingsPath, JSON.stringify(settings), { encoding: 'utf-8' })
 
 // 统计网站数量

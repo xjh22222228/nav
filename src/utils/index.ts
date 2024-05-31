@@ -258,7 +258,7 @@ export function getWebsiteList(): INavProps[] {
   const scriptUrl = scriptElAll[scriptElAll.length - 1].src
   const storageScriptUrl = window.localStorage.getItem(STORAGE_KEY_MAP.s_url)
 
-  // 检测到网站更新，清除缓存
+  // 检测到网站更新，清除缓存本地保存记录失效
   if (storageScriptUrl !== scriptUrl) {
     const whiteList = [STORAGE_KEY_MAP.token, STORAGE_KEY_MAP.isDark]
     const len = window.localStorage.length

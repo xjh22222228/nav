@@ -5,11 +5,13 @@ import fs from 'fs'
 import config from '../nav.config.js'
 import path from 'path'
 import LOAD_MAP from './loading.js'
+import axios from 'axios'
 
 const dbPath = path.join('.', 'data', 'db.json')
 const setPath = path.join('.', 'data', 'settings.json')
 const pkgPath = path.join('package.json')
 
+const db = JSON.parse(fs.readFileSync(dbPath).toString())
 const pkg = JSON.parse(fs.readFileSync(pkgPath).toString())
 const settings = JSON.parse(fs.readFileSync(setPath).toString())
 
@@ -19,7 +21,11 @@ function addZero(num) {
 
 const now = new Date()
 now.setHours(now.getHours() + 8)
-const date = `${now.getFullYear()}年${addZero(now.getMonth() + 1)}月${addZero(now.getDate())}日 ${addZero(now.getHours())}:${addZero(now.getMinutes())}:${addZero(now.getSeconds())}`
+const date = `${now.getFullYear()}年${addZero(now.getMonth() + 1)}月${addZero(
+  now.getDate()
+)}日 ${addZero(now.getHours())}:${addZero(now.getMinutes())}:${addZero(
+  now.getSeconds()
+)}`
 
 const {
   description,
@@ -29,13 +35,10 @@ const {
   cnzzStatisticsUrl,
   loading,
   favicon,
-  headerContent
+  headerContent,
 } = settings
 
-const {
-  gitRepoUrl,
-  homeUrl,
-} = config.default
+const { gitRepoUrl, homeUrl } = config.default
 
 const s = gitRepoUrl.split('/')
 
@@ -51,8 +54,12 @@ const htmlTemplate = `
   <link rel ="apple-touch-icon" href="${favicon}">
 `.trim()
 
-const cnzzScript = !cnzzStatisticsUrl ? '' : `<script src="${cnzzStatisticsUrl}"></script>`
-const baiduScript = !baiduStatisticsUrl ? '' : `
+const cnzzScript = !cnzzStatisticsUrl
+  ? ''
+  : `<script src="${cnzzStatisticsUrl}"></script>`
+const baiduScript = !baiduStatisticsUrl
+  ? ''
+  : `
 <script>
 var _hmt = _hmt || [];
 var hm = document.createElement('script');
@@ -74,26 +81,29 @@ let seoTemplate = `
 `
 
 async function buildSeo() {
-  const readDb = fs.readFileSync(dbPath).toString()
-  const parseDbJson = JSON.parse(readDb)
-
   function r(navList) {
     for (let value of navList) {
       if (Array.isArray(value.nav)) {
         r(value.nav)
       }
 
-      seoTemplate += `<h3>${value.title || value.name || title}</h3>${value.icon ? `<img data-src="${value.icon}" alt="${homeUrl}" />` : ''}<p>${value.desc || description}</p><a href="${value.url || homeUrl || gitRepoUrl}"></a>`
+      seoTemplate += `<h3>${value.title || value.name || title}</h3>${
+        value.icon ? `<img data-src="${value.icon}" alt="${homeUrl}" />` : ''
+      }<p>${value.desc || description}</p><a href="${
+        value.url || homeUrl || gitRepoUrl
+      }"></a>`
 
       if (value.urls && typeof value.urls === 'object') {
         for (let k in value.urls) {
-          seoTemplate += `<a href="${value.urls[k] || homeUrl || gitRepoUrl}"></a>`
+          seoTemplate += `<a href="${
+            value.urls[k] || homeUrl || gitRepoUrl
+          }"></a>`
         }
       }
     }
   }
 
-  r(parseDbJson)
+  r(db)
 
   seoTemplate += '</div>'
 }
@@ -117,12 +127,12 @@ async function build() {
 
   fs.writeFileSync(htmlPath, t, { encoding: 'utf-8' })
   fs.unlinkSync('./nav.config.js')
-  console.log('Build done!')
+  console.log('Config build done!')
 }
 
 buildSeo()
-.finally(() => build())
-.catch(console.error)
+  .finally(() => build())
+  .catch(console.error)
 
 function getLoadKey() {
   const keys = Object.keys(LOAD_MAP)
@@ -130,3 +140,48 @@ function getLoadKey() {
   const loadingKey = loading === 'random' ? keys[rand] : loading
   return loadingKey
 }
+
+// 检查链接
+
+let errorUrlCount = 0
+;(async function () {
+  async function getUrl(url) {
+    return axios
+      .get(url)
+      .then(() => {
+        // console.log(`正常 ${url}`)
+        return true
+      })
+      .catch(() => {
+        errorUrlCount += 1
+        console.log(`异常 ${url}`)
+        return false
+      })
+  }
+
+  async function r(nav) {
+    if (!Array.isArray(nav)) return
+
+    for (let i = 0; i < nav.length; i++) {
+      const item = nav[i]
+      if (item.url) {
+        delete item.ok
+        const res = await getUrl(item.url)
+        if (!res) {
+          item.ok = false
+        }
+      } else {
+        r(item.nav)
+      }
+    }
+  }
+  if (settings.checkUrl) {
+    r(db)
+  }
+})()
+
+process.on('exit', () => {
+  settings.errorUrlCount = errorUrlCount
+  fs.writeFileSync(setPath, JSON.stringify(settings), { encoding: 'utf-8' })
+  fs.writeFileSync(dbPath, JSON.stringify(db), { encoding: 'utf-8' })
+})

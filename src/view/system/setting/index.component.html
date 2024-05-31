@@ -550,9 +550,13 @@
         nzType="primary"
         [nzLoading]="submitting"
         (click)="handleSubmit()"
+        style="margin-right: 20px"
       >
         {{ $t('_save') }}
       </button>
+      <label nz-checkbox [(ngModel)]="checkUrl"
+        >本次保存检查所有网站链接状态（耗时较长，建议定期执行；由于网络因素，仅供参考）</label
+      >
 
       <p class="save-tip">{{ $t('_setSaveTip') }}</p>
     </nz-form-control>

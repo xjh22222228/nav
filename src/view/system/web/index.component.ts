@@ -5,7 +5,7 @@
 import { Component } from '@angular/core'
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
 import { INavProps, INavTwoProp, INavThreeProp, INavFourProp } from 'src/types'
-import { websiteList } from 'src/store'
+import { websiteList, settings } from 'src/store'
 import { getToken } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
@@ -26,6 +26,7 @@ import { saveAs } from 'file-saver'
 })
 export default class WebpComponent {
   $t = $t
+  settings = settings
   validateForm!: FormGroup
   websiteList: INavProps[] = websiteList
   gitRepoUrl = config.gitRepoUrl
@@ -65,6 +66,29 @@ export default class WebpComponent {
   }
 
   ngOnInit() {}
+
+  getAllErrorWeb() {
+    this.oneSelect = ''
+    this.twoSelect = ''
+    this.threeSelect = ''
+    this.onTabChange()
+    this.websiteTableData = []
+    const websiteTableData = []
+    function r(nav) {
+      if (!Array.isArray(nav)) return
+
+      for (let i = 0; i < nav.length; i++) {
+        const item = nav[i]
+        if (item.url && item.ok === false) {
+          websiteTableData.push(item)
+        } else {
+          r(item.nav)
+        }
+      }
+    }
+    r(this.websiteList)
+    this.websiteTableData = websiteTableData
+  }
 
   onAllChecked(checked: boolean, type: 1 | 2 | 3 | 4) {
     this.setOfCheckedId.clear()

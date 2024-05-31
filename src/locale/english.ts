@@ -136,7 +136,7 @@ const english: Record<string, string> = {
   _showWeather: 'Show weather',
   _weatherTip: 'Currently only the "Shortcut" theme is supported',
   _setSaveTip:
-    'Note: after saving successfully, you need to wait at least 5 minutes for the build time to take effect!',
+    'Note: after saving successfully, you need to wait at least 2 minutes for the build time to take effect!',
   _theme: 'Theme',
   _backgroundImage: 'Background picture',
   _engineUrl: 'Engine URL',
