@@ -22,12 +22,13 @@
   background: rgb(251, 251, 251);
   border-radius: 5px;
   overflow: hidden;
-  transition: .1s linear;
+  transition: 0.1s linear;
   border: 1px solid transparent;
 
   .top-nav {
     padding: 10px;
     overflow: none;
+    overflow-x: auto;
     white-space: nowrap;
     border-bottom: 1px solid #eee;
     text-align: center;
@@ -43,7 +44,7 @@
         text-decoration: none;
       }
       &.active::after {
-        content: "";
+        content: '';
         position: absolute;
         bottom: 0;
         left: 20%;
@@ -94,7 +95,7 @@
         padding: 11px 0;
         &:after,
         &:before {
-          content: "";
+          content: '';
           position: absolute;
           left: 0;
           width: 100%;

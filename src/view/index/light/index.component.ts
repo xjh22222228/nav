@@ -4,7 +4,7 @@
 
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { INavProps, INavThreeProp } from '../../../types'
+import { INavProps, INavThreeProp } from 'src/types'
 import {
   fuzzySearch,
   randomBgImg,
@@ -12,10 +12,9 @@ import {
   setWebsiteList,
   toggleCollapseAll,
   matchCurrentList,
-} from '../../../utils'
-import { isLogin } from '../../../utils/user'
-import { initRipple } from '../../../utils/ripple'
-import { websiteList, settings } from '../../../store'
+} from 'src/utils'
+import { isLogin } from 'src/utils/user'
+import { websiteList, settings } from 'src/store'
 
 @Component({
   selector: 'app-light',
@@ -83,9 +82,7 @@ export default class LightComponent {
     })
   }
 
-  ngAfterViewInit() {
-    initRipple()
-  }
+  ngAfterViewInit() {}
 
   onCollapse = (item: any, index: number) => {
     item.collapsed = !item.collapsed

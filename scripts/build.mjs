@@ -148,7 +148,7 @@ let errorUrlCount = 0
   async function getUrl(url) {
     return axios
       .get(url, {
-        timeout: 5000,
+        timeout: 10000,
       })
       .then(() => {
         // console.log(`正常 ${url}`)

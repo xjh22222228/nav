@@ -7,7 +7,9 @@
     >
     </app-fixbar>
 
-    <nav class="top-nav user-select-none dark-border-color dark-bg">
+    <nav
+      class="top-nav dark-scrollbar user-select-none dark-border-color dark-bg"
+    >
       <a
         *ngFor="let item of websiteList; index as i"
         (click)="handleCilckTopNav(i)"

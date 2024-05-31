@@ -12,10 +12,13 @@ import { isLogin } from 'src/utils/user'
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
-  footerContent: string = settings.footerContent.replace(
-    '${total}',
-    String(isLogin ? internal.loginViewCount : internal.userViewCount)
-  )
+  footerContent: string = settings.footerContent
+    .replace(
+      '${total}',
+      String(isLogin ? internal.loginViewCount : internal.userViewCount)
+    )
+    .replace('${hostname}', window.location.hostname)
+    .replace('${yearn}', new Date().getFullYear())
 
   @Input() className: string
 }

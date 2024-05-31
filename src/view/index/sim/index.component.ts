@@ -13,7 +13,6 @@ import {
   matchCurrentList,
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
-import { initRipple } from 'src/utils/ripple'
 import { websiteList } from 'src/store'
 import { settings, internal } from 'src/store'
 
@@ -64,9 +63,7 @@ export default class SimComponent {
 
   ngOnDestroy() {}
 
-  ngAfterViewInit() {
-    initRipple()
-  }
+  ngAfterViewInit() {}
 
   handleSidebarNav(index: number) {
     const { page } = queryString()
