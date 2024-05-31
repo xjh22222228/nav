@@ -4,7 +4,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { verifyToken, updateFileContent } from '../../services'
+import { verifyToken, updateFileContent, createBranch } from '../../services'
 import { setToken, removeToken } from '../../utils/user'
 import { $t } from 'src/locale'
 
@@ -47,8 +47,10 @@ export class LoginComponent implements OnInit {
           content: 'OK',
         })
           .then(() => {
-            this.message.success($t('_tokenVerSuc'))
-            setTimeout(() => window.location.reload(), 2000)
+            createBranch('image').finally(() => {
+              this.message.success($t('_tokenVerSuc'))
+              setTimeout(() => window.location.reload(), 2000)
+            })
           })
           .catch((res) => {
             this.notification.error(
@@ -56,8 +58,6 @@ export class LoginComponent implements OnInit {
               res.message
             )
             removeToken()
-          })
-          .finally(() => {
             this.submiting = false
           })
       })

@@ -21,6 +21,15 @@ export function verifyToken(token: string) {
   })
 }
 
+// 创建分支
+export function createBranch(branch: string) {
+  return http.post(`/repos/${authorName}/${repoName}/git/refs`, {
+    ref: `refs/heads/${branch}`,
+    // https://github.com/xjh22222228/nav/commit/c1fdab3d29df4740bb97a4ae7f24ed0eaa682557
+    sha: 'c1fdab3d29df4740bb97a4ae7f24ed0eaa682557',
+  })
+}
+
 // 获取文件信息
 export function getFileContent(path: string, branch: string = DEFAULT_BRANCH) {
   return http.get(`/repos/${authorName}/${repoName}/contents/${path}`, {

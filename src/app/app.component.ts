@@ -9,7 +9,6 @@ import { getLocale } from 'src/locale'
 import { settings } from 'src/store'
 import { verifyToken } from 'src/services'
 import { getToken, removeToken } from 'src/utils/user'
-import { INavProps, ITagProp, INavFourProp } from '../types'
 
 @Component({
   selector: 'app-xiejiahe',

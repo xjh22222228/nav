@@ -67,21 +67,19 @@
 
 1、Fork 当前项目。
 
-2、在仓库页面点击 `main` 分支在输入框输入 `image` 创建一个分支，否则上传图片会出现 404 现象。
+2、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token。
 
-3、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token。
+3、https://github.com/用户名/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
 
-4、https://github.com/用户名/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
+4、打开 https://github.com/用户名/nav/actions 根据流程操作
 
-5、打开 https://github.com/用户名/nav/actions 根据流程操作
+5、务必修改项目配置文件 [nav.config.ts](nav.config.ts)
 
-6、务必修改项目配置文件 [nav.config.ts](nav.config.ts)
-
-7、5 分钟后打开 https://用户名.github.io/nav 就能看到一个非常强大的导航网站了。
+6、5 分钟后打开 https://用户名.github.io/nav 就能看到一个非常强大的导航网站了。
 
 #### 推荐方式二(Vercel 免费)
 
-和方式一的步骤一样，除了第 5 步不用。
+和方式一的步骤一样，除了第 4 步不用。
 
 具体使用跟着步骤走即可 [https://github.com/apps/vercel](https://github.com/apps/vercel)
 
