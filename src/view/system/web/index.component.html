@@ -92,7 +92,7 @@
                 nzTheme="outline"
               ></i>
             </td>
-            <td>{{ data.createdAt }}</td>
+            <td>{{ formatDate(data.createdAt) }}</td>
             <td>
               <a (click)="handleEditBtn(data, idx)">{{ $t('_edit') }}</a>
               <a
@@ -188,7 +188,7 @@
                 nzTheme="outline"
               ></i>
             </td>
-            <td>{{ data.createdAt }}</td>
+            <td>{{ formatDate(data.createdAt) }}</td>
             <td>
               <a (click)="handleEditBtn(data, idx)">{{ $t('_edit') }}</a>
               <a
@@ -299,7 +299,7 @@
                 nzTheme="outline"
               ></i>
             </td>
-            <td>{{ data.createdAt }}</td>
+            <td>{{ formatDate(data.createdAt) }}</td>
             <td>
               <a (click)="handleEditBtn(data, idx)">{{ $t('_edit') }}</a>
               <a
@@ -444,7 +444,7 @@
             <td>
               <pre class="desc">{{ data.desc }}</pre>
             </td>
-            <td nzWidth="200px">{{ data.createdAt }}</td>
+            <td nzWidth="200px">{{ formatDate(data.createdAt) }}</td>
             <td nzWidth="100px">
               <a
                 (click)="

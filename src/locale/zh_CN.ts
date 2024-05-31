@@ -10,7 +10,7 @@ const zhCN: Record<string, string> = {
   _del: '删除',
   _batchDel: '批量删除',
   _confirmDel: '您确定要删除吗？',
-  _default: '默认',
+  _default: '综合',
   _title: '标题',
   _desc: '描述',
   _link: '链接',

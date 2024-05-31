@@ -31,7 +31,7 @@
     "@angular/router": "^16.2.0",
     "@types/file-saver": "^2.0.6",
     "@types/qs": "^6.9.7",
-    "axios": "^1.4.0",
+    "axios": "^1.7.2",
     "clipboard": "^2.0.11",
     "file-saver": "^2.0.5",
     "hotkeys-js": "^3.12.0",

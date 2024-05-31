@@ -11,7 +11,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { setWebsiteList } from 'src/utils'
+import { setWebsiteList, addZero } from 'src/utils'
 import { updateFileContent } from 'src/services'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import config from '../../../../nav.config'
@@ -535,5 +535,22 @@ export default class WebpComponent {
     this.validateForm.reset()
     this.toggleCreateModal()
     setWebsiteList(this.websiteList)
+  }
+
+  get formatDate() {
+    return function (d: any): string {
+      if (!d) {
+        return d
+      }
+      const date = new Date(d)
+      const year = date.getFullYear()
+      const month = date.getMonth() + 1
+      const day = date.getDate()
+      const hours = date.getHours()
+      const minutes = date.getMinutes()
+      return `${year}-${addZero(month)}-${addZero(day)} ${addZero(
+        hours
+      )}:${addZero(minutes)}`
+    }
   }
 }
