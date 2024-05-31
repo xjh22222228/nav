@@ -35,6 +35,7 @@
 ![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/4.png)
 ![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/6.png)
 ![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/5.png)
+![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/7.png)
 
 ## 特性
 

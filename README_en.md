@@ -35,6 +35,7 @@
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/4.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/6.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/5.png)
+![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/7.png)
 
 ## Features
 

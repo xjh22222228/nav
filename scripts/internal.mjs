@@ -16,6 +16,7 @@ settings.showThemeToggle ??= true
 settings.lightCardStyle ||= 'standard'
 settings.simCardStyle ||= 'standard'
 settings.sideCardStyle ||= 'standard'
+settings.checkUrl ??= false
 
 fs.writeFileSync(settingsPath, JSON.stringify(settings), { encoding: 'utf-8' })
 

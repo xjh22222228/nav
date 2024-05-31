@@ -498,6 +498,7 @@ export function updateByWeb(prevData: INavFourProp, nextData: INavFourProp) {
   setWebsiteList(websiteList)
 }
 
+// value 可能含有标签元素，用于过滤掉标签获取纯文字
 export function getTextContent(value: string): string {
   if (!value) return ''
   const div = document.createElement('div')

@@ -10,18 +10,18 @@ import {
   QueryList,
 } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { getToken } from '../../utils/user'
+import { getToken } from 'src/utils/user'
 import {
   setWebsiteList,
   copyText,
   deleteByWeb,
   getTextContent,
   updateByWeb,
-} from '../../utils'
-import { websiteList } from '../../store'
-import { INavProps, ITagProp, INavFourProp } from '../../types'
+} from 'src/utils'
+import { websiteList } from 'src/store'
+import { INavProps, ITagProp, INavFourProp } from 'src/types'
 import * as __tag from '../../../data/tag.json'
-import { $t } from '../../locale'
+import { $t } from 'src/locale'
 import { MoveSiteComponent } from '../move-site/index.component'
 import { settings } from 'src/store'
 

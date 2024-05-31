@@ -31,7 +31,10 @@
     拖动可排序；
     <span
       >上次检测出
-      {{ settings.errorUrlCount || 0 }} 个网站链接失效，具体到管理网站查看</span
+      {{
+        settings.errorUrlCount || 0
+      }}
+      个网站链接失效，具体到管理网站查看，如需再次检测状态直接点保存触发事件即可。</span
     >
   </div>
 
@@ -328,7 +331,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel1')"
         (ngModelChange)="hanldeOneSelect($event)"
-        style="width: 200px"
+        style="width: 150px"
       >
         <nz-option
           *ngFor="let item of websiteList"
@@ -343,7 +346,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel2')"
         (ngModelChange)="hanldeTwoSelect($event)"
-        style="width: 200px; margin-left: 15px"
+        style="width: 150px; margin-left: 15px"
       >
         <nz-option
           *ngFor="let item of twoTableData"
@@ -358,7 +361,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel3')"
         (ngModelChange)="hanldeThreeSelect($event)"
-        style="width: 200px; margin-left: 15px"
+        style="width: 150px; margin-left: 15px"
       >
         <nz-option
           *ngFor="let item of threeTableData"
@@ -376,14 +379,14 @@
       >
         {{ $t('_addWeb') }}
       </button>
-      <!-- <button
+      <button
         nz-button
         nzType="primary"
         (click)="getAllErrorWeb()"
         style="margin-left: 20px"
       >
         检索所有异常网站
-      </button> -->
+      </button>
       <a
         nz-popconfirm
         [nzPopconfirmTitle]="$t('_confirmDel')"
@@ -414,6 +417,7 @@
               [nzChecked]="checkedAll"
               (nzCheckedChange)="onAllChecked($event, 4)"
             ></th>
+            <th nzWidth="60px" class="text-center">{{ $t('_action') }}</th>
             <th nzWidth="70px">状态</th>
             <th nzWidth="80px">{{ $t('_icon') }}</th>
             <th nzWidth="100px">{{ $t('_webName') }}</th>
@@ -421,8 +425,7 @@
             <th nzWidth="120px">{{ $t('_onlyOwnVisible') }}</th>
             <th nzWidth="300px">{{ $t('_webDesc') }}</th>
             <th nzWidth="300px">分类位置</th>
-            <th nzWidth="160px">{{ $t('_createAt') }}</th>
-            <th>{{ $t('_action') }}</th>
+            <th>{{ $t('_createAt') }}</th>
           </tr>
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropWebsite($event)">
@@ -431,6 +434,17 @@
               [nzChecked]="setOfCheckedId.has(data.name)"
               (nzCheckedChange)="onItemChecked(data.name, $event)"
             ></td>
+            <td class="text-center">
+              <a (click)="openEditModal(data)">{{ $t('_edit') }}</a>
+              <a
+                nz-popconfirm
+                [nzPopconfirmTitle]="$t('_confirmDel')"
+                nzPopconfirmPlacement="bottom"
+                (nzOnConfirm)="handleConfirmDelWebsite(data, idx)"
+              >
+                <a nz-button nzType="link" nzDanger>{{ $t('_del') }}</a>
+              </a>
+            </td>
             <td>
               <span
                 *ngIf="data.ok === false"
@@ -451,6 +465,7 @@
               <nz-tag
                 *ngFor="let key of objectKeys(data.urls || {})"
                 [nzColor]="tagMap[key].color || '#2db7f5'"
+                style="margin-bottom: 5px"
               >
                 <a
                   [href]="data.urls?.[key] || 'javascript:void(0)'"
@@ -472,22 +487,6 @@
             </td>
             <th nzWidth="300px">{{ data.breadcrumb }}</th>
             <td>{{ formatDate(data.createdAt) }}</td>
-            <td>
-              <a
-                (click)="
-                  toggleCreateWebModal(); websiteDetail = data; editIdx = idx
-                "
-                >{{ $t('_edit') }}</a
-              >
-              <a
-                nz-popconfirm
-                [nzPopconfirmTitle]="$t('_confirmDel')"
-                nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="handleConfirmDelWebsite(idx)"
-              >
-                <a nz-button nzType="link" nzDanger>{{ $t('_del') }}</a>
-              </a>
-            </td>
           </tr>
         </tbody>
       </nz-table>
@@ -497,7 +496,7 @@
 
 <app-create-web
   [visible]="showCreateWebModal"
-  (onCancel)="toggleCreateWebModal()"
+  (onCancel)="showCreateWebModal = false"
   (onOk)="onOkCreateWeb($event)"
   [detail]="websiteDetail"
 >

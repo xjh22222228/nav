@@ -11,7 +11,13 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { setWebsiteList, addZero } from 'src/utils'
+import {
+  setWebsiteList,
+  addZero,
+  updateByWeb,
+  deleteByWeb,
+  getTextContent,
+} from 'src/utils'
 import { updateFileContent } from 'src/services'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import config from '../../../../nav.config'
@@ -189,26 +195,22 @@ export default class WebpComponent {
 
       case 4:
         {
+          const deleteData = []
           this.websiteTableData = this.websiteTableData.filter((item) => {
-            return !this.setOfCheckedId.has(item.name)
-          })
-          const idx = this.websiteList.findIndex(
-            (item) => item.title === this.oneSelect
-          )
-          if (idx >= 0) {
-            const idx2 = this.websiteList[idx].nav.findIndex(
-              (item) => item.title === this.twoSelect
-            )
-            if (idx2 >= 0) {
-              const idx3 = this.websiteList[idx].nav[idx2].nav.findIndex(
-                (item) => item.title === this.threeSelect
-              )
-              if (idx3 >= 0) {
-                this.websiteList[idx].nav[idx2].nav[idx3].nav =
-                  this.websiteTableData
-              }
+            const has = !this.setOfCheckedId.has(item.name)
+            if (!has) {
+              deleteData.push(item)
             }
-          }
+            return has
+          })
+          deleteData.forEach((item) => {
+            deleteByWeb({
+              ...item,
+              name: getTextContent(item.name),
+              desc: getTextContent(item.desc),
+            })
+          })
+          this.message.success($t('_delSuccess'))
         }
         break
     }
@@ -271,6 +273,11 @@ export default class WebpComponent {
     this.showCreateWebModal = !this.showCreateWebModal
   }
 
+  openEditModal(data: any) {
+    this.websiteDetail = data
+    this.showCreateWebModal = !this.showCreateWebModal
+  }
+
   toggleCreateModal() {
     // 检测是否有选择
     if (!this.showCreateModal) {
@@ -290,7 +297,14 @@ export default class WebpComponent {
   onOkCreateWeb(payload: INavFourProp) {
     // 编辑
     if (this.websiteDetail) {
-      this.websiteTableData[this.editIdx] = payload
+      updateByWeb(
+        {
+          ...this.websiteDetail,
+          name: getTextContent(this.websiteDetail.name),
+          desc: getTextContent(this.websiteDetail.desc),
+        },
+        payload
+      )
     } else {
       // 创建
       const exists = this.websiteTableData.some(
@@ -305,7 +319,7 @@ export default class WebpComponent {
     }
 
     setWebsiteList(this.websiteList)
-    this.toggleCreateWebModal()
+    this.showCreateWebModal = false
   }
 
   onTabChange(index?: number) {
@@ -376,10 +390,14 @@ export default class WebpComponent {
   }
 
   // 删除网站
-  handleConfirmDelWebsite(idx: number) {
+  handleConfirmDelWebsite(data: any, idx: number) {
     this.websiteTableData.splice(idx, 1)
+    deleteByWeb({
+      ...data,
+      name: getTextContent(data.name),
+      desc: getTextContent(data.desc),
+    })
     this.message.success($t('_delSuccess'))
-    setWebsiteList(this.websiteList)
   }
 
   hanldeOneSelect(value: any) {

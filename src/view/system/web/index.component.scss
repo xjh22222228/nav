@@ -20,3 +20,9 @@
   color: #f50;
   font-weight: bold;
 }
+.admin {
+  ::ng-deep .ant-table {
+    max-height: 600px;
+    overflow: auto;
+  }
+}
