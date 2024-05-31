@@ -145,8 +145,6 @@ export default class SystemSettingComponent {
             (item) => item['url'] && item['name']
           ),
         }
-        console.log(values)
-        return
 
         this.submitting = true
         updateFileContent({
