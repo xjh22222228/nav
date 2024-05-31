@@ -22,12 +22,12 @@
 
 ## 预览
 
-**主题**
+**备用域名**
 
-- [Sim 在线预览](https://nav3.cn/#/sim)
-- [Light 在线预览](https://nav3.cn/#/light)
-- [Side 在线预览](https://nav3.cn/#/side)
-- [App 在线预览](https://nav3.cn/#/app)
+- [https://nav3.cn/](https://nav3.cn/)
+- [https://youthful-lamport-a8ada4.netlify.app/](https://youthful-lamport-a8ada4.netlify.app/)
+- [https://nav-2siw-git-own-xjh22222228s-projects.vercel.app/](https://nav-2siw-git-own-xjh22222228s-projects.vercel.app/)
+- [https://xjh22222228.github.io/nav/](https://xjh22222228.github.io/nav/)
 
 ![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/1.png)
 ![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/2.png)

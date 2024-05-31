@@ -22,12 +22,12 @@
 
 ## Preview
 
-**Themes**
+**Domain**
 
-- [Sim preview](https://nav3.cn/#/sim)
-- [Light preview](https://nav3.cn/#/light)
-- [Side preview](https://nav3.cn/#/side)
-- [App preview](https://nav3.cn/#/app)
+- [https://nav3.cn/](https://nav3.cn/)
+- [https://youthful-lamport-a8ada4.netlify.app/](https://youthful-lamport-a8ada4.netlify.app/)
+- [https://nav-2siw-git-own-xjh22222228s-projects.vercel.app/](https://nav-2siw-git-own-xjh22222228s-projects.vercel.app/)
+- [https://xjh22222228.github.io/nav/](https://xjh22222228.github.io/nav/)
 
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/1.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/2.png)
