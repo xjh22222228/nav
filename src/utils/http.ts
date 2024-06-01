@@ -11,9 +11,10 @@ const headers: Record<string, string> = {}
 
 const httpInstance = axios.create({
   timeout: 60000 * 3,
-  baseURL: config.provider
-    ? 'https://gitee.com/api/v5'
-    : 'https://api.github.com',
+  baseURL:
+    config.provider === 'Gitee'
+      ? 'https://gitee.com/api/v5'
+      : 'https://api.github.com',
   headers,
 })
 
