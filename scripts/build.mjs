@@ -168,18 +168,19 @@ let errorUrlCount = 0
       const item = nav[i]
       if (item.url) {
         delete item.ok
-        const res = await getUrl(item.url)
-        if (!res) {
-          item.ok = false
+        if (settings.checkUrl) {
+          const res = await getUrl(item.url)
+          if (!res) {
+            item.ok = false
+          }
         }
       } else {
         r(item.nav)
       }
     }
   }
-  if (settings.checkUrl) {
-    r(db)
-  }
+
+  r(db)
 })()
 
 process.on('exit', () => {
