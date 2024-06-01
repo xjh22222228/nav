@@ -9,6 +9,7 @@ import { getLocale } from 'src/locale'
 import { settings } from 'src/store'
 import { verifyToken } from 'src/services'
 import { getToken, removeToken } from 'src/utils/user'
+import { NzMessageService } from 'ng-zorro-antd/message'
 
 @Component({
   selector: 'app-xiejiahe',
@@ -19,7 +20,8 @@ export class AppComponent {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private i18n: NzI18nService
+    private i18n: NzI18nService,
+    private message: NzMessageService
   ) {}
 
   ngOnInit() {
@@ -35,8 +37,11 @@ export class AppComponent {
     const token = getToken()
     if (token) {
       verifyToken(token).catch(() => {
-        removeToken()
-        location.reload()
+        this.message.error('Token 失效，请重新登录')
+        setTimeout(() => {
+          removeToken()
+          location.reload()
+        }, 3000)
       })
     }
   }

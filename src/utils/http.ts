@@ -4,13 +4,16 @@
 import axios from 'axios'
 import NProgress from 'nprogress'
 import { getToken } from '../utils/user'
+import config from '../../nav.config'
 
 const DEFAULT_TITLE = document.title
 const headers: Record<string, string> = {}
 
 const httpInstance = axios.create({
   timeout: 60000 * 3,
-  baseURL: 'https://api.github.com',
+  baseURL: config.provider
+    ? 'https://gitee.com/api/v5'
+    : 'https://api.github.com',
   headers,
 })
 

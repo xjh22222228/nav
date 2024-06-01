@@ -120,6 +120,7 @@ export interface ISettings {
 
 export interface IConfig {
   gitRepoUrl: string
+  provider: 'Github' | 'Gitee'
   branch: string
   hashMode: boolean
 }

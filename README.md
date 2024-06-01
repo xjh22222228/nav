@@ -42,6 +42,7 @@
 `发现导航` 的理念就是做一款无需依赖后端服务既简单又方便，没有繁杂的配置和数据库等配置概念, 做到开箱即用。
 
 - 🍰 内置 `800+` 实用网站。
+- 🍰 支持 [码云 Gitee](https://gitee.com/xiejiahe/nav)
 - 🍰 支持 SEO。
 - 🍰 完全纯静态, 提供自动化部署功能。
 - 🍰 三叉树分类、结构清晰、分类清晰。
@@ -71,7 +72,7 @@
 
 2、修改项目配置文件 [nav.config.ts](nav.config.ts) 只需要修改仓库地址
 
-3、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token。
+3、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token；[Gitee 申请点这里](https://gitee.com/profile/personal_access_tokens/new)
 
 4、https://github.com/你的用户名/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
 

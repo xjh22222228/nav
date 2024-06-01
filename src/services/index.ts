@@ -12,6 +12,10 @@ const DEFAULT_BRANCH = config.branch
 export const authorName = s[s.length - 2]
 export const repoName = s[s.length - 1]
 
+function isGitee() {
+  return config.provider === 'Gitee'
+}
+
 // 验证Token
 export function verifyToken(token: string) {
   return http.get(`/users/${authorName}`, {
@@ -23,11 +27,21 @@ export function verifyToken(token: string) {
 
 // 创建分支
 export function createBranch(branch: string) {
-  return http.post(`/repos/${authorName}/${repoName}/git/refs`, {
-    ref: `refs/heads/${branch}`,
+  const url = isGitee()
+    ? `/repos/${authorName}/${repoName}/branches`
+    : `/repos/${authorName}/${repoName}/git/refs`
+  const params: Record<string, any> = {}
+  if (isGitee()) {
+    params['owner'] = `/${authorName}`
+    params['repo'] = `/${authorName}/${repoName}`
+    params['refs'] = DEFAULT_BRANCH
+    params['branch_name'] = branch
+  } else {
+    params['ref'] = `refs/heads/${branch}`
     // https://github.com/xjh22222228/nav/commit/c1fdab3d29df4740bb97a4ae7f24ed0eaa682557
-    sha: 'c1fdab3d29df4740bb97a4ae7f24ed0eaa682557',
-  })
+    params['sha'] = 'c1fdab3d29df4740bb97a4ae7f24ed0eaa682557'
+  }
+  return http.post(url, params)
 }
 
 // 获取文件信息
@@ -76,21 +90,22 @@ export async function createFile({
   branch = DEFAULT_BRANCH,
   isEncode = true,
 }: Iupdate) {
-  return http
-    .put(`/repos/${authorName}/${repoName}/contents/${path}`, {
-      message: `rebot(CI): ${message}`,
-      branch,
-      content: isEncode ? encode(content) : content,
-    })
-    .then((res) => {
-      requestActionUrl()
-      return res
-    })
+  const method = isGitee() ? http.post : http.put
+  return method(`/repos/${authorName}/${repoName}/contents/${path}`, {
+    message: `rebot(CI): ${message}`,
+    branch,
+    content: isEncode ? encode(content) : content,
+  }).then((res) => {
+    requestActionUrl()
+    return res
+  })
 }
 
 export function getCDN(path: string, branch = 'image') {
+  if (isGitee()) {
+    return `https://gitee.com/${authorName}/${repoName}/raw/${branch}/${path}`
+  }
   return `https://cdn.jsdelivr.net/gh/${authorName}/${repoName}@${branch}/${path}`
-  // return `https://raw.sevencdn.com/${authorName}/${repoName}/image/${path}`
 }
 
 function requestActionUrl() {

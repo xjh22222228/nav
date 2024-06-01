@@ -10,7 +10,7 @@ import { createFile, getCDN } from 'src/services'
 @Component({
   selector: 'app-upload',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export class UploadComponent {
   @Output() onChange = new EventEmitter()
@@ -21,7 +21,7 @@ export class UploadComponent {
 
   constructor(
     private message: NzMessageService,
-    private notification: NzNotificationService,
+    private notification: NzNotificationService
   ) {}
 
   onChangeFile(e: any) {
@@ -30,7 +30,7 @@ export class UploadComponent {
     }
 
     const { files } = e.target
-    if (files.length <= 0) return;
+    if (files.length <= 0) return
     const file = files[0]
 
     if (!file.type.startsWith('image')) {
@@ -47,7 +47,7 @@ export class UploadComponent {
       const fileReader = new FileReader()
       fileReader.readAsDataURL(file)
       fileReader.onerror = reject
-      fileReader.onload = function() {
+      fileReader.onload = function () {
         that.uploading = true
         const iconUrl = this.result as string
         const url = iconUrl.split(',')[1]
@@ -59,23 +59,27 @@ export class UploadComponent {
           message: 'create image',
           content: url,
           isEncode: false,
-          path
-        }).then(() => {
-          resolve(null)
-          that.onChange.emit({
-            rawPath: path,
-            cdn: getCDN(path)
-          })
-          that.message.success($t('_uploadSuccess'))
-        }).catch(res => {
-          that.notification.error(
-            `${$t('_error')}: ${res?.response?.status ?? 401}`,
-            $t('_uploadFail')
-          )
-          reject(res)
-        }).finally(() => {
-          that.uploading = false
+          path,
         })
+          .then(() => {
+            const params = {
+              rawPath: path,
+              cdn: getCDN(path),
+            }
+            that.onChange.emit(params)
+            that.message.success($t('_uploadSuccess'))
+            resolve(params)
+          })
+          .catch((res) => {
+            that.notification.error(
+              `${$t('_error')}: ${res?.response?.status ?? 401}`,
+              $t('_uploadFail')
+            )
+            reject(res)
+          })
+          .finally(() => {
+            that.uploading = false
+          })
       }
     })
   }

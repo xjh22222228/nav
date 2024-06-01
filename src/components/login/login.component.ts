@@ -33,14 +33,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (!this.token || this.token.length < 40) {
+    if (!this.token) {
       return this.message.error($t('_pleaseInputToken'))
     }
+    const token = this.token.trim()
 
     this.submiting = true
-    verifyToken(this.token)
+    verifyToken(token)
       .then(() => {
-        setToken(this.token)
+        setToken(token)
         updateFileContent({
           message: 'auth',
           path: '.navauth',
