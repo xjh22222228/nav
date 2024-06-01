@@ -5,7 +5,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { verifyToken, updateFileContent, createBranch } from '../../services'
-import { setToken, removeToken } from '../../utils/user'
+import { setToken, removeToken, removeWebsite } from '../../utils/user'
 import { $t } from 'src/locale'
 
 @Component({
@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
           .then(() => {
             createBranch('image').finally(() => {
               this.message.success($t('_tokenVerSuc'))
+              removeWebsite()
               setTimeout(() => window.location.reload(), 2000)
             })
           })

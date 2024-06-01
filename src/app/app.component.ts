@@ -8,7 +8,7 @@ import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n'
 import { getLocale } from 'src/locale'
 import { settings } from 'src/store'
 import { verifyToken } from 'src/services'
-import { getToken, removeToken } from 'src/utils/user'
+import { getToken, userLogout } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 
 @Component({
@@ -38,8 +38,8 @@ export class AppComponent {
     if (token) {
       verifyToken(token).catch(() => {
         this.message.error('Token 失效，请重新登录')
+        userLogout()
         setTimeout(() => {
-          removeToken()
           location.reload()
         }, 3000)
       })
