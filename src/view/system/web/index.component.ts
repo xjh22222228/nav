@@ -431,12 +431,13 @@ export default class WebpComponent {
   }
 
   handleEditBtn(data: any, editIdx: number) {
-    let { title, icon, name } = data
+    let { title, icon, name, ownVisible } = data
     this.toggleCreateModal()
     this.isEdit = true
     this.editIdx = editIdx
     this.validateForm.get('title')!.setValue(title || name || '')
     this.validateForm.get('icon')!.setValue(icon || '')
+    this.validateForm.get('ownVisible')!.setValue(!!ownVisible)
   }
 
   handleSync() {

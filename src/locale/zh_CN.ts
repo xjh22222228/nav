@@ -35,7 +35,8 @@ const zhCN: Record<string, string> = {
   _repeatOper: '请不要频繁操作',
   _syncDataOut: '同步数据到远端',
   _confirmSync: '确定同步',
-  _confirmSyncTip: '确定将所有数据同步到远端吗？',
+  _confirmSyncTip:
+    '确定将所有数据同步到远端吗？（每次保存需要等待构建完成再进行下一次操作）',
   _syncSuccessTip: '同步成功, 大约需要5分钟构建时间',
   _error: '错误',
   _syncFailTip: '同步失败, 请重试',
