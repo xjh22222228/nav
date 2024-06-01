@@ -7,9 +7,9 @@
   <p align="center">一个纯静态、支持SEO、在线编辑的强大导航网站，希望您会喜欢</p>
   <p align="center">内置收录多达 800+ 优质网站， 助您工作、学习和生活</p>
   <p align="center">
-    <a href="README_en.md">
+    <!-- <a href="README_en.md">
       <img src="https://img.shields.io/badge/lang-English-red.svg?longCache=true&style=flat-square">
-    </a>
+    </a> -->
     <img src="https://img.shields.io/github/v/release/xjh22222228/nav" />
     <a href="https://github.com/xjh22222228/nav/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/nav" alt="Stars"/></a>
     <img alt="Angular" src="https://img.shields.io/static/v1.svg?label=&message=Angular&style=flat-square&color=C82B38">
@@ -65,31 +65,33 @@
 
 像数 `321` 一样简单。
 
-#### 方式一(gh-pages 免费)
+#### gh-pages (免费)
 
-1、Fork 当前项目。
+1、右上角点击 `Fork` 当前项目。
 
-2、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token。
+2、修改项目配置文件 [nav.config.ts](nav.config.ts) 只需要修改仓库地址
 
-3、https://github.com/用户名/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
+3、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token。
 
-4、打开 https://github.com/用户名/nav/actions 根据流程操作
+4、https://github.com/你的用户名/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
 
-5、务必修改项目配置文件 [nav.config.ts](nav.config.ts)
+5、打开 https://github.com/你的用户名/nav/actions 开启 action 自动部署
 
-6、5 分钟后打开 https://用户名.github.io/nav 就能看到一个非常强大的导航网站了。
+6、5 分钟后打开 https://你的用户名.github.io/nav 就能看到一个非常强大的导航网站了。
 
-#### 推荐方式二(Vercel 免费)
+#### Netlify 推荐(免费)
 
-和方式一的步骤一样，除了第 4 步不用。
-
-具体使用跟着步骤走即可 [https://github.com/apps/vercel](https://github.com/apps/vercel)
-
-#### 推荐方式三(Netlify 免费)
+作者目前使用，速度较快
 
 [https://www.netlify.com/](https://www.netlify.com/)
 
-#### 关于自有部署
+#### Vercel 推荐(免费)
+
+国内访问速度较慢，建议测试后使用
+
+[https://github.com/apps/vercel](https://github.com/apps/vercel)
+
+#### 关于自有部署（不建议）
 
 如果你想部署到自己的服务器，你需要在后台配置补充`请求地址`当每次发生保存时会请求 GET，你需要使用熟悉的任何编程语言写一个服务执行 `git pull && npm run build` 用服务器指向导出的`dist`目录
 
@@ -107,9 +109,14 @@
 
 ## 升级
 
-在升级之前请备份根目录下的 `data` 文件夹和 `nav.config.ts`, 升级完后替换即可。
+将你的仓库克隆下来执行以下命令
 
-点击右上角 `Watch` 按钮第一时间跟踪版本升级。
+```bash
+git remote add upstream https://github.com/xjh22222228/nav.git
+git fetch upstream main
+git merge upstream/main --allow-unrelated-histories
+git push
+```
 
 ## 更新日志
 
@@ -167,7 +174,7 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 感谢您的认可：
 | 姓名 | 支持金额 |
 | --------------------------------------- |----------- |
-| [aiyou9](https://github.com/aiyou9) | ￥ 50.00、￥ 50.00 |
+| [aiyou9](https://github.com/aiyou9) | ￥ 100 |
 | [lastares](https://github.com/lastares) | ￥ 25.00 |
 | [MrJxySteven](https://github.com/MrJxySteven) | ￥ 20.00 |
 | 路人甲 | ￥ 50.00 |

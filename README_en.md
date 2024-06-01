@@ -99,8 +99,12 @@ The browser opens chrome://bookmarks/ to export the bookmarks to get the html fi
 
 ## Upgrade
 
-Before upgrading, please back up the `data` folder and `nav.config.ts` in the root directory, and replace them after the upgrade.
-Click the `Watch` button in the upper right corner to track the version upgrade for the first time.
+```bash
+git remote add upstream https://github.com/xjh22222228/nav.git
+git fetch upstream main
+git merge upstream/main --allow-unrelated-histories
+git push
+```
 
 ## Update log
 
