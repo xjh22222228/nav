@@ -31,7 +31,7 @@ export default class SideComponent {
   searchEngineList = searchEngineList
   isLogin = isLogin
   settings = settings
-  sliceMax = 1
+  sliceMax = Number.MAX_SAFE_INTEGER
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -40,16 +40,12 @@ export default class SideComponent {
       const { id, page, q } = queryString()
       this.page = page
       this.id = id
-      this.sliceMax = 1
 
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
       } else {
         this.currentList = matchCurrentList()
       }
-      setTimeout(() => {
-        this.sliceMax = Number.MAX_SAFE_INTEGER
-      }, 25)
     })
   }
 

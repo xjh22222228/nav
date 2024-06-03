@@ -46,7 +46,7 @@
         <div class="bar dark-scrollbar">
           <div
             class="bar-item"
-            *ngFor="let item of currentList.slice(0, sliceMax); index as i"
+            *ngFor="let item of currentList; index as i"
             [class.active]="selectedIndex === i"
             (click)="handleCheckThree(i)"
           >

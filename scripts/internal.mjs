@@ -35,7 +35,7 @@ settings.superImages ??= defImgs
 if (!Array.isArray(settings.superImages)) {
   settings.superImages = defImgs
 }
-settings.sideTitle = ''
+settings.sideTitle ||= ''
 
 fs.writeFileSync(settingsPath, JSON.stringify(settings), { encoding: 'utf-8' })
 
