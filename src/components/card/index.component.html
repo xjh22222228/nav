@@ -1,5 +1,5 @@
 <!-- 网站 -->
-<div class="container" *ngIf="cardStyle === 'standard'">
+<div class="container standard" *ngIf="cardStyle === 'standard'">
   <nz-card
     [nzActions]="
       isLogin
@@ -126,6 +126,7 @@
   </app-move-site>
 </div>
 
+<!-- example theme -->
 <a
   [href]="dataSource.url"
   target="_blank"
@@ -137,5 +138,48 @@
   <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
     <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
     <pre class="desc dark-text ellipsis" [innerHTML]="dataSource.desc"></pre>
+  </div>
+</a>
+
+<!-- super theme -->
+<a
+  [href]="dataSource.url"
+  target="_blank"
+  rel="noreferer noopener"
+  class="container super2 ellipsis dark-bg dark-white dark-border-color"
+  *ngIf="cardStyle === 'super'"
+>
+  <div class="title-bar">
+    <app-logo
+      [src]="dataSource.icon || ''"
+      [name]="dataSource.name"
+      [size]="20"
+    ></app-logo>
+    <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
+  </div>
+
+  <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
+    <pre class="desc dark-text ellipsis" [innerHTML]="dataSource.desc"></pre>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="tagbox">
+      <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
+      <div
+        class="tag-item"
+        *ngFor="let key of objectKeys(dataSource.urls || {})"
+        [style]="
+          'background-color: ' + (tagMap[key] && tagMap[key].color) || '#2db7f5'
+        "
+      >
+        <a
+          [href]="dataSource.urls?.[key] || 'javascript:void(0)'"
+          [target]="
+            dataSource.urls?.[key] ? '_blank' : ''
+          "
+          >{{ key }}</a
+        >
+      </div>
+    </div>
   </div>
 </a>

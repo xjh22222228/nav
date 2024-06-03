@@ -43,7 +43,6 @@ import { zh_CN } from 'ng-zorro-antd/i18n'
 import { FixbarComponent } from '../components/fixbar/index.component'
 import { FooterComponent } from '../components/footer/footer.component'
 import { UploadComponent } from '../components/upload/index.component'
-import { EllipsisComponent } from '../components/ellipsis/index.component'
 import { IconGitComponent } from '../components/icon-git/icon-git.component'
 import { NoDataComponent } from '../components/no-data/no-data.component'
 import { SearchEngineComponent } from '../components/search-engine/search-engine.component'
@@ -56,6 +55,7 @@ import { CardComponent } from '../components/card/index.component'
 import { MoveSiteComponent } from '../components/move-site/index.component'
 
 import LightComponent from '../view/index/light/index.component'
+import SuperComponent from '../view/index/super/index.component'
 import SimComponent from '../view/index/sim/index.component'
 import SystemComponent from '../view/system/index.component'
 import SystemInfoComponent from '../view/system/info/index.component'
@@ -96,6 +96,7 @@ const icons: IconDefinition[] = [
   declarations: [
     AppComponent,
     LightComponent,
+    SuperComponent,
     SimComponent,
     SideComponent,
     ShortcutComponent,
@@ -112,7 +113,6 @@ const icons: IconDefinition[] = [
     FixbarComponent,
     FooterComponent,
     UploadComponent,
-    EllipsisComponent,
     IconGitComponent,
     NoDataComponent,
     SearchEngineComponent,

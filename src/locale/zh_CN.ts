@@ -134,7 +134,7 @@ const zhCN: Record<string, string> = {
   _weatherTip: '目前只支持 "Shortcut" 主题',
   _setSaveTip: '注意：保存成功后至少需要等待2分钟构建时间方可生效！',
   _theme: '主题',
-  _backgroundImage: '背景图片',
+  _backgroundImage: '图片',
   _engineUrl: '引擎地址',
   _actionSuccess: '操作成功',
   _jumpAddr: '跳转地址',

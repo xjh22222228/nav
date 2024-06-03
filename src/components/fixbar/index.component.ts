@@ -42,6 +42,10 @@ export class FixbarComponent {
   isLogin = !!getToken()
   themeList = [
     {
+      name: $t('_switchTo') + ' Super',
+      url: '/super',
+    },
+    {
       name: $t('_switchTo') + ' Light',
       url: '/light',
     },
@@ -132,8 +136,6 @@ export class FixbarComponent {
 
   goSystemPage() {
     this.router.navigate(['system'])
-    const html = document.documentElement
-    html.classList.remove('dark-container')
   }
 
   handleSync() {

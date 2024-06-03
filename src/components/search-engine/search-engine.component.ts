@@ -1,7 +1,7 @@
 // @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import {
   getDefaultSearchEngine,
   setDefaultSearchEngine,
@@ -19,6 +19,8 @@ import { $t } from 'src/locale'
   styleUrls: ['./search-engine.component.scss'],
 })
 export class SearchEngineComponent {
+  @Input() size: any = 'default'
+
   $t = $t
   searchEngineList: ISearchEngineProps[] = (searchEngineList as any).default
   currentEngine: ISearchEngineProps = getDefaultSearchEngine()

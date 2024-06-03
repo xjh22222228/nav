@@ -123,4 +123,16 @@ export class CardComponent implements OnInit {
     )
     this.showMoveModal = true
   }
+
+  get getRate() {
+    if (!this.dataSource.rate) {
+      return null
+    }
+    const rate = Number(this.dataSource.rate)
+    // 0分不显示
+    if (!rate) {
+      return null
+    }
+    return rate.toFixed(1) + '分'
+  }
 }

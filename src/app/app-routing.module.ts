@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router'
 import config from '../../nav.config'
 import { settings } from 'src/store'
 import LightComponent from '../view/index/light/index.component'
+import SuperComponent from '../view/index/super/index.component'
 import SimComponent from '../view/index/sim/index.component'
 import SystemComponent from '../view/system/index.component'
 import SystemInfoComponent from '../view/system/info/index.component'
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'sim',
     component: SimComponent,
+  },
+  {
+    path: 'super',
+    component: SuperComponent,
   },
   {
     path: 'side',

@@ -23,6 +23,16 @@ export default class SystemComponent {
   ngOnInit() {
     const u = window.location.href.split('/')
     this.currentMenu = u[u.length - 1]
+
+    // 解决暗黑模式部分样式不正确问题，后台没有暗黑
+    if (!window.location.hostname === 'localhost') {
+      const isReload = window.sessionStorage.getItem('reload')
+      window.sessionStorage.removeItem('reload')
+      if (!isReload) {
+        window.sessionStorage.setItem('reload', '1')
+        window.location.reload()
+      }
+    }
   }
 
   goBack() {

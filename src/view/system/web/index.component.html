@@ -31,9 +31,7 @@
     拖动可排序；
     <span
       >上次检测出
-      {{
-        settings.errorUrlCount || 0
-      }}
+      {{ settings.errorUrlCount || 0 }}
       个网站链接失效，具体到管理网站查看，如需再次检测状态直接点保存触发事件即可。</span
     >
   </div>
@@ -534,13 +532,13 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="6">IconFont {{ $t('_icon') }}</nz-form-label>
+        <nz-form-label [nzSpan]="6">图标地址</nz-form-label>
         <nz-form-control [nzSpan]="18">
           <nz-input-group>
             <input
               formControlName="icon"
               nz-input
-              placeholder="用于某些主题侧边栏icon"
+              placeholder="用于某些主题icon"
             />
           </nz-input-group>
         </nz-form-control>

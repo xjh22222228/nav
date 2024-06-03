@@ -157,6 +157,7 @@
     <nz-form-control [nzSpan]="20">
       <nz-radio-group formControlName="theme">
         <label nz-radio nzValue="Light">Light</label>
+        <label nz-radio nzValue="Super">Super</label>
         <label nz-radio nzValue="Sim">Sim</label>
         <label nz-radio nzValue="Side">Side</label>
         <label nz-radio nzValue="App">App</label>
@@ -171,10 +172,10 @@
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-radio-group formControlName="appTheme">
+        <label nz-radio nzValue="App">App</label>
         <label nz-radio nzValue="Light">Light</label>
         <label nz-radio nzValue="Sim">Sim</label>
         <label nz-radio nzValue="Side">Side</label>
-        <label nz-radio nzValue="App">App</label>
         <label nz-radio nzValue="Shortcut">Shortcut</label>
       </nz-radio-group>
     </nz-form-control>
@@ -194,7 +195,8 @@
     </nz-form-control>
   </nz-form-item>
 
-  <nz-form-item>
+  <!-- 2024-06-02 废弃 -->
+  <!-- <nz-form-item>
     <nz-form-label [nzSpan]="4">IconFont</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <input
@@ -203,7 +205,7 @@
         placeholder="用于某些主题侧边栏icon"
       />
     </nz-form-control>
-  </nz-form-item>
+  </nz-form-item> -->
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_headHtml') }}</nz-form-label>
@@ -212,7 +214,7 @@
         nz-input
         formControlName="headerContent"
         [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-        placeholder="位于 head 标签尾部，你可以在这里插入脚本代码"
+        placeholder="位于 head 标签尾部，你可以在这里插入脚本代码或各种样式或Loading"
       ></textarea>
     </nz-form-control>
   </nz-form-item>
@@ -250,8 +252,82 @@
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="lightCardStyle">
         <label nz-radio nzValue="standard">标准</label>
+        <label nz-radio nzValue="column">栏目</label>
         <label nz-radio nzValue="example">简约</label>
       </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <div class="divider"></div>
+  <h2 class="title">Super {{ $t('_theme') }}</h2>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">顶部标题</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <input
+        nz-input
+        formControlName="superTitle"
+        placeholder="默认网站标题, 建议4字以内"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class="sim-ban">
+    <nz-form-label [nzSpan]="4">侧栏图片板块</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-table
+        #basicTable
+        [nzData]="settings.superImages"
+        [nzShowPagination]="false"
+      >
+        <thead>
+          <tr>
+            <th>{{ $t('_backgroundImage') }}</th>
+            <th>{{ $t('_jumpAddr') }}</th>
+            <th>{{ $t('_action') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of settings.superImages; index as idx">
+            <td width="260px" class="nowrap">
+              <img [src]="data['src']" class="icon" />
+              <input
+                nz-input
+                type="text"
+                [value]="data['src']"
+                style="width: 180px; margin-right: 10px"
+                (change)="onChangeSuperBannerUrl($event, idx)"
+              />
+              <app-upload
+                (onChange)="onSuperBannerChange($event, idx)"
+              ></app-upload>
+            </td>
+            <td>
+              <input
+                nz-input
+                [value]="data['url']"
+                maxlength="200"
+                (change)="onChangeSuperJumpUrl($event, idx)"
+              />
+            </td>
+            <td>
+              <a
+                nz-popconfirm
+                nzPopconfirmPlacement="rightTop"
+                nzOkType="danger"
+                [nzPopconfirmTitle]="$t('_confirmDel')"
+                nzPopconfirmPlacement="bottom"
+                (nzOnConfirm)="onDeleteSuperBanner(idx)"
+              >
+                <a>
+                  {{ $t('_del') }}
+                </a>
+              </a>
+              <a (click)="onAddSuperBanner()">{{ $t('_add') }}</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
     </nz-form-control>
   </nz-form-item>
 
@@ -265,6 +341,7 @@
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="simCardStyle">
         <label nz-radio nzValue="standard">标准</label>
+        <label nz-radio nzValue="column">栏目</label>
         <label nz-radio nzValue="example">简约</label>
       </nz-radio-group>
     </nz-form-control>
@@ -398,6 +475,7 @@
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="sideCardStyle">
         <label nz-radio nzValue="standard">标准</label>
+        <label nz-radio nzValue="column">栏目</label>
         <label nz-radio nzValue="example">简约</label>
       </nz-radio-group>
     </nz-form-control>

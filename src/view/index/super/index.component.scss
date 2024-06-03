@@ -1,0 +1,201 @@
+@media (max-width: 1200px) {
+  .super-xjh {
+    --hWidth: 1000px;
+    --width: 960px;
+    --middleWidth: 550px;
+    --leftWidth: 180px;
+    --rightWidth: 200px;
+  }
+}
+@media (min-width: 1200px) {
+  .super-xjh {
+    --hWidth: 1200px;
+    --width: 1150px;
+    --middleWidth: 670px;
+    --leftWidth: 180px;
+    --rightWidth: 250px;
+  }
+}
+
+.super-xjh {
+  --stickyTop: 20px;
+  background-color: #f2f3f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .sheader {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    height: 60px;
+    .headerbox {
+      width: var(--width);
+      overflow: hidden;
+      overflow-x: auto;
+      margin: 0 auto;
+      display: flex;
+    }
+    .logo {
+      width: 40px;
+      height: 40px;
+    }
+    .title {
+      color: #000;
+      margin-left: 4px;
+      user-select: none;
+      margin-right: 8px;
+    }
+    .hitem {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+      margin-left: 10px;
+      white-space: nowrap;
+    }
+    .nav-item {
+      color: #515767;
+      font-weight: normal;
+      font-size: 14px;
+      margin-right: 10px;
+      cursor: pointer;
+      &.active {
+        font-weight: bold;
+        color: #1e80ff;
+      }
+    }
+    .topnav {
+      display: flex;
+      overflow: hidden;
+      overflow-x: auto;
+    }
+  }
+
+  .main-box {
+    width: var(--width);
+    margin: 0 auto;
+    margin-top: 24px;
+    display: flex;
+    flex: 1;
+    .left {
+      position: sticky;
+      top: var(--stickyTop);
+      width: var(--leftWidth);
+      min-width: var(--leftWidth);
+      text-align: left;
+      background-color: #fff;
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 8px;
+      overflow: hidden;
+      overflow-y: auto;
+      max-height: calc(100vh - 100px);
+      border: 1px solid transparent;
+      .bar-item {
+        padding: 10px 17px;
+        cursor: pointer;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        color: #515767;
+        &:hover {
+          background-color: #f7f8fa;
+        }
+        &.active {
+          font-weight: bold;
+          color: #1e80ff;
+          background-color: #eaf2ff;
+        }
+      }
+      .sideicon {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+      }
+    }
+
+    .middle {
+      width: 0;
+      background: #fff;
+      margin-left: 20px;
+      flex: 1;
+      border-radius: 8px;
+      max-width: var(--middleWidth);
+      &.noads {
+        max-width: initial;
+      }
+      .search-t {
+        padding: 8px 12px 0 12px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 12px;
+      }
+      .bar {
+        margin-top: 10px;
+        display: flex;
+        overflow: hidden;
+        overflow-x: auto;
+        padding-bottom: 8px;
+      }
+      .bar-item {
+        position: relative;
+        margin: 0 10px;
+        white-space: nowrap;
+        cursor: pointer;
+        color: #515767;
+        &:hover {
+          color: #1e80ff;
+        }
+
+        &.active {
+          font-weight: bold;
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 3px;
+            background-color: #1e80ff;
+            border-radius: 2px;
+          }
+        }
+      }
+    }
+
+    .right {
+      position: sticky;
+      top: var(--stickyTop);
+      width: var(--rightWidth);
+      margin-left: 20px;
+      max-height: calc(100vh - 100px);
+      overflow: hidden;
+      overflow-y: auto;
+      .adsimg {
+        display: block;
+        width: 100%;
+      }
+      .aditem {
+        margin-bottom: 20px;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+    }
+  }
+
+  ::ng-deep {
+    .standard {
+      margin-bottom: 15px;
+    }
+    #app-footer {
+      margin-top: 40px;
+    }
+    #app-footer,
+    #app-footer .copyright {
+      margin-bottom: 10px;
+      color: #666;
+    }
+  }
+}

@@ -88,7 +88,6 @@ export interface ISettings {
   headerContent?: string | null
   baiduStatisticsUrl?: string
   cnzzStatisticsUrl?: string
-  iconfontUrl?: string
   showGithub: boolean
   showLanguage: boolean
   showCopy: Boolean | undefined
@@ -113,6 +112,10 @@ export interface ISettings {
 
   shortcutThemeImages: Record<string, string>[]
   shortcutThemeShowWeather: boolean
+
+  superTitle: string
+  superCardStyle: string
+  superImages: Record<string, string>[]
 
   showRate: boolean
   mirrorList: Record<string, string>[]

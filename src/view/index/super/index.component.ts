@@ -9,7 +9,6 @@ import {
   fuzzySearch,
   queryString,
   setWebsiteList,
-  toggleCollapseAll,
   matchCurrentList,
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
@@ -27,6 +26,7 @@ export default class SideComponent {
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
+  selectedIndex = 0 // 第三级菜单选中
   title: string = settings.title.trim().split(/\s/)[0]
   searchEngineList = searchEngineList
   isLogin = isLogin
@@ -53,65 +53,30 @@ export default class SideComponent {
     })
   }
 
-  handleSidebarNav(page: any, id: any) {
-    this.websiteList[page].id = id
+  handleCilckTopMenu(index: number) {
+    const id = this.websiteList[index].id || 0
+    this.router.navigate([this.router.url.split('?')[0]], {
+      queryParams: {
+        page: index,
+        id,
+        _: Date.now(),
+      },
+    })
+  }
+
+  handleSidebarNav(index: number) {
+    const { page } = queryString()
+    this.websiteList[page].id = index
     this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
         page,
-        id,
+        id: index,
+        _: Date.now(),
       },
     })
-    this.handlePositionTop()
   }
 
-  handlePositionTop() {
-    setTimeout(() => {
-      const el = document.querySelector('.search-header') as HTMLDivElement
-      if (el) {
-        const h = el.offsetHeight
-        window.scroll({
-          top: h,
-          left: 0,
-          behavior: 'smooth',
-        })
-      }
-    }, 30)
-  }
-
-  openMenu(item: any, index: number) {
-    this.websiteList.forEach((data, idx) => {
-      if (idx === index) {
-        data.collapsed = !data.collapsed
-      } else {
-        data.collapsed = false
-      }
-    })
-    setWebsiteList(this.websiteList)
-  }
-
-  onCollapse = (item: any, index: number) => {
-    item.collapsed = !item.collapsed
-    this.websiteList[this.page].nav[this.id].nav[index] = item
-    setWebsiteList(this.websiteList)
-  }
-
-  onCollapseAll = (e: Event) => {
-    e?.stopPropagation()
-    toggleCollapseAll(this.websiteList)
-    this.handlePositionTop()
-  }
-
-  handleJumpUrl(data) {
-    if (data.url) {
-      window.open(data.url)
-    }
-  }
-
-  collapsed() {
-    try {
-      return !!websiteList[this.page].nav[this.id].collapsed
-    } catch (error) {
-      return false
-    }
+  handleCheckThree(index: number) {
+    this.selectedIndex = index
   }
 }

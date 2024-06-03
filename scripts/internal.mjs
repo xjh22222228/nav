@@ -16,7 +16,17 @@ settings.showThemeToggle ??= true
 settings.lightCardStyle ||= 'standard'
 settings.simCardStyle ||= 'standard'
 settings.sideCardStyle ||= 'standard'
+settings.superCardStyle ||= 'super'
 settings.checkUrl ??= false
+settings.superTitle ??= ''
+settings.superImages ??= [
+  {
+    src: 'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/10.png',
+    url: '',
+    width: null,
+    height: null,
+  },
+]
 
 fs.writeFileSync(settingsPath, JSON.stringify(settings), { encoding: 'utf-8' })
 
@@ -79,15 +89,23 @@ fs.writeFileSync(internalPath, JSON.stringify(internal), { encoding: 'utf-8' })
 function setWeb(nav) {
   if (!Array.isArray(nav)) return
 
+  function removeIconFont(item) {
+    if (typeof item.icon === 'string' && item.icon.startsWith('icon')) {
+      delete item.icon
+    }
+  }
+
   for (let i = 0; i < nav.length; i++) {
     const item = nav[i]
-
+    removeIconFont(item)
     if (item.nav) {
       for (let j = 0; j < item.nav.length; j++) {
         const navItem = item.nav[j]
+        removeIconFont(navItem)
         if (navItem.nav) {
           for (let k = 0; k < navItem.nav.length; k++) {
             const navItemItem = navItem.nav[k]
+            removeIconFont(navItemItem)
             if (navItemItem.nav) {
               for (let l = 0; l < navItemItem.nav.length; l++) {
                 let breadcrumb = []

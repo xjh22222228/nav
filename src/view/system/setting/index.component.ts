@@ -65,6 +65,31 @@ export default class SystemSettingComponent {
     })
   }
 
+  // Super ===========================
+  onSuperBannerChange(data: any, idx: number) {
+    this.settings.superImages[idx]['src'] = data.cdn
+  }
+
+  onChangeSuperBannerUrl(e: any, idx: number) {
+    const value = e.target.value.trim()
+    this.settings.superImages[idx]['src'] = value
+  }
+
+  onChangeSuperJumpUrl(e: any, idx: number) {
+    const value = e.target.value.trim()
+    this.settings.superImages[idx]['url'] = value
+  }
+
+  onDeleteSuperBanner(idx: number) {
+    this.settings.superImages.splice(idx, 1)
+  }
+
+  onAddSuperBanner() {
+    this.settings.superImages.push({
+      ...this.settings.superImages[0],
+    })
+  }
+
   // Side ===========================
   onSideBannerChange(data: any, idx: number) {
     this.settings.sideThemeImages[idx]['src'] = data.cdn

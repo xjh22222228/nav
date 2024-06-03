@@ -1,6 +1,7 @@
 <div
   class="search-engine"
   *ngIf="searchEngineList && searchEngineList.length > 0"
+  [class.small]="size === 'small'"
 >
   <div
     class="input-wrapper dark-bg dark-border-color"
@@ -9,7 +10,7 @@
     <nz-input-group
       [nzPrefix]="prefixIcon"
       [nzSuffix]="suffixIcon"
-      nzSize="large"
+      [nzSize]="size"
       [nzAddOnBefore]="addOnBeforeTemplate"
     >
       <input

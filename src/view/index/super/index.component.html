@@ -1,0 +1,85 @@
+<section class="super-xjh dark-bg">
+  <header class="sheader dark-bg">
+    <div class="headerbox">
+      <div class="hitem">
+        <img class="logo" [src]="LOGO_CDN" />
+        <span class="title dark-white">{{ settings.superTitle || title }}</span>
+      </div>
+
+      <div class="topnav">
+        <div
+          *ngFor="let item of websiteList; index as i"
+          (click)="handleCilckTopMenu(i)"
+          [class.active]="page === i"
+          [class.dark-text-active]="page === i"
+          class="hitem nav-item dark-text"
+        >
+          {{ item.title }}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-box">
+    <div
+      class="left dark-bg dark-border-color dark-scrollbar"
+      *ngIf="websiteList[page]"
+    >
+      <div
+        class="bar-item dark-text dark-hover ellipsis"
+        [class.active]="id === i"
+        [class.dark-item-active]="id === i"
+        (click)="handleSidebarNav(i)"
+        *ngFor="let item of websiteList[page].nav; index as i"
+      >
+        <img *ngIf="item.icon" class="sideicon" [src]="item.icon" />
+        <span class="ellipsis">{{ item.title }}</span>
+      </div>
+    </div>
+
+    <div
+      class="middle dark-bg"
+      [class.noads]="settings.superImages.length <= 0"
+    >
+      <div class="search-t dark-border-color">
+        <app-search-engine size="small"></app-search-engine>
+        <div class="bar dark-scrollbar">
+          <div
+            class="bar-item"
+            *ngFor="let item of currentList.slice(0, sliceMax); index as i"
+            [class.active]="selectedIndex === i"
+            (click)="handleCheckThree(i)"
+          >
+            {{ item.title }}
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="currentList[selectedIndex]?.nav; else noData">
+        <app-card
+          *ngFor="let el of currentList[selectedIndex].nav; index as j"
+          [cardStyle]="settings.superCardStyle"
+          [dataSource]="el"
+        ></app-card>
+      </div>
+      <ng-template #noData>
+        <app-no-data></app-no-data>
+      </ng-template>
+    </div>
+
+    <div class="right dark-scrollbar" *ngIf="settings.superImages.length > 0">
+      <div class="aditem" *ngFor="let item of settings.superImages; index as i">
+        <a
+          [href]="item['url'] || 'javascript:void(0)'"
+          [target]="item['url'] ? '_blank' : '_self'"
+        >
+          <img class="adsimg" [src]="item['src']" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <app-footer style="color: #ccc"></app-footer>
+
+  <app-fixbar [showCollapse]="false"> </app-fixbar>
+</section>

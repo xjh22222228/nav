@@ -138,7 +138,7 @@ const english: Record<string, string> = {
   _setSaveTip:
     'Note: after saving successfully, you need to wait at least 2 minutes for the build time to take effect!',
   _theme: 'Theme',
-  _backgroundImage: 'Background picture',
+  _backgroundImage: 'Picture',
   _engineUrl: 'Engine URL',
   _actionSuccess: 'Succeeded',
   _jumpAddr: 'Jump address',

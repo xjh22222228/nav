@@ -99,6 +99,19 @@ $sideWidth: 200px;
   overflow: auto;
   width: 200px;
   padding-top: 70px;
+  .sideicon {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .fixicon {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    margin-right: 0;
+  }
   &::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -115,9 +128,13 @@ $sideWidth: 200px;
   }
 }
 
-::ng-deep .side-footer {
-  margin-top: 45px !important;
-  & > * {
-    color: #666 !important;
+::ng-deep {
+  #app-footer {
+    margin-top: 45px;
+  }
+  #app-footer,
+  #app-footer .copyright {
+    margin-bottom: 10px;
+    color: #666;
   }
 }

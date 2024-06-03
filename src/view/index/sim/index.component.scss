@@ -12,7 +12,7 @@ $width: 1200px;
 
 .top-nav {
   width: $width;
-  margin: 10px auto;
+  margin: 10px auto 25px;
   padding: 10px;
   overflow: none;
   white-space: nowrap;
@@ -94,12 +94,11 @@ $width: 1200px;
 
     .sidebar {
       position: sticky;
-      top: 10px;
+      top: 20px;
       left: 0;
       width: 180px;
       height: min-content;
       padding: 10px 0;
-      padding-bottom: 0;
       text-align: center;
       float: left;
       background-color: #fff;
@@ -107,8 +106,7 @@ $width: 1200px;
       max-height: calc(100vh - 50px);
       overflow-y: auto;
       .ripple-btn {
-        padding: 10px 0;
-        margin-bottom: 10px;
+        padding: 14px 0;
         cursor: pointer;
         border-radius: 5px;
         transition: 0.1s linear;
@@ -127,16 +125,16 @@ $width: 1200px;
       position: relative;
       background-color: #fff;
       margin-left: 30px;
-      padding: 15px;
+      padding: 0 15px 15px;
       float: right;
     }
   }
 }
 
-::ng-deep .sim-footer {
-  margin-bottom: 10px;
-
-  & > * {
-    color: #666 !important;
+::ng-deep {
+  #app-footer,
+  #app-footer .copyright {
+    margin-bottom: 10px;
+    color: #666;
   }
 }

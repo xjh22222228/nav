@@ -94,6 +94,9 @@ export default class WebpComponent {
     }
     r(this.websiteList)
     this.websiteTableData = websiteTableData
+    if (websiteTableData.length <= 0) {
+      this.message.success('未发现异常网站！')
+    }
   }
 
   onAllChecked(checked: boolean, type: 1 | 2 | 3 | 4) {
