@@ -17,7 +17,7 @@ settings.lightCardStyle ||= 'standard'
 settings.simCardStyle ||= 'standard'
 settings.simCardStyle ||= 'standard'
 settings.simTitle ||= ''
-settings.superCardStyle ||= 'super'
+settings.superCardStyle ||= 'column'
 // 更名
 if (settings.superCardStyle === 'super') {
   settings.superCardStyle = 'column'
