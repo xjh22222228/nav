@@ -23,7 +23,9 @@
     </div>
 
     <div class="bar">
-      <h1 class="title dark-title">{{ settings.title }}</h1>
+      <h1 class="title dark-title">
+        {{ settings.simTitle || settings.title }}
+      </h1>
       <h2 class="description dark-text-active" [innerHTML]="description"></h2>
       <app-search-engine></app-search-engine>
     </div>

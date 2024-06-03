@@ -104,6 +104,7 @@ export interface ISettings {
   simThemeHeight: number
   simThemeAutoplay: boolean
   simCardStyle: string
+  simTitle: string
 
   sideThemeImages: Record<string, string>[]
   sideThemeHeight: number

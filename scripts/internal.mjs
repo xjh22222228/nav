@@ -15,7 +15,8 @@ const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
 settings.showThemeToggle ??= true
 settings.lightCardStyle ||= 'standard'
 settings.simCardStyle ||= 'standard'
-settings.sideCardStyle ||= 'standard'
+settings.simCardStyle ||= 'standard'
+settings.simTitle ||= ''
 settings.superCardStyle ||= 'super'
 // 更名
 if (settings.superCardStyle === 'super') {
