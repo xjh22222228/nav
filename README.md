@@ -30,11 +30,11 @@
 - [https://xjh22222228.github.io/nav/](https://xjh22222228.github.io/nav/)
 
 ![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/1.png)
-![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/2.png)
+![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/8.png)
 ![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/3.png)
 ![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/4.png)
 ![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/6.png)
-![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/5.png)
+![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/9.png)
 ![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/7.png)
 
 ## 特性
@@ -61,6 +61,7 @@
 - 🍰 多种 Loading 加载动画
 - 🍰 多种 卡片风格
 - 🍰 支持检测网站存活状态
+- 🍰 支持配置仅自己可见
 
 ## 部署
 

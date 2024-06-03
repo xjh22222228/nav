@@ -30,11 +30,11 @@
 - [https://xjh22222228.github.io/nav/](https://xjh22222228.github.io/nav/)
 
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/1.png)
-![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/2.png)
+![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/8.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/3.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/4.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/6.png)
-![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/5.png)
+![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/9.png)
 ![Preview](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/7.png)
 
 ## Features
