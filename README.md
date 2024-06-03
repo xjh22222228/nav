@@ -71,15 +71,15 @@
 
 1、右上角点击 `Fork` 当前项目。
 
-2、修改项目配置文件 [nav.config.ts](nav.config.ts) 只需要修改仓库地址
+2、打开 https://github.com/你的用户名/nav/actions 开启 action 自动部署
 
-3、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token；[Gitee 申请点这里](https://gitee.com/profile/personal_access_tokens/new)
+3、修改项目根目录配置文件 [nav.config.ts](nav.config.ts) 只需要修改仓库地址
 
-4、https://github.com/你的用户名/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
+4、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token；[Gitee 申请点这里](https://gitee.com/profile/personal_access_tokens/new)
 
-5、打开 https://github.com/你的用户名/nav/actions 开启 action 自动部署
+5、https://github.com/你的用户名/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
 
-6、5 分钟后打开 https://你的用户名.github.io/nav 就能看到一个非常强大的导航网站了。
+6、打开 https://你的用户名.github.io/nav 就能看到一个非常强大的导航网站了。
 
 #### Netlify 推荐(免费)
 
@@ -174,7 +174,7 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 <img src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/32.png" width="600">
 
 感谢您的认可：
-| 姓名 | 支持金额 |
+| ID | 支持金额 |
 | --------------------------------------- |----------- |
 | [aiyou9](https://github.com/aiyou9) | ￥ 100 |
 | [lastares](https://github.com/lastares) | ￥ 25.00 |
