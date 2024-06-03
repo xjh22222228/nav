@@ -25,7 +25,7 @@ export default class SystemComponent {
     this.currentMenu = u[u.length - 1]
 
     // 解决暗黑模式部分样式不正确问题，后台没有暗黑
-    if (!window.location.hostname === 'localhost') {
+    if (!(window.location.hostname === 'localhost')) {
       const isReload = window.sessionStorage.getItem('reload')
       window.sessionStorage.removeItem('reload')
       if (!isReload) {
