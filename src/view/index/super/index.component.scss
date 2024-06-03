@@ -87,7 +87,7 @@
       background-color: #fff;
       padding: 8px;
       font-size: 16px;
-      border-radius: 8px;
+      border-radius: 4px;
       overflow: hidden;
       overflow-y: auto;
       max-height: calc(100vh - 100px);
@@ -120,7 +120,7 @@
       background: #fff;
       margin-left: 20px;
       flex: 1;
-      border-radius: 8px;
+      border-radius: 4px;
       max-width: var(--middleWidth);
       &.noads {
         max-width: initial;

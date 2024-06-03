@@ -114,10 +114,14 @@
 将你的仓库克隆下来执行以下命令
 
 ```bash
+git pull
 git remote add upstream https://github.com/xjh22222228/nav.git
 git fetch upstream main
 git merge upstream/main --allow-unrelated-histories
 git push
+
+# 或者执行
+npm run fetch
 ```
 
 ## 更新日志

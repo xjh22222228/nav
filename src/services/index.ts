@@ -26,7 +26,7 @@ export function verifyToken(token: string) {
 }
 
 // 创建分支
-export function createBranch(branch: string) {
+export async function createBranch(branch: string) {
   const url = isGitee()
     ? `/repos/${authorName}/${repoName}/branches`
     : `/repos/${authorName}/${repoName}/git/refs`
@@ -37,9 +37,15 @@ export function createBranch(branch: string) {
     params['refs'] = DEFAULT_BRANCH
     params['branch_name'] = branch
   } else {
-    params['ref'] = `refs/heads/${branch}`
-    // https://github.com/xjh22222228/nav/commit/c1fdab3d29df4740bb97a4ae7f24ed0eaa682557
     params['sha'] = 'c1fdab3d29df4740bb97a4ae7f24ed0eaa682557'
+    try {
+      const commitRes = await getCommits()
+      if (commitRes.data?.length > 0) {
+        params['sha'] = commitRes.data[0]['sha']
+      }
+    } catch (error) {}
+
+    params['ref'] = `refs/heads/${branch}`
   }
   return http.post(url, params)
 }
@@ -81,6 +87,10 @@ export async function updateFileContent({
       requestActionUrl()
       return res
     })
+}
+
+export function getCommits() {
+  return http.get(`/repos/${authorName}/${repoName}/commits`)
 }
 
 export async function createFile({
