@@ -17,6 +17,10 @@ settings.lightCardStyle ||= 'standard'
 settings.simCardStyle ||= 'standard'
 settings.sideCardStyle ||= 'standard'
 settings.superCardStyle ||= 'super'
+// 更名
+if (settings.superCardStyle === 'super') {
+  settings.superCardStyle = 'column'
+}
 settings.checkUrl ??= false
 settings.superTitle ??= ''
 const defImgs = [
@@ -31,6 +35,7 @@ settings.superImages ??= defImgs
 if (!Array.isArray(settings.superImages)) {
   settings.superImages = defImgs
 }
+settings.sideTitle = ''
 
 fs.writeFileSync(settingsPath, JSON.stringify(settings), { encoding: 'utf-8' })
 

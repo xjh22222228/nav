@@ -2,7 +2,7 @@
   <nz-layout>
     <div class="logo dark-bg">
       <img [src]="LOGO_CDN" />
-      <span class="site-title">{{ title }}</span>
+      <span class="site-title">{{ settings.sideTitle || title }}</span>
     </div>
     <ul nz-menu nzMode="inline" class="sider dark-scrollbar">
       <li

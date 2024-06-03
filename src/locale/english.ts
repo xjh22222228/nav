@@ -98,7 +98,7 @@ const english: Record<string, string> = {
   _uploadFail: 'Upload failed, please try again!',
   _notUpload: 'Please do not upload illegal pictures',
   _shortcut: 'Shortcut',
-  _recommend: 'Recommended',
+  _score: 'Score',
   _iconAddr: 'Icon Link',
   _copyUpload: 'Support to paste screenshots or copy pictures here to upload',
   _upload: 'Upload',

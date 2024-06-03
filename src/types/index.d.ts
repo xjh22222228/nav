@@ -109,6 +109,7 @@ export interface ISettings {
   sideThemeHeight: number
   sideThemeAutoplay: boolean
   sideCardStyle: string
+  sideTitle: string
 
   shortcutThemeImages: Record<string, string>[]
   shortcutThemeShowWeather: boolean

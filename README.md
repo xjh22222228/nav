@@ -179,6 +179,7 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 | [aiyou9](https://github.com/aiyou9) | ￥ 100 |
 | [lastares](https://github.com/lastares) | ￥ 25.00 |
 | [MrJxySteven](https://github.com/MrJxySteven) | ￥ 20.00 |
+| [admol](https://github.com/admol) | ￥ 6.66 |
 | 路人甲 | ￥ 50.00 |
 
 ## License

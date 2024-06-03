@@ -44,36 +44,30 @@
         </nz-form-control>
       </nz-form-item>
 
-      <div class="row">
-        <div class="col">
-          <nz-form-item>
-            <nz-form-label [nzSpan]="15" nzRequired>{{
-              $t('_shortcut')
-            }}</nz-form-label>
-            <nz-form-control [nzSpan]="9">
-              <nz-switch formControlName="top"></nz-switch>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div class="col">
-          <nz-form-item>
-            <nz-form-label [nzSpan]="15" nzRequired>{{
-              $t('_onlyOwnVisible')
-            }}</nz-form-label>
-            <nz-form-control [nzSpan]="9">
-              <nz-switch formControlName="ownVisible"></nz-switch>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div class="col">
-          <nz-form-item>
-            <nz-form-label [nzSpan]="8">{{ $t('_recommend') }}</nz-form-label>
-            <nz-form-control [nzSpan]="24">
-              <nz-rate formControlName="rate" nzAllowHalf></nz-rate>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-      </div>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>{{
+          $t('_shortcut')
+        }}</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-switch formControlName="top"></nz-switch>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired>{{
+          $t('_onlyOwnVisible')
+        }}</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-switch formControlName="ownVisible"></nz-switch>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_score') }}</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-rate formControlName="rate" nzAllowHalf></nz-rate>
+        </nz-form-control>
+      </nz-form-item>
 
       <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ $t('_iconAddr') }}</nz-form-label>
