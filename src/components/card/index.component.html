@@ -1,185 +1,191 @@
 <!-- 网站 -->
-<div class="container standard" *ngIf="cardStyle === 'standard'">
-  <nz-card
-    [nzActions]="
-      isLogin
-        ? [actionCopy, actionShare, actionEllipsis]
-        : [actionCopy, actionShare]
-    "
-    nzSize="small"
-    nzHoverable
-    nzType="inner"
-  >
-    <div class="rate" *ngIf="settings.showRate">
-      <nz-rate
-        [ngModel]="dataSource.rate"
-        [nzDisabled]="!isLogin"
-        nzAllowHalf
-        (ngModelChange)="onRateChange($event)"
-      >
-      </nz-rate>
-    </div>
-    <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
-      <nz-card-meta [nzTitle]="title" [nzAvatar]="avatarTemplate">
-      </nz-card-meta>
+<ng-container [ngSwitch]="cardStyle">
+  <div class="container standard" *ngSwitchCase="'standard'">
+    <nz-card
+      [nzActions]="
+        isLogin
+          ? [actionCopy, actionShare, actionEllipsis]
+          : [actionCopy, actionShare]
+      "
+      nzSize="small"
+      nzHoverable
+      nzType="inner"
+    >
+      <div class="rate" *ngIf="settings.showRate">
+        <nz-rate
+          [ngModel]="dataSource.rate"
+          [nzDisabled]="!isLogin"
+          nzAllowHalf
+          (ngModelChange)="onRateChange($event)"
+        >
+        </nz-rate>
+      </div>
+      <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
+        <nz-card-meta [nzTitle]="title" [nzAvatar]="avatarTemplate">
+        </nz-card-meta>
 
-      <div style="opacity: 0; height: 10px">&nbsp;</div>
-      <pre class="desc dark-text" [innerHTML]="dataSource.desc"></pre>
-    </a>
+        <div style="opacity: 0; height: 10px">&nbsp;</div>
+        <pre class="desc dark-text" [innerHTML]="dataSource.desc"></pre>
+      </a>
 
-    <div style="margin-top: 15px">
-      <nz-tag
-        *ngFor="let key of objectKeys(dataSource.urls || {})"
-        [nzColor]="(tagMap[key] && tagMap[key].color) || '#2db7f5'"
-        style="margin-bottom: 5px"
-      >
-        <a
-          [href]="dataSource.urls?.[key] || 'javascript:void(0)'"
-          [target]="
+      <div style="margin-top: 15px">
+        <nz-tag
+          *ngFor="let key of objectKeys(dataSource.urls || {})"
+          [nzColor]="(tagMap[key] && tagMap[key].color) || '#2db7f5'"
+          style="margin-bottom: 5px"
+        >
+          <a
+            [href]="dataSource.urls?.[key] || 'javascript:void(0)'"
+            [target]="
             dataSource.urls?.[key] ? '_blank' : ''
           "
-          >{{ key }}</a
-        >
-      </nz-tag>
-    </div>
-  </nz-card>
+            >{{ key }}</a
+          >
+        </nz-tag>
+      </div>
+    </nz-card>
 
-  <ng-template #title>
-    <div [innerHTML]="dataSource.name" class="title"></div>
-  </ng-template>
-  <ng-template #avatarTemplate>
-    <app-logo [src]="dataSource.icon || ''" [name]="dataSource.name"></app-logo>
-  </ng-template>
-  <ng-template #actionCopy>
-    <div
-      nz-tooltip
-      [nzTooltipTitle]="copyUrlDone ? $t('_copySuccess') : $t('_copyUrl')"
-    >
-      <i
-        nz-icon
-        [nzType]="copyUrlDone ? 'check' : 'copy'"
-        nzTheme="outline"
-        (click)="copyUrl($event, 2)"
-        (mouseout)="copyMouseout()"
-      >
-      </i>
-    </div>
-  </ng-template>
-  <ng-template #actionShare>
-    <div
-      nz-tooltip
-      [nzTooltipTitle]="copyPathDone ? $t('_copySuccess') : $t('_shareWeb')"
-    >
-      <i
-        nz-icon
-        [nzType]="copyPathDone ? 'check' : 'share-alt'"
-        nzTheme="outline"
-        (click)="copyUrl($event, 1)"
-        (mouseout)="copyMouseout()"
-      >
-      </i>
-    </div>
-  </ng-template>
-  <ng-template #actionEllipsis>
-    <i
-      nz-icon
-      nzType="ellipsis"
-      nz-dropdown
-      [nzDropdownMenu]="menu"
-      *ngIf="isLogin"
-    ></i>
-
-    <nz-dropdown-menu #menu="nzDropdownMenu">
-      <ul nz-menu nzSelectable>
-        <li nz-menu-item (click)="toggleCreateModal()">{{ $t('_edit') }}</li>
-        <li nz-menu-item (click)="handleMove()">{{ $t('_move') }}</li>
-        <a
-          nz-popconfirm
-          nzPopconfirmPlacement="rightTop"
-          nzOkType="danger"
-          [nzPopconfirmTitle]="$t('_confirmDel')"
-          nzPopconfirmPlacement="bottom"
-          (nzOnConfirm)="confirmDel()"
-        >
-          <li nz-menu-item nzDanger>{{ $t('_del') }}</li>
-        </a>
-      </ul>
-    </nz-dropdown-menu>
-  </ng-template>
-
-  <app-create-web
-    *ngIf="showCreateModal"
-    [visible]="showCreateModal"
-    (onCancel)="toggleCreateModal()"
-    (onOk)="handleUpdateSiteOk($event)"
-    [detail]="dataSource"
-  >
-  </app-create-web>
-
-  <app-move-site
-    #moveSite
-    *ngIf="showMoveModal"
-    [indexs]="indexs"
-    [visible]="showMoveModal"
-    (onCancel)="toggleMoveModal()"
-  >
-  </app-move-site>
-</div>
-
-<!-- example theme -->
-<a
-  [href]="dataSource.url"
-  target="_blank"
-  rel="noreferer noopener"
-  class="container example2 ellipsis dark-bg dark-white"
-  *ngIf="cardStyle === 'example'"
->
-  <app-logo [src]="dataSource.icon || ''" [name]="dataSource.name"></app-logo>
-  <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
-    <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
-    <pre class="desc dark-text ellipsis" [innerHTML]="dataSource.desc"></pre>
-  </div>
-</a>
-
-<!-- super theme -->
-<a
-  [href]="dataSource.url"
-  target="_blank"
-  rel="noreferer noopener"
-  class="container column2 ellipsis dark-bg dark-white dark-border-color dark-hover"
-  *ngIf="cardStyle === 'column'"
->
-  <div class="title-bar">
-    <app-logo
-      [src]="dataSource.icon || ''"
-      [name]="dataSource.name"
-      [size]="20"
-    ></app-logo>
-    <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
-  </div>
-
-  <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
-    <pre class="desc dark-text ellipsis" [innerHTML]="dataSource.desc"></pre>
-  </div>
-
-  <div class="bottom-bar">
-    <div class="tagbox">
-      <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
+    <ng-template #title>
+      <div [innerHTML]="dataSource.name" class="title"></div>
+    </ng-template>
+    <ng-template #avatarTemplate>
+      <app-logo
+        [src]="dataSource.icon || ''"
+        [name]="dataSource.name"
+      ></app-logo>
+    </ng-template>
+    <ng-template #actionCopy>
       <div
-        class="tag-item"
-        *ngFor="let key of objectKeys(dataSource.urls || {})"
-        [style]="
-          'background-color: ' + (tagMap[key] && tagMap[key].color) || '#2db7f5'
-        "
+        nz-tooltip
+        [nzTooltipTitle]="copyUrlDone ? $t('_copySuccess') : $t('_copyUrl')"
       >
-        <a
-          [href]="dataSource.urls?.[key] || 'javascript:void(0)'"
-          [target]="
+        <i
+          nz-icon
+          [nzType]="copyUrlDone ? 'check' : 'copy'"
+          nzTheme="outline"
+          (click)="copyUrl($event, 2)"
+          (mouseout)="copyMouseout()"
+        >
+        </i>
+      </div>
+    </ng-template>
+    <ng-template #actionShare>
+      <div
+        nz-tooltip
+        [nzTooltipTitle]="copyPathDone ? $t('_copySuccess') : $t('_shareWeb')"
+      >
+        <i
+          nz-icon
+          [nzType]="copyPathDone ? 'check' : 'share-alt'"
+          nzTheme="outline"
+          (click)="copyUrl($event, 1)"
+          (mouseout)="copyMouseout()"
+        >
+        </i>
+      </div>
+    </ng-template>
+    <ng-template #actionEllipsis>
+      <i
+        nz-icon
+        nzType="ellipsis"
+        nz-dropdown
+        [nzDropdownMenu]="menu"
+        *ngIf="isLogin"
+      ></i>
+
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item (click)="toggleCreateModal()">{{ $t('_edit') }}</li>
+          <li nz-menu-item (click)="handleMove()">{{ $t('_move') }}</li>
+          <a
+            nz-popconfirm
+            nzPopconfirmPlacement="rightTop"
+            nzOkType="danger"
+            [nzPopconfirmTitle]="$t('_confirmDel')"
+            nzPopconfirmPlacement="bottom"
+            (nzOnConfirm)="confirmDel()"
+          >
+            <li nz-menu-item nzDanger>{{ $t('_del') }}</li>
+          </a>
+        </ul>
+      </nz-dropdown-menu>
+    </ng-template>
+
+    <app-create-web
+      *ngIf="showCreateModal"
+      [visible]="showCreateModal"
+      (onCancel)="toggleCreateModal()"
+      (onOk)="handleUpdateSiteOk($event)"
+      [detail]="dataSource"
+    >
+    </app-create-web>
+
+    <app-move-site
+      #moveSite
+      *ngIf="showMoveModal"
+      [indexs]="indexs"
+      [visible]="showMoveModal"
+      (onCancel)="toggleMoveModal()"
+    >
+    </app-move-site>
+  </div>
+
+  <!-- example style -->
+  <a
+    [href]="dataSource.url"
+    target="_blank"
+    rel="noreferer noopener"
+    class="container example2 ellipsis dark-bg dark-white"
+    *ngSwitchCase="'example'"
+  >
+    <app-logo [src]="dataSource.icon || ''" [name]="dataSource.name"></app-logo>
+    <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
+      <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
+      <pre class="desc dark-text ellipsis" [innerHTML]="dataSource.desc"></pre>
+    </div>
+  </a>
+
+  <!-- column style -->
+  <a
+    [href]="dataSource.url"
+    target="_blank"
+    rel="noreferer noopener"
+    class="container column2 ellipsis dark-bg dark-white dark-border-color dark-hover"
+    *ngSwitchDefault
+  >
+    <div class="title-bar">
+      <app-logo
+        [src]="dataSource.icon || ''"
+        [name]="dataSource.name"
+        [size]="20"
+      ></app-logo>
+      <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
+    </div>
+
+    <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
+      <pre class="desc dark-text ellipsis" [innerHTML]="dataSource.desc"></pre>
+    </div>
+
+    <div class="bottom-bar">
+      <div class="tagbox">
+        <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
+        <div
+          class="tag-item"
+          *ngFor="let key of objectKeys(dataSource.urls || {})"
+          [style]="
+            'background-color: ' + (tagMap[key] && tagMap[key].color) ||
+            '#2db7f5'
+          "
+        >
+          <a
+            [href]="dataSource.urls?.[key] || 'javascript:void(0)'"
+            [target]="
             dataSource.urls?.[key] ? '_blank' : ''
           "
-          >{{ key }}</a
-        >
+            >{{ key }}</a
+          >
+        </div>
       </div>
     </div>
-  </div>
-</a>
+  </a>
+</ng-container>

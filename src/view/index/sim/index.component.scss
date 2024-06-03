@@ -11,10 +11,11 @@ $width: 1200px;
 }
 
 .top-nav {
-  width: $width;
+  max-width: $width;
   margin: 10px auto 25px;
   padding: 10px;
   overflow: none;
+  overflow-x: auto;
   white-space: nowrap;
   border-bottom: 1px solid #eee;
   text-align: center;

@@ -101,7 +101,7 @@ function setWeb(nav) {
 
   function removeIconFont(item) {
     if (typeof item.icon === 'string' && item.icon.startsWith('icon')) {
-      delete item.icon
+      item.icon = ''
     }
   }
 
