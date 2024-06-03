@@ -37,6 +37,7 @@ if (!Array.isArray(settings.superImages)) {
   settings.superImages = defImgs
 }
 settings.sideTitle ||= ''
+settings.sideCardStyle ||= 'example'
 
 fs.writeFileSync(settingsPath, JSON.stringify(settings), { encoding: 'utf-8' })
 
