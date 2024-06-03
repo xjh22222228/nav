@@ -19,7 +19,7 @@ settings.sideCardStyle ||= 'standard'
 settings.superCardStyle ||= 'super'
 settings.checkUrl ??= false
 settings.superTitle ??= ''
-settings.superImages ??= [
+const defImgs = [
   {
     src: 'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/10.png',
     url: '',
@@ -27,6 +27,10 @@ settings.superImages ??= [
     height: null,
   },
 ]
+settings.superImages ??= defImgs
+if (!Array.isArray(settings.superImages)) {
+  settings.superImages = defImgs
+}
 
 fs.writeFileSync(settingsPath, JSON.stringify(settings), { encoding: 'utf-8' })
 

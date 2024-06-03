@@ -166,6 +166,7 @@ export default class SystemSettingComponent {
           simThemeImages: this.settings.simThemeImages,
           shortcutThemeImages: this.settings.shortcutThemeImages,
           sideThemeImages: this.settings.sideThemeImages,
+          superImages: this.settings.superImages,
           mirrorList: this.settings.mirrorList.filter(
             (item) => item['url'] && item['name']
           ),
