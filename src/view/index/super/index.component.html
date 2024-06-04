@@ -48,6 +48,7 @@
             class="bar-item"
             *ngFor="let item of currentList; index as i"
             [class.active]="selectedIndex === i"
+            [class.none]="!item.title"
             (click)="handleCheckThree(i)"
           >
             {{ item.title }}
