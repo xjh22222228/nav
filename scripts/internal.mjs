@@ -21,7 +21,7 @@ const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
     'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/background.jpg'
 
   settings.favicon ??=
-    'https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/logo.png'
+    'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/logo.png'
   settings.homeUrl ??= 'https://nav3.cn'
   settings.language ??= 'zh-CN'
   settings.loading ??= 'random'
