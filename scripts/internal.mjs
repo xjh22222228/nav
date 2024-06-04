@@ -13,10 +13,55 @@ const db = JSON.parse(fs.readFileSync(dbPath).toString())
 const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
 
 {
+  const banner1 =
+    'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/banner1.jpg'
+  const banner2 =
+    'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/banner2.jpg'
+  const backgroundImg =
+    'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/background.jpg'
+
+  settings.favicon ??=
+    'https://cdn.jsdelivr.net/gh/xjh22222228/nav@image/logo.png'
+  settings.homeUrl ??= 'https://nav3.cn'
+  settings.language ??= 'zh-CN'
+  settings.loading ??= 'random'
+  settings.showGithub ??= true
+  settings.showLanguage ??= true
+  settings.showRate ??= true
+  settings.title ??= '发现导航 - 精选实用导航网站'
+  settings.description ??= '发现导航 - 精选实用导航网站'
+  settings.keywords ??=
+    '导航,前端资源,社区站点,设计师,实用工具,学习资源,运营,网络安全,node.js'
+  settings.theme ??= 'Light'
+  settings.appTheme ??= 'App'
+  settings.headerContent ??= ''
+  settings.footerContent ??=
+    '<div style="font-weight: bold;">共收录${total}个网站</div><div>Copyright © 2018-present nav3.cn, All Rights Reserved</div>'
+  settings.baiduStatisticsUrl ??=
+    'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba'
+  settings.cnzzStatisticsUrl ??= ''
   settings.showThemeToggle ??= true
   settings.lightCardStyle ||= 'standard'
+  settings.simThemeImages ||= [
+    {
+      src: banner1,
+      url: '',
+      width: null,
+      height: null,
+    },
+    {
+      src: banner2,
+      url: '',
+      width: null,
+      height: null,
+    },
+  ]
+  settings.simThemeDesc ||=
+    '这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活'
   settings.simCardStyle ||= 'standard'
   settings.simCardStyle ||= 'standard'
+  settings.simThemeHeight ??= 350
+  settings.simThemeAutoplay ??= true
   settings.simTitle ||= ''
   settings.superCardStyle ||= 'column'
   // 更名
@@ -39,6 +84,32 @@ const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
   }
   settings.sideTitle ||= ''
   settings.sideCardStyle ||= 'example'
+  settings.sideThemeHeight ??= 350
+  settings.sideThemeAutoplay ??= true
+  settings.sideThemeImages ||= [
+    {
+      src: banner2,
+      url: '',
+      width: null,
+      height: null,
+    },
+    {
+      src: banner1,
+      url: '',
+      width: null,
+      height: null,
+    },
+  ]
+  settings.shortcutThemeShowWeather ??= true
+  settings.shortcutThemeImages ??= [
+    {
+      src: backgroundImg,
+      url: '',
+      width: null,
+      height: null,
+    },
+  ]
+  settings.mirrorList ||= []
   fs.writeFileSync(settingsPath, JSON.stringify(settings), {
     encoding: 'utf-8',
   })
