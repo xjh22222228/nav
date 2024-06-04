@@ -1,0 +1,19 @@
+<div
+  class="swiper"
+  [id]="swiperId"
+  [ngStyle]="{ height: height <= 0 ? '' : height + 'px' }"
+>
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" *ngFor="let item of images; let i = index">
+      <a
+        [href]="item.url || 'javascript:void(0)'"
+        [target]="item.url ? '_blank' : ''"
+      >
+        <img class="bgimg" [src]="item.src" draggable="false" />
+      </a>
+    </div>
+  </div>
+  <div class="swiper-pagination"></div>
+
+  <ng-content></ng-content>
+</div>

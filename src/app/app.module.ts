@@ -34,12 +34,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
-import { NzCarouselModule } from 'ng-zorro-antd/carousel'
 import { IconDefinition } from '@ant-design/icons-angular'
 
 import { NZ_I18N } from 'ng-zorro-antd/i18n'
 import { zh_CN } from 'ng-zorro-antd/i18n'
 
+import { SwiperComponent } from '../components/swiper/index.component'
 import { FixbarComponent } from '../components/fixbar/index.component'
 import { FooterComponent } from '../components/footer/footer.component'
 import { UploadComponent } from '../components/upload/index.component'
@@ -110,6 +110,7 @@ const icons: IconDefinition[] = [
     SystemAngleMarkComponent,
     SystemWebComponent,
     WebpComponent,
+    SwiperComponent,
     FixbarComponent,
     FooterComponent,
     UploadComponent,
@@ -152,7 +153,6 @@ const icons: IconDefinition[] = [
     NzCheckboxModule,
     NzPopoverModule,
     NzSliderModule,
-    NzCarouselModule,
     NzSwitchModule,
     DragDropModule,
     BrowserModule,

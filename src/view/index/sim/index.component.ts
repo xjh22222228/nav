@@ -55,12 +55,6 @@ export default class SimComponent {
     })
   }
 
-  handleJumpUrl(data: any) {
-    if (data.url) {
-      window.open(data.url)
-    }
-  }
-
   ngOnDestroy() {}
 
   ngAfterViewInit() {}

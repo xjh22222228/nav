@@ -44,31 +44,14 @@
     </ul>
 
     <nz-layout class="inner-layout">
-      <div
-        *ngIf="
-          settings.sideThemeImages.length > 0 && settings.sideThemeHeight > 0
-        "
-        class="search-header dark-bg-deep dark-border-color"
-        [ngStyle]="{ height: settings.sideThemeHeight + 'px' }"
-      >
-        <div class="bg">
-          <nz-carousel
-            nzEffect="scrollx"
-            [nzAutoPlay]="settings.sideThemeAutoplay"
-            [nzDots]="settings.sideThemeImages.length > 1"
-            [nzEnableSwipe]="settings.sideThemeImages.length > 1"
-            [nzAutoPlaySpeed]="5000"
-          >
-            <div
-              class="bg-item"
-              nz-carousel-content
-              *ngFor="let item of settings.sideThemeImages"
-              [ngStyle]="{ 'background-image': 'url(' + item['src'] + ')' }"
-              (click)="handleJumpUrl(item)"
-            ></div>
-          </nz-carousel>
-        </div>
-        <app-search-engine></app-search-engine>
+      <div class="search-header" *ngIf="settings.sideThemeImages.length > 0">
+        <app-swiper
+          [images]="settings.sideThemeImages"
+          [autoplay]="settings.sideThemeAutoplay"
+          [height]="settings.sideThemeHeight"
+        >
+          <app-search-engine></app-search-engine>
+        </app-swiper>
       </div>
 
       <nz-content class="content" id="content">

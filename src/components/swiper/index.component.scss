@@ -1,0 +1,15 @@
+.swiper {
+  user-select: none;
+  ::ng-deep {
+    .swiper-pagination-bullet {
+      cursor: pointer;
+    }
+    .swiper-pagination-bullet-active {
+      background-color: #fff !important;
+    }
+  }
+  .bgimg {
+    width: 100%;
+    object-fit: cover;
+  }
+}

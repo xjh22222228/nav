@@ -12,34 +12,37 @@ const internal = JSON.parse(fs.readFileSync(internalPath).toString())
 const db = JSON.parse(fs.readFileSync(dbPath).toString())
 const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
 
-settings.showThemeToggle ??= true
-settings.lightCardStyle ||= 'standard'
-settings.simCardStyle ||= 'standard'
-settings.simCardStyle ||= 'standard'
-settings.simTitle ||= ''
-settings.superCardStyle ||= 'column'
-// 更名
-if (settings.superCardStyle === 'super') {
-  settings.superCardStyle = 'column'
+{
+  settings.showThemeToggle ??= true
+  settings.lightCardStyle ||= 'standard'
+  settings.simCardStyle ||= 'standard'
+  settings.simCardStyle ||= 'standard'
+  settings.simTitle ||= ''
+  settings.superCardStyle ||= 'column'
+  // 更名
+  if (settings.superCardStyle === 'super') {
+    settings.superCardStyle = 'column'
+  }
+  settings.checkUrl ??= false
+  settings.superTitle ??= ''
+  const defImgs = [
+    {
+      src: 'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/10.png',
+      url: '',
+      width: null,
+      height: null,
+    },
+  ]
+  settings.superImages ??= defImgs
+  if (!Array.isArray(settings.superImages)) {
+    settings.superImages = defImgs
+  }
+  settings.sideTitle ||= ''
+  settings.sideCardStyle ||= 'example'
+  fs.writeFileSync(settingsPath, JSON.stringify(settings), {
+    encoding: 'utf-8',
+  })
 }
-settings.checkUrl ??= false
-settings.superTitle ??= ''
-const defImgs = [
-  {
-    src: 'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/10.png',
-    url: '',
-    width: null,
-    height: null,
-  },
-]
-settings.superImages ??= defImgs
-if (!Array.isArray(settings.superImages)) {
-  settings.superImages = defImgs
-}
-settings.sideTitle ||= ''
-settings.sideCardStyle ||= 'example'
-
-fs.writeFileSync(settingsPath, JSON.stringify(settings), { encoding: 'utf-8' })
 
 // 统计网站数量
 export function getWebCount(websiteList) {

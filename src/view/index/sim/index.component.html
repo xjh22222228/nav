@@ -1,34 +1,21 @@
 <div class="sim">
-  <div
-    class="wallpaper"
-    *ngIf="settings.simThemeImages.length > 0 && settings.simThemeHeight > 0"
-    [ngStyle]="{ height: settings.simThemeHeight + 'px' }"
-  >
-    <div class="bg">
-      <nz-carousel
-        nzEffect="scrollx"
-        [nzAutoPlay]="settings.simThemeAutoplay"
-        [nzDots]="settings.simThemeImages.length > 1"
-        [nzEnableSwipe]="settings.simThemeImages.length > 1"
-        [nzAutoPlaySpeed]="5000"
-      >
-        <div
-          class="bg-item"
-          nz-carousel-content
-          *ngFor="let item of settings.simThemeImages"
-          [ngStyle]="{ 'background-image': 'url(' + item['src'] + ')' }"
-          (click)="handleJumpUrl(item)"
-        ></div>
-      </nz-carousel>
-    </div>
-
-    <div class="bar">
-      <h1 class="title dark-title">
-        {{ settings.simTitle || settings.title }}
-      </h1>
-      <h2 class="description dark-text-active" [innerHTML]="description"></h2>
-      <app-search-engine></app-search-engine>
-    </div>
+  <div class="wallpaper" *ngIf="settings.simThemeImages.length > 0">
+    <app-swiper
+      [images]="settings.simThemeImages"
+      [autoplay]="settings.simThemeAutoplay"
+      [height]="settings.simThemeHeight"
+    >
+      <div class="bar">
+        <h1 class="title dark-title">
+          {{ settings.simTitle || settings.title }}
+        </h1>
+        <pre
+          class="description dark-text-active"
+          [innerHTML]="description"
+        ></pre>
+        <app-search-engine />
+      </div>
+    </app-swiper>
   </div>
 
   <nav class="top-nav user-select-none dark-border-color">

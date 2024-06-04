@@ -14,18 +14,8 @@ $sideWidth: 200px;
       z-index: 9;
       position: relative;
       text-align: center;
-      height: 350px;
-      .bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-      }
-      .bg-item {
-        background-repeat: no-repeat;
-      }
       ::ng-deep .search-engine {
+        z-index: 10;
         position: absolute;
         top: 50%;
         left: 50%;
