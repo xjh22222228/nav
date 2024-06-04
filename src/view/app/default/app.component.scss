@@ -6,7 +6,7 @@ $bg-color: #fbfbfb;
   background: #f6f6f6;
 
   .header {
-    z-index: 9999;;
+    z-index: 9999;
     position: fixed;
     top: 0;
     left: 0;
@@ -43,11 +43,10 @@ $bg-color: #fbfbfb;
         width: 25px;
         background: #999;
         transform-origin: right center;
-        transition: .1s linear;
+        transition: 0.1s linear;
       }
 
       &.active {
-
         i:nth-child(1) {
           transform: rotate(-45deg);
         }
@@ -67,7 +66,10 @@ $bg-color: #fbfbfb;
       box-shadow: 1px 1px 5px #ccc;
       overflow: hidden;
       background: $bg-color;
-      transition: .1s linear;
+      transition: 0.1s linear;
+      &.active {
+        display: block;
+      }
     }
 
     .nav-title {
@@ -78,7 +80,7 @@ $bg-color: #fbfbfb;
 
       &:active,
       &.active {
-        background: rgba(0, 0, 0, .05);
+        background: rgba(0, 0, 0, 0.05);
       }
     }
   }
@@ -100,12 +102,12 @@ $bg-color: #fbfbfb;
         font-size: 14px;
         padding: 3px 5px;
         margin: 0 3px 5px 0;
-        transition: background .1s linear;
+        transition: background 0.1s linear;
         color: #333;
       }
 
       .active::after {
-        content: "";
+        content: '';
         position: absolute;
         bottom: 5px;
         left: 50%;
@@ -147,7 +149,7 @@ $bg-color: #fbfbfb;
     .block-title {
       padding: 10px 0 10px 15px;
       border-bottom: 1px solid #eee;
-      color: #3F51B5;
+      color: #3f51b5;
     }
 
     .top {
@@ -183,7 +185,6 @@ $bg-color: #fbfbfb;
       }
 
       &:hover {
-
         ::ng-deep .mark {
           bottom: 0 !important;
         }

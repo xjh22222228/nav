@@ -1,31 +1,31 @@
 <section class="app-page user-select-none">
   <header class="header">
     <div class="header-top">
-      <img [src]="LOGO_CDN" class="logo" alt="logo">
+      <img [src]="LOGO_CDN" class="logo" alt="logo" />
       <div class="open" [class.active]="open" (click)="handleToggleOpen()">
         <i></i>
         <i></i>
         <i></i>
       </div>
     </div>
-    <nav class="nav-open">
-      <div 
-        *ngFor="let item of websiteList; let i = index;" 
-        (click)="handleCilckNav(i)" 
-        [class.active]="page === i" 
+    <nav class="nav-open" [class.active]="open">
+      <div
+        *ngFor="let item of websiteList; let i = index"
+        (click)="handleCilckNav(i)"
+        [class.active]="page === i"
         class="nav-title"
       >
         {{ item.title }}
       </div>
     </nav>
   </header>
-  
+
   <div class="wrapper" *ngIf="websiteList[page]">
     <nav class="children-nav" *ngIf="websiteList[page].nav.length > 1">
       <a
-        class="tag" 
-        *ngFor="let item of websiteList[page].nav; let i = index" 
-        [class.active]="id === i" 
+        class="tag"
+        *ngFor="let item of websiteList[page].nav; let i = index"
+        [class.active]="id === i"
         (click)="handleSidebarNav(i)"
       >
         {{ item.title }}
@@ -37,14 +37,10 @@
           {{ item.title }} x {{ item.nav.length }}
         </h2>
         <div class="row">
-          <div class="item-list" *ngFor="let el of item.nav; index as i;">
+          <div class="item-list" *ngFor="let el of item.nav; index as i">
             <a [href]="el.url" target="_blank">
               <div class="top">
-                <app-logo
-                  [src]="el.icon || ''"
-                  [name]="el.name"
-                  [size]="30"
-                >
+                <app-logo [src]="el.icon || ''" [name]="el.name" [size]="30">
                 </app-logo>
                 <em class="name" [title]="el.name">{{ el.name }}</em>
               </div>

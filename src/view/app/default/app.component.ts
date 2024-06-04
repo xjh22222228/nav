@@ -3,14 +3,14 @@
 
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { queryString, fuzzySearch, matchCurrentList } from '../../../utils'
-import { INavProps, INavThreeProp } from '../../../types'
-import { websiteList, settings } from '../../../store'
+import { queryString, fuzzySearch, matchCurrentList } from 'src/utils'
+import { INavProps, INavThreeProp } from 'src/types'
+import { websiteList, settings } from 'src/store'
 
 @Component({
   selector: 'app-home',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export default class WebpComponent {
   websiteList: INavProps[] = websiteList
@@ -20,9 +20,9 @@ export default class WebpComponent {
   open: boolean = false
   LOGO_CDN = settings.favicon
 
-  constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit () {
+  ngOnInit() {
     this.activatedRoute.queryParams.subscribe(() => {
       const { page, id, q } = queryString()
       this.page = page
@@ -37,11 +37,11 @@ export default class WebpComponent {
 
   handleSidebarNav(index: number) {
     const { page } = queryString()
-    this.router.navigate(['/app'], { 
+    this.router.navigate(['/app'], {
       queryParams: {
         page,
         id: index,
-      }
+      },
     })
   }
 
@@ -49,14 +49,12 @@ export default class WebpComponent {
     this.router.navigate(['/app'], {
       queryParams: {
         page: index,
-      }
+      },
     })
-    this.open = !this.open;
-    (<any>window).$('.nav-open').slideUp(200)
+    this.open = !this.open
   }
 
   handleToggleOpen() {
-    this.open = !this.open;
-    (<any>window).$('.nav-open').slideToggle(200)
+    this.open = !this.open
   }
 }
