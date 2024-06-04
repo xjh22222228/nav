@@ -18,7 +18,7 @@
     "build": "npm run setup && ng build --base-href ./",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "fetch": "git pull && git remote add upstream https://github.com/xjh22222228/nav.git 2>/dev/null && git fetch upstream main && git merge upstream/main --allow-unrelated-histories && git push"
+    "fetch": "git pull && (git remote add upstream https://github.com/xjh22222228/nav.git || true) && git fetch upstream main && git merge upstream/main --allow-unrelated-histories && git push"
   },
   "private": true,
   "dependencies": {
