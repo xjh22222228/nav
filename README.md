@@ -75,7 +75,7 @@
 
 3、修改项目根目录配置文件 [nav.config.ts](nav.config.ts) 只需要修改仓库地址
 
-4、[https://github.com/settings/tokens](https://github.com/settings/tokens) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token；[Gitee 申请点这里](https://gitee.com/profile/personal_access_tokens/new)
+4、[https://github.com/settings/tokens/new](https://github.com/settings/tokens/new) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token；[Gitee 申请点这里](https://gitee.com/profile/personal_access_tokens/new)
 
 5、https://github.com/你的用户名/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
 
