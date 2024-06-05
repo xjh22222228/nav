@@ -17,6 +17,8 @@ import { NzMessageService } from 'ng-zorro-antd/message'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  isLogin: boolean = !!getToken()
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,

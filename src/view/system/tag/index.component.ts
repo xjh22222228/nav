@@ -15,25 +15,25 @@ import { tagMap } from 'src/store'
 @Component({
   selector: 'system-tag',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export default class SystemTagComponent {
   $t = $t
   tagList: ITagPropValues[] = []
   submitting: boolean = false
 
-  constructor (
+  constructor(
     private message: NzMessageService,
     private notification: NzNotificationService,
-    private modal: NzModalService,
+    private modal: NzModalService
   ) {}
 
-  ngOnInit () {
+  ngOnInit() {
     const list: ITagPropValues[] = []
     for (const k in tagMap) {
       list.push({
         name: k,
-        ...tagMap[k]
+        ...tagMap[k],
       })
     }
     this.tagList = list
@@ -50,7 +50,7 @@ export default class SystemTagComponent {
       createdAt: new Date().toISOString(),
       color: '#f50000',
       desc: '',
-      isInner: false
+      isInner: false,
     })
   }
 
@@ -74,7 +74,7 @@ export default class SystemTagComponent {
             // @ts-ignore
             o[item.name] = {
               ...item,
-              name: undefined
+              name: undefined,
             }
           }
         })
@@ -88,18 +88,18 @@ export default class SystemTagComponent {
         updateFileContent({
           message: 'Update Tag',
           content: JSON.stringify(o, null, 2),
-          path: TAG_PATH
+          path: TAG_PATH,
         })
           .then(() => {
             this.message.success($t('_saveSuccess'))
           })
-          .catch(res => {
+          .catch((res) => {
             this.notification.error($t('_error'), res.message as string)
           })
           .finally(() => {
             this.submitting = false
           })
-      }
+      },
     })
   }
 }

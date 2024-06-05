@@ -6,13 +6,10 @@
       [height]="settings.simThemeHeight"
     >
       <div class="bar">
-        <h1 class="title dark-title">
+        <h1 class="title dark-white">
           {{ settings.simTitle || settings.title }}
         </h1>
-        <pre
-          class="description dark-text-active"
-          [innerHTML]="description"
-        ></pre>
+        <pre class="description dark-white" [innerHTML]="description"></pre>
         <app-search-engine />
       </div>
     </app-swiper>

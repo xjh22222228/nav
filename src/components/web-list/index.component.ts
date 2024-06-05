@@ -5,7 +5,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
 import { websiteList } from 'src/store'
-import { INavFourProp, INavProps } from 'src/types'
+import { IWebProps, INavProps } from 'src/types'
 import { setWebsiteList, queryString, fuzzySearch } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { ActivatedRoute } from '@angular/router'
@@ -22,7 +22,7 @@ export class WebListComponent implements OnInit {
   @Input() search = true
 
   websiteList: INavProps[] = websiteList
-  dataList: INavFourProp[] = []
+  dataList: IWebProps[] = []
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
@@ -48,7 +48,7 @@ export class WebListComponent implements OnInit {
 
   // 获取置顶WEB
   getTopWeb() {
-    const dataList: INavFourProp[] = []
+    const dataList: IWebProps[] = []
     const max = this.max
 
     function r(nav) {

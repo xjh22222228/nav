@@ -129,6 +129,14 @@ $width: 1200px;
       border-radius: 4px;
     }
   }
+
+  ::ng-deep {
+    .search-engine {
+      .input-wrapper {
+        width: 330px !important;
+      }
+    }
+  }
 }
 
 ::ng-deep {

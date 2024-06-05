@@ -3,14 +3,46 @@
 
 import fs from 'fs'
 import path from 'path'
+import dayjs from 'dayjs'
 
 const dbPath = path.join('.', 'data', 'db.json')
 const internalPath = path.join('.', 'data', 'internal.json')
 const settingsPath = path.join('.', 'data', 'settings.json')
+const tagPath = path.join('.', 'data', 'tag.json')
 
 const internal = JSON.parse(fs.readFileSync(internalPath).toString())
 const db = JSON.parse(fs.readFileSync(dbPath).toString())
 const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
+const tag = JSON.parse(fs.readFileSync(tagPath).toString())
+
+{
+  tag['中文'] ||= {
+    color: '#2db7f5',
+    createdAt: '',
+    desc: '系统内置不可删除',
+    isInner: true,
+  }
+  tag['英文'] ||= {
+    color: '#f50',
+    createdAt: '',
+    desc: '系统内置不可删除',
+    isInner: true,
+  }
+  tag['Github'] ||= {
+    color: '#108ee9',
+    createdAt: '',
+    desc: '系统内置不可删除',
+    isInner: true,
+  }
+  for (let k in tag) {
+    if (!tag[k]?.color) {
+      delete tag[k]
+    }
+  }
+  fs.writeFileSync(tagPath, JSON.stringify(tag), {
+    encoding: 'utf-8',
+  })
+}
 
 {
   const banner1 =
@@ -60,7 +92,7 @@ const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
     '这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活'
   settings.simCardStyle ||= 'standard'
   settings.simCardStyle ||= 'standard'
-  settings.simThemeHeight ??= 350
+  settings.simThemeHeight ??= 0
   settings.simThemeAutoplay ??= true
   settings.simTitle ||= ''
   settings.superCardStyle ||= 'column'
@@ -84,7 +116,7 @@ const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
   }
   settings.sideTitle ||= ''
   settings.sideCardStyle ||= 'example'
-  settings.sideThemeHeight ??= 350
+  settings.sideThemeHeight ??= 0
   settings.sideThemeAutoplay ??= true
   settings.sideThemeImages ||= [
     {
@@ -171,6 +203,7 @@ loginViewCount: ${internal.loginViewCount}
 fs.writeFileSync(internalPath, JSON.stringify(internal), { encoding: 'utf-8' })
 
 // 设置网站的面包屑类目显示
+let id = 0 // 为每个网站设置唯一ID
 function setWeb(nav) {
   if (!Array.isArray(nav)) return
 
@@ -180,31 +213,49 @@ function setWeb(nav) {
     }
   }
 
+  function formatDate(item) {
+    item.createdAt ||= Date.now()
+    item.createdAt = dayjs(item.createdAt).format('YYYY-MM-DD HH:mm:ss')
+  }
+
   for (let i = 0; i < nav.length; i++) {
     const item = nav[i]
     removeIconFont(item)
+    formatDate(item)
     if (item.nav) {
       for (let j = 0; j < item.nav.length; j++) {
         const navItem = item.nav[j]
         removeIconFont(navItem)
+        formatDate(navItem)
         if (navItem.nav) {
           for (let k = 0; k < navItem.nav.length; k++) {
             const navItemItem = navItem.nav[k]
             removeIconFont(navItemItem)
+            formatDate(navItemItem)
             if (navItemItem.nav) {
               for (let l = 0; l < navItemItem.nav.length; l++) {
                 let breadcrumb = []
-                const navItemItemItem = navItemItem.nav[l]
+                const webItem = navItemItem.nav[l]
+                formatDate(webItem)
                 breadcrumb.push(item.title, navItem.title, navItemItem.title)
                 breadcrumb = breadcrumb.filter(Boolean)
-                navItemItemItem.breadcrumb = breadcrumb
+                webItem.breadcrumb = breadcrumb
+                webItem.id = id += 1
+
+                // 网站没有图标 设置为父级图标
+                if (!webItem.icon && typeof navItemItem?.icon === 'string') {
+                  webItem.icon = navItemItem.icon
+                }
 
                 // 新字段补充
-                navItemItemItem.urls ||= {}
-                navItemItemItem.rate ??= 5
-                navItemItemItem.top ??= false
-                navItemItemItem.ownVisible ??= false
-                navItemItemItem.desc ||= ''
+                webItem.urls ||= {}
+                webItem.rate ??= 5
+                webItem.top ??= false
+                webItem.ownVisible ??= false
+                webItem.desc ||= ''
+
+                delete webItem.__desc__
+                delete webItem.__name__
               }
             }
           }

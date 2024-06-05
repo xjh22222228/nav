@@ -16,6 +16,9 @@
   {{ $t('_save') }}
 </button>
 
+<div class="mb12">
+  <b>修改完请保存并等待构建完成，离开无效</b>
+</div>
 
 <nz-table #basicTable [nzData]="tagList">
   <thead>
@@ -31,19 +34,30 @@
     <tr *ngFor="let data of tagList; index as idx">
       <td width="150px">
         <div *ngIf="data.isInner">{{ data.name }}</div>
-        <input *ngIf="!data.isInner" nz-input [(ngModel)]="data.name" maxlength="10" />
+        <input
+          *ngIf="!data.isInner"
+          nz-input
+          [(ngModel)]="data.name"
+          maxlength="10"
+        />
       </td>
       <td width="160px">
         <input
           type="color"
           [value]="data.color"
           (change)="onColorChange($event, idx)"
-        /> - {{ data.color }}
+        />
+        - {{ data.color }}
       </td>
       <td width="220px">{{ data.createdAt }}</td>
       <td width="200px">
         <div *ngIf="data.isInner">{{ data.desc }}</div>
-        <input *ngIf="!data.isInner" nz-input [(ngModel)]="data.desc" maxlength="20" />
+        <input
+          *ngIf="!data.isInner"
+          nz-input
+          [(ngModel)]="data.desc"
+          maxlength="20"
+        />
       </td>
       <td>
         <div *ngIf="!data.isInner">

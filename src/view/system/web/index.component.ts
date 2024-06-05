@@ -4,26 +4,20 @@
 
 import { Component } from '@angular/core'
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
-import { INavProps, INavTwoProp, INavThreeProp, INavFourProp } from 'src/types'
-import { websiteList, settings } from 'src/store'
+import { INavProps, INavTwoProp, INavThreeProp, IWebProps } from 'src/types'
+import { websiteList, settings, tagMap } from 'src/store'
 import { getToken } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import {
-  setWebsiteList,
-  addZero,
-  updateByWeb,
-  deleteByWeb,
-  getTextContent,
-} from 'src/utils'
+import { setWebsiteList, deleteByWeb, getTextContent } from 'src/utils'
 import { updateFileContent } from 'src/services'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import config from '../../../../nav.config'
 import { $t } from 'src/locale'
-import { tagMap } from 'src/store'
 import { saveAs } from 'file-saver'
+import event from 'src/utils/mitt'
 
 @Component({
   selector: 'app-admin',
@@ -38,7 +32,6 @@ export default class WebpComponent {
   gitRepoUrl = config.gitRepoUrl
   isLogin = !!getToken()
   showCreateModal = false
-  showCreateWebModal = false
   syncLoading = false
   uploading = false
   tabActive = 0
@@ -49,11 +42,10 @@ export default class WebpComponent {
   threeSelect = ''
   tagMap = tagMap
   objectKeys = Object.keys
-  websiteDetail: any = []
 
   twoTableData: INavTwoProp[] = []
   threeTableData: INavThreeProp[] = []
-  websiteTableData: INavFourProp[] = []
+  websiteTableData: IWebProps[] = []
 
   checkedAll = false
   setOfCheckedId = new Set<string>()
@@ -267,18 +259,46 @@ export default class WebpComponent {
     history.go(-1)
   }
 
-  toggleCreateWebModal() {
+  openMoveWebModal(data: IWebProps, index: number) {
+    const oneIndex = this.websiteList.findIndex(
+      (item) => item.title === this.oneSelect
+    )
+    const twoIndex = this.twoTableData.findIndex(
+      (item) => item.title === this.twoSelect
+    )
+    const threeIndex = this.threeTableData.findIndex(
+      (item) => item.title === this.threeSelect
+    )
+    event.emit('MOVE_WEB', {
+      indexs: [oneIndex, twoIndex, threeIndex, index],
+      data: [data],
+    })
+  }
+
+  openCreateWebModal() {
     if (this.tabActive === 3 && !this.threeSelect) {
       return this.message.error($t('_sel3'))
     }
-
-    this.websiteDetail = null
-    this.showCreateWebModal = !this.showCreateWebModal
+    const oneIndex = this.websiteList.findIndex(
+      (item) => item.title === this.oneSelect
+    )
+    const twoIndex = this.twoTableData.findIndex(
+      (item) => item.title === this.twoSelect
+    )
+    const threeIndex = this.threeTableData.findIndex(
+      (item) => item.title === this.threeSelect
+    )
+    event.emit('CREATE_WEB', {
+      oneIndex,
+      twoIndex,
+      threeIndex,
+    })
   }
 
-  openEditModal(data: any) {
-    this.websiteDetail = data
-    this.showCreateWebModal = !this.showCreateWebModal
+  openEditModal(detail: IWebProps) {
+    event.emit('CREATE_WEB', {
+      detail,
+    })
   }
 
   toggleCreateModal() {
@@ -295,34 +315,6 @@ export default class WebpComponent {
     this.isEdit = false
     this.showCreateModal = !this.showCreateModal
     this.validateForm.reset()
-  }
-
-  onOkCreateWeb(payload: INavFourProp) {
-    // 编辑
-    if (this.websiteDetail) {
-      updateByWeb(
-        {
-          ...this.websiteDetail,
-          name: getTextContent(this.websiteDetail.name),
-          desc: getTextContent(this.websiteDetail.desc),
-        },
-        payload
-      )
-    } else {
-      // 创建
-      const exists = this.websiteTableData.some(
-        (item) => item.name === payload.name
-      )
-      if (exists) {
-        return this.message.error($t('_repeatAdd'))
-      }
-
-      this.websiteTableData.unshift(payload)
-      this.message.success($t('_addSuccess'))
-    }
-
-    setWebsiteList(this.websiteList)
-    this.showCreateWebModal = false
   }
 
   onTabChange(index?: number) {
@@ -482,13 +474,21 @@ export default class WebpComponent {
 
     let { title, icon, ownVisible } = this.validateForm.value
 
-    if (!title) return
+    if (!title || !title.trim()) {
+      this.message.error('分类名称不能为空')
+      return
+    }
+    title = title.trim()
 
     if (this.isEdit) {
       switch (this.tabActive) {
         // 编辑一级分类
         case 0:
           {
+            const exists = this.websiteList.some((item) => item.title === title)
+            if (exists && this.websiteList[this.editIdx].title !== title) {
+              return this.message.error(`${$t('_repeatAdd')} "${title}"`)
+            }
             this.websiteList[this.editIdx].title = title
             this.websiteList[this.editIdx].icon = icon
             this.websiteList[this.editIdx].ownVisible = ownVisible
@@ -498,6 +498,12 @@ export default class WebpComponent {
         // 编辑二级分类
         case 1:
           {
+            const exists = this.twoTableData.some(
+              (item) => item.title === title
+            )
+            if (exists && this.twoTableData[this.editIdx].title !== title) {
+              return this.message.error(`${$t('_repeatAdd')} "${title}"`)
+            }
             this.twoTableData[this.editIdx].title = title
             this.twoTableData[this.editIdx].icon = icon
             this.twoTableData[this.editIdx].ownVisible = ownVisible
@@ -507,6 +513,12 @@ export default class WebpComponent {
         // 编辑三级分类
         case 2:
           {
+            const exists = this.threeTableData.some(
+              (item) => item.title === title
+            )
+            if (exists && this.threeTableData[this.editIdx].title !== title) {
+              return this.message.error(`${$t('_repeatAdd')} "${title}"`)
+            }
             this.threeTableData[this.editIdx].title = title
             this.threeTableData[this.editIdx].icon = icon
             this.threeTableData[this.editIdx].ownVisible = ownVisible
@@ -522,7 +534,7 @@ export default class WebpComponent {
           {
             const exists = this.websiteList.some((item) => item.title === title)
             if (exists) {
-              return this.message.error($t('_repeatAdd'))
+              return this.message.error(`${$t('_repeatAdd')} "${title}"`)
             }
 
             this.websiteList.unshift({
@@ -542,7 +554,7 @@ export default class WebpComponent {
               (item) => item.title === title
             )
             if (exists) {
-              return this.message.error($t('_repeatAdd'))
+              return this.message.error(`${$t('_repeatAdd')} "${title}"`)
             }
 
             this.twoTableData.unshift({
@@ -562,7 +574,7 @@ export default class WebpComponent {
               (item) => item.title === title
             )
             if (exists) {
-              return this.message.error($t('_repeatAdd'))
+              return this.message.error(`${$t('_repeatAdd')} "${title}"`)
             }
 
             this.threeTableData.unshift({
@@ -581,22 +593,5 @@ export default class WebpComponent {
     this.validateForm.reset()
     this.toggleCreateModal()
     setWebsiteList(this.websiteList)
-  }
-
-  get formatDate() {
-    return function (d: any): string {
-      if (!d) {
-        return d
-      }
-      const date = new Date(d)
-      const year = date.getFullYear()
-      const month = date.getMonth() + 1
-      const day = date.getDate()
-      const hours = date.getHours()
-      const minutes = date.getMinutes()
-      return `${year}-${addZero(month)}-${addZero(day)} ${addZero(
-        hours
-      )}:${addZero(minutes)}`
-    }
   }
 }

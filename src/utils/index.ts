@@ -5,7 +5,7 @@
 import qs from 'qs'
 import Clipboard from 'clipboard'
 import {
-  INavFourProp,
+  IWebProps,
   INavThreeProp,
   INavProps,
   ISearchEngineProps,
@@ -223,7 +223,7 @@ export function queryString(): {
   }
 }
 
-export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
+export function adapterWebsiteList(websiteList: any[]) {
   const createdAt = new Date().toISOString()
   function filterOwn(item) {
     if (item.ownVisible && !isLogin) {
@@ -238,14 +238,7 @@ export function adapterWebsiteList(websiteList: any[], parentItem?: any) {
 
     if (Array.isArray(item.nav)) {
       item.nav = item.nav.filter(filterOwn)
-      adapterWebsiteList(item.nav, item)
-    }
-
-    // Four
-    if (item.url) {
-      if (!item.icon && parentItem?.icon) {
-        item.icon = parentItem.icon
-      }
+      adapterWebsiteList(item.nav)
     }
   }
 
@@ -438,17 +431,12 @@ export async function isValidImg(url: string): Promise<boolean> {
   })
 }
 
-export function deleteByWeb(data: INavFourProp) {
+export function deleteByWeb(data: IWebProps) {
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
       if (item.name) {
-        if (
-          item.name === data.name &&
-          item.desc === data.desc &&
-          item.top === data.top &&
-          item.createdAt === data.createdAt
-        ) {
+        if (item.id === data.id) {
           arr.splice(i, 1)
           const { q } = queryString()
           q && window.location.reload()
@@ -467,21 +455,17 @@ export function deleteByWeb(data: INavFourProp) {
   setWebsiteList(websiteList)
 }
 
-export function updateByWeb(prevData: INavFourProp, nextData: INavFourProp) {
-  const keys = Object.keys(nextData)
-
+export function updateByWeb(oldData: IWebProps, newData: IWebProps) {
+  const keys = Object.keys(newData)
+  let ok = false
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
       if (item.name) {
-        if (
-          item.name === prevData.name &&
-          item.desc === prevData.desc &&
-          item.top === prevData.top &&
-          item.createdAt === prevData.createdAt
-        ) {
+        if (item.id === oldData.id) {
+          ok = true
           for (let k of keys) {
-            item[k] = nextData[k]
+            item[k] = newData[k]
           }
           break
         }
@@ -496,6 +480,7 @@ export function updateByWeb(prevData: INavFourProp, nextData: INavFourProp) {
 
   f(websiteList)
   setWebsiteList(websiteList)
+  return ok
 }
 
 // value 可能含有标签元素，用于过滤掉标签获取纯文字

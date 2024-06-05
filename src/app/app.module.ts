@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { NzModalModule } from 'ng-zorro-antd/modal'
@@ -52,7 +51,7 @@ import { ToolbarTitleWebComponent } from '../components/toolbar-title/index.comp
 import { WebListComponent } from '../components/web-list/index.component'
 import { LogoComponent } from '../components/logo/logo.component'
 import { CardComponent } from '../components/card/index.component'
-import { MoveSiteComponent } from '../components/move-site/index.component'
+import { MoveWebComponent } from '../components/move-web/index.component'
 
 import LightComponent from '../view/index/light/index.component'
 import SuperComponent from '../view/index/super/index.component'
@@ -123,11 +122,10 @@ const icons: IconDefinition[] = [
     WebListComponent,
     LogoComponent,
     CardComponent,
-    MoveSiteComponent,
+    MoveWebComponent,
   ],
   imports: [
     BrowserAnimationsModule,
-    HttpClientModule,
     NzModalModule,
     NzInputModule,
     NzRadioModule,

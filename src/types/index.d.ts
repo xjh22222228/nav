@@ -15,9 +15,10 @@ export interface ITagProp {
   [tagName: string]: ITagPropValues
 }
 
-export interface INavFourProp {
-  __name__: string | undefined
+export interface IWebProps {
+  __name__: string | undefined // 搜索原name值
   __desc__: string | undefined
+  id: string | number
   name: string
   desc: string
   url: string
@@ -40,7 +41,7 @@ export interface INavThreeProp {
   createdAt?: string
   collapsed?: boolean
   ownVisible?: boolean
-  nav: INavFourProp[]
+  nav: IWebProps[]
   [key: string]: any
 }
 

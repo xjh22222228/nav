@@ -2,6 +2,17 @@
   <p>TOKEN: {{ token }}</p>
   <p>{{ $t('_devBranch') }}: {{ config.branch }}</p>
   <p>{{ $t('_prevDevTime') }}: {{ date }}</p>
-  <p>{{ $t('_curVer') }}: <img [src]="currentVersionSrc"></p>
-  <p>{{ $t('_newVer') }}: <img src="https://img.shields.io/github/v/release/xjh22222228/nav"></p>
+  <p>{{ $t('_curVer') }}: <img [src]="currentVersionSrc" /></p>
+  <p>
+    {{ $t('_newVer') }}:
+    <img src="https://img.shields.io/github/v/release/xjh22222228/nav" />
+  </p>
+  <p>
+    系统更新频繁，建议定时执行更新享受最新系统功能
+    <a
+      href="https://github.com/xjh22222228/nav?tab=readme-ov-file#%E5%8D%87%E7%BA%A7"
+      target="_blank"
+      >点我更新</a
+    >
+  </p>
 </div>

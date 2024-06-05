@@ -1,6 +1,6 @@
 <nz-modal
   [nzWidth]="560"
-  [(nzVisible)]="visible"
+  [(nzVisible)]="showModal"
   [nzTitle]="$t('_moveTo')"
   (nzOnCancel)="handleCancel()"
   (nzOnOk)="hanldeOk()"
@@ -11,7 +11,7 @@
       nzShowSearch
       [nzPlaceHolder]="$t('_sel1')"
       (ngModelChange)="hanldeOneSelect($event)"
-      style="width: 160px;"
+      style="width: 160px"
     >
       <nz-option
         *ngFor="let item of websiteList; index as idx"
@@ -26,7 +26,7 @@
       nzShowSearch
       [nzPlaceHolder]="$t('_sel2')"
       (ngModelChange)="hanldeTwoSelect($event)"
-      style="width: 160px; margin-left: 15px;"
+      style="width: 160px; margin-left: 15px"
     >
       <nz-option
         *ngFor="let item of twoOptList; index as idx"
@@ -41,7 +41,7 @@
       nzShowSearch
       [nzPlaceHolder]="$t('_sel3')"
       (ngModelChange)="hanldeThreeSelect($event)"
-      style="width: 160px; margin-left: 15px;"
+      style="width: 160px; margin-left: 15px"
     >
       <nz-option
         *ngFor="let item of threeOptList; index as idx"

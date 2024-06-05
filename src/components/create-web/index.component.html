@@ -1,10 +1,11 @@
 <nz-modal
   [nzWidth]="570"
-  [(nzVisible)]="visible"
+  [(nzVisible)]="showModal"
   [nzTitle]="detail ? $t('_edit') : $t('_add')"
-  (nzOnCancel)="handleCancel()"
+  (nzOnCancel)="onClose()"
   (nzOnOk)="handleOk()"
   [nzOkLoading]="uploading"
+  [nzBodyStyle]="{ maxHeight: '70vh', overflowY: 'auto' }"
 >
   <ng-container *nzModalContent>
     <div class="breadcrumb1" *ngIf="detail?.breadcrumb">
@@ -45,18 +46,14 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="4" nzRequired>{{
-          $t('_shortcut')
-        }}</nz-form-label>
+        <nz-form-label [nzSpan]="4">{{ $t('_shortcut') }}</nz-form-label>
         <nz-form-control [nzSpan]="20">
           <nz-switch formControlName="top"></nz-switch>
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="4" nzRequired>{{
-          $t('_onlyOwnVisible')
-        }}</nz-form-label>
+        <nz-form-label [nzSpan]="4">{{ $t('_onlyOwnVisible') }}</nz-form-label>
         <nz-form-control [nzSpan]="20">
           <nz-switch formControlName="ownVisible"></nz-switch>
         </nz-form-control>

@@ -2,4 +2,7 @@
   <app-icon-git></app-icon-git>
 
   <router-outlet></router-outlet>
+
+  <app-create-web *ngIf="isLogin" />
+  <app-move-web *ngIf="isLogin" />
 </div>
