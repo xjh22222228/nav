@@ -4,7 +4,8 @@
 export type ThemeType = 'Light' | 'Sim' | 'Side' | 'App' | 'Shortcut'
 
 export interface ITagPropValues {
-  name?: string
+  id: number
+  name: string
   color: string
   createdAt: string
   desc: string

@@ -146,9 +146,9 @@
             <ng-template #addOnBeforeTemplate>
               <nz-select style="width: 100px" formControlName="name">
                 <nz-option
-                  *ngFor="let tag of tags"
-                  [nzLabel]="tag"
-                  [nzValue]="tag"
+                  *ngFor="let tag of tagList"
+                  [nzLabel]="tag.name"
+                  [nzValue]="tag.id"
                 >
                 </nz-option>
               </nz-select>
@@ -167,7 +167,7 @@
         </nz-form-item>
       </div>
 
-      <nz-form-item *ngIf="tags.length > 0">
+      <nz-form-item *ngIf="tagList.length > 0">
         <nz-form-label [nzSpan]="4" [nzNoColon]="true"></nz-form-label>
         <nz-form-control [nzSpan]="20">
           <button nz-button nzType="default" nzBlock (click)="addMoreUrl()">

@@ -33,13 +33,7 @@
   <tbody>
     <tr *ngFor="let data of tagList; index as idx">
       <td width="150px">
-        <div *ngIf="data.isInner">{{ data.name }}</div>
-        <input
-          *ngIf="!data.isInner"
-          nz-input
-          [(ngModel)]="data.name"
-          maxlength="10"
-        />
+        <input nz-input [(ngModel)]="data.name" maxlength="10" />
       </td>
       <td width="160px">
         <input

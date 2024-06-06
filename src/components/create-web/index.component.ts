@@ -11,17 +11,13 @@ import {
   setWebsiteList,
 } from 'src/utils'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
-import { ITagProp, IWebProps } from 'src/types'
+import { IWebProps } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import * as __tag from '../../../data/tag.json'
 import { createFile } from 'src/services'
 import { $t } from 'src/locale'
-import { settings, websiteList } from 'src/store'
+import { settings, websiteList, tagList } from 'src/store'
 import event from 'src/utils/mitt'
-
-const tagMap: ITagProp = (__tag as any).default
-const tagKeys = Object.keys(tagMap)
 
 @Component({
   selector: 'app-create-web',
@@ -34,7 +30,7 @@ export class CreateWebComponent implements OnInit {
   $t = $t
   validateForm!: FormGroup
   iconUrl = ''
-  tags = tagKeys
+  tagList = tagList
   uploading = false
   settings = settings
   showModal = false

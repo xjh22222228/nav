@@ -11,13 +11,10 @@ import {
   deleteByWeb,
   getTextContent,
 } from 'src/utils'
-import { INavProps, ITagProp, IWebProps } from 'src/types'
-import * as __tag from '../../../data/tag.json'
+import { INavProps, IWebProps } from 'src/types'
 import { $t } from 'src/locale'
-import { settings, websiteList } from 'src/store'
+import { settings, websiteList, tagMap } from 'src/store'
 import event from 'src/utils/mitt'
-
-const tagMap: ITagProp = (__tag as any).default
 
 @Component({
   selector: 'app-card',

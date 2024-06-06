@@ -465,13 +465,13 @@
             <td>
               <nz-tag
                 *ngFor="let key of objectKeys(data.urls || {})"
-                [nzColor]="tagMap[key].color || '#2db7f5'"
+                [nzColor]="(tagMap[key] && tagMap[key].color) || '#1890ff'"
                 style="margin-bottom: 5px"
               >
                 <a
                   [href]="data.urls?.[key] || 'javascript:void(0)'"
                   [target]="data.urls?.[key] ? '_blank' : ''"
-                  >{{ key }}</a
+                  >{{ tagMap[key] && tagMap[key].name }}</a
                 >
               </nz-tag>
             </td>

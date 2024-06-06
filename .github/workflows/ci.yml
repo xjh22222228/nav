@@ -24,7 +24,7 @@ jobs:
           cmd: install
       - name: Build
         run: |
-          npm run build
+          npm run build-gh-pages
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:

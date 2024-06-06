@@ -31,7 +31,7 @@
       <div style="margin-top: 15px">
         <nz-tag
           *ngFor="let key of objectKeys(dataSource.urls || {})"
-          [nzColor]="(tagMap[key] && tagMap[key].color) || '#2db7f5'"
+          [nzColor]="(tagMap[key] && tagMap[key].color) || '#1890ff'"
           style="margin-bottom: 5px"
         >
           <a
@@ -39,7 +39,7 @@
             [target]="
             dataSource.urls?.[key] ? '_blank' : ''
           "
-            >{{ key }}</a
+            >{{ tagMap[key] && tagMap[key].name }}</a
           >
         </nz-tag>
       </div>
@@ -155,8 +155,8 @@
           class="tag-item"
           *ngFor="let key of objectKeys(dataSource.urls || {})"
           [style]="
-            'background-color: ' + (tagMap[key] && tagMap[key].color) ||
-            '#2db7f5'
+            'background-color: ' +
+            ((tagMap[key] && tagMap[key].color) || '#1890ff')
           "
         >
           <a
@@ -164,7 +164,7 @@
             [target]="
             dataSource.urls?.[key] ? '_blank' : ''
           "
-            >{{ key }}</a
+            >{{ tagMap[key] && tagMap[key].name }}</a
           >
         </div>
       </div>

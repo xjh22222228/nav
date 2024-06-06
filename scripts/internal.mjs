@@ -13,33 +13,53 @@ const tagPath = path.join('.', 'data', 'tag.json')
 const internal = JSON.parse(fs.readFileSync(internalPath).toString())
 const db = JSON.parse(fs.readFileSync(dbPath).toString())
 const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
-const tag = JSON.parse(fs.readFileSync(tagPath).toString())
+let tags = JSON.parse(fs.readFileSync(tagPath).toString())
 
+const TAG_ID1 = -1
+const TAG_ID2 = -2
+const TAG_ID3 = -3
+const TAG_ID_NAME1 = '中文'
+const TAG_ID_NAME2 = '英文'
+const TAG_ID_NAME3 = 'Github'
 {
-  tag['中文'] ||= {
-    color: '#2db7f5',
-    createdAt: '',
-    desc: '系统内置不可删除',
-    isInner: true,
+  if (!Array.isArray(tags)) {
+    tags = []
   }
-  tag['英文'] ||= {
-    color: '#f50',
-    createdAt: '',
-    desc: '系统内置不可删除',
-    isInner: true,
+  const a = tags.some((item) => item.id === TAG_ID1)
+  if (!a) {
+    tags.push({
+      id: TAG_ID1,
+      name: '中文',
+      color: '#2db7f5',
+      createdAt: '',
+      desc: '系统内置不可删除',
+      isInner: true,
+    })
   }
-  tag['Github'] ||= {
-    color: '#108ee9',
-    createdAt: '',
-    desc: '系统内置不可删除',
-    isInner: true,
+  const b = tags.some((item) => item.id === TAG_ID2)
+  if (!b) {
+    tags.push({
+      id: TAG_ID2,
+      name: '英文',
+      color: '#f50',
+      createdAt: '',
+      desc: '系统内置不可删除',
+      isInner: true,
+    })
   }
-  for (let k in tag) {
-    if (!tag[k]?.color) {
-      delete tag[k]
-    }
+  const c = tags.some((item) => item.id === TAG_ID3)
+  if (!c) {
+    tags.push({
+      id: TAG_ID3,
+      name: 'Github',
+      color: '#108ee9',
+      createdAt: '',
+      desc: '系统内置不可删除',
+      isInner: true,
+    })
   }
-  fs.writeFileSync(tagPath, JSON.stringify(tag), {
+  tags = tags.filter((item) => item.name && item.id)
+  fs.writeFileSync(tagPath, JSON.stringify(tags), {
     encoding: 'utf-8',
   })
 }
@@ -256,6 +276,22 @@ function setWeb(nav) {
 
                 delete webItem.__desc__
                 delete webItem.__name__
+
+                // 兼容现有标签,以id为key
+                for (let k in webItem.urls) {
+                  if (k === TAG_ID_NAME1) {
+                    webItem.urls[TAG_ID1] = webItem.urls[k]
+                    delete webItem.urls[TAG_ID_NAME1]
+                  }
+                  if (k === TAG_ID_NAME2) {
+                    webItem.urls[TAG_ID2] = webItem.urls[k]
+                    delete webItem.urls[TAG_ID_NAME2]
+                  }
+                  if (k === TAG_ID_NAME3) {
+                    webItem.urls[TAG_ID3] = webItem.urls[k]
+                    delete webItem.urls[TAG_ID_NAME3]
+                  }
+                }
               }
             }
           }

@@ -10,6 +10,7 @@ import {
   ISearchEngineProps,
   ITagProp,
   internalProps,
+  ITagPropValues,
 } from 'src/types'
 
 export const settings: ISettings = {
@@ -17,9 +18,21 @@ export const settings: ISettings = {
   actionUrl: '',
 }
 
+const _tagMap: Record<string, any> = {}
+
 export const searchEngineList: ISearchEngineProps[] = (s as any).default
 
-export const tagMap: ITagProp = (__tag as any).default
+export const tagList: Array<ITagPropValues> = (__tag as any).default
+
+tagList.forEach((item) => {
+  if (item.id) {
+    _tagMap[item.id] = {
+      ...item,
+    }
+  }
+})
+
+export const tagMap: ITagProp = _tagMap
 
 export const internal: internalProps = (__internal as any).default
 
