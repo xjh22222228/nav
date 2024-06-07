@@ -13,20 +13,22 @@
 }
 
 .standard {
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   $padding: 8px;
+
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   border: 1px solid #eee;
   display: flex;
   flex-direction: column;
+  padding-top: 5px;
   .rate {
-    margin-bottom: 5px;
     padding: 0 $padding;
   }
   .middle {
     flex: 1;
   }
   .top {
+    margin-top: 5px;
     display: flex;
     align-items: center;
     padding: 0 $padding;
