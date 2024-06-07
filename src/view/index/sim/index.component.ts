@@ -1,7 +1,5 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
-import config from '../../../../nav.config'
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { INavProps, INavThreeProp } from 'src/types'
@@ -11,6 +9,7 @@ import {
   setWebsiteList,
   toggleCollapseAll,
   matchCurrentList,
+  getOverIndex,
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { websiteList } from 'src/store'
@@ -26,7 +25,6 @@ export default class SimComponent {
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
-  gitRepoUrl: string = config.gitRepoUrl
   settings = settings
   description: string = settings.simThemeDesc.replace(
     '${total}',
@@ -34,6 +32,7 @@ export default class SimComponent {
   )
   isLogin = isLogin
   sliceMax = 1
+  overIndex = Number.MAX_SAFE_INTEGER
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -57,7 +56,17 @@ export default class SimComponent {
 
   ngOnDestroy() {}
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    if (this.settings.simOverType === 'ellipsis') {
+      queueMicrotask(() => {
+        const overIndex = getOverIndex('.top-nav .over-item')
+        if (this.overIndex === overIndex) {
+          return
+        }
+        this.overIndex = overIndex
+      })
+    }
+  }
 
   handleSidebarNav(index: number) {
     const { page } = queryString()

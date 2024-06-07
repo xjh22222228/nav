@@ -1,9 +1,10 @@
 <nz-layout class="layout">
   <nz-layout>
     <div class="logo dark-bg">
-      <img [src]="LOGO_CDN" />
-      <span class="site-title">{{ settings.sideTitle || title }}</span>
+      <img [src]="LOGO_CDN" class="logo-img" />
+      <span class="web-title">{{ settings.sideTitle || title }}</span>
     </div>
+
     <ul nz-menu nzMode="inline" class="sider dark-scrollbar">
       <li
         nz-submenu
@@ -50,9 +51,11 @@
           [autoplay]="settings.sideThemeAutoplay"
           [height]="settings.sideThemeHeight"
         >
-          <app-search-engine></app-search-engine>
+          <app-search-engine class="max768none"></app-search-engine>
         </app-swiper>
       </div>
+
+      <app-search-engine class="hidden search-sm" />
 
       <nz-content class="content" id="content">
         <app-web-list [search]="false"></app-web-list>

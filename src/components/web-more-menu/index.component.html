@@ -1,0 +1,22 @@
+<span
+  class="more-btn dark-white iconfont icongengduo"
+  nz-dropdown
+  [nzDropdownMenu]="menu"
+  nzPlacement="bottomRight"
+  style="color: #08c"
+></span>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li
+      nzMenuClassName="navpopover"
+      nz-menu-item
+      *ngFor="let item of data; index as i"
+      (click)="handleCilck(index + i)"
+      [class.moreActive]="page === index + i"
+      [class.dark-text-active]="page === index + i"
+      class="navpopover over-item dark-text dark-hover"
+    >
+      {{ item.title }}
+    </li>
+  </ul>
+</nz-dropdown-menu>

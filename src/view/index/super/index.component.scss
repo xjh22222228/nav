@@ -1,17 +1,46 @@
 @media (max-width: 1200px) {
   .super-xjh {
-    --hWidth: 1000px;
     --width: 960px;
-    --middleWidth: 550px;
     --leftWidth: 180px;
     --rightWidth: 200px;
   }
 }
+@media (max-width: 998px) {
+  .super-xjh {
+    --width: 100%;
+    --leftWidth: 150px;
+    --rightWidth: 160px;
+  }
+}
+@media (max-width: 768px) {
+  .super-xjh {
+    --width: 100%;
+    --leftWidth: 100%;
+    --rightWidth: 100%;
+  }
+  .main-box {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  .sheader {
+    z-index: 3;
+    position: sticky;
+    top: 0;
+    left: 0;
+  }
+  .right,
+  .left {
+    position: initial !important;
+    max-height: initial !important;
+  }
+  .right {
+    padding: 0 20px;
+    background-color: #fff;
+  }
+}
 @media (min-width: 1200px) {
   .super-xjh {
-    --hWidth: 1200px;
     --width: 1150px;
-    --middleWidth: 670px;
     --leftWidth: 180px;
     --rightWidth: 250px;
   }
@@ -29,6 +58,7 @@
     align-items: center;
     background-color: #fff;
     height: 70px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.09);
     .headerbox {
       width: var(--width);
       overflow: hidden;
@@ -54,11 +84,13 @@
       margin-left: 10px;
       white-space: nowrap;
     }
-    .nav-item {
+    ::ng-deep .more-btn,
+    .over-item {
       color: #515767;
       font-weight: normal;
       font-size: 14px;
-      margin-right: 10px;
+      margin-left: 0;
+      padding: 0 10px;
       cursor: pointer;
       &.active {
         font-weight: bold;
@@ -78,6 +110,7 @@
     margin-top: 24px;
     display: flex;
     flex: 1;
+    column-gap: 20px;
     .left {
       position: sticky;
       top: var(--stickyTop);
@@ -116,14 +149,13 @@
     }
 
     .middle {
-      width: 0;
+      position: relative;
       background: #fff;
-      margin-left: 20px;
       flex: 1;
       border-radius: 4px;
-      max-width: var(--middleWidth);
+      overflow: hidden;
       &.noads {
-        max-width: initial;
+        width: initial;
       }
       .search-t {
         padding: 8px 12px 0 12px;
@@ -172,7 +204,7 @@
       position: sticky;
       top: var(--stickyTop);
       width: var(--rightWidth);
-      margin-left: 20px;
+      min-width: var(--rightWidth);
       max-height: calc(100vh - 100px);
       overflow: hidden;
       overflow-y: auto;

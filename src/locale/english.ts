@@ -77,7 +77,7 @@ const english: Record<string, string> = {
   _allContentMsg1:
     '1. After setting all data, click "synchronize to remote end" and drag the table to sort',
   _allContentMsg2: '2. Website category needs to be maintained manually,',
-  _updateLogo: 'Replace logo, 200x200',
+  _updateLogo: 'Replace logo',
   _tagName: 'Category name',
   _onlyOwnVisible: 'Only Self',
   _createAt: 'Create At',

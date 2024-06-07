@@ -415,7 +415,7 @@
               [nzChecked]="checkedAll"
               (nzCheckedChange)="onAllChecked($event, 4)"
             ></th>
-            <th nzWidth="60px" class="text-center">{{ $t('_action') }}</th>
+            <th nzWidth="60px" class="center">{{ $t('_action') }}</th>
             <th nzWidth="70px">状态</th>
             <th nzWidth="80px">{{ $t('_icon') }}</th>
             <th nzWidth="100px">{{ $t('_webName') }}</th>
@@ -432,7 +432,7 @@
               [nzChecked]="setOfCheckedId.has(data.name)"
               (nzCheckedChange)="onItemChecked(data.name, $event)"
             ></td>
-            <td class="text-center">
+            <td class="center">
               <a (click)="openEditModal(data)">{{ $t('_edit') }}</a>
               <div>
                 <a (click)="openMoveWebModal(data, idx)">{{ $t('_move') }}</a>

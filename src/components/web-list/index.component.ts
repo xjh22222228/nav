@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -10,7 +9,7 @@ import { setWebsiteList, queryString, fuzzySearch } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { ActivatedRoute } from '@angular/router'
 
-let DEFAULT_WEBSITE = []
+let DEFAULT_WEBSITE: Array<IWebProps> = []
 
 @Component({
   selector: 'app-web-list',
@@ -51,7 +50,7 @@ export class WebListComponent implements OnInit {
     const dataList: IWebProps[] = []
     const max = this.max
 
-    function r(nav) {
+    function r(nav: any) {
       if (!Array.isArray(nav)) return
 
       for (let i = 0; i < nav.length; i++) {
@@ -71,6 +70,7 @@ export class WebListComponent implements OnInit {
     }
     r(websiteList)
 
+    // @ts-ignore
     this.dataList = dataList.sort((a, b) => a.index - b.index)
     DEFAULT_WEBSITE = this.dataList
   }
@@ -78,14 +78,14 @@ export class WebListComponent implements OnInit {
   handleDrop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.dataList, event.previousIndex, event.currentIndex)
 
-    const m = {}
+    const m: Record<string, any> = {}
 
     for (let i = 1; i <= this.dataList.length; i++) {
       const item = this.dataList[i - 1]
       m[`${item.name}${item.url}`] = i
     }
 
-    function r(nav) {
+    function r(nav: any) {
       if (!Array.isArray(nav)) return
 
       for (let i = 0; i < nav.length; i++) {
@@ -104,7 +104,7 @@ export class WebListComponent implements OnInit {
     setWebsiteList(websiteList)
   }
 
-  goUrl(url) {
+  goUrl(url: string) {
     window.open(url)
   }
 }

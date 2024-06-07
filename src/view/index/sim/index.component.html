@@ -15,16 +15,26 @@
     </app-swiper>
   </div>
 
-  <nav class="top-nav user-select-none dark-border-color">
-    <a
-      *ngFor="let item of websiteList; let i = index"
+  <app-search-engine class="hidden search-sm" />
+
+  <nav class="top-nav user-select-none dark-border-color dark-scrollbar">
+    <span
+      *ngFor="let item of websiteList.slice(0, overIndex); let i = index"
       [class.active]="page === i"
       [class.dark-text-active]="page === i"
-      class="ripple-btn dark-text"
+      class="over-item dark-text"
       (click)="handleCilckTopNav(i)"
     >
       {{ item.title }}
-    </a>
+    </span>
+    <!-- More -->
+    <app-web-more-menu
+      *ngIf="overIndex < websiteList.length"
+      [data]="websiteList.slice(overIndex, 9999)"
+      [index]="overIndex"
+      [page]="page"
+      (onClick)="handleCilckTopNav($event)"
+    />
   </nav>
 
   <div class="wrapper">
@@ -61,10 +71,14 @@
                 class="gutter-row"
                 nz-col
                 [nzSpan]="8"
+                [nzSm]="12"
+                [nzMd]="12"
+                [nzLg]="8"
+                [nzXs]="24"
                 *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
               >
                 <app-card
-                  [cardStyle]="settings.simCardStyle"
+                  [cardStyle]="'example'"
                   [dataSource]="el"
                   [indexs]="[page, id, i, j]"
                 ></app-card>

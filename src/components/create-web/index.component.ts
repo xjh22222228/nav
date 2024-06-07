@@ -1,8 +1,7 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit, Output, EventEmitter } from '@angular/core'
+import { Component, Output, EventEmitter } from '@angular/core'
 import {
   getLogoUrl,
   getTextContent,
@@ -16,7 +15,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { createFile } from 'src/services'
 import { $t } from 'src/locale'
-import { settings, websiteList, tagList } from 'src/store'
+import { settings, websiteList, tagList, tagMap } from 'src/store'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -24,7 +23,7 @@ import event from 'src/utils/mitt'
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class CreateWebComponent implements OnInit {
+export class CreateWebComponent {
   @Output() onOk = new EventEmitter()
 
   $t = $t
@@ -44,7 +43,7 @@ export class CreateWebComponent implements OnInit {
     private message: NzMessageService,
     private notification: NzNotificationService
   ) {
-    event.on('CREATE_WEB', (props) => {
+    event.on('CREATE_WEB', (props: any) => {
       this.open(this, props)
     })
     this.validateForm = this.fb.group({
@@ -64,13 +63,15 @@ export class CreateWebComponent implements OnInit {
   }
 
   open(
-    ctx,
-    props: {
-      detail: IWebProps | null
-      oneIndex: number | undefined
-      twoIndex: number | undefined
-      threeIndex: number | undefined
-    } = {}
+    ctx: this,
+    props:
+      | {
+          detail: IWebProps | null
+          oneIndex: number | undefined
+          twoIndex: number | undefined
+          threeIndex: number | undefined
+        }
+      | Record<string, any> = {}
   ) {
     const detail = props.detail
     ctx.detail = detail
@@ -88,9 +89,11 @@ export class CreateWebComponent implements OnInit {
     if (detail) {
       if (typeof detail.urls === 'object') {
         for (let k in detail.urls) {
-          this.validateForm.get('urlArr').push(
+          // @ts-ignore
+          this.validateForm?.get('urlArr').push?.(
             this.fb.group({
-              name: k,
+              id: Number(k),
+              name: tagMap[k]?.name ?? '',
               url: detail.urls[k],
             })
           )
@@ -100,6 +103,7 @@ export class CreateWebComponent implements OnInit {
   }
 
   onClose() {
+    // @ts-ignore
     this.validateForm.get('urlArr').controls = []
     this.validateForm.reset()
     this.showModal = false
@@ -110,7 +114,7 @@ export class CreateWebComponent implements OnInit {
     this.threeIndex = undefined
   }
 
-  async onUrlBlur(e) {
+  async onUrlBlur(e: any) {
     const res = await getLogoUrl(e.target?.value)
     if (res) {
       this.iconUrl = res as string
@@ -122,25 +126,28 @@ export class CreateWebComponent implements OnInit {
     document.addEventListener('paste', this.handlePasteImage)
   }
 
-  onIconBlur(e) {
+  onIconBlur(e: any) {
     document.removeEventListener('paste', this.handlePasteImage)
     this.iconUrl = e.target.value
   }
 
   addMoreUrl() {
+    // @ts-ignore
     this.validateForm.get('urlArr').push(
       this.fb.group({
+        id: '',
         name: '',
         url: '',
       })
     )
   }
 
-  lessMoreUrl(idx) {
+  lessMoreUrl(idx: number) {
+    // @ts-ignore
     this.validateForm.get('urlArr').removeAt(idx)
   }
 
-  handlePasteImage = (event) => {
+  handlePasteImage = (event: any) => {
     const items = event.clipboardData.items
     let file = null
 
@@ -191,7 +198,7 @@ export class CreateWebComponent implements OnInit {
     }
   }
 
-  onChangeFile(e) {
+  onChangeFile(e: any) {
     const { files } = e.target
     if (files.length <= 0) return
     const file = files[0]
@@ -202,10 +209,6 @@ export class CreateWebComponent implements OnInit {
     this.handleUploadImage(file)
   }
 
-  handleCancel() {
-    this.onCancel.emit()
-  }
-
   handleOk() {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty()
@@ -213,7 +216,7 @@ export class CreateWebComponent implements OnInit {
     }
 
     const createdAt = new Date().toISOString()
-    let urls = {}
+    let urls: Record<string, any> = {}
     let { title, icon, url, top, ownVisible, rate, desc } =
       this.validateForm.value
 
@@ -221,9 +224,9 @@ export class CreateWebComponent implements OnInit {
 
     title = title.trim()
     const urlArr = this.validateForm.get('urlArr')?.value || []
-    urlArr.forEach((item) => {
-      if (item.name) {
-        urls[item.name] = item.url
+    urlArr.forEach((item: any) => {
+      if (item.id != null) {
+        urls[item.id] = item.url
       }
     })
 
@@ -247,7 +250,7 @@ export class CreateWebComponent implements OnInit {
           name: getTextContent(this.detail.name),
           desc: getTextContent(this.detail.desc),
         },
-        payload
+        payload as IWebProps
       )
       if (ok) {
         this.message.success($t('_modifySuccess'))
@@ -259,16 +262,16 @@ export class CreateWebComponent implements OnInit {
         const { page, id } = queryString()
         const oneIndex = this.oneIndex ?? page
         const twoIndex = this.twoIndex ?? id
-        const threeIndex = this.threeIndex
+        const threeIndex = this.threeIndex as number
         const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
-        const exists = w.some((item) => item.name === payload.name)
+        const exists = w.some((item: any) => item.name === payload.name)
         if (exists) {
           return this.message.error(`${$t('_repeatAdd')} "${payload.name}"`)
         }
-        w.unshift(payload)
+        w.unshift(payload as IWebProps)
         setWebsiteList(websiteList)
         this.message.success($t('_addSuccess'))
-      } catch (error) {
+      } catch (error: any) {
         this.message.error(error.message)
       }
     }

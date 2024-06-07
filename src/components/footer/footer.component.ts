@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -18,7 +17,7 @@ export class FooterComponent {
       String(isLogin ? internal.loginViewCount : internal.userViewCount)
     )
     .replace('${hostname}', window.location.hostname)
-    .replace('${yearn}', new Date().getFullYear())
+    .replace('${yearn}', String(new Date().getFullYear()))
 
-  @Input() className: string
+  @Input() className: string = ''
 }

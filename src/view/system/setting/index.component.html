@@ -1,6 +1,6 @@
 <form nz-form [formGroup]="validateForm">
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_webLogo') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_webLogo') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label id="file">
         <img [src]="settings.favicon" class="logo" />
@@ -28,23 +28,21 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_webDesc') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_webDesc') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <input nz-input formControlName="description" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_keywords') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_keywords') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <input nz-input formControlName="keywords" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{
-      $t('_defLanguage')
-    }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_defLanguage') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-select formControlName="language">
         <nz-option nzValue="zh-CN" nzLabel="简体中文"></nz-option>
@@ -54,7 +52,7 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_pageLoad') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_pageLoad') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-radio-group formControlName="loading">
         <label nz-radio nzValue="random">{{ $t('_random') }}</label>
@@ -115,7 +113,7 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
       $t('_showGithub')
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
@@ -124,7 +122,7 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
       $t('_showLanguage')
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
@@ -133,7 +131,7 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
       $t('_showRate')
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
@@ -142,16 +140,14 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired
-      >显示切换主题</nz-form-label
-    >
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">显示切换主题</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label nz-checkbox formControlName="showThemeToggle"></label>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
       $t('_defTheme')
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
@@ -167,7 +163,7 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
       $t('_appTheme')
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
@@ -246,14 +242,22 @@
   <h2 class="title">Light {{ $t('_theme') }}</h2>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{
-      $t('_cardStyle')
-    }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="lightCardStyle">
         <label nz-radio nzValue="standard">标准</label>
         <label nz-radio nzValue="column">栏目</label>
         <label nz-radio nzValue="example">简约</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">一级导航超出显示</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <nz-radio-group formControlName="lightOverType">
+        <label nz-radio nzValue="overflow">滚动条</label>
+        <label nz-radio nzValue="ellipsis">三点式</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>
@@ -273,14 +277,22 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{
-      $t('_cardStyle')
-    }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="superCardStyle">
         <label nz-radio nzValue="standard">标准</label>
         <label nz-radio nzValue="column">栏目</label>
         <label nz-radio nzValue="example">简约</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">一级导航超出显示</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <nz-radio-group formControlName="superOverType">
+        <label nz-radio nzValue="overflow">滚动条</label>
+        <label nz-radio nzValue="ellipsis">三点式</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>
@@ -355,9 +367,7 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{
-      $t('_cardStyle')
-    }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="simCardStyle">
         <label nz-radio nzValue="standard">标准</label>
@@ -367,8 +377,18 @@
     </nz-form-control>
   </nz-form-item>
 
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">一级导航超出显示</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <nz-radio-group formControlName="simOverType">
+        <label nz-radio nzValue="overflow">滚动条</label>
+        <label nz-radio nzValue="ellipsis">三点式</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
   <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4" nzRequired>Banner</nz-form-label>
+    <nz-form-label [nzSpan]="4">Banner</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-table
         #basicTable
@@ -427,16 +447,14 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_autoPlay') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_autoPlay') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <label nz-checkbox formControlName="simThemeAutoplay"></label>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{
-      $t('_bannerHeight')
-    }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_bannerHeight') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-slider
         formControlName="simThemeHeight"
@@ -462,7 +480,7 @@
   <h2 class="title">Shortcut {{ $t('_theme') }}</h2>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true" nzRequired>{{
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
       $t('_showWeather')
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
@@ -501,9 +519,7 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{
-      $t('_cardStyle')
-    }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="sideCardStyle">
         <label nz-radio nzValue="standard">标准</label>
@@ -514,7 +530,7 @@
   </nz-form-item>
 
   <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4" nzRequired>Banner</nz-form-label>
+    <nz-form-label [nzSpan]="4">Banner</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-table
         #basicTable
@@ -573,16 +589,14 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_autoPlay') }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_autoPlay') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <label nz-checkbox formControlName="sideThemeAutoplay"></label>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>{{
-      $t('_bannerHeight')
-    }}</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_bannerHeight') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-slider
         formControlName="sideThemeHeight"

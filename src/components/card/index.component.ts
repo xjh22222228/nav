@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -22,8 +21,8 @@ import event from 'src/utils/mitt'
   styleUrls: ['./index.component.scss'],
 })
 export class CardComponent implements OnInit {
-  @Input() dataSource: IWebProps
-  @Input() indexs: Array<number>
+  @Input() dataSource: IWebProps | Record<string, any> = {}
+  @Input() indexs: Array<number> = []
   @Input() cardStyle: string = 'standard'
 
   $t = $t
@@ -39,7 +38,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async copyUrl(e, type: number) {
+  async copyUrl(e: Event, type: number) {
     const w = this.dataSource
     const { origin, hash, pathname } = window.location
     const pathUrl = `${origin}${pathname}${hash}?q=${
@@ -72,7 +71,7 @@ export class CardComponent implements OnInit {
 
   confirmDel() {
     deleteByWeb({
-      ...this.dataSource,
+      ...(this.dataSource as IWebProps),
       name: getTextContent(this.dataSource.name),
       desc: getTextContent(this.dataSource.desc),
     })

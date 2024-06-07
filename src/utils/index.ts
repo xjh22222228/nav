@@ -159,16 +159,20 @@ export function randomBgImg() {
   if (isDark()) return
 
   clearInterval(randomTimer)
-
-  const el = document.createElement('div')
+  const id = 'random-light-bg'
+  const el = document.getElementById(id) || document.createElement('div')
   const deg = randomInt(360)
-  el.id = 'random-light-bg'
+  el.id = id
   el.style.cssText =
     'position:fixed;top:0;left:0;right:0;bottom:0;z-index:-3;transition: 1s linear;'
   el.style.backgroundImage = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
   document.body.appendChild(el)
 
   function setBg() {
+    if (isDark()) {
+      clearInterval(randomTimer)
+      return
+    }
     const randomBg = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
     el.style.opacity = '.3'
     setTimeout(() => {
@@ -514,4 +518,25 @@ export function matchCurrentList(): INavThreeProp[] {
 
 export function addZero(n: number): string {
   return n < 10 ? `0${n}` : n
+}
+
+// 获取第几个元素超出父节点宽度
+export function getOverIndex(selector: string): number {
+  const els = document.querySelectorAll(selector)
+  let overIndex = Number.MAX_SAFE_INTEGER
+  if (els.length <= 0) {
+    return overIndex
+  }
+  const parentEl = els[0].parentNode
+  const parentWidth = parentEl!.clientWidth as number
+  let scrollWidth = 0
+  for (let i = 0; i < els.length; i++) {
+    const el = els[i]
+    scrollWidth += el.clientWidth
+    if (scrollWidth > parentWidth) {
+      overIndex = i - 1
+      break
+    }
+  }
+  return overIndex
 }

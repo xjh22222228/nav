@@ -9,17 +9,17 @@
     width: 40px;
     height: 40px;
     margin-top: 10px;
-    transition: .1s linear;
+    transition: 0.1s linear;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     border-radius: 50%;
     background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .05);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 
     &:hover {
-      box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
       transform: scale(1.2);
     }
   }
@@ -30,7 +30,7 @@
   }
 
   i {
-    transition: .1s linear;
+    transition: 0.1s linear;
     display: inline-block;
     font-size: 20px;
     color: #999;

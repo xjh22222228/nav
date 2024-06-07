@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -18,7 +17,7 @@ export class SwiperComponent {
   swiperId = 'swiper'
 
   constructor() {
-    this.swiperId = 'swiper' + parseInt(Math.random() * 1000)
+    this.swiperId = 'swiper' + parseInt(String(Math.random() * 1000))
   }
 
   ngAfterViewInit() {
@@ -32,7 +31,7 @@ export class SwiperComponent {
   initSwiper() {
     this.destroySwiper()
     const el = document.getElementById(this.swiperId)
-    if (!el) {
+    if (!el || !Swiper) {
       console.log('swiper not found')
       return
     }

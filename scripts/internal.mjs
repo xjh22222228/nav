@@ -85,6 +85,7 @@ const TAG_ID_NAME3 = 'Github'
   settings.keywords ??=
     '导航,前端资源,社区站点,设计师,实用工具,学习资源,运营,网络安全,node.js'
   settings.theme ??= 'Light'
+  settings.actionUrl ??= ''
   settings.appTheme ??= 'App'
   settings.headerContent ??= ''
   settings.footerContent ??=
@@ -94,6 +95,7 @@ const TAG_ID_NAME3 = 'Github'
   settings.cnzzStatisticsUrl ??= ''
   settings.showThemeToggle ??= true
   settings.lightCardStyle ||= 'standard'
+  settings.lightOverType ||= 'overflow'
   settings.simThemeImages ||= [
     {
       src: banner1,
@@ -111,11 +113,12 @@ const TAG_ID_NAME3 = 'Github'
   settings.simThemeDesc ||=
     '这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活'
   settings.simCardStyle ||= 'standard'
-  settings.simCardStyle ||= 'standard'
+  settings.simOverType ||= 'overflow'
   settings.simThemeHeight ??= 0
   settings.simThemeAutoplay ??= true
   settings.simTitle ||= ''
   settings.superCardStyle ||= 'column'
+  settings.superOverType ||= 'overflow'
   // 更名
   if (settings.superCardStyle === 'super') {
     settings.superCardStyle = 'column'

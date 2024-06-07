@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
 import { Component } from '@angular/core'

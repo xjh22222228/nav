@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -15,7 +14,7 @@ import event from 'src/utils/mitt'
 })
 export class ToolbarTitleWebComponent implements OnInit {
   @Input() index: number = 0
-  @Input() dataSource: INavThreeProp
+  @Input() dataSource!: INavThreeProp
   @Input() arrowType: '1' | '2' = '1'
   @Output() onCollapse = new EventEmitter()
 

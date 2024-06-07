@@ -143,9 +143,9 @@ export default class SystemSettingComponent {
   }
 
   onShortcutImgChange(e: any) {
-    const url = e?.target?.value?.trim() || e.cdn
+    let url = e?.target?.value?.trim() || e.cdn
     if (!url) {
-      return
+      url = ''
     }
     this.settings.shortcutThemeImages[0]['src'] = url
   }

@@ -7,15 +7,27 @@
   bottom: 0;
 }
 
+@media (max-width: 1000px) {
+  .homepage {
+    --width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .index-wrapper {
+    --top: 0;
+  }
+}
+
 .index-wrapper {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  padding-top: 15px;
+  padding-top: var(--top, 15px);
 }
 
 .homepage {
-  width: 1000px;
+  width: var(--width, 1000px);
   margin: 0 auto;
   flex: 1;
   position: relative;
@@ -26,23 +38,25 @@
   border: 1px solid transparent;
 
   .top-nav {
-    padding: 10px;
+    padding: 10px 0;
     overflow: none;
     overflow-x: auto;
     white-space: nowrap;
     border-bottom: 1px solid #eee;
     text-align: center;
-    a {
+    user-select: none;
+
+    ::ng-deep .more-btn,
+    .ripple-btn {
+      height: 40px;
       position: relative;
-      display: inline-block;
-      padding: 10px 15px;
+      padding: 0 15px;
       color: #000;
       cursor: pointer;
       border-radius: 5px;
       overflow: hidden;
-      &:hover {
-        text-decoration: none;
-      }
+      display: inline-flex;
+      align-items: center;
       &.active::after {
         content: '';
         position: absolute;
@@ -75,30 +89,24 @@
     .tag {
       position: relative;
       cursor: pointer;
-
+      padding: 11px 0;
       &.active {
         color: #1890ff;
-
-        div:after {
-          top: 0;
-          border-top: 1px dashed #ccc;
-        }
-
-        div:before {
-          bottom: 0;
-          border-bottom: 1px dashed #ccc;
-        }
-      }
-
-      div {
-        display: block;
-        padding: 11px 0;
-        &:after,
-        &:before {
+        &::after,
+        &::before {
           content: '';
           position: absolute;
           left: 0;
           width: 100%;
+        }
+        &:after {
+          top: 0;
+          border-top: 1px dashed #ccc;
+        }
+        &:before {
+          content: '';
+          bottom: 0;
+          border-bottom: 1px dashed #ccc;
         }
       }
     }

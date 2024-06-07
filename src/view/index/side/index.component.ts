@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -99,12 +98,6 @@ export default class SideComponent {
     e?.stopPropagation()
     toggleCollapseAll(this.websiteList)
     this.handlePositionTop()
-  }
-
-  handleJumpUrl(data) {
-    if (data.url) {
-      window.open(data.url)
-    }
   }
 
   collapsed() {

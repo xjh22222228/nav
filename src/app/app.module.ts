@@ -52,6 +52,7 @@ import { WebListComponent } from '../components/web-list/index.component'
 import { LogoComponent } from '../components/logo/logo.component'
 import { CardComponent } from '../components/card/index.component'
 import { MoveWebComponent } from '../components/move-web/index.component'
+import { WebMoreMenuComponent } from '../components/web-more-menu/index.component'
 
 import LightComponent from '../view/index/light/index.component'
 import SuperComponent from '../view/index/super/index.component'
@@ -123,6 +124,7 @@ const icons: IconDefinition[] = [
     LogoComponent,
     CardComponent,
     MoveWebComponent,
+    WebMoreMenuComponent,
   ],
   imports: [
     BrowserAnimationsModule,

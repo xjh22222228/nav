@@ -8,14 +8,23 @@
 
       <div class="topnav dark-scrollbar">
         <div
-          *ngFor="let item of websiteList; index as i"
+          *ngFor="let item of websiteList.slice(0, overIndex); index as i"
           (click)="handleCilckTopMenu(i)"
           [class.active]="page === i"
           [class.dark-text-active]="page === i"
-          class="hitem nav-item dark-text"
+          class="hitem over-item dark-text"
         >
           {{ item.title }}
         </div>
+        <!-- More -->
+        <app-web-more-menu
+          *ngIf="overIndex < websiteList.length"
+          [data]="websiteList.slice(overIndex, 9999)"
+          [index]="overIndex"
+          [page]="page"
+          (onClick)="handleCilckTopMenu($event)"
+          class="flex-center"
+        />
       </div>
     </div>
   </header>

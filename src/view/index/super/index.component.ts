@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -8,12 +7,11 @@ import { INavProps, INavThreeProp } from 'src/types'
 import {
   fuzzySearch,
   queryString,
-  setWebsiteList,
   matchCurrentList,
+  getOverIndex,
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
-import { websiteList } from 'src/store'
-import { settings, searchEngineList } from 'src/store'
+import { settings, searchEngineList, websiteList } from 'src/store'
 
 @Component({
   selector: 'app-side',
@@ -31,7 +29,7 @@ export default class SideComponent {
   searchEngineList = searchEngineList
   isLogin = isLogin
   settings = settings
-  sliceMax = Number.MAX_SAFE_INTEGER
+  overIndex = Number.MAX_SAFE_INTEGER
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -47,6 +45,18 @@ export default class SideComponent {
         this.currentList = matchCurrentList()
       }
     })
+  }
+
+  ngAfterViewInit() {
+    if (this.settings.superOverType === 'ellipsis') {
+      queueMicrotask(() => {
+        const overIndex = getOverIndex('.topnav .over-item')
+        if (this.overIndex === overIndex) {
+          return
+        }
+        this.overIndex = overIndex
+      })
+    }
   }
 
   handleCilckTopMenu(index: number) {

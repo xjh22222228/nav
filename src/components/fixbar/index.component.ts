@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -29,8 +28,8 @@ import mitt from 'src/utils/mitt'
 })
 export class FixbarComponent {
   @Input() showCollapse: boolean = true
-  @Input() collapsed: boolean
-  @Input() selector: string
+  @Input() collapsed: boolean = false
+  @Input() selector: string = ''
   @Output() onCollapse = new EventEmitter()
 
   $t = $t
@@ -86,7 +85,7 @@ export class FixbarComponent {
 
   ngOnInit() {}
 
-  toggleTheme(theme) {
+  toggleTheme(theme: any) {
     this.router.navigate([theme.url], {
       queryParams: queryString(),
     })
@@ -119,7 +118,7 @@ export class FixbarComponent {
 
   toggleMode() {
     this.isDark = !this.isDark
-    mitt.emit('dark', this.isDark)
+    mitt.emit('EVENT_DARK', this.isDark)
     window.localStorage.setItem(
       STORAGE_KEY_MAP.isDark,
       String(Number(this.isDark))
@@ -130,7 +129,7 @@ export class FixbarComponent {
       this.removeBackground()
     } else {
       const { data } = this.activatedRoute.snapshot
-      data?.renderLinear && randomBgImg()
+      data['renderLinear'] && randomBgImg()
     }
   }
 

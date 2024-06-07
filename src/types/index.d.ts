@@ -80,26 +80,27 @@ export interface ISettings {
   favicon: string
   language: 'zh-CN' | 'en'
   loading: string
-  homeUrl?: string
+  homeUrl: string
   title: string
   description: string
   keywords: string
   theme: ThemeType
   appTheme: ThemeType
-  footerContent?: string | null
-  headerContent?: string | null
-  baiduStatisticsUrl?: string
-  cnzzStatisticsUrl?: string
+  footerContent: string
+  headerContent: string
+  baiduStatisticsUrl: string
+  cnzzStatisticsUrl: string
   showGithub: boolean
   showLanguage: boolean
   showCopy: Boolean | undefined
   showShare: Boolean | undefined
   showThemeToggle: Boolean
-  actionUrl?: string | null
-  checkUrl?: boolean
+  actionUrl: string | null
+  checkUrl: boolean
   errorUrlCount?: number
 
   lightCardStyle: string
+  lightOverType: 'overflow' | 'ellipsis'
 
   simThemeImages: Record<string, string>[]
   simThemeDesc: string
@@ -107,6 +108,7 @@ export interface ISettings {
   simThemeAutoplay: boolean
   simCardStyle: string
   simTitle: string
+  simOverType: 'overflow' | 'ellipsis'
 
   sideThemeImages: Record<string, string>[]
   sideThemeHeight: number
@@ -118,7 +120,9 @@ export interface ISettings {
   shortcutThemeShowWeather: boolean
 
   superTitle: string
+  superOverType: 'overflow' | 'ellipsis'
   superCardStyle: string
+
   superImages: Record<string, string>[]
 
   showRate: boolean
@@ -135,4 +139,8 @@ export interface IConfig {
 export type internalProps = {
   loginViewCount: number
   userViewCount: number
+}
+
+declare global {
+  const Swiper: any
 }
