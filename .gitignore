@@ -45,8 +45,3 @@ Thumbs.db
 
 # build output
 src/index.html
-
-# data
-data/internal.json
-data/settings.json
-data/tag.json
