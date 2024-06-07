@@ -115,7 +115,7 @@ const zhCN: Record<string, string> = {
   _tagSettings: '标签设置',
   _websiteMang: '网站管理',
   _addRow: '新增一条',
-  _bookImportTip: `<p>由于作者目前只经过Chrome浏览器的测试支持，如果其他浏览器导入失败那就是不支持。</p><p>但应该基于 WebKit 内核的浏览器，如Edge/360等浏览器应该都是支持。</p>`,
+  _bookImportTip: `<p>支持大部分主流浏览器基于webkit内核，若导入失败表示暂不支持</p><p>自动检测满足三级分类导航，其他一律设为未分类</p>`,
   _engineName: '引擎名称',
   _status: '状态',
   _isDisable: '是否禁用',

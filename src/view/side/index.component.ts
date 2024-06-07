@@ -6,41 +6,41 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { INavProps, INavThreeProp } from 'src/types'
 import {
   fuzzySearch,
-  randomBgImg,
   queryString,
   setWebsiteList,
   toggleCollapseAll,
   matchCurrentList,
-  getOverIndex,
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
-import { websiteList, settings } from 'src/store'
+import { websiteList } from 'src/store'
+import { settings, searchEngineList } from 'src/store'
 
 @Component({
-  selector: 'app-light',
+  selector: 'app-side',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export default class LightComponent {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
-
+export default class SideComponent {
+  LOGO_CDN = settings.favicon
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
+  title: string = settings.title.trim().split(/\s/)[0]
+  searchEngineList = searchEngineList
   isLogin = isLogin
-  sliceMax = 1
   settings = settings
-  overIndex = Number.MAX_SAFE_INTEGER
+  sliceMax = 1
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    randomBgImg()
-
     this.activatedRoute.queryParams.subscribe(() => {
       const { id, page, q } = queryString()
       this.page = page
       this.id = id
       this.sliceMax = 1
+
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
       } else {
@@ -48,8 +48,56 @@ export default class LightComponent {
       }
       setTimeout(() => {
         this.sliceMax = Number.MAX_SAFE_INTEGER
-      }, 100)
+      }, 25)
     })
+  }
+
+  handleSidebarNav(page: any, id: any) {
+    this.websiteList[page].id = id
+    this.router.navigate([this.router.url.split('?')[0]], {
+      queryParams: {
+        page,
+        id,
+      },
+    })
+    this.handlePositionTop()
+  }
+
+  handlePositionTop() {
+    setTimeout(() => {
+      const el = document.querySelector('.search-header') as HTMLDivElement
+      if (el) {
+        const h = el.offsetHeight
+        window.scroll({
+          top: h,
+          left: 0,
+          behavior: 'smooth',
+        })
+      }
+    }, 30)
+  }
+
+  openMenu(item: any, index: number) {
+    this.websiteList.forEach((data, idx) => {
+      if (idx === index) {
+        data.collapsed = !data.collapsed
+      } else {
+        data.collapsed = false
+      }
+    })
+    setWebsiteList(this.websiteList)
+  }
+
+  onCollapse = (item: any, index: number) => {
+    item.collapsed = !item.collapsed
+    this.websiteList[this.page].nav[this.id].nav[index] = item
+    setWebsiteList(this.websiteList)
+  }
+
+  onCollapseAll = (e: Event) => {
+    e?.stopPropagation()
+    toggleCollapseAll(this.websiteList)
+    this.handlePositionTop()
   }
 
   collapsed() {
@@ -60,48 +108,11 @@ export default class LightComponent {
     }
   }
 
-  handleCilckTopNav(index: number) {
-    const id = this.websiteList[index].id || 0
-    this.router.navigate([this.router.url.split('?')[0]], {
-      queryParams: {
-        page: index,
-        id,
-        _: Date.now(),
-      },
-    })
+  trackByItem(a: any, item: any) {
+    return item.title
   }
 
-  handleSidebarNav(index: number) {
-    const { page } = queryString()
-    this.websiteList[page].id = index
-    this.router.navigate([this.router.url.split('?')[0]], {
-      queryParams: {
-        page,
-        id: index,
-        _: Date.now(),
-      },
-    })
-  }
-
-  ngAfterViewInit() {
-    if (this.settings.lightOverType === 'ellipsis') {
-      queueMicrotask(() => {
-        const overIndex = getOverIndex('.top-nav .over-item')
-        if (this.overIndex === overIndex) {
-          return
-        }
-        this.overIndex = overIndex
-      })
-    }
-  }
-
-  onCollapse = (item: any, index: number) => {
-    item.collapsed = !item.collapsed
-    this.websiteList[this.page].nav[this.id].nav[index] = item
-    setWebsiteList(this.websiteList)
-  }
-
-  onCollapseAll = () => {
-    toggleCollapseAll(this.websiteList)
+  trackByItemWeb(a: any, item: any) {
+    return item.id
   }
 }

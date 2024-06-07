@@ -95,6 +95,7 @@ const TAG_ID_NAME3 = 'Github'
   settings.theme ??= 'Light'
   settings.actionUrl ??= ''
   settings.appTheme ??= 'App'
+  settings.openSEO ??= true
   settings.headerContent ??= ''
   settings.footerContent ??=
     '<div style="font-weight: bold;">共收录${total}个网站</div><div>Copyright © 2018-present nav3.cn, All Rights Reserved</div>'
@@ -163,6 +164,7 @@ const TAG_ID_NAME3 = 'Github'
       height: null,
     },
   ]
+  settings.shortcutTitle ??= ''
   settings.shortcutThemeShowWeather ??= true
   settings.shortcutThemeImages ??= [
     {

@@ -9,7 +9,11 @@
 
     <nav class="top-nav dark-scrollbar dark-border-color dark-bg">
       <span
-        *ngFor="let item of websiteList.slice(0, overIndex); index as i"
+        *ngFor="
+          let item of websiteList.slice(0, overIndex);
+          index as i;
+          trackBy: trackByItem
+        "
         (click)="handleCilckTopNav(i)"
         [class.active]="page === i"
         [class.dark-text-active]="page === i"
@@ -35,7 +39,11 @@
             [class.active]="id === i"
             [class.dark-item-active]="id === i"
             (click)="handleSidebarNav(i)"
-            *ngFor="let item of websiteList[page].nav; index as i"
+            *ngFor="
+              let item of websiteList[page].nav;
+              index as i;
+              trackBy: trackByItem
+            "
           >
             {{ item.title }}
           </div>
@@ -46,7 +54,13 @@
         <app-search-engine></app-search-engine>
 
         <div *ngIf="currentList.length > 0; else noData">
-          <div *ngFor="let item of currentList.slice(0, sliceMax); index as i">
+          <div
+            *ngFor="
+              let item of currentList.slice(0, sliceMax);
+              index as i;
+              trackBy: trackByItem
+            "
+          >
             <app-toolbar-title
               [dataSource]="item"
               (onCollapse)="onCollapse(item, i)"
@@ -67,7 +81,7 @@
                 [nzSm]="12"
                 [nzMd]="8"
                 [nzXs]="24"
-                *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
+                *ngFor="let el of item.nav; index as j; trackBy: trackByItemWeb"
               >
                 <app-card
                   [cardStyle]="settings.lightCardStyle"

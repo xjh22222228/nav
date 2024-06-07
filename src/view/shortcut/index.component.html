@@ -5,20 +5,21 @@
   <div>
     <h1
       class="title dark-white"
+      [class.color-black]="!shortcutThemeImage"
       [ngStyle]="{ color: shortcutThemeImage ? '#fff' : '' }"
     >
-      {{ title }}
+      {{ settings.shortcutTitle || settings.title }}
     </h1>
 
-    <app-search-engine></app-search-engine>
+    <app-search-engine />
 
-    <app-web-list></app-web-list>
+    <app-web-list />
   </div>
 </div>
 
 <app-fixbar [showCollapse]="false"></app-fixbar>
 
-<div *ngIf="shortcutThemeShowWeather">
+<div *ngIf="settings.shortcutThemeShowWeather">
   <!-- 白色 -->
   <iframe
     *ngIf="isDark || shortcutThemeImage; else other_content"

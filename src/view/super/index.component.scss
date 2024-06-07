@@ -83,6 +83,9 @@
       font-size: 18px;
       margin-left: 10px;
       white-space: nowrap;
+      &:hover {
+        color: #000;
+      }
     }
     ::ng-deep .more-btn,
     .over-item {

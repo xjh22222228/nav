@@ -50,7 +50,7 @@ export class AppComponent {
 
   goRoute() {
     // is App
-    if ('ontouchstart' in window) {
+    if (settings.appTheme !== 'Current' && 'ontouchstart' in window) {
       const url = (this.router.url.split('?')[0] || '').toLowerCase()
       const { page, id, q } = queryString()
       const queryParams = { page, id, q }

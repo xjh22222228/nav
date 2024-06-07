@@ -107,4 +107,8 @@ export class WebListComponent implements OnInit {
   goUrl(url: string) {
     window.open(url)
   }
+
+  trackByItemWeb(a: any, item: any) {
+    return item.id
+  }
 }

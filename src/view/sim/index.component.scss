@@ -72,7 +72,7 @@
     position: relative;
     display: inline-block;
     padding: 10px 15px;
-    color: #000;
+    color: #666;
     cursor: pointer;
     overflow: hidden;
     &.active::after {
@@ -84,6 +84,11 @@
       height: 3px;
       border-radius: 2px;
       background-color: rgb(16, 142, 233);
+    }
+  }
+  .over-item {
+    &:hover {
+      color: #000;
     }
   }
 }
@@ -158,7 +163,9 @@
         transition: 0.1s linear;
         user-select: none;
         font-weight: 500;
-
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.03);
+        }
         &.active {
           color: #409eff;
           background-color: rgb(231, 241, 253);

@@ -1,10 +1,12 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { INavProps, INavThreeProp } from 'src/types'
 import {
   fuzzySearch,
+  randomBgImg,
   queryString,
   setWebsiteList,
   toggleCollapseAll,
@@ -12,37 +14,33 @@ import {
   getOverIndex,
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
-import { websiteList } from 'src/store'
-import { settings, internal } from 'src/store'
+import { websiteList, settings } from 'src/store'
 
 @Component({
-  selector: 'app-sim',
+  selector: 'app-light',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export default class SimComponent {
+export default class LightComponent {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
-  settings = settings
-  description: string = settings.simThemeDesc.replace(
-    '${total}',
-    String(isLogin ? internal.loginViewCount : internal.userViewCount)
-  )
   isLogin = isLogin
   sliceMax = 1
+  settings = settings
   overIndex = Number.MAX_SAFE_INTEGER
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
-
   ngOnInit() {
+    randomBgImg()
+
     this.activatedRoute.queryParams.subscribe(() => {
       const { id, page, q } = queryString()
       this.page = page
       this.id = id
       this.sliceMax = 1
-
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)
       } else {
@@ -54,18 +52,31 @@ export default class SimComponent {
     })
   }
 
-  ngOnDestroy() {}
+  trackByItem(a: any, item: any) {
+    return item.title
+  }
 
-  ngAfterViewInit() {
-    if (this.settings.simOverType === 'ellipsis') {
-      queueMicrotask(() => {
-        const overIndex = getOverIndex('.top-nav .over-item')
-        if (this.overIndex === overIndex) {
-          return
-        }
-        this.overIndex = overIndex
-      })
+  trackByItemWeb(a: any, item: any) {
+    return item.id
+  }
+
+  collapsed() {
+    try {
+      return !!websiteList[this.page].nav[this.id].collapsed
+    } catch (error) {
+      return false
     }
+  }
+
+  handleCilckTopNav(index: number) {
+    const id = this.websiteList[index].id || 0
+    this.router.navigate([this.router.url.split('?')[0]], {
+      queryParams: {
+        page: index,
+        id,
+        _: Date.now(),
+      },
+    })
   }
 
   handleSidebarNav(index: number) {
@@ -80,15 +91,16 @@ export default class SimComponent {
     })
   }
 
-  handleCilckTopNav(idx: number) {
-    const id = this.websiteList[idx].id || 0
-    this.router.navigate([this.router.url.split('?')[0]], {
-      queryParams: {
-        page: idx,
-        id,
-        _: Date.now(),
-      },
-    })
+  ngAfterViewInit() {
+    if (this.settings.lightOverType === 'ellipsis') {
+      queueMicrotask(() => {
+        const overIndex = getOverIndex('.top-nav .over-item')
+        if (this.overIndex === overIndex) {
+          return
+        }
+        this.overIndex = overIndex
+      })
+    }
   }
 
   onCollapse = (item: any, index: number) => {
@@ -99,13 +111,5 @@ export default class SimComponent {
 
   onCollapseAll = () => {
     toggleCollapseAll(this.websiteList)
-  }
-
-  collapsed() {
-    try {
-      return !!websiteList[this.page].nav[this.id].collapsed
-    } catch (error) {
-      return false
-    }
   }
 }

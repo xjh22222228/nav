@@ -86,4 +86,12 @@ export default class SideComponent {
   handleCheckThree(index: number) {
     this.selectedIndex = index
   }
+
+  trackByItem(a: any, item: any) {
+    return item.title
+  }
+
+  trackByItemWeb(a: any, item: any) {
+    return item.id
+  }
 }

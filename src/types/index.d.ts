@@ -1,7 +1,15 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-export type ThemeType = 'Light' | 'Sim' | 'Side' | 'App' | 'Shortcut'
+export type ThemeType =
+  | 'Current'
+  | 'Light'
+  | 'Sim'
+  | 'Side'
+  | 'App'
+  | 'Shortcut'
+
+type OverType = 'overflow' | 'ellipsis'
 
 export interface ITagPropValues {
   id: number
@@ -85,6 +93,7 @@ export interface ISettings {
   description: string
   keywords: string
   theme: ThemeType
+  openSEO: boolean
   appTheme: ThemeType
   footerContent: string
   headerContent: string
@@ -100,7 +109,7 @@ export interface ISettings {
   errorUrlCount?: number
 
   lightCardStyle: string
-  lightOverType: 'overflow' | 'ellipsis'
+  lightOverType: OverType
 
   simThemeImages: Record<string, string>[]
   simThemeDesc: string
@@ -108,7 +117,7 @@ export interface ISettings {
   simThemeAutoplay: boolean
   simCardStyle: string
   simTitle: string
-  simOverType: 'overflow' | 'ellipsis'
+  simOverType: OverType
 
   sideThemeImages: Record<string, string>[]
   sideThemeHeight: number
@@ -118,9 +127,10 @@ export interface ISettings {
 
   shortcutThemeImages: Record<string, string>[]
   shortcutThemeShowWeather: boolean
+  shortcutTitle: string
 
   superTitle: string
-  superOverType: 'overflow' | 'ellipsis'
+  superOverType: OverType
   superCardStyle: string
 
   superImages: Record<string, string>[]

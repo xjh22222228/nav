@@ -19,7 +19,11 @@
 
   <nav class="top-nav dark-border-color dark-scrollbar dark-bg">
     <span
-      *ngFor="let item of websiteList.slice(0, overIndex); let i = index"
+      *ngFor="
+        let item of websiteList.slice(0, overIndex);
+        let i = index;
+        trackBy: trackByItem
+      "
       [class.active]="page === i"
       [class.dark-text-active]="page === i"
       class="over-item dark-text"
@@ -38,23 +42,35 @@
   </nav>
 
   <div class="wrapper">
-    <nav class="sidebar dark-bg" id="sidebar">
-      <div *ngIf="websiteList[page]?.nav?.length">
-        <div
-          *ngFor="let item of websiteList[page].nav; let i = index"
-          (click)="handleSidebarNav(i)"
-          [class.active]="id === i"
-          [class.dark-item-active]="id === i"
-          class="ripple-btn dark-text dark-hover"
-        >
-          {{ item.title }}
-        </div>
+    <nav
+      class="sidebar dark-bg"
+      id="sidebar"
+      *ngIf="websiteList[page]?.nav?.length"
+    >
+      <div
+        *ngFor="
+          let item of websiteList[page].nav;
+          let i = index;
+          trackBy: trackByItem
+        "
+        (click)="handleSidebarNav(i)"
+        [class.active]="id === i"
+        [class.dark-item-active]="id === i"
+        class="ripple-btn dark-text dark-hover"
+      >
+        {{ item.title }}
       </div>
     </nav>
 
     <aside class="site-box dark-bg">
       <div *ngIf="currentList.length > 0; else noData">
-        <div *ngFor="let item of currentList.slice(0, sliceMax); let i = index">
+        <div
+          *ngFor="
+            let item of currentList.slice(0, sliceMax);
+            let i = index;
+            trackBy: trackByItem
+          "
+        >
           <div class="nav-wrapper">
             <app-toolbar-title
               [dataSource]="item"
@@ -75,7 +91,7 @@
                 [nzMd]="12"
                 [nzLg]="8"
                 [nzXs]="24"
-                *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
+                *ngFor="let el of item.nav; index as j; trackBy: trackByItemWeb"
               >
                 <app-card
                   [cardStyle]="'example'"

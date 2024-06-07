@@ -31,14 +31,8 @@ function getUrl(node: Element) {
   return node.getAttribute('href') || ''
 }
 
-function getIconFromUrl(url) {
-  if (!url) return null
-  const hostname = new URL(url).hostname
-  return hostname && `https://icons.bitwarden.net/${hostname}/icon.png`
-}
-
 function getIcon(node: Element) {
-  return node.getAttribute('icon') || getIconFromUrl(getUrl(node))
+  return node.getAttribute('icon') || null
 }
 
 const nowCratedAt = getCreatedAt()

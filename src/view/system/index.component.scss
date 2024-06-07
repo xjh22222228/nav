@@ -3,6 +3,15 @@
   .content {
     padding: 30px;
     background-color: #fff;
-    margin-left: 10px;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+  }
+  .inner-layout {
+    margin-left: 170px;
   }
 }

@@ -113,6 +113,15 @@
   </nz-form-item>
 
   <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true"
+      >开启SEO(加载稍慢)</nz-form-label
+    >
+    <nz-form-control [nzSpan]="20">
+      <label nz-checkbox formControlName="openSEO"></label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
     <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
       $t('_showGithub')
     }}</nz-form-label>
@@ -168,6 +177,7 @@
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-radio-group formControlName="appTheme">
+        <label nz-radio nzValue="Current">跟随页面</label>
         <label nz-radio nzValue="App">App</label>
         <label nz-radio nzValue="Light">Light</label>
         <label nz-radio nzValue="Sim">Sim</label>
@@ -177,7 +187,7 @@
     </nz-form-control>
   </nz-form-item>
 
-  <nz-form-item>
+  <!-- <nz-form-item>
     <nz-form-label [nzSpan]="4">百度统计</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <input nz-input formControlName="baiduStatisticsUrl" />
@@ -189,7 +199,7 @@
     <nz-form-control [nzSpan]="10">
       <input nz-input formControlName="cnzzStatisticsUrl" />
     </nz-form-control>
-  </nz-form-item>
+  </nz-form-item> -->
 
   <!-- 2024-06-02 废弃 -->
   <!-- <nz-form-item>
@@ -210,7 +220,7 @@
         nz-input
         formControlName="headerContent"
         [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-        placeholder="位于 head 标签尾部，你可以在这里插入脚本代码或各种样式或Loading"
+        placeholder="位于 head 标签尾部，你可以在这里插入脚本代码或各种样式网站统计等"
       ></textarea>
     </nz-form-control>
   </nz-form-item>
@@ -477,34 +487,6 @@
   </nz-form-item>
 
   <div class="divider"></div>
-  <h2 class="title">Shortcut {{ $t('_theme') }}</h2>
-
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
-      $t('_showWeather')
-    }}</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <label nz-checkbox formControlName="shortcutThemeShowWeather"></label>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4">{{ $t('_backgroundImage') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <img [src]="settings.shortcutThemeImages[0]['src']" />
-      <app-upload (onChange)="onShortcutImgChange($event)"></app-upload>
-
-      <input
-        nz-input
-        type="text"
-        [value]="settings.shortcutThemeImages[0]['src']"
-        (change)="onShortcutImgChange($event)"
-        style="width: 300px; margin-top: 10px"
-      />
-    </nz-form-control>
-  </nz-form-item>
-
-  <div class="divider"></div>
   <h2 class="title">Side {{ $t('_theme') }}</h2>
 
   <nz-form-item>
@@ -604,6 +586,45 @@
         [nzMax]="1000"
       ></nz-slider>
       <div>当高度为0时，图片宽高会自适应，务必保证每张图片尺寸一致</div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <div class="divider"></div>
+  <h2 class="title">Shortcut {{ $t('_theme') }}</h2>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">标题</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <input
+        nz-input
+        formControlName="shortcutTitle"
+        placeholder="默认网站标题"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_showWeather')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <label nz-checkbox formControlName="shortcutThemeShowWeather"></label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class="sim-ban">
+    <nz-form-label [nzSpan]="4">{{ $t('_backgroundImage') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <img [src]="settings.shortcutThemeImages[0]['src']" />
+      <app-upload (onChange)="onShortcutImgChange($event)"></app-upload>
+
+      <input
+        nz-input
+        type="text"
+        [value]="settings.shortcutThemeImages[0]['src']"
+        (change)="onShortcutImgChange($event)"
+        style="width: 300px; margin-top: 10px"
+      />
     </nz-form-control>
   </nz-form-item>
 

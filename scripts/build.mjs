@@ -94,7 +94,9 @@ async function buildSeo() {
     }
   }
 
-  r(db)
+  if (settings.openSEO) {
+    r(db)
+  }
 
   seoTemplate += '</div>'
 }

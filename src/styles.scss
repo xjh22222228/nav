@@ -248,9 +248,17 @@ textarea.ant-input {
 
 .ellipsis2 {
   word-break: break-all;
-  overflow: hidden;
+  overflow: hidden !important;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.ellipsis3 {
+  word-break: break-all;
+  overflow: hidden !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
@@ -269,4 +277,7 @@ textarea.ant-input {
   .max768none {
     display: none !important;
   }
+}
+.color-black {
+  color: #000 !important;
 }

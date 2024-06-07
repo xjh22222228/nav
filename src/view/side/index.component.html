@@ -8,7 +8,7 @@
     <ul nz-menu nzMode="inline" class="sider dark-scrollbar">
       <li
         nz-submenu
-        *ngFor="let item of websiteList; index as pageIdx"
+        *ngFor="let item of websiteList; index as pageIdx; trackBy: trackByItem"
         (nzOpenChange)="openMenu(item, pageIdx)"
         [nzTitle]="titleTpl"
         [nzOpen]="item['collapsed']"
@@ -21,7 +21,7 @@
         <ul>
           <li
             nz-menu-item
-            *ngFor="let el of item.nav; let idIdx = index"
+            *ngFor="let el of item.nav; let idIdx = index; trackBy: trackByItem"
             [nzSelected]="page === pageIdx && id === idIdx"
             (click)="handleSidebarNav(pageIdx, idIdx)"
           >
@@ -63,7 +63,11 @@
         <div class="box">
           <div *ngIf="currentList.length > 0; else noData">
             <div
-              *ngFor="let item of currentList.slice(0, sliceMax); let i = index"
+              *ngFor="
+                let item of currentList.slice(0, sliceMax);
+                let i = index;
+                trackBy: trackByItem
+              "
             >
               <div class="nav-wrapper">
                 <app-toolbar-title
@@ -80,7 +84,11 @@
                   [style.display]="item.collapsed ? 'none' : ''"
                 >
                   <div
-                    *ngFor="let el of item.nav.slice(0, sliceMax); index as j"
+                    *ngFor="
+                      let el of item.nav;
+                      index as j;
+                      trackBy: trackByItemWeb
+                    "
                     class="gutter-row"
                     nz-col
                     [nzSpan]="6"

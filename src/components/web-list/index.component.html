@@ -11,7 +11,7 @@
     nzTooltipPlacement="bottom"
     nz-button
     nz-tooltip
-    *ngFor="let item of dataList"
+    *ngFor="let item of dataList; trackBy: trackByItemWeb"
     cdkDrag
     (click)="goUrl(item.url)"
   >
