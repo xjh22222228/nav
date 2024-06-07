@@ -58,7 +58,7 @@ export class CardComponent implements OnInit {
     this.copyPathDone = false
   }
 
-  openCreateWebMoal() {
+  openEditWebMoal() {
     event.emit('CREATE_WEB', {
       detail: this.dataSource,
     })

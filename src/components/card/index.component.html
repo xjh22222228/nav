@@ -95,8 +95,14 @@
 
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu nzSelectable>
-          <li nz-menu-item (click)="openCreateWebMoal()">{{ $t('_edit') }}</li>
-          <li nz-menu-item (click)="openMoveWebModal()">{{ $t('_move') }}</li>
+          <li nz-menu-item (click)="openEditWebMoal()">{{ $t('_edit') }}</li>
+          <li
+            nz-menu-item
+            (click)="openMoveWebModal()"
+            *ngIf="indexs.length === 4"
+          >
+            {{ $t('_move') }}
+          </li>
           <a
             nz-popconfirm
             nzPopconfirmPlacement="rightTop"
@@ -128,25 +134,27 @@
   </a>
 
   <!-- column style -->
-  <a
-    [href]="dataSource.url"
-    target="_blank"
-    rel="noreferer noopener"
+  <div
     class="container column2 ellipsis dark-bg dark-white dark-border-color dark-hover"
     *ngSwitchDefault
   >
-    <div class="title-bar">
-      <app-logo
-        [src]="dataSource.icon || ''"
-        [name]="dataSource.name"
-        [size]="20"
-      ></app-logo>
-      <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
-    </div>
+    <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
+      <div class="title-bar">
+        <app-logo
+          [src]="dataSource.icon || ''"
+          [name]="dataSource.name"
+          [size]="20"
+        ></app-logo>
+        <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
+      </div>
 
-    <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
-      <pre class="desc dark-text ellipsis" [innerHTML]="dataSource.desc"></pre>
-    </div>
+      <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
+        <pre
+          class="desc dark-text ellipsis"
+          [innerHTML]="dataSource.desc"
+        ></pre>
+      </div>
+    </a>
 
     <div class="bottom-bar">
       <div class="tagbox">
@@ -167,7 +175,20 @@
             >{{ tagMap[key] && tagMap[key].name }}</a
           >
         </div>
+
+        <span
+          class="action-btn dark-text dark-hover-text"
+          (click)="openEditWebMoal()"
+          *ngIf="isLogin"
+          >编辑</span
+        >
+        <span
+          class="action-btn dark-text dark-hover-text"
+          (click)="openMoveWebModal()"
+          *ngIf="isLogin && indexs.length === 4"
+          >移动</span
+        >
       </div>
     </div>
-  </a>
+  </div>
 </ng-container>

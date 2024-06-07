@@ -68,6 +68,7 @@
       <div *ngIf="currentList[selectedIndex]?.nav; else noData">
         <app-card
           *ngFor="let el of currentList[selectedIndex].nav; index as j"
+          [indexs]="[page, id, selectedIndex, j]"
           [cardStyle]="settings.superCardStyle"
           [dataSource]="el"
         ></app-card>

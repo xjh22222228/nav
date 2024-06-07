@@ -15,10 +15,9 @@
     "start": "npm run build-internal && ng serve --port=7001",
     "build-internal": "ts-node ./scripts/internal.mjs",
     "setup": "npm run build-internal && tsc nav.config.ts && ts-node ./scripts/build.mjs",
-    "build-gh-pages": "npm run setup && ng build --base-href ./",
-    "build": "npm run setup && ng build",
+    "build-gh-pages": "npm run setup && ng build --base-href ./ --index src/index.html",
+    "build": "npm run setup && ng build --index src/index.html",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
     "fetch": "git pull && (git remote add upstream https://github.com/xjh22222228/nav.git || true) && git fetch upstream main && git merge upstream/main --allow-unrelated-histories && git push"
   },
   "private": true,

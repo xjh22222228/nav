@@ -23,8 +23,12 @@
     }
     &-hover {
       &:hover {
-        background-color: #0d1117 !important;
         background-color: #21262d !important;
+      }
+    }
+    &-hover-text {
+      &:hover {
+        color: #fff !important;
       }
     }
 

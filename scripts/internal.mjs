@@ -10,10 +10,18 @@ const internalPath = path.join('.', 'data', 'internal.json')
 const settingsPath = path.join('.', 'data', 'settings.json')
 const tagPath = path.join('.', 'data', 'tag.json')
 
-const internal = JSON.parse(fs.readFileSync(internalPath).toString())
-const db = JSON.parse(fs.readFileSync(dbPath).toString())
-const settings = JSON.parse(fs.readFileSync(settingsPath).toString())
-let tags = JSON.parse(fs.readFileSync(tagPath).toString())
+let internal, db, settings, tags
+try {
+  internal = JSON.parse(fs.readFileSync(internalPath).toString())
+  db = JSON.parse(fs.readFileSync(dbPath).toString())
+  settings = JSON.parse(fs.readFileSync(settingsPath).toString())
+  tags = JSON.parse(fs.readFileSync(tagPath).toString())
+} catch (error) {
+  internal = {}
+  db = []
+  settings = {}
+  tags = []
+}
 
 const TAG_ID1 = -1
 const TAG_ID2 = -2

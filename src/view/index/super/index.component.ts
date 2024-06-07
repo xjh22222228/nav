@@ -38,6 +38,7 @@ export default class SideComponent {
       const { id, page, q } = queryString()
       this.page = page
       this.id = id
+      this.handleCheckThree(0)
 
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)

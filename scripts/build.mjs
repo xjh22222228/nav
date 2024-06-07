@@ -100,7 +100,8 @@ async function buildSeo() {
 }
 
 async function build() {
-  const htmlPath = path.join('.', 'src', 'index.html')
+  const htmlPath = path.join('.', 'src', 'main.html')
+  const writePath = path.join('.', 'src', 'index.html')
   let t = fs.readFileSync(htmlPath).toString()
   t = t.replace(/<title>.*<\/title>/i, '')
   t = t.replace('<link rel="icon" href="assets/logo.png" />', '')
@@ -116,7 +117,7 @@ async function build() {
   t = t.replace('<!-- nav.seo -->', seoTemplate)
   t = t.replace('<!-- nav.loading -->', LOAD_MAP[getLoadKey()] || '')
 
-  fs.writeFileSync(htmlPath, t, { encoding: 'utf-8' })
+  fs.writeFileSync(writePath, t, { encoding: 'utf-8' })
   fs.unlinkSync('./nav.config.js')
   console.log('Config build done!')
 }
