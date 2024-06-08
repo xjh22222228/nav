@@ -8,9 +8,10 @@
         <i></i>
       </div>
     </div>
+
     <nav class="nav-open" [class.active]="open">
       <div
-        *ngFor="let item of websiteList; let i = index"
+        *ngFor="let item of websiteList; let i = index; trackBy: trackByItem"
         (click)="handleCilckNav(i)"
         [class.active]="page === i"
         class="nav-title"
@@ -20,35 +21,71 @@
     </nav>
   </header>
 
+  <app-search-engine />
+
   <div class="wrapper" *ngIf="websiteList[page]">
-    <nav class="children-nav" *ngIf="websiteList[page].nav.length > 1">
-      <a
+    <nav class="children-nav" *ngIf="websiteList[page]?.nav?.length">
+      <span
         class="tag"
-        *ngFor="let item of websiteList[page].nav; let i = index"
+        *ngFor="
+          let item of websiteList[page].nav;
+          let i = index;
+          trackBy: trackByItem
+        "
         [class.active]="id === i"
         (click)="handleSidebarNav(i)"
       >
         {{ item.title }}
-      </a>
+      </span>
     </nav>
-    <ul>
-      <li *ngFor="let item of currentList">
-        <h2 class="block-title" *ngIf="item.title">
-          {{ item.title }} x {{ item.nav.length }}
-        </h2>
-        <div class="row">
-          <div class="item-list" *ngFor="let el of item.nav; index as i">
-            <a [href]="el.url" target="_blank">
-              <div class="top">
-                <app-logo [src]="el.icon || ''" [name]="el.name" [size]="30">
-                </app-logo>
-                <em class="name" [title]="el.name">{{ el.name }}</em>
+    <div *ngFor="let item of currentList">
+      <h2 class="block-title" *ngIf="item.title">
+        {{ item.title }} x {{ item.nav.length }}
+      </h2>
+      <div class="row">
+        <div
+          class="item-list"
+          *ngFor="let el of item.nav; index as i; trackBy: trackByItem"
+        >
+          <a [href]="el.url" target="_blank">
+            <div class="top">
+              <app-logo [src]="el.icon || ''" [name]="el.name" [size]="30">
+              </app-logo>
+              <div
+                class="name"
+                [title]="el.__name__ || el.name"
+                [innerHTML]="el.name"
+              ></div>
+            </div>
+            <pre
+              class="desc"
+              [title]="el.__desc__ || el.desc"
+              [innerHTML]="el.desc"
+            ></pre>
+
+            <div class="tagbox">
+              <div
+                class="tag-item"
+                *ngFor="let key of objectKeys(el.urls || {})"
+                [style]="
+                  'background-color: ' +
+                  ((tagMap[key] && tagMap[key].color) || '#1890ff')
+                "
+              >
+                <a
+                  [href]="el.urls?.[key] || 'javascript:void(0)'"
+                  [target]="
+                el.urls?.[key] ? '_blank' : ''
+              "
+                  >{{ tagMap[key] && tagMap[key].name }}</a
+                >
               </div>
-              <pre class="desc" [title]="el.desc">{{ el.desc }}</pre>
-            </a>
-          </div>
+            </div>
+          </a>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
+
+  <app-footer />
 </section>

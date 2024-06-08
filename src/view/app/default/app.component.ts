@@ -4,7 +4,7 @@ import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { queryString, fuzzySearch, matchCurrentList } from 'src/utils'
 import { INavProps, INavThreeProp } from 'src/types'
-import { websiteList, settings } from 'src/store'
+import { websiteList, settings, tagMap } from 'src/store'
 
 @Component({
   selector: 'app-home',
@@ -12,12 +12,14 @@ import { websiteList, settings } from 'src/store'
   styleUrls: ['./app.component.scss'],
 })
 export default class WebpComponent {
+  objectKeys = Object.keys
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
   id: number = 0
   page: number = 0
   open: boolean = false
   LOGO_CDN = settings.favicon
+  tagMap = tagMap
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -55,5 +57,13 @@ export default class WebpComponent {
 
   handleToggleOpen() {
     this.open = !this.open
+  }
+
+  trackByItem(a: any, item: any) {
+    return item.title
+  }
+
+  trackByItemWeb(a: any, item: any) {
+    return item.id
   }
 }
