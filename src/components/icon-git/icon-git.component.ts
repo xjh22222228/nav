@@ -12,7 +12,7 @@ import { settings } from 'src/store'
 export class IconGitComponent implements OnInit {
   gitRepoUrl: string =
     config.gitRepoUrl === 'https://github.com/xjh22222228/nav-web'
-      ? 'https://github.com/xjh22222228/nav-web'
+      ? 'https://github.com/xjh22222228/nav'
       : config.gitRepoUrl
   showGithub = settings.showGithub
 
