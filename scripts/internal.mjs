@@ -143,8 +143,12 @@ const TAG_ID_NAME3 = 'Github'
     },
   ]
   settings.superImages ??= defImgs
+  settings.lightImages ??= defImgs
   if (!Array.isArray(settings.superImages)) {
     settings.superImages = defImgs
+  }
+  if (!Array.isArray(settings.lightImages)) {
+    settings.lightImages = defImgs
   }
   settings.sideTitle ||= ''
   settings.sideCardStyle ||= 'example'

@@ -1,104 +1,121 @@
-<div class="index-wrapper">
-  <main class="homepage dark-border-color dark-bg">
-    <app-fixbar
-      (onCollapse)="onCollapseAll()"
-      [collapsed]="collapsed()"
-      selector=".main"
-    >
-    </app-fixbar>
-
-    <nav class="top-nav dark-scrollbar dark-border-color dark-bg">
-      <span
-        *ngFor="
-          let item of websiteList.slice(0, overIndex);
-          index as i;
-          trackBy: trackByItem
-        "
-        (click)="handleCilckTopNav(i)"
-        [class.active]="page === i"
-        [class.dark-text-active]="page === i"
-        class="over-item ripple-btn dark-text"
+<div class="index-wrapper" [class.noimg]="settings.lightImages.length <= 0">
+  <div class="light-box">
+    <main class="homepage dark-border-color dark-bg">
+      <app-fixbar
+        (onCollapse)="onCollapseAll()"
+        [collapsed]="collapsed()"
+        selector=".main"
       >
-        {{ item.title }}
-      </span>
-      <!-- More -->
-      <app-web-more-menu
-        *ngIf="overIndex < websiteList.length"
-        [data]="websiteList.slice(overIndex, 9999)"
-        [index]="overIndex"
-        [page]="page"
-        (onClick)="handleCilckTopNav($event)"
-      />
-    </nav>
+      </app-fixbar>
 
-    <section class="index-section user-select-none dark-bg">
-      <aside class="sidebar dark-bg dark-border-color" id="sidebar">
-        <div *ngIf="websiteList[page]">
-          <div
-            class="tag dark-text"
-            [class.active]="id === i"
-            [class.dark-item-active]="id === i"
-            (click)="handleSidebarNav(i)"
-            *ngFor="
-              let item of websiteList[page].nav;
-              index as i;
-              trackBy: trackByItem
-            "
-          >
-            {{ item.title }}
-          </div>
-        </div>
-      </aside>
+      <nav class="top-nav dark-scrollbar dark-border-color dark-bg">
+        <span
+          *ngFor="
+            let item of websiteList.slice(0, overIndex);
+            index as i;
+            trackBy: trackByItem
+          "
+          (click)="handleCilckTopNav(i)"
+          [class.active]="page === i"
+          [class.dark-text-active]="page === i"
+          class="over-item ripple-btn dark-text"
+        >
+          {{ item.title }}
+        </span>
+        <!-- More -->
+        <app-web-more-menu
+          *ngIf="overIndex < websiteList.length"
+          [data]="websiteList.slice(overIndex, 9999)"
+          [index]="overIndex"
+          [page]="page"
+          (onClick)="handleCilckTopNav($event)"
+        />
+      </nav>
 
-      <div class="main dark-scrollbar">
-        <app-search-engine></app-search-engine>
-
-        <div *ngIf="currentList.length > 0; else noData">
-          <div
-            *ngFor="
-              let item of currentList.slice(0, sliceMax);
-              index as i;
-              trackBy: trackByItem
-            "
-          >
-            <app-toolbar-title
-              [dataSource]="item"
-              (onCollapse)="onCollapse(item, i)"
-              [index]="i"
-            >
-            </app-toolbar-title>
-
+      <section class="index-section user-select-none dark-bg">
+        <aside class="sidebar dark-bg dark-border-color" id="sidebar">
+          <div *ngIf="websiteList[page]">
             <div
-              style="padding: 0 10px"
-              nz-row
-              [nzGutter]="[16, 16]"
-              [style.display]="item.collapsed ? 'none' : ''"
+              class="tag dark-text"
+              [class.active]="id === i"
+              [class.dark-item-active]="id === i"
+              (click)="handleSidebarNav(i)"
+              *ngFor="
+                let item of websiteList[page].nav;
+                index as i;
+                trackBy: trackByItem
+              "
             >
-              <div
-                class="gutter-row"
-                nz-col
-                [nzSpan]="8"
-                [nzSm]="12"
-                [nzMd]="8"
-                [nzXs]="24"
-                *ngFor="let el of item.nav; index as j; trackBy: trackByItemWeb"
+              {{ item.title }}
+            </div>
+          </div>
+        </aside>
+
+        <div class="main dark-scrollbar">
+          <app-search-engine></app-search-engine>
+
+          <div *ngIf="currentList.length > 0; else noData">
+            <div
+              *ngFor="
+                let item of currentList.slice(0, sliceMax);
+                index as i;
+                trackBy: trackByItem
+              "
+            >
+              <app-toolbar-title
+                [dataSource]="item"
+                (onCollapse)="onCollapse(item, i)"
+                [index]="i"
               >
-                <app-card
-                  [cardStyle]="settings.lightCardStyle"
-                  [dataSource]="el"
-                  [indexs]="[page, id, i, j]"
-                ></app-card>
+              </app-toolbar-title>
+
+              <div
+                style="padding: 0 10px"
+                nz-row
+                [nzGutter]="[16, 16]"
+                [style.display]="item.collapsed ? 'none' : ''"
+              >
+                <div
+                  class="gutter-row"
+                  nz-col
+                  [nzSpan]="8"
+                  [nzSm]="12"
+                  [nzMd]="8"
+                  [nzXs]="24"
+                  *ngFor="
+                    let el of item.nav;
+                    index as j;
+                    trackBy: trackByItemWeb
+                  "
+                >
+                  <app-card
+                    [cardStyle]="settings.lightCardStyle"
+                    [dataSource]="el"
+                    [indexs]="[page, id, i, j]"
+                  ></app-card>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <ng-template #noData>
-          <app-no-data></app-no-data>
-        </ng-template>
+          <ng-template #noData>
+            <app-no-data></app-no-data>
+          </ng-template>
+        </div>
+      </section>
+    </main>
+
+    <div class="right dark-scrollbar" *ngIf="settings.lightImages.length > 0">
+      <div class="aditem" *ngFor="let item of settings.lightImages; index as i">
+        <a
+          [href]="item['url'] || 'javascript:void(0)'"
+          [target]="item['url'] ? '_blank' : '_self'"
+        >
+          <img class="adsimg" [src]="item['src']" />
+        </a>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
 
   <app-footer></app-footer>
 </div>

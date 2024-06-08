@@ -18,16 +18,8 @@ const settings = JSON.parse(fs.readFileSync(setPath).toString())
 
 const nowDate = dayjs().format('YYYY-MM-DD HH:mm:ss')
 
-const {
-  description,
-  title,
-  keywords,
-  baiduStatisticsUrl,
-  cnzzStatisticsUrl,
-  loading,
-  favicon,
-  headerContent,
-} = settings
+const { description, title, keywords, loading, favicon, headerContent } =
+  settings
 
 const { gitRepoUrl, homeUrl } = config.default
 
@@ -45,30 +37,10 @@ const htmlTemplate = `
   <link rel ="apple-touch-icon" href="${favicon}">
 `.trim()
 
-const cnzzScript = !cnzzStatisticsUrl
-  ? ''
-  : `<script src="${cnzzStatisticsUrl}"></script>`
-const baiduScript = !baiduStatisticsUrl
-  ? ''
-  : `
-<script>
-var _hmt = _hmt || [];
-var hm = document.createElement('script');
-hm.async = true;
-hm.src = '${baiduStatisticsUrl}';
-var s = document.getElementsByTagName("script")[0]; 
-s.parentNode.insertBefore(hm, s);
-</script>
-`
-
-let scriptTemplate = `
-${baiduScript}
-${cnzzScript}
-<span style="display:none;" data-date="${nowDate}" data-version="${pkg.version}" id="META-NAV"></span>
-`.trim()
+let scriptTemplate = ``.trim()
 
 let seoTemplate = `
-<div data-url="https://github.com/xjh22222228/nav" style="z-index:-1;position:fixed;top:-10000vh;left:-10000vh;">
+<div data-url="https://github.com/xjh22222228/nav" data-date="${nowDate}" data-version="${pkg.version}" id="META-NAV" style="z-index:-1;position:fixed;top:-10000vh;left:-10000vh;">
 `
 
 async function buildSeo() {
@@ -112,9 +84,7 @@ async function build() {
     t = t.replace('<!-- nav.headerContent -->', headerContent)
   }
 
-  if (baiduStatisticsUrl) {
-    t = t.replace('<!-- nav.script -->', scriptTemplate)
-  }
+  t = t.replace('<!-- nav.script -->', scriptTemplate)
 
   t = t.replace('<!-- nav.seo -->', seoTemplate)
   t = t.replace('<!-- nav.loading -->', LOAD_MAP[getLoadKey()] || '')

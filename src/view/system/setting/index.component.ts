@@ -61,7 +61,8 @@ export default class SystemSettingComponent {
 
   onAddSimBanner() {
     this.settings.simThemeImages.push({
-      ...this.settings.simThemeImages[0],
+      src: '',
+      url: '',
     })
   }
 
@@ -86,7 +87,34 @@ export default class SystemSettingComponent {
 
   onAddSuperBanner() {
     this.settings.superImages.push({
-      ...this.settings.superImages[0],
+      src: '',
+      url: '',
+    })
+  }
+
+  // Light ===========================
+  onLightBannerChange(data: any, idx: number) {
+    this.settings.lightImages[idx]['src'] = data.cdn
+  }
+
+  onChangeLightBannerUrl(e: any, idx: number) {
+    const value = e.target.value.trim()
+    this.settings.lightImages[idx]['src'] = value
+  }
+
+  onChangeLightJumpUrl(e: any, idx: number) {
+    const value = e.target.value.trim()
+    this.settings.lightImages[idx]['url'] = value
+  }
+
+  onDeleteLightBanner(idx: number) {
+    this.settings.lightImages.splice(idx, 1)
+  }
+
+  onAddLightBanner() {
+    this.settings.lightImages.push({
+      src: '',
+      url: '',
     })
   }
 
@@ -111,7 +139,8 @@ export default class SystemSettingComponent {
 
   onAddSideBanner() {
     this.settings.sideThemeImages.push({
-      ...this.settings.sideThemeImages[0],
+      src: '',
+      url: '',
     })
   }
 
@@ -160,13 +189,18 @@ export default class SystemSettingComponent {
       nzOkText: $t('_confirmSync'),
       nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
+        function filterImage(item) {
+          return item['src']
+        }
         const values = {
           ...this.validateForm.value,
           favicon: this.settings.favicon,
-          simThemeImages: this.settings.simThemeImages,
-          shortcutThemeImages: this.settings.shortcutThemeImages,
-          sideThemeImages: this.settings.sideThemeImages,
-          superImages: this.settings.superImages,
+          simThemeImages: this.settings.simThemeImages.filter(filterImage),
+          shortcutThemeImages:
+            this.settings.shortcutThemeImages.filter(filterImage),
+          sideThemeImages: this.settings.sideThemeImages.filter(filterImage),
+          superImages: this.settings.superImages.filter(filterImage),
+          lightImages: this.settings.lightImages.filter(filterImage),
           mirrorList: this.settings.mirrorList.filter(
             (item) => item['url'] && item['name']
           ),

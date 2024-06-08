@@ -98,8 +98,6 @@ export interface ISettings {
   appTheme: ThemeType
   footerContent: string
   headerContent: string
-  baiduStatisticsUrl: string
-  cnzzStatisticsUrl: string
   showGithub: boolean
   showLanguage: boolean
   showCopy: Boolean | undefined
@@ -111,8 +109,9 @@ export interface ISettings {
 
   lightCardStyle: string
   lightOverType: OverType
+  lightImages: Record<string, any>[]
 
-  simThemeImages: Record<string, string>[]
+  simThemeImages: Record<string, any>[]
   simThemeDesc: string
   simThemeHeight: number
   simThemeAutoplay: boolean
@@ -120,24 +119,23 @@ export interface ISettings {
   simTitle: string
   simOverType: OverType
 
-  sideThemeImages: Record<string, string>[]
+  sideThemeImages: Record<string, any>[]
   sideThemeHeight: number
   sideThemeAutoplay: boolean
   sideCardStyle: string
   sideTitle: string
 
-  shortcutThemeImages: Record<string, string>[]
+  shortcutThemeImages: Record<string, any>[]
   shortcutThemeShowWeather: boolean
   shortcutTitle: string
 
   superTitle: string
   superOverType: OverType
   superCardStyle: string
-
-  superImages: Record<string, string>[]
+  superImages: Record<string, any>[]
 
   showRate: boolean
-  mirrorList: Record<string, string>[]
+  mirrorList: Record<string, any>[]
 }
 
 export interface IConfig {

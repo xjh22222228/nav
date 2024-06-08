@@ -272,6 +272,67 @@
     </nz-form-control>
   </nz-form-item>
 
+  <nz-form-item class="sim-ban">
+    <nz-form-label [nzSpan]="4">侧栏图片板块</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-table
+        #basicTable
+        [nzData]="settings.lightImages"
+        [nzShowPagination]="false"
+      >
+        <thead>
+          <tr>
+            <th>{{ $t('_backgroundImage') }}</th>
+            <th>{{ $t('_jumpAddr') }}</th>
+            <th>{{ $t('_action') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of settings.lightImages; index as idx">
+            <td width="260px" class="nowrap">
+              <img [src]="data['src']" class="icon" />
+              <input
+                nz-input
+                type="text"
+                [value]="data['src']"
+                style="width: 180px; margin-right: 10px"
+                (change)="onChangeLightBannerUrl($event, idx)"
+              />
+              <app-upload
+                (onChange)="onLightBannerChange($event, idx)"
+              ></app-upload>
+            </td>
+            <td>
+              <input
+                nz-input
+                [value]="data['url']"
+                maxlength="200"
+                (change)="onChangeLightJumpUrl($event, idx)"
+              />
+            </td>
+            <td>
+              <a
+                nz-popconfirm
+                nzPopconfirmPlacement="rightTop"
+                nzOkType="danger"
+                [nzPopconfirmTitle]="$t('_confirmDel')"
+                nzPopconfirmPlacement="bottom"
+                (nzOnConfirm)="onDeleteLightBanner(idx)"
+              >
+                <a>
+                  {{ $t('_del') }}
+                </a>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <a (click)="onAddLightBanner()" class="mt10 display-block">{{
+        $t('_add')
+      }}</a>
+    </nz-form-control>
+  </nz-form-item>
+
   <div class="divider"></div>
   <h2 class="title">Super {{ $t('_theme') }}</h2>
 
@@ -358,11 +419,13 @@
                   {{ $t('_del') }}
                 </a>
               </a>
-              <a (click)="onAddSuperBanner()">{{ $t('_add') }}</a>
             </td>
           </tr>
         </tbody>
       </nz-table>
+      <a (click)="onAddSuperBanner()" class="mt10 display-block">{{
+        $t('_add')
+      }}</a>
     </nz-form-control>
   </nz-form-item>
 
@@ -448,11 +511,13 @@
                   {{ $t('_del') }}
                 </a>
               </a>
-              <a (click)="onAddSimBanner()">{{ $t('_add') }}</a>
             </td>
           </tr>
         </tbody>
       </nz-table>
+      <a (click)="onAddSimBanner()" class="mt10 display-block">{{
+        $t('_add')
+      }}</a>
     </nz-form-control>
   </nz-form-item>
 
@@ -562,11 +627,13 @@
                   {{ $t('_del') }}
                 </a>
               </a>
-              <a (click)="onAddSideBanner()">{{ $t('_add') }}</a>
             </td>
           </tr>
         </tbody>
       </nz-table>
+      <a (click)="onAddSideBanner()" class="mt10 display-block">{{
+        $t('_add')
+      }}</a>
     </nz-form-control>
   </nz-form-item>
 
