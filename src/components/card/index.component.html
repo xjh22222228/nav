@@ -24,11 +24,13 @@
       </div>
     </a>
     <div class="middle">
-      <pre
-        class="desc dark-text ellipsis3"
-        [innerHTML]="dataSource.desc"
-        [title]="dataSource.__desc__ || dataSource.desc"
-      ></pre>
+      <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
+        <pre
+          class="desc dark-text ellipsis3"
+          [innerHTML]="dataSource.desc"
+          [title]="dataSource.__desc__ || dataSource.desc"
+        ></pre>
+      </a>
       <div class="tagbox">
         <div
           class="tag-item"

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -24,7 +23,7 @@ function getCreatedAt(node?: Element): string {
 }
 
 function getTitle(node: Element) {
-  return node.textContent
+  return node.textContent || ''
 }
 
 function getUrl(node: Element) {
@@ -59,6 +58,7 @@ function findAllNoCate(roolDL: Element) {
         desc: '',
         rate: 5,
         id: (id += 1),
+        breadcrumb: [],
       })
     }
   }
@@ -71,6 +71,12 @@ export function parseBookmark(htmlStr: string) {
   const importEl = document.createElement('div')
   importEl.innerHTML = htmlStr
   const roolDL = importEl.querySelector('dl dl')
+
+  if (!roolDL) {
+    return {
+      message: '未找到dl dl节点',
+    }
+  }
 
   let ii = 0
   let jj = 0
@@ -175,6 +181,7 @@ export function parseBookmark(htmlStr: string) {
                       top: false,
                       icon,
                       id: (id += 1),
+                      breadcrumb: [],
                     })
                   }
                 }

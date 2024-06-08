@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -12,9 +11,9 @@ import {
 } from '../types'
 import * as db from '../../data/db.json'
 import * as s from '../../data/search.json'
-import { STORAGE_KEY_MAP } from '../constants'
+import { STORAGE_KEY_MAP } from 'src/constants'
 import { isLogin } from './user'
-import { SearchType } from '../components/search-engine/index'
+import { SearchType } from 'src/components/search-engine/index'
 
 export const websiteList: INavProps[] = getWebsiteList()
 
@@ -34,9 +33,9 @@ export function fuzzySearch(
 
   const { type, page, id } = queryString()
   const sType = Number(type) || SearchType.Title
-  const navData = []
-  const resultList = [{ nav: navData }]
-  const urlRecordMap = {}
+  const navData: IWebProps[] = []
+  const resultList: INavThreeProp[] = [{ nav: navData }]
+  const urlRecordMap: Record<string, any> = {}
 
   function f(arr?: any[]) {
     arr = arr || navList
@@ -54,7 +53,7 @@ export function fuzzySearch(
         const desc = item.desc.toLowerCase()
         const url = item.url.toLowerCase()
         const search = keyword.toLowerCase()
-        const urls = Object.values(item.urls || {})
+        const urls: string[] = Object.values(item.urls || {})
 
         function searchTitle(): boolean {
           if (name.includes(search)) {
@@ -154,7 +153,7 @@ function randomColor(): string {
   return c.slice(0, 7)
 }
 
-let randomTimer: NodeJS.Timer
+let randomTimer: any
 export function randomBgImg() {
   if (isDark()) return
 
@@ -229,7 +228,7 @@ export function queryString(): {
 
 export function adapterWebsiteList(websiteList: any[]) {
   const createdAt = new Date().toISOString()
-  function filterOwn(item) {
+  function filterOwn(item: IWebProps) {
     if (item.ownVisible && !isLogin) {
       return false
     }
@@ -260,7 +259,7 @@ export function getWebsiteList(): INavProps[] {
     const whiteList = [STORAGE_KEY_MAP.token, STORAGE_KEY_MAP.isDark]
     const len = window.localStorage.length
     for (let i = 0; i < len; i++) {
-      const key = window.localStorage.key(i)
+      const key = window.localStorage.key(i) as string
       if (whiteList.includes(key)) {
         continue
       }
@@ -271,7 +270,7 @@ export function getWebsiteList(): INavProps[] {
   }
 
   try {
-    const w = window.localStorage.getItem(STORAGE_KEY_MAP.website)
+    const w: any = window.localStorage.getItem(STORAGE_KEY_MAP.website)
     const json = JSON.parse(w)
     if (Array.isArray(json)) {
       webSiteList = json
@@ -497,7 +496,7 @@ export function getTextContent(value: string): string {
 
 export function matchCurrentList(): INavThreeProp[] {
   const { id, page } = queryString()
-  let data = []
+  let data: INavThreeProp[] = []
 
   try {
     if (
@@ -516,7 +515,7 @@ export function matchCurrentList(): INavThreeProp[] {
   return data
 }
 
-export function addZero(n: number): string {
+export function addZero(n: number): string | number {
   return n < 10 ? `0${n}` : n
 }
 
@@ -527,7 +526,7 @@ export function getOverIndex(selector: string): number {
   if (els.length <= 0) {
     return overIndex
   }
-  const parentEl = els[0].parentNode
+  const parentEl = els[0].parentNode as HTMLElement
   const parentWidth = parentEl!.clientWidth as number
   let scrollWidth = 0
   for (let i = 0; i < els.length; i++) {

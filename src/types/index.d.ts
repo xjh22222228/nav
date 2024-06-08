@@ -25,8 +25,8 @@ export interface ITagProp {
 }
 
 export interface IWebProps {
-  __name__: string | undefined // 搜索原name值
-  __desc__: string | undefined
+  __name__?: string | undefined // 搜索原name值
+  __desc__?: string | undefined
   id: string | number
   name: string
   desc: string
@@ -42,6 +42,7 @@ export interface IWebProps {
   urls?: {
     [tagName: string]: string
   }
+  [key: string]: any
 }
 
 export interface INavThreeProp {
