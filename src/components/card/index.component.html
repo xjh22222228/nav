@@ -175,13 +175,13 @@
           class="action-btn dark-text dark-hover-text"
           (click)="openEditWebMoal()"
           *ngIf="isLogin"
-          >编辑</span
+          >{{ $t('_edit') }}</span
         >
         <span
           class="action-btn dark-text dark-hover-text"
           (click)="openMoveWebModal()"
           *ngIf="isLogin && indexs.length === 4"
-          >移动</span
+          >{{ $t('_move') }}</span
         >
       </div>
     </div>

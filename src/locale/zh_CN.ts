@@ -12,6 +12,7 @@ const zhCN: Record<string, string> = {
   _confirmDel: '您确定要删除吗？',
   _default: '综合',
   _title: '标题',
+  _defaultTitle: '默认网站标题',
   _desc: '描述',
   _link: '链接',
   _current: '当前',
@@ -153,6 +154,32 @@ const zhCN: Record<string, string> = {
   _angleMark: '角标设置',
   _logout: '登出',
   _cardStyle: '卡片风格',
+  _tagPlaceholder: '可以为空当作一个普通标签',
+  _dragSort: '拖动可排序',
+  _checkWeb:
+    '上次检测出 {count} 个网站链接失效，具体到管理网站查看，如需再次检测状态直接点保存触发事件即可。',
+  _buildTip: '修改完请保存并等待构建完成，离开无效',
+  _updateTip: '系统更新频繁，建议定时执行更新享受最新系统功能',
+  _clickUpdate: '点我更新',
+  _enableSEO: '开启SEO(加载稍慢)',
+  _displaySwitchTheme: '显示切换主题',
+  _requestAddress: '请求地址',
+  _requestTip:
+    '通常用于部署自有服务器，当点击保存按钮时会发出GET请求填写的地址',
+  _followPage: '跟随页面',
+  _bannerTip: '当高度为0时，图片宽高会自适应，务必保证每张图片尺寸一致',
+  _checkStatus:
+    '检查所有网站链接状态（耗时较长，建议定期执行；由于网络因素，仅供参考）',
+  _ignore: '（此功能作用不大，建议忽略或删除）',
+  _standard: '标准',
+  _column: '栏目',
+  _simplicity: '简约',
+  _navOver: '一级导航超出显示',
+  _scrollBar: '滚动条',
+  _ellipsis: '三点式',
+  _sidebarImg: '侧栏图片板块',
+  _sidebarTitle: '侧栏标题',
+  _defTitle4: '默认网站标题, 建议4字以内',
 }
 
 export default zhCN

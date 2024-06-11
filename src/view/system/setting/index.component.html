@@ -113,9 +113,9 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true"
-      >开启SEO(加载稍慢)</nz-form-label
-    >
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_enableSEO')
+    }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label nz-checkbox formControlName="openSEO"></label>
     </nz-form-control>
@@ -149,7 +149,9 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true">显示切换主题</nz-form-label>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_displaySwitchTheme')
+    }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label nz-checkbox formControlName="showThemeToggle"></label>
     </nz-form-control>
@@ -177,7 +179,7 @@
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-radio-group formControlName="appTheme">
-        <label nz-radio nzValue="Current">跟随页面</label>
+        <label nz-radio nzValue="Current">{{ $t('_followPage') }}</label>
         <label nz-radio nzValue="App">App</label>
         <label nz-radio nzValue="Light">Light</label>
         <label nz-radio nzValue="Sim">Sim</label>
@@ -238,12 +240,12 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4">请求地址</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_requestAddress') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <input
         nz-input
         formControlName="actionUrl"
-        placeholder="通常用于部署自有服务器，当点击保存按钮时会发出GET请求填写的地址"
+        [placeholder]="$t('_requestTip')"
       />
     </nz-form-control>
   </nz-form-item>
@@ -255,25 +257,25 @@
     <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="lightCardStyle">
-        <label nz-radio nzValue="standard">标准</label>
-        <label nz-radio nzValue="column">栏目</label>
-        <label nz-radio nzValue="example">简约</label>
+        <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+        <label nz-radio nzValue="column">{{ $t('_column') }}</label>
+        <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4">一级导航超出显示</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_navOver') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="lightOverType">
-        <label nz-radio nzValue="overflow">滚动条</label>
-        <label nz-radio nzValue="ellipsis">三点式</label>
+        <label nz-radio nzValue="overflow">{{ $t('_scrollBar') }}</label>
+        <label nz-radio nzValue="ellipsis">{{ $t('_ellipsis') }}</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4">侧栏图片板块</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_sidebarImg') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-table
         #basicTable
@@ -337,12 +339,12 @@
   <h2 class="title">Super {{ $t('_theme') }}</h2>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4">顶部标题</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <input
         nz-input
         formControlName="superTitle"
-        placeholder="默认网站标题, 建议4字以内"
+        [placeholder]="$t('_defTitle4')"
       />
     </nz-form-control>
   </nz-form-item>
@@ -351,25 +353,25 @@
     <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="superCardStyle">
-        <label nz-radio nzValue="standard">标准</label>
-        <label nz-radio nzValue="column">栏目</label>
-        <label nz-radio nzValue="example">简约</label>
+        <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+        <label nz-radio nzValue="column">{{ $t('_column') }}</label>
+        <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4">一级导航超出显示</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_navOver') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="superOverType">
-        <label nz-radio nzValue="overflow">滚动条</label>
-        <label nz-radio nzValue="ellipsis">三点式</label>
+        <label nz-radio nzValue="overflow">{{ $t('_scrollBar') }}</label>
+        <label nz-radio nzValue="ellipsis">{{ $t('_ellipsis') }}</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4">侧栏图片板块</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_sidebarImg') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-table
         #basicTable
@@ -433,9 +435,13 @@
   <h2 class="title">Sim {{ $t('_theme') }}</h2>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4">顶部标题</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
-      <input nz-input formControlName="simTitle" placeholder="默认网站标题" />
+      <input
+        nz-input
+        formControlName="simTitle"
+        [placeholder]="$t('_defaultTitle')"
+      />
     </nz-form-control>
   </nz-form-item>
 
@@ -443,19 +449,19 @@
     <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="simCardStyle">
-        <label nz-radio nzValue="standard">标准</label>
-        <label nz-radio nzValue="column">栏目</label>
-        <label nz-radio nzValue="example">简约</label>
+        <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+        <label nz-radio nzValue="column">{{ $t('_column') }}</label>
+        <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4">一级导航超出显示</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_navOver') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="simOverType">
-        <label nz-radio nzValue="overflow">滚动条</label>
-        <label nz-radio nzValue="ellipsis">三点式</label>
+        <label nz-radio nzValue="overflow">{{ $t('_scrollBar') }}</label>
+        <label nz-radio nzValue="ellipsis">{{ $t('_ellipsis') }}</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>
@@ -536,7 +542,7 @@
         [nzMin]="0"
         [nzMax]="1000"
       ></nz-slider>
-      <div>当高度为0时，图片宽高会自适应，务必保证每张图片尺寸一致</div>
+      <div>{{ $t('_bannerTip') }}</div>
     </nz-form-control>
   </nz-form-item>
 
@@ -555,12 +561,12 @@
   <h2 class="title">Side {{ $t('_theme') }}</h2>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4">侧栏标题</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_sidebarTitle') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <input
         nz-input
         formControlName="sideTitle"
-        placeholder="默认网站标题, 建议4字以内"
+        [placeholder]="$t('_defTitle4')"
       />
     </nz-form-control>
   </nz-form-item>
@@ -569,9 +575,9 @@
     <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <nz-radio-group formControlName="sideCardStyle">
-        <label nz-radio nzValue="standard">标准</label>
-        <label nz-radio nzValue="column">栏目</label>
-        <label nz-radio nzValue="example">简约</label>
+        <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+        <label nz-radio nzValue="column">{{ $t('_column') }}</label>
+        <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>
@@ -652,7 +658,7 @@
         [nzMin]="0"
         [nzMax]="1000"
       ></nz-slider>
-      <div>当高度为0时，图片宽高会自适应，务必保证每张图片尺寸一致</div>
+      <div>{{ $t('_bannerTip') }}</div>
     </nz-form-control>
   </nz-form-item>
 
@@ -660,12 +666,12 @@
   <h2 class="title">Shortcut {{ $t('_theme') }}</h2>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4">标题</nz-form-label>
+    <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <input
         nz-input
         formControlName="shortcutTitle"
-        placeholder="默认网站标题"
+        [placeholder]="$t('_defaultTitle')"
       />
     </nz-form-control>
   </nz-form-item>
@@ -696,9 +702,7 @@
   </nz-form-item>
 
   <div class="divider"></div>
-  <h2 class="title">
-    {{ $t('_mirrorList') }}（此功能作用不大，建议忽略或删除）
-  </h2>
+  <h2 class="title">{{ $t('_mirrorList') }}{{ $t('_ignore') }}</h2>
 
   <nz-form-item class="sim-ban">
     <nz-form-label [nzSpan]="4">{{ $t('_mirrorList') }}</nz-form-label>
@@ -767,9 +771,9 @@
       >
         {{ $t('_save') }}
       </button>
-      <label nz-checkbox formControlName="checkUrl"
-        >检查所有网站链接状态（耗时较长，建议定期执行；由于网络因素，仅供参考）</label
-      >
+      <label nz-checkbox formControlName="checkUrl">{{
+        $t('_checkStatus')
+      }}</label>
 
       <p class="save-tip">{{ $t('_setSaveTip') }}</p>
     </nz-form-control>
