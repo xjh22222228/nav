@@ -76,13 +76,13 @@
 
 1、右上角点击 `Fork` 当前项目。
 
-2、打开 https://github.com/你的用户名/nav/actions 开启 action 自动部署
+2、[https://github.com/settings/tokens/new](https://github.com/settings/tokens/new) 申请 `token`, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token；[Gitee 申请点这里](https://gitee.com/profile/personal_access_tokens/new)
 
-3、修改项目根目录配置文件 [nav.config.ts](nav.config.ts) 只需要修改仓库地址
+3、https://github.com/你的用户名/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
 
-4、[https://github.com/settings/tokens/new](https://github.com/settings/tokens/new) 申请 token, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token；[Gitee 申请点这里](https://gitee.com/profile/personal_access_tokens/new)
+4、打开 https://github.com/你的用户名/nav/actions 开启 action 自动部署
 
-5、https://github.com/你的用户名/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
+5、修改项目根目录配置文件 [nav.config.ts](nav.config.ts) 只需要修改仓库地址
 
 6、打开 https://你的用户名.github.io/nav 就能看到一个非常强大的导航网站了。
 
@@ -126,7 +126,7 @@
 git pull
 git remote add upstream https://github.com/xjh22222228/nav.git
 git fetch upstream main
-git merge upstream/main --allow-unrelated-histories
+git merge upstream/main --allow-unrelated-histories --no-edit
 git push
 
 # 或者执行
