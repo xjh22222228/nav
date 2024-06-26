@@ -194,7 +194,7 @@ const english: Record<string, string> = {
   _defTitle4: 'Default website title, recommended to be within 4 words',
   _inputAuthCode: 'Please enter the authorization code',
   _payTip:
-    'Opening user enrollment requires a payment of 99 ￥ as a contribution to the stable operation of this website. Thank you for your understanding',
+    'Opening user enrollment requires a payment of ￥99 as a contribution to the stable operation of this website. Thank you for your understanding',
   _waitHandle: 'Waiting for the stationmaster to handle',
   _collect: 'Get',
   _confirmCollect: 'Are you sure?',

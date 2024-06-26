@@ -112,21 +112,19 @@ export async function createFile({
 }
 
 export async function getUserCollect(data?: Record<string, any>) {
-  return httpNav.post('/api/get', data).then((res) => {
-    return res
-  })
+  return httpNav.post('/api/get', data)
 }
 
 export async function saveUserCollect(data?: Record<string, any>) {
-  return httpNav.post('/api/save', data).then((res) => {
-    return res
-  })
+  return httpNav.post('/api/save', data)
 }
 
 export async function delUserCollect(data?: Record<string, any>) {
-  return httpNav.post('/api/delete', data).then((res) => {
-    return res
-  })
+  return httpNav.post('/api/delete', data)
+}
+
+export async function getIconUrl(url: string) {
+  return httpNav.post('/api/icon', { url })
 }
 
 export function getCDN(path: string, branch = 'image') {

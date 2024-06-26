@@ -66,7 +66,7 @@
         </nz-form-control>
       </nz-form-item>
 
-      <nz-form-item>
+      <nz-form-item *ngIf="isLogin">
         <nz-form-label [nzSpan]="4">{{ $t('_iconAddr') }}</nz-form-label>
         <nz-form-control [nzSpan]="20">
           <nz-input-group [nzPrefix]="prefixIcon" [nzSuffix]="suffixIconSearch">
@@ -107,6 +107,24 @@
                 />
               </label>
             </ng-template>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item *ngIf="!isLogin">
+        <nz-form-label [nzSpan]="4">{{ $t('_iconAddr') }}</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-input-group [nzPrefix]="prefixIcon">
+            <input
+              formControlName="icon"
+              nz-input
+              (blur)="onIconBlur($event)"
+              (focus)="onIconFocus()"
+            />
+          </nz-input-group>
+
+          <ng-template #prefixIcon>
+            <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl"></app-logo>
           </ng-template>
         </nz-form-control>
       </nz-form-item>

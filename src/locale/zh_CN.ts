@@ -184,7 +184,7 @@ const zhCN: Record<string, string> = {
   _sidebarTitle: '侧栏标题',
   _defTitle4: '默认网站标题, 建议4字以内',
   _inputAuthCode: '请输入授权码',
-  _payTip: '开通用户收录需支付 99￥ 作为本站稳定运行的贡献，感谢您的理解',
+  _payTip: '开通用户收录功能需支付 ￥99 作为本站稳定运行的贡献，感谢您的理解',
   _waitHandle: '提交成功，等待站长处理',
   _collect: '收录',
   _confirmCollect: '您确定要收录吗？',

@@ -14,6 +14,7 @@ import * as s from '../../data/search.json'
 import { STORAGE_KEY_MAP } from 'src/constants'
 import { isLogin } from './user'
 import { SearchType } from 'src/components/search-engine/index'
+import { getIconUrl } from 'src/services'
 
 export const websiteList: INavProps[] = getWebsiteList()
 
@@ -357,6 +358,12 @@ export async function getLogoUrl(
       '/favicon.ico',
       '/logo.png',
     ]
+    try {
+      const res = await getIconUrl(url)
+      if (res.data.url) {
+        return res.data.url
+      }
+    } catch (error) {}
     const { origin } = new URL(url)
 
     const promises = c.map((url) => {
