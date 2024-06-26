@@ -64,6 +64,7 @@ import SystemAboutComponent from '../view/system/about/index.component'
 import SystemTagComponent from '../view/system/tag/index.component'
 import SystemSearchComponent from '../view/system/search/index.component'
 import SystemSettingComponent from '../view/system/setting/index.component'
+import CollectComponent from '../view/system/collect/index.component'
 import SystemWebComponent from '../view/system/web/index.component'
 import SystemAngleMarkComponent from '../view/system/angle-mark/index.component'
 import SideComponent from '../view/side/index.component'
@@ -107,6 +108,7 @@ const icons: IconDefinition[] = [
     SystemTagComponent,
     SystemSearchComponent,
     SystemSettingComponent,
+    CollectComponent,
     SystemAngleMarkComponent,
     SystemWebComponent,
     WebpComponent,

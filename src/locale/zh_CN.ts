@@ -112,6 +112,7 @@ const zhCN: Record<string, string> = {
   _webInfo: '网站信息',
   _systemSet: '系统设置',
   _searchEngines: '搜索引擎',
+  _userCollect: '用户收录',
   _bookmarkImport: '书签导入',
   _tagSettings: '标签设置',
   _websiteMang: '网站管理',
@@ -162,6 +163,8 @@ const zhCN: Record<string, string> = {
   _updateTip: '系统更新频繁，建议定时执行更新享受最新系统功能',
   _clickUpdate: '点我更新',
   _enableSEO: '开启SEO(加载稍慢)',
+  _allowCollect: '允许用户提交收录',
+  _collectMenuView: `具体到用户收录菜单查看`,
   _displaySwitchTheme: '显示切换主题',
   _requestAddress: '请求地址',
   _requestTip:
@@ -180,6 +183,11 @@ const zhCN: Record<string, string> = {
   _sidebarImg: '侧栏图片板块',
   _sidebarTitle: '侧栏标题',
   _defTitle4: '默认网站标题, 建议4字以内',
+  _inputAuthCode: '请输入授权码',
+  _payTip: '开通用户收录需支付 99￥ 作为本站稳定运行的贡献，感谢您的理解',
+  _waitHandle: '提交成功，等待站长处理',
+  _collect: '收录',
+  _confirmCollect: '您确定要收录吗？',
 }
 
 export default zhCN

@@ -34,6 +34,13 @@
             </li>
             <li
               nz-menu-item
+              [nzSelected]="currentMenu === 'collect'"
+              (click)="goRoute('/system/collect')"
+            >
+              {{ $t('_userCollect') }}
+            </li>
+            <li
+              nz-menu-item
               [nzSelected]="currentMenu === 'setting'"
               (click)="goRoute('/system/setting')"
             >

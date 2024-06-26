@@ -115,6 +115,7 @@ const english: Record<string, string> = {
   _webInfo: 'Web info',
   _systemSet: 'Settings',
   _searchEngines: 'Engines',
+  _userCollect: 'Collect',
   _bookmarkImport: 'Bookmark',
   _tagSettings: 'Tag settings',
   _websiteMang: 'Website',
@@ -169,6 +170,8 @@ const english: Record<string, string> = {
     'Frequent system updates, it is recommended to execute updates regularly to enjoy the latest system functions',
   _clickUpdate: 'Click me to update',
   _enableSEO: 'Enable SEO (loading slightly slower)',
+  _allowCollect: 'Allow users to submit indexed content',
+  _collectMenuView: `Please refer to the user's inclusion menu for specific details`,
   _displaySwitchTheme: 'Display Switch Theme',
   _requestAddress: 'Request Address',
   _requestTip:
@@ -189,6 +192,12 @@ const english: Record<string, string> = {
   _sidebarImg: 'Sidebar image',
   _sidebarTitle: 'Sidebar title',
   _defTitle4: 'Default website title, recommended to be within 4 words',
+  _inputAuthCode: 'Please enter the authorization code',
+  _payTip:
+    'Opening user enrollment requires a payment of 99 ￥ as a contribution to the stable operation of this website. Thank you for your understanding',
+  _waitHandle: 'Waiting for the stationmaster to handle',
+  _collect: 'Get',
+  _confirmCollect: 'Are you sure?',
 }
 
 export default english

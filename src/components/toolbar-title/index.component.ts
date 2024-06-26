@@ -4,7 +4,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { INavThreeProp, INavProps } from 'src/types'
 import { getToken } from 'src/utils/user'
-import { websiteList } from 'src/store'
+import { websiteList, settings } from 'src/store'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -20,6 +20,7 @@ export class ToolbarTitleWebComponent implements OnInit {
 
   isLogin = !!getToken()
   websiteList: INavProps[] = websiteList
+  settings = settings
 
   constructor() {}
 

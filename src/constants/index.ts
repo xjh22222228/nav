@@ -26,4 +26,5 @@ export const STORAGE_KEY_MAP = {
   engine: 'engine',
   language: 'language',
   total: 'total',
+  authCode: 'AUTH_CODE',
 }

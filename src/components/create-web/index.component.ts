@@ -13,10 +13,11 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { createFile } from 'src/services'
+import { createFile, saveUserCollect } from 'src/services'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagList, tagMap } from 'src/store'
 import event from 'src/utils/mitt'
+import { getToken } from 'src/utils/user'
 
 @Component({
   selector: 'app-create-web',
@@ -27,6 +28,7 @@ export class CreateWebComponent {
   @Output() onOk = new EventEmitter()
 
   $t = $t
+  isLogin: boolean = !!getToken()
   validateForm!: FormGroup
   iconUrl = ''
   tagList = tagList
@@ -37,6 +39,7 @@ export class CreateWebComponent {
   oneIndex: number | undefined
   twoIndex: number | undefined
   threeIndex: number | undefined
+  callback: Function = () => {}
 
   constructor(
     private fb: FormBuilder,
@@ -45,6 +48,12 @@ export class CreateWebComponent {
   ) {
     event.on('CREATE_WEB', (props: any) => {
       this.open(this, props)
+    })
+    event.on('SET_CREATE_WEB', (props: any) => {
+      for (const k in props) {
+        // @ts-ignore
+        this[k] = props[k]
+      }
     })
     this.validateForm = this.fb.group({
       title: ['', [Validators.required]],
@@ -112,6 +121,7 @@ export class CreateWebComponent {
     this.oneIndex = undefined
     this.twoIndex = undefined
     this.threeIndex = undefined
+    this.callback = Function
   }
 
   async onUrlBlur(e: any) {
@@ -268,13 +278,36 @@ export class CreateWebComponent {
         if (exists) {
           return this.message.error(`${$t('_repeatAdd')} "${payload.name}"`)
         }
-        w.unshift(payload as IWebProps)
-        setWebsiteList(websiteList)
-        this.message.success($t('_addSuccess'))
+        if (this.isLogin) {
+          w.unshift(payload as IWebProps)
+          setWebsiteList(websiteList)
+          this.message.success($t('_addSuccess'))
+        } else if (this.settings.allowCollect) {
+          saveUserCollect({
+            email: this.settings.email,
+            data: {
+              ...payload,
+              extra: {
+                type: 'create',
+                oneName: websiteList[oneIndex].title,
+                twoName: websiteList[oneIndex].nav[twoIndex].title,
+                threeName:
+                  websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
+              },
+            },
+          }).then((res) => {
+            if (res.data.success === false) {
+              this.message.error(res.data.message)
+            } else {
+              this.message.error($t('_waitHandle'))
+            }
+          })
+        }
       } catch (error: any) {
         this.message.error(error.message)
       }
     }
+    this.callback()
     this.onOk?.emit?.(payload)
     this.onClose()
   }

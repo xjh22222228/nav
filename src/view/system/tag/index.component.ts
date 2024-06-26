@@ -10,7 +10,7 @@ import { NzModalService } from 'ng-zorro-antd/modal'
 import { ITagPropValues } from 'src/types'
 import { updateFileContent } from 'src/services'
 import { TAG_PATH } from 'src/constants'
-import { tagMap, tagList } from 'src/store'
+import { tagList } from 'src/store'
 
 @Component({
   selector: 'system-tag',

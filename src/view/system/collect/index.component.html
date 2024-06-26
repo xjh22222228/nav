@@ -1,0 +1,120 @@
+<div *ngIf="!isPermission" class="center">
+  <input
+    nz-input
+    [placeholder]="$t('_inputAuthCode')"
+    [(ngModel)]="authCode"
+    autofocus
+  />
+  <button
+    class="mt10"
+    nz-button
+    nzType="primary"
+    (click)="handleSubmitAuthCode()"
+    [nzLoading]="submitting"
+  >
+    {{ $t('_save') }}
+  </button>
+  <div class="mt10">
+    <p>{{ $t('_payTip') }}</p>
+    <p>
+      发送到: xjh22222228&#64;gmail.com
+      （备注开通域名，支付渠道和支付时间，我们会第一时间发送授权码给您邮箱）
+    </p>
+    <p>一个授权码只绑定一个全站域名</p>
+    <img
+      src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/32.png"
+      width="600"
+    />
+  </div>
+</div>
+
+<div *ngIf="isPermission">
+  <button
+    class="mt10"
+    nz-button
+    nzType="primary"
+    (click)="handleSubmit()"
+    [nzLoading]="submitting"
+  >
+    {{ $t('_save') }}
+  </button>
+  <div class="mb10 mt10">
+    <b
+      >用户提交的收录数据存储在服务器内存当中，您的信息是安全的，在某一个时刻会清除，最多存储100个收录，请及时处理。</b
+    >
+  </div>
+  <div class="mb10 mt10">
+    <b>处理完成所有数据后需要点击一次保存方可生效</b>
+  </div>
+  <nz-table #basicTable [nzData]="dataList">
+    <thead>
+      <tr>
+        <th nzWidth="80px">{{ $t('_action') }}</th>
+        <th nzWidth="80px">{{ $t('_icon') }}</th>
+        <th nzWidth="100px">{{ $t('_webName') }}</th>
+        <th nzWidth="100px">{{ $t('_webTag') }}</th>
+        <th nzWidth="120px">{{ $t('_onlyOwnVisible') }}</th>
+        <th nzWidth="300px">{{ $t('_webDesc') }}</th>
+        <th nzWidth="300px">分类位置</th>
+        <th>{{ $t('_createAt') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dataList; index as idx">
+        <td>
+          <div>
+            <a (click)="handleConfirmGet(data, idx)">{{ $t('_collect') }}</a>
+          </div>
+          <div>
+            <a
+              nz-popconfirm
+              nzPopconfirmPlacement="rightTop"
+              nzOkType="danger"
+              [nzPopconfirmTitle]="$t('_confirmDel')"
+              nzPopconfirmPlacement="bottom"
+              (nzOnConfirm)="handleDelete(idx)"
+            >
+              <b>{{ $t('_del') }}</b>
+            </a>
+          </div>
+        </td>
+        <td>
+          <app-logo *ngIf="data.icon" [src]="data.icon" [name]="data.name">
+          </app-logo>
+        </td>
+        <td>
+          <a [href]="data.url" target="_blank">{{ data.name }}</a>
+        </td>
+        <td>
+          <nz-tag
+            *ngFor="let key of objectKeys(data.urls || {})"
+            [nzColor]="(tagMap[key] && tagMap[key].color) || '#1890ff'"
+            style="margin-bottom: 5px"
+          >
+            <a
+              [href]="data.urls?.[key] || 'javascript:void(0)'"
+              [target]="data.urls?.[key] ? '_blank' : ''"
+              >{{ tagMap[key] && tagMap[key].name }}</a
+            >
+          </nz-tag>
+        </td>
+        <td>
+          <i
+            *ngIf="data.ownVisible"
+            nz-icon
+            nzType="check"
+            nzTheme="outline"
+          ></i>
+        </td>
+        <td>
+          <pre class="desc">{{ data.desc }}</pre>
+        </td>
+        <th nzWidth="300px" *ngIf="data.extra">
+          {{ data.extra.oneName }} / {{ data.extra.twoName }} /
+          {{ data.extra.threeName }}
+        </th>
+        <td>{{ data.createdAt }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

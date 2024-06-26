@@ -52,6 +52,13 @@
   </nz-form-item>
 
   <nz-form-item>
+    <nz-form-label [nzSpan]="4">Email</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <input nz-input formControlName="email" placeholder="用户提交收录通知" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_pageLoad') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <nz-radio-group formControlName="loading">
@@ -109,6 +116,16 @@
           <img src="assets/img/loading4.png" class="preview" />
         </ng-template>
       </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_allowCollect')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <label nz-checkbox formControlName="allowCollect"></label>
+      <span class="ml10">{{ $t('_collectMenuView') }}</span>
     </nz-form-control>
   </nz-form-item>
 

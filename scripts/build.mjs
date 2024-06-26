@@ -32,7 +32,7 @@ const htmlTemplate = `
   <!-- https://github.com/xjh22222228/nav -->
   <title>${title}</title>
   <meta name="description" content="${description}">
-  <meta name="keywords" content="${keywords}">
+  <meta name="keywords" content="${keywords}" id="xjh_2">
   <link rel="icon" href="${favicon}">
   <link rel ="apple-touch-icon" href="${favicon}">
 `.trim()
@@ -40,7 +40,7 @@ const htmlTemplate = `
 let scriptTemplate = ``.trim()
 
 let seoTemplate = `
-<div data-url="https://github.com/xjh22222228/nav" data-date="${nowDate}" data-version="${pkg.version}" id="META-NAV" style="z-index:-1;position:fixed;top:-10000vh;left:-10000vh;">
+<div data-url="https://github.com/xjh22222228/nav" data-a="x.i.e-jiahe" data-date="${nowDate}" data-version="${pkg.version}" id="META-NAV" style="z-index:-1;position:fixed;top:-10000vh;left:-10000vh;">
 `
 
 async function buildSeo() {
@@ -78,7 +78,7 @@ async function build() {
   const writePath = path.join('.', 'src', 'index.html')
   let t = fs.readFileSync(htmlPath).toString()
   t = t.replace(/<title>.*<\/title>/i, '')
-  t = t.replace('<link rel="icon" href="assets/logo.png" />', '')
+  t = t.replace('<link rel="icon" href="assets/logo.png" id="x-jiahe" />', '')
   t = t.replace('<!-- nav.config -->', htmlTemplate)
   if (headerContent) {
     t = t.replace('<!-- nav.headerContent -->', headerContent)

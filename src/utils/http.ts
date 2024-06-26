@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import NProgress from 'nprogress'
-import { getToken } from '../utils/user'
+import { getToken, getAuthCode, removeAuthCode } from '../utils/user'
 import config from '../../nav.config'
 
 const DEFAULT_TITLE = document.title
@@ -55,5 +55,49 @@ httpInstance.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+
+const httpNavInstance = axios.create({
+  timeout: 10000,
+  baseURL: 'https://nav-server.netlify.app',
+  // baseURL: 'http://localhost:3000',
+})
+
+httpNavInstance.interceptors.request.use(
+  function (config) {
+    const code = getAuthCode()
+    if (code) {
+      config.headers['Authorization'] = code
+    }
+    config.data = {
+      code,
+      hostname: window.location.hostname,
+      ...config.data,
+    }
+    startLoad()
+
+    return config
+  },
+  function (error) {
+    stopLoad()
+    removeAuthCode()
+    return Promise.reject(error)
+  }
+)
+
+httpNavInstance.interceptors.response.use(
+  function (res) {
+    stopLoad()
+    if (!res.data.success) {
+      removeAuthCode()
+    }
+    return res
+  },
+  function (error) {
+    stopLoad()
+    return Promise.reject(error)
+  }
+)
+
+export const httpNav = httpNavInstance
 
 export default httpInstance

@@ -7,9 +7,20 @@
 >
   <ng-container *nzModalContent>
     <p>{{ $t('_inputTokenMsg') }}</p>
-    <input nz-input [placeholder]="$t('_inputToken')" [(ngModel)]="token" maxlength="100" autofocus />
-    <p style="margin-top: 15px;">
-      {{ $t('_getToken') }}<a href="https://github.com/xjh22222228/nav#%E9%83%A8%E7%BD%B2" target="_blank"> {{ $t('_readDoc') }}</a>
+    <input
+      nz-input
+      [placeholder]="$t('_inputToken')"
+      [(ngModel)]="token"
+      autofocus
+    />
+    <p style="margin-top: 15px">
+      {{ $t('_getToken')
+      }}<a
+        href="https://github.com/xjh22222228/nav#%E9%83%A8%E7%BD%B2"
+        target="_blank"
+      >
+        {{ $t('_readDoc') }}</a
+      >
     </p>
   </ng-container>
 </nz-modal>

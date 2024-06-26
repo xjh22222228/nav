@@ -158,7 +158,7 @@ export class FixbarComponent {
           .then(() => {
             this.message.success($t('_syncSuccessTip'))
           })
-          .catch((res) => {
+          .catch((res: any) => {
             this.notification.error(
               `${$t('_error')}: ${res?.response?.status ?? 1401}`,
               $t('_syncFailTip')

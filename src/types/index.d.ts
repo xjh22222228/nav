@@ -18,6 +18,8 @@ export interface ITagPropValues {
   createdAt: string
   desc: string
   isInner: boolean
+
+  [key: string]: any
 }
 
 export interface ITagProp {
@@ -136,6 +138,9 @@ export interface ISettings {
 
   showRate: boolean
   mirrorList: Record<string, any>[]
+
+  allowCollect: boolean
+  email: string
 }
 
 export interface IConfig {
