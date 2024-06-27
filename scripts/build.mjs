@@ -110,6 +110,8 @@ function getLoadKey() {
 
 let errorUrlCount = 0
 ;(async function () {
+  const items = []
+
   async function r(nav) {
     if (!Array.isArray(nav)) return
 
@@ -126,34 +128,7 @@ let errorUrlCount = 0
           settings.spiderTitle === 'EMPTY' ||
           settings.spiderTitle === 'ALWAYS'
         ) {
-          const res = await getWebInfo(item.url)
-
-          if (settings.checkUrl) {
-            if (!res.status) {
-              errorUrlCount += 1
-              item.ok = false
-              console.log(`异常 ${item.url}`)
-            }
-          }
-          if (res.status) {
-            if (settings.spiderIcon === 'ALWAYS') {
-              item.icon = res.iconUrl
-            } else if (settings.spiderIcon === 'EMPTY' && !item.icon) {
-              item.icon = res.iconUrl
-            }
-
-            if (settings.spiderTitle === 'ALWAYS') {
-              item.name = res.title
-            } else if (settings.spiderTitle === 'EMPTY' && !item.name) {
-              item.name = res.title
-            }
-
-            if (settings.spiderDescription === 'ALWAYS') {
-              item.desc = res.description
-            } else if (settings.spiderDescription === 'EMPTY' && !item.desc) {
-              item.desc = res.description
-            }
-          }
+          items.push(item)
         }
       } else {
         r(item.nav)
@@ -162,6 +137,41 @@ let errorUrlCount = 0
   }
 
   r(db)
+
+  const promises = await Promise.allSettled(
+    items.map((item) => getWebInfo(item.url))
+  )
+
+  for (let i = 0; i < promises.length; i++) {
+    const item = items[i]
+    const res = promises[i].value
+    if (settings.checkUrl) {
+      if (!res.status) {
+        errorUrlCount += 1
+        item.ok = false
+        console.log(`异常 ${item.url}`)
+      }
+    }
+    if (res.status) {
+      if (settings.spiderIcon === 'ALWAYS') {
+        item.icon = res.iconUrl
+      } else if (settings.spiderIcon === 'EMPTY' && !item.icon) {
+        item.icon = res.iconUrl
+      }
+
+      if (settings.spiderTitle === 'ALWAYS') {
+        item.name = res.title
+      } else if (settings.spiderTitle === 'EMPTY' && !item.name) {
+        item.name = res.title
+      }
+
+      if (settings.spiderDescription === 'ALWAYS') {
+        item.desc = res.description
+      } else if (settings.spiderDescription === 'EMPTY' && !item.desc) {
+        item.desc = res.description
+      }
+    }
+  }
 })()
 
 process.on('exit', () => {
