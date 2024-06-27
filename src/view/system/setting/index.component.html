@@ -268,6 +268,62 @@
   </nz-form-item>
 
   <div class="divider"></div>
+  <h2 class="title">{{ $t('_spiderRule') }}</h2>
+  <div class="mb10">
+    <b>{{ $t('_spiderTip') }}</b>
+  </div>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_spiderTitle')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-radio-group formControlName="spiderTitle">
+        <label nz-radio nzValue="NO">{{ $t('_notSpider') }}</label>
+        <label nz-radio nzValue="EMPTY">{{ $t('_spiderEmpty') }}</label>
+        <label nz-radio nzValue="ALWAYS">{{ $t('_spiderAlways') }}</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_spiderIcon')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-radio-group formControlName="spiderIcon">
+        <label nz-radio nzValue="NO">{{ $t('_notSpider') }}</label>
+        <label nz-radio nzValue="EMPTY">{{ $t('_spiderEmpty') }}</label>
+        <label nz-radio nzValue="ALWAYS">{{ $t('_spiderAlways') }}</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_spiderDesc')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-radio-group formControlName="spiderDescription">
+        <label nz-radio nzValue="NO">{{ $t('_notSpider') }}</label>
+        <label nz-radio nzValue="EMPTY">{{ $t('_spiderEmpty') }}</label>
+        <label nz-radio nzValue="ALWAYS">{{ $t('_spiderAlways') }}</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_spiderStatus')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <label nz-checkbox formControlName="checkUrl">{{
+        $t('_checkStatus')
+      }}</label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <div class="divider"></div>
   <h2 class="title">Light {{ $t('_theme') }}</h2>
 
   <nz-form-item>
@@ -776,23 +832,16 @@
     </nz-form-control>
   </nz-form-item>
 
-  <nz-form-item class="bottom-bar">
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true"></nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <button
-        nz-button
-        nzType="primary"
-        [nzLoading]="submitting"
-        (click)="handleSubmit()"
-        style="margin-right: 20px"
-      >
-        {{ $t('_save') }}
-      </button>
-      <label nz-checkbox formControlName="checkUrl">{{
-        $t('_checkStatus')
-      }}</label>
-
-      <p class="save-tip">{{ $t('_setSaveTip') }}</p>
-    </nz-form-control>
-  </nz-form-item>
+  <div class="bottom-bar">
+    <button
+      nz-button
+      nzType="primary"
+      [nzLoading]="submitting"
+      (click)="handleSubmit()"
+      style="margin-right: 20px"
+    >
+      {{ $t('_save') }}
+    </button>
+    <p class="save-tip">{{ $t('_setSaveTip') }}</p>
+  </div>
 </form>

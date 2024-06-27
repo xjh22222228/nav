@@ -8,6 +8,7 @@ const zhCN: Record<string, string> = {
   _edit: '编辑',
   _add: '新增',
   _del: '删除',
+  _apply: '申请收录',
   _batchDel: '批量删除',
   _confirmDel: '您确定要删除吗？',
   _default: '综合',
@@ -171,8 +172,7 @@ const zhCN: Record<string, string> = {
     '通常用于部署自有服务器，当点击保存按钮时会发出GET请求填写的地址',
   _followPage: '跟随页面',
   _bannerTip: '当高度为0时，图片宽高会自适应，务必保证每张图片尺寸一致',
-  _checkStatus:
-    '检查所有网站链接状态（耗时较长，建议定期执行；由于网络因素，仅供参考）',
+  _checkStatus: '检查网站链接状态',
   _ignore: '（此功能作用不大，建议忽略或删除）',
   _standard: '标准',
   _column: '栏目',
@@ -190,6 +190,16 @@ const zhCN: Record<string, string> = {
   _confirmCollect: '您确定要收录吗？',
   _pendingGet: '正在获取...',
   _logoutAuthCode: '退出授权',
+  _spiderRule: '爬取规则',
+  _spiderTitle: '爬取标题',
+  _spiderIcon: '爬取图标',
+  _spiderDesc: '爬取描述',
+  _notSpider: '不爬取',
+  _spiderAlways: '总是抓取',
+  _spiderEmpty: '为空时抓取',
+  _spiderStatus: '爬取状态',
+  _spiderTip:
+    '每次保存时会触发爬取规则，影响构建速度，在必要时进行爬取更新信息，爬取完成建议设置为不爬取',
 }
 
 export default zhCN

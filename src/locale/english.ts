@@ -8,6 +8,7 @@ const english: Record<string, string> = {
   _edit: 'Edit',
   _add: 'Add',
   _del: 'Delete',
+  _apply: 'Apply',
   _batchDel: 'Delete',
   _confirmDel: 'Are you sure you want to delete?',
   _default: 'Default',
@@ -179,8 +180,7 @@ const english: Record<string, string> = {
   _followPage: 'Follow Page',
   _bannerTip:
     'When the height is 0, the width and height of the image will be adaptive, and it is important to ensure that each image has the same size',
-  _checkStatus:
-    'Check the status of all website links (time-consuming, recommended to be executed regularly; due to network factors, for reference only)',
+  _checkStatus: 'Check website link status',
   _ignore:
     '(This function is not very useful, it is recommended to ignore or remove it)',
   _standard: 'Standard',
@@ -200,6 +200,14 @@ const english: Record<string, string> = {
   _confirmCollect: 'Are you sure?',
   _pendingGet: 'Getting...',
   _logoutAuthCode: 'Exit authorization',
+  _spiderRule: 'Spider rule',
+  _spiderIcon: 'Spider icon',
+  _spiderDesc: 'Spider description',
+  _spiderTitle: 'Spider title',
+  _spiderAlways: 'Always update',
+  _spiderStatus: 'Spider Status',
+  _spiderTip:
+    'Crawling rules will be triggered every time saving, affecting the construction speed. If necessary, crawling updates will be made. It is recommended to set crawling completion to no crawling',
 }
 
 export default english

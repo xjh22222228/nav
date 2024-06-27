@@ -201,6 +201,16 @@
           display: none;
         }
       }
+      .apply {
+        text-align: center;
+        padding: 20px 0;
+      }
+      .appbtn {
+        cursor: pointer;
+        color: #1890ff;
+        user-select: none;
+        font-size: 12px;
+      }
     }
 
     .right {

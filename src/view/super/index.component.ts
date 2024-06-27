@@ -12,6 +12,8 @@ import {
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { settings, searchEngineList, websiteList } from 'src/store'
+import { $t } from 'src/locale'
+import event from 'src/utils/mitt'
 
 @Component({
   selector: 'app-side',
@@ -19,6 +21,7 @@ import { settings, searchEngineList, websiteList } from 'src/store'
   styleUrls: ['./index.component.scss'],
 })
 export default class SideComponent {
+  $t = $t
   LOGO_CDN = settings.favicon
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
@@ -93,5 +96,11 @@ export default class SideComponent {
 
   trackByItemWeb(a: any, item: any) {
     return item.id
+  }
+
+  openCreateWebModal() {
+    event.emit('CREATE_WEB', {
+      threeIndex: this.selectedIndex,
+    })
   }
 }

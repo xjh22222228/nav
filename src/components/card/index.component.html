@@ -130,7 +130,7 @@
 
   <!-- column style -->
   <div
-    class="container column2 ellipsis dark-bg dark-white dark-border-color dark-hover"
+    class="container column2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
     *ngSwitchDefault
   >
     <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
@@ -183,6 +183,20 @@
           *ngIf="isLogin && indexs.length === 4"
           >{{ $t('_move') }}</span
         >
+
+        <div
+          *ngIf="isLogin"
+          nz-popconfirm
+          nzPopconfirmPlacement="rightTop"
+          nzOkType="danger"
+          [nzPopconfirmTitle]="$t('_confirmDel')"
+          nzPopconfirmPlacement="bottom"
+          (nzOnConfirm)="confirmDel()"
+        >
+          <span class="action-btn dark-text dark-hover-text">{{
+            $t('_del')
+          }}</span>
+        </div>
       </div>
     </div>
   </div>

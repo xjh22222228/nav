@@ -115,6 +115,14 @@
   }
 }
 
+// 其他主题下卡片不明显
+::ng-deep .column-border {
+  .column2 {
+    border: 1px solid transparent !important;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+}
 .column2 {
   background-color: #fff;
   padding: 8px 12px;
@@ -153,6 +161,8 @@
     flex: 1;
     justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
+    row-gap: 5px;
     a {
       color: #fff;
     }

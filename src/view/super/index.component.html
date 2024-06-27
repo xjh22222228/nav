@@ -73,7 +73,7 @@
         </div>
       </div>
 
-      <div *ngIf="currentList[selectedIndex]?.nav; else noData">
+      <div *ngIf="currentList[selectedIndex]?.nav?.length; else noData">
         <app-card
           *ngFor="
             let el of currentList[selectedIndex].nav;
@@ -88,6 +88,19 @@
       <ng-template #noData>
         <app-no-data></app-no-data>
       </ng-template>
+
+      <div
+        class="apply"
+        *ngIf="
+          currentList.length &&
+          currentList[0].title &&
+          (isLogin || settings.allowCollect)
+        "
+      >
+        <span class="appbtn" (click)="openCreateWebModal()">{{
+          isLogin ? $t('_add') : $t('_apply')
+        }}</span>
+      </div>
     </div>
 
     <div class="right dark-scrollbar" *ngIf="settings.superImages.length > 0">

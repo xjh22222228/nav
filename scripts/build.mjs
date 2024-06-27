@@ -5,8 +5,8 @@ import fs from 'fs'
 import config from '../nav.config.js'
 import path from 'path'
 import LOAD_MAP from './loading.js'
-import axios from 'axios'
 import dayjs from 'dayjs'
+import getWebInfo from 'info-web'
 
 const dbPath = path.join('.', 'data', 'db.json')
 const setPath = path.join('.', 'data', 'settings.json')
@@ -110,22 +110,6 @@ function getLoadKey() {
 
 let errorUrlCount = 0
 ;(async function () {
-  async function getUrl(url) {
-    return axios
-      .get(url, {
-        timeout: 10000,
-      })
-      .then(() => {
-        // console.log(`正常 ${url}`)
-        return true
-      })
-      .catch(() => {
-        errorUrlCount += 1
-        console.log(`异常 ${url}`)
-        return false
-      })
-  }
-
   async function r(nav) {
     if (!Array.isArray(nav)) return
 
@@ -133,10 +117,42 @@ let errorUrlCount = 0
       const item = nav[i]
       if (item.url) {
         delete item.ok
-        if (settings.checkUrl) {
-          const res = await getUrl(item.url)
-          if (!res) {
-            item.ok = false
+        if (
+          settings.checkUrl ||
+          settings.spiderIcon === 'EMPTY' ||
+          settings.spiderIcon === 'ALWAYS' ||
+          settings.spiderDescription === 'EMPTY' ||
+          settings.spiderDescription === 'ALWAYS' ||
+          settings.spiderTitle === 'EMPTY' ||
+          settings.spiderTitle === 'ALWAYS'
+        ) {
+          const res = await getWebInfo(item.url)
+
+          if (settings.checkUrl) {
+            if (!res.status) {
+              errorUrlCount += 1
+              item.ok = false
+              console.log(`异常 ${item.url}`)
+            }
+          }
+          if (res.status) {
+            if (settings.spiderIcon === 'ALWAYS') {
+              item.icon = res.iconUrl
+            } else if (settings.spiderIcon === 'EMPTY' && !item.icon) {
+              item.icon = res.iconUrl
+            }
+
+            if (settings.spiderTitle === 'ALWAYS') {
+              item.name = res.title
+            } else if (settings.spiderTitle === 'EMPTY' && !item.name) {
+              item.name = res.title
+            }
+
+            if (settings.spiderDescription === 'ALWAYS') {
+              item.desc = res.description
+            } else if (settings.spiderDescription === 'EMPTY' && !item.desc) {
+              item.desc = res.description
+            }
           }
         }
       } else {
