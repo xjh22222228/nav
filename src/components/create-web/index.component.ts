@@ -3,7 +3,7 @@
 
 import { Component, Output, EventEmitter } from '@angular/core'
 import {
-  getLogoUrl,
+  getWebInfo,
   getTextContent,
   updateByWeb,
   queryString,
@@ -33,6 +33,7 @@ export class CreateWebComponent {
   iconUrl = ''
   tagList = tagList
   uploading = false
+  getting = false
   settings = settings
   showModal = false
   detail: any = null
@@ -126,13 +127,22 @@ export class CreateWebComponent {
   }
 
   async onUrlBlur(e: any) {
-    this.uploading = true
-    const res = await getLogoUrl(e.target?.value)
-    if (res) {
-      this.iconUrl = res as string
+    this.getting = true
+    const res = await getWebInfo(e.target?.value)
+    if (res['url']) {
+      this.iconUrl = res['url']
       this.validateForm.get('icon')!.setValue(this.iconUrl)
     }
-    this.uploading = false
+    if (res['title']) {
+      this.validateForm.get('title')!.setValue(res['title'])
+    }
+    if (res['description']) {
+      this.validateForm.get('desc')!.setValue(res['description'])
+    }
+    if (!res['title']) {
+      this.message.error('自动抓取失败，请手动写入')
+    }
+    this.getting = false
   }
 
   onIconFocus() {

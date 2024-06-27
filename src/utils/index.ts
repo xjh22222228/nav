@@ -347,11 +347,9 @@ export function isDark(): boolean {
   return Boolean(Number(storageVal))
 }
 
-export async function getLogoUrl(
-  url: string
-): Promise<boolean | string | null> {
+export async function getWebInfo(url: string): Promise<Record<string, any>> {
   if (!url) {
-    return ''
+    return {}
   }
   try {
     const c = [
@@ -362,9 +360,13 @@ export async function getLogoUrl(
       '/logo.png',
     ]
     try {
+      const payload: Record<string, any> = {}
       const res = await getIconUrl(url)
+      payload['title'] = res.data.title
+      payload['description'] = res.data.description
       if (res.data.url) {
-        return res.data.url
+        payload['url'] = res.data.url
+        return payload
       }
     } catch (error) {}
     const { origin } = new URL(url)
@@ -378,15 +380,15 @@ export async function getLogoUrl(
           img.style.display = 'none'
           img.onload = () => {
             img.parentNode?.removeChild(img)
-            resolve(iconUrl)
+            resolve({ url: iconUrl })
           }
           img.onerror = () => {
             img.parentNode?.removeChild(img)
-            resolve(false)
+            resolve({})
           }
           document.body.append(img)
         } catch (error) {
-          resolve(false)
+          resolve({})
         }
       })
     })
@@ -398,9 +400,9 @@ export async function getLogoUrl(
       }
     }
   } catch {
-    return null
+    return {}
   }
-  return null
+  return {}
 }
 
 export function copyText(el: Event, text: string): Promise<boolean> {

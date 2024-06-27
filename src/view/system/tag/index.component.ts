@@ -21,7 +21,7 @@ export default class SystemTagComponent {
   $t = $t
   tagList: ITagPropValues[] = tagList
   submitting: boolean = false
-  incrementId = tagList.length
+  incrementId = Math.max(...tagList.map((item) => item.id)) + 100
 
   constructor(
     private message: NzMessageService,
