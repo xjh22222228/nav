@@ -37,6 +37,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
 import { IconDefinition } from '@ant-design/icons-angular'
+import { NzSpinModule } from 'ng-zorro-antd/spin'
 
 import { NZ_I18N } from 'ng-zorro-antd/i18n'
 import { zh_CN } from 'ng-zorro-antd/i18n'
@@ -159,6 +160,7 @@ const icons: IconDefinition[] = [
     NzCheckboxModule,
     NzPopoverModule,
     NzSliderModule,
+    NzSpinModule,
     NzSwitchModule,
     DragDropModule,
     BrowserModule,

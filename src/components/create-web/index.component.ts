@@ -121,6 +121,7 @@ export class CreateWebComponent {
     this.oneIndex = undefined
     this.twoIndex = undefined
     this.threeIndex = undefined
+    this.uploading = false
     this.callback = Function
   }
 
@@ -221,7 +222,7 @@ export class CreateWebComponent {
     this.handleUploadImage(file)
   }
 
-  handleOk() {
+  async handleOk() {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty()
       this.validateForm.controls[i].updateValueAndValidity()
@@ -280,12 +281,13 @@ export class CreateWebComponent {
         if (exists) {
           return this.message.error(`${$t('_repeatAdd')} "${payload.name}"`)
         }
+        this.uploading = true
         if (this.isLogin) {
           w.unshift(payload as IWebProps)
           setWebsiteList(websiteList)
           this.message.success($t('_addSuccess'))
         } else if (this.settings.allowCollect) {
-          saveUserCollect({
+          const res = await saveUserCollect({
             email: this.settings.email,
             data: {
               ...payload,
@@ -297,13 +299,12 @@ export class CreateWebComponent {
                   websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
               },
             },
-          }).then((res) => {
-            if (res.data.success === false) {
-              this.message.error(res.data.message)
-            } else {
-              this.message.error($t('_waitHandle'))
-            }
           })
+          if (res.data.success === false) {
+            this.message.error(res.data.message)
+          } else {
+            this.message.error($t('_waitHandle'))
+          }
         }
       } catch (error: any) {
         this.message.error(error.message)

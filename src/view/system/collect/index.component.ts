@@ -37,18 +37,24 @@ export default class CollectComponent {
   }
 
   handleDelete(idx: number) {
+    this.submitting = true
     delUserCollect({
       data: this.dataList[idx],
-    }).then((res) => {
-      if (res.data.success) {
-        this.dataList = res.data.data
-      } else {
-        this.message.error(res.data.message || '网络出错')
-      }
     })
+      .then((res) => {
+        if (res.data.success) {
+          this.dataList = res.data.data
+        } else {
+          this.message.error(res.data.message || '网络出错')
+        }
+      })
+      .finally(() => {
+        this.submitting = false
+      })
   }
 
   getUserCollect() {
+    this.submitting = true
     getUserCollect()
       .then((res: any) => {
         this.isPermission = !!res.data.success
@@ -72,7 +78,6 @@ export default class CollectComponent {
       return
     }
 
-    this.submitting = true
     setAuthCode(this.authCode)
     this.getUserCollect()
   }
