@@ -127,8 +127,12 @@ export class CreateWebComponent {
   }
 
   async onUrlBlur(e: any) {
+    const url = e.target?.value
+    if (!url) {
+      return
+    }
     this.getting = true
-    const res = await getWebInfo(e.target?.value)
+    const res = await getWebInfo(url)
     if (res['url']) {
       this.iconUrl = res['url']
       this.validateForm.get('icon')!.setValue(this.iconUrl)
