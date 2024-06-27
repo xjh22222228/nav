@@ -153,7 +153,7 @@ const zhCN: Record<string, string> = {
   _showCopy: '显示卡片复制',
   _showShare: '显示卡片分享',
   _angleMark: '角标设置',
-  _logout: '登出',
+  _logout: '登出账号',
   _cardStyle: '卡片风格',
   _tagPlaceholder: '可以为空当作一个普通标签',
   _dragSort: '拖动可排序',
@@ -189,6 +189,7 @@ const zhCN: Record<string, string> = {
   _collect: '收录',
   _confirmCollect: '您确定要收录吗？',
   _pendingGet: '正在获取...',
+  _logoutAuthCode: '退出授权',
 }
 
 export default zhCN

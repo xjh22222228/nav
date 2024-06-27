@@ -158,7 +158,7 @@ const english: Record<string, string> = {
   _showCopy: 'Display Card Copy',
   _showShare: 'Show card sharing',
   _angleMark: 'Angle Mark',
-  _logout: 'Logout',
+  _logout: 'Logout Account',
   _cardStyle: 'Card style',
   _tagPlaceholder: 'Can be empty as a regular label',
   _dragSort: 'Drag to sort',
@@ -199,6 +199,7 @@ const english: Record<string, string> = {
   _collect: 'Get',
   _confirmCollect: 'Are you sure?',
   _pendingGet: 'Getting...',
+  _logoutAuthCode: 'Exit authorization',
 }
 
 export default english

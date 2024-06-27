@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import NProgress from 'nprogress'
-import { getToken, getAuthCode, removeAuthCode } from '../utils/user'
+import { getToken, getAuthCode } from '../utils/user'
 import config from '../../nav.config'
 
 const DEFAULT_TITLE = document.title
@@ -79,7 +79,6 @@ httpNavInstance.interceptors.request.use(
   },
   function (error) {
     stopLoad()
-    removeAuthCode()
     return Promise.reject(error)
   }
 )
@@ -87,9 +86,6 @@ httpNavInstance.interceptors.request.use(
 httpNavInstance.interceptors.response.use(
   function (res) {
     stopLoad()
-    if (!res.data.success) {
-      removeAuthCode()
-    }
     return res
   },
   function (error) {

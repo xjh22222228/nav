@@ -39,6 +39,18 @@
     >
       {{ $t('_save') }}
     </button>
+
+    <button
+      class="ml10"
+      nz-button
+      nzType="primary"
+      nzDanger
+      (click)="logoutAuthCode()"
+      [nzLoading]="submitting"
+    >
+      {{ $t('_logoutAuthCode') }}
+    </button>
+
     <div class="mb10 mt10">
       <b
         >用户提交的收录数据存储在服务器内存当中，您的信息是安全的，在某一个时刻会清除，最多存储100个收录，请及时处理。</b

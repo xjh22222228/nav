@@ -63,7 +63,10 @@
     </ng-template>
   </div>
 
-  <div class="engine-main dark-bg dark-border-color" *ngIf="showEngine">
+  <div
+    class="engine-main dark-bg dark-border-color dark-shadow"
+    *ngIf="showEngine"
+  >
     <div
       class="item dark-bg-gary dark-item-hover"
       *ngFor="let item of searchEngineList; let i = index"

@@ -6,8 +6,8 @@ import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzModalService } from 'ng-zorro-antd/modal'
-import { websiteList, settings, tagMap } from 'src/store'
-import { setAuthCode, getAuthCode } from 'src/utils/user'
+import { websiteList, tagMap } from 'src/store'
+import { setAuthCode, getAuthCode, removeAuthCode } from 'src/utils/user'
 import { getUserCollect, delUserCollect, updateFileContent } from 'src/services'
 import { DB_PATH } from 'src/constants'
 import event from 'src/utils/mitt'
@@ -80,6 +80,11 @@ export default class CollectComponent {
 
     setAuthCode(this.authCode)
     this.getUserCollect()
+  }
+
+  logoutAuthCode() {
+    removeAuthCode()
+    window.location.reload()
   }
 
   handleConfirmGet(data: any, idx: number) {

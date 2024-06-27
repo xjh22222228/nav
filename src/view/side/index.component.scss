@@ -78,6 +78,11 @@
   ::ng-deep .web-list {
     max-width: 100% !important;
   }
+  ::ng-deep .mobile-search {
+    .engine-main {
+      max-width: 95% !important;
+    }
+  }
 }
 
 .logo {
