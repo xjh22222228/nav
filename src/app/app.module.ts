@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core'
+// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
+
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 
 import { AppRoutingModule } from './app-routing.module'
@@ -94,6 +97,7 @@ const icons: IconDefinition[] = [
 ]
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     LightComponent,

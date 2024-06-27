@@ -350,6 +350,9 @@ export function isDark(): boolean {
 export async function getLogoUrl(
   url: string
 ): Promise<boolean | string | null> {
+  if (!url) {
+    return ''
+  }
   try {
     const c = [
       '/favicon.png',

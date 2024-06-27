@@ -188,6 +188,7 @@ const zhCN: Record<string, string> = {
   _waitHandle: '提交成功，等待站长处理',
   _collect: '收录',
   _confirmCollect: '您确定要收录吗？',
+  _pendingGet: '正在获取...',
 }
 
 export default zhCN

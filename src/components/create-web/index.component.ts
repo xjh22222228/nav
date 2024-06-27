@@ -125,11 +125,13 @@ export class CreateWebComponent {
   }
 
   async onUrlBlur(e: any) {
+    this.uploading = true
     const res = await getLogoUrl(e.target?.value)
     if (res) {
       this.iconUrl = res as string
       this.validateForm.get('icon')!.setValue(this.iconUrl)
     }
+    this.uploading = false
   }
 
   onIconFocus() {

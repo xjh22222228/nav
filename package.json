@@ -39,7 +39,7 @@
     "hotkeys-js": "^3.13.7",
     "js-base64": "^3.7.7",
     "mitt": "^3.0.1",
-    "ng-zorro-antd": "^17.4.1",
+    "ng-zorro-antd": "^18.0.0",
     "nprogress": "^0.2.0",
     "qs": "^6.12.1",
     "rough-notation": "^0.5.1",

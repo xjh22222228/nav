@@ -198,6 +198,7 @@ const english: Record<string, string> = {
   _waitHandle: 'Waiting for the stationmaster to handle',
   _collect: 'Get',
   _confirmCollect: 'Are you sure?',
+  _pendingGet: 'Getting...',
 }
 
 export default english

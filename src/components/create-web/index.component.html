@@ -76,6 +76,8 @@
               [placeholder]="$t('_copyUpload')"
               (blur)="onIconBlur($event)"
               (focus)="onIconFocus()"
+              [readonly]="uploading"
+              [placeholder]="uploading ? $t('_pendingGet') : ''"
             />
           </nz-input-group>
 
@@ -120,6 +122,8 @@
               nz-input
               (blur)="onIconBlur($event)"
               (focus)="onIconFocus()"
+              [readonly]="uploading"
+              [placeholder]="uploading ? $t('_pendingGet') : ''"
             />
           </nz-input-group>
 
