@@ -4,15 +4,14 @@
       [images]="settings.simThemeImages"
       [autoplay]="settings.simThemeAutoplay"
       [height]="settings.simThemeHeight"
-    >
-      <div class="bar">
-        <h1 class="title dark-white">
-          {{ settings.simTitle || settings.title }}
-        </h1>
-        <pre class="description dark-white" [innerHTML]="description"></pre>
-        <app-search-engine />
-      </div>
-    </app-swiper>
+    />
+    <div class="bar">
+      <h1 class="title dark-white">
+        {{ settings.simTitle || settings.title }}
+      </h1>
+      <pre class="description dark-white" [innerHTML]="description"></pre>
+      <app-search-engine />
+    </div>
   </div>
 
   <app-search-engine class="hidden search-sm" />
