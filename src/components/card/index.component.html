@@ -1,6 +1,14 @@
 <!-- 网站 -->
 <ng-container [ngSwitch]="cardStyle">
   <div class="container standard dark-border-color" *ngSwitchCase="'standard'">
+    <span
+      nz-icon
+      nzType="stop"
+      nzTheme="outline"
+      class="stop-icon"
+      title="疑似异常"
+      *ngIf="isLogin && dataSource.ok === false"
+    ></span>
     <div class="rate" *ngIf="settings.showRate">
       <nz-rate
         [ngModel]="dataSource.rate"
@@ -121,6 +129,14 @@
     class="container example2 ellipsis dark-bg dark-white"
     *ngSwitchCase="'example'"
   >
+    <span
+      nz-icon
+      nzType="stop"
+      nzTheme="outline"
+      class="stop-icon"
+      title="疑似异常"
+      *ngIf="isLogin && dataSource.ok === false"
+    ></span>
     <app-logo [src]="dataSource.icon || ''" [name]="dataSource.name"></app-logo>
     <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
       <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
@@ -133,6 +149,14 @@
     class="container column2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
     *ngSwitchDefault
   >
+    <span
+      nz-icon
+      nzType="stop"
+      nzTheme="outline"
+      class="stop-icon"
+      title="疑似异常"
+      *ngIf="isLogin && dataSource.ok === false"
+    ></span>
     <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
       <div class="title-bar">
         <app-logo

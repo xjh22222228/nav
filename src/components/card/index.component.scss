@@ -10,6 +10,14 @@
     white-space: normal;
     word-break: break-all;
   }
+  .stop-icon {
+    z-index: 3;
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
 }
 
 .standard {

@@ -84,6 +84,7 @@ import {
   UploadOutline,
   MinusOutline,
   PlusOutline,
+  StopOutline,
 } from '@ant-design/icons-angular/icons'
 
 const icons: IconDefinition[] = [
@@ -95,6 +96,7 @@ const icons: IconDefinition[] = [
   UploadOutline,
   MinusOutline,
   PlusOutline,
+  StopOutline,
 ]
 
 @NgModule({

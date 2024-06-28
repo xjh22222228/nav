@@ -127,35 +127,7 @@ let errorUrlCount = 0
           settings.spiderTitle === 'EMPTY' ||
           settings.spiderTitle === 'ALWAYS'
         ) {
-          const res = await getWebInfo(item.url, { timeout: 3000 })
-          if (!res.status) {
-            console.log(`疑似异常 ${item.url}`)
-          }
-          if (settings.checkUrl) {
-            if (!res.status) {
-              errorUrlCount += 1
-              item.ok = false
-            }
-          }
-          if (res.status) {
-            if (settings.spiderIcon === 'ALWAYS') {
-              item.icon = res.iconUrl
-            } else if (settings.spiderIcon === 'EMPTY' && !item.icon) {
-              item.icon = res.iconUrl
-            }
-
-            if (settings.spiderTitle === 'ALWAYS') {
-              item.name = res.title
-            } else if (settings.spiderTitle === 'EMPTY' && !item.name) {
-              item.name = res.title
-            }
-
-            if (settings.spiderDescription === 'ALWAYS') {
-              item.desc = res.description
-            } else if (settings.spiderDescription === 'EMPTY' && !item.desc) {
-              item.desc = res.description
-            }
-          }
+          items.push(item)
         }
       } else {
         r(item.nav)
@@ -165,40 +137,78 @@ let errorUrlCount = 0
 
   r(db)
 
-  const promises = await Promise.allSettled(
-    items.map((item) => getWebInfo(item.url))
-  )
+  console.log('Getting...')
+  const max = settings.spiderQty ?? 20
+  const count = Math.ceil(items.length / max)
+  let current = 0
+  const now = Date.now()
 
-  for (let i = 0; i < promises.length; i++) {
-    const item = items[i]
-    const res = promises[i].value
-    if (settings.checkUrl) {
-      if (!res.status) {
-        errorUrlCount += 1
-        item.ok = false
-        console.log(`异常 ${item.url}`)
+  while (current < count) {
+    const request = []
+    for (let i = current * max; i < current * max + max; i++) {
+      const item = items[i]
+      if (item) {
+        request.push(getWebInfo(item.url, { timeout: 3000 }))
       }
     }
-    if (res.status) {
-      if (settings.spiderIcon === 'ALWAYS') {
-        item.icon = res.iconUrl
-      } else if (settings.spiderIcon === 'EMPTY' && !item.icon) {
-        item.icon = res.iconUrl
-      }
 
-      if (settings.spiderTitle === 'ALWAYS') {
-        item.name = res.title
-      } else if (settings.spiderTitle === 'EMPTY' && !item.name) {
-        item.name = res.title
-      }
+    const promises = await Promise.allSettled(request)
 
-      if (settings.spiderDescription === 'ALWAYS') {
-        item.desc = res.description
-      } else if (settings.spiderDescription === 'EMPTY' && !item.desc) {
-        item.desc = res.description
+    for (let i = 0; i < promises.length; i++) {
+      const idx = current * max + i
+      const item = items[idx]
+      const res = promises[i].value
+      console.log(`${idx}：${res.status ? '正常' : '疑似异常'} ${item.url}`)
+      if (settings.checkUrl) {
+        if (!res.status) {
+          errorUrlCount += 1
+          item.ok = false
+        }
       }
+      if (res.status) {
+        if (settings.spiderIcon === 'ALWAYS') {
+          item.icon = res.iconUrl
+          console.log(
+            `更新图标：${item.url}: "${item.icon}" => "${res.iconUrl}"`
+          )
+        } else if (settings.spiderIcon === 'EMPTY' && !item.icon) {
+          item.icon = res.iconUrl
+          console.log(
+            `更新图标：${item.url}: "${item.icon}" => "${res.iconUrl}"`
+          )
+        }
+
+        if (settings.spiderTitle === 'ALWAYS') {
+          console.log(
+            `更新标题：${item.url}: "${item.title}" => "${res.title}"`
+          )
+          item.name = res.title
+        } else if (settings.spiderTitle === 'EMPTY' && !item.name) {
+          console.log(
+            `更新标题：${item.url}: "${item.title}" => "${res.title}"`
+          )
+          item.name = res.title
+        }
+
+        if (settings.spiderDescription === 'ALWAYS') {
+          console.log(
+            `更新描述：${item.url}: "${item.desc}" => "${res.description}"`
+          )
+          item.desc = res.description
+        } else if (settings.spiderDescription === 'EMPTY' && !item.desc) {
+          console.log(
+            `更新描述：${item.url}: "${item.desc}" => "${res.description}"`
+          )
+          item.desc = res.description
+        }
+      }
+      console.log('-'.repeat(100))
     }
+    current += 1
   }
+
+  const diff = Math.ceil((Date.now() - now) / 1000)
+  console.log(`Time: ${diff} seconds`)
 })()
 
 process.on('exit', () => {
