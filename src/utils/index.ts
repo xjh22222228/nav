@@ -354,7 +354,9 @@ export async function getWebInfo(url: string): Promise<Record<string, any>> {
       ...res.data,
     }
   } catch (error) {}
-  return {}
+  return {
+    status: false,
+  }
 }
 
 export function copyText(el: Event, text: string): Promise<boolean> {
