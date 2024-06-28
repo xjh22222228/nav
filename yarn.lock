@@ -4108,10 +4108,10 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-info-web@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/info-web/-/info-web-0.0.8.tgz#d9a1de479d5b47eb990d101706fd28da122cc5d5"
-  integrity sha512-7RIjyO8N8wAiuz2ZM0iyH/LVT0ZttoLwpCKOnbAckqbnWYFZe9fVw2nMsFI2rnzGmsEZfBim7EVFrTZAClGQZw==
+info-web@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/info-web/-/info-web-0.0.10.tgz#ed2da52b1726ed07c7c92e162ed6e0c4b37e3a86"
+  integrity sha512-IV0KcXvmafbS69nO4KYqUueG5eJrPH9RBewHHFzW/pSHpuluG2sgl6mJtSjg2488ATtIz4QGVu+TNmUZ6POdAw==
   dependencies:
     axios "^1.7.2"
     rollup "^4.18.0"

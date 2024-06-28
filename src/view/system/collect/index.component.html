@@ -78,7 +78,7 @@
             <div>
               <a (click)="handleConfirmGet(data, idx)">{{ $t('_collect') }}</a>
             </div>
-            <div>
+            <div class="mt10">
               <a
                 nz-popconfirm
                 nzPopconfirmPlacement="rightTop"
@@ -122,10 +122,10 @@
           <td>
             <pre class="desc">{{ data.desc }}</pre>
           </td>
-          <th nzWidth="300px" *ngIf="data.extra">
+          <td nzWidth="300px" *ngIf="data.extra">
             {{ data.extra.oneName }} / {{ data.extra.twoName }} /
             {{ data.extra.threeName }}
-          </th>
+          </td>
           <td>{{ data.createdAt }}</td>
         </tr>
       </tbody>
