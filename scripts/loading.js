@@ -1,3 +1,5 @@
+// Copyright @ 2018-present xiejia.he. All rights reserved. MIT license.
+// See https://github.com/xjh22222228/nav
 
 module.exports = {
   loading1: `
@@ -15,7 +17,6 @@ module.exports = {
   <div style="color:#6c757d;font-size: 18px;">Loading...</div>
 </div>
   `.trim(),
-
 
   loading2: `
 <style>
@@ -36,5 +37,5 @@ module.exports = {
       <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
     </svg>
   </div>  
-`
+`,
 }

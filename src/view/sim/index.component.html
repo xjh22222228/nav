@@ -1,5 +1,9 @@
 <div class="sim">
-  <div class="wallpaper" *ngIf="settings.simThemeImages.length > 0">
+  <div
+    class="wallpaper"
+    *ngIf="settings.simThemeImages.length > 0"
+    [class.bootstrap]="settings.simThemeHeight < 260"
+  >
     <app-swiper
       [images]="settings.simThemeImages"
       [autoplay]="settings.simThemeAutoplay"

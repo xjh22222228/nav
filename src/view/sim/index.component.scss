@@ -6,15 +6,19 @@
 @media (max-width: 1080px) {
   .sim {
     --width: 900px !important;
-    --titleSize: 32px;
-    --textSize: 14px;
+    .bootstrap {
+      --titleSize: 32px;
+      --textSize: 14px;
+    }
   }
 }
 @media (max-width: 980px) {
   .sim {
     --width: 768px !important;
-    --titleSize: 26px;
-    --textSize: 12px;
+    .bootstrap {
+      --titleSize: 26px;
+      --textSize: 12px;
+    }
   }
 }
 @media (max-width: 800px) {
@@ -101,6 +105,7 @@
 
   .wallpaper {
     position: relative;
+    background-color: #fff;
     .bar {
       z-index: 10;
       position: absolute;
@@ -118,6 +123,7 @@
       line-height: 1.3;
       user-select: none;
       pointer-events: none;
+      white-space: nowrap;
     }
 
     .description {

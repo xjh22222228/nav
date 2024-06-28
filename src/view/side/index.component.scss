@@ -10,6 +10,7 @@
     --sideWidth: 150px !important;
   }
   .sider {
+    --menuTitleWidth: 85px;
     padding-top: 40px !important;
   }
   .logo-img {
@@ -18,6 +19,16 @@
   }
   .web-title {
     font-size: 14px !important;
+  }
+}
+
+@media (max-width: 568px) {
+  .layout {
+    --sideWidth: 120px !important;
+  }
+  .sider {
+    --menuTitleWidth: 70px;
+    padding-top: 40px !important;
   }
 }
 
@@ -145,6 +156,9 @@
   &::-webkit-scrollbar-track {
     background-color: hsla(0, 0%, 100%, 0.15);
     border-radius: 3px;
+  }
+  .menu-title {
+    max-width: var(--menuTitleWidth, 130px);
   }
 }
 

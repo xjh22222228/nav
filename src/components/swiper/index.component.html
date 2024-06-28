@@ -9,7 +9,12 @@
         [href]="item.url || 'javascript:void(0)'"
         [target]="item.url ? '_blank' : ''"
       >
-        <img class="bgimg" [src]="item.src" draggable="false" />
+        <img
+          class="bgimg"
+          [class.height100]="height > 0"
+          [src]="item.src"
+          draggable="false"
+        />
       </a>
     </div>
   </div>

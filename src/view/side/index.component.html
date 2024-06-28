@@ -15,7 +15,7 @@
       >
         <ng-template #titleTpl>
           <img *ngIf="item.icon" class="sideicon" [src]="item.icon" />
-          <span>{{ item.title }}</span>
+          <span class="menu-title ellipsis">{{ item.title }}</span>
         </ng-template>
 
         <ul>

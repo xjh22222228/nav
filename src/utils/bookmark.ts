@@ -1,4 +1,4 @@
-// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present xie.jiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { INavProps } from '../types'
