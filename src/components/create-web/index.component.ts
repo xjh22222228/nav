@@ -133,29 +133,20 @@ export class CreateWebComponent {
     }
     this.getting = true
     const res = await getWebInfo(url)
-    if (res['url']) {
+    if (res['url'] != null) {
       this.iconUrl = res['url']
       this.validateForm.get('icon')!.setValue(this.iconUrl)
     }
-    if (res['title']) {
+    if (res['title'] != null) {
       this.validateForm.get('title')!.setValue(res['title'])
     }
-    if (res['description']) {
+    if (res['description'] != null) {
       this.validateForm.get('desc')!.setValue(res['description'])
     }
-    if (!res['title']) {
+    if (res['status'] === false) {
       this.message.error('自动抓取失败，请手动写入')
     }
     this.getting = false
-  }
-
-  onIconFocus() {
-    document.addEventListener('paste', this.handlePasteImage)
-  }
-
-  onIconBlur(e: any) {
-    document.removeEventListener('paste', this.handlePasteImage)
-    this.iconUrl = e.target.value
   }
 
   addMoreUrl() {
@@ -172,24 +163,6 @@ export class CreateWebComponent {
   lessMoreUrl(idx: number) {
     // @ts-ignore
     this.validateForm.get('urlArr').removeAt(idx)
-  }
-
-  handlePasteImage = (event: any) => {
-    const items = event.clipboardData.items
-    let file = null
-
-    if (items.length) {
-      for (let i = 0; i < items.length; i++) {
-        if (items[i].type.startsWith('image')) {
-          file = items[i].getAsFile()
-          break
-        }
-      }
-    }
-
-    if (file) {
-      this.handleUploadImage(file)
-    }
   }
 
   handleUploadImage(file: File) {

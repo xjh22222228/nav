@@ -174,36 +174,48 @@ let errorUrlCount = 0
         }
       }
       if (res.status) {
-        if (settings.spiderIcon === 'ALWAYS') {
+        if (settings.spiderIcon === 'ALWAYS' && res.iconUrl) {
           item.icon = res.iconUrl
           console.log(
             `更新图标：${item.url}: "${item.icon}" => "${res.iconUrl}"`
           )
-        } else if (settings.spiderIcon === 'EMPTY' && !item.icon) {
+        } else if (
+          settings.spiderIcon === 'EMPTY' &&
+          !item.icon &&
+          res.iconUrl
+        ) {
           item.icon = res.iconUrl
           console.log(
             `更新图标：${item.url}: "${item.icon}" => "${res.iconUrl}"`
           )
         }
 
-        if (settings.spiderTitle === 'ALWAYS') {
+        if (settings.spiderTitle === 'ALWAYS' && res.title) {
           console.log(
             `更新标题：${item.url}: "${item.title}" => "${res.title}"`
           )
           item.name = res.title
-        } else if (settings.spiderTitle === 'EMPTY' && !item.name) {
+        } else if (
+          settings.spiderTitle === 'EMPTY' &&
+          !item.name &&
+          res.title
+        ) {
           console.log(
             `更新标题：${item.url}: "${item.title}" => "${res.title}"`
           )
           item.name = res.title
         }
 
-        if (settings.spiderDescription === 'ALWAYS') {
+        if (settings.spiderDescription === 'ALWAYS' && res.description) {
           console.log(
             `更新描述：${item.url}: "${item.desc}" => "${res.description}"`
           )
           item.desc = res.description
-        } else if (settings.spiderDescription === 'EMPTY' && !item.desc) {
+        } else if (
+          settings.spiderDescription === 'EMPTY' &&
+          !item.desc &&
+          res.description
+        ) {
           console.log(
             `更新描述：${item.url}: "${item.desc}" => "${res.description}"`
           )

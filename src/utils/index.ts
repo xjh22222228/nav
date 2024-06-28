@@ -348,60 +348,12 @@ export function isDark(): boolean {
 }
 
 export async function getWebInfo(url: string): Promise<Record<string, any>> {
-  if (!url) {
-    return {}
-  }
   try {
-    const c = [
-      '/favicon.png',
-      '/favicon.svg',
-      '/favicon.jpg',
-      '/favicon.ico',
-      '/logo.png',
-    ]
-    try {
-      const payload: Record<string, any> = {}
-      const res = await getIconUrl(url)
-      payload['title'] = res.data.title
-      payload['description'] = res.data.description
-      if (res.data.url) {
-        payload['url'] = res.data.url
-        return payload
-      }
-    } catch (error) {}
-    const { origin } = new URL(url)
-
-    const promises = c.map((url) => {
-      const iconUrl = origin + url
-      return new Promise((resolve) => {
-        try {
-          const img = document.createElement('img')
-          img.src = iconUrl
-          img.style.display = 'none'
-          img.onload = () => {
-            img.parentNode?.removeChild(img)
-            resolve({ url: iconUrl })
-          }
-          img.onerror = () => {
-            img.parentNode?.removeChild(img)
-            resolve({})
-          }
-          document.body.append(img)
-        } catch (error) {
-          resolve({})
-        }
-      })
-    })
-
-    const all = await Promise.all<any>(promises)
-    for (let i = 0; i < all.length; i++) {
-      if (all[i]) {
-        return all[i]
-      }
+    const res = await getIconUrl(url)
+    return {
+      ...res.data,
     }
-  } catch {
-    return {}
-  }
+  } catch (error) {}
   return {}
 }
 

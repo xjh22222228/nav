@@ -4,7 +4,7 @@ import { getCDN } from 'src/services'
 @Component({
   selector: 'app-logo',
   templateUrl: './logo.component.html',
-  styleUrls: ['./logo.component.scss']
+  styleUrls: ['./logo.component.scss'],
 })
 export class LogoComponent {
   @Input() src: string = ''
@@ -14,19 +14,20 @@ export class LogoComponent {
   @Input() check: boolean = true
 
   hasError = false
-  url: string = ''
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  get url(): string {
     if (this.src?.startsWith('nav-')) {
-      this.url = getCDN(this.src)
+      return getCDN(this.src)
     } else {
-      this.url = this.src
+      return this.src
     }
   }
 
   onError() {
-    this.hasError = true;
+    this.hasError = true
   }
 }

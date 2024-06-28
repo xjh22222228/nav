@@ -76,8 +76,6 @@
               formControlName="icon"
               nz-input
               [placeholder]="$t('_copyUpload')"
-              (blur)="onIconBlur($event)"
-              (focus)="onIconFocus()"
               [readonly]="getting"
               [placeholder]="getting ? $t('_pendingGet') : ''"
             />
@@ -122,8 +120,6 @@
             <input
               formControlName="icon"
               nz-input
-              (blur)="onIconBlur($event)"
-              (focus)="onIconFocus()"
               [readonly]="getting"
               [placeholder]="getting ? $t('_pendingGet') : ''"
             />
