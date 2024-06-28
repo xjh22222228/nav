@@ -7,6 +7,12 @@ import path from 'path'
 import LOAD_MAP from './loading.js'
 import dayjs from 'dayjs'
 import getWebInfo from 'info-web'
+import utc from 'dayjs/plugin/utc.js'
+import timezone from 'dayjs/plugin/timezone.js'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.tz.setDefault('Asia/Shanghai')
 
 const dbPath = path.join('.', 'data', 'db.json')
 const setPath = path.join('.', 'data', 'settings.json')
@@ -16,7 +22,7 @@ const db = JSON.parse(fs.readFileSync(dbPath).toString())
 const pkg = JSON.parse(fs.readFileSync(pkgPath).toString())
 const settings = JSON.parse(fs.readFileSync(setPath).toString())
 
-const nowDate = dayjs().format('YYYY-MM-DD HH:mm:ss')
+const nowDate = dayjs.tz().format('YYYY-MM-DD HH:mm:ss')
 
 const { description, title, keywords, loading, favicon, headerContent } =
   settings
@@ -40,7 +46,9 @@ const htmlTemplate = `
 let scriptTemplate = ``.trim()
 
 let seoTemplate = `
-<div data-url="https://github.com/xjh22222228/nav" data-a="x.i.e-jiahe" data-date="${nowDate}" data-version="${pkg.version}" id="META-NAV" style="z-index:-1;position:fixed;top:-10000vh;left:-10000vh;">
+<div data-url="https://github.com/xjh22222228/nav" data-server-time="${Date.now()}" data-a="x.i.e-jiahe" data-date="${nowDate}" data-version="${
+  pkg.version
+}" id="META-NAV" style="z-index:-1;position:fixed;top:-10000vh;left:-10000vh;">
 `
 
 async function buildSeo() {

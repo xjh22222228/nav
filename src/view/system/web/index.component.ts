@@ -220,9 +220,10 @@ export default class WebpComponent {
       nzOnOk: () => {
         this.message.success($t('_actionSuccess'))
         window.localStorage.removeItem(STORAGE_KEY_MAP.website)
+        window.localStorage.removeItem(STORAGE_KEY_MAP.s_url)
         setTimeout(() => {
           window.location.reload()
-        }, 1500)
+        }, 500)
       },
     })
   }

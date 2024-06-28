@@ -203,6 +203,8 @@ const zhCN: Record<string, string> = {
   _spiderQty: '并发数量',
   _spiderQtyTip: '',
   _spiderNetTip: '由于网络因素，部分网站可能无法访问直接跳过，仅供参考',
+  _spiderBuildTip:
+    '构建完成后对数据无误，请到网站管理点击一次保存，否则数据不会永久存储',
 }
 
 export default zhCN
