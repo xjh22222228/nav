@@ -31,6 +31,7 @@ export default class SideComponent {
   isLogin = isLogin
   settings = settings
   sliceMax = 1
+  searchKeyword = ''
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -39,6 +40,7 @@ export default class SideComponent {
       const { id, page, q } = queryString()
       this.page = page
       this.id = id
+      this.searchKeyword = q
       this.sliceMax = 1
 
       if (q) {

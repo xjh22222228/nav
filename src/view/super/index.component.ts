@@ -33,6 +33,7 @@ export default class SideComponent {
   isLogin = isLogin
   settings = settings
   overIndex = Number.MAX_SAFE_INTEGER
+  searchKeyword = ''
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -41,6 +42,7 @@ export default class SideComponent {
       const { id, page, q } = queryString()
       this.page = page
       this.id = id
+      this.searchKeyword = q
       this.handleCheckThree(0)
 
       if (q) {

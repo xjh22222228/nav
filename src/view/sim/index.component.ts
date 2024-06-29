@@ -33,6 +33,7 @@ export default class SimComponent {
   isLogin = isLogin
   sliceMax = 1
   overIndex = Number.MAX_SAFE_INTEGER
+  searchKeyword = ''
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -41,6 +42,7 @@ export default class SimComponent {
       const { id, page, q } = queryString()
       this.page = page
       this.id = id
+      this.searchKeyword = q
       this.sliceMax = 1
 
       if (q) {

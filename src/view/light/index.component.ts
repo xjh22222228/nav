@@ -32,6 +32,7 @@ export default class LightComponent {
   sliceMax = 1
   settings = settings
   overIndex = Number.MAX_SAFE_INTEGER
+  searchKeyword = ''
 
   ngOnInit() {
     randomBgImg()
@@ -40,6 +41,7 @@ export default class LightComponent {
       const { id, page, q } = queryString()
       this.page = page
       this.id = id
+      this.searchKeyword = q
       this.sliceMax = 1
       if (q) {
         this.currentList = fuzzySearch(this.websiteList, q)

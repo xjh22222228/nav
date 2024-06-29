@@ -1,6 +1,14 @@
 .container {
   position: relative;
   height: 100%;
+  .breadcrumb1 {
+    padding: 0 0 0 8px;
+    font-size: 12px;
+    color: #666;
+    .slash {
+      margin: 0 4px;
+    }
+  }
   .desc {
     color: rgba(0, 0, 0, 0.45);
     word-break: break-all;
@@ -29,6 +37,10 @@
   display: flex;
   flex-direction: column;
   padding-top: 5px;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transform: translate(0, -3px);
+  }
   .rate {
     padding: 0 $padding;
   }
@@ -97,16 +109,23 @@
   padding: 8px 8px;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   border: 1px solid transparent;
   transition: all 0.15s linear;
-  display: flex;
   color: #000;
+  display: block;
   &:hover {
     border: 1px solid #78b7fa;
+    transform: translateY(-3px);
     .title {
       color: #007bff;
     }
+  }
+  .breadcrumb1 {
+    padding: 0 0 4px 0;
+  }
+  .wrapper {
+    display: flex;
   }
   .right-box {
     flex: 1;
@@ -134,6 +153,9 @@
   transition: all 0.15s linear;
   color: #000;
   display: block;
+  .breadcrumb1 {
+    padding: 0 0 4px 0;
+  }
   &:hover {
     background-color: #f2f3f5;
     .action-btn {
