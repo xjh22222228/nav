@@ -6,7 +6,7 @@ import { Component } from '@angular/core'
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
 import { INavProps, INavTwoProp, INavThreeProp, IWebProps } from 'src/types'
 import { websiteList, settings, tagMap } from 'src/store'
-import { getToken } from 'src/utils/user'
+import { isLogin } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
@@ -30,7 +30,7 @@ export default class WebpComponent {
   validateForm!: FormGroup
   websiteList: INavProps[] = websiteList
   gitRepoUrl = config.gitRepoUrl
-  isLogin = !!getToken()
+  isLogin = isLogin
   showCreateModal = false
   syncLoading = false
   uploading = false
@@ -452,12 +452,6 @@ export default class WebpComponent {
           .then(() => {
             this.message.success($t('_syncSuccessTip'))
           })
-          .catch((res) => {
-            this.notification.error(
-              `${$t('_error')}: ${res?.response?.status ?? 401}`,
-              $t('_syncFailTip')
-            )
-          })
           .finally(() => {
             this.syncLoading = false
           })
@@ -466,7 +460,7 @@ export default class WebpComponent {
   }
 
   handleOk() {
-    const createdAt = new Date().toISOString()
+    const createdAt = new Date().toString()
 
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty()

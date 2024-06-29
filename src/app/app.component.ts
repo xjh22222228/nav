@@ -8,8 +8,10 @@ import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n'
 import { getLocale } from 'src/locale'
 import { settings } from 'src/store'
 import { verifyToken } from 'src/services'
-import { getToken, userLogout } from 'src/utils/user'
+import { getToken, userLogout, isLogin } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
+import { NzNotificationService } from 'ng-zorro-antd/notification'
+import Alert from './alert-event'
 
 @Component({
   selector: 'app-xiejiahe',
@@ -17,14 +19,17 @@ import { NzMessageService } from 'ng-zorro-antd/message'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  isLogin: boolean = !!getToken()
+  isLogin: boolean = isLogin
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private i18n: NzI18nService,
-    private message: NzMessageService
-  ) {}
+    private message: NzMessageService,
+    private notification: NzNotificationService
+  ) {
+    new Alert(message, notification)
+  }
 
   ngOnInit() {
     this.goRoute()
@@ -39,7 +44,6 @@ export class AppComponent {
     const token = getToken()
     if (token) {
       verifyToken(token).catch(() => {
-        this.message.error('Token 失效，请重新登录')
         userLogout()
         setTimeout(() => {
           location.reload()

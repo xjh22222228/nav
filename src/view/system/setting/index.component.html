@@ -120,12 +120,24 @@
   </nz-form-item>
 
   <nz-form-item>
+    <nz-form-label [nzSpan]="4">DIY Loading code</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <textarea
+        nz-input
+        formControlName="loadingCode"
+        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+        placeholder="<div style='text-align:center'>Loading...</div>"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
     <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
       $t('_allowCollect')
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label nz-checkbox formControlName="allowCollect"></label>
-      <span class="ml10">{{ $t('_collectMenuView') }}</span>
+      <!-- <span class="ml10">{{ $t('_collectMenuView') }}</span> -->
     </nz-form-control>
   </nz-form-item>
 

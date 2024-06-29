@@ -187,6 +187,7 @@ const TAG_ID_NAME3 = 'Github'
   settings.spiderDescription ??= 'NO'
   settings.spiderTitle ??= 'NO'
   settings.spiderQty ??= 20
+  settings.loadingCode ??= ''
   fs.writeFileSync(settingsPath, JSON.stringify(settings), {
     encoding: 'utf-8',
   })

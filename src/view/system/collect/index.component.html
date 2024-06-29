@@ -63,21 +63,20 @@
     <div class="mb10 mt10">
       <b>处理完成所有数据后需要点击一次保存方可生效</b>
     </div>
-    <nz-table #basicTable [nzData]="dataList">
+    <nz-table #basicTable [nzData]="dataList" [nzShowPagination]="false">
       <thead>
         <tr>
           <th nzWidth="80px">{{ $t('_action') }}</th>
           <th nzWidth="80px">{{ $t('_icon') }}</th>
           <th nzWidth="100px">{{ $t('_webName') }}</th>
           <th nzWidth="100px">{{ $t('_webTag') }}</th>
-          <th nzWidth="120px">{{ $t('_onlyOwnVisible') }}</th>
           <th nzWidth="300px">{{ $t('_webDesc') }}</th>
           <th nzWidth="300px">分类位置</th>
           <th>{{ $t('_createAt') }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of dataList; index as idx">
+        <tr *ngFor="let data of dataList; index as idx; trackBy: trackByItem">
           <td>
             <div>
               <a (click)="handleConfirmGet(data, idx)">{{ $t('_collect') }}</a>
@@ -114,14 +113,6 @@
                 >{{ tagMap[key] && tagMap[key].name }}</a
               >
             </nz-tag>
-          </td>
-          <td>
-            <i
-              *ngIf="data.ownVisible"
-              nz-icon
-              nzType="check"
-              nzTheme="outline"
-            ></i>
           </td>
           <td>
             <pre class="desc">{{ data.desc }}</pre>

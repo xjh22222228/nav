@@ -4,7 +4,6 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { createFile, getCDN } from 'src/services'
 
 @Component({
@@ -19,10 +18,7 @@ export class UploadComponent {
   uploading: boolean = false
   id = `f${Date.now()}`
 
-  constructor(
-    private message: NzMessageService,
-    private notification: NzNotificationService
-  ) {}
+  constructor(private message: NzMessageService) {}
 
   onChangeFile(e: any) {
     if (this.uploading) {
@@ -70,13 +66,7 @@ export class UploadComponent {
             that.message.success($t('_uploadSuccess'))
             resolve(params)
           })
-          .catch((res) => {
-            that.notification.error(
-              `${$t('_error')}: ${res?.response?.status ?? 401}`,
-              $t('_uploadFail')
-            )
-            reject(res)
-          })
+          .catch(reject)
           .finally(() => {
             that.uploading = false
           })

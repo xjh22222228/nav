@@ -96,7 +96,12 @@ async function build() {
   t = t.replace('<!-- nav.script -->', scriptTemplate)
 
   t = t.replace('<!-- nav.seo -->', seoTemplate)
-  t = t.replace('<!-- nav.loading -->', LOAD_MAP[getLoadKey()] || '')
+
+  const loadingCode = settings.loadingCode.trim()
+  t = t.replace(
+    '<!-- nav.loading -->',
+    loadingCode || LOAD_MAP[getLoadKey()] || ''
+  )
 
   fs.writeFileSync(writePath, t, { encoding: 'utf-8' })
   fs.unlinkSync('./nav.config.js')

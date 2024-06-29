@@ -11,18 +11,16 @@ import { VERSION } from 'src/constants'
 @Component({
   selector: 'system-info',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export default class SystemInfoComponent {
   $t = $t
-  token: string|null = getToken()
+  token = getToken()
   config = config
   date = document.getElementById('META-NAV')?.dataset?.['date'] || $t('_unknow')
   currentVersionSrc = `https://img.shields.io/badge/release-v${VERSION}-red.svg?longCache=true&style=flat-square`
 
-  constructor (
-  ) {}
+  constructor() {}
 
-  ngOnInit () {
-  }
+  ngOnInit() {}
 }

@@ -12,12 +12,11 @@ import {
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { createFile, saveUserCollect } from 'src/services'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagList, tagMap } from 'src/store'
 import event from 'src/utils/mitt'
-import { getToken } from 'src/utils/user'
+import { isLogin } from 'src/utils/user'
 
 @Component({
   selector: 'app-create-web',
@@ -28,7 +27,7 @@ export class CreateWebComponent {
   @Output() onOk = new EventEmitter()
 
   $t = $t
-  isLogin: boolean = !!getToken()
+  isLogin: boolean = isLogin
   validateForm!: FormGroup
   iconUrl = ''
   tagList = tagList
@@ -42,11 +41,7 @@ export class CreateWebComponent {
   threeIndex: number | undefined
   callback: Function = () => {}
 
-  constructor(
-    private fb: FormBuilder,
-    private message: NzMessageService,
-    private notification: NzNotificationService
-  ) {
+  constructor(private fb: FormBuilder, private message: NzMessageService) {
     event.on('CREATE_WEB', (props: any) => {
       this.open(this, props)
     })
@@ -186,12 +181,6 @@ export class CreateWebComponent {
           that.validateForm.get('icon')!.setValue(path)
           that.message.success($t('_uploadSuccess'))
         })
-        .catch((res) => {
-          that.notification.error(
-            `${$t('_error')}: ${res?.response?.status ?? 401}`,
-            `${$t('_uploadFail')}：${res.message || ''}`
-          )
-        })
         .finally(() => {
           that.uploading = false
         })
@@ -215,7 +204,7 @@ export class CreateWebComponent {
       this.validateForm.controls[i].updateValueAndValidity()
     }
 
-    const createdAt = new Date().toISOString()
+    const createdAt = new Date().toString()
     let urls: Record<string, any> = {}
     let { title, icon, url, top, ownVisible, rate, desc } =
       this.validateForm.value

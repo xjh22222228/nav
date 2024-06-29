@@ -44,8 +44,6 @@ export default class CollectComponent {
       .then((res) => {
         if (res.data.success) {
           this.dataList = res.data.data
-        } else {
-          this.message.error(res.data.message || '网络出错')
         }
       })
       .finally(() => {
@@ -58,15 +56,9 @@ export default class CollectComponent {
     getUserCollect()
       .then((res: any) => {
         this.isPermission = !!res.data.success
-        if (res.data.success === false) {
-          this.message.error(res.data.message)
-        }
         if (res.data.success && res.data.data) {
           this.dataList = res.data.data
         }
-      })
-      .catch((e: any) => {
-        this.message.error(e.message || '网络出错')
       })
       .finally(() => {
         this.submitting = false
@@ -138,16 +130,14 @@ export default class CollectComponent {
           .then(() => {
             this.message.success($t('_syncSuccessTip'))
           })
-          .catch((res: any) => {
-            this.notification.error(
-              `${$t('_error')}: ${res?.response?.status ?? 1401}`,
-              $t('_syncFailTip')
-            )
-          })
           .finally(() => {
             this.submitting = false
           })
       },
     })
+  }
+
+  trackByItem(i: number, item: any) {
+    return item.id
   }
 }

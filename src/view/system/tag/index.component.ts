@@ -1,11 +1,9 @@
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { ITagPropValues } from 'src/types'
 import { updateFileContent } from 'src/services'
@@ -25,7 +23,6 @@ export default class SystemTagComponent {
 
   constructor(
     private message: NzMessageService,
-    private notification: NzNotificationService,
     private modal: NzModalService
   ) {}
 
@@ -58,7 +55,7 @@ export default class SystemTagComponent {
     }
 
     // 去重
-    const o = {}
+    const o: Record<string, any> = {}
     this.tagList.forEach((item: ITagPropValues) => {
       if (item.name?.trim?.()) {
         o[item.name] = {
@@ -87,13 +84,14 @@ export default class SystemTagComponent {
           .then(() => {
             this.message.success($t('_saveSuccess'))
           })
-          .catch((res) => {
-            this.notification.error($t('_error'), res.message as string)
-          })
           .finally(() => {
             this.submitting = false
           })
       },
     })
+  }
+
+  trackByItem(i: number, item: any) {
+    return item.id
   }
 }

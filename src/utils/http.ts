@@ -4,6 +4,7 @@ import axios from 'axios'
 import NProgress from 'nprogress'
 import { getToken, getAuthCode } from '../utils/user'
 import config from '../../nav.config'
+import event from './mitt'
 
 const DEFAULT_TITLE = document.title
 const headers: Record<string, string> = {}
@@ -27,8 +28,6 @@ function stopLoad() {
   document.title = DEFAULT_TITLE
 }
 
-Object.setPrototypeOf(httpInstance, axios)
-
 httpInstance.interceptors.request.use(
   function (config) {
     const token = getToken()
@@ -36,7 +35,6 @@ httpInstance.interceptors.request.use(
       config.headers['Authorization'] = `token ${token}`
     }
     startLoad()
-
     return config
   },
   function (error) {
@@ -51,6 +49,14 @@ httpInstance.interceptors.response.use(
     return res
   },
   function (error) {
+    const status =
+      error.status || error.response?.data?.status || error.code || ''
+    const errorMsg = error.response?.data?.message || error.message || ''
+    event.emit('NOTIFICATION', {
+      type: 'error',
+      title: 'Error：' + status,
+      content: errorMsg,
+    })
     stopLoad()
     return Promise.reject(error)
   }
@@ -85,10 +91,24 @@ httpNavInstance.interceptors.request.use(
 
 httpNavInstance.interceptors.response.use(
   function (res) {
+    if (res.data?.success === false) {
+      event.emit('MESSAGE', {
+        type: 'error',
+        content: res.data.message,
+      })
+    }
     stopLoad()
     return res
   },
   function (error) {
+    const status =
+      error.status || error.response?.data?.status || error.code || ''
+    const errorMsg = error.response?.data?.message || error.message || ''
+    event.emit('NOTIFICATION', {
+      type: 'error',
+      title: 'Error：' + status,
+      content: errorMsg,
+    })
     stopLoad()
     return Promise.reject(error)
   }

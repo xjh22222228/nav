@@ -3,7 +3,7 @@
 
 import { Component, OnInit, Input } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { getToken } from 'src/utils/user'
+import { isLogin } from 'src/utils/user'
 import {
   setWebsiteList,
   copyText,
@@ -30,7 +30,7 @@ export class CardComponent implements OnInit {
   objectKeys = Object.keys
   settings = settings
   websiteList: INavProps[] = websiteList
-  isLogin: boolean = !!getToken()
+  isLogin: boolean = isLogin
   copyUrlDone = false
   copyPathDone = false
   tagMap = tagMap

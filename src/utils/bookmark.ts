@@ -8,7 +8,7 @@ import { $t } from '../locale'
 let id = -Date.now()
 
 function getCreatedAt(node?: Element): string {
-  const now = new Date().toISOString()
+  const now = new Date().toString()
   if (!node) {
     return now
   }
@@ -19,7 +19,7 @@ function getCreatedAt(node?: Element): string {
     return now
   }
 
-  return new Date(Number(addDate) * 1000).toISOString()
+  return new Date(Number(addDate) * 1000).toString()
 }
 
 function getTitle(node: Element) {

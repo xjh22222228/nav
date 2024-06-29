@@ -228,7 +228,6 @@ export function queryString(): {
 }
 
 export function adapterWebsiteList(websiteList: any[]) {
-  const createdAt = new Date().toISOString()
   function filterOwn(item: IWebProps) {
     if (item.ownVisible && !isLogin) {
       return false
@@ -238,7 +237,6 @@ export function adapterWebsiteList(websiteList: any[]) {
   websiteList = websiteList.filter(filterOwn)
   for (let i = 0; i < websiteList.length; i++) {
     const item = websiteList[i]
-    item.createdAt ||= createdAt
 
     if (Array.isArray(item.nav)) {
       item.nav = item.nav.filter(filterOwn)
