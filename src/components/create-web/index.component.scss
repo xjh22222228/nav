@@ -15,3 +15,9 @@
     margin: 0 8px 0 5px;
   }
 }
+
+@media (max-width: 580px) {
+  ::ng-deep .ant-modal {
+    top: 0;
+  }
+}

@@ -17,7 +17,7 @@ export class FooterComponent {
       String(isLogin ? internal.loginViewCount : internal.userViewCount)
     )
     .replace('${hostname}', window.location.hostname)
-    .replace('${yearn}', String(new Date().getFullYear()))
+    .replace('${year}', String(new Date().getFullYear()))
 
   @Input() className: string = ''
 }

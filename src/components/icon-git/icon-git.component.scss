@@ -1,3 +1,9 @@
+@media (max-width: 580px) {
+  .github-link {
+    display: none;
+  }
+}
+
 .github-link {
   position: fixed;
   top: -6px;
