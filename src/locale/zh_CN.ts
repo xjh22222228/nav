@@ -6,6 +6,7 @@ const zhCN: Record<string, string> = {
   _copyUrl: '复制链接',
   _shareWeb: '分享网站',
   _edit: '编辑',
+  _sort: '排序',
   _refresh: '刷新',
   _add: '新增',
   _del: '删除',

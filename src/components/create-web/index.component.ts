@@ -59,6 +59,7 @@ export class CreateWebComponent {
       rate: [5],
       icon: [''],
       desc: [''],
+      index: [''],
       urlArr: this.fb.array([]),
     })
   }
@@ -86,6 +87,7 @@ export class CreateWebComponent {
     ctx.threeIndex = props.threeIndex
     this.validateForm.get('title')!.setValue(getTextContent(detail?.name))
     this.validateForm.get('desc')!.setValue(getTextContent(detail?.desc))
+    this.validateForm.get('index')!.setValue(detail?.index ?? '')
     this.validateForm.get('icon')!.setValue(detail?.icon || '')
     this.validateForm.get('url')!.setValue(detail?.url || '')
     this.validateForm.get('top')!.setValue(detail?.top ?? false)
@@ -206,7 +208,7 @@ export class CreateWebComponent {
 
     const createdAt = new Date().toString()
     let urls: Record<string, any> = {}
-    let { title, icon, url, top, ownVisible, rate, desc } =
+    let { title, icon, url, top, ownVisible, rate, desc, index } =
       this.validateForm.value
 
     if (!title || !url) return
@@ -226,6 +228,7 @@ export class CreateWebComponent {
       rate: rate ?? 5,
       desc: desc || '',
       top: top ?? false,
+      index,
       ownVisible: ownVisible ?? false,
       icon,
       url,

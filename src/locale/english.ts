@@ -6,6 +6,7 @@ const english: Record<string, string> = {
   _copyUrl: 'Copy Link',
   _shareWeb: 'Share site',
   _edit: 'Edit',
+  _sort: 'Sort',
   _refresh: 'Refresh',
   _add: 'Add',
   _del: 'Delete',

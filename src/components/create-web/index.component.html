@@ -48,6 +48,18 @@
       </nz-form-item>
 
       <nz-form-item *ngIf="isLogin">
+        <nz-form-label [nzSpan]="4">{{ $t('_sort') }}</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <input
+            formControlName="index"
+            nz-input
+            type="number"
+            placeholder="-1024"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item *ngIf="isLogin">
         <nz-form-label [nzSpan]="4">{{ $t('_shortcut') }}</nz-form-label>
         <nz-form-control [nzSpan]="20">
           <nz-switch formControlName="top"></nz-switch>

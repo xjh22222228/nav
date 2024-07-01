@@ -278,6 +278,18 @@ function setWeb(nav) {
             const navItemItem = navItem.nav[k]
             removeIconFont(navItemItem)
             formatDate(navItemItem)
+
+            navItemItem.nav.sort((a, b) => {
+              const aIdx =
+                a.index == null || a.index === ''
+                  ? Number.MAX_SAFE_INTEGER
+                  : a.index
+              const bIdx =
+                b.index == null || b.index === ''
+                  ? Number.MAX_SAFE_INTEGER
+                  : b.index
+              return aIdx - bIdx
+            })
             if (navItemItem.nav) {
               for (let l = 0; l < navItemItem.nav.length; l++) {
                 let breadcrumb = []
