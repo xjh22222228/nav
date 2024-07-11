@@ -75,6 +75,8 @@ import SideComponent from '../view/side/index.component'
 import ShortcutComponent from '../view/shortcut/index.component'
 import WebpComponent from '../view/app/default/app.component'
 
+import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
+
 import {
   CheckOutline,
   CopyOutline,
@@ -134,6 +136,7 @@ const icons: IconDefinition[] = [
     CardComponent,
     MoveWebComponent,
     WebMoreMenuComponent,
+    SafeHtmlPipe,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -2,6 +2,6 @@
   <div
     class="copyright dark-text"
     *ngIf="footerContent"
-    [innerHTML]="footerContent"
+    [innerHTML]="footerContent | safeHtml"
   ></div>
 </footer>
