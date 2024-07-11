@@ -96,9 +96,22 @@
 
 [https://github.com/apps/vercel](https://github.com/apps/vercel)
 
-#### 关于自有部署（不建议）
+#### 关于自有部署
 
-如果你想部署到自己的服务器，你需要在后台配置补充`请求地址`当每次发生保存时会请求 GET，你需要使用熟悉的任何编程语言写一个服务执行 `git pull && npm run build` 用服务器指向导出的`dist`目录
+前提服务器必须能访问公网。
+
+将代码拉到服务器 `git clone https://github.com/xjh22222228/nav.git` 还需要安装`Node >= 18`
+
+执行 `npm i && npm i pm2 -g && npm run build` 用服务器指向导出的 `dist` 目录, 尝试访问
+
+使用项目自带服务器 [server.js](server.js) ，需要修改文件内的服务器仓库位置
+
+在导航网站后台系统配置补充 `请求地址` 当每次发生保存时会请求下面启动的服务器实现自动部署。
+
+```bash
+# 启动 公网IP:7777/server
+npm run server
+```
 
 #### 其他
 
