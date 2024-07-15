@@ -19,7 +19,8 @@
     "url": "https://www.google.com/search?q=",
     "icon": "https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/google.svg",
     "blocked": false,
-    "isInner": false
+    "isInner": false,
+    "placeholder": "Google"
   },
   {
     "name": "必应",
