@@ -23,9 +23,10 @@ export class MoveWebComponent {
   oneSelect: number | undefined
   twoSelect: number | undefined
   threeSelect: number | undefined
-  moveSites: IWebProps[] = []
+  moveSites: any[] = []
   showModal = false
   indexs: Array<number> = []
+  level = 4
 
   constructor(private message: NzMessageService) {
     event.on('MOVE_WEB', (props: any) => {
@@ -40,10 +41,12 @@ export class MoveWebComponent {
     props: {
       indexs: number[]
       data: IWebProps[]
+      level: number
     }
   ) {
     ctx.indexs = props.indexs
     ctx.moveSites = props.data
+    ctx.level = props.level ?? 4
     ctx.showModal = true
   }
 
@@ -77,38 +80,87 @@ export class MoveWebComponent {
   }
 
   hanldeOk() {
-    if (this.threeSelect == null) {
-      return this.message.error($t('_sel3'))
-    }
     const indexs = this.indexs.filter((i) => i != null)
-    if (indexs.length !== 4) {
-      return this.message.error(`move web: indexs数量不正确${indexs.join(',')}`)
-    }
+    const oneSelect = this.oneSelect as number
+    const twoSelect = this.twoSelect as number
+    const threeSelect = this.threeSelect as number
 
     try {
-      const oneSelect = this.oneSelect as number
-      const twoSelect = this.twoSelect as number
-      const threeSelect = this.threeSelect as number
-      this.moveSites.forEach((item: IWebProps) => {
-        const exists = this.websiteList[oneSelect].nav[twoSelect].nav[
-          threeSelect
-        ].nav.find((el: IWebProps) => el.name === item.name)
-
-        if (exists) {
-          this.message.error(`${$t('_repeatAdd')} "${item.name}"`)
-        } else {
-          this.websiteList[oneSelect].nav[twoSelect].nav[
-            threeSelect
-          ].nav.unshift(item)
-
-          if (!this.checked) {
-            const [a, b, c, d] = indexs
-            this.websiteList[a].nav[b].nav[c].nav.splice(d, 1)
-          }
-
-          this.message.success(`"${item.name}" ${$t('_moveSuccess')}`)
+      if (this.level === 2) {
+        if (this.oneSelect == null) {
+          return this.message.error($t('_sel1'))
         }
-      })
+        this.moveSites.forEach((item: any) => {
+          const exists = this.websiteList[oneSelect].nav.find(
+            (el: any) => el.title === item.title
+          )
+
+          if (exists) {
+            this.message.error(`${$t('_repeatAdd')} "${item.title}"`)
+          } else {
+            this.websiteList[oneSelect].nav.unshift(item)
+
+            if (!this.checked) {
+              const [a, b, c, d] = indexs
+              this.websiteList[a].nav.splice(d, 1)
+            }
+
+            this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
+          }
+        })
+      } else if (this.level === 3) {
+        if (this.twoSelect == null) {
+          return this.message.error($t('_sel2'))
+        }
+        this.moveSites.forEach((item: any) => {
+          const exists = this.websiteList[oneSelect].nav[twoSelect].nav.find(
+            (el: any) => el.title === item.title
+          )
+
+          if (exists) {
+            this.message.error(`${$t('_repeatAdd')} "${item.title}"`)
+          } else {
+            this.websiteList[oneSelect].nav[twoSelect].nav.unshift(item)
+
+            if (!this.checked) {
+              const [a, b, c, d] = indexs
+              this.websiteList[a].nav[b].nav.splice(d, 1)
+            }
+
+            this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
+          }
+        })
+      } else if (this.level === 4) {
+        if (this.threeSelect == null) {
+          return this.message.error($t('_sel3'))
+        }
+        if (indexs.length !== 4) {
+          return this.message.error(
+            `move web: indexs数量不正确${indexs.join(',')}`
+          )
+        }
+        this.moveSites.forEach((item: any) => {
+          const exists = this.websiteList[oneSelect].nav[twoSelect].nav[
+            threeSelect
+          ].nav.find((el: any) => el.name === item.name)
+
+          if (exists) {
+            this.message.error(`${$t('_repeatAdd')} "${item.name}"`)
+          } else {
+            this.websiteList[oneSelect].nav[twoSelect].nav[
+              threeSelect
+            ].nav.unshift(item)
+
+            if (!this.checked) {
+              const [a, b, c, d] = indexs
+              this.websiteList[a].nav[b].nav[c].nav.splice(d, 1)
+            }
+
+            this.message.success(`"${item.name}" ${$t('_moveSuccess')}`)
+          }
+        })
+      }
+
       setWebsiteList(this.websiteList)
       this.handleCancel()
     } catch (error: any) {

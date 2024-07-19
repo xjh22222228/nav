@@ -217,6 +217,7 @@ const english: Record<string, string> = {
     'Due to network factors, some websites may not be accessible and can be skipped directly. For reference only',
   _spiderBuildTip:
     'After the construction is completed, the data is correct. Please go to the website management and click save once, otherwise the data will not be permanently stored',
+  _associatedLabels: 'Labels',
 }
 
 export default english

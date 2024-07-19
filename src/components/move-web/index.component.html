@@ -27,6 +27,7 @@
       [nzPlaceHolder]="$t('_sel2')"
       (ngModelChange)="hanldeTwoSelect($event)"
       style="width: 160px; margin-left: 15px"
+      *ngIf="level > 2"
     >
       <nz-option
         *ngFor="let item of twoOptList; index as idx"
@@ -42,6 +43,7 @@
       [nzPlaceHolder]="$t('_sel3')"
       (ngModelChange)="hanldeThreeSelect($event)"
       style="width: 160px; margin-left: 15px"
+      *ngIf="level === 4"
     >
       <nz-option
         *ngFor="let item of threeOptList; index as idx"

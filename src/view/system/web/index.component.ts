@@ -260,7 +260,7 @@ export default class WebpComponent {
     history.go(-1)
   }
 
-  openMoveWebModal(data: IWebProps, index: number) {
+  openMoveWebModal(data: any, index: number, level?: number) {
     const oneIndex = this.websiteList.findIndex(
       (item) => item.title === this.oneSelect
     )
@@ -273,6 +273,7 @@ export default class WebpComponent {
     event.emit('MOVE_WEB', {
       indexs: [oneIndex, twoIndex, threeIndex, index],
       data: [data],
+      level,
     })
   }
 

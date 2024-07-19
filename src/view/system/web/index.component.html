@@ -198,6 +198,9 @@
             <td>{{ data.createdAt }}</td>
             <td>
               <a (click)="handleEditBtn(data, idx)">{{ $t('_edit') }}</a>
+              <a (click)="openMoveWebModal(data, idx, 2)" class="ml10">{{
+                $t('_move')
+              }}</a>
               <a
                 nz-popconfirm
                 [nzPopconfirmTitle]="$t('_delWarn')"
@@ -309,6 +312,9 @@
             <td>{{ data.createdAt }}</td>
             <td>
               <a (click)="handleEditBtn(data, idx)">{{ $t('_edit') }}</a>
+              <a (click)="openMoveWebModal(data, idx, 3)" class="ml10">{{
+                $t('_move')
+              }}</a>
               <a
                 nz-popconfirm
                 [nzPopconfirmTitle]="$t('_delWarn')"
@@ -419,10 +425,10 @@
             <th nzWidth="70px">状态</th>
             <th nzWidth="80px">{{ $t('_icon') }}</th>
             <th nzWidth="100px">{{ $t('_webName') }}</th>
-            <th nzWidth="100px">{{ $t('_webTag') }}</th>
+            <th nzWidth="100px">{{ $t('_associatedLabels') }}</th>
             <th nzWidth="120px">{{ $t('_onlyOwnVisible') }}</th>
             <th nzWidth="300px">{{ $t('_webDesc') }}</th>
-            <th nzWidth="300px">分类位置</th>
+            <th nzWidth="300px">{{ $t('_webTag') }}</th>
             <th>{{ $t('_createAt') }}</th>
           </tr>
         </thead>
