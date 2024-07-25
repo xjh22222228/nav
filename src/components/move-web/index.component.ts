@@ -44,6 +44,11 @@ export class MoveWebComponent {
       level: number
     }
   ) {
+    ctx.oneSelect = undefined
+    ctx.twoSelect = undefined
+    ctx.threeSelect = undefined
+    ctx.twoOptList = []
+    ctx.threeOptList = []
     ctx.indexs = props.indexs
     ctx.moveSites = props.data
     ctx.level = props.level ?? 4
