@@ -5,7 +5,7 @@
 import { Component } from '@angular/core'
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
 import { INavProps, INavTwoProp, INavThreeProp, IWebProps } from 'src/types'
-import { websiteList, settings, tagMap } from 'src/store'
+import { websiteList, settings, tagMap, internal } from 'src/store'
 import { isLogin } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
@@ -27,6 +27,7 @@ import event from 'src/utils/mitt'
 export default class WebpComponent {
   $t = $t
   settings = settings
+  internal = internal
   validateForm!: FormGroup
   websiteList: INavProps[] = websiteList
   gitRepoUrl = config.gitRepoUrl
