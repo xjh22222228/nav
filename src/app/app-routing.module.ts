@@ -11,6 +11,7 @@ import SimComponent from '../view/sim/index.component'
 import SystemComponent from '../view/system/index.component'
 import SystemInfoComponent from '../view/system/info/index.component'
 import SystemBookmarkComponent from '../view/system/bookmark/index.component'
+import SystemBookmarkExportComponent from '../view/system/bookmark-export/index.component'
 import SystemAboutComponent from '../view/system/about/index.component'
 import SystemTagComponent from '../view/system/tag/index.component'
 import SystemSearchComponent from '../view/system/search/index.component'
@@ -21,6 +22,7 @@ import SideComponent from '../view/side/index.component'
 import ShortcutComponent from '../view/shortcut/index.component'
 import CollectComponent from '../view/system/collect/index.component'
 import WebpComponent from '../view/app/default/app.component'
+import VipAuthComponent from '../view/system/vip-auth/index.component'
 
 const routes: Routes = [
   {
@@ -64,8 +66,16 @@ const routes: Routes = [
         component: SystemBookmarkComponent,
       },
       {
+        path: 'bookmarkExport',
+        component: SystemBookmarkExportComponent,
+      },
+      {
         path: 'collect',
         component: CollectComponent,
+      },
+      {
+        path: 'vip',
+        component: VipAuthComponent,
       },
       {
         path: 'about',

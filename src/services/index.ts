@@ -127,6 +127,10 @@ export async function getIconUrl(url: string) {
   return httpNav.post('/api/icon', { url })
 }
 
+export async function bookmarksExport(data: any) {
+  return httpNav.post('/api/export', data)
+}
+
 export function getCDN(path: string, branch = 'image') {
   if (isGitee()) {
     return `https://gitee.com/${authorName}/${repoName}/raw/${branch}/${path}`

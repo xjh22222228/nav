@@ -117,6 +117,8 @@ const zhCN: Record<string, string> = {
   _searchEngines: '搜索引擎',
   _userCollect: '用户收录',
   _bookmarkImport: '书签导入',
+  _bookmarkExport: '书签导出',
+  _vipAuth: '会员授权',
   _tagSettings: '标签设置',
   _websiteMang: '网站管理',
   _addRow: '新增一条',
@@ -186,7 +188,8 @@ const zhCN: Record<string, string> = {
   _sidebarTitle: '侧栏标题',
   _defTitle4: '默认网站标题, 建议4字以内',
   _inputAuthCode: '请输入授权码',
-  _payTip: '开通用户收录功能需支付 ￥99 作为本站稳定运行的贡献，感谢您的理解',
+  _payTip:
+    '成为VIP可享受全站功能，需支付 ￥99 作为本站稳定运行的贡献，感谢您的支持',
   _waitHandle: '提交成功，等待站长处理',
   _collect: '收录',
   _confirmCollect: '您确定要收录吗？',

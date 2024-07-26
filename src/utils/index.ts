@@ -507,3 +507,17 @@ export function getOverIndex(selector: string): number {
   }
   return overIndex
 }
+
+export function downloadAsFile(str: string, fileName: string) {
+  const blob = new Blob([str], { type: 'text/html' })
+  const url = URL.createObjectURL(blob)
+
+  const a = document.createElement('a')
+  a.href = url
+  a.download = fileName
+  document.body.appendChild(a)
+  a.click()
+
+  document.body.removeChild(a)
+  URL.revokeObjectURL(url)
+}

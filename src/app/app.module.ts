@@ -74,6 +74,7 @@ import SystemAngleMarkComponent from '../view/system/angle-mark/index.component'
 import SideComponent from '../view/side/index.component'
 import ShortcutComponent from '../view/shortcut/index.component'
 import WebpComponent from '../view/app/default/app.component'
+import VipAuthComponent from '../view/system/vip-auth/index.component'
 
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 
@@ -121,6 +122,7 @@ const icons: IconDefinition[] = [
     SystemAngleMarkComponent,
     SystemWebComponent,
     WebpComponent,
+    VipAuthComponent,
     SwiperComponent,
     FixbarComponent,
     FooterComponent,

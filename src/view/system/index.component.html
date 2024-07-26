@@ -27,6 +27,13 @@
             </li>
             <li
               nz-menu-item
+              [nzSelected]="currentMenu === 'bookmarkExport'"
+              (click)="goRoute('/system/bookmarkExport')"
+            >
+              {{ $t('_bookmarkExport') }}
+            </li>
+            <li
+              nz-menu-item
               [nzSelected]="currentMenu === 'search'"
               (click)="goRoute('/system/search')"
             >
@@ -45,6 +52,13 @@
               (click)="goRoute('/system/setting')"
             >
               {{ $t('_systemSet') }}
+            </li>
+            <li
+              nz-menu-item
+              [nzSelected]="currentMenu === 'vip'"
+              (click)="goRoute('/system/vip')"
+            >
+              {{ $t('_vipAuth') }}
             </li>
             <li
               nz-menu-item
