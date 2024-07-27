@@ -114,6 +114,7 @@ export interface ISettings {
   lightCardStyle: string
   lightOverType: OverType
   lightImages: Record<string, any>[]
+  lightFooterHTML: string
 
   simThemeImages: Record<string, any>[]
   simThemeDesc: string
@@ -122,12 +123,14 @@ export interface ISettings {
   simCardStyle: string
   simTitle: string
   simOverType: OverType
+  simFooterHTML: string
 
   sideThemeImages: Record<string, any>[]
   sideThemeHeight: number
   sideThemeAutoplay: boolean
   sideCardStyle: string
   sideTitle: string
+  sideFooterHTML: string
 
   shortcutThemeImages: Record<string, any>[]
   shortcutThemeShowWeather: boolean
@@ -137,6 +140,7 @@ export interface ISettings {
   superOverType: OverType
   superCardStyle: string
   superImages: Record<string, any>[]
+  superFooterHTML: string
 
   showRate: boolean
   mirrorList: Record<string, any>[]

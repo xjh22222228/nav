@@ -116,7 +116,10 @@
           </ng-template>
         </div>
 
-        <app-footer className="side-footer"></app-footer>
+        <app-footer
+          className="side-footer"
+          [content]="settings.sideFooterHTML"
+        ></app-footer>
       </nz-content>
     </nz-layout>
   </nz-layout>

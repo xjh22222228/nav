@@ -106,7 +106,7 @@ const english: Record<string, string> = {
   _iconAddr: 'Icon Link',
   _copyUpload: 'Support to paste screenshots or copy pictures here to upload',
   _upload: 'Upload',
-  _continueAdd: 'Continue to add affiliate links',
+  _continueAdd: 'Continue adding associated links or tags',
   _moveTo: 'Move to',
   _move: 'Move',
   _copy: 'Copy',

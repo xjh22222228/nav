@@ -11,13 +11,20 @@ import { isLogin } from 'src/utils/user'
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
-  footerContent: string = settings.footerContent
-    .replace(
-      '${total}',
-      String(isLogin ? internal.loginViewCount : internal.userViewCount)
-    )
-    .replace('${hostname}', window.location.hostname)
-    .replace('${year}', String(new Date().getFullYear()))
-
   @Input() className: string = ''
+  @Input() content: string = ''
+
+  footerContent: string = ''
+
+  constructor() {}
+
+  ngOnInit() {
+    this.footerContent = (this.content || settings.footerContent)
+      .replace(
+        '${total}',
+        String(isLogin ? internal.loginViewCount : internal.userViewCount)
+      )
+      .replace('${hostname}', window.location.hostname)
+      .replace('${year}', String(new Date().getFullYear()))
+  }
 }

@@ -438,6 +438,18 @@
     </nz-form-control>
   </nz-form-item>
 
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <textarea
+        nz-input
+        formControlName="lightFooterHTML"
+        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+        placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
   <div class="divider"></div>
   <h2 class="title">Super {{ $t('_theme') }}</h2>
 
@@ -531,6 +543,18 @@
       <a (click)="onAddSuperBanner()" class="mt10 display-block">{{
         $t('_add')
       }}</a>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <textarea
+        nz-input
+        formControlName="superFooterHTML"
+        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+        placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+      ></textarea>
     </nz-form-control>
   </nz-form-item>
 
@@ -660,6 +684,18 @@
     </nz-form-control>
   </nz-form-item>
 
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <textarea
+        nz-input
+        formControlName="simFooterHTML"
+        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+        placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
   <div class="divider"></div>
   <h2 class="title">Side {{ $t('_theme') }}</h2>
 
@@ -762,6 +798,18 @@
         [nzMax]="1000"
       ></nz-slider>
       <div>{{ $t('_bannerTip') }}</div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <textarea
+        nz-input
+        formControlName="sideFooterHTML"
+        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+        placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+      ></textarea>
     </nz-form-control>
   </nz-form-item>
 

@@ -103,7 +103,7 @@ const zhCN: Record<string, string> = {
   _iconAddr: '图标地址',
   _copyUpload: '支持将截图或复制图片粘贴此处上传',
   _upload: '上传',
-  _continueAdd: '继续添加关联链接',
+  _continueAdd: '继续添加关联链接或标签',
   _moveTo: '移动到',
   _move: '移动',
   _copy: '复制',

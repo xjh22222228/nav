@@ -119,7 +119,10 @@
   </div>
 </div>
 
-<app-footer className="sim-footer"></app-footer>
+<app-footer
+  className="sim-footer"
+  [content]="settings.simFooterHTML"
+></app-footer>
 <app-fixbar (onCollapse)="onCollapseAll()" [collapsed]="collapsed()">
 </app-fixbar>
 
