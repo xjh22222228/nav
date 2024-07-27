@@ -107,6 +107,7 @@ const TAG_ID_NAME3 = 'Github'
   settings.showThemeToggle ??= true
   settings.lightCardStyle ||= 'standard'
   settings.lightOverType ||= 'overflow'
+  settings.lightFooterHTML ||= ''
   settings.simThemeImages ||= [
     {
       src: banner1,
@@ -128,8 +129,10 @@ const TAG_ID_NAME3 = 'Github'
   settings.simThemeHeight ??= 0
   settings.simThemeAutoplay ??= true
   settings.simTitle ||= ''
+  settings.simFooterHTML ||= ''
   settings.superCardStyle ||= 'column'
   settings.superOverType ||= 'overflow'
+  settings.superFooterHTML ||= ''
   // 更名
   if (settings.superCardStyle === 'super') {
     settings.superCardStyle = 'column'
@@ -156,6 +159,7 @@ const TAG_ID_NAME3 = 'Github'
   }
   settings.sideTitle ||= ''
   settings.sideCardStyle ||= 'example'
+  settings.sideFooterHTML ||= ''
   settings.sideThemeHeight ??= 0
   settings.sideThemeAutoplay ??= true
   settings.sideThemeImages ||= [
