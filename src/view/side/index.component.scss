@@ -22,16 +22,6 @@
   }
 }
 
-@media (max-width: 568px) {
-  .layout {
-    --sideWidth: 120px !important;
-  }
-  .sider {
-    --menuTitleWidth: 70px;
-    padding-top: 40px !important;
-  }
-}
-
 .layout {
   --sideWidth: 200px;
   min-height: 100vh;
@@ -83,6 +73,11 @@
 
   .ant-menu-item {
     padding-right: 40px;
+    padding-left: 32px !important;
+  }
+  ::ng-deep.ant-menu-title-content {
+    display: flex;
+    align-items: center;
   }
 
   ::ng-deep .web-list {
@@ -137,10 +132,7 @@
     border-radius: 50%;
   }
   .fixicon {
-    position: absolute;
-    top: 10px;
-    left: 25px;
-    margin-right: 0;
+    margin-right: 8px;
   }
   &::-webkit-scrollbar {
     width: 6px;

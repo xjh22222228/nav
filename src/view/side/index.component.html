@@ -26,7 +26,7 @@
             (click)="handleSidebarNav(pageIdx, idIdx)"
           >
             <img *ngIf="el.icon" class="sideicon fixicon" [src]="el.icon" />
-            <span>{{ el.title }}</span>
+            <span class="ellipsis">{{ el.title }}</span>
 
             <div
               *ngIf="page === pageIdx && id === idIdx"
