@@ -20,6 +20,7 @@ export default class SystemSettingComponent {
   validateForm!: FormGroup
   submitting: boolean = false
   settings = settings
+  tabActive = 0
 
   constructor(
     private fb: FormBuilder,

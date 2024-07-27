@@ -354,503 +354,502 @@
   </nz-form-item>
 
   <div class="divider"></div>
-  <h2 class="title">Light {{ $t('_theme') }}</h2>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <nz-radio-group formControlName="lightCardStyle">
-        <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
-        <label nz-radio nzValue="column">{{ $t('_column') }}</label>
-        <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
+  <nz-tabset [nzSelectedIndex]="tabActive">
+    <nz-tab [nzTitle]="'Light ' + $t('_theme')">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-radio-group formControlName="lightCardStyle">
+            <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+            <label nz-radio nzValue="column">{{ $t('_column') }}</label>
+            <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_navOver') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <nz-radio-group formControlName="lightOverType">
-        <label nz-radio nzValue="overflow">{{ $t('_scrollBar') }}</label>
-        <label nz-radio nzValue="ellipsis">{{ $t('_ellipsis') }}</label>
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_navOver') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-radio-group formControlName="lightOverType">
+            <label nz-radio nzValue="overflow">{{ $t('_scrollBar') }}</label>
+            <label nz-radio nzValue="ellipsis">{{ $t('_ellipsis') }}</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4">{{ $t('_sidebarImg') }}</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <nz-table
-        #basicTable
-        [nzData]="settings.lightImages"
-        [nzShowPagination]="false"
-      >
-        <thead>
-          <tr>
-            <th>{{ $t('_backgroundImage') }}</th>
-            <th>{{ $t('_jumpAddr') }}</th>
-            <th>{{ $t('_action') }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of settings.lightImages; index as idx">
-            <td width="260px" class="nowrap">
-              <img [src]="data['src']" class="icon" />
-              <input
-                nz-input
-                type="text"
-                [value]="data['src']"
-                style="width: 180px; margin-right: 10px"
-                (change)="onChangeLightBannerUrl($event, idx)"
-              />
-              <app-upload
-                (onChange)="onLightBannerChange($event, idx)"
-              ></app-upload>
-            </td>
-            <td>
-              <input
-                nz-input
-                [value]="data['url']"
-                maxlength="200"
-                (change)="onChangeLightJumpUrl($event, idx)"
-              />
-            </td>
-            <td>
-              <a
-                nz-popconfirm
-                nzPopconfirmPlacement="rightTop"
-                nzOkType="danger"
-                [nzPopconfirmTitle]="$t('_confirmDel')"
-                nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="onDeleteLightBanner(idx)"
-              >
-                <a>
-                  {{ $t('_del') }}
-                </a>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </nz-table>
-      <a (click)="onAddLightBanner()" class="mt10 display-block">{{
-        $t('_add')
-      }}</a>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item class="sim-ban">
+        <nz-form-label [nzSpan]="4">{{ $t('_sidebarImg') }}</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-table
+            #basicTable
+            [nzData]="settings.lightImages"
+            [nzShowPagination]="false"
+          >
+            <thead>
+              <tr>
+                <th>{{ $t('_backgroundImage') }}</th>
+                <th>{{ $t('_jumpAddr') }}</th>
+                <th>{{ $t('_action') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of settings.lightImages; index as idx">
+                <td width="260px" class="nowrap">
+                  <img [src]="data['src']" class="icon" />
+                  <input
+                    nz-input
+                    type="text"
+                    [value]="data['src']"
+                    style="width: 180px; margin-right: 10px"
+                    (change)="onChangeLightBannerUrl($event, idx)"
+                  />
+                  <app-upload
+                    (onChange)="onLightBannerChange($event, idx)"
+                  ></app-upload>
+                </td>
+                <td>
+                  <input
+                    nz-input
+                    [value]="data['url']"
+                    maxlength="200"
+                    (change)="onChangeLightJumpUrl($event, idx)"
+                  />
+                </td>
+                <td>
+                  <a
+                    nz-popconfirm
+                    nzPopconfirmPlacement="rightTop"
+                    nzOkType="danger"
+                    [nzPopconfirmTitle]="$t('_confirmDel')"
+                    nzPopconfirmPlacement="bottom"
+                    (nzOnConfirm)="onDeleteLightBanner(idx)"
+                  >
+                    <a>
+                      {{ $t('_del') }}
+                    </a>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+          <a (click)="onAddLightBanner()" class="mt10 display-block">{{
+            $t('_add')
+          }}</a>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <textarea
-        nz-input
-        formControlName="lightFooterHTML"
-        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-        placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
-      ></textarea>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <textarea
+            nz-input
+            formControlName="lightFooterHTML"
+            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+            placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-tab>
 
-  <div class="divider"></div>
-  <h2 class="title">Super {{ $t('_theme') }}</h2>
+    <nz-tab [nzTitle]="'Super ' + $t('_theme')">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input
+            nz-input
+            formControlName="superTitle"
+            [placeholder]="$t('_defTitle4')"
+          />
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <input
-        nz-input
-        formControlName="superTitle"
-        [placeholder]="$t('_defTitle4')"
-      />
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-radio-group formControlName="superCardStyle">
+            <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+            <label nz-radio nzValue="column">{{ $t('_column') }}</label>
+            <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <nz-radio-group formControlName="superCardStyle">
-        <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
-        <label nz-radio nzValue="column">{{ $t('_column') }}</label>
-        <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_navOver') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-radio-group formControlName="superOverType">
+            <label nz-radio nzValue="overflow">{{ $t('_scrollBar') }}</label>
+            <label nz-radio nzValue="ellipsis">{{ $t('_ellipsis') }}</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_navOver') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <nz-radio-group formControlName="superOverType">
-        <label nz-radio nzValue="overflow">{{ $t('_scrollBar') }}</label>
-        <label nz-radio nzValue="ellipsis">{{ $t('_ellipsis') }}</label>
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item class="sim-ban">
+        <nz-form-label [nzSpan]="4">{{ $t('_sidebarImg') }}</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-table
+            #basicTable
+            [nzData]="settings.superImages"
+            [nzShowPagination]="false"
+          >
+            <thead>
+              <tr>
+                <th>{{ $t('_backgroundImage') }}</th>
+                <th>{{ $t('_jumpAddr') }}</th>
+                <th>{{ $t('_action') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of settings.superImages; index as idx">
+                <td width="260px" class="nowrap">
+                  <img [src]="data['src']" class="icon" />
+                  <input
+                    nz-input
+                    type="text"
+                    [value]="data['src']"
+                    style="width: 180px; margin-right: 10px"
+                    (change)="onChangeSuperBannerUrl($event, idx)"
+                  />
+                  <app-upload
+                    (onChange)="onSuperBannerChange($event, idx)"
+                  ></app-upload>
+                </td>
+                <td>
+                  <input
+                    nz-input
+                    [value]="data['url']"
+                    maxlength="200"
+                    (change)="onChangeSuperJumpUrl($event, idx)"
+                  />
+                </td>
+                <td>
+                  <a
+                    nz-popconfirm
+                    nzPopconfirmPlacement="rightTop"
+                    nzOkType="danger"
+                    [nzPopconfirmTitle]="$t('_confirmDel')"
+                    nzPopconfirmPlacement="bottom"
+                    (nzOnConfirm)="onDeleteSuperBanner(idx)"
+                  >
+                    <a>
+                      {{ $t('_del') }}
+                    </a>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+          <a (click)="onAddSuperBanner()" class="mt10 display-block">{{
+            $t('_add')
+          }}</a>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4">{{ $t('_sidebarImg') }}</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <nz-table
-        #basicTable
-        [nzData]="settings.superImages"
-        [nzShowPagination]="false"
-      >
-        <thead>
-          <tr>
-            <th>{{ $t('_backgroundImage') }}</th>
-            <th>{{ $t('_jumpAddr') }}</th>
-            <th>{{ $t('_action') }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of settings.superImages; index as idx">
-            <td width="260px" class="nowrap">
-              <img [src]="data['src']" class="icon" />
-              <input
-                nz-input
-                type="text"
-                [value]="data['src']"
-                style="width: 180px; margin-right: 10px"
-                (change)="onChangeSuperBannerUrl($event, idx)"
-              />
-              <app-upload
-                (onChange)="onSuperBannerChange($event, idx)"
-              ></app-upload>
-            </td>
-            <td>
-              <input
-                nz-input
-                [value]="data['url']"
-                maxlength="200"
-                (change)="onChangeSuperJumpUrl($event, idx)"
-              />
-            </td>
-            <td>
-              <a
-                nz-popconfirm
-                nzPopconfirmPlacement="rightTop"
-                nzOkType="danger"
-                [nzPopconfirmTitle]="$t('_confirmDel')"
-                nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="onDeleteSuperBanner(idx)"
-              >
-                <a>
-                  {{ $t('_del') }}
-                </a>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </nz-table>
-      <a (click)="onAddSuperBanner()" class="mt10 display-block">{{
-        $t('_add')
-      }}</a>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <textarea
+            nz-input
+            formControlName="superFooterHTML"
+            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+            placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-tab>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <textarea
-        nz-input
-        formControlName="superFooterHTML"
-        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-        placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
-      ></textarea>
-    </nz-form-control>
-  </nz-form-item>
+    <nz-tab [nzTitle]="'Sim ' + $t('_theme')">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input
+            nz-input
+            formControlName="simTitle"
+            [placeholder]="$t('_defaultTitle')"
+          />
+        </nz-form-control>
+      </nz-form-item>
 
-  <div class="divider"></div>
-  <h2 class="title">Sim {{ $t('_theme') }}</h2>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-radio-group formControlName="simCardStyle">
+            <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+            <label nz-radio nzValue="column">{{ $t('_column') }}</label>
+            <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <input
-        nz-input
-        formControlName="simTitle"
-        [placeholder]="$t('_defaultTitle')"
-      />
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_navOver') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-radio-group formControlName="simOverType">
+            <label nz-radio nzValue="overflow">{{ $t('_scrollBar') }}</label>
+            <label nz-radio nzValue="ellipsis">{{ $t('_ellipsis') }}</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <nz-radio-group formControlName="simCardStyle">
-        <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
-        <label nz-radio nzValue="column">{{ $t('_column') }}</label>
-        <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item class="sim-ban">
+        <nz-form-label [nzSpan]="4">Banner</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-table
+            #basicTable
+            [nzData]="settings.simThemeImages"
+            [nzShowPagination]="false"
+          >
+            <thead>
+              <tr>
+                <th>{{ $t('_backgroundImage') }}</th>
+                <th>{{ $t('_jumpAddr') }}</th>
+                <th>{{ $t('_action') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of settings.simThemeImages; index as idx">
+                <td width="260px" class="nowrap">
+                  <img [src]="data['src']" class="icon" />
+                  <input
+                    nz-input
+                    type="text"
+                    [value]="data['src']"
+                    style="width: 180px; margin-right: 10px"
+                    (change)="onChangeSimBannerUrl($event, idx)"
+                  />
+                  <app-upload
+                    (onChange)="onSimBannerChange($event, idx)"
+                  ></app-upload>
+                </td>
+                <td>
+                  <input
+                    nz-input
+                    [value]="data['url']"
+                    maxlength="200"
+                    (change)="onChangeSimJumpUrl($event, idx)"
+                  />
+                </td>
+                <td>
+                  <a
+                    nz-popconfirm
+                    nzPopconfirmPlacement="rightTop"
+                    nzOkType="danger"
+                    [nzPopconfirmTitle]="$t('_confirmDel')"
+                    nzPopconfirmPlacement="bottom"
+                    (nzOnConfirm)="onDeleteSimBanner(idx)"
+                  >
+                    <a>
+                      {{ $t('_del') }}
+                    </a>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+          <a (click)="onAddSimBanner()" class="mt10 display-block">{{
+            $t('_add')
+          }}</a>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_navOver') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <nz-radio-group formControlName="simOverType">
-        <label nz-radio nzValue="overflow">{{ $t('_scrollBar') }}</label>
-        <label nz-radio nzValue="ellipsis">{{ $t('_ellipsis') }}</label>
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_autoPlay') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <label nz-checkbox formControlName="simThemeAutoplay"></label>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4">Banner</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <nz-table
-        #basicTable
-        [nzData]="settings.simThemeImages"
-        [nzShowPagination]="false"
-      >
-        <thead>
-          <tr>
-            <th>{{ $t('_backgroundImage') }}</th>
-            <th>{{ $t('_jumpAddr') }}</th>
-            <th>{{ $t('_action') }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of settings.simThemeImages; index as idx">
-            <td width="260px" class="nowrap">
-              <img [src]="data['src']" class="icon" />
-              <input
-                nz-input
-                type="text"
-                [value]="data['src']"
-                style="width: 180px; margin-right: 10px"
-                (change)="onChangeSimBannerUrl($event, idx)"
-              />
-              <app-upload
-                (onChange)="onSimBannerChange($event, idx)"
-              ></app-upload>
-            </td>
-            <td>
-              <input
-                nz-input
-                [value]="data['url']"
-                maxlength="200"
-                (change)="onChangeSimJumpUrl($event, idx)"
-              />
-            </td>
-            <td>
-              <a
-                nz-popconfirm
-                nzPopconfirmPlacement="rightTop"
-                nzOkType="danger"
-                [nzPopconfirmTitle]="$t('_confirmDel')"
-                nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="onDeleteSimBanner(idx)"
-              >
-                <a>
-                  {{ $t('_del') }}
-                </a>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </nz-table>
-      <a (click)="onAddSimBanner()" class="mt10 display-block">{{
-        $t('_add')
-      }}</a>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_bannerHeight') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-slider
+            formControlName="simThemeHeight"
+            [nzMin]="0"
+            [nzMax]="1000"
+          ></nz-slider>
+          <div>{{ $t('_bannerTip') }}</div>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_autoPlay') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <label nz-checkbox formControlName="simThemeAutoplay"></label>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_desc') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <textarea
+            nz-input
+            formControlName="simThemeDesc"
+            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_bannerHeight') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <nz-slider
-        formControlName="simThemeHeight"
-        [nzMin]="0"
-        [nzMax]="1000"
-      ></nz-slider>
-      <div>{{ $t('_bannerTip') }}</div>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <textarea
+            nz-input
+            formControlName="simFooterHTML"
+            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+            placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-tab>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_desc') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <textarea
-        nz-input
-        formControlName="simThemeDesc"
-        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-      ></textarea>
-    </nz-form-control>
-  </nz-form-item>
+    <nz-tab [nzTitle]="'Side ' + $t('_theme')">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_sidebarTitle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input
+            nz-input
+            formControlName="sideTitle"
+            [placeholder]="$t('_defTitle4')"
+          />
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <textarea
-        nz-input
-        formControlName="simFooterHTML"
-        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-        placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
-      ></textarea>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-radio-group formControlName="sideCardStyle">
+            <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+            <label nz-radio nzValue="column">{{ $t('_column') }}</label>
+            <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
 
-  <div class="divider"></div>
-  <h2 class="title">Side {{ $t('_theme') }}</h2>
+      <nz-form-item class="sim-ban">
+        <nz-form-label [nzSpan]="4">Banner</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <nz-table
+            #basicTable
+            [nzData]="settings.sideThemeImages"
+            [nzShowPagination]="false"
+          >
+            <thead>
+              <tr>
+                <th>{{ $t('_backgroundImage') }}</th>
+                <th>{{ $t('_jumpAddr') }}</th>
+                <th>{{ $t('_action') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of settings.sideThemeImages; index as idx">
+                <td width="260px" class="nowrap">
+                  <img [src]="data['src']" class="icon" />
+                  <input
+                    nz-input
+                    type="text"
+                    [value]="data['src']"
+                    style="width: 180px; margin-right: 10px"
+                    (change)="onChangeSideBannerUrl($event, idx)"
+                  />
+                  <app-upload
+                    (onChange)="onSideBannerChange($event, idx)"
+                  ></app-upload>
+                </td>
+                <td>
+                  <input
+                    nz-input
+                    [value]="data['url']"
+                    maxlength="200"
+                    (change)="onChangeSideJumpUrl($event, idx)"
+                  />
+                </td>
+                <td>
+                  <a
+                    nz-popconfirm
+                    nzPopconfirmPlacement="rightTop"
+                    nzOkType="danger"
+                    [nzPopconfirmTitle]="$t('_confirmDel')"
+                    nzPopconfirmPlacement="bottom"
+                    (nzOnConfirm)="onDeleteSideBanner(idx)"
+                  >
+                    <a>
+                      {{ $t('_del') }}
+                    </a>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+          <a (click)="onAddSideBanner()" class="mt10 display-block">{{
+            $t('_add')
+          }}</a>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_sidebarTitle') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <input
-        nz-input
-        formControlName="sideTitle"
-        [placeholder]="$t('_defTitle4')"
-      />
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_autoPlay') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <label nz-checkbox formControlName="sideThemeAutoplay"></label>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <nz-radio-group formControlName="sideCardStyle">
-        <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
-        <label nz-radio nzValue="column">{{ $t('_column') }}</label>
-        <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_bannerHeight') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-slider
+            formControlName="sideThemeHeight"
+            [nzMin]="0"
+            [nzMax]="1000"
+          ></nz-slider>
+          <div>{{ $t('_bannerTip') }}</div>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4">Banner</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <nz-table
-        #basicTable
-        [nzData]="settings.sideThemeImages"
-        [nzShowPagination]="false"
-      >
-        <thead>
-          <tr>
-            <th>{{ $t('_backgroundImage') }}</th>
-            <th>{{ $t('_jumpAddr') }}</th>
-            <th>{{ $t('_action') }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of settings.sideThemeImages; index as idx">
-            <td width="260px" class="nowrap">
-              <img [src]="data['src']" class="icon" />
-              <input
-                nz-input
-                type="text"
-                [value]="data['src']"
-                style="width: 180px; margin-right: 10px"
-                (change)="onChangeSideBannerUrl($event, idx)"
-              />
-              <app-upload
-                (onChange)="onSideBannerChange($event, idx)"
-              ></app-upload>
-            </td>
-            <td>
-              <input
-                nz-input
-                [value]="data['url']"
-                maxlength="200"
-                (change)="onChangeSideJumpUrl($event, idx)"
-              />
-            </td>
-            <td>
-              <a
-                nz-popconfirm
-                nzPopconfirmPlacement="rightTop"
-                nzOkType="danger"
-                [nzPopconfirmTitle]="$t('_confirmDel')"
-                nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="onDeleteSideBanner(idx)"
-              >
-                <a>
-                  {{ $t('_del') }}
-                </a>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </nz-table>
-      <a (click)="onAddSideBanner()" class="mt10 display-block">{{
-        $t('_add')
-      }}</a>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <textarea
+            nz-input
+            formControlName="sideFooterHTML"
+            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+            placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-tab>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_autoPlay') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <label nz-checkbox formControlName="sideThemeAutoplay"></label>
-    </nz-form-control>
-  </nz-form-item>
+    <nz-tab [nzTitle]="'Shortcut ' + $t('_theme')">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input
+            nz-input
+            formControlName="shortcutTitle"
+            [placeholder]="$t('_defaultTitle')"
+          />
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_bannerHeight') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <nz-slider
-        formControlName="sideThemeHeight"
-        [nzMin]="0"
-        [nzMax]="1000"
-      ></nz-slider>
-      <div>{{ $t('_bannerTip') }}</div>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+          $t('_showWeather')
+        }}</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <label nz-checkbox formControlName="shortcutThemeShowWeather"></label>
+        </nz-form-control>
+      </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <textarea
-        nz-input
-        formControlName="sideFooterHTML"
-        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-        placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
-      ></textarea>
-    </nz-form-control>
-  </nz-form-item>
+      <nz-form-item class="sim-ban">
+        <nz-form-label [nzSpan]="4">{{ $t('_backgroundImage') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <img [src]="settings.shortcutThemeImages[0]['src']" />
+          <app-upload (onChange)="onShortcutImgChange($event)"></app-upload>
 
-  <div class="divider"></div>
-  <h2 class="title">Shortcut {{ $t('_theme') }}</h2>
-
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <input
-        nz-input
-        formControlName="shortcutTitle"
-        [placeholder]="$t('_defaultTitle')"
-      />
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
-      $t('_showWeather')
-    }}</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <label nz-checkbox formControlName="shortcutThemeShowWeather"></label>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4">{{ $t('_backgroundImage') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <img [src]="settings.shortcutThemeImages[0]['src']" />
-      <app-upload (onChange)="onShortcutImgChange($event)"></app-upload>
-
-      <input
-        nz-input
-        type="text"
-        [value]="settings.shortcutThemeImages[0]['src']"
-        (change)="onShortcutImgChange($event)"
-        style="width: 300px; margin-top: 10px"
-      />
-    </nz-form-control>
-  </nz-form-item>
+          <input
+            nz-input
+            type="text"
+            [value]="settings.shortcutThemeImages[0]['src']"
+            (change)="onShortcutImgChange($event)"
+            style="width: 300px; margin-top: 10px"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </nz-tab>
+  </nz-tabset>
 
   <div class="divider"></div>
   <h2 class="title">{{ $t('_mirrorList') }}{{ $t('_ignore') }}</h2>
