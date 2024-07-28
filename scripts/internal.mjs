@@ -319,6 +319,14 @@ function setWeb(nav) {
                 delete webItem.__desc__
                 delete webItem.__name__
 
+                // 节省空间
+                if (!webItem.top) {
+                  delete webItem.top
+                }
+                if (!webItem.ownVisible) {
+                  delete webItem.ownVisible
+                }
+
                 // 兼容现有标签,以id为key
                 for (let k in webItem.urls) {
                   if (k === TAG_ID_NAME1) {

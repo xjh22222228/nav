@@ -213,7 +213,7 @@ export function parseBookmark(htmlStr: string) {
     }
   } catch (error) {
     console.log(error)
-    return error
+    throw error
   }
 
   // 增量导入

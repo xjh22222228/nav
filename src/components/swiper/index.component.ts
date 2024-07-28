@@ -36,6 +36,7 @@ export class SwiperComponent {
       return
     }
     this.mySwiper = new Swiper(el, {
+      loop: true,
       autoplay: this.autoplay
         ? {
             delay: 5000,
