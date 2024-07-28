@@ -2,7 +2,6 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, OnInit, Input } from '@angular/core'
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
 import { websiteList } from 'src/store'
 import { IWebProps, INavProps } from 'src/types'
 import { setWebsiteList, queryString, fuzzySearch } from 'src/utils'
@@ -72,37 +71,14 @@ export class WebListComponent implements OnInit {
     r(websiteList)
 
     // @ts-ignore
-    this.dataList = dataList.sort((a, b) => a.index - b.index)
+    this.dataList = dataList.sort((a: any, b: any) => {
+      const aIdx =
+        a.index == null || a.index === '' ? Number.MAX_SAFE_INTEGER : a.index
+      const bIdx =
+        b.index == null || b.index === '' ? Number.MAX_SAFE_INTEGER : b.index
+      return aIdx - bIdx
+    })
     DEFAULT_WEBSITE = this.dataList
-  }
-
-  handleDrop(event: CdkDragDrop<string[]>): void {
-    moveItemInArray(this.dataList, event.previousIndex, event.currentIndex)
-
-    const m: Record<string, any> = {}
-
-    for (let i = 1; i <= this.dataList.length; i++) {
-      const item = this.dataList[i - 1]
-      m[`${item.name}${item.url}`] = i
-    }
-
-    function r(nav: any) {
-      if (!Array.isArray(nav)) return
-
-      for (let i = 0; i < nav.length; i++) {
-        const item = nav[i]
-        if (item.url) {
-          const k = `${item.name}${item.url}`
-          if (m[k]) {
-            item.index = m[k]
-          }
-        } else {
-          r(item.nav)
-        }
-      }
-    }
-    r(websiteList)
-    setWebsiteList(websiteList)
   }
 
   goUrl(url: string) {

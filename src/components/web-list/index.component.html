@@ -2,9 +2,6 @@
   class="container web-list dark-scrollbar"
   [class.overflowScroll]="overflow"
   *ngIf="dataList.length > 0"
-  cdkDropList
-  (cdkDropListDropped)="handleDrop($event)"
-  cdkDropListOrientation="horizontal"
 >
   <div
     class="wrapper"
@@ -13,7 +10,6 @@
     nz-button
     nz-tooltip
     *ngFor="let item of dataList; trackBy: trackByItemWeb"
-    cdkDrag
     (click)="goUrl(item.url)"
   >
     <ng-template #titleTemplate let-thing>
