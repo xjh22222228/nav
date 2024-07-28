@@ -19,6 +19,7 @@ let DEFAULT_WEBSITE: Array<IWebProps> = []
 export class WebListComponent implements OnInit {
   @Input() max: number = 110
   @Input() search = true
+  @Input() overflow = false
 
   websiteList: INavProps[] = websiteList
   dataList: IWebProps[] = []

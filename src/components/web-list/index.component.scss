@@ -1,8 +1,17 @@
+@media (max-width: 768px) {
+  .container.overflowScroll {
+    padding: 0;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    overflow-x: auto;
+  }
+}
+
 .container {
   margin-top: 15px;
   margin-bottom: 15px;
   display: flex;
-  padding: 0 30px;
+  padding: 0 10px;
   max-width: 960px;
   flex-wrap: wrap;
   gap: 25px;

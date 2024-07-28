@@ -1,8 +1,4 @@
 @media (max-width: 768px) {
-  .search-sm {
-    display: block;
-    margin-top: 10px;
-  }
   .content {
     padding-right: 12px !important;
   }
@@ -37,16 +33,6 @@
       z-index: 9;
       position: relative;
       text-align: center;
-      ::ng-deep .search-engine {
-        z-index: 10;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        .input-wrapper {
-          width: 330px !important;
-        }
-      }
     }
   }
 
@@ -73,7 +59,7 @@
 
   .ant-menu-item {
     padding-right: 40px;
-    padding-left: 32px !important;
+    padding-left: 38px !important;
   }
   ::ng-deep.ant-menu-title-content {
     display: flex;

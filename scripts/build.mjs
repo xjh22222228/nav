@@ -2,7 +2,6 @@
 // See https://github.com/xjh22222228/nav
 
 import fs from 'fs'
-import config from '../nav.config.js'
 import path from 'path'
 import LOAD_MAP from './loading.js'
 import dayjs from 'dayjs'
@@ -27,13 +26,6 @@ const nowDate = dayjs.tz().format('YYYY-MM-DD HH:mm:ss')
 const { description, title, keywords, loading, favicon, headerContent } =
   settings
 
-const { gitRepoUrl } = config.default
-
-const s = gitRepoUrl.split('/')
-
-const authorName = s[s.length - 2]
-const repoName = s[s.length - 1]
-
 const htmlTemplate = `
   <!-- https://github.com/xjh22222228/nav -->
   <title>${title}</title>
@@ -57,16 +49,15 @@ async function buildSeo() {
       if (Array.isArray(value.nav)) {
         r(value.nav)
       }
-
-      seoTemplate += `<h3>${value.title || value.name || title}</h3>${
-        value.icon ? `<img data-src="${value.icon}" alt="${value.icon}" />` : ''
-      }<p>${value.desc || description}</p><a href="${
-        value.url || gitRepoUrl
-      }"></a>`
+      if (value.name) {
+        seoTemplate += `<h3>${value.name || title}</h3><p>${
+          value.desc || description
+        }</p><a href="${value.url || ''}"></a>`
+      }
 
       if (value.urls && typeof value.urls === 'object') {
         for (let k in value.urls) {
-          seoTemplate += `<a href="${value.urls[k] || gitRepoUrl}"></a>`
+          seoTemplate += `<a href="${value.urls[k] || ''}"></a>`
         }
       }
     }

@@ -18,7 +18,7 @@ export default class SystemInfoComponent {
   token = getToken()
   config = config
   date = document.getElementById('META-NAV')?.dataset?.['date'] || $t('_unknow')
-  currentVersionSrc = `https://img.shields.io/badge/release-v${VERSION}-red.svg?longCache=true&style=flat-square`
+  currentVersionSrc = `https://img.shields.io/badge/current-v${VERSION}-red.svg?longCache=true&style=flat-square`
 
   constructor() {}
 

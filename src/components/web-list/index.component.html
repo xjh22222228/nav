@@ -1,5 +1,6 @@
 <div
-  class="container web-list"
+  class="container web-list dark-scrollbar"
+  [class.overflowScroll]="overflow"
   *ngIf="dataList.length > 0"
   cdkDropList
   (cdkDropListDropped)="handleDrop($event)"

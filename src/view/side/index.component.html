@@ -51,13 +51,12 @@
           [autoplay]="settings.sideThemeAutoplay"
           [height]="settings.sideThemeHeight"
         />
-        <app-search-engine class="max768none" />
       </div>
 
-      <app-search-engine class="hidden search-sm mobile-search" />
+      <app-search-engine class="mt10 mobile-search" />
 
       <nz-content class="content" id="content">
-        <app-web-list [search]="false"></app-web-list>
+        <app-web-list [search]="false" [overflow]="true"></app-web-list>
 
         <div class="box">
           <div *ngIf="currentList.length > 0; else noData">

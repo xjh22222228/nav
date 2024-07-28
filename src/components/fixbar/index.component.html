@@ -84,7 +84,7 @@
     <nz-dropdown-menu #menuMirror="nzDropdownMenu">
       <ul nz-menu nzSelectable>
         <li nz-menu-item *ngFor="let item of settings.mirrorList">
-          <a [href]="item['url']">
+          <a [href]="item['url']" target="_blank">
             {{ item['name'] }}
           </a>
         </li>
