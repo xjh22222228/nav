@@ -201,13 +201,8 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 <img src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/32.png" width="600">
 
 感谢您的认可：
-| ID | 支持金额 |
-| --------------------------------------- |----------- |
-| [aiyou9](https://github.com/aiyou9) | ￥ 100 |
-| [lastares](https://github.com/lastares) | ￥ 25.00 |
-| [MrJxySteven](https://github.com/MrJxySteven) | ￥ 20.00 |
-| [admol](https://github.com/admol) | ￥ 6.66 |
-| 路人甲 | ￥ 50.00 |
+
+<img src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/thank.png" width="200" />
 
 ## License
 
