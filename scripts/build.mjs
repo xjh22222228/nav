@@ -144,14 +144,18 @@ let errorUrlCount = 0
   let current = 0
   const now = Date.now()
 
-  console.log(`正在爬取信息... 并发数量：${max}`)
+  console.log(
+    `正在爬取信息... 并发数量：${max}  超时: ${settings.spiderTimeout}秒`
+  )
 
   while (current < count) {
     const requestPromises = []
     for (let i = current * max; i < current * max + max; i++) {
       const item = items[i]
       if (item) {
-        requestPromises.push(getWebInfo(item.url, { timeout: 3000 }))
+        requestPromises.push(
+          getWebInfo(item.url, { timeout: settings.spiderTimeout * 1000 })
+        )
       }
     }
 

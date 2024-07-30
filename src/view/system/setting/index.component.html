@@ -347,9 +347,17 @@
       <nz-slider
         formControlName="spiderQty"
         [nzMin]="0"
-        [nzMax]="200"
+        [nzMax]="1000"
       ></nz-slider>
       <div>{{ $t('_spiderQtyTip') }}</div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_accessTimeout') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <input nz-input formControlName="spiderTimeout" />
+      <p class="mt10">{{ $t('_accessTimeoutTip') }}</p>
     </nz-form-control>
   </nz-form-item>
 

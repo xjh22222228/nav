@@ -224,6 +224,9 @@ const english: Record<string, string> = {
   _associatedLabels: 'Labels',
   _menuCollapse: 'Menu Collapse',
   _retro: 'Retro',
+  _accessTimeout: 'Access timeout (seconds)',
+  _accessTimeoutTip:
+    'Crawl the website for a specified number of seconds with no response, skip',
 }
 
 export default english

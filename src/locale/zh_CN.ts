@@ -215,6 +215,8 @@ const zhCN: Record<string, string> = {
   _associatedLabels: '关联标签',
   _menuCollapse: '菜单默认收起',
   _retro: '复古',
+  _accessTimeout: '爬取超时(秒)',
+  _accessTimeoutTip: '爬取网站指定秒数无响应跳过',
 }
 
 export default zhCN
