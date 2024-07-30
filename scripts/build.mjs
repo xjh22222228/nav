@@ -151,7 +151,7 @@ let errorUrlCount = 0
     for (let i = current * max; i < current * max + max; i++) {
       const item = items[i]
       if (item) {
-        requestPromises.push(getWebInfo(item.url, { timeout: 1000 }))
+        requestPromises.push(getWebInfo(item.url, { timeout: 3000 }))
       }
     }
 
