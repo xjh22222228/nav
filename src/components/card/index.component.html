@@ -1,6 +1,9 @@
 <!-- 网站 -->
 <ng-container [ngSwitch]="cardStyle">
-  <div class="container standard dark-border-color" *ngSwitchCase="'standard'">
+  <div
+    class="container standard dark-border-color dark-bg"
+    *ngSwitchCase="'standard'"
+  >
     <span
       nz-icon
       nzType="stop"
@@ -175,6 +178,48 @@
       </div>
     </div>
   </a>
+
+  <!-- common style -->
+  <div
+    class="container common2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
+    *ngSwitchCase="'common'"
+  >
+    <div class="item-list">
+      <a [href]="dataSource.url" target="_blank">
+        <div class="top">
+          <app-logo
+            [src]="dataSource.icon || ''"
+            [name]="dataSource.name"
+            [size]="30"
+          />
+          <div
+            class="name ellipsis dark-white"
+            [title]="dataSource.__name__ || dataSource.name"
+            [innerHTML]="dataSource.name"
+          ></div>
+        </div>
+        <div
+          class="desc ellipsis3 dark-white dark-border-color"
+          [title]="dataSource.__desc__ || dataSource.desc"
+          [innerHTML]="dataSource.desc"
+        ></div>
+
+        <div class="tagbox">
+          <div
+            class="tag-item"
+            *ngFor="let key of objectKeys(dataSource.urls || {})"
+            [style]="
+              'background-color: ' +
+              ((tagMap[key] && tagMap[key].color) || '#1890ff')
+            "
+            (click)="handleJump($event, dataSource.urls?.[key])"
+          >
+            {{ tagMap[key] && tagMap[key].name }}
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
 
   <!-- column style -->
   <div

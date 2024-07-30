@@ -75,17 +75,26 @@
 
     &-scrollbar {
       &::-webkit-scrollbar {
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         background-color: rgb(39, 39, 39);
       }
       &::-webkit-scrollbar-thumb {
         background-color: rgb(96, 96, 96);
-        border: 3px solid rgb(39, 39, 39);
-        border-radius: 20px;
+        border: 2px solid rgb(39, 39, 39);
+        border-radius: 100px;
         &:hover {
           background-color: rgb(136, 136, 136);
         }
+      }
+      &::-webkit-scrollbar-cornet {
+        display: block;
+      }
+    }
+    // 全局滚动条细边
+    &-scrollbar-border {
+      &::-webkit-scrollbar-thumb {
+        border: 3px solid rgb(39, 39, 39);
       }
     }
 

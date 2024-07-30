@@ -1,12 +1,3 @@
-.layer-bg {
-  z-index: -1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 @media (max-width: 1280px) {
   .index-wrapper {
     --width: 800px;

@@ -15,11 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-overflow-scrolling: touch;
-  // font: 14px/1.5 -apple-system, BlinkSystemFont, 'Segoe UI', Roboto, Ubuntu,
-  //   'Helvetica Neue', Helevetica, Arial, 'PingFang SC', 'Hiragino Sans GB',
-  //   'Microsoft YaHei UI', 'Microsoft YaHei', 'Source Han Sans CN', sans-serif;
   font-size: 14px;
-  // color: #333;
 }
 
 footer,
@@ -78,6 +74,13 @@ em {
 .text-align-center,
 .center {
   text-align: center;
+}
+.position-center {
+  z-index: 9;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .text-align-left {
   text-align: left;

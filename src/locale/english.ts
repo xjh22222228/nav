@@ -1,4 +1,6 @@
+// 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 const english: Record<string, string> = {
+  _loading: 'Loading...',
   _webTitle: 'Discovery Navigation',
   _uncategorized: 'Unclassified',
   _modifySuccess: 'Modification succeeded!',
@@ -220,6 +222,8 @@ const english: Record<string, string> = {
   _spiderBuildTip:
     'After the construction is completed, the data is correct. Please go to the website management and click save once, otherwise the data will not be permanently stored',
   _associatedLabels: 'Labels',
+  _menuCollapse: 'Menu Collapse',
+  _retro: 'Retro',
 }
 
 export default english

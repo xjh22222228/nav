@@ -1,3 +1,4 @@
+// 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
 import { Component } from '@angular/core'
@@ -14,6 +15,7 @@ import {
 import { isLogin } from 'src/utils/user'
 import { websiteList } from 'src/store'
 import { settings, internal } from 'src/store'
+import event from 'src/utils/mitt'
 
 @Component({
   selector: 'app-sim',
@@ -31,32 +33,40 @@ export default class SimComponent {
     String(isLogin ? internal.loginViewCount : internal.userViewCount)
   )
   isLogin = isLogin
-  sliceMax = 1
+  sliceMax = 0
   overIndex = Number.MAX_SAFE_INTEGER
   searchKeyword = ''
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    const init = () => {
+      this.activatedRoute.queryParams.subscribe(() => {
+        const { id, page, q } = queryString()
+        this.page = page
+        this.id = id
+        this.searchKeyword = q
+        this.sliceMax = 0
 
-  ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(() => {
-      const { id, page, q } = queryString()
-      this.page = page
-      this.id = id
-      this.searchKeyword = q
-      this.sliceMax = 1
+        if (q) {
+          this.currentList = fuzzySearch(this.websiteList, q)
+        } else {
+          this.currentList = matchCurrentList()
+        }
+        setTimeout(() => {
+          this.sliceMax = Number.MAX_SAFE_INTEGER
+        }, 100)
+      })
+    }
 
-      if (q) {
-        this.currentList = fuzzySearch(this.websiteList, q)
-      } else {
-        this.currentList = matchCurrentList()
-      }
-      setTimeout(() => {
-        this.sliceMax = Number.MAX_SAFE_INTEGER
-      }, 100)
-    })
+    if (window.__FINISHED__) {
+      init()
+    } else {
+      event.on('WEB_FINISH', () => {
+        init()
+      })
+    }
   }
 
-  ngOnDestroy() {}
+  ngOnInit() {}
 
   ngAfterViewInit() {
     if (this.settings.simOverType === 'ellipsis') {

@@ -1,12 +1,14 @@
+// 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component, OnInit, Input } from '@angular/core'
 import { websiteList } from 'src/store'
 import { IWebProps, INavProps } from 'src/types'
-import { setWebsiteList, queryString, fuzzySearch } from 'src/utils'
+import { queryString, fuzzySearch } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { ActivatedRoute } from '@angular/router'
+import event from 'src/utils/mitt'
 
 let DEFAULT_WEBSITE: Array<IWebProps> = []
 
@@ -23,27 +25,34 @@ export class WebListComponent implements OnInit {
   websiteList: INavProps[] = websiteList
   dataList: IWebProps[] = []
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute) {
+    const init = () => {
+      this.getTopWeb()
+      this.activatedRoute.queryParams.subscribe(() => {
+        const { q } = queryString()
+        const result = fuzzySearch(this.websiteList, q)
 
-  ngOnInit() {
-    this.getTopWeb()
-
-    this.activatedRoute.queryParams.subscribe(() => {
-      const { q } = queryString()
-      const result = fuzzySearch(this.websiteList, q)
-
-      if (this.search && q.trim()) {
-        if (result.length === 0) {
-          this.dataList = []
+        if (this.search && q.trim()) {
+          if (result.length === 0) {
+            this.dataList = []
+          } else {
+            this.dataList = result[0].nav.slice(0, this.max)
+          }
         } else {
-          this.dataList = result[0].nav.slice(0, this.max)
+          this.dataList = DEFAULT_WEBSITE
         }
-      } else {
-        this.dataList = DEFAULT_WEBSITE
-      }
-      setWebsiteList(this.websiteList)
-    })
+      })
+    }
+    if (window.__FINISHED__) {
+      init()
+    } else {
+      event.on('WEB_FINISH', () => {
+        init()
+      })
+    }
   }
+
+  ngOnInit() {}
 
   // 获取置顶WEB
   getTopWeb() {
@@ -82,7 +91,9 @@ export class WebListComponent implements OnInit {
   }
 
   goUrl(url: string) {
-    window.open(url)
+    if (url) {
+      window.open(url)
+    }
   }
 
   trackByItemWeb(a: any, item: any) {

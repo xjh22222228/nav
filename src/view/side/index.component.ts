@@ -1,3 +1,4 @@
+// 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -10,10 +11,13 @@ import {
   setWebsiteList,
   toggleCollapseAll,
   matchCurrentList,
+  isMobile,
 } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { websiteList } from 'src/store'
 import { settings, searchEngineList } from 'src/store'
+import { $t } from 'src/locale'
+import event from 'src/utils/mitt'
 
 @Component({
   selector: 'app-side',
@@ -21,7 +25,7 @@ import { settings, searchEngineList } from 'src/store'
   styleUrls: ['./index.component.scss'],
 })
 export default class SideComponent {
-  LOGO_CDN = settings.favicon
+  $t = $t
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
   id: number = 0
@@ -30,29 +34,39 @@ export default class SideComponent {
   searchEngineList = searchEngineList
   isLogin = isLogin
   settings = settings
-  sliceMax = 1
+  sliceMax = 0
   searchKeyword = ''
+  isCollapsed = isMobile() ? true : settings.sideCollapsed
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    const init = () => {
+      this.activatedRoute.queryParams.subscribe(() => {
+        const { id, page, q } = queryString()
+        this.page = page
+        this.id = id
+        this.searchKeyword = q
+        this.sliceMax = 0
 
-  ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(() => {
-      const { id, page, q } = queryString()
-      this.page = page
-      this.id = id
-      this.searchKeyword = q
-      this.sliceMax = 1
-
-      if (q) {
-        this.currentList = fuzzySearch(this.websiteList, q)
-      } else {
-        this.currentList = matchCurrentList()
-      }
-      setTimeout(() => {
-        this.sliceMax = Number.MAX_SAFE_INTEGER
-      }, 25)
-    })
+        if (q) {
+          this.currentList = fuzzySearch(this.websiteList, q)
+        } else {
+          this.currentList = matchCurrentList()
+        }
+        setTimeout(() => {
+          this.sliceMax = Number.MAX_SAFE_INTEGER
+        }, 100)
+      })
+    }
+    if (window.__FINISHED__) {
+      init()
+    } else {
+      event.on('WEB_FINISH', () => {
+        init()
+      })
+    }
   }
+
+  ngOnInit() {}
 
   handleSidebarNav(page: any, id: any) {
     this.websiteList[page].id = id
@@ -62,21 +76,6 @@ export default class SideComponent {
         id,
       },
     })
-    this.handlePositionTop()
-  }
-
-  handlePositionTop() {
-    setTimeout(() => {
-      const el = document.querySelector('.search-header') as HTMLDivElement
-      if (el) {
-        const h = el.offsetHeight
-        window.scroll({
-          top: h,
-          left: 0,
-          behavior: 'smooth',
-        })
-      }
-    }, 30)
   }
 
   openMenu(item: any, index: number) {
@@ -99,7 +98,6 @@ export default class SideComponent {
   onCollapseAll = (e: Event) => {
     e?.stopPropagation()
     toggleCollapseAll(this.websiteList)
-    this.handlePositionTop()
   }
 
   collapsed() {

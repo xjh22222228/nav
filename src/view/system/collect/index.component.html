@@ -15,17 +15,6 @@
     <button
       class="ml10"
       nz-button
-      nzType="primary"
-      nzDanger
-      (click)="logoutAuthCode()"
-      [nzLoading]="submitting"
-    >
-      {{ $t('_logoutAuthCode') }}
-    </button>
-
-    <button
-      class="ml10"
-      nz-button
       (click)="getUserCollect()"
       [nzLoading]="submitting"
     >

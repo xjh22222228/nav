@@ -1,13 +1,9 @@
-<div class="index-wrapper" [class.noimg]="settings.lightImages.length <= 0">
+<div
+  class="index-wrapper dark-bg"
+  [class.noimg]="settings.lightImages.length <= 0"
+>
   <div class="light-box">
     <main class="homepage dark-border-color dark-bg">
-      <app-fixbar
-        (onCollapse)="onCollapseAll()"
-        [collapsed]="collapsed()"
-        selector=".main"
-      >
-      </app-fixbar>
-
       <nav class="top-nav dark-scrollbar dark-border-color dark-bg">
         <span
           *ngFor="
@@ -25,7 +21,7 @@
         <!-- More -->
         <app-web-more-menu
           *ngIf="overIndex < websiteList.length"
-          [data]="websiteList.slice(overIndex, 9999)"
+          [data]="websiteList.slice(overIndex, 99999)"
           [index]="overIndex"
           [page]="page"
           (onClick)="handleCilckTopNav($event)"
@@ -33,7 +29,10 @@
       </nav>
 
       <section class="index-section user-select-none dark-bg">
-        <aside class="sidebar dark-bg dark-border-color" id="sidebar">
+        <aside
+          class="sidebar dark-bg dark-border-color dark-scrollbar"
+          id="sidebar"
+        >
           <div *ngIf="websiteList[page]">
             <div
               class="tag dark-text"
@@ -55,6 +54,11 @@
           <app-search-engine></app-search-engine>
 
           <div *ngIf="currentList.length > 0; else noData">
+            <nz-spin
+              nzSimple
+              *ngIf="sliceMax === 0"
+              class="position-center"
+            ></nz-spin>
             <div
               *ngFor="
                 let item of currentList.slice(0, sliceMax);
@@ -119,7 +123,12 @@
     </div>
   </div>
 
-  <app-footer [content]="settings.lightFooterHTML"></app-footer>
+  <div>
+    <app-footer [content]="settings.lightFooterHTML"></app-footer>
+  </div>
+  <app-fixbar
+    (onCollapse)="onCollapseAll()"
+    [collapsed]="collapsed()"
+    selector=".main"
+  />
 </div>
-
-<div class="layer-bg dark-bg"></div>

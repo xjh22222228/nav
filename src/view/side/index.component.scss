@@ -2,28 +2,15 @@
   .content {
     padding-right: 12px !important;
   }
-  .layout {
-    --sideWidth: 150px !important;
-  }
   .sider {
     --menuTitleWidth: 85px;
     padding-top: 40px !important;
   }
-  .logo-img {
-    width: 30px !important;
-    height: 30px !important;
-  }
-  .web-title {
-    font-size: 14px !important;
-  }
 }
 
 .layout {
-  --sideWidth: 200px;
   min-height: 100vh;
-
   .inner-layout {
-    margin-left: var(--sideWidth);
     .content {
       padding: 10px 70px 0 20px;
       display: flex;
@@ -65,7 +52,6 @@
     display: flex;
     align-items: center;
   }
-
   ::ng-deep .web-list {
     max-width: 100% !important;
   }
@@ -78,16 +64,15 @@
 
 .logo {
   z-index: 11;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: var(--sideWidth);
+  width: 100%;
   padding: 10px;
   padding-left: 15px;
   background-color: #fff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
+  user-select: none;
 
   .logo-img {
     width: 50px;
@@ -103,39 +88,38 @@
   }
 }
 
-.sider {
-  position: fixed;
-  height: 100vh;
+.sider-compnent {
+  position: sticky;
+  top: 0;
   left: 0;
-  overflow: auto;
-  width: var(--sideWidth);
-  padding-top: 70px;
-  .sideicon {
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
-    object-fit: cover;
-    border-radius: 50%;
+  height: 100vh;
+  background-color: #fff;
+  ::ng-deep {
+    .ant-layout-sider-children {
+      display: flex;
+      flex-direction: column;
+    }
   }
-  .fixicon {
-    margin-right: 8px;
-  }
-  &::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
+}
 
-  &::-webkit-scrollbar-thumb {
-    background-color: hsla(0, 0%, 100%, 0.2);
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: hsla(0, 0%, 100%, 0.15);
-    border-radius: 3px;
-  }
+.sider {
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: auto;
+  flex: 1;
+  padding-bottom: 30px;
   .menu-title {
     max-width: var(--menuTitleWidth, 130px);
+  }
+}
+.sideicon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  object-fit: cover;
+  border-radius: 50%;
+  &.fixicon {
+    margin-right: 8px;
   }
 }
 

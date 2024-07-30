@@ -1,3 +1,4 @@
+// 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -15,8 +16,10 @@ import { STORAGE_KEY_MAP } from 'src/constants'
 import { isLogin } from './user'
 import { SearchType } from 'src/components/search-engine/index'
 import { getIconUrl } from 'src/services'
+import localforage from 'localforage'
+import event from 'src/utils/mitt'
 
-export const websiteList: INavProps[] = getWebsiteList()
+export let websiteList: INavProps[] = []
 
 const searchEngineList: ISearchEngineProps[] = (s as any).default
 
@@ -247,14 +250,14 @@ export function adapterWebsiteList(websiteList: any[]) {
   return websiteList
 }
 
-export function getWebsiteList(): INavProps[] {
-  let webSiteList = adapterWebsiteList((db as any).default)
-  const scriptElAll = document.querySelectorAll('script')
-  const scriptUrl = scriptElAll[scriptElAll.length - 1].src
-  const storageScriptUrl = window.localStorage.getItem(STORAGE_KEY_MAP.s_url)
+;(async () => {
+  let data = adapterWebsiteList((db as any).default)
+  const metaEl = document.getElementById('META-NAV')
+  const date = metaEl?.dataset?.['date'] || ''
+  const storageDate = window.localStorage.getItem(STORAGE_KEY_MAP.s_url)
 
   // 检测到网站更新，清除缓存本地保存记录失效
-  if (storageScriptUrl !== scriptUrl) {
+  if (storageDate !== date) {
     const whiteList = [
       STORAGE_KEY_MAP.token,
       STORAGE_KEY_MAP.isDark,
@@ -268,25 +271,30 @@ export function getWebsiteList(): INavProps[] {
       }
       window.localStorage.removeItem(key)
     }
-    window.localStorage.setItem(STORAGE_KEY_MAP.s_url, scriptUrl)
-    return webSiteList
+    window.localStorage.setItem(STORAGE_KEY_MAP.s_url, date)
+    localforage.removeItem(STORAGE_KEY_MAP.website)
+    data.forEach((item) => {
+      websiteList.push(item)
+    })
+    event.emit('WEB_FINISH')
+    window.__FINISHED__ = true
+    return
   }
 
   try {
-    const w: any = window.localStorage.getItem(STORAGE_KEY_MAP.website)
-    const json = JSON.parse(w)
-    if (Array.isArray(json)) {
-      webSiteList = json
-    }
+    const dbData: any =
+      (await localforage.getItem(STORAGE_KEY_MAP.website)) || data
+    dbData.forEach((item: any) => {
+      websiteList.push(item)
+    })
+    event.emit('WEB_FINISH')
+    window.__FINISHED__ = true
   } catch {}
-
-  return webSiteList
-}
+})()
 
 export function setWebsiteList(v?: INavProps[]) {
   v = v || websiteList
-
-  window.localStorage.setItem(STORAGE_KEY_MAP.website, JSON.stringify(v))
+  localforage.setItem(STORAGE_KEY_MAP.website, v)
 }
 
 export function toggleCollapseAll(wsList?: INavProps[]): boolean {
@@ -520,4 +528,8 @@ export function downloadAsFile(str: string, fileName: string) {
 
   document.body.removeChild(a)
   URL.revokeObjectURL(url)
+}
+
+export function isMobile() {
+  return 'ontouchstart' in window
 }

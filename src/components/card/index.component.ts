@@ -1,3 +1,4 @@
+// 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -10,7 +11,7 @@ import {
   deleteByWeb,
   getTextContent,
 } from 'src/utils'
-import { INavProps, IWebProps } from 'src/types'
+import { INavProps, IWebProps, ICardType } from 'src/types'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagMap } from 'src/store'
 import event from 'src/utils/mitt'
@@ -24,7 +25,7 @@ export class CardComponent implements OnInit {
   @Input() searchKeyword: string = ''
   @Input() dataSource: IWebProps | Record<string, any> = {}
   @Input() indexs: Array<number> = []
-  @Input() cardStyle: string = 'standard'
+  @Input() cardStyle: ICardType = 'standard'
 
   $t = $t
   objectKeys = Object.keys
@@ -83,6 +84,15 @@ export class CardComponent implements OnInit {
       indexs: this.indexs,
       data: [this.dataSource],
     })
+  }
+
+  handleJump(e: any, url?: string) {
+    e.stopPropagation()
+    e.preventDefault()
+    if (!url) {
+      return
+    }
+    window.open(url)
   }
 
   get getRate() {

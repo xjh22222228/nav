@@ -29,7 +29,17 @@
     </div>
   </div>
 
-  <div *ngIf="isPermission" class="center">
-    <div>已授权！</div>
+  <div *ngIf="isPermission">
+    <h1 class="mt10">已授权！</h1>
+    <button
+      nz-button
+      nzType="primary"
+      nzDanger
+      (click)="logoutAuthCode()"
+      [nzLoading]="submitting"
+      class="mt10"
+    >
+      {{ $t('_logoutAuthCode') }}
+    </button>
   </div>
 </nz-spin>

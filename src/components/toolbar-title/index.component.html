@@ -3,26 +3,11 @@
   *ngIf="dataSource && dataSource.title"
 >
   <span class="cursor-pointer" (click)="onCollapse.emit()">
-    <!-- <app-logo
-      [src]="dataSource.icon"
-      [name]="dataSource.title"
-      colour="#ff4d4f"
-    >
-    </app-logo> -->
-
     <i
       class="iconfont iconjiantouarrow483 down-arrow"
       [class.active]="dataSource.collapsed"
-      *ngIf="arrowType === '1'; else type"
     >
     </i>
-    <ng-template #type>
-      <i
-        class="iconfont iconjiantouarrow483 down-arrow"
-        [class.active]="dataSource.collapsed"
-      >
-      </i>
-    </ng-template>
 
     <span style="margin-left: 10px; align-self: center; vertical-align: middle">
       {{ dataSource.title }} x {{ dataSource.nav.length }}

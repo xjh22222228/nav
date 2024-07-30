@@ -1,48 +1,72 @@
 <nz-layout class="layout">
+  <nz-spin nzSimple *ngIf="sliceMax === 0" class="position-center" />
   <nz-layout>
-    <div class="logo dark-bg">
-      <img [src]="LOGO_CDN" class="logo-img" />
-      <span class="web-title">{{ settings.sideTitle || title }}</span>
-    </div>
+    <nz-sider
+      class="sider-compnent"
+      nzCollapsible
+      [(nzCollapsed)]="isCollapsed"
+      [nzTrigger]="null"
+    >
+      <div class="logo dark-bg" (click)="isCollapsed = !isCollapsed">
+        <img [src]="settings.favicon" class="logo-img" />
+        <span class="web-title" *ngIf="!isCollapsed">{{
+          settings.sideTitle || title
+        }}</span>
+      </div>
 
-    <ul nz-menu nzMode="inline" class="sider dark-scrollbar">
-      <li
-        nz-submenu
-        *ngFor="let item of websiteList; index as pageIdx; trackBy: trackByItem"
-        (nzOpenChange)="openMenu(item, pageIdx)"
-        [nzTitle]="titleTpl"
-        [nzOpen]="item['collapsed']"
-      >
-        <ng-template #titleTpl>
-          <img *ngIf="item.icon" class="sideicon" [src]="item.icon" />
-          <span class="menu-title ellipsis">{{ item.title }}</span>
-        </ng-template>
+      <ul nz-menu nzMode="inline" class="sider dark-scrollbar dark-bg">
+        <li
+          nz-submenu
+          *ngFor="
+            let item of websiteList;
+            index as pageIdx;
+            trackBy: trackByItem
+          "
+          (nzOpenChange)="openMenu(item, pageIdx)"
+          [nzTitle]="titleTpl"
+          [nzOpen]="item['collapsed']"
+        >
+          <ng-template #titleTpl>
+            <img *ngIf="item.icon" class="sideicon" [src]="item.icon" />
+            <span class="menu-title ellipsis">{{
+              isCollapsed && item.icon
+                ? ''
+                : isCollapsed && !item.icon
+                ? item.title.slice(0, 2)
+                : item.title
+            }}</span>
+          </ng-template>
 
-        <ul>
-          <li
-            nz-menu-item
-            *ngFor="let el of item.nav; let idIdx = index; trackBy: trackByItem"
-            [nzSelected]="page === pageIdx && id === idIdx"
-            (click)="handleSidebarNav(pageIdx, idIdx)"
-          >
-            <img *ngIf="el.icon" class="sideicon fixicon" [src]="el.icon" />
-            <span class="ellipsis">{{ el.title }}</span>
-
-            <div
-              *ngIf="page === pageIdx && id === idIdx"
-              (click)="onCollapseAll($event)"
-              class="collapse-wrapper"
+          <ul>
+            <li
+              nz-menu-item
+              *ngFor="
+                let el of item.nav;
+                let idIdx = index;
+                trackBy: trackByItem
+              "
+              [nzSelected]="page === pageIdx && id === idIdx"
+              (click)="handleSidebarNav(pageIdx, idIdx)"
             >
-              <i
-                class="iconfont iconweibiaoti25 collapse"
-                [class.active]="collapsed()"
+              <img *ngIf="el.icon" class="sideicon fixicon" [src]="el.icon" />
+              <span class="ellipsis">{{ el.title }}</span>
+
+              <div
+                *ngIf="page === pageIdx && id === idIdx"
+                (click)="onCollapseAll($event)"
+                class="collapse-wrapper"
               >
-              </i>
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
+                <i
+                  class="iconfont iconweibiaoti25 collapse"
+                  [class.active]="collapsed()"
+                >
+                </i>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nz-sider>
 
     <nz-layout class="inner-layout">
       <div class="search-header" *ngIf="settings.sideThemeImages.length > 0">
@@ -72,7 +96,6 @@
                   [dataSource]="item"
                   (onCollapse)="onCollapse(item, i)"
                   [index]="i"
-                  arrowType="2"
                 >
                 </app-toolbar-title>
 
@@ -98,7 +121,7 @@
                     [nzXXl]="settings.sideCardStyle === 'example' ? 4 : 6"
                   >
                     <app-card
-                      [cardStyle]="settings.sideCardStyle"
+                      [cardStyle]="'standard' || settings.sideCardStyle"
                       [dataSource]="el"
                       [indexs]="[page, id, i, j]"
                       [searchKeyword]="searchKeyword"
@@ -124,5 +147,4 @@
   </nz-layout>
 </nz-layout>
 
-<app-fixbar (onCollapse)="onCollapseAll($event)" [collapsed]="collapsed()">
-</app-fixbar>
+<app-fixbar (onCollapse)="onCollapseAll($event)" [collapsed]="collapsed()" />

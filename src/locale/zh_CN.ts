@@ -1,4 +1,6 @@
+// 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 const zhCN: Record<string, string> = {
+  _loading: '加载中...',
   _webTitle: '发现导航',
   _uncategorized: '未分类',
   _modifySuccess: '修改成功！',
@@ -211,6 +213,8 @@ const zhCN: Record<string, string> = {
   _spiderBuildTip:
     '构建完成后对数据无误，请到网站管理点击一次保存，否则数据不会永久存储',
   _associatedLabels: '关联标签',
+  _menuCollapse: '菜单默认收起',
+  _retro: '复古',
 }
 
 export default zhCN

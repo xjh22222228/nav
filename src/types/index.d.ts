@@ -1,3 +1,4 @@
+// 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
@@ -8,6 +9,8 @@ export type ThemeType =
   | 'Side'
   | 'App'
   | 'Shortcut'
+
+export type ICardType = 'standard' | 'column' | 'example' | 'common'
 
 type OverType = 'overflow' | 'ellipsis'
 
@@ -111,7 +114,9 @@ export interface ISettings {
   checkUrl: boolean
   errorUrlCount?: number
 
-  lightCardStyle: string
+  appCardStyle: ICardType
+
+  lightCardStyle: ICardType
   lightOverType: OverType
   lightImages: Record<string, any>[]
   lightFooterHTML: string
@@ -120,7 +125,7 @@ export interface ISettings {
   simThemeDesc: string
   simThemeHeight: number
   simThemeAutoplay: boolean
-  simCardStyle: string
+  simCardStyle: ICardType
   simTitle: string
   simOverType: OverType
   simFooterHTML: string
@@ -128,9 +133,10 @@ export interface ISettings {
   sideThemeImages: Record<string, any>[]
   sideThemeHeight: number
   sideThemeAutoplay: boolean
-  sideCardStyle: string
+  sideCardStyle: ICardType
   sideTitle: string
   sideFooterHTML: string
+  sideCollapsed: boolean
 
   shortcutThemeImages: Record<string, any>[]
   shortcutThemeShowWeather: boolean
@@ -138,7 +144,7 @@ export interface ISettings {
 
   superTitle: string
   superOverType: OverType
-  superCardStyle: string
+  superCardStyle: ICardType
   superImages: Record<string, any>[]
   superFooterHTML: string
 
@@ -170,4 +176,7 @@ export type internalProps = {
 
 declare global {
   const Swiper: any
+  interface Window {
+    __FINISHED__: boolean // 记录已取 web 数据
+  }
 }

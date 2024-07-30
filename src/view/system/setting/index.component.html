@@ -364,6 +364,7 @@
             <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
             <label nz-radio nzValue="column">{{ $t('_column') }}</label>
             <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
+            <label nz-radio nzValue="common">{{ $t('_retro') }}</label>
           </nz-radio-group>
         </nz-form-control>
       </nz-form-item>
@@ -471,6 +472,7 @@
             <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
             <label nz-radio nzValue="column">{{ $t('_column') }}</label>
             <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
+            <label nz-radio nzValue="common">{{ $t('_retro') }}</label>
           </nz-radio-group>
         </nz-form-control>
       </nz-form-item>
@@ -578,6 +580,7 @@
             <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
             <label nz-radio nzValue="column">{{ $t('_column') }}</label>
             <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
+            <label nz-radio nzValue="common">{{ $t('_retro') }}</label>
           </nz-radio-group>
         </nz-form-control>
       </nz-form-item>
@@ -715,7 +718,17 @@
             <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
             <label nz-radio nzValue="column">{{ $t('_column') }}</label>
             <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
+            <label nz-radio nzValue="common">{{ $t('_retro') }}</label>
           </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+          $t('_menuCollapse')
+        }}</nz-form-label>
+        <nz-form-control [nzSpan]="20">
+          <label nz-checkbox formControlName="sideCollapsed"></label>
         </nz-form-control>
       </nz-form-item>
 
@@ -846,6 +859,20 @@
             (change)="onShortcutImgChange($event)"
             style="width: 300px; margin-top: 10px"
           />
+        </nz-form-control>
+      </nz-form-item>
+    </nz-tab>
+
+    <nz-tab [nzTitle]="'App ' + $t('_theme')">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-radio-group formControlName="appCardStyle">
+            <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+            <label nz-radio nzValue="column">{{ $t('_column') }}</label>
+            <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
+            <label nz-radio nzValue="common">{{ $t('_retro') }}</label>
+          </nz-radio-group>
         </nz-form-control>
       </nz-form-item>
     </nz-tab>

@@ -1,4 +1,6 @@
 <div class="sim">
+  <nz-spin nzSimple *ngIf="sliceMax === 0" class="position-center" />
+
   <div
     class="wallpaper"
     *ngIf="settings.simThemeImages.length > 0"
@@ -40,7 +42,7 @@
     <!-- More -->
     <app-web-more-menu
       *ngIf="overIndex < websiteList.length"
-      [data]="websiteList.slice(overIndex, 9999)"
+      [data]="websiteList.slice(overIndex, 99999)"
       [index]="overIndex"
       [page]="page"
       (onClick)="handleCilckTopNav($event)"
@@ -100,7 +102,7 @@
                 *ngFor="let el of item.nav; index as j; trackBy: trackByItemWeb"
               >
                 <app-card
-                  [cardStyle]="'example'"
+                  [cardStyle]="settings.simCardStyle"
                   [dataSource]="el"
                   [indexs]="[page, id, i, j]"
                   [searchKeyword]="searchKeyword"

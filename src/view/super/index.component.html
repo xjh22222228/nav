@@ -1,4 +1,6 @@
 <section class="super-xjh dark-bg">
+  <nz-spin nzSimple *ngIf="sliceMax === 0" class="position-center" />
+
   <header class="sheader dark-bg">
     <div class="headerbox">
       <div class="hitem">
@@ -23,7 +25,7 @@
         <!-- More -->
         <app-web-more-menu
           *ngIf="overIndex < websiteList.length"
-          [data]="websiteList.slice(overIndex, 9999)"
+          [data]="websiteList.slice(overIndex, 99999)"
           [index]="overIndex"
           [page]="page"
           (onClick)="handleCilckTopMenu($event)"

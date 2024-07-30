@@ -1,9 +1,10 @@
+// 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { queryString, setLocation } from '../utils'
+import { queryString, setLocation, isMobile } from '../utils'
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n'
 import { getLocale } from 'src/locale'
 import { settings } from 'src/store'
@@ -54,7 +55,7 @@ export class AppComponent {
 
   goRoute() {
     // is App
-    if (settings.appTheme !== 'Current' && 'ontouchstart' in window) {
+    if (settings.appTheme !== 'Current' && isMobile()) {
       const url = (this.router.url.split('?')[0] || '').toLowerCase()
       const { page, id, q } = queryString()
       const queryParams = { page, id, q }
