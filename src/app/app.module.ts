@@ -65,6 +65,7 @@ import SimComponent from '../view/sim/index.component'
 import SystemComponent from '../view/system/index.component'
 import SystemInfoComponent from '../view/system/info/index.component'
 import SystemBookmarkComponent from '../view/system/bookmark/index.component'
+import SystemBookmarkExportComponent from '../view/system/bookmark-export/index.component'
 import SystemAboutComponent from '../view/system/about/index.component'
 import SystemTagComponent from '../view/system/tag/index.component'
 import SystemSearchComponent from '../view/system/search/index.component'
@@ -115,6 +116,7 @@ const icons: IconDefinition[] = [
     SystemComponent,
     SystemInfoComponent,
     SystemBookmarkComponent,
+    SystemBookmarkExportComponent,
     SystemAboutComponent,
     SystemTagComponent,
     SystemSearchComponent,

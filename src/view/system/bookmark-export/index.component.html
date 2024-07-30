@@ -1,5 +1,12 @@
+<nz-spin nzSimple nzSize="large" class="center" *ngIf="submitting"> </nz-spin>
+<div class="center">
+  <nz-switch [(ngModel)]="isExportIcon"></nz-switch>
+  <span class="ml10"
+    >同时导出网站图标，耗时较久，某些网站无法访问图标为空，即使网站没有设置图标也会根据链接尝试抓取</span
+  >
+  <p class="mt10" *ngIf="seconds > 0">已等待{{ seconds }}秒</p>
+</div>
 <div class="book-wrapper" (click)="bookmarksExport()">
-  <p>由于浏览器书签的限制，只能导出对应的分类和网站名称链接</p>
   <div>
     <img src="assets/img/bookmark.svg" draggable="false" class="logo" />
     <p style="white-space: nowrap; margin-top: 5px">点我导出</p>

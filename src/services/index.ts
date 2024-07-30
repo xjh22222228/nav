@@ -129,7 +129,9 @@ export async function getIconUrl(url: string) {
 }
 
 export async function bookmarksExport(data: any) {
-  return httpNav.post('/api/export', data)
+  return httpNav.post('/api/export', data, {
+    timeout: Number.MAX_SAFE_INTEGER,
+  })
 }
 
 export function getCDN(path: string, branch = 'image') {

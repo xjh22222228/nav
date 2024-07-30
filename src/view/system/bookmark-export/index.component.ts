@@ -22,6 +22,8 @@ export default class SystemBookmarkExportComponent {
   $t = $t
   submitting = false
   websiteList: INavProps[] = websiteList
+  isExportIcon = false
+  seconds = 0
 
   constructor(
     private message: NzMessageService,
@@ -34,8 +36,12 @@ export default class SystemBookmarkExportComponent {
     if (this.submitting) {
       return
     }
+    this.seconds = 0
     this.submitting = true
-    bookmarksExport({ data: this.websiteList })
+    const interval = setInterval(() => {
+      this.seconds += 1
+    }, 1000)
+    bookmarksExport({ data: this.websiteList, icon: this.isExportIcon })
       .then((res) => {
         if (res.data?.success) {
           downloadAsFile(res.data.data, '发现导航导出.html')
@@ -44,6 +50,7 @@ export default class SystemBookmarkExportComponent {
       })
       .finally(() => {
         this.submitting = false
+        clearInterval(interval)
       })
   }
 }
