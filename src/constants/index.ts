@@ -17,7 +17,7 @@ export const STORAGE_KEY_MAP = {
   location: 'location',
   s_url: 's_url',
   isDark: 'isDark',
-  website: 'website',
+  website: 'WEBSITE_DB',
   engine: 'engine',
   language: 'language',
   total: 'total',

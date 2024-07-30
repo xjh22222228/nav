@@ -7,7 +7,7 @@ import { Component } from '@angular/core'
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
 import { INavProps, INavTwoProp, INavThreeProp, IWebProps } from 'src/types'
 import { websiteList, settings, tagMap, internal } from 'src/store'
-import { isLogin } from 'src/utils/user'
+import { isLogin, removeWebsite } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
@@ -221,7 +221,7 @@ export default class WebpComponent {
       nzContent: $t('_warnReset'),
       nzOnOk: () => {
         this.message.success($t('_actionSuccess'))
-        window.localStorage.removeItem(STORAGE_KEY_MAP.website)
+        removeWebsite()
         window.localStorage.removeItem(STORAGE_KEY_MAP.s_url)
         setTimeout(() => {
           window.location.reload()

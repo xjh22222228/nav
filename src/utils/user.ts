@@ -28,7 +28,7 @@ export function removeToken() {
 }
 
 export function removeWebsite() {
-  return window.localStorage.removeItem('website')
+  return localforage.removeItem('WEBSITE_DB')
 }
 
 export function userLogout() {
