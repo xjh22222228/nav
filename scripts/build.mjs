@@ -139,22 +139,23 @@ let errorUrlCount = 0
 
   r(db)
 
-  console.log('Getting...')
   const max = settings.spiderQty ?? 20
   const count = Math.ceil(items.length / max)
   let current = 0
   const now = Date.now()
 
+  console.log(`正在爬取信息... 并发数量：${max}`)
+
   while (current < count) {
-    const request = []
+    const requestPromises = []
     for (let i = current * max; i < current * max + max; i++) {
       const item = items[i]
       if (item) {
-        request.push(getWebInfo(item.url, { timeout: 3000 }))
+        requestPromises.push(getWebInfo(item.url, { timeout: 1000 }))
       }
     }
 
-    const promises = await Promise.allSettled(request)
+    const promises = await Promise.allSettled(requestPromises)
 
     for (let i = 0; i < promises.length; i++) {
       const idx = current * max + i

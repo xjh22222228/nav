@@ -58,7 +58,7 @@
     "@angular/compiler-cli": "^18.0.1",
     "@types/jasmine": "~5.1.4",
     "@types/nprogress": "^0.2.3",
-    "info-web": "^0.0.15",
+    "info-web": "^0.0.16",
     "jasmine-core": "~5.1.2",
     "karma": "~6.4.3",
     "karma-chrome-launcher": "~3.2.0",
