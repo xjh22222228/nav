@@ -1,14 +1,19 @@
 <div class="book-wrapper">
-  <div [innerHTML]="$t('_bookImportTip')"></div>
+  <div>
+    在浏览器输入
+    <a href="chrome://bookmarks/" target="_blank">chrome://bookmarks/</a>
+    找到导出书签，导出 HTML 文件点击下面导入
+  </div>
+
+  <div [innerHTML]="$t('_bookImportTip')" class="mt10"></div>
 
   <label id="file">
-    <img src="assets/img/bookmark.svg" draggable="false" class="logo">
-    <p style="white-space: nowrap; margin-top: 5px;">{{ $t('_importChrome') }}</p>
+    <img src="assets/img/bookmark.svg" draggable="false" class="logo" />
     <input
       type="file"
       name="file"
       (change)="onBookChange($event)"
       accept="text/html"
-    >
+    />
   </label>
 </div>

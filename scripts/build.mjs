@@ -144,9 +144,11 @@ let errorUrlCount = 0
   let current = 0
   const now = Date.now()
 
-  console.log(
-    `正在爬取信息... 并发数量：${max}  超时: ${settings.spiderTimeout}秒`
-  )
+  if (items.length) {
+    console.log(
+      `正在爬取信息... 并发数量：${max}  超时: ${settings.spiderTimeout}秒`
+    )
+  }
 
   while (current < count) {
     const requestPromises = []
@@ -165,7 +167,11 @@ let errorUrlCount = 0
       const idx = current * max + i
       const item = items[idx]
       const res = promises[i].value
-      console.log(`${idx}：${res.status ? '正常' : '疑似异常'} ${item.url}`)
+      console.log(
+        `${idx}：${res.status ? '正常' : `疑似异常: ${res.errorMsg}`} ${
+          item.url
+        }`
+      )
       if (settings.checkUrl) {
         if (!res.status) {
           errorUrlCount += 1

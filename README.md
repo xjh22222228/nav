@@ -25,7 +25,7 @@
 
 - 🍰 内置 `800+` 优质网站
 - 🍰 支持 [码云 Gitee](https://gitee.com/xiejiahe/nav)
-- 🍰 支持从 Chrome 书签导入
+- 🍰 支持从浏览器书签导入
 - 🍰 支持将数据导出到浏览器书签
 - 🍰 支持用户提交收录
 - 🍰 丰富的资源配置系统
@@ -124,14 +124,6 @@ npm run server
 
 将路由地址修改为 `system` 即可进入，如: https://www.nav3.cn/#/light 修改为 https://www.nav3.cn/#/system
 
-## 书签导入
-
-自动检测满足三级分类导航，其他一律设为未分类：
-
-![](https://raw.githubusercontent.com/xjh22222228/public/gh-pages/nav/import.png)
-
-浏览器打开 [chrome://bookmarks/](chrome://bookmarks/) 导出书签得到 html 文件, 接着从导航网站后台导入即可。
-
 ## 升级
 
 将你的仓库克隆下来执行以下命令
@@ -143,7 +135,7 @@ git fetch upstream main
 git merge upstream/main --allow-unrelated-histories --no-edit
 git push
 
-# 或者执行
+# 如果安装了node只需执行
 npm run update
 ```
 
@@ -170,23 +162,6 @@ yarn start
 # 打包
 yarn build
 ```
-
-## 贡献
-
-Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), men.
-
-<a href="https://github.com/YutHelloWorld">
-  <img src="https://avatars1.githubusercontent.com/u/20860159?s=460&v=4" width="30px" height="30px" />
-</a>
-<a href="https://github.com/JJJTHuang">
-  <img src="https://avatars3.githubusercontent.com/u/22817432?s=460&v=4" width="30px" height="30px" />
-</a>
-<a href="https://github.com/Fechin">
-  <img src="https://avatars1.githubusercontent.com/u/2541482?s=460&v=4" width="30px" height="30px" />
-</a>
-<a href="https://github.com/setdiaoyong">
-  <img src="https://avatars1.githubusercontent.com/u/62551864?s=460&v=4" width="30px" height="30px" />
-</a>
 
 ## 建议
 

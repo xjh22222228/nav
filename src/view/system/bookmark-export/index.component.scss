@@ -1,4 +1,7 @@
 .book-wrapper {
-  cursor: pointer;
   text-align: center;
+  .logo,
+  p {
+    cursor: pointer;
+  }
 }

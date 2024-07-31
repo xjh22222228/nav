@@ -78,7 +78,6 @@ const zhCN: Record<string, string> = {
   _addTag: '添加分类',
   _addWeb: '添加网站',
   _clickEdit: '点击编辑',
-  _importChrome: '从Chrome书签导入',
   _allContentMsg1: '1、所有数据设置完毕后点击 “同步到远端”，拖拽表格进行排序',
   _allContentMsg2: '2、网站分类需手动维护,',
   _updateLogo: '更换LOGO',
@@ -124,7 +123,7 @@ const zhCN: Record<string, string> = {
   _tagSettings: '标签设置',
   _websiteMang: '网站管理',
   _addRow: '新增一条',
-  _bookImportTip: `<p>支持大部分主流浏览器基于webkit内核，若导入失败表示暂不支持</p><p>自动检测满足三级分类导航，其他一律设为未分类</p>`,
+  _bookImportTip: `<p>支持大部分主流浏览器，若导入失败表示暂不支持</p><p>自动检测满足三级分类导航，其他一律设为未分类</p>`,
   _engineName: '引擎名称',
   _status: '状态',
   _isDisable: '是否禁用',
@@ -214,7 +213,7 @@ const zhCN: Record<string, string> = {
   _menuCollapse: '菜单默认收起',
   _retro: '复古',
   _accessTimeout: '爬取超时(秒)',
-  _accessTimeoutTip: '爬取网站指定秒数无响应跳过',
+  _accessTimeoutTip: '爬取网站指定秒数无响应跳过，数字越大成功率越高，但是越慢',
 }
 
 export default zhCN

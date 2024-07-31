@@ -142,7 +142,7 @@ export class CreateWebComponent {
       this.validateForm.get('desc')!.setValue(res['description'])
     }
     if (res['status'] === false) {
-      this.message.error('自动抓取失败，请手动写入')
+      this.message.error(`自动抓取失败，请手动填写：${res['message']}`)
     }
     this.getting = false
   }
