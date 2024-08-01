@@ -11,7 +11,7 @@ class Alert {
     })
 
     event.on('NOTIFICATION', (props: any) => {
-      notification.create(props.type, props.title, props.content)
+      notification.create(props.type, props.title, props.content, props.config)
     })
   }
 }
