@@ -79,6 +79,7 @@ import WebpComponent from '../view/app/default/app.component'
 import VipAuthComponent from '../view/system/vip-auth/index.component'
 
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
+import { ServiceCommonService } from 'src/services/common'
 
 import {
   CheckOutline,
@@ -178,7 +179,7 @@ const icons: IconDefinition[] = [
     BrowserModule,
     AppRoutingModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }, ServiceCommonService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 // 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 import { Component, Input } from '@angular/core'
-import { getCDN } from 'src/services'
+import { getCDN } from 'src/api'
 
 @Component({
   selector: 'app-logo',

@@ -13,7 +13,7 @@ import {
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { createFile, saveUserCollect } from 'src/services'
+import { createFile, saveUserCollect } from 'src/api'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagList, tagMap } from 'src/store'
 import event from 'src/utils/mitt'

@@ -4,7 +4,7 @@
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { verifyToken, updateFileContent, createBranch } from 'src/services'
+import { verifyToken, updateFileContent, createBranch } from 'src/api'
 import { setToken, removeToken, removeWebsite } from 'src/utils/user'
 import { $t } from 'src/locale'
 

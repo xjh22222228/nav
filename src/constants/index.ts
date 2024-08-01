@@ -22,4 +22,5 @@ export const STORAGE_KEY_MAP = {
   language: 'language',
   total: 'total',
   authCode: 'AUTH_CODE',
+  sideCollapsed: 'SIDE_COLLAPSED',
 }

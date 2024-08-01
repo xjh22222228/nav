@@ -1,34 +1,45 @@
 <section class="super-xjh dark-bg">
-  <nz-spin nzSimple *ngIf="sliceMax === 0" class="position-center" />
+  <nz-spin
+    nzSimple
+    *ngIf="serviceCommon.sliceMax === 0"
+    class="position-center"
+  />
 
   <header class="sheader dark-bg">
     <div class="headerbox">
       <div class="hitem">
-        <img class="logo" [src]="LOGO_CDN" />
-        <span class="title dark-white">{{ settings.superTitle || title }}</span>
+        <img class="logo" [src]="serviceCommon.settings.favicon" />
+        <span class="title dark-white">{{
+          serviceCommon.settings.superTitle || serviceCommon.title
+        }}</span>
       </div>
 
       <div class="topnav dark-scrollbar">
         <div
           *ngFor="
-            let item of websiteList.slice(0, overIndex);
+            let item of serviceCommon.websiteList.slice(
+              0,
+              serviceCommon.overIndex
+            );
             index as i;
-            trackBy: trackByItem
+            trackBy: serviceCommon.trackByItem
           "
-          (click)="handleCilckTopMenu(i)"
-          [class.active]="page === i"
-          [class.dark-text-active]="page === i"
+          (click)="serviceCommon.handleCilckTopNav(i)"
+          [class.active]="serviceCommon.page === i"
+          [class.dark-text-active]="serviceCommon.page === i"
           class="hitem over-item dark-text"
         >
           {{ item.title }}
         </div>
         <!-- More -->
         <app-web-more-menu
-          *ngIf="overIndex < websiteList.length"
-          [data]="websiteList.slice(overIndex, 99999)"
-          [index]="overIndex"
-          [page]="page"
-          (onClick)="handleCilckTopMenu($event)"
+          *ngIf="serviceCommon.overIndex < serviceCommon.websiteList.length"
+          [data]="
+            serviceCommon.websiteList.slice(serviceCommon.overIndex, 99999)
+          "
+          [index]="serviceCommon.overIndex"
+          [page]="serviceCommon.page"
+          (onClick)="serviceCommon.handleCilckTopNav($event)"
           class="flex-center"
         />
       </div>
@@ -38,17 +49,17 @@
   <div class="main-box">
     <div
       class="left dark-bg dark-border-color dark-scrollbar"
-      *ngIf="websiteList[page]"
+      *ngIf="serviceCommon.websiteList[serviceCommon.page]"
     >
       <div
         class="bar-item dark-text dark-hover ellipsis"
-        [class.active]="id === i"
-        [class.dark-item-active]="id === i"
-        (click)="handleSidebarNav(i)"
+        [class.active]="serviceCommon.id === i"
+        [class.dark-item-active]="serviceCommon.id === i"
+        (click)="serviceCommon.handleSidebarNav(i)"
         *ngFor="
-          let item of websiteList[page].nav;
+          let item of serviceCommon.websiteList[serviceCommon.page].nav;
           index as i;
-          trackBy: trackByItem
+          trackBy: serviceCommon.trackByItem
         "
       >
         <img *ngIf="item.icon" class="sideicon" [src]="item.icon" />
@@ -58,34 +69,49 @@
 
     <div
       class="middle dark-bg"
-      [class.noads]="settings.superImages.length <= 0"
+      [class.noads]="serviceCommon.settings.superImages.length <= 0"
     >
       <div class="search-t dark-border-color">
         <app-search-engine size="small"></app-search-engine>
         <div class="bar dark-scrollbar">
           <div
             class="bar-item"
-            *ngFor="let item of currentList; index as i; trackBy: trackByItem"
-            [class.active]="selectedIndex === i"
+            *ngFor="
+              let item of serviceCommon.currentList;
+              index as i;
+              trackBy: serviceCommon.trackByItem
+            "
+            [class.active]="serviceCommon.selectedIndex === i"
             [class.none]="!item.title"
-            (click)="handleCheckThree(i)"
+            (click)="serviceCommon.handleCheckThree(i)"
           >
             {{ item.title }}
           </div>
         </div>
       </div>
 
-      <div *ngIf="currentList[selectedIndex]?.nav?.length; else noData">
+      <div
+        *ngIf="
+          serviceCommon.currentList[serviceCommon.selectedIndex]?.nav?.length;
+          else noData
+        "
+      >
         <app-card
           *ngFor="
-            let el of currentList[selectedIndex].nav;
+            let el of serviceCommon.currentList[serviceCommon.selectedIndex]
+              .nav;
             index as j;
-            trackBy: trackByItemWeb
+            trackBy: serviceCommon.trackByItemWeb
           "
-          [indexs]="[page, id, selectedIndex, j]"
-          [cardStyle]="settings.superCardStyle"
+          [indexs]="[
+            serviceCommon.page,
+            serviceCommon.id,
+            serviceCommon.selectedIndex,
+            j
+          ]"
+          [cardStyle]="serviceCommon.settings.superCardStyle"
           [dataSource]="el"
-          [searchKeyword]="searchKeyword"
+          [searchKeyword]="serviceCommon.searchKeyword"
         ></app-card>
       </div>
       <ng-template #noData>
@@ -95,19 +121,25 @@
       <div
         class="apply"
         *ngIf="
-          currentList.length &&
-          currentList[0].title &&
-          (isLogin || settings.allowCollect)
+          serviceCommon.currentList.length &&
+          serviceCommon.currentList[0].title &&
+          (serviceCommon.isLogin || serviceCommon.settings.allowCollect)
         "
       >
         <span class="appbtn" (click)="openCreateWebModal()">{{
-          isLogin ? $t('_add') : $t('_apply')
+          serviceCommon.isLogin ? $t('_add') : $t('_apply')
         }}</span>
       </div>
     </div>
 
-    <div class="right dark-scrollbar" *ngIf="settings.superImages.length > 0">
-      <div class="aditem" *ngFor="let item of settings.superImages; index as i">
+    <div
+      class="right dark-scrollbar"
+      *ngIf="serviceCommon.settings.superImages.length > 0"
+    >
+      <div
+        class="aditem"
+        *ngFor="let item of serviceCommon.settings.superImages; index as i"
+      >
         <a
           [href]="item['url'] || 'javascript:void(0)'"
           [target]="item['url'] ? '_blank' : '_self'"
@@ -118,7 +150,7 @@
     </div>
   </div>
 
-  <app-footer [content]="settings.superFooterHTML"></app-footer>
+  <app-footer [content]="serviceCommon.settings.superFooterHTML"></app-footer>
 
   <app-fixbar [showCollapse]="false"> </app-fixbar>
 </section>

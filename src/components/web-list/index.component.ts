@@ -9,6 +9,7 @@ import { queryString, fuzzySearch } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { ActivatedRoute } from '@angular/router'
 import event from 'src/utils/mitt'
+import { ServiceCommonService } from 'src/services/common'
 
 let DEFAULT_WEBSITE: Array<IWebProps> = []
 
@@ -25,7 +26,10 @@ export class WebListComponent implements OnInit {
   websiteList: INavProps[] = websiteList
   dataList: IWebProps[] = []
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    public serviceCommon: ServiceCommonService
+  ) {
     const init = () => {
       this.getTopWeb()
       this.activatedRoute.queryParams.subscribe(() => {
@@ -94,9 +98,5 @@ export class WebListComponent implements OnInit {
     if (url) {
       window.open(url)
     }
-  }
-
-  trackByItemWeb(a: any, item: any) {
-    return item.id
   }
 }

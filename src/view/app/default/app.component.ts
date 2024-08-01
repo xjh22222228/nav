@@ -3,11 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
-import { Router, ActivatedRoute } from '@angular/router'
-import { queryString, fuzzySearch, matchCurrentList } from 'src/utils'
-import { INavProps, INavThreeProp } from 'src/types'
-import { websiteList, settings, tagMap } from 'src/store'
-import event from 'src/utils/mitt'
+import { ServiceCommonService } from 'src/services/common'
 
 @Component({
   selector: 'app-home',
@@ -15,74 +11,18 @@ import event from 'src/utils/mitt'
   styleUrls: ['./app.component.scss'],
 })
 export default class WebpComponent {
-  objectKeys = Object.keys
-  websiteList: INavProps[] = websiteList
-  currentList: INavThreeProp[] = []
-  id: number = 0
-  page: number = 0
   open: boolean = false
-  settings = settings
-  tagMap = tagMap
-  searchKeyword = ''
-  sliceMax = 0
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    const init = () => {
-      this.activatedRoute.queryParams.subscribe(() => {
-        const { page, id, q } = queryString()
-        this.page = page
-        this.id = id
-        this.searchKeyword = q
-        this.sliceMax = 0
-        if (q) {
-          this.currentList = fuzzySearch(this.websiteList, q)
-        } else {
-          this.currentList = matchCurrentList()
-        }
-        setTimeout(() => {
-          this.sliceMax = Number.MAX_SAFE_INTEGER
-        }, 100)
-      })
-    }
-    if (window.__FINISHED__) {
-      init()
-    } else {
-      event.on('WEB_FINISH', () => {
-        init()
-      })
-    }
-  }
+  constructor(public serviceCommon: ServiceCommonService) {}
 
   ngOnInit() {}
 
-  handleSidebarNav(index: number) {
-    const { page } = queryString()
-    this.router.navigate(['/app'], {
-      queryParams: {
-        page,
-        id: index,
-      },
-    })
-  }
-
   handleCilckNav(index: number) {
-    this.router.navigate(['/app'], {
-      queryParams: {
-        page: index,
-      },
-    })
-    this.open = !this.open
+    this.serviceCommon.handleCilckTopNav(index)
+    this.handleToggleOpen()
   }
 
   handleToggleOpen() {
     this.open = !this.open
-  }
-
-  trackByItem(a: any, item: any) {
-    return item.title
-  }
-
-  trackByItemWeb(a: any, item: any) {
-    return item.id
   }
 }

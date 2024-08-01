@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { SETTING_PATH } from 'src/constants'
-import { updateFileContent } from 'src/services'
+import { updateFileContent } from 'src/api'
 import { settings } from 'src/store'
 
 @Component({

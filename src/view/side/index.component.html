@@ -1,5 +1,9 @@
 <nz-layout class="layout">
-  <nz-spin nzSimple *ngIf="sliceMax === 0" class="position-center" />
+  <nz-spin
+    nzSimple
+    *ngIf="serviceCommon.sliceMax === 0"
+    class="position-center"
+  />
   <nz-layout>
     <nz-sider
       class="sider-compnent"
@@ -8,9 +12,9 @@
       [nzTrigger]="null"
     >
       <div class="logo dark-bg" (click)="isCollapsed = !isCollapsed">
-        <img [src]="settings.favicon" class="logo-img" />
+        <img [src]="serviceCommon.settings.favicon" class="logo-img" />
         <span class="web-title" *ngIf="!isCollapsed">{{
-          settings.sideTitle || title
+          serviceCommon.settings.sideTitle || serviceCommon.title
         }}</span>
       </div>
 
@@ -18,9 +22,9 @@
         <li
           nz-submenu
           *ngFor="
-            let item of websiteList;
+            let item of serviceCommon.websiteList;
             index as pageIdx;
-            trackBy: trackByItem
+            trackBy: serviceCommon.trackByItem
           "
           (nzOpenChange)="openMenu(item, pageIdx)"
           [nzTitle]="titleTpl"
@@ -43,22 +47,26 @@
               *ngFor="
                 let el of item.nav;
                 let idIdx = index;
-                trackBy: trackByItem
+                trackBy: serviceCommon.trackByItem
               "
-              [nzSelected]="page === pageIdx && id === idIdx"
-              (click)="handleSidebarNav(pageIdx, idIdx)"
+              [nzSelected]="
+                serviceCommon.page === pageIdx && serviceCommon.id === idIdx
+              "
+              (click)="serviceCommon.handleSidebarNav(idIdx)"
             >
               <img *ngIf="el.icon" class="sideicon fixicon" [src]="el.icon" />
               <span class="ellipsis">{{ el.title }}</span>
 
               <div
-                *ngIf="page === pageIdx && id === idIdx"
-                (click)="onCollapseAll($event)"
+                *ngIf="
+                  serviceCommon.page === pageIdx && serviceCommon.id === idIdx
+                "
+                (click)="serviceCommon.onCollapseAll($event)"
                 class="collapse-wrapper"
               >
                 <i
                   class="iconfont iconweibiaoti25 collapse"
-                  [class.active]="collapsed()"
+                  [class.active]="serviceCommon.collapsed"
                 >
                 </i>
               </div>
@@ -69,11 +77,14 @@
     </nz-sider>
 
     <nz-layout class="inner-layout">
-      <div class="search-header" *ngIf="settings.sideThemeImages.length > 0">
+      <div
+        class="search-header"
+        *ngIf="serviceCommon.settings.sideThemeImages.length > 0"
+      >
         <app-swiper
-          [images]="settings.sideThemeImages"
-          [autoplay]="settings.sideThemeAutoplay"
-          [height]="settings.sideThemeHeight"
+          [images]="serviceCommon.settings.sideThemeImages"
+          [autoplay]="serviceCommon.settings.sideThemeAutoplay"
+          [height]="serviceCommon.settings.sideThemeHeight"
         />
       </div>
 
@@ -83,18 +94,21 @@
         <app-web-list [search]="false" [overflow]="true"></app-web-list>
 
         <div class="box">
-          <div *ngIf="currentList.length > 0; else noData">
+          <div *ngIf="serviceCommon.currentList.length > 0; else noData">
             <div
               *ngFor="
-                let item of currentList.slice(0, sliceMax);
+                let item of serviceCommon.currentList.slice(
+                  0,
+                  serviceCommon.sliceMax
+                );
                 let i = index;
-                trackBy: trackByItem
+                trackBy: serviceCommon.trackByItem
               "
             >
               <div class="nav-wrapper">
                 <app-toolbar-title
                   [dataSource]="item"
-                  (onCollapse)="onCollapse(item, i)"
+                  (onCollapse)="serviceCommon.onCollapse(item, i)"
                   [index]="i"
                 >
                 </app-toolbar-title>
@@ -108,7 +122,7 @@
                     *ngFor="
                       let el of item.nav;
                       index as j;
-                      trackBy: trackByItemWeb
+                      trackBy: serviceCommon.trackByItemWeb
                     "
                     class="gutter-row"
                     nz-col
@@ -118,13 +132,15 @@
                     [nzMd]="12"
                     [nzLg]="8"
                     [nzXl]="6"
-                    [nzXXl]="settings.sideCardStyle === 'example' ? 4 : 6"
+                    [nzXXl]="
+                      serviceCommon.settings.sideCardStyle === 'example' ? 4 : 6
+                    "
                   >
                     <app-card
-                      [cardStyle]="'standard' || settings.sideCardStyle"
+                      [cardStyle]="serviceCommon.settings.sideCardStyle"
                       [dataSource]="el"
-                      [indexs]="[page, id, i, j]"
-                      [searchKeyword]="searchKeyword"
+                      [indexs]="[serviceCommon.page, serviceCommon.id, i, j]"
+                      [searchKeyword]="serviceCommon.searchKeyword"
                       class="column-border"
                     ></app-card>
                   </div>
@@ -140,11 +156,14 @@
 
         <app-footer
           className="side-footer"
-          [content]="settings.sideFooterHTML"
+          [content]="serviceCommon.settings.sideFooterHTML"
         ></app-footer>
       </nz-content>
     </nz-layout>
   </nz-layout>
 </nz-layout>
 
-<app-fixbar (onCollapse)="onCollapseAll($event)" [collapsed]="collapsed()" />
+<app-fixbar
+  (onCollapse)="serviceCommon.onCollapseAll($event)"
+  [collapsed]="serviceCommon.collapsed"
+/>

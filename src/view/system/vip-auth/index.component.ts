@@ -8,7 +8,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { setAuthCode, getAuthCode, removeAuthCode } from 'src/utils/user'
-import { getUserCollect } from 'src/services'
+import { getUserCollect } from 'src/api'
 
 @Component({
   selector: 'user-collect',

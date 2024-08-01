@@ -10,7 +10,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { parseBookmark } from 'src/utils/bookmark'
 import { INavProps, IWebProps } from 'src/types'
 import { websiteList } from 'src/store'
-import { bookmarksExport } from 'src/services'
+import { bookmarksExport } from 'src/api'
 import { saveAs } from 'file-saver'
 import { getAuthCode } from 'src/utils/user'
 

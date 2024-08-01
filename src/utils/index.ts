@@ -15,7 +15,7 @@ import * as s from '../../data/search.json'
 import { STORAGE_KEY_MAP } from 'src/constants'
 import { isLogin } from './user'
 import { SearchType } from 'src/components/search-engine/index'
-import { getIconUrl } from 'src/services'
+import { getIconUrl } from 'src/api'
 import localforage from 'localforage'
 import event from 'src/utils/mitt'
 

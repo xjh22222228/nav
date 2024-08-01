@@ -5,7 +5,7 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { createFile, getCDN } from 'src/services'
+import { createFile, getCDN } from 'src/api'
 
 @Component({
   selector: 'app-upload',

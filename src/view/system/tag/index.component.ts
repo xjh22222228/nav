@@ -7,7 +7,7 @@ import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { ITagPropValues } from 'src/types'
-import { updateFileContent } from 'src/services'
+import { updateFileContent } from 'src/api'
 import { TAG_PATH } from 'src/constants'
 import { tagList } from 'src/store'
 
