@@ -98,11 +98,11 @@
 
 #### 关于自有部署
 
-前提服务器必须能访问公网。
+前提服务器必须能访问公网。(内网收益太小，暂时不加入需求，有需要的可以众筹) 也可以将仓库设为私有
 
 将代码拉到服务器 `git clone https://github.com/xjh22222228/nav.git` 还需要安装`Node >= 18`
 
-执行 `npm i && npm i pm2 -g && npm run build` 用服务器指向导出的 `dist` 目录, 尝试访问
+执行 `npm i && && npm run build` 用服务器指向导出的 `dist` 目录, 尝试访问
 
 使用项目自带服务器 [server.js](server.js) ，需要修改文件内的服务器仓库位置
 

@@ -290,7 +290,6 @@ export function adapterWebsiteList(websiteList: any[]) {
         })
       }, 1000)
     }
-
     return
   }
 

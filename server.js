@@ -1,19 +1,19 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-// 只需要修改这两行代码
-// 拉下来的仓库位置，填写绝对路径
-const DEPLOY_DIR = '/www/nav'
 // 启动端口
 const PORT = 7777
+const DEPLOY_DIR = process.cwd()
 
-// ------------------- 下面代码不需要看 ---------------------
 const express = require('express')
-const fs = require('fs')
+const cors = require('cors')
+const fs = require('node:fs')
 const { execSync } = require('child_process')
 
 // 创建 Express 应用实例
 const app = express()
+
+app.use(express.static('dist'))
 
 app.get('/server', (req, res) => {
   console.log('正在部署...')
@@ -39,6 +39,15 @@ app.get('/server', (req, res) => {
   res?.send?.('OK')
 })
 
+app.use(
+  cors({
+    origin: '*',
+    methods: '*',
+    allowedHeaders: '*',
+  })
+)
+
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
+  console.log(`Server is running on port :${PORT}`)
+  console.log(`Directory: ${DEPLOY_DIR}`)
 })

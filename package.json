@@ -58,6 +58,7 @@
     "@angular/compiler-cli": "^18.0.1",
     "@types/jasmine": "~5.1.4",
     "@types/nprogress": "^0.2.3",
+    "cors": "^2.8.5",
     "info-web": "^0.0.23",
     "jasmine-core": "~5.1.2",
     "karma": "~6.4.3",
@@ -65,6 +66,7 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "pm2": "^5.4.2",
     "ts-node": "~10.9.2",
     "typescript": "~5.4.5"
   }
