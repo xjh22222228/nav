@@ -129,16 +129,23 @@ export class CreateWebComponent {
     if (!url) {
       return
     }
+    const iconVal = this.validateForm.get('icon')?.value
+    const titleVal = this.validateForm.get('title')?.value
+    const descVal = this.validateForm.get('desc')?.value
+    if (iconVal && titleVal && descVal) {
+      return
+    }
+
     this.getting = true
     const res = await getWebInfo(url)
-    if (res['url'] != null && !this.validateForm.get('icon')?.value) {
+    if (res['url'] != null && !iconVal) {
       this.iconUrl = res['url']
       this.validateForm.get('icon')!.setValue(this.iconUrl)
     }
-    if (res['title'] != null && !this.validateForm.get('title')?.value) {
+    if (res['title'] != null && !titleVal) {
       this.validateForm.get('title')!.setValue(res['title'])
     }
-    if (res['description'] != null && !this.validateForm.get('desc')?.value) {
+    if (res['description'] != null && !descVal) {
       this.validateForm.get('desc')!.setValue(res['description'])
     }
     if (res['status'] === false) {
