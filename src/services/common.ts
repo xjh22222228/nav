@@ -72,12 +72,12 @@ export class ServiceCommonService {
       },
     })
   }
-  handleSidebarNav(index: number) {
+  handleSidebarNav(index: number, pageIndex?: number) {
     const { page } = queryString()
-    websiteList[page].id = index
+    websiteList[pageIndex ?? page].id = index
     this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
-        page,
+        page: pageIndex ?? page,
         id: index,
         _: Date.now(),
       },
