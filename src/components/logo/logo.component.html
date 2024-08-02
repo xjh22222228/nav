@@ -1,9 +1,8 @@
 <img
-  *ngIf="url && !hasError; else noSrc"
+  *ngIf="url; else noSrc"
   [src]="url"
   class="icon dark-border-color"
   [ngStyle]="{ width: size + 'px', height: size + 'px' }"
-  (error)="onError()"
   draggable="false"
   loading="lazy"
 />

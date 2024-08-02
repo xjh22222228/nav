@@ -14,8 +14,6 @@ export class LogoComponent {
   @Input() size: number = 35
   @Input() check: boolean = true
 
-  hasError = false
-
   constructor() {}
 
   ngOnInit() {}
@@ -26,9 +24,5 @@ export class LogoComponent {
     } else {
       return this.src
     }
-  }
-
-  onError() {
-    this.hasError = true
   }
 }

@@ -59,7 +59,7 @@
     "@types/jasmine": "~5.1.4",
     "@types/nprogress": "^0.2.3",
     "cors": "^2.8.5",
-    "info-web": "^0.0.25",
+    "info-web": "^0.0.27",
     "jasmine-core": "~5.1.2",
     "karma": "~6.4.3",
     "karma-chrome-launcher": "~3.2.0",

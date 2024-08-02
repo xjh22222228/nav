@@ -30,7 +30,6 @@ export class CreateWebComponent {
   $t = $t
   isLogin: boolean = isLogin
   validateForm!: FormGroup
-  iconUrl = ''
   tagList = tagList
   uploading = false
   getting = false
@@ -110,13 +109,16 @@ export class CreateWebComponent {
     }
   }
 
+  get iconUrl() {
+    return this.validateForm.get('icon')?.value || ''
+  }
+
   onClose() {
     // @ts-ignore
     this.validateForm.get('urlArr').controls = []
     this.validateForm.reset()
     this.showModal = false
     this.detail = null
-    this.iconUrl = ''
     this.oneIndex = undefined
     this.twoIndex = undefined
     this.threeIndex = undefined
@@ -139,8 +141,7 @@ export class CreateWebComponent {
     this.getting = true
     const res = await getWebInfo(url)
     if (res['url'] != null && !iconVal) {
-      this.iconUrl = res['url']
-      this.validateForm.get('icon')!.setValue(this.iconUrl)
+      this.validateForm.get('icon')!.setValue(res['url'])
     }
     if (res['title'] != null && !titleVal) {
       this.validateForm.get('title')!.setValue(res['title'])
@@ -176,7 +177,7 @@ export class CreateWebComponent {
     fileReader.readAsDataURL(file)
     fileReader.onload = function () {
       that.uploading = true
-      that.iconUrl = this.result as string
+      that.validateForm.get('icon')!.setValue(this.result)
       const url = that.iconUrl.split(',')[1]
       const path = `nav-${Date.now()}-${file.name}`
 
