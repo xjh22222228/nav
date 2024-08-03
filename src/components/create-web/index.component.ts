@@ -245,14 +245,7 @@ export class CreateWebComponent {
     }
 
     if (this.detail) {
-      const ok = updateByWeb(
-        {
-          ...this.detail,
-          name: getTextContent(this.detail.name),
-          desc: getTextContent(this.detail.desc),
-        },
-        payload as IWebProps
-      )
+      const ok = updateByWeb(this.detail, payload as IWebProps)
       if (ok) {
         this.message.success($t('_modifySuccess'))
       } else {
@@ -265,10 +258,6 @@ export class CreateWebComponent {
         const twoIndex = this.twoIndex ?? id
         const threeIndex = this.threeIndex as number
         const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
-        const exists = w.some((item: any) => item.name === payload.name)
-        if (exists) {
-          return this.message.error(`${$t('_repeatAdd')} "${payload.name}"`)
-        }
         this.uploading = true
         if (this.isLogin) {
           w.unshift(payload as IWebProps)

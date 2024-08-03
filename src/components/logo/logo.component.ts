@@ -10,7 +10,6 @@ import { getCDN } from 'src/api'
 export class LogoComponent {
   @Input() src: string = ''
   @Input() name: string = ''
-  @Input() colour: string = '#1890ff'
   @Input() size: number = 35
   @Input() check: boolean = true
 

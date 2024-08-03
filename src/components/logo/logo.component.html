@@ -1,21 +1,9 @@
 <img
-  *ngIf="url; else noSrc"
+  *ngIf="url"
   [src]="url"
   class="icon dark-border-color"
   [ngStyle]="{ width: size + 'px', height: size + 'px' }"
   draggable="false"
   loading="lazy"
+  [alt]="name ? name[0] : ''"
 />
-
-<ng-template #noSrc>
-  <div
-    class="circle"
-    [ngStyle]="{
-      'background-color': colour,
-      width: size + 'px',
-      height: size + 'px'
-    }"
-  >
-    {{ name ? name[0] : '' }}
-  </div>
-</ng-template>

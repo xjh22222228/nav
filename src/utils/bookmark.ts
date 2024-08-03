@@ -221,8 +221,8 @@ export function parseBookmark(htmlStr: string) {
   function r(data: any[], list: any[]) {
     for (let i = 0; i < data.length; i++) {
       const item = data[i] as any
-      const title = item.title || item.name
-      const idx = list.findIndex((item) => (item.title || item.name) === title)
+      const title = item.title || item.url
+      const idx = list.findIndex((item) => (item.title || item.url) === title)
 
       // Repeat
       if (idx !== -1) {
