@@ -17,7 +17,8 @@ export class UploadComponent {
 
   $t = $t
   uploading: boolean = false
-  id = `f${Date.now()}`
+  // @ts-ignore
+  id = `f${Date.now()}${parseInt(Math.random() * 1000000)}`
 
   constructor(private message: NzMessageService) {}
 
@@ -48,8 +49,9 @@ export class UploadComponent {
         that.uploading = true
         const iconUrl = this.result as string
         const url = iconUrl.split(',')[1]
-        // file.name 方便自动带上文件后缀
-        const path = `nav-${Date.now()}-${file.name}`
+        // fileName 方便自动带上文件后缀
+        const fileName = file.name.replace(/\s/gi, '')
+        const path = `nav-${Date.now()}-${fileName}`
 
         createFile({
           branch: 'image',

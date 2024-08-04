@@ -192,8 +192,8 @@ const TAG_ID_NAME3 = 'Github'
   settings.spiderDescription ??= 'NO'
   settings.spiderTitle ??= 'NO'
   settings.spiderQty ??= 200
-  settings.spiderTimeout ??= 3
-  settings.spiderTimeout = Number(settings.spiderTimeout) || 3
+  settings.spiderTimeout ??= 6
+  settings.spiderTimeout = Number(settings.spiderTimeout) || 6
   settings.loadingCode ??= ''
 
   settings.appCardStyle ??= 'common'

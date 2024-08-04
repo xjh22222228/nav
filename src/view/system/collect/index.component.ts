@@ -92,6 +92,7 @@ export default class CollectComponent {
         oneIndex,
         twoIndex,
         threeIndex,
+        isMove: true,
       })
       event.emit('SET_CREATE_WEB', {
         detail: null,

@@ -147,25 +147,17 @@ export class MoveWebComponent {
           )
         }
         moveSites.forEach((item: any) => {
-          item.id = item.id + 'copy'
-          const exists = this.websiteList[oneSelect].nav[twoSelect].nav[
+          item.id = item.id + `${Math.random()}`
+          this.websiteList[oneSelect].nav[twoSelect].nav[
             threeSelect
-          ].nav.find((el: any) => el.name === item.name)
+          ].nav.unshift(item)
 
-          if (exists) {
-            this.message.error(`${$t('_repeatAdd')} "${item.name}"`)
-          } else {
-            this.websiteList[oneSelect].nav[twoSelect].nav[
-              threeSelect
-            ].nav.unshift(item)
-
-            if (!this.isCopy) {
-              const [a, b, c, d] = indexs
-              this.websiteList[a].nav[b].nav[c].nav.splice(d, 1)
-            }
-
-            this.message.success(`"${item.name}" ${$t('_moveSuccess')}`)
+          if (!this.isCopy) {
+            const [a, b, c, d] = indexs
+            this.websiteList[a].nav[b].nav[c].nav.splice(d, 1)
           }
+
+          this.message.success(`"${item.name}" ${$t('_moveSuccess')}`)
         })
       }
 

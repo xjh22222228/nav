@@ -3,13 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Output, EventEmitter } from '@angular/core'
-import {
-  getWebInfo,
-  getTextContent,
-  updateByWeb,
-  queryString,
-  setWebsiteList,
-} from 'src/utils'
+import { getWebInfo, updateByWeb, queryString, setWebsiteList } from 'src/utils'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -36,6 +30,7 @@ export class CreateWebComponent {
   settings = settings
   showModal = false
   detail: any = null
+  isMove = false // 提交完是否可以移动
   oneIndex: number | undefined
   twoIndex: number | undefined
   threeIndex: number | undefined
@@ -72,6 +67,7 @@ export class CreateWebComponent {
     ctx: this,
     props:
       | {
+          isMove?: boolean
           detail: IWebProps | null
           oneIndex: number | undefined
           twoIndex: number | undefined
@@ -85,8 +81,9 @@ export class CreateWebComponent {
     ctx.oneIndex = props.oneIndex
     ctx.twoIndex = props.twoIndex
     ctx.threeIndex = props.threeIndex
-    this.validateForm.get('title')!.setValue(getTextContent(detail?.name))
-    this.validateForm.get('desc')!.setValue(getTextContent(detail?.desc))
+    ctx.isMove = !!props.isMove
+    this.validateForm.get('title')!.setValue(detail?.__name__ ?? detail?.name)
+    this.validateForm.get('desc')!.setValue(detail?.__desc__ ?? detail?.desc)
     this.validateForm.get('index')!.setValue(detail?.index ?? '')
     this.validateForm.get('icon')!.setValue(detail?.icon || '')
     this.validateForm.get('url')!.setValue(detail?.url || '')
@@ -123,6 +120,7 @@ export class CreateWebComponent {
     this.twoIndex = undefined
     this.threeIndex = undefined
     this.uploading = false
+    this.isMove = false
     this.callback = Function
   }
 
@@ -263,6 +261,12 @@ export class CreateWebComponent {
           w.unshift(payload as IWebProps)
           setWebsiteList(websiteList)
           this.message.success($t('_addSuccess'))
+          if (this.isMove) {
+            event.emit('MOVE_WEB', {
+              indexs: [oneIndex, twoIndex, threeIndex, 0],
+              data: [payload],
+            })
+          }
         } else if (this.settings.allowCollect) {
           const res = await saveUserCollect({
             email: this.settings.email,
