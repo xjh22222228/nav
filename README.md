@@ -187,8 +187,6 @@ yarn build
 
 <img src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/32.png" width="600">
 
-感谢您的认可：
-
 <img src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/thank.png" width="200" />
 
 ## License

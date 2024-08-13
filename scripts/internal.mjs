@@ -83,17 +83,16 @@ const TAG_ID_NAME3 = 'Github'
   settings.favicon ??=
     'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/logo.png'
   settings.homeUrl ??= 'https://nav3.cn'
-  settings.language ??= 'zh-CN'
+  settings.language ||= 'zh-CN'
   settings.loading ??= 'random'
   settings.allowCollect ??= true
-  settings.email ??= ''
+  settings.email ||= ''
   settings.showGithub ??= true
   settings.showLanguage ??= true
   settings.showRate ??= true
   settings.title ??= '发现导航 - 精选实用导航网站'
-  settings.description ??= '发现导航 - 精选实用导航网站'
-  settings.keywords ??=
-    '导航,前端资源,社区站点,设计师,实用工具,学习资源,运营,网络安全,node.js'
+  settings.description ??= '发现导航是一个轻量级免费且强大的导航网站'
+  settings.keywords ??= '免费导航,开源导航'
   settings.theme ??= 'Light'
   settings.actionUrl ??= ''
   settings.appTheme ??= 'App'
@@ -101,9 +100,6 @@ const TAG_ID_NAME3 = 'Github'
   settings.headerContent ??= ''
   settings.footerContent ??=
     '<div>共收录${total}个网站</div><div>Copyright © 2018-${year} ${hostname}, All Rights Reserved</div>'
-  settings.baiduStatisticsUrl ??=
-    'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba'
-  settings.cnzzStatisticsUrl ??= ''
   settings.showThemeToggle ??= true
   settings.lightCardStyle ||= 'standard'
   settings.lightOverType ||= 'overflow'
@@ -133,10 +129,6 @@ const TAG_ID_NAME3 = 'Github'
   settings.superCardStyle ||= 'column'
   settings.superOverType ||= 'overflow'
   settings.superFooterHTML ||= ''
-  // 更名
-  if (settings.superCardStyle === 'super') {
-    settings.superCardStyle = 'column'
-  }
   settings.checkUrl ??= false
   settings.superTitle ??= ''
   const defImgs = [
@@ -259,6 +251,7 @@ function setWeb(nav) {
   if (!Array.isArray(nav)) return
 
   function removeIconFont(item) {
+    item.icon ||= ''
     if (typeof item.icon === 'string' && item.icon.startsWith('icon')) {
       item.icon = ''
     }
@@ -305,17 +298,13 @@ function setWeb(nav) {
                 webItem.breadcrumb = breadcrumb
                 webItem.id = id += 1
 
-                // 网站没有图标 设置为父级图标
-                if (!webItem.icon && typeof navItemItem?.icon === 'string') {
-                  webItem.icon = navItemItem.icon
-                }
-
                 // 新字段补充
                 webItem.urls ||= {}
                 webItem.rate ??= 5
                 webItem.top ??= false
                 webItem.ownVisible ??= false
                 webItem.desc ||= ''
+                webItem.icon ||= ''
 
                 delete webItem.__desc__
                 delete webItem.__name__
