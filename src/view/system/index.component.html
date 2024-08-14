@@ -6,6 +6,13 @@
           <ul>
             <li
               nz-menu-item
+              [nzSelected]="currentMenu === 'setting'"
+              (click)="goRoute('/system/setting')"
+            >
+              {{ $t('_systemSet') }}
+            </li>
+            <li
+              nz-menu-item
               [nzSelected]="currentMenu === 'web'"
               (click)="goRoute('/system/web')"
             >
@@ -46,13 +53,7 @@
             >
               {{ $t('_userCollect') }}
             </li>
-            <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'setting'"
-              (click)="goRoute('/system/setting')"
-            >
-              {{ $t('_systemSet') }}
-            </li>
+
             <li
               nz-menu-item
               [nzSelected]="currentMenu === 'vip'"
@@ -67,7 +68,6 @@
             >
               {{ $t('_webInfo') }}
             </li>
-            <!-- <li nz-menu-item [nzSelected]="currentMenu === 'angle'" (click)="goRoute('/system/angle')">{{ $t('_angleMark') }}</li> -->
             <li
               nz-menu-item
               [nzSelected]="currentMenu === 'about'"

@@ -13,6 +13,7 @@ import { getToken, userLogout, isLogin } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import Alert from './alert-event'
+import event from 'src/utils/mitt'
 
 @Component({
   selector: 'app-xiejiahe',
@@ -44,12 +45,20 @@ export class AppComponent {
 
     const token = getToken()
     if (token) {
-      verifyToken(token).catch(() => {
-        userLogout()
-        setTimeout(() => {
-          location.reload()
-        }, 3000)
-      })
+      verifyToken(token)
+        .then((res) => {
+          const data = res.data || {}
+          if (!settings.email && data.email) {
+            settings.email = data.email
+          }
+          event.emit('GITHUB_USER_INFO', data)
+        })
+        .catch(() => {
+          userLogout()
+          setTimeout(() => {
+            location.reload()
+          }, 3000)
+        })
     }
   }
 

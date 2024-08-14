@@ -7,6 +7,7 @@ import { getToken, getAuthCode } from '../utils/user'
 import config from '../../nav.config'
 import event from './mitt'
 import { VERSION } from 'src/constants'
+import { settings } from 'src/store'
 
 const DEFAULT_TITLE = document.title
 const headers: Record<string, string> = {}
@@ -71,20 +72,21 @@ const httpNavInstance = axios.create({
 })
 
 httpNavInstance.interceptors.request.use(
-  function (config) {
+  function (conf) {
     const code = getAuthCode()
     if (code) {
-      config.headers['Authorization'] = code
+      conf.headers['Authorization'] = code
     }
-    config.data = {
+    conf.data = {
       code,
       hostname: window.location.hostname,
       version: VERSION,
-      ...config.data,
+      ...config,
+      ...conf.data,
     }
     startLoad()
 
-    return config
+    return conf
   },
   function (error) {
     stopLoad()

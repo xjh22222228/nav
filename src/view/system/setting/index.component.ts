@@ -10,6 +10,7 @@ import { NzModalService } from 'ng-zorro-antd/modal'
 import { SETTING_PATH } from 'src/constants'
 import { updateFileContent } from 'src/api'
 import { settings } from 'src/store'
+import event from 'src/utils/mitt'
 
 @Component({
   selector: 'system-setting',
@@ -31,9 +32,13 @@ export default class SystemSettingComponent {
     this.validateForm = this.fb.group({
       ...settings,
     })
-  }
 
-  ngOnInit() {}
+    event.on('GITHUB_USER_INFO', (data: any) => {
+      this.validateForm
+        .get('email')!
+        .setValue(this.settings.email || data.email || '')
+    })
+  }
 
   onLogoChange(data: any) {
     this.settings.favicon = data.cdn || data.target?.value || ''

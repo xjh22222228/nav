@@ -104,7 +104,7 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: '/system/web',
+        redirectTo: '/system/setting',
       },
     ],
   },
