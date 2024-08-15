@@ -1,6 +1,7 @@
 <div
   class="container web-list dark-scrollbar"
   [class.overflowScroll]="overflow"
+  [class.large]="size === 'large'"
   *ngIf="dataList.length > 0"
 >
   <div
@@ -23,6 +24,6 @@
         [size]="35"
       ></app-logo>
     </div>
-    <div class="name dark-white" [innerHTML]="item.__name__ || item.name"></div>
+    <div class="name dark-white ellipsis" [innerHTML]="item.name"></div>
   </div>
 </div>

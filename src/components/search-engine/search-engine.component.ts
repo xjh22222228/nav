@@ -20,7 +20,7 @@ import { $t } from 'src/locale'
   styleUrls: ['./search-engine.component.scss'],
 })
 export class SearchEngineComponent {
-  @Input() size: any = 'default'
+  @Input() size: 'small' | 'default' | 'large' = 'default'
 
   $t = $t
   searchEngineList: ISearchEngineProps[] = (searchEngineList as any).default

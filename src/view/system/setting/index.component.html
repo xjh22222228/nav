@@ -820,6 +820,17 @@
       </nz-form-item>
 
       <nz-form-item>
+        <nz-form-label [nzSpan]="4">Dock</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-slider
+            formControlName="shortcutDockCount"
+            [nzMin]="0"
+            [nzMax]="15"
+          ></nz-slider>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
         <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
           $t('_showWeather')
         }}</nz-form-label>

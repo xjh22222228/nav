@@ -3,15 +3,21 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Output, EventEmitter } from '@angular/core'
-import { getWebInfo, updateByWeb, queryString, setWebsiteList } from 'src/utils'
+import {
+  getWebInfo,
+  updateByWeb,
+  queryString,
+  setWebsiteList,
+  getTextContent,
+} from 'src/utils'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { createFile, saveUserCollect } from 'src/api'
+import { saveUserCollect } from 'src/api'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagList, tagMap } from 'src/store'
-import event from 'src/utils/mitt'
 import { isLogin } from 'src/utils/user'
+import event from 'src/utils/mitt'
 
 @Component({
   selector: 'app-create-web',
@@ -82,8 +88,8 @@ export class CreateWebComponent {
     ctx.twoIndex = props.twoIndex
     ctx.threeIndex = props.threeIndex
     ctx.isMove = !!props.isMove
-    this.validateForm.get('title')!.setValue(detail?.__name__ ?? detail?.name)
-    this.validateForm.get('desc')!.setValue(detail?.__desc__ ?? detail?.desc)
+    this.validateForm.get('title')!.setValue(getTextContent(detail?.name))
+    this.validateForm.get('desc')!.setValue(getTextContent(detail?.desc))
     this.validateForm.get('index')!.setValue(detail?.index ?? '')
     this.validateForm.get('icon')!.setValue(detail?.icon || '')
     this.validateForm.get('url')!.setValue(detail?.url || '')
@@ -169,42 +175,8 @@ export class CreateWebComponent {
     this.validateForm.get('urlArr').removeAt(idx)
   }
 
-  handleUploadImage(file: File) {
-    const that = this
-    const fileReader = new FileReader()
-    fileReader.readAsDataURL(file)
-    fileReader.onload = function () {
-      that.uploading = true
-      that.validateForm.get('icon')!.setValue(this.result)
-      const url = that.iconUrl.split(',')[1]
-      const path = `nav-${Date.now()}-${file.name}`
-
-      createFile({
-        branch: 'image',
-        message: 'create image',
-        content: url,
-        isEncode: false,
-        path,
-      })
-        .then(() => {
-          that.validateForm.get('icon')!.setValue(path)
-          that.message.success($t('_uploadSuccess'))
-        })
-        .finally(() => {
-          that.uploading = false
-        })
-    }
-  }
-
-  onChangeFile(e: any) {
-    const { files } = e.target
-    if (files.length <= 0) return
-    const file = files[0]
-
-    if (!file.type.startsWith('image')) {
-      return this.message.error($t('_notUpload'))
-    }
-    this.handleUploadImage(file)
+  onChangeFile(data: any) {
+    this.validateForm.get('icon')!.setValue(data.cdn)
   }
 
   async handleOk() {

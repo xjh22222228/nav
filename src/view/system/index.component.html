@@ -6,17 +6,17 @@
           <ul>
             <li
               nz-menu-item
-              [nzSelected]="currentMenu === 'setting'"
-              (click)="goRoute('/system/setting')"
-            >
-              {{ $t('_systemSet') }}
-            </li>
-            <li
-              nz-menu-item
               [nzSelected]="currentMenu === 'web'"
               (click)="goRoute('/system/web')"
             >
               {{ $t('_websiteMang') }}
+            </li>
+            <li
+              nz-menu-item
+              [nzSelected]="currentMenu === 'setting'"
+              (click)="goRoute('/system/setting')"
+            >
+              {{ $t('_systemSet') }}
             </li>
             <li
               nz-menu-item

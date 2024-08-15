@@ -50,24 +50,24 @@ export function fuzzySearch(
         f(item.nav)
       }
 
-      if (navData.length > 50) break
-
       if (item.name) {
+        item.name = getTextContent(item.name)
+        item.desc = getTextContent(item.desc)
         const name = item.name.toLowerCase()
         const desc = item.desc.toLowerCase()
         const url = item.url.toLowerCase()
         const search = keyword.toLowerCase()
         const urls: string[] = Object.values(item.urls || {})
 
-        function searchTitle(): boolean {
+        const searchTitle = (): boolean => {
           if (name.includes(search)) {
-            let result = { ...item }
+            let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
             result.__name__ = result.name
             result.name = result.name.replace(regex, `$1`.bold())
 
-            if (!urlRecordMap[result.url]) {
-              urlRecordMap[result.url] = true
+            if (!urlRecordMap[result.id]) {
+              urlRecordMap[result.id] = true
               navData.push(result)
               return true
             }
@@ -75,10 +75,10 @@ export function fuzzySearch(
           return false
         }
 
-        function searchUrl() {
-          if (url?.includes?.(keyword.toLowerCase())) {
-            if (!urlRecordMap[item.url]) {
-              urlRecordMap[item.url] = true
+        const searchUrl = () => {
+          if (url?.includes?.(search)) {
+            if (!urlRecordMap[item.id]) {
+              urlRecordMap[item.id] = true
               navData.push(item)
               return true
             }
@@ -86,23 +86,23 @@ export function fuzzySearch(
 
           const find = urls.some((item: string) => item.includes(keyword))
           if (find) {
-            if (!urlRecordMap[item.url]) {
-              urlRecordMap[item.url] = true
+            if (!urlRecordMap[item.id]) {
+              urlRecordMap[item.id] = true
               navData.push(item)
               return true
             }
           }
         }
 
-        function searchDesc(): boolean {
+        const searchDesc = (): boolean => {
           if (desc.includes(search)) {
-            let result = { ...item }
+            let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
             result.__desc__ = result.desc
             result.desc = result.desc.replace(regex, `$1`.bold())
 
-            if (!urlRecordMap[result.url]) {
-              urlRecordMap[result.url] = true
+            if (!urlRecordMap[result.id]) {
+              urlRecordMap[result.id] = true
               navData.push(result)
               return true
             }
@@ -282,7 +282,7 @@ export function adapterWebsiteList(websiteList: any[]) {
       setTimeout(() => {
         event.emit('NOTIFICATION', {
           type: 'success',
-          title: '构建完成',
+          title: `构建完成`,
           content: date,
           config: {
             nzDuration: 0,
@@ -448,6 +448,7 @@ export function deleteByWeb(data: IWebProps) {
 
 export function updateByWeb(oldData: IWebProps, newData: IWebProps) {
   const keys = Object.keys(newData)
+  console.log(newData)
   let ok = false
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
@@ -477,9 +478,7 @@ export function updateByWeb(oldData: IWebProps, newData: IWebProps) {
 // value 可能含有标签元素，用于过滤掉标签获取纯文字
 export function getTextContent(value: string): string {
   if (!value) return ''
-  const div = document.createElement('div')
-  div.innerHTML = value
-  return div.textContent ?? ''
+  return value.replace(/<b>|<\/b>/g, '')
 }
 
 export function matchCurrentList(): INavThreeProp[] {
@@ -530,4 +529,31 @@ export function getOverIndex(selector: string): number {
 
 export function isMobile() {
   return 'ontouchstart' in window
+}
+
+export function getDateTime(): Record<string, any> {
+  const days = [
+    '星期日',
+    '星期一',
+    '星期二',
+    '星期三',
+    '星期四',
+    '星期五',
+    '星期六',
+  ]
+  const now = new Date()
+  const hours = addZero(now.getHours())
+  const minutes = addZero(now.getMinutes())
+  const seconds = addZero(now.getSeconds())
+  const month = now.getMonth() + 1
+  const date = now.getDate()
+  const day = now.getDay()
+  return {
+    hours,
+    minutes,
+    seconds,
+    month,
+    date,
+    dayText: days[day],
+  }
 }

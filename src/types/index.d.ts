@@ -141,6 +141,7 @@ export interface ISettings {
   shortcutThemeImages: Record<string, any>[]
   shortcutThemeShowWeather: boolean
   shortcutTitle: string
+  shortcutDockCount: number
 
   superTitle: string
   superOverType: OverType

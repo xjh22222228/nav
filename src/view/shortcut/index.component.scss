@@ -1,3 +1,21 @@
+@media (max-width: 1280px) {
+  .shortcut {
+    --padding: 100px;
+  }
+}
+
+@media (max-width: 968px) {
+  .shortcut {
+    --padding: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .shortcut {
+    --padding: 0;
+  }
+}
+
 .shortcut {
   position: fixed;
   top: 0;
@@ -6,12 +24,52 @@
   bottom: 0;
   display: flex;
   justify-content: center;
-  padding-top: 150px;
+  padding-top: 80px;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.02);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  user-select: none;
+  .box2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .flex1 {
+    flex: 1;
+    padding: 0 var(--padding, 200px);
+    margin-bottom: 10px;
+  }
+  .dock {
+    padding-bottom: 10px;
+    .dock-box {
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 16px;
+      height: 66px;
+      padding: 0 8px;
+      padding-bottom: 8px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 12px 0px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 16px;
+      max-width: 100%;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    .dock-item {
+      cursor: pointer;
+    }
+    .dockicon {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: all 0.12s linear;
+    }
+  }
 
   .title {
     font-size: 30px;
@@ -20,6 +78,24 @@
 
   ::ng-deep .name {
     color: #fff !important;
+  }
+  .datetime {
+    font-size: 60px;
+    color: #fff;
+    font-weight: bold;
+    line-height: 1;
+    font-family: text;
+  }
+  .days {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(249, 250, 251, 0.8);
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-family: text;
+  }
+  .margin {
+    margin: 0 10px;
   }
 }
 

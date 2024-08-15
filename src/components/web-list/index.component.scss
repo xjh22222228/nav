@@ -1,5 +1,5 @@
 @media (max-width: 768px) {
-  .container.overflowScroll {
+  .web-list.overflowScroll {
     padding: 0;
     flex-wrap: nowrap;
     overflow: hidden;
@@ -7,14 +7,27 @@
   }
 }
 
-.container {
+.web-list {
   margin-top: 15px;
   margin-bottom: 15px;
   display: flex;
   padding: 0 10px;
-  max-width: 960px;
   flex-wrap: wrap;
   gap: 25px;
+  &.large {
+    .logo {
+      ::ng-deep {
+        .icon {
+          width: 70px !important;
+          height: 70px !important;
+          border-radius: 10px !important;
+        }
+      }
+    }
+    .name {
+      width: 70px;
+    }
+  }
 
   .wrapper {
     display: flex;
@@ -30,7 +43,6 @@
   }
 
   .logo {
-    border-radius: 50%;
     margin-bottom: 3px;
   }
 
@@ -38,8 +50,5 @@
     width: 60px;
     margin-top: 5px;
     color: #666;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 }

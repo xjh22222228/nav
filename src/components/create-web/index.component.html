@@ -104,22 +104,7 @@
               *ngIf="uploading; else loading"
             ></i>
             <ng-template #loading>
-              <label id="file">
-                <i
-                  nz-icon
-                  nzType="upload"
-                  nzTheme="outline"
-                  class="cursor-pointer"
-                  [title]="$t('_upload')"
-                ></i>
-                <input
-                  type="file"
-                  name="file"
-                  (change)="onChangeFile($event)"
-                  accept="image/*"
-                  class="file-upload"
-                />
-              </label>
+              <app-upload (onChange)="onChangeFile($event)"></app-upload>
             </ng-template>
           </ng-template>
         </nz-form-control>

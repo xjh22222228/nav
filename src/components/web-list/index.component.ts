@@ -2,14 +2,14 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { websiteList } from 'src/store'
 import { IWebProps, INavProps } from 'src/types'
 import { queryString, fuzzySearch } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { ActivatedRoute } from '@angular/router'
-import event from 'src/utils/mitt'
 import { ServiceCommonService } from 'src/services/common'
+import event from 'src/utils/mitt'
 
 let DEFAULT_WEBSITE: Array<IWebProps> = []
 
@@ -18,7 +18,10 @@ let DEFAULT_WEBSITE: Array<IWebProps> = []
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class WebListComponent implements OnInit {
+export class WebListComponent {
+  @Input() type: 'dock' | '' = ''
+  @Input() dockCount = 4
+  @Input() size: 'large' | '' = ''
   @Input() max: number = 110
   @Input() search = true
   @Input() overflow = false
@@ -29,7 +32,9 @@ export class WebListComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     public serviceCommon: ServiceCommonService
-  ) {
+  ) {}
+
+  ngOnInit() {
     const init = () => {
       this.getTopWeb()
       this.activatedRoute.queryParams.subscribe(() => {
@@ -56,12 +61,11 @@ export class WebListComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
-
   // 获取置顶WEB
   getTopWeb() {
     const dataList: IWebProps[] = []
     const max = this.max
+    let dockList: IWebProps[] = []
 
     function r(nav: any) {
       if (!Array.isArray(nav)) return
@@ -91,6 +95,11 @@ export class WebListComponent implements OnInit {
         b.index == null || b.index === '' ? Number.MAX_SAFE_INTEGER : b.index
       return aIdx - bIdx
     })
+    if (this.type === 'dock') {
+      dockList = this.dataList.slice(0, this.dockCount)
+      event.emit('DOCK_LIST', dockList)
+      this.dataList = this.dataList.slice(this.dockCount)
+    }
     DEFAULT_WEBSITE = this.dataList
   }
 

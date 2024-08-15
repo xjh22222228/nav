@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://nav3.cn/?g">
-    <img src="src/assets/logo.png" width="130" />
+    <img src="src/assets/logo.svg" width="130" />
   </a>
   <br />
   <b>发现导航</b>

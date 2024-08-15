@@ -2,7 +2,7 @@
   class="shortcut dark-bg-gary2"
   [ngStyle]="{ 'background-image': 'url(' + shortcutThemeImage + ')' }"
 >
-  <div>
+  <div class="box2">
     <h1
       class="title dark-white"
       [class.color-black]="!shortcutThemeImage"
@@ -11,9 +11,49 @@
       {{ settings.shortcutTitle || settings.title }}
     </h1>
 
-    <app-search-engine />
+    <div class="datetime">{{ hours }}:{{ minutes }}:{{ seconds }}</div>
+    <div class="days">
+      <span>{{ month }}月{{ date }}日</span>
+      <span class="margin">{{ dayText }}</span>
+    </div>
 
-    <app-web-list />
+    <app-search-engine size="large" />
+
+    <div class="flex1">
+      <app-web-list
+        size="large"
+        type="dock"
+        [dockCount]="settings.shortcutDockCount"
+      />
+    </div>
+
+    <div class="dock" *ngIf="dockList.length">
+      <span
+        class="dock-box"
+        (mouseover)="handleMouseOver($event)"
+        (mouseleave)="handleMouseLeave($event)"
+        id="dock"
+      >
+        <div
+          *ngFor="
+            let item of dockList;
+            let idx = index;
+            trackBy: trackByItemWeb
+          "
+          nz-tooltip
+          [nzTooltipTitle]="item['__name__'] || item['name']"
+          class="dock-item"
+          (click)="goUrl(item['url'])"
+        >
+          <img
+            [attr.data-index]="idx"
+            [src]="item['icon']"
+            class="dockicon"
+            draggable="false"
+          />
+        </div>
+      </span>
+    </div>
   </div>
 </div>
 

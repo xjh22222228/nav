@@ -9,18 +9,83 @@ const dbPath = path.join('.', 'data', 'db.json')
 const internalPath = path.join('.', 'data', 'internal.json')
 const settingsPath = path.join('.', 'data', 'settings.json')
 const tagPath = path.join('.', 'data', 'tag.json')
+const searchPath = path.join('.', 'data', 'search.json')
 
 let internal = {}
 let db = []
 let settings = {}
 let tags = []
+let search = []
 try {
   internal = JSON.parse(fs.readFileSync(internalPath).toString() || '{}')
   db = JSON.parse(fs.readFileSync(dbPath).toString() || '[]')
   settings = JSON.parse(fs.readFileSync(settingsPath).toString() || '{}')
   tags = JSON.parse(fs.readFileSync(tagPath).toString() || '[]')
+  search = JSON.parse(fs.readFileSync(searchPath).toString() || '[]')
 } catch (error) {
   console.log('parse JSON: ', error.message)
+}
+
+{
+  if (!search.length) {
+    search = [
+      {
+        name: '站内',
+        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/logo.svg',
+        placeholder: '站内搜索',
+        blocked: false,
+        isInner: true,
+      },
+      {
+        name: '百度',
+        url: 'https://www.baidu.com/s?wd=',
+        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/baidu.svg',
+        placeholder: '百度一下',
+        blocked: false,
+        isInner: false,
+      },
+      {
+        name: 'Google',
+        url: 'https://www.google.com/search?q=',
+        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/google.svg',
+        blocked: false,
+        isInner: false,
+      },
+      {
+        name: '必应',
+        url: 'https://cn.bing.com/search?q=',
+        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/bing.svg',
+        blocked: false,
+        isInner: false,
+      },
+      {
+        name: 'GitHub',
+        url: 'https://github.com/search?q=',
+        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/github.svg',
+        placeholder: 'Search GitHub',
+        blocked: false,
+        isInner: false,
+      },
+      {
+        name: '知乎',
+        url: 'https://www.zhihu.com/search?type=content&q=',
+        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/zhihu.svg',
+        blocked: false,
+        isInner: false,
+      },
+      {
+        name: '豆瓣',
+        url: 'https://search.douban.com/book/subject_search?search_text=',
+        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/douban.svg',
+        placeholder: '书名、作者、ISBN',
+        blocked: false,
+        isInner: false,
+      },
+    ]
+    fs.writeFileSync(searchPath, JSON.stringify(search), {
+      encoding: 'utf-8',
+    })
+  }
 }
 
 const TAG_ID1 = -1
@@ -81,7 +146,7 @@ const TAG_ID_NAME3 = 'Github'
     'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/background.jpg'
 
   settings.favicon ??=
-    'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/logo.png'
+    'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/logo.svg'
   settings.homeUrl ??= 'https://nav3.cn'
   settings.language ||= 'zh-CN'
   settings.loading ??= 'random'
@@ -170,6 +235,7 @@ const TAG_ID_NAME3 = 'Github'
     },
   ]
   settings.shortcutTitle ??= ''
+  settings.shortcutDockCount ??= 6
   settings.shortcutThemeShowWeather ??= true
   settings.shortcutThemeImages ??= [
     {
@@ -243,6 +309,7 @@ export function getWebCount(websiteList) {
 const { userViewCount, loginViewCount } = getWebCount(db)
 internal.userViewCount = userViewCount < 0 ? loginViewCount : userViewCount
 internal.loginViewCount = loginViewCount
+internal.buildTime = Date.now()
 fs.writeFileSync(internalPath, JSON.stringify(internal), { encoding: 'utf-8' })
 
 // 设置网站的面包屑类目显示
@@ -303,8 +370,12 @@ function setWeb(nav) {
                 webItem.rate ??= 5
                 webItem.top ??= false
                 webItem.ownVisible ??= false
+                webItem.name ||= ''
                 webItem.desc ||= ''
                 webItem.icon ||= ''
+
+                webItem.name = webItem.name.replace(/<b>|<\/b>/g, '')
+                webItem.desc = webItem.desc.replace(/<b>|<\/b>/g, '')
 
                 delete webItem.__desc__
                 delete webItem.__name__
