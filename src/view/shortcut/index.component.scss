@@ -39,7 +39,12 @@
   .flex1 {
     flex: 1;
     padding: 0 var(--padding, 200px);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .dock {
     padding-bottom: 10px;
@@ -76,8 +81,13 @@
     font-weight: bold;
   }
 
-  ::ng-deep .name {
-    color: #fff !important;
+  ::ng-deep {
+    .name {
+      color: #fff !important;
+    }
+    .web-list {
+      gap: 40px;
+    }
   }
   .datetime {
     font-size: 60px;

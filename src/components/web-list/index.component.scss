@@ -21,6 +21,12 @@
           width: 70px !important;
           height: 70px !important;
           border-radius: 10px !important;
+          &::after {
+            font-size: 30px;
+          }
+        }
+        .circle {
+          font-size: 30px;
         }
       }
     }
@@ -42,12 +48,9 @@
     }
   }
 
-  .logo {
-    margin-bottom: 3px;
-  }
-
   .name {
     width: 60px;
+    margin-top: 3px;
     margin-top: 5px;
     color: #666;
   }

@@ -75,8 +75,7 @@ async function build() {
   const writePath = path.join('.', 'src', 'index.html')
   let t = fs.readFileSync(htmlPath).toString()
   t = t.replace(/<title>.*<\/title>/i, '')
-  t = t.replace('<link rel="icon" href="assets/logo.svg" />', '')
-  t = t.replace('<link rel="icon" href="assets/logo.svg">', '')
+  t = t.replace(/<link rel="icon"[^>]*>/, '')
   t = t.replace('<!-- nav.config -->', htmlTemplate)
   if (headerContent) {
     t = t.replace('<!-- nav.headerContent -->', headerContent)
