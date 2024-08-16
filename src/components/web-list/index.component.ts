@@ -9,6 +9,7 @@ import { queryString, fuzzySearch } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { ActivatedRoute } from '@angular/router'
 import { ServiceCommonService } from 'src/services/common'
+import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
 let DEFAULT_WEBSITE: Array<IWebProps> = []
@@ -30,6 +31,7 @@ export class WebListComponent {
   dataList: IWebProps[] = []
 
   constructor(
+    public jumpService: JumpService,
     private activatedRoute: ActivatedRoute,
     public serviceCommon: ServiceCommonService
   ) {}
@@ -101,11 +103,5 @@ export class WebListComponent {
       this.dataList = this.dataList.slice(this.dockCount)
     }
     DEFAULT_WEBSITE = this.dataList
-  }
-
-  goUrl(url: string) {
-    if (url) {
-      window.open(url)
-    }
   }
 }

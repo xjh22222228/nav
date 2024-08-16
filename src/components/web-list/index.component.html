@@ -11,7 +11,7 @@
     nz-button
     nz-tooltip
     *ngFor="let item of dataList; trackBy: serviceCommon.trackByItemWeb"
-    (click)="goUrl(item.url)"
+    (click)="jumpService.goUrl($event, item.url)"
   >
     <ng-template #titleTemplate let-thing>
       <p>{{ item.__name__ || item.name }}</p>

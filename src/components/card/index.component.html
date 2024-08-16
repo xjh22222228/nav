@@ -33,7 +33,10 @@
       >
       </nz-rate>
     </div>
-    <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
+    <div
+      (click)="jumpService.goUrl($event, dataSource.url)"
+      class="cursor-pointer"
+    >
       <div class="top">
         <app-logo
           [src]="dataSource.icon || ''"
@@ -45,15 +48,18 @@
           [title]="dataSource.__name__ || dataSource.name"
         ></div>
       </div>
-    </a>
+    </div>
     <div class="middle">
-      <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
+      <div
+        (click)="jumpService.goUrl($event, dataSource.url)"
+        class="cursor-pointer"
+      >
         <pre
           class="desc dark-text ellipsis3"
           [innerHTML]="dataSource.desc"
           [title]="dataSource.__desc__ || dataSource.desc"
         ></pre>
-      </a>
+      </div>
       <div class="tagbox">
         <div
           class="tag-item"
@@ -63,12 +69,10 @@
             ((tagMap[key] && tagMap[key].color) || '#1890ff')
           "
         >
-          <a
-            [href]="dataSource.urls?.[key] || 'javascript:void(0)'"
-            [target]="
-          dataSource.urls?.[key] ? '_blank' : ''
-        "
-            >{{ tagMap[key] && tagMap[key].name }}</a
+          <span
+            (click)="jumpService.goUrl($event, dataSource.urls?.[key])"
+            class="cursor-pointer"
+            >{{ tagMap[key] && tagMap[key].name }}</span
           >
         </div>
       </div>
@@ -137,12 +141,10 @@
   </div>
 
   <!-- example style -->
-  <a
-    [href]="dataSource.url"
-    target="_blank"
-    rel="noreferer noopener"
+  <div
     class="container example2 dark-bg dark-white dark-shadow"
     *ngSwitchCase="'example'"
+    (click)="jumpService.goUrl($event, dataSource.url)"
   >
     <span
       nz-icon
@@ -177,7 +179,7 @@
         ></pre>
       </div>
     </div>
-  </a>
+  </div>
 
   <!-- common style -->
   <div
@@ -185,7 +187,10 @@
     *ngSwitchCase="'common'"
   >
     <div class="item-list">
-      <a [href]="dataSource.url" target="_blank">
+      <div
+        (click)="jumpService.goUrl($event, dataSource.url)"
+        class="cursor-pointer"
+      >
         <div class="top">
           <app-logo
             [src]="dataSource.icon || ''"
@@ -212,12 +217,12 @@
               'background-color: ' +
               ((tagMap[key] && tagMap[key].color) || '#1890ff')
             "
-            (click)="handleJump($event, dataSource.urls?.[key])"
+            (click)="jumpService.goUrl($event, dataSource.urls?.[key])"
           >
             {{ tagMap[key] && tagMap[key].name }}
           </div>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 
@@ -246,7 +251,10 @@
         ></span
       >
     </div>
-    <a [href]="dataSource.url" target="_blank" rel="noreferer noopener">
+    <div
+      (click)="jumpService.goUrl($event, dataSource.url)"
+      class="cursor-pointer"
+    >
       <div class="title-bar">
         <app-logo
           [src]="dataSource.icon || ''"
@@ -262,7 +270,7 @@
           [innerHTML]="dataSource.desc"
         ></pre>
       </div>
-    </a>
+    </div>
 
     <div class="bottom-bar">
       <div class="tagbox">

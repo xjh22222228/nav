@@ -44,7 +44,7 @@
           nz-tooltip
           [nzTooltipTitle]="item['__name__'] || item['name']"
           class="dock-item"
-          (click)="goUrl(item['url'])"
+          (click)="jumpService.goUrl($event, item['url'])"
         >
           <img
             [attr.data-index]="idx"

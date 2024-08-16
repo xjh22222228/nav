@@ -5,6 +5,7 @@ import { Component } from '@angular/core'
 import { isDark as isDarkFn, getDateTime } from 'src/utils'
 import { settings } from 'src/store'
 import { IWebProps } from 'src/types'
+import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -26,7 +27,7 @@ export default class ShortcutComponent {
   dockList: IWebProps[] = []
   iconSize: number = 0
 
-  constructor() {
+  constructor(public jumpService: JumpService) {
     event.on('EVENT_DARK', (isDark: any) => {
       this.isDark = isDark
     })
@@ -110,12 +111,6 @@ export default class ShortcutComponent {
 
   ngOnDestroy() {
     clearTimeout(this.timer)
-  }
-
-  goUrl(url: string) {
-    if (url) {
-      window.open(url)
-    }
   }
 
   trackByItemWeb(a: any, item: any) {

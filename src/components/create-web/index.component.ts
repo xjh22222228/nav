@@ -131,32 +131,40 @@ export class CreateWebComponent {
   }
 
   async onUrlBlur(e: any) {
-    const url = e.target?.value
+    let url = e.target?.value
     if (!url) {
       return
     }
-    const iconVal = this.validateForm.get('icon')?.value
-    const titleVal = this.validateForm.get('title')?.value
-    const descVal = this.validateForm.get('desc')?.value
-    if (iconVal && titleVal && descVal) {
-      return
-    }
+    try {
+      // test url
+      if (url[0] === '!') {
+        url = url.slice(1)
+      }
+      new URL(url)
 
-    this.getting = true
-    const res = await getWebInfo(url)
-    if (res['url'] != null && !iconVal) {
-      this.validateForm.get('icon')!.setValue(res['url'])
-    }
-    if (res['title'] != null && !titleVal) {
-      this.validateForm.get('title')!.setValue(res['title'])
-    }
-    if (res['description'] != null && !descVal) {
-      this.validateForm.get('desc')!.setValue(res['description'])
-    }
-    if (res['status'] === false) {
-      this.message.error(`自动抓取失败，请手动填写：${res['message']}`)
-    }
-    this.getting = false
+      const iconVal = this.validateForm.get('icon')?.value
+      const titleVal = this.validateForm.get('title')?.value
+      const descVal = this.validateForm.get('desc')?.value
+      if (iconVal && titleVal && descVal) {
+        return
+      }
+
+      this.getting = true
+      const res = await getWebInfo(url)
+      if (res['url'] != null && !iconVal) {
+        this.validateForm.get('icon')!.setValue(res['url'])
+      }
+      if (res['title'] != null && !titleVal) {
+        this.validateForm.get('title')!.setValue(res['title'])
+      }
+      if (res['description'] != null && !descVal) {
+        this.validateForm.get('desc')!.setValue(res['description'])
+      }
+      if (res['status'] === false) {
+        this.message.error(`自动抓取失败，请手动填写：${res['message']}`)
+      }
+      this.getting = false
+    } catch (error) {}
   }
 
   addMoreUrl() {

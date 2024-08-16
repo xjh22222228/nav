@@ -43,6 +43,16 @@ let seoTemplate = `
 }" id="META-NAV" style="z-index:-1;position:fixed;top:-10000vh;left:-10000vh;">
 `
 
+function correctURL(url) {
+  if (!url) {
+    return url
+  }
+  if (url[0] === '!') {
+    return url.slice(1)
+  }
+  return url
+}
+
 async function buildSeo() {
   function r(navList) {
     for (let value of navList) {
@@ -52,12 +62,15 @@ async function buildSeo() {
       if (value.name) {
         seoTemplate += `<h3>${value.name || title}</h3><p>${
           value.desc || description
-        }</p><a href="${value.url || ''}"></a>`
+        }</p><a href="${correctURL(value.url || '')}"></a>`
       }
 
       if (value.urls && typeof value.urls === 'object') {
         for (let k in value.urls) {
-          seoTemplate += `<a href="${value.urls[k] || ''}"></a>`
+          const url = correctURL(value.urls[k] || '')
+          if (url) {
+            seoTemplate += `<a href="${url}"></a>`
+          }
         }
       }
     }
@@ -155,7 +168,9 @@ let errorUrlCount = 0
       const item = items[i]
       if (item) {
         requestPromises.push(
-          getWebInfo(item.url, { timeout: settings.spiderTimeout * 1000 })
+          getWebInfo(correctURL(item.url), {
+            timeout: settings.spiderTimeout * 1000,
+          })
         )
       }
     }
@@ -167,9 +182,9 @@ let errorUrlCount = 0
       const item = items[idx]
       const res = promises[i].value
       console.log(
-        `${idx}：${res.status ? '正常' : `疑似异常: ${res.errorMsg}`} ${
-          item.url
-        }`
+        `${idx}：${
+          res.status ? '正常' : `疑似异常: ${res.errorMsg}`
+        } ${correctURL(item.url)}`
       )
       if (settings.checkUrl) {
         if (!res.status) {
@@ -181,7 +196,9 @@ let errorUrlCount = 0
         if (settings.spiderIcon === 'ALWAYS' && res.iconUrl) {
           item.icon = res.iconUrl
           console.log(
-            `更新图标：${item.url}: "${item.icon}" => "${res.iconUrl}"`
+            `更新图标：${correctURL(item.url)}: "${item.icon}" => "${
+              res.iconUrl
+            }"`
           )
         } else if (
           settings.spiderIcon === 'EMPTY' &&
@@ -190,13 +207,17 @@ let errorUrlCount = 0
         ) {
           item.icon = res.iconUrl
           console.log(
-            `更新图标：${item.url}: "${item.icon}" => "${res.iconUrl}"`
+            `更新图标：${correctURL(item.url)}: "${item.icon}" => "${
+              res.iconUrl
+            }"`
           )
         }
 
         if (settings.spiderTitle === 'ALWAYS' && res.title) {
           console.log(
-            `更新标题：${item.url}: "${item.title}" => "${res.title}"`
+            `更新标题：${correctURL(item.url)}: "${item.title}" => "${
+              res.title
+            }"`
           )
           item.name = res.title
         } else if (
@@ -205,14 +226,18 @@ let errorUrlCount = 0
           res.title
         ) {
           console.log(
-            `更新标题：${item.url}: "${item.title}" => "${res.title}"`
+            `更新标题：${correctURL(item.url)}: "${item.title}" => "${
+              res.title
+            }"`
           )
           item.name = res.title
         }
 
         if (settings.spiderDescription === 'ALWAYS' && res.description) {
           console.log(
-            `更新描述：${item.url}: "${item.desc}" => "${res.description}"`
+            `更新描述：${correctURL(item.url)}: "${item.desc}" => "${
+              res.description
+            }"`
           )
           item.desc = res.description
         } else if (
@@ -221,7 +246,9 @@ let errorUrlCount = 0
           res.description
         ) {
           console.log(
-            `更新描述：${item.url}: "${item.desc}" => "${res.description}"`
+            `更新描述：${correctURL(item.url)}: "${item.desc}" => "${
+              res.description
+            }"`
           )
           item.desc = res.description
         }

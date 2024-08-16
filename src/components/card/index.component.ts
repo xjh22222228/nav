@@ -3,7 +3,6 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, OnInit, Input } from '@angular/core'
-import { NzMessageService } from 'ng-zorro-antd/message'
 import { isLogin } from 'src/utils/user'
 import {
   setWebsiteList,
@@ -14,6 +13,7 @@ import {
 import { INavProps, IWebProps, ICardType } from 'src/types'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagMap } from 'src/store'
+import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -36,7 +36,7 @@ export class CardComponent implements OnInit {
   copyPathDone = false
   tagMap = tagMap
 
-  constructor(private message: NzMessageService) {}
+  constructor(public jumpService: JumpService) {}
 
   ngOnInit(): void {}
 
@@ -84,15 +84,6 @@ export class CardComponent implements OnInit {
       indexs: this.indexs,
       data: [this.dataSource],
     })
-  }
-
-  handleJump(e: any, url?: string) {
-    e.stopPropagation()
-    e.preventDefault()
-    if (!url) {
-      return
-    }
-    window.open(url)
   }
 
   get getRate() {
