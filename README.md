@@ -71,13 +71,7 @@
 - [https://faxian.vercel.app/](https://faxian.vercel.app/)
 - [https://xjh22222228.github.io/nav-web/](https://xjh22222228.github.io/nav-web/)
 
-![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/1.png)
-![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/8.png)
-![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/3.png)
-![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/4.png)
-![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/6.png)
-![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/9.png)
-![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/7.png)
+![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/preview.gif)
 
 ## 可以干嘛
 

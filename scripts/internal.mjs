@@ -17,8 +17,8 @@ let settings = {}
 let tags = []
 let search = []
 try {
-  internal = JSON.parse(fs.readFileSync(internalPath).toString() || '{}')
   db = JSON.parse(fs.readFileSync(dbPath).toString() || '[]')
+  internal = JSON.parse(fs.readFileSync(internalPath).toString() || '{}')
   settings = JSON.parse(fs.readFileSync(settingsPath).toString() || '{}')
   tags = JSON.parse(fs.readFileSync(tagPath).toString() || '[]')
   search = JSON.parse(fs.readFileSync(searchPath).toString() || '[]')

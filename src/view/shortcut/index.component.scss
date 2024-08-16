@@ -24,13 +24,17 @@
   bottom: 0;
   display: flex;
   justify-content: center;
-  padding-top: 80px;
+  padding-top: 20px;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.02);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   user-select: none;
+  transition: all 0.1s linear;
+  &.hasComponent {
+    padding-top: 80px;
+  }
   .box2 {
     width: 100%;
     display: flex;
