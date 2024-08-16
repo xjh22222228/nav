@@ -31,7 +31,7 @@ try {
     search = [
       {
         name: '站内',
-        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/logo.svg',
+        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg',
         placeholder: '站内搜索',
         blocked: false,
         isInner: true,
@@ -146,7 +146,7 @@ const TAG_ID_NAME3 = 'Github'
     'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/background.jpg'
 
   settings.favicon ??=
-    'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/logo.svg'
+    'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg'
   settings.homeUrl ??= 'https://nav3.cn'
   settings.language ||= 'zh-CN'
   settings.loading ??= 'random'
