@@ -17,6 +17,10 @@ export class JumpService {
     }
 
     const self = url[0] === '!'
-    window.open(url, self ? '_self' : '_blank')
+    if (self) {
+      window.open(url.slice(1), '_self')
+    } else {
+      window.open(url)
+    }
   }
 }
