@@ -134,6 +134,14 @@ export async function bookmarksExport(data: any) {
   })
 }
 
+export async function getUserInfo(data?: Record<string, any>) {
+  return httpNav.post('/api/info/get', data)
+}
+
+export async function updateUserInfo(data?: Record<string, any>) {
+  return httpNav.post('/api/info/update', data)
+}
+
 export function getCDN(path: string, branch = 'image') {
   if (isGitee()) {
     return `https://gitee.com/${authorName}/${repoName}/raw/${branch}/${path}`

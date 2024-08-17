@@ -5,10 +5,8 @@
 import { Component } from '@angular/core'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { NzModalService } from 'ng-zorro-antd/modal'
 import { setAuthCode, getAuthCode, removeAuthCode } from 'src/utils/user'
-import { getUserCollect } from 'src/api'
+import { getUserInfo, updateUserInfo } from 'src/api'
 
 @Component({
   selector: 'user-collect',
@@ -20,22 +18,22 @@ export default class VipAuthComponent {
   submitting: boolean = false
   isPermission = !!getAuthCode()
   authCode = ''
+  url = ''
 
-  constructor(
-    private message: NzMessageService,
-    private modal: NzModalService,
-    private notification: NzNotificationService
-  ) {}
+  constructor(private message: NzMessageService) {}
 
   ngOnInit() {
-    this.getUserCollect()
+    this.getUserInfo()
   }
 
-  getUserCollect() {
+  getUserInfo() {
     this.submitting = true
-    getUserCollect()
+    getUserInfo()
       .then((res: any) => {
         this.isPermission = !!res.data.success
+        if (res.data.success) {
+          this.url = res.data.data.url
+        }
       })
       .finally(() => {
         this.submitting = false
@@ -48,7 +46,23 @@ export default class VipAuthComponent {
     }
 
     setAuthCode(this.authCode)
-    this.getUserCollect()
+    this.getUserInfo()
+  }
+
+  handleSave() {
+    this.submitting = true
+    updateUserInfo({
+      url: this.url,
+    })
+      .then((res) => {
+        if (res.data.success) {
+          this.getUserInfo()
+          this.message.success(this.$t('_saveSuccess'))
+        }
+      })
+      .finally(() => {
+        this.submitting = false
+      })
   }
 
   logoutAuthCode() {

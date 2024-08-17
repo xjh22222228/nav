@@ -132,6 +132,12 @@ npm run server
 
 ## 升级
 
+#### 自动
+
+[点这里安装 Pull](https://github.com/apps/pull) ， 只要有升级会自动给你的仓库提交 `Pull Requests` 点击合并即可。
+
+#### 手动
+
 将你的仓库克隆下来执行以下命令
 
 ```bash
