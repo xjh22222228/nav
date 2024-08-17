@@ -60,7 +60,7 @@ async function buildSeo() {
         r(value.nav)
       }
       if (value.name) {
-        seoTemplate += `<div>${value.name}</div${
+        seoTemplate += `<div>${value.name}</div>${
           value.desc ? `<p>${value.desc}</p>` : ''
         }`
       }
