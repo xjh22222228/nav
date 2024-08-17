@@ -6,6 +6,7 @@
   background-color: #eee;
   border-radius: 3px;
   object-fit: cover;
+  transition: all 0.12s linear;
   &::after {
     content: '' attr(alt);
     z-index: 2;

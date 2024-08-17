@@ -2,7 +2,7 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
 import { Component } from '@angular/core'
-import { isDark as isDarkFn, getDateTime } from 'src/utils'
+import { isDark as isDarkFn, getDateTime, isMobile } from 'src/utils'
 import { settings } from 'src/store'
 import { IWebProps } from 'src/types'
 import { JumpService } from 'src/services/jump'
@@ -15,6 +15,7 @@ import event from 'src/utils/mitt'
 })
 export default class ShortcutComponent {
   settings = settings
+  isMobile = isMobile()
   isDark: boolean = isDarkFn()
   shortcutThemeImage = settings.shortcutThemeImages?.[0]?.['src']
   timer: any = null
@@ -50,7 +51,7 @@ export default class ShortcutComponent {
 
   handleMouseLeave(e: any) {
     try {
-      const imgs = e.currentTarget.querySelectorAll('.dockicon')
+      const imgs = e.currentTarget.querySelectorAll('.common-icon')
       if (this.iconSize !== 0) {
         imgs.forEach((el: HTMLImageElement) => {
           el.style.width = `${this.iconSize}px`
@@ -61,36 +62,46 @@ export default class ShortcutComponent {
   }
 
   handleMouseOver(e: any) {
-    try {
-      const imgs = e.currentTarget.querySelectorAll('.dockicon')
-      const nodeName = e.target.nodeName
+    if (this.isMobile) {
+      return
+    }
 
-      if (nodeName === 'IMG') {
+    try {
+      const imgs = e.currentTarget.querySelectorAll('.common-icon')
+      if (!imgs.length) {
+        return
+      }
+
+      const nodeName = e.target.nodeName
+      if (nodeName === 'APP-LOGO' || nodeName === 'div') {
         if (this.iconSize === 0) {
-          this.iconSize = e.target.clientWidth
+          this.iconSize = imgs[0].clientWidth
         }
         const index = Number(e.target.dataset.index)
         imgs.forEach((el: HTMLImageElement) => {
           el.style.width = `${this.iconSize}px`
           el.style.height = `${this.iconSize}px`
         })
-        e.target.style.width = `${this.iconSize * 1.4}px`
-        e.target.style.height = `${this.iconSize * 1.4}px`
+        const largeSize = this.iconSize * 1.4
+        imgs[index].style.width = `${largeSize}px`
+        imgs[index].style.height = `${largeSize}px`
+        const middleSize = this.iconSize * 1.2
+        const smallSize = this.iconSize * 1.04
         if (imgs[index - 1]) {
-          imgs[index - 1].style.width = `${this.iconSize * 1.2}px`
-          imgs[index - 1].style.height = `${this.iconSize * 1.2}px`
+          imgs[index - 1].style.width = `${middleSize}px`
+          imgs[index - 1].style.height = `${middleSize}px`
         }
         if (imgs[index - 2]) {
-          imgs[index - 2].style.width = `${this.iconSize * 1.04}px`
-          imgs[index - 2].style.height = `${this.iconSize * 1.04}px`
+          imgs[index - 2].style.width = `${smallSize}px`
+          imgs[index - 2].style.height = `${smallSize}px`
         }
         if (imgs[index + 1]) {
-          imgs[index + 1].style.width = `${this.iconSize * 1.2}px`
-          imgs[index + 1].style.height = `${this.iconSize * 1.2}px`
+          imgs[index + 1].style.width = `${middleSize}px`
+          imgs[index + 1].style.height = `${middleSize}px`
         }
         if (imgs[index + 2]) {
-          imgs[index + 2].style.width = `${this.iconSize * 1.04}px`
-          imgs[index + 2].style.height = `${this.iconSize * 1.04}px`
+          imgs[index + 2].style.width = `${smallSize}px`
+          imgs[index + 2].style.height = `${smallSize}px`
         }
       }
     } catch (error) {}

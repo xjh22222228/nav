@@ -60,18 +60,9 @@ async function buildSeo() {
         r(value.nav)
       }
       if (value.name) {
-        seoTemplate += `<h3>${value.name || title}</h3><p>${
-          value.desc || description
-        }</p><a href="${correctURL(value.url || '')}"></a>`
-      }
-
-      if (value.urls && typeof value.urls === 'object') {
-        for (let k in value.urls) {
-          const url = correctURL(value.urls[k] || '')
-          if (url) {
-            seoTemplate += `<a href="${url}"></a>`
-          }
-        }
+        seoTemplate += `<div>${value.name}</div${
+          value.desc ? `<p>${value.desc}</p>` : ''
+        }`
       }
     }
   }

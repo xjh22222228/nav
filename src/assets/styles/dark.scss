@@ -106,10 +106,6 @@
     // fix-bar
     &-action-hover:hover {
       background-color: #c9d1d9 !important;
-
-      & > * {
-        color: #fff !important;
-      }
     }
   }
 }

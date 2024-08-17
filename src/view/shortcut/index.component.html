@@ -33,7 +33,6 @@
         class="dock-box"
         (mouseover)="handleMouseOver($event)"
         (mouseleave)="handleMouseLeave($event)"
-        id="dock"
       >
         <div
           *ngFor="
@@ -44,13 +43,16 @@
           nz-tooltip
           [nzTooltipTitle]="item['__name__'] || item['name']"
           class="dock-item"
+          [attr.data-index]="idx"
           (click)="jumpService.goUrl($event, item['url'])"
         >
-          <img
+          <app-logo
+            style="display: block"
             [attr.data-index]="idx"
-            [src]="item['icon']"
-            class="dockicon"
-            draggable="false"
+            [src]="item['icon'] || ''"
+            [name]="item['name']"
+            [size]="0"
+            [radius]="10"
           />
         </div>
       </span>

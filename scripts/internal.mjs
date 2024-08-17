@@ -147,7 +147,6 @@ const TAG_ID_NAME3 = 'Github'
 
   settings.favicon ??=
     'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg'
-  settings.homeUrl ??= 'https://nav3.cn'
   settings.language ||= 'zh-CN'
   settings.loading ??= 'random'
   settings.allowCollect ??= true
@@ -183,7 +182,7 @@ const TAG_ID_NAME3 = 'Github'
       height: null,
     },
   ]
-  settings.simThemeDesc ||=
+  settings.simThemeDesc ??=
     '这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活'
   settings.simCardStyle ||= 'standard'
   settings.simOverType ||= 'overflow'
@@ -345,14 +344,8 @@ function setWeb(nav) {
             formatDate(navItemItem)
 
             navItemItem.nav.sort((a, b) => {
-              const aIdx =
-                a.index == null || a.index === ''
-                  ? Number.MAX_SAFE_INTEGER
-                  : a.index
-              const bIdx =
-                b.index == null || b.index === ''
-                  ? Number.MAX_SAFE_INTEGER
-                  : b.index
+              const aIdx = a.index == null || a.index === '' ? 100000 : a.index
+              const bIdx = b.index == null || b.index === '' ? 100000 : b.index
               return aIdx - bIdx
             })
             if (navItemItem.nav) {

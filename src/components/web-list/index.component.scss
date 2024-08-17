@@ -1,9 +1,13 @@
 @media (max-width: 768px) {
-  .web-list.overflowScroll {
-    padding: 0;
-    flex-wrap: nowrap;
-    overflow: hidden;
-    overflow-x: auto;
+  .web-list {
+    &.overflowScroll {
+      padding: 0;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      overflow-x: auto;
+    }
+    gap: 10px !important;
+    --iconWidth: 50px;
   }
 }
 
@@ -17,16 +21,14 @@
   &.large {
     .logo {
       ::ng-deep {
-        .icon {
-          width: 70px !important;
-          height: 70px !important;
+        .common-icon {
+          width: var(--iconWidth, 70px) !important;
+          height: var(--iconWidth, 70px) !important;
           border-radius: 10px !important;
+          font-size: 30px;
           &::after {
             font-size: 30px;
           }
-        }
-        .circle {
-          font-size: 30px;
         }
       }
     }
@@ -42,7 +44,6 @@
     align-items: center;
     flex-direction: column;
     transition: transform 0.1s ease-in;
-
     &:hover {
       transform: translateY(-2px);
     }

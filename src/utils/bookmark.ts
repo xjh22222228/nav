@@ -32,7 +32,7 @@ function getUrl(node: Element) {
 }
 
 function getIcon(node: Element) {
-  return node.getAttribute('icon') || null
+  return node.getAttribute('icon') || ''
 }
 
 const nowCratedAt = getCreatedAt()

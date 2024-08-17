@@ -5,7 +5,7 @@
 import { Component, Input } from '@angular/core'
 import { websiteList } from 'src/store'
 import { IWebProps, INavProps } from 'src/types'
-import { queryString, fuzzySearch } from 'src/utils'
+import { queryString, fuzzySearch, isMobile } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { ActivatedRoute } from '@angular/router'
 import { ServiceCommonService } from 'src/services/common'
@@ -91,16 +91,15 @@ export class WebListComponent {
 
     // @ts-ignore
     this.dataList = dataList.sort((a: any, b: any) => {
-      const aIdx =
-        a.index == null || a.index === '' ? Number.MAX_SAFE_INTEGER : a.index
-      const bIdx =
-        b.index == null || b.index === '' ? Number.MAX_SAFE_INTEGER : b.index
+      const aIdx = a.index == null || a.index === '' ? 100000 : a.index
+      const bIdx = b.index == null || b.index === '' ? 100000 : b.index
       return aIdx - bIdx
     })
     if (this.type === 'dock') {
-      dockList = this.dataList.slice(0, this.dockCount)
+      const dockCount = isMobile() ? 5 : this.dockCount
+      dockList = this.dataList.slice(0, dockCount)
       event.emit('DOCK_LIST', dockList)
-      this.dataList = this.dataList.slice(this.dockCount)
+      this.dataList = this.dataList.slice(dockCount)
     }
     DEFAULT_WEBSITE = this.dataList
   }

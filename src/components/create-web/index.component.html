@@ -23,12 +23,7 @@
           $t('_webLink')
         }}</nz-form-label>
         <nz-form-control [nzSpan]="20" [nzErrorTip]="$t('_requiredLink')">
-          <input
-            formControlName="url"
-            nz-input
-            placeholder="https://github.com/xjh22222228/nav"
-            (blur)="onUrlBlur($event)"
-          />
+          <input formControlName="url" nz-input (blur)="onUrlBlur($event)" />
         </nz-form-control>
       </nz-form-item>
 
@@ -54,7 +49,7 @@
             formControlName="index"
             nz-input
             type="number"
-            placeholder="-1024"
+            placeholder="默认100000"
           />
         </nz-form-control>
       </nz-form-item>

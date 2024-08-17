@@ -13,6 +13,17 @@
 @media (max-width: 768px) {
   .shortcut {
     --padding: 0;
+    --iconWidth: 35px;
+    --dockHeight: 51px;
+    .datetime {
+      font-size: 40px !important;
+    }
+    .title {
+      font-size: 22px !important;
+    }
+    .days {
+      font-size: 16px !important;
+    }
   }
 }
 
@@ -55,7 +66,7 @@
     .dock-box {
       background-color: rgba(255, 255, 255, 0.4);
       border-radius: 16px;
-      height: 66px;
+      height: var(--dockHeight, 66px);
       padding: 0 8px;
       padding-bottom: 8px;
       box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 12px 0px;
@@ -71,12 +82,14 @@
     .dock-item {
       cursor: pointer;
     }
-    .dockicon {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: all 0.12s linear;
+    ::ng-deep {
+      .icon {
+        background-color: transparent;
+      }
+      .common-icon {
+        width: var(--iconWidth, 50px);
+        height: var(--iconWidth, 50px);
+      }
     }
   }
 

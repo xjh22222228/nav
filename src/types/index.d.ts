@@ -32,13 +32,13 @@ export interface ITagProp {
 }
 
 export interface IWebProps {
-  __name__?: string | undefined // 搜索原name值
-  __desc__?: string | undefined
+  __name__?: string // 搜索原name值
+  __desc__?: string
   id: string | number
   name: string
   desc: string
   url: string
-  icon?: string | null
+  icon?: string
   createdAt?: string
   rate?: number // 0-5
   top?: boolean

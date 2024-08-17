@@ -23,4 +23,5 @@ export const STORAGE_KEY_MAP = {
   total: 'total',
   authCode: 'AUTH_CODE',
   sideCollapsed: 'SIDE_COLLAPSED',
+  fixbarOpen: 'FIXBAR_OPEN',
 }

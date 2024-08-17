@@ -1,4 +1,4 @@
-<div class="fixbar">
+<div class="fixbar" [class.openFixbar]="open">
   <div
     class="wrapper dark-bg dark-border-color dark-action-hover"
     nz-dropdown
@@ -26,7 +26,10 @@
       (click)="handleSync()"
       [class.rotate]="syncLoading"
     >
-      <i class="iconfont iconwinfo-icon-tongbu"></i>
+      <i
+        class="iconfont iconwinfo-icon-tongbu font-bold"
+        style="color: red"
+      ></i>
     </div>
   </span>
 
@@ -112,8 +115,23 @@
 
   <div
     class="wrapper dark-bg dark-border-color dark-action-hover"
+    (click)="handleOpen()"
+  >
+    <i
+      class="iconfont font-bold"
+      [class.iconxiaolian]="open"
+      [class.iconxiaolian-02]="!open"
+      style="color: rgb(231, 127, 81); font-size: 22px"
+    ></i>
+  </div>
+
+  <div
+    class="wrapper dark-bg dark-border-color dark-action-hover"
     (click)="goTop()"
   >
-    <i class="iconfont iconjiantouarrow483 arrow"></i>
+    <i
+      class="iconfont iconjiantouarrow483 arrow"
+      style="color: rgb(61, 136, 82)"
+    ></i>
   </div>
 </div>

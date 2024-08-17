@@ -1,8 +1,12 @@
 <img
-  *ngIf="url; else noSrc"
-  [src]="url"
-  class="icon"
-  [ngStyle]="{ width: size + 'px', height: size + 'px' }"
+  *ngIf="src; else noSrc"
+  [src]="src"
+  class="icon common-icon"
+  [ngStyle]="{
+    width: size === 0 ? '' : size + 'px',
+    height: size === 0 ? '' : size + 'px',
+    borderRadius: radius + 'px'
+  }"
   draggable="false"
   loading="lazy"
   [alt]="name ? name[0] : ''"
@@ -10,10 +14,10 @@
 
 <ng-template #noSrc>
   <div
-    class="circle"
+    class="circle common-icon"
     [ngStyle]="{
-      width: size + 'px',
-      height: size + 'px'
+      width: size === 0 ? '' : size + 'px',
+      height: size === 0 ? '' : size + 'px'
     }"
   >
     {{ name ? name[0] : '' }}

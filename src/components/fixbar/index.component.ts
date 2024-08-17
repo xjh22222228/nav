@@ -39,6 +39,7 @@ export class FixbarComponent {
   isDark: boolean = isDarkFn()
   syncLoading = false
   isLogin = isLogin
+  open = localStorage.getItem(STORAGE_KEY_MAP.fixbarOpen) === 'true'
   themeList = [
     {
       name: $t('_switchTo') + ' Super',
@@ -137,6 +138,11 @@ export class FixbarComponent {
 
   goSystemPage() {
     this.router.navigate(['system'])
+  }
+
+  handleOpen() {
+    this.open = !this.open
+    localStorage.setItem(STORAGE_KEY_MAP.fixbarOpen, String(this.open))
   }
 
   handleSync() {
