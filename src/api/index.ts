@@ -204,8 +204,15 @@ export async function delUserCollect(data?: Record<string, any>) {
   return httpNav.post('/api/delete', data)
 }
 
-export async function getIconUrl(url: string) {
-  return httpNav.post('/api/icon', { url })
+export async function getWebInfo(url: string) {
+  try {
+    const res = await httpNav.post('/api/icon', { url })
+    return {
+      ...res.data,
+    }
+  } catch {
+    return {}
+  }
 }
 
 export async function bookmarksExport(data: any) {

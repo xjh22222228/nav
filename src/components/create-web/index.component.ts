@@ -3,12 +3,12 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Output, EventEmitter } from '@angular/core'
-import { getWebInfo, queryString, getTextContent } from 'src/utils'
+import { queryString, getTextContent } from 'src/utils'
 import { setWebsiteList, updateByWeb } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { saveUserCollect } from 'src/api'
+import { saveUserCollect, getWebInfo } from 'src/api'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagList, tagMap } from 'src/store'
 import { isLogin } from 'src/utils/user'
@@ -155,9 +155,6 @@ export class CreateWebComponent {
       if (res['description'] != null && !descVal) {
         this.validateForm.get('desc')!.setValue(res['description'])
       }
-      if (res['status'] === false) {
-        this.message.error(`自动抓取失败，请手动填写：${res['message']}`)
-      }
       this.getting = false
     } catch (error) {}
   }
@@ -256,9 +253,7 @@ export class CreateWebComponent {
               },
             },
           })
-          if (res.data.success === false) {
-            this.message.error(res.data.message)
-          } else {
+          if (res.data.success) {
             this.message.error($t('_waitHandle'))
           }
         }

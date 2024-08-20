@@ -13,7 +13,6 @@ import {
 import { STORAGE_KEY_MAP } from 'src/constants'
 import { isLogin } from './user'
 import { SearchType } from 'src/components/search-engine/index'
-import { getIconUrl } from 'src/api'
 import { websiteList, searchEngineList } from 'src/store'
 
 export function randomInt(max: number) {
@@ -259,18 +258,6 @@ export function isDark(): boolean {
   }
 
   return Boolean(Number(storageVal))
-}
-
-export async function getWebInfo(url: string): Promise<Record<string, any>> {
-  try {
-    const res = await getIconUrl(url)
-    return {
-      ...res.data,
-    }
-  } catch (error) {}
-  return {
-    status: false,
-  }
 }
 
 export function copyText(el: Event, text: string): Promise<boolean> {

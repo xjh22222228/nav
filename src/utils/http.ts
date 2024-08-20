@@ -7,6 +7,7 @@ import config from '../../nav.config.json'
 import event from './mitt'
 import { getToken, getAuthCode } from '../utils/user'
 import { VERSION } from 'src/constants'
+import { isLogin } from 'src/utils/user'
 
 const DEFAULT_TITLE = document.title
 const headers: Record<string, string> = {}
@@ -49,15 +50,6 @@ httpInstance.interceptors.request.use(
 httpInstance.interceptors.response.use(
   function (res) {
     stopLoad()
-    if (res.data?.success === false) {
-      const status = res?.data?.status || ''
-      const errorMsg = res?.data?.message || ''
-      event.emit('NOTIFICATION', {
-        type: 'error',
-        title: 'Error：' + status,
-        content: errorMsg,
-      })
-    }
     return res
   },
   function (error) {
@@ -90,6 +82,7 @@ httpNavInstance.interceptors.request.use(
       code,
       hostname: window.location.hostname,
       version: VERSION,
+      isLogin,
       ...config,
       ...conf.data,
     }
