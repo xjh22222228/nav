@@ -113,7 +113,7 @@
 
 自有部署一直不是发现导航的需求目标，但陆续有人问，决定从`v8.8.0`版本开始支持！
 
-[成为我们的会员](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/support2.png)
+[成为我们的会员](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/support2.svg)
 
 #### Fork vs 自有部署
 

@@ -70,6 +70,7 @@ export function setWeb(nav) {
 
   function removeIconFont(item) {
     delete item.collapsed
+    delete item.id
     item.icon ||= ''
     if (typeof item.icon === 'string' && item.icon.startsWith('icon')) {
       item.icon = ''

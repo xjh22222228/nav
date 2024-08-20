@@ -336,6 +336,7 @@
   </nz-form-item>
 
   <button
+    *ngIf="isSelfDevelop"
     nz-button
     nzType="primary"
     [nzLoading]="submitting"
