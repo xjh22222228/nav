@@ -1,8 +1,14 @@
-<div id="xiejiahe">
-  <app-icon-git></app-icon-git>
-
-  <router-outlet></router-outlet>
-
-  <app-create-web />
-  <app-move-web *ngIf="isLogin" />
+<div class="fetchIng flex-center" *ngIf="fetchIng; else done">
+  <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
 </div>
+
+<ng-template #done>
+  <div id="xiejiahe">
+    <app-icon-git></app-icon-git>
+
+    <router-outlet></router-outlet>
+
+    <app-create-web />
+    <app-move-web *ngIf="isLogin" />
+  </div>
+</ng-template>

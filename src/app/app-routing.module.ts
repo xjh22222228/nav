@@ -4,7 +4,7 @@
 
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import config from '../../nav.config'
+import config from '../../nav.config.json'
 import { settings } from 'src/store'
 import LightComponent from '../view/light/index.component'
 import SuperComponent from '../view/super/index.component'

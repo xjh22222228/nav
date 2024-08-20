@@ -255,13 +255,13 @@
 
   <div class="divider"></div>
   <h2 class="title">{{ $t('_spiderRule') }}</h2>
-  <div class="mb10">
+  <div class="mb10" *ngIf="!isSelfDevelop">
     <b>{{ $t('_spiderTip') }}</b>
   </div>
   <div class="mb10">
     <b>{{ $t('_spiderNetTip') }}</b>
   </div>
-  <div class="mb10">
+  <div class="mb10" *ngIf="!isSelfDevelop">
     <b>{{ $t('_spiderBuildTip') }}</b>
   </div>
 
@@ -334,6 +334,15 @@
       <p class="mt10">{{ $t('_accessTimeoutTip') }}</p>
     </nz-form-control>
   </nz-form-item>
+
+  <button
+    nz-button
+    nzType="primary"
+    [nzLoading]="submitting"
+    (click)="handleSpider()"
+  >
+    点我爬取更新信息，先保存系统设置在点
+  </button>
 
   <div class="divider"></div>
 
@@ -935,10 +944,8 @@
       nzType="primary"
       [nzLoading]="submitting"
       (click)="handleSubmit()"
-      style="margin-right: 20px"
     >
       {{ $t('_save') }}
     </button>
-    <p class="save-tip">{{ $t('_setSaveTip') }}</p>
   </div>
 </form>

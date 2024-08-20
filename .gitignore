@@ -45,3 +45,5 @@ Thumbs.db
 
 # build output
 src/index.html
+nav.config.json
+_upload

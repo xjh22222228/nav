@@ -3,13 +3,8 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Output, EventEmitter } from '@angular/core'
-import {
-  getWebInfo,
-  updateByWeb,
-  queryString,
-  setWebsiteList,
-  getTextContent,
-} from 'src/utils'
+import { getWebInfo, queryString, getTextContent } from 'src/utils'
+import { setWebsiteList, updateByWeb } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'

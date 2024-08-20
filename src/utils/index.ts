@@ -10,18 +10,11 @@ import {
   INavProps,
   ISearchEngineProps,
 } from '../types'
-import * as db from '../../data/db.json'
-import * as s from '../../data/search.json'
 import { STORAGE_KEY_MAP } from 'src/constants'
 import { isLogin } from './user'
 import { SearchType } from 'src/components/search-engine/index'
 import { getIconUrl } from 'src/api'
-import localforage from 'localforage'
-import event from 'src/utils/mitt'
-
-export let websiteList: INavProps[] = []
-
-const searchEngineList: ISearchEngineProps[] = (s as any).default
+import { websiteList, searchEngineList } from 'src/store'
 
 export function randomInt(max: number) {
   return Math.floor(Math.random() * max)
@@ -230,103 +223,6 @@ export function queryString(): {
   }
 }
 
-export function adapterWebsiteList(websiteList: any[]) {
-  function filterOwn(item: IWebProps) {
-    if (item.ownVisible && !isLogin) {
-      return false
-    }
-    return true
-  }
-  websiteList = websiteList.filter(filterOwn)
-  for (let i = 0; i < websiteList.length; i++) {
-    const item = websiteList[i]
-
-    if (Array.isArray(item.nav)) {
-      item.nav = item.nav.filter(filterOwn)
-      adapterWebsiteList(item.nav)
-    }
-  }
-
-  return websiteList
-}
-
-;(async () => {
-  let data = adapterWebsiteList((db as any).default)
-  const metaEl = document.getElementById('META-NAV')
-  const date = metaEl?.dataset?.['date'] || ''
-  const storageDate = window.localStorage.getItem(STORAGE_KEY_MAP.s_url)
-
-  // 检测到网站更新，清除缓存本地保存记录失效
-  if (storageDate !== date) {
-    const whiteList = [
-      STORAGE_KEY_MAP.token,
-      STORAGE_KEY_MAP.isDark,
-      STORAGE_KEY_MAP.authCode,
-    ]
-    const len = window.localStorage.length
-    for (let i = 0; i < len; i++) {
-      const key = window.localStorage.key(i) as string
-      if (whiteList.includes(key)) {
-        continue
-      }
-      window.localStorage.removeItem(key)
-    }
-    window.localStorage.setItem(STORAGE_KEY_MAP.s_url, date)
-    localforage.removeItem(STORAGE_KEY_MAP.website)
-    data.forEach((item) => {
-      websiteList.push(item)
-    })
-    event.emit('WEB_FINISH')
-    window.__FINISHED__ = true
-    if (isLogin) {
-      setTimeout(() => {
-        event.emit('NOTIFICATION', {
-          type: 'success',
-          title: `构建完成`,
-          content: date,
-          config: {
-            nzDuration: 0,
-          },
-        })
-      }, 1000)
-    }
-    return
-  }
-
-  try {
-    const dbData: any =
-      (await localforage.getItem(STORAGE_KEY_MAP.website)) || data
-    dbData.forEach((item: any) => {
-      websiteList.push(item)
-    })
-    event.emit('WEB_FINISH')
-    window.__FINISHED__ = true
-  } catch {}
-})()
-
-export function setWebsiteList(v?: INavProps[]) {
-  v = v || websiteList
-  localforage.setItem(STORAGE_KEY_MAP.website, v)
-}
-
-export function toggleCollapseAll(wsList?: INavProps[]): boolean {
-  wsList ||= websiteList
-
-  const { page, id } = queryString()
-  const collapsed = !wsList[page].nav[id].collapsed
-
-  wsList[page].nav[id].collapsed = collapsed
-
-  wsList[page].nav[id].nav.map((item) => {
-    item.collapsed = collapsed
-    return item
-  })
-
-  setWebsiteList(wsList)
-
-  return collapsed
-}
-
 export function setLocation() {
   const { page, id } = queryString()
 
@@ -420,59 +316,6 @@ export async function isValidImg(url: string): Promise<boolean> {
     }
     document.body.append(img)
   })
-}
-
-export function deleteByWeb(data: IWebProps) {
-  function f(arr: any[]) {
-    for (let i = 0; i < arr.length; i++) {
-      const item = arr[i]
-      if (item.name) {
-        if (item.id === data.id) {
-          arr.splice(i, 1)
-          const { q } = queryString()
-          q && window.location.reload()
-          break
-        }
-        continue
-      }
-
-      if (Array.isArray(item.nav)) {
-        f(item.nav)
-      }
-    }
-  }
-
-  f(websiteList)
-  setWebsiteList(websiteList)
-}
-
-export function updateByWeb(oldData: IWebProps, newData: IWebProps) {
-  const keys = Object.keys(newData)
-  console.log(newData)
-  let ok = false
-  function f(arr: any[]) {
-    for (let i = 0; i < arr.length; i++) {
-      const item = arr[i]
-      if (item.name) {
-        if (item.id === oldData.id) {
-          ok = true
-          for (let k of keys) {
-            item[k] = newData[k]
-          }
-          break
-        }
-        continue
-      }
-
-      if (Array.isArray(item.nav)) {
-        f(item.nav)
-      }
-    }
-  }
-
-  f(websiteList)
-  setWebsiteList(websiteList)
-  return ok
 }
 
 // value 可能含有标签元素，用于过滤掉标签获取纯文字

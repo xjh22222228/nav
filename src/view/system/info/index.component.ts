@@ -6,8 +6,8 @@
 import { Component } from '@angular/core'
 import { $t } from 'src/locale'
 import { getToken } from 'src/utils/user'
-import config from '../../../../nav.config'
 import { VERSION } from 'src/constants'
+import config from '../../../../nav.config.json'
 
 @Component({
   selector: 'system-info',

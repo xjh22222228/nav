@@ -4,7 +4,7 @@
 
 import { Component } from '@angular/core'
 import { $t } from 'src/locale'
-import { setWebsiteList } from '../../utils'
+import { setWebsiteList } from 'src/utils/web'
 import { websiteList } from '../../store'
 import { INavProps, INavTwoProp, INavThreeProp, IWebProps } from '../../types'
 import { NzMessageService } from 'ng-zorro-antd/message'

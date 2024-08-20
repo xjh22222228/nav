@@ -3,11 +3,10 @@
 
 import axios from 'axios'
 import NProgress from 'nprogress'
-import { getToken, getAuthCode } from '../utils/user'
-import config from '../../nav.config'
+import config from '../../nav.config.json'
 import event from './mitt'
+import { getToken, getAuthCode } from '../utils/user'
 import { VERSION } from 'src/constants'
-import { settings } from 'src/store'
 
 const DEFAULT_TITLE = document.title
 const headers: Record<string, string> = {}
@@ -15,9 +14,10 @@ const headers: Record<string, string> = {}
 const httpInstance = axios.create({
   timeout: 60000 * 3,
   baseURL:
-    config.provider === 'Gitee'
+    config.address ||
+    (config.provider === 'Gitee'
       ? 'https://gitee.com/api/v5'
-      : 'https://api.github.com',
+      : 'https://api.github.com'),
   headers,
 })
 
@@ -49,6 +49,15 @@ httpInstance.interceptors.request.use(
 httpInstance.interceptors.response.use(
   function (res) {
     stopLoad()
+    if (res.data?.success === false) {
+      const status = res?.data?.status || ''
+      const errorMsg = res?.data?.message || ''
+      event.emit('NOTIFICATION', {
+        type: 'error',
+        title: 'Error：' + status,
+        content: errorMsg,
+      })
+    }
     return res
   },
   function (error) {

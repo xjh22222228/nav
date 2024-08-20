@@ -4,12 +4,8 @@
 
 import { Component, OnInit, Input } from '@angular/core'
 import { isLogin } from 'src/utils/user'
-import {
-  setWebsiteList,
-  copyText,
-  deleteByWeb,
-  getTextContent,
-} from 'src/utils'
+import { copyText, getTextContent } from 'src/utils'
+import { setWebsiteList, deleteByWeb } from 'src/utils/web'
 import { INavProps, IWebProps, ICardType } from 'src/types'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagMap } from 'src/store'

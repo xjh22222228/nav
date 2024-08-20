@@ -35,6 +35,10 @@ export default class SystemTagComponent {
   }
 
   handleAdd() {
+    const isEmpty = this.tagList.some((item) => !item.name.trim())
+    if (isEmpty) {
+      return
+    }
     this.incrementId += 1
     this.tagList.unshift({
       id: this.incrementId,

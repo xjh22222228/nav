@@ -7,12 +7,11 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { websiteList, settings } from 'src/store'
 import {
   queryString,
-  toggleCollapseAll,
   fuzzySearch,
   matchCurrentList,
-  setWebsiteList,
   getOverIndex,
 } from 'src/utils'
+import { setWebsiteList, toggleCollapseAll } from 'src/utils/web'
 import { INavProps, INavThreeProp } from 'src/types'
 import { isLogin } from 'src/utils/user'
 import event from 'src/utils/mitt'

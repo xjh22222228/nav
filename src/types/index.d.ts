@@ -96,7 +96,6 @@ export interface ISettings {
   favicon: string
   language: 'zh-CN' | 'en'
   loading: string
-  homeUrl: string
   title: string
   description: string
   keywords: string
@@ -107,9 +106,9 @@ export interface ISettings {
   headerContent: string
   showGithub: boolean
   showLanguage: boolean
-  showCopy: Boolean | undefined
-  showShare: Boolean | undefined
-  showThemeToggle: Boolean
+  showCopy?: boolean
+  showShare?: boolean
+  showThemeToggle: boolean
   actionUrl: string | null
   checkUrl: boolean
   errorUrlCount?: number
@@ -162,13 +161,6 @@ export interface ISettings {
   spiderTimeout: number | string
 
   loadingCode: string
-}
-
-export interface IConfig {
-  gitRepoUrl: string
-  provider: 'Github' | 'Gitee'
-  branch: string
-  hashMode: boolean
 }
 
 export type internalProps = {

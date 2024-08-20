@@ -1,7 +1,7 @@
 // Copyright @ 2018-present xiejia.he. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-module.exports = {
+export default {
   loading1: `
 <style>
   @keyframes r {

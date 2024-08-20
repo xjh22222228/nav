@@ -4,7 +4,8 @@
 
 import { Component } from '@angular/core'
 import { INavProps } from 'src/types'
-import { setWebsiteList, isMobile } from 'src/utils'
+import { isMobile } from 'src/utils'
+import { setWebsiteList } from 'src/utils/web'
 import { websiteList } from 'src/store'
 import { settings } from 'src/store'
 import { $t } from 'src/locale'

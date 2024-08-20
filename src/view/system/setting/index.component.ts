@@ -6,10 +6,12 @@ import { Component } from '@angular/core'
 import { $t } from 'src/locale'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
+import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { SETTING_PATH } from 'src/constants'
-import { updateFileContent } from 'src/api'
+import { updateFileContent, spiderWeb } from 'src/api'
 import { settings } from 'src/store'
+import { isSelfDevelop } from 'src/utils/util'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -23,9 +25,11 @@ export default class SystemSettingComponent {
   submitting: boolean = false
   settings = settings
   tabActive = 0
+  isSelfDevelop = isSelfDevelop
 
   constructor(
     private fb: FormBuilder,
+    private notification: NzNotificationService,
     private message: NzMessageService,
     private modal: NzModalService
   ) {
@@ -181,6 +185,26 @@ export default class SystemSettingComponent {
       url = ''
     }
     this.settings.shortcutThemeImages[0]['src'] = url
+  }
+
+  handleSpider() {
+    if (this.submitting) {
+      return
+    }
+    this.submitting = true
+    spiderWeb()
+      .then((res) => {
+        this.notification.success(
+          `爬取完成（${res.data.time}秒）`,
+          '爬取完成并保存成功',
+          {
+            nzDuration: 0,
+          }
+        )
+      })
+      .finally(() => {
+        this.submitting = false
+      })
   }
 
   handleSubmit() {

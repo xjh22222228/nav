@@ -1,10 +1,19 @@
 // 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
-import config from '../../nav.config'
+import config from '../../nav.config.json'
 import http, { httpNav } from '../utils/http'
 import { encode } from 'js-base64'
-import { settings } from 'src/store'
+import {
+  settings,
+  websiteList,
+  tagList,
+  getTagMap,
+  searchEngineList,
+  internal,
+} from 'src/store'
+import { ISettings } from 'src/types'
+import { isSelfDevelop } from 'src/utils/util'
 
 const { gitRepoUrl } = config
 const s = gitRepoUrl.split('/')
@@ -19,15 +28,61 @@ function isGitee() {
 
 // 验证Token
 export function verifyToken(token: string) {
-  return http.get(`/users/${authorName}`, {
+  const url = isSelfDevelop ? '/api/users/verify' : `/users/${authorName}`
+  return http.get(url, {
     headers: {
       Authorization: `token ${token.trim()}`,
     },
   })
 }
 
+// 获取自有部署内容
+export function getContentes() {
+  return http.post('/api/contents/get').then((res: any) => {
+    // 清空内容
+    websiteList.splice(0, websiteList.length)
+    searchEngineList.splice(0, searchEngineList.length)
+    tagList.splice(0, tagList.length)
+
+    internal.loginViewCount = res.data.internal.loginViewCount
+    internal.userViewCount = res.data.internal.userViewCount
+    res.data.webs.forEach((item: any) => {
+      websiteList.push(item)
+    })
+    res.data.tags.forEach((item: any) => {
+      tagList.push(item)
+    })
+    res.data.search.forEach((item: any) => {
+      searchEngineList.push(item)
+    })
+    const resSettings = res.data.settings as ISettings
+    for (const k in resSettings) {
+      // @ts-ignore
+      settings[k] = resSettings[k]
+    }
+    getTagMap()
+    return res
+  })
+}
+
+// 自有部署爬取信息
+export function spiderWeb(data?: any) {
+  return http
+    .post('/api/spider', data, {
+      timeout: 0,
+    })
+    .then((res) => {
+      getContentes()
+      return res
+    })
+}
+
 // 创建分支
 export async function createBranch(branch: string) {
+  if (isSelfDevelop) {
+    return
+  }
+
   const url = isGitee()
     ? `/repos/${authorName}/${repoName}/branches`
     : `/repos/${authorName}/${repoName}/git/refs`
@@ -62,7 +117,7 @@ export function getFileContent(path: string, branch: string = DEFAULT_BRANCH) {
 
 // 更新文件内容
 type Iupdate = {
-  message: string
+  message?: string
   content: string
   path: string
   branch?: string
@@ -75,6 +130,19 @@ export async function updateFileContent({
   branch = DEFAULT_BRANCH,
   isEncode = true,
 }: Iupdate) {
+  if (isSelfDevelop) {
+    return http
+      .post('/api/contents/update', {
+        path,
+        content,
+      })
+      .then((res) => {
+        getContentes()
+        requestActionUrl()
+        return res
+      })
+  }
+
   const fileInfo = await getFileContent(path, branch)
 
   return http
@@ -101,6 +169,18 @@ export async function createFile({
   branch = DEFAULT_BRANCH,
   isEncode = true,
 }: Iupdate) {
+  if (isSelfDevelop) {
+    return http
+      .post('/api/contents/create', {
+        path,
+        content,
+      })
+      .then((res) => {
+        requestActionUrl()
+        return res
+      })
+  }
+
   const method = isGitee() ? http.post : http.put
   return method(`/repos/${authorName}/${repoName}/contents/${path}`, {
     message: `rebot(CI): ${message}`,
@@ -130,7 +210,7 @@ export async function getIconUrl(url: string) {
 
 export async function bookmarksExport(data: any) {
   return httpNav.post('/api/export', data, {
-    timeout: Number.MAX_SAFE_INTEGER,
+    timeout: 0,
   })
 }
 

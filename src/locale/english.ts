@@ -1,4 +1,6 @@
 // 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
+import { isSelfDevelop } from 'src/utils/util'
+
 const english: Record<string, string> = {
   _loading: 'Loading...',
   _webTitle: 'Discovery Navigation',
@@ -39,9 +41,11 @@ const english: Record<string, string> = {
   _prevDevTime: 'Last build time',
   _unknow: 'Unknow',
   _repeatOper: 'Please do not operate frequently',
-  _syncDataOut: 'Synchronize data to remote',
+  _syncDataOut: isSelfDevelop ? 'OK to sync' : 'Synchronize data to remote',
   _confirmSync: 'OK to sync',
-  _confirmSyncTip: 'Are you sure to synchronize all data to the remote end?',
+  _confirmSyncTip: isSelfDevelop
+    ? ''
+    : 'Are you sure to synchronize all data to the remote end?',
   _syncSuccessTip:
     'The synchronization is successful. It takes about 5 minutes to build',
   _error: 'Error',
@@ -143,8 +147,6 @@ const english: Record<string, string> = {
   _headHtml: 'Head HTML',
   _showWeather: 'Show weather',
   _weatherTip: 'Currently only the "Shortcut" theme is supported',
-  _setSaveTip:
-    'Note: after saving successfully, you need to wait at least 2 minutes for the build time to take effect!',
   _theme: 'Theme',
   _backgroundImage: 'Picture',
   _engineUrl: 'Engine URL',
@@ -181,7 +183,7 @@ const english: Record<string, string> = {
   _displaySwitchTheme: 'Display Switch Theme',
   _requestAddress: 'Request Address',
   _requestTip:
-    'Usually used for deploying self owned servers, when the save button is clicked, a GET request is sent to fill in the address',
+    'when the save button is clicked, a GET request is sent to fill in the address',
   _followPage: 'Follow Page',
   _bannerTip:
     'When the height is 0, the width and height of the image will be adaptive, and it is important to ensure that each image has the same size',

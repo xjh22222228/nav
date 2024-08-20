@@ -19,7 +19,6 @@
 <div class="mb12">
   <b>{{ $t('_buildTip') }}</b>
 </div>
-
 <nz-table #basicTable [nzData]="searchList">
   <thead>
     <tr>
@@ -32,7 +31,10 @@
     </tr>
   </thead>
   <tbody cdkDropList (cdkDropListDropped)="onDrop($event)">
-    <tr *ngFor="let data of searchList; index as idx" cdkDrag>
+    <tr
+      *ngFor="let data of searchList; index as idx; trackBy: trackByItem"
+      cdkDrag
+    >
       <td width="150px">
         <input nz-input [(ngModel)]="data.name" maxlength="10" />
       </td>

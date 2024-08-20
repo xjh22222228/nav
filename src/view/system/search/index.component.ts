@@ -28,6 +28,10 @@ export default class SystemSearchComponent {
   ) {}
 
   handleAdd() {
+    const isEmpty = this.searchList.some((item) => !item.name.trim())
+    if (isEmpty) {
+      return
+    }
     this.searchList.unshift({
       name: '',
       url: '',
@@ -79,6 +83,10 @@ export default class SystemSearchComponent {
           })
       },
     })
+  }
+
+  trackByItem(a: any, item: any) {
+    return item.name
   }
 
   onChangeUpload(path: any, idx: number) {

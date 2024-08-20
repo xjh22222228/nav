@@ -1,4 +1,6 @@
 // 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
+import { isSelfDevelop } from 'src/utils/util'
+
 const zhCN: Record<string, string> = {
   _loading: '加载中...',
   _webTitle: '发现导航',
@@ -39,10 +41,11 @@ const zhCN: Record<string, string> = {
   _prevDevTime: '上次构建时间',
   _unknow: '未知',
   _repeatOper: '请不要频繁操作',
-  _syncDataOut: '同步数据到远端',
+  _syncDataOut: isSelfDevelop ? '确定同步吗？' : '同步数据到远端',
   _confirmSync: '确定同步',
-  _confirmSyncTip:
-    '确定将所有数据同步到远端吗？（每次保存需要等待构建完成再进行下一次操作）',
+  _confirmSyncTip: isSelfDevelop
+    ? ''
+    : '确定将所有数据同步到远端吗？（每次保存需要等待构建完成再进行下一次操作）',
   _syncSuccessTip: '同步成功, 大约需要5分钟构建时间',
   _error: '错误',
   _syncFailTip: '同步失败, 请重试',
@@ -140,7 +143,6 @@ const zhCN: Record<string, string> = {
   _headHtml: '头部HTML',
   _showWeather: '显示天气',
   _weatherTip: '目前只支持 "Shortcut" 主题',
-  _setSaveTip: '注意：保存成功后至少需要等待2分钟构建时间方可生效！',
   _theme: '主题',
   _backgroundImage: '图片',
   _engineUrl: '引擎地址',
@@ -173,8 +175,7 @@ const zhCN: Record<string, string> = {
   _collectMenuView: `具体到用户收录菜单查看`,
   _displaySwitchTheme: '显示切换主题',
   _requestAddress: '请求地址',
-  _requestTip:
-    '通常用于部署自有服务器，当点击保存按钮时会发出GET请求填写的地址',
+  _requestTip: '当点击保存按钮时会发出GET请求填写的地址',
   _followPage: '跟随页面',
   _bannerTip: '当高度为0时，图片宽高会自适应，务必保证每张图片尺寸一致',
   _checkStatus: '检查网站链接状态(上述任一项更新，建议此开启，耗时相同)',

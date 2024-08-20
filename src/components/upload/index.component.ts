@@ -60,10 +60,10 @@ export class UploadComponent {
           isEncode: false,
           path,
         })
-          .then(() => {
+          .then((res) => {
             const params = {
               rawPath: path,
-              cdn: getCDN(path),
+              cdn: res?.data?.imagePath || getCDN(path),
             }
             that.onChange.emit(params)
             that.message.success($t('_uploadSuccess'))

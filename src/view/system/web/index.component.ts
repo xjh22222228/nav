@@ -12,13 +12,14 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { setWebsiteList, deleteByWeb, getTextContent } from 'src/utils'
+import { getTextContent } from 'src/utils'
+import { setWebsiteList, deleteByWeb } from 'src/utils/web'
 import { updateFileContent } from 'src/api'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
-import config from '../../../../nav.config'
 import { $t } from 'src/locale'
 import { saveAs } from 'file-saver'
 import event from 'src/utils/mitt'
+import config from '../../../../nav.config.json'
 
 @Component({
   selector: 'app-admin',

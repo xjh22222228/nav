@@ -1,27 +1,31 @@
 {
+  "gitRepoUrl": "https://github.com/xjh22222228/nav",
+  "provider": "Github",
+  "branch": "main",
+  "hashMode": false,
+  "address": "http://localhost:7777",
+  "password": "admin",
+  "port": 7777,
+  "email": "",
+  "----------------": "----------------以下字段无需处理--------------------------",
+  "================": "网站所有内容都是可以在后台系统配置的，不懂的不要擅自修改源代码，出现异常请自行处理",
   "name": "nav",
   "version": "8.7.0",
   "author": "xiejiahe",
-  "bugs": {
-    "url": "https://github.com/xjh22222228/nav/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xjh22222228/nav.git"
-  },
   "homepage": "https://github.com/xjh22222228/nav",
   "scripts": {
     "ng": "ng",
-    "start": "npm run build-internal && ng serve --port=7001",
-    "build-internal": "ts-node ./scripts/internal.mjs",
-    "setup": "npm run build-internal && tsc nav.config.ts && ts-node ./scripts/build.mjs",
+    "start": "npm run build-start && ng serve --port=7001",
+    "build-start": "ts-node ./scripts/start.mjs",
+    "setup": "npm run build-start && ts-node ./scripts/build.mjs",
     "build-gh-pages": "npm run setup && ng build --base-href ./ --index src/index.html && ts-node ./scripts/done.mjs",
     "build": "npm run setup && ng build --index src/index.html && ts-node ./scripts/done.mjs",
     "watch": "ng build --watch --configuration development",
     "update": "git pull && (git remote add upstream https://gitee.com/xiejiahe/nav.git || true) && git fetch upstream main && git merge upstream/main --allow-unrelated-histories --no-edit && git push",
     "pull": "git pull",
-    "server": "pm2 start server.js",
-    "restartServer": "pm2 restart server"
+    "server": "pm2 start server.mjs",
+    "restartServer": "pm2 restart server",
+    "stopServer": "pm2 stop server"
   },
   "private": true,
   "dependencies": {
@@ -58,6 +62,9 @@
     "@angular/compiler-cli": "^18.0.1",
     "@types/jasmine": "~5.1.4",
     "@types/nprogress": "^0.2.3",
+    "body-parser": "^1.20.2",
+    "compression": "^1.7.4",
+    "connect-history-api-fallback": "^2.0.0",
     "cors": "^2.8.5",
     "info-web": "^0.0.29",
     "jasmine-core": "~5.1.2",
