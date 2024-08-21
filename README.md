@@ -169,7 +169,7 @@ npm run update
 
 ## 开发构建
 
-NODE: >= v18
+NODE: >= v18，建议用稳定版
 
 ```bash
 # 下载
