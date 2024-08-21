@@ -4,18 +4,18 @@
   [ngStyle]="{ height: height <= 0 ? '' : height + 'px' }"
 >
   <div class="swiper-wrapper">
-    <div class="swiper-slide" *ngFor="let item of images; let i = index">
-      <a
-        [href]="item.url || 'javascript:void(0)'"
-        [target]="item.url ? '_blank' : ''"
-      >
-        <img
-          class="bgimg"
-          [class.height100]="height > 0"
-          [src]="item.src"
-          draggable="false"
-        />
-      </a>
+    <div
+      class="swiper-slide"
+      [class.cursor-pointer]="item['url']"
+      *ngFor="let item of images; let i = index"
+      (click)="jumpService.goUrl($event, item['url'])"
+    >
+      <img
+        class="bgimg"
+        [class.height100]="height > 0"
+        [src]="item.src"
+        draggable="false"
+      />
     </div>
   </div>
   <div class="swiper-pagination"></div>

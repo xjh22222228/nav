@@ -48,7 +48,7 @@
     "js-base64": "^3.7.7",
     "localforage": "^1.10.0",
     "mitt": "^3.0.1",
-    "ng-zorro-antd": "^18.0.0",
+    "ng-zorro-antd": "^18.1.1",
     "nprogress": "^0.2.0",
     "qs": "^6.12.1",
     "rough-notation": "^0.5.1",

@@ -120,9 +120,12 @@ export function setWeb(nav) {
                 webItem.rate ??= 5
                 webItem.top ??= false
                 webItem.ownVisible ??= false
+                webItem.url ||= ''
                 webItem.name ||= ''
                 webItem.desc ||= ''
                 webItem.icon ||= ''
+                webItem.url = webItem.url.trim()
+                webItem.desc = webItem.desc.trim()
 
                 webItem.name = webItem.name.replace(/<b>|<\/b>/g, '')
                 webItem.desc = webItem.desc.replace(/<b>|<\/b>/g, '')

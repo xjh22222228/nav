@@ -1,5 +1,4 @@
 // 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
-// @ts-nocheck
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 
 import { Component, Input } from '@angular/core'
@@ -9,7 +8,7 @@ import {
   queryString,
 } from '../../utils'
 import { Router } from '@angular/router'
-import * as searchEngineList from '../../../data/search.json'
+import { searchEngineList } from 'src/store'
 import { ISearchEngineProps } from '../../types'
 import { SearchType } from './index'
 import { $t } from 'src/locale'
@@ -23,7 +22,7 @@ export class SearchEngineComponent {
   @Input() size: 'small' | 'default' | 'large' = 'default'
 
   $t = $t
-  searchEngineList: ISearchEngineProps[] = (searchEngineList as any).default
+  searchEngineList: ISearchEngineProps[] = searchEngineList
   currentEngine: ISearchEngineProps = getDefaultSearchEngine()
   SearchType = SearchType
   searchTypeValue = SearchType.All
@@ -42,7 +41,7 @@ export class SearchEngineComponent {
     this.inputFocus()
 
     document.addEventListener('click', () => {
-      this.toggleEngine(null, false)
+      this.toggleEngine(undefined, false)
     })
   }
 
@@ -55,7 +54,7 @@ export class SearchEngineComponent {
     this.showEngine = typeof isShow === 'undefined' ? !this.showEngine : isShow
   }
 
-  clickEngineItem(index) {
+  clickEngineItem(index: number) {
     this.currentEngine = this.searchEngineList[index]
     this.toggleEngine()
     this.inputFocus()
@@ -65,6 +64,7 @@ export class SearchEngineComponent {
   triggerSearch() {
     if (this.currentEngine.url) {
       window.open(this.currentEngine.url + this.keyword)
+      return
     }
 
     const params = queryString()

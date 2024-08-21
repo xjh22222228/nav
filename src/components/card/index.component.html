@@ -282,14 +282,9 @@
             'background-color: ' +
             ((tagMap[key] && tagMap[key].color) || '#1890ff')
           "
+          (click)="jumpService.goUrl($event, dataSource.urls?.[key])"
         >
-          <a
-            [href]="dataSource.urls?.[key] || 'javascript:void(0)'"
-            [target]="
-            dataSource.urls?.[key] ? '_blank' : ''
-          "
-            >{{ tagMap[key] && tagMap[key].name }}</a
-          >
+          {{ tagMap[key] && tagMap[key].name }}
         </div>
 
         <span

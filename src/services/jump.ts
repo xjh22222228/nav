@@ -3,16 +3,24 @@
 // See https://github.com/xjh22222228/nav
 
 import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Injectable({
   providedIn: 'root',
 })
 export class JumpService {
+  constructor(private router: Router) {}
+
   goUrl(e: any, url: string | null | undefined) {
     e?.stopPropagation?.()
     e?.preventDefault?.()
 
     if (!url) {
+      return
+    }
+
+    if (url[0] === '@') {
+      this.router.navigate([url.slice(1)])
       return
     }
 

@@ -11,7 +11,7 @@
       [(nzCollapsed)]="isCollapsed"
       [nzTrigger]="null"
     >
-      <div class="logo dark-bg" (click)="isCollapsed = !isCollapsed">
+      <div class="logo dark-bg" (click)="handleCollapsed()">
         <img [src]="serviceCommon.settings.favicon" class="logo-img" />
         <span class="web-title" *ngIf="!isCollapsed">{{
           serviceCommon.settings.sideTitle || serviceCommon.title

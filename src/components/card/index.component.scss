@@ -190,9 +190,7 @@
     align-items: center;
     flex-wrap: wrap;
     row-gap: 5px;
-    a {
-      color: #fff;
-    }
+    color: #fff;
   }
   .tag-item {
     margin-right: 6px;
@@ -202,6 +200,7 @@
     display: flex;
     align-items: center;
     transition: all 0.1s linear;
+    cursor: pointer;
     &:hover {
       opacity: 0.8;
     }

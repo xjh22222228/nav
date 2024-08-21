@@ -23,7 +23,6 @@
         class="description dark-white"
         [innerHTML]="description | safeHtml"
       ></pre>
-      <app-search-engine />
     </div>
   </div>
 
@@ -75,6 +74,8 @@
     </nav>
 
     <aside class="site-box dark-bg">
+      <app-search-engine class="max768none" />
+
       <div *ngIf="serviceCommon.currentList.length > 0; else noData">
         <div
           *ngFor="

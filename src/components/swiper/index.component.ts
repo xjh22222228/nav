@@ -3,6 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
+import { JumpService } from 'src/services/jump'
 
 @Component({
   selector: 'app-swiper',
@@ -17,7 +18,7 @@ export class SwiperComponent {
   mySwiper: any = null
   swiperId = 'swiper'
 
-  constructor() {
+  constructor(public jumpService: JumpService) {
     this.swiperId = 'swiper' + parseInt(String(Math.random() * 1000))
   }
 

@@ -137,15 +137,11 @@
       *ngIf="serviceCommon.settings.superImages.length > 0"
     >
       <div
-        class="aditem"
+        class="aditem cursor-pointer"
         *ngFor="let item of serviceCommon.settings.superImages; index as i"
+        (click)="jumpService.goUrl($event, item['url'])"
       >
-        <a
-          [href]="item['url'] || 'javascript:void(0)'"
-          [target]="item['url'] ? '_blank' : '_self'"
-        >
-          <img class="adsimg" [src]="item['src']" />
-        </a>
+        <img class="adsimg" [src]="item['src']" />
       </div>
     </div>
   </div>

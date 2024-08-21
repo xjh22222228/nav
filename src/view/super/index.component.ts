@@ -5,6 +5,7 @@
 import { Component } from '@angular/core'
 import { $t } from 'src/locale'
 import { ServiceCommonService } from 'src/services/common'
+import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -15,7 +16,10 @@ import event from 'src/utils/mitt'
 export default class SideComponent {
   $t = $t
 
-  constructor(public serviceCommon: ServiceCommonService) {}
+  constructor(
+    public serviceCommon: ServiceCommonService,
+    public jumpService: JumpService
+  ) {}
 
   ngAfterViewInit() {
     if (this.serviceCommon.settings.superOverType === 'ellipsis') {
