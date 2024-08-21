@@ -10,7 +10,7 @@ export const SETTING_PATH = 'data/settings.json'
 
 export const SEARCH_PATH = 'data/search.json'
 
-export const VERSION = '8.8.0'
+export const VERSION = '8.8.1'
 
 export const STORAGE_KEY_MAP = {
   token: 'token',
