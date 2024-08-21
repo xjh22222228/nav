@@ -64,8 +64,8 @@ export function getWebCount(websiteList) {
 }
 
 // 设置网站的面包屑类目显示
-let id = 0 // 为每个网站设置唯一ID
 export function setWeb(nav) {
+  let id = 0 // 为每个网站设置唯一ID
   if (!Array.isArray(nav)) return
 
   function removeIconFont(item) {

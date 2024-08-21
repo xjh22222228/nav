@@ -43,9 +43,7 @@ export default class CollectComponent {
       data: this.dataList[idx],
     })
       .then((res) => {
-        if (res.data.success) {
-          this.dataList = res.data.data
-        }
+        this.dataList = res.data?.data || []
       })
       .finally(() => {
         this.submitting = false
@@ -56,10 +54,8 @@ export default class CollectComponent {
     this.submitting = true
     getUserCollect()
       .then((res: any) => {
-        this.isPermission = !!res.data.success
-        if (res.data.success && res.data.data) {
-          this.dataList = res.data.data
-        }
+        this.isPermission = true
+        this.dataList = res.data?.data || []
       })
       .finally(() => {
         this.submitting = false

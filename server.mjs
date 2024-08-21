@@ -58,10 +58,7 @@ function verifyMiddleware(req, res, next) {
 }
 
 app.get('/api/users/verify', verifyMiddleware, (req, res) => {
-  res.json({
-    status: 200,
-    message: 'OK',
-  })
+  res.json({})
 })
 
 app.post('/api/contents/update', verifyMiddleware, (req, res) => {
@@ -86,14 +83,10 @@ app.post('/api/contents/update', verifyMiddleware, (req, res) => {
       }
     }
 
-    res.json({
-      status: 200,
-      message: 'OK',
-    })
+    res.json({})
   } catch (error) {
     res.status(500)
     res.json({
-      status: 500,
       message: error.message,
     })
   }
@@ -112,14 +105,11 @@ app.post('/api/contents/create', verifyMiddleware, (req, res) => {
     const uploadPath = path.join(UPLOAD_FOLDER_PATH, filePath)
     fs.writeFileSync(uploadPath, dataBuffer)
     res.json({
-      status: 200,
-      message: 'OK',
       imagePath: path.join('/', 'images', filePath),
     })
   } catch (error) {
     res.status(500)
     res.json({
-      status: 500,
       message: error.message,
     })
   }
@@ -143,14 +133,11 @@ app.post('/api/contents/get', (req, res) => {
     params.internal.loginViewCount = loginViewCount
     params.webs = setWeb(params.webs)
     return res.json({
-      status: 200,
-      message: 'OK',
       ...params,
     })
   } catch (error) {
     res.status(500)
     res.json({
-      status: 500,
       message: error.message,
     })
   }
@@ -165,14 +152,11 @@ app.post('/api/spider', async (req, res) => {
     fs.writeFileSync(DB_PATH, JSON.stringify(w))
     fs.writeFileSync(SETTINGS_PATH, JSON.stringify(settings))
     return res.json({
-      status: 200,
-      message: 'OK',
       time,
     })
   } catch (error) {
     res.status(500)
     res.json({
-      status: 500,
       message: error.message,
     })
   }

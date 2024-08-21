@@ -98,12 +98,6 @@ httpNavInstance.interceptors.request.use(
 
 httpNavInstance.interceptors.response.use(
   function (res) {
-    if (res.data?.success === false) {
-      event.emit('MESSAGE', {
-        type: 'error',
-        content: res.data.message,
-      })
-    }
     stopLoad()
     return res
   },

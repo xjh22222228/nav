@@ -240,22 +240,22 @@ export class CreateWebComponent {
             })
           }
         } else if (this.settings.allowCollect) {
-          const res = await saveUserCollect({
-            email: this.settings.email,
-            data: {
-              ...payload,
-              extra: {
-                type: 'create',
-                oneName: websiteList[oneIndex].title,
-                twoName: websiteList[oneIndex].nav[twoIndex].title,
-                threeName:
-                  websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
+          try {
+            await saveUserCollect({
+              email: this.settings.email,
+              data: {
+                ...payload,
+                extra: {
+                  type: 'create',
+                  oneName: websiteList[oneIndex].title,
+                  twoName: websiteList[oneIndex].nav[twoIndex].title,
+                  threeName:
+                    websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
+                },
               },
-            },
-          })
-          if (res.data.success) {
-            this.message.error($t('_waitHandle'))
-          }
+            })
+            this.message.success($t('_waitHandle'))
+          } catch {}
         }
       } catch (error: any) {
         this.message.error(error.message)
