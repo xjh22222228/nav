@@ -1248,7 +1248,7 @@ export default [
                 id: 103,
               },
               {
-                icon: 'https://cdn.jsdelivr.net/gh/txxxjs/fk/ifkdy/2020-03-16/favicon.ico',
+                icon: 'https://gcore.jsdelivr.net/gh/txxxjs/fk/ifkdy/2020-03-16/favicon.ico',
                 name: '疯狂影视搜索',
                 desc: '疯狂影视搜索是一款全能影视搜索引擎，帮你找到最新影视资源，一站拥有无尽影视资源',
                 url: 'http://ifkdy.com/',

@@ -124,6 +124,7 @@ export function setWeb(nav) {
                 webItem.name ||= ''
                 webItem.desc ||= ''
                 webItem.icon ||= ''
+                webItem.icon = replaceJsdelivrCDN(webItem.icon)
                 webItem.url = webItem.url.trim()
                 webItem.desc = webItem.desc.trim()
 
@@ -394,4 +395,11 @@ export async function spiderWeb(db, settings) {
     errorUrlCount,
     time: diff,
   }
+}
+
+export function replaceJsdelivrCDN(str = '') {
+  // testingcf.jsdelivr.net
+  // img.jsdmirror.com
+  // gcore.jsdelivr.net
+  return str.replace('cdn.jsdelivr.net', 'gcore.jsdelivr.net')
 }

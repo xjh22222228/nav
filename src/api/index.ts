@@ -233,7 +233,7 @@ export function getCDN(path: string, branch = 'image') {
   if (isGitee()) {
     return `https://gitee.com/${authorName}/${repoName}/raw/${branch}/${path}`
   }
-  return `https://cdn.jsdelivr.net/gh/${authorName}/${repoName}@${branch}/${path}`
+  return `https://gcore.jsdelivr.net/gh/${authorName}/${repoName}@${branch}/${path}`
 }
 
 function requestActionUrl() {

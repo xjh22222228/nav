@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://nav3.cn/?g">
-    <img src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg" width="130" />
+    <img src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg" width="130" />
   </a>
   <br />
   <b>发现导航</b>
@@ -70,7 +70,7 @@
 - [https://faxian.vercel.app/](https://faxian.vercel.app/)
 - [https://xjh22222228.github.io/nav-web/](https://xjh22222228.github.io/nav-web/)
 
-![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/preview.gif)
+![Preview](https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/preview.gif)
 
 ## 可以干嘛
 
@@ -112,7 +112,7 @@
 
 自有部署一直不是发现导航的需求目标，但陆续有人问，决定从`v8.8.0`版本开始支持！
 
-[成为我们的会员](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/support2.svg)
+[成为我们的会员](https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/support2.svg)
 
 #### Fork vs 自有部署
 
@@ -193,9 +193,9 @@ yarn build
 
 您可以请作者喝杯咖啡，继续战斗下去（请备注 GitHub 名字）~
 
-<img src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/32.png" width="600">
+<img src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/32.png" width="600">
 
-<img src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/thank.png" width="200" />
+<img src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/thank.png" width="200" />
 
 ## License
 
