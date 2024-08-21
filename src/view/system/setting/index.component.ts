@@ -236,7 +236,7 @@ export default class SystemSettingComponent {
 
         this.submitting = true
         updateFileContent({
-          message: 'Update settings',
+          message: 'update settings',
           content: JSON.stringify(values),
           path: SETTING_PATH,
         })

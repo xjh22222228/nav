@@ -169,7 +169,7 @@ npm run update
 
 ## 开发构建
 
-NODE: >= v18
+NODE: >= v20
 
 ```bash
 # 下载
@@ -177,7 +177,7 @@ git clone --depth=1 https://github.com/xjh22222228/nav.git
 
 cd nav
 
-# 安装依赖 NODE: v18
+# 安装依赖
 yarn
 
 # 启动
@@ -186,10 +186,6 @@ yarn start
 # 打包
 yarn build
 ```
-
-## 建议
-
-如果有任何功能上的建议可通过 [issue](https://github.com/xjh22222228/nav/issues) 发起, Thank you.
 
 ## 支持
 
