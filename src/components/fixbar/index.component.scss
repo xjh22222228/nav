@@ -5,10 +5,9 @@
   right: 15px;
   user-select: none;
   &.openFixbar {
-    .wrapper {
-      &:nth-of-type(1) {
-        display: flex;
-      }
+    .common-show {
+      visibility: visible !important;
+      opacity: 1 !important;
     }
   }
 
@@ -28,8 +27,9 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
       transform: scale(1.2);
     }
-    &:nth-of-type(1) {
-      display: none;
+    &.common-show {
+      visibility: hidden;
+      opacity: 0;
     }
   }
 
