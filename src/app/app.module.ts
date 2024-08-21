@@ -79,7 +79,7 @@ import WebpComponent from '../view/app/default/app.component'
 import VipAuthComponent from '../view/system/vip-auth/index.component'
 
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
-import { ServiceCommonService } from 'src/services/common'
+import { CommonService } from 'src/services/common'
 import { JumpService } from 'src/services/jump'
 
 import {
@@ -182,7 +182,7 @@ const icons: IconDefinition[] = [
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
-    ServiceCommonService,
+    CommonService,
     JumpService,
   ],
   bootstrap: [AppComponent],

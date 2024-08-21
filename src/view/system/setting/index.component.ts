@@ -138,7 +138,7 @@ export default class SystemSettingComponent {
 
   onChangeSideJumpUrl(e: any, idx: number) {
     const value = e.target.value.trim()
-    this.settings.sideThemeImages[idx]['src'] = value
+    this.settings.sideThemeImages[idx]['url'] = value
   }
 
   onDeleteSideBanner(idx: number) {

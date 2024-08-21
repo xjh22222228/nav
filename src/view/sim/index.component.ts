@@ -4,7 +4,7 @@
 import { Component } from '@angular/core'
 import { isLogin } from 'src/utils/user'
 import { settings, internal } from 'src/store'
-import { ServiceCommonService } from 'src/services/common'
+import { CommonService } from 'src/services/common'
 
 @Component({
   selector: 'app-sim',
@@ -17,13 +17,13 @@ export default class SimComponent {
     String(isLogin ? internal.loginViewCount : internal.userViewCount)
   )
 
-  constructor(public serviceCommon: ServiceCommonService) {}
+  constructor(public commonService: CommonService) {}
 
   ngOnInit() {}
 
   ngAfterViewInit() {
-    if (this.serviceCommon.settings.simOverType === 'ellipsis') {
-      this.serviceCommon.getOverIndex('.top-nav .over-item')
+    if (this.commonService.settings.simOverType === 'ellipsis') {
+      this.commonService.getOverIndex('.top-nav .over-item')
     }
   }
 }

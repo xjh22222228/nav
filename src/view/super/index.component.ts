@@ -4,7 +4,7 @@
 
 import { Component } from '@angular/core'
 import { $t } from 'src/locale'
-import { ServiceCommonService } from 'src/services/common'
+import { CommonService } from 'src/services/common'
 import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
@@ -17,19 +17,19 @@ export default class SideComponent {
   $t = $t
 
   constructor(
-    public serviceCommon: ServiceCommonService,
+    public commonService: CommonService,
     public jumpService: JumpService
   ) {}
 
   ngAfterViewInit() {
-    if (this.serviceCommon.settings.superOverType === 'ellipsis') {
-      this.serviceCommon.getOverIndex('.topnav .over-item')
+    if (this.commonService.settings.superOverType === 'ellipsis') {
+      this.commonService.getOverIndex('.topnav .over-item')
     }
   }
 
   openCreateWebModal() {
     event.emit('CREATE_WEB', {
-      threeIndex: this.serviceCommon.selectedIndex,
+      threeIndex: this.commonService.selectedIndex,
     })
   }
 }

@@ -9,7 +9,7 @@ import { setWebsiteList } from 'src/utils/web'
 import { websiteList } from 'src/store'
 import { settings } from 'src/store'
 import { $t } from 'src/locale'
-import { ServiceCommonService } from 'src/services/common'
+import { CommonService } from 'src/services/common'
 import { STORAGE_KEY_MAP } from 'src/constants'
 
 @Component({
@@ -22,7 +22,7 @@ export default class SideComponent {
   websiteList: INavProps[] = websiteList
   isCollapsed = isMobile() || settings.sideCollapsed
 
-  constructor(public serviceCommon: ServiceCommonService) {
+  constructor(public commonService: CommonService) {
     const localCollapsed = localStorage.getItem(STORAGE_KEY_MAP.sideCollapsed)
     if (localCollapsed) {
       this.isCollapsed = localCollapsed === 'true'
