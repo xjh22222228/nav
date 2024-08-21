@@ -115,16 +115,14 @@ export default class SystemBookmarkExportComponent {
 
     bookmarksExport({ data: webs })
       .then((res) => {
-        if (res.data?.success) {
-          const fileName = '发现导航书签.html'
-          const blob = new Blob([res.data.data], {
-            type: 'text/html;charset=utf-8',
-          })
-          saveAs(blob, fileName)
-          this.notification.success('导出成功', fileName, {
-            nzDuration: 0,
-          })
-        }
+        const fileName = '发现导航书签.html'
+        const blob = new Blob([res.data.data], {
+          type: 'text/html;charset=utf-8',
+        })
+        saveAs(blob, fileName)
+        this.notification.success('导出成功', fileName, {
+          nzDuration: 0,
+        })
       })
       .finally(() => {
         this.submitting = false

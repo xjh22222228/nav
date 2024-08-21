@@ -30,10 +30,8 @@ export default class VipAuthComponent {
     this.submitting = true
     getUserInfo()
       .then((res: any) => {
-        this.isPermission = !!res.data.success
-        if (res.data.success) {
-          this.url = res.data.data.url
-        }
+        this.isPermission = true
+        this.url = res.data?.data?.url || ''
       })
       .finally(() => {
         this.submitting = false
@@ -54,11 +52,9 @@ export default class VipAuthComponent {
     updateUserInfo({
       url: this.url,
     })
-      .then((res) => {
-        if (res.data.success) {
-          this.getUserInfo()
-          this.message.success(this.$t('_saveSuccess'))
-        }
+      .then(() => {
+        this.getUserInfo()
+        this.message.success(this.$t('_saveSuccess'))
       })
       .finally(() => {
         this.submitting = false
