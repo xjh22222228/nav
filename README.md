@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://nav3.cn/?g">
-    <img src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg" width="130" />
+    <img src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg" width="130" />
   </a>
   <br />
   <b>发现导航</b>
@@ -63,7 +63,6 @@
 - 🍰 多种卡片风格设计
 - 🍰 完全纯静态, 提供自动化部署功能
 - 🍰 三叉树分类、结构清晰、分类清晰
-- 🍰 完全开源，轻松定制化
 
 ## 预览
 
@@ -71,7 +70,7 @@
 - [https://faxian.vercel.app/](https://faxian.vercel.app/)
 - [https://xjh22222228.github.io/nav-web/](https://xjh22222228.github.io/nav-web/)
 
-![Preview](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/preview.gif)
+![Preview](https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/preview.gif)
 
 ## 可以干嘛
 
@@ -113,7 +112,7 @@
 
 自有部署一直不是发现导航的需求目标，但陆续有人问，决定从`v8.8.0`版本开始支持！
 
-[成为我们的会员](https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/support2.svg)
+[成为我们的会员](https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/support2.svg)
 
 #### Fork vs 自有部署
 
@@ -122,6 +121,7 @@
 | 速度     | 保存即时生效     | 需要等待构建完成 |
 | 成本     | 需要自己有服务器 | 免费             |
 | 数据存储 | 定时`git push`   | 永久存储         |
+| 存活状态 | 未知             | 只要`GitHub`还在 |
 
 ## 配置说明
 
@@ -169,7 +169,7 @@ npm run update
 
 ## 开发构建
 
-NODE: >= v18，建议用稳定版
+NODE: >= v20，建议用稳定版
 
 ```bash
 # 下载
@@ -177,7 +177,7 @@ git clone --depth=1 https://github.com/xjh22222228/nav.git
 
 cd nav
 
-# 安装依赖 NODE: v18
+# 安装依赖
 yarn
 
 # 启动
@@ -190,7 +190,6 @@ yarn build
 ## 建议
 
 如果有任何功能上的建议可通过 [issue](https://github.com/xjh22222228/nav/issues) 发起, Thank you.
-
 
 ## License
 

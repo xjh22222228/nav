@@ -54,7 +54,7 @@ export interface IWebProps {
 
 export interface INavThreeProp {
   title?: string
-  icon?: string | null
+  icon?: string
   createdAt?: string
   collapsed?: boolean
   ownVisible?: boolean
@@ -64,7 +64,7 @@ export interface INavThreeProp {
 
 export interface INavTwoProp {
   title?: string
-  icon?: string | null
+  icon?: string
   createdAt?: string
   collapsed?: boolean
   ownVisible?: boolean

@@ -4,7 +4,8 @@
 
 import { Component } from '@angular/core'
 import { randomBgImg } from 'src/utils'
-import { ServiceCommonService } from 'src/services/common'
+import { CommonService } from 'src/services/common'
+import { JumpService } from 'src/services/jump'
 
 @Component({
   selector: 'app-light',
@@ -12,15 +13,18 @@ import { ServiceCommonService } from 'src/services/common'
   styleUrls: ['./index.component.scss'],
 })
 export default class LightComponent {
-  constructor(public serviceCommon: ServiceCommonService) {}
+  constructor(
+    public commonService: CommonService,
+    public jumpService: JumpService
+  ) {}
 
   ngOnInit() {
     randomBgImg()
   }
 
   ngAfterViewInit() {
-    if (this.serviceCommon.settings.lightOverType === 'ellipsis') {
-      this.serviceCommon.getOverIndex('.top-nav .over-item')
+    if (this.commonService.settings.lightOverType === 'ellipsis') {
+      this.commonService.getOverIndex('.top-nav .over-item')
     }
   }
 }

@@ -4,7 +4,14 @@
 import fs from 'fs'
 import path from 'path'
 import defaultDb from './db.mjs'
-import { TAG_ID1, TAG_ID2, TAG_ID3, getWebCount, setWeb } from './util.mjs'
+import {
+  TAG_ID1,
+  TAG_ID2,
+  TAG_ID3,
+  getWebCount,
+  setWeb,
+  replaceJsdelivrCDN,
+} from './util.mjs'
 
 const packagePath = path.join('.', 'package.json')
 const packageJson = JSON.parse(fs.readFileSync(packagePath).toString())
@@ -50,7 +57,7 @@ try {
     search = [
       {
         name: '站内',
-        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg',
         placeholder: '站内搜索',
         blocked: false,
         isInner: true,
@@ -58,7 +65,7 @@ try {
       {
         name: '百度',
         url: 'https://www.baidu.com/s?wd=',
-        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/baidu.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/baidu.svg',
         placeholder: '百度一下',
         blocked: false,
         isInner: false,
@@ -66,21 +73,21 @@ try {
       {
         name: 'Google',
         url: 'https://www.google.com/search?q=',
-        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/google.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/google.svg',
         blocked: false,
         isInner: false,
       },
       {
         name: '必应',
         url: 'https://cn.bing.com/search?q=',
-        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/bing.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/bing.svg',
         blocked: false,
         isInner: false,
       },
       {
         name: 'GitHub',
         url: 'https://github.com/search?q=',
-        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/github.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/github.svg',
         placeholder: 'Search GitHub',
         blocked: false,
         isInner: false,
@@ -88,14 +95,14 @@ try {
       {
         name: '知乎',
         url: 'https://www.zhihu.com/search?type=content&q=',
-        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/zhihu.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/zhihu.svg',
         blocked: false,
         isInner: false,
       },
       {
         name: '豆瓣',
         url: 'https://search.douban.com/book/subject_search?search_text=',
-        icon: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/douban.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/douban.svg',
         placeholder: '书名、作者、ISBN',
         blocked: false,
         isInner: false,
@@ -105,6 +112,11 @@ try {
       encoding: 'utf-8',
     })
   }
+
+  search = search.map((item) => {
+    item.icon = replaceJsdelivrCDN(item.icon)
+    return item
+  })
 }
 
 {
@@ -152,14 +164,14 @@ try {
 
 {
   const banner1 =
-    'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/banner1.jpg'
+    'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/banner1.jpg'
   const banner2 =
-    'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/banner2.jpg'
+    'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/banner2.jpg'
   const backgroundImg =
-    'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/background.jpg'
+    'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/background.jpg'
 
   settings.favicon ??=
-    'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg'
+    'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg'
   settings.language ||= 'zh-CN'
   settings.loading ??= 'random'
   settings.allowCollect ??= true
@@ -210,11 +222,11 @@ try {
   settings.superTitle ??= ''
   const defImgs = [
     {
-      src: 'https://cdn.jsdelivr.net/gh/xjh22222228/nav-web@image/nav-1717494364392-ad.jpg',
+      src: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/nav-1717494364392-ad.jpg',
       url: 'https://haokawx.lot-ml.com/Product/index/454266',
     },
     {
-      src: 'https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/10.png',
+      src: 'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/10.png',
       url: '',
     },
   ]
@@ -267,6 +279,29 @@ try {
   settings.loadingCode ??= ''
 
   settings.appCardStyle ??= 'common'
+
+  // 替换CDN
+  settings.favicon = replaceJsdelivrCDN(settings.favicon)
+  settings.simThemeImages = settings.simThemeImages.map((item) => {
+    item.src = replaceJsdelivrCDN(item.src)
+    return item
+  })
+  settings.superImages = settings.superImages.map((item) => {
+    item.src = replaceJsdelivrCDN(item.src)
+    return item
+  })
+  settings.lightImages = settings.lightImages.map((item) => {
+    item.src = replaceJsdelivrCDN(item.src)
+    return item
+  })
+  settings.sideThemeImages = settings.sideThemeImages.map((item) => {
+    item.src = replaceJsdelivrCDN(item.src)
+    return item
+  })
+  settings.shortcutThemeImages = settings.shortcutThemeImages.map((item) => {
+    item.src = replaceJsdelivrCDN(item.src)
+    return item
+  })
   fs.writeFileSync(settingsPath, JSON.stringify(settings), {
     encoding: 'utf-8',
   })

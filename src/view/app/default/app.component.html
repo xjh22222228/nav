@@ -1,7 +1,7 @@
 <section class="app-page user-select-none">
   <header class="header">
     <div class="header-top">
-      <img [src]="serviceCommon.settings.favicon" class="logo" alt="logo" />
+      <img [src]="commonService.settings.favicon" class="logo" alt="logo" />
       <div class="open" [class.active]="open" (click)="handleToggleOpen()">
         <i></i>
         <i></i>
@@ -12,12 +12,12 @@
     <nav class="nav-open" [class.active]="open">
       <div
         *ngFor="
-          let item of serviceCommon.websiteList;
+          let item of commonService.websiteList;
           let i = index;
-          trackBy: serviceCommon.trackByItem
+          trackBy: commonService.trackByItem
         "
         (click)="handleCilckNav(i)"
-        [class.active]="serviceCommon.page === i"
+        [class.active]="commonService.page === i"
         class="nav-title"
       >
         {{ item.title }}
@@ -27,25 +27,25 @@
 
   <app-search-engine />
 
-  <div class="wrapper" *ngIf="serviceCommon.websiteList[serviceCommon.page]">
+  <div class="wrapper" *ngIf="commonService.websiteList[commonService.page]">
     <nav
       class="children-nav"
-      *ngIf="serviceCommon.websiteList[serviceCommon.page]?.nav?.length"
+      *ngIf="commonService.websiteList[commonService.page]?.nav?.length"
     >
       <span
         class="tag"
         *ngFor="
-          let item of serviceCommon.websiteList[serviceCommon.page].nav;
+          let item of commonService.websiteList[commonService.page].nav;
           let i = index;
-          trackBy: serviceCommon.trackByItem
+          trackBy: commonService.trackByItem
         "
-        [class.active]="serviceCommon.id === i"
-        (click)="serviceCommon.handleSidebarNav(i)"
+        [class.active]="commonService.id === i"
+        (click)="commonService.handleSidebarNav(i)"
       >
         {{ item.title }}
       </span>
     </nav>
-    <div *ngFor="let item of serviceCommon.currentList; index as i">
+    <div *ngFor="let item of commonService.currentList; index as i">
       <h2 class="block-title" *ngIf="item.title">
         {{ item.title }} x {{ item.nav.length }}
       </h2>
@@ -66,14 +66,14 @@
           *ngFor="
             let el of item.nav;
             index as j;
-            trackBy: serviceCommon.trackByItemWeb
+            trackBy: commonService.trackByItemWeb
           "
         >
           <app-card
-            [cardStyle]="serviceCommon.settings.appCardStyle"
+            [cardStyle]="commonService.settings.appCardStyle"
             [dataSource]="el"
-            [indexs]="[serviceCommon.page, serviceCommon.id, i, j]"
-            [searchKeyword]="serviceCommon.searchKeyword"
+            [indexs]="[commonService.page, commonService.id, i, j]"
+            [searchKeyword]="commonService.searchKeyword"
             class="column-border"
           ></app-card>
         </div>

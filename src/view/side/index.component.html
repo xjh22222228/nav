@@ -1,7 +1,7 @@
 <nz-layout class="layout">
   <nz-spin
     nzSimple
-    *ngIf="serviceCommon.sliceMax === 0"
+    *ngIf="commonService.sliceMax === 0"
     class="position-center"
   />
   <nz-layout>
@@ -11,10 +11,10 @@
       [(nzCollapsed)]="isCollapsed"
       [nzTrigger]="null"
     >
-      <div class="logo dark-bg" (click)="isCollapsed = !isCollapsed">
-        <img [src]="serviceCommon.settings.favicon" class="logo-img" />
+      <div class="logo dark-bg" (click)="handleCollapsed()">
+        <img [src]="commonService.settings.favicon" class="logo-img" />
         <span class="web-title" *ngIf="!isCollapsed">{{
-          serviceCommon.settings.sideTitle || serviceCommon.title
+          commonService.settings.sideTitle || commonService.title
         }}</span>
       </div>
 
@@ -22,9 +22,9 @@
         <li
           nz-submenu
           *ngFor="
-            let item of serviceCommon.websiteList;
+            let item of commonService.websiteList;
             index as pageIdx;
-            trackBy: serviceCommon.trackByItem
+            trackBy: commonService.trackByItem
           "
           (nzOpenChange)="openMenu(item, pageIdx)"
           [nzTitle]="titleTpl"
@@ -47,26 +47,26 @@
               *ngFor="
                 let el of item.nav;
                 let idIdx = index;
-                trackBy: serviceCommon.trackByItem
+                trackBy: commonService.trackByItem
               "
               [nzSelected]="
-                serviceCommon.page === pageIdx && serviceCommon.id === idIdx
+                commonService.page === pageIdx && commonService.id === idIdx
               "
-              (click)="serviceCommon.handleSidebarNav(idIdx, pageIdx)"
+              (click)="commonService.handleSidebarNav(idIdx, pageIdx)"
             >
               <img *ngIf="el.icon" class="sideicon fixicon" [src]="el.icon" />
               <span class="ellipsis">{{ el.title }}</span>
 
               <div
                 *ngIf="
-                  serviceCommon.page === pageIdx && serviceCommon.id === idIdx
+                  commonService.page === pageIdx && commonService.id === idIdx
                 "
-                (click)="serviceCommon.onCollapseAll($event)"
+                (click)="commonService.onCollapseAll($event)"
                 class="collapse-wrapper"
               >
                 <i
                   class="iconfont iconweibiaoti25 collapse"
-                  [class.active]="serviceCommon.collapsed"
+                  [class.active]="commonService.collapsed"
                 >
                 </i>
               </div>
@@ -79,12 +79,12 @@
     <nz-layout class="inner-layout">
       <div
         class="search-header"
-        *ngIf="serviceCommon.settings.sideThemeImages.length > 0"
+        *ngIf="commonService.settings.sideThemeImages.length > 0"
       >
         <app-swiper
-          [images]="serviceCommon.settings.sideThemeImages"
-          [autoplay]="serviceCommon.settings.sideThemeAutoplay"
-          [height]="serviceCommon.settings.sideThemeHeight"
+          [images]="commonService.settings.sideThemeImages"
+          [autoplay]="commonService.settings.sideThemeAutoplay"
+          [height]="commonService.settings.sideThemeHeight"
         />
       </div>
 
@@ -94,21 +94,21 @@
         <app-web-list [search]="false" [overflow]="true"></app-web-list>
 
         <div class="box">
-          <div *ngIf="serviceCommon.currentList.length > 0; else noData">
+          <div *ngIf="commonService.currentList.length > 0; else noData">
             <div
               *ngFor="
-                let item of serviceCommon.currentList.slice(
+                let item of commonService.currentList.slice(
                   0,
-                  serviceCommon.sliceMax
+                  commonService.sliceMax
                 );
                 let i = index;
-                trackBy: serviceCommon.trackByItem
+                trackBy: commonService.trackByItem
               "
             >
               <div class="nav-wrapper">
                 <app-toolbar-title
                   [dataSource]="item"
-                  (onCollapse)="serviceCommon.onCollapse(item, i)"
+                  (onCollapse)="commonService.onCollapse(item, i)"
                   [index]="i"
                 >
                 </app-toolbar-title>
@@ -122,7 +122,7 @@
                     *ngFor="
                       let el of item.nav;
                       index as j;
-                      trackBy: serviceCommon.trackByItemWeb
+                      trackBy: commonService.trackByItemWeb
                     "
                     class="gutter-row"
                     nz-col
@@ -133,14 +133,14 @@
                     [nzLg]="8"
                     [nzXl]="6"
                     [nzXXl]="
-                      serviceCommon.settings.sideCardStyle === 'example' ? 4 : 6
+                      commonService.settings.sideCardStyle === 'example' ? 4 : 6
                     "
                   >
                     <app-card
-                      [cardStyle]="serviceCommon.settings.sideCardStyle"
+                      [cardStyle]="commonService.settings.sideCardStyle"
                       [dataSource]="el"
-                      [indexs]="[serviceCommon.page, serviceCommon.id, i, j]"
-                      [searchKeyword]="serviceCommon.searchKeyword"
+                      [indexs]="[commonService.page, commonService.id, i, j]"
+                      [searchKeyword]="commonService.searchKeyword"
                       class="column-border"
                     ></app-card>
                   </div>
@@ -156,7 +156,7 @@
 
         <app-footer
           className="side-footer"
-          [content]="serviceCommon.settings.sideFooterHTML"
+          [content]="commonService.settings.sideFooterHTML"
         ></app-footer>
       </nz-content>
     </nz-layout>
@@ -164,6 +164,6 @@
 </nz-layout>
 
 <app-fixbar
-  (onCollapse)="serviceCommon.onCollapseAll($event)"
-  [collapsed]="serviceCommon.collapsed"
+  (onCollapse)="commonService.onCollapseAll($event)"
+  [collapsed]="commonService.collapsed"
 />

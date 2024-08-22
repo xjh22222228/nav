@@ -22,7 +22,8 @@
               "qs",
               "nprogress",
               "clipboard",
-              "file-saver"
+              "file-saver",
+              "localforage"
             ],
             "outputPath": "dist",
             "index": "src/main.html",

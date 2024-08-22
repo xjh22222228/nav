@@ -71,6 +71,9 @@ export function setWeb(nav) {
   function removeIconFont(item) {
     delete item.collapsed
     delete item.id
+    if (!item.ownVisible) {
+      delete item.ownVisible
+    }
     item.icon ||= ''
     if (typeof item.icon === 'string' && item.icon.startsWith('icon')) {
       item.icon = ''
@@ -117,9 +120,13 @@ export function setWeb(nav) {
                 webItem.rate ??= 5
                 webItem.top ??= false
                 webItem.ownVisible ??= false
+                webItem.url ||= ''
                 webItem.name ||= ''
                 webItem.desc ||= ''
                 webItem.icon ||= ''
+                webItem.icon = replaceJsdelivrCDN(webItem.icon)
+                webItem.url = webItem.url.trim()
+                webItem.desc = webItem.desc.trim()
 
                 webItem.name = webItem.name.replace(/<b>|<\/b>/g, '')
                 webItem.desc = webItem.desc.replace(/<b>|<\/b>/g, '')
@@ -388,4 +395,11 @@ export async function spiderWeb(db, settings) {
     errorUrlCount,
     time: diff,
   }
+}
+
+export function replaceJsdelivrCDN(str = '') {
+  // testingcf.jsdelivr.net
+  // img.jsdmirror.com
+  // gcore.jsdelivr.net
+  return str.replace('cdn.jsdelivr.net', 'gcore.jsdelivr.net')
 }

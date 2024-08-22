@@ -1,29 +1,28 @@
 <div class="sim">
   <nz-spin
     nzSimple
-    *ngIf="serviceCommon.sliceMax === 0"
-    class="position-center"
+    *ngIf="commonService.sliceMax === 0"
+    class="position-center mt10"
   />
 
   <div
     class="wallpaper"
-    *ngIf="serviceCommon.settings.simThemeImages.length > 0"
-    [class.bootstrap]="serviceCommon.settings.simThemeHeight < 260"
+    *ngIf="commonService.settings.simThemeImages.length > 0"
+    [class.bootstrap]="commonService.settings.simThemeHeight < 260"
   >
     <app-swiper
-      [images]="serviceCommon.settings.simThemeImages"
-      [autoplay]="serviceCommon.settings.simThemeAutoplay"
-      [height]="serviceCommon.settings.simThemeHeight"
+      [images]="commonService.settings.simThemeImages"
+      [autoplay]="commonService.settings.simThemeAutoplay"
+      [height]="commonService.settings.simThemeHeight"
     />
     <div class="bar">
       <h1 class="title dark-white">
-        {{ serviceCommon.settings.simTitle || serviceCommon.settings.title }}
+        {{ commonService.settings.simTitle || commonService.settings.title }}
       </h1>
       <pre
         class="description dark-white"
         [innerHTML]="description | safeHtml"
       ></pre>
-      <app-search-engine />
     </div>
   </div>
 
@@ -32,24 +31,24 @@
   <nav class="top-nav dark-border-color dark-scrollbar dark-bg">
     <span
       *ngFor="
-        let item of serviceCommon.websiteList.slice(0, serviceCommon.overIndex);
+        let item of commonService.websiteList.slice(0, commonService.overIndex);
         let i = index;
-        trackBy: serviceCommon.trackByItem
+        trackBy: commonService.trackByItem
       "
-      [class.active]="serviceCommon.page === i"
-      [class.dark-text-active]="serviceCommon.page === i"
+      [class.active]="commonService.page === i"
+      [class.dark-text-active]="commonService.page === i"
       class="over-item dark-text"
-      (click)="serviceCommon.handleCilckTopNav(i)"
+      (click)="commonService.handleCilckTopNav(i)"
     >
       {{ item.title }}
     </span>
     <!-- More -->
     <app-web-more-menu
-      *ngIf="serviceCommon.overIndex < serviceCommon.websiteList.length"
-      [data]="serviceCommon.websiteList.slice(serviceCommon.overIndex, 99999)"
-      [index]="serviceCommon.overIndex"
-      [page]="serviceCommon.page"
-      (onClick)="serviceCommon.handleCilckTopNav($event)"
+      *ngIf="commonService.overIndex < commonService.websiteList.length"
+      [data]="commonService.websiteList.slice(commonService.overIndex, 99999)"
+      [index]="commonService.overIndex"
+      [page]="commonService.page"
+      (onClick)="commonService.handleCilckTopNav($event)"
     />
   </nav>
 
@@ -57,17 +56,17 @@
     <nav
       class="sidebar dark-bg"
       id="sidebar"
-      *ngIf="serviceCommon.websiteList[serviceCommon.page]?.nav?.length"
+      *ngIf="commonService.websiteList[commonService.page]?.nav?.length"
     >
       <div
         *ngFor="
-          let item of serviceCommon.websiteList[serviceCommon.page].nav;
+          let item of commonService.websiteList[commonService.page].nav;
           let i = index;
-          trackBy: serviceCommon.trackByItem
+          trackBy: commonService.trackByItem
         "
-        (click)="serviceCommon.handleSidebarNav(i)"
-        [class.active]="serviceCommon.id === i"
-        [class.dark-item-active]="serviceCommon.id === i"
+        (click)="commonService.handleSidebarNav(i)"
+        [class.active]="commonService.id === i"
+        [class.dark-item-active]="commonService.id === i"
         class="ripple-btn dark-text dark-hover"
       >
         {{ item.title }}
@@ -75,21 +74,23 @@
     </nav>
 
     <aside class="site-box dark-bg">
-      <div *ngIf="serviceCommon.currentList.length > 0; else noData">
+      <app-search-engine class="max768none" />
+
+      <div *ngIf="commonService.currentList.length > 0; else noData">
         <div
           *ngFor="
-            let item of serviceCommon.currentList.slice(
+            let item of commonService.currentList.slice(
               0,
-              serviceCommon.sliceMax
+              commonService.sliceMax
             );
             let i = index;
-            trackBy: serviceCommon.trackByItem
+            trackBy: commonService.trackByItem
           "
         >
           <div class="nav-wrapper">
             <app-toolbar-title
               [dataSource]="item"
-              (onCollapse)="serviceCommon.onCollapse(item, i)"
+              (onCollapse)="commonService.onCollapse(item, i)"
               [index]="i"
             ></app-toolbar-title>
 
@@ -109,14 +110,14 @@
                 *ngFor="
                   let el of item.nav;
                   index as j;
-                  trackBy: serviceCommon.trackByItemWeb
+                  trackBy: commonService.trackByItemWeb
                 "
               >
                 <app-card
-                  [cardStyle]="serviceCommon.settings.simCardStyle"
+                  [cardStyle]="commonService.settings.simCardStyle"
                   [dataSource]="el"
-                  [indexs]="[serviceCommon.page, serviceCommon.id, i, j]"
-                  [searchKeyword]="serviceCommon.searchKeyword"
+                  [indexs]="[commonService.page, commonService.id, i, j]"
+                  [searchKeyword]="commonService.searchKeyword"
                   class="column-border"
                 ></app-card>
               </div>
@@ -134,11 +135,11 @@
 
 <app-footer
   className="sim-footer"
-  [content]="serviceCommon.settings.simFooterHTML"
+  [content]="commonService.settings.simFooterHTML"
 ></app-footer>
 <app-fixbar
-  (onCollapse)="serviceCommon.onCollapseAll()"
-  [collapsed]="serviceCommon.collapsed"
+  (onCollapse)="commonService.onCollapseAll()"
+  [collapsed]="commonService.collapsed"
 >
 </app-fixbar>
 

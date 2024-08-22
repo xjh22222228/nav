@@ -1,35 +1,35 @@
 <div
   class="index-wrapper dark-bg"
-  [class.noimg]="serviceCommon.settings.lightImages.length <= 0"
+  [class.noimg]="commonService.settings.lightImages.length <= 0"
 >
   <div class="light-box">
     <main class="homepage dark-border-color dark-bg">
       <nav class="top-nav dark-scrollbar dark-border-color dark-bg">
         <span
           *ngFor="
-            let item of serviceCommon.websiteList.slice(
+            let item of commonService.websiteList.slice(
               0,
-              serviceCommon.overIndex
+              commonService.overIndex
             );
             index as i;
-            trackBy: serviceCommon.trackByItem
+            trackBy: commonService.trackByItem
           "
-          (click)="serviceCommon.handleCilckTopNav(i)"
-          [class.active]="serviceCommon.page === i"
-          [class.dark-text-active]="serviceCommon.page === i"
+          (click)="commonService.handleCilckTopNav(i)"
+          [class.active]="commonService.page === i"
+          [class.dark-text-active]="commonService.page === i"
           class="over-item ripple-btn dark-text"
         >
           {{ item.title }}
         </span>
         <!-- More -->
         <app-web-more-menu
-          *ngIf="serviceCommon.overIndex < serviceCommon.websiteList.length"
+          *ngIf="commonService.overIndex < commonService.websiteList.length"
           [data]="
-            serviceCommon.websiteList.slice(serviceCommon.overIndex, 99999)
+            commonService.websiteList.slice(commonService.overIndex, 99999)
           "
-          [index]="serviceCommon.overIndex"
-          [page]="serviceCommon.page"
-          (onClick)="serviceCommon.handleCilckTopNav($event)"
+          [index]="commonService.overIndex"
+          [page]="commonService.page"
+          (onClick)="commonService.handleCilckTopNav($event)"
         />
       </nav>
 
@@ -38,16 +38,16 @@
           class="sidebar dark-bg dark-border-color dark-scrollbar"
           id="sidebar"
         >
-          <div *ngIf="serviceCommon.websiteList[serviceCommon.page]">
+          <div *ngIf="commonService.websiteList[commonService.page]">
             <div
               class="tag dark-text"
-              [class.active]="serviceCommon.id === i"
-              [class.dark-item-active]="serviceCommon.id === i"
-              (click)="serviceCommon.handleSidebarNav(i)"
+              [class.active]="commonService.id === i"
+              [class.dark-item-active]="commonService.id === i"
+              (click)="commonService.handleSidebarNav(i)"
               *ngFor="
-                let item of serviceCommon.websiteList[serviceCommon.page].nav;
+                let item of commonService.websiteList[commonService.page].nav;
                 index as i;
-                trackBy: serviceCommon.trackByItem
+                trackBy: commonService.trackByItem
               "
             >
               {{ item.title }}
@@ -58,25 +58,25 @@
         <div class="main dark-scrollbar">
           <app-search-engine></app-search-engine>
 
-          <div *ngIf="serviceCommon.currentList.length > 0; else noData">
+          <div *ngIf="commonService.currentList.length > 0; else noData">
             <nz-spin
               nzSimple
-              *ngIf="serviceCommon.sliceMax === 0"
+              *ngIf="commonService.sliceMax === 0"
               class="position-center"
             ></nz-spin>
             <div
               *ngFor="
-                let item of serviceCommon.currentList.slice(
+                let item of commonService.currentList.slice(
                   0,
-                  serviceCommon.sliceMax
+                  commonService.sliceMax
                 );
                 index as i;
-                trackBy: serviceCommon.trackByItem
+                trackBy: commonService.trackByItem
               "
             >
               <app-toolbar-title
                 [dataSource]="item"
-                (onCollapse)="serviceCommon.onCollapse(item, i)"
+                (onCollapse)="commonService.onCollapse(item, i)"
                 [index]="i"
               >
               </app-toolbar-title>
@@ -97,14 +97,14 @@
                   *ngFor="
                     let el of item.nav;
                     index as j;
-                    trackBy: serviceCommon.trackByItemWeb
+                    trackBy: commonService.trackByItemWeb
                   "
                 >
                   <app-card
-                    [cardStyle]="serviceCommon.settings.lightCardStyle"
+                    [cardStyle]="commonService.settings.lightCardStyle"
                     [dataSource]="el"
-                    [indexs]="[serviceCommon.page, serviceCommon.id, i, j]"
-                    [searchKeyword]="serviceCommon.searchKeyword"
+                    [indexs]="[commonService.page, commonService.id, i, j]"
+                    [searchKeyword]="commonService.searchKeyword"
                     class="column-border"
                   ></app-card>
                 </div>
@@ -121,28 +121,24 @@
 
     <div
       class="right dark-scrollbar"
-      *ngIf="serviceCommon.settings.lightImages.length > 0"
+      *ngIf="commonService.settings.lightImages.length > 0"
     >
       <div
-        class="aditem"
-        *ngFor="let item of serviceCommon.settings.lightImages; index as i"
+        class="aditem cursor-pointer"
+        *ngFor="let item of commonService.settings.lightImages; index as i"
+        (click)="jumpService.goUrl($event, item['url'])"
       >
-        <a
-          [href]="item['url'] || 'javascript:void(0)'"
-          [target]="item['url'] ? '_blank' : '_self'"
-        >
-          <img class="adsimg" [src]="item['src']" />
-        </a>
+        <img class="adsimg" [src]="item['src']" />
       </div>
     </div>
   </div>
 
   <div>
-    <app-footer [content]="serviceCommon.settings.lightFooterHTML"></app-footer>
+    <app-footer [content]="commonService.settings.lightFooterHTML"></app-footer>
   </div>
   <app-fixbar
-    (onCollapse)="serviceCommon.onCollapseAll()"
-    [collapsed]="serviceCommon.collapsed"
+    (onCollapse)="commonService.onCollapseAll()"
+    [collapsed]="commonService.collapsed"
     selector=".main"
   />
 </div>

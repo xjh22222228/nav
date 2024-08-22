@@ -25,7 +25,7 @@ export default {
 `.trim(),
 
   loading3: `
-<style>.l__1{z-index:999;position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;}.l__2{width:200px;height:200px;background:url("https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/0020f4d5-9f70-4b7f-87d4-61310d1db8d1.svg");background-repeat:repeat;}.l__3{font-size:18px;margin-top:15px;font-weight:bold;color:#000;}</style>
+<style>.l__1{z-index:999;position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;}.l__2{width:200px;height:200px;background:url("https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/0020f4d5-9f70-4b7f-87d4-61310d1db8d1.svg");background-repeat:repeat;}.l__3{font-size:18px;margin-top:15px;font-weight:bold;color:#000;}</style>
 <div class="l__1"><div class="l__2"></div><div class="l__3">......</div></div>  
 `.trim(),
 

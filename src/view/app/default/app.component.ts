@@ -3,7 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
-import { ServiceCommonService } from 'src/services/common'
+import { CommonService } from 'src/services/common'
 
 @Component({
   selector: 'app-home',
@@ -13,12 +13,12 @@ import { ServiceCommonService } from 'src/services/common'
 export default class WebpComponent {
   open: boolean = false
 
-  constructor(public serviceCommon: ServiceCommonService) {}
+  constructor(public commonService: CommonService) {}
 
   ngOnInit() {}
 
   handleCilckNav(index: number) {
-    this.serviceCommon.handleCilckTopNav(index)
+    this.commonService.handleCilckTopNav(index)
     this.handleToggleOpen()
   }
 

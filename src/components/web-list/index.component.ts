@@ -8,7 +8,7 @@ import { IWebProps, INavProps } from 'src/types'
 import { queryString, fuzzySearch, isMobile } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { ActivatedRoute } from '@angular/router'
-import { ServiceCommonService } from 'src/services/common'
+import { CommonService } from 'src/services/common'
 import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
@@ -33,7 +33,7 @@ export class WebListComponent {
   constructor(
     public jumpService: JumpService,
     private activatedRoute: ActivatedRoute,
-    public serviceCommon: ServiceCommonService
+    public commonService: CommonService
   ) {}
 
   ngOnInit() {

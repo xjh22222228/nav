@@ -9,7 +9,8 @@ import { setWebsiteList } from 'src/utils/web'
 import { websiteList } from 'src/store'
 import { settings } from 'src/store'
 import { $t } from 'src/locale'
-import { ServiceCommonService } from 'src/services/common'
+import { CommonService } from 'src/services/common'
+import { STORAGE_KEY_MAP } from 'src/constants'
 
 @Component({
   selector: 'app-side',
@@ -21,9 +22,12 @@ export default class SideComponent {
   websiteList: INavProps[] = websiteList
   isCollapsed = isMobile() || settings.sideCollapsed
 
-  constructor(public serviceCommon: ServiceCommonService) {}
-
-  ngOnInit() {}
+  constructor(public commonService: CommonService) {
+    const localCollapsed = localStorage.getItem(STORAGE_KEY_MAP.sideCollapsed)
+    if (localCollapsed) {
+      this.isCollapsed = localCollapsed === 'true'
+    }
+  }
 
   openMenu(item: any, index: number) {
     this.websiteList.forEach((data, idx) => {
@@ -34,5 +38,13 @@ export default class SideComponent {
       }
     })
     setWebsiteList(this.websiteList)
+  }
+
+  handleCollapsed() {
+    this.isCollapsed = !this.isCollapsed
+    localStorage.setItem(
+      STORAGE_KEY_MAP.sideCollapsed,
+      String(this.isCollapsed)
+    )
   }
 }

@@ -10,7 +10,7 @@
     nzTooltipPlacement="bottom"
     nz-button
     nz-tooltip
-    *ngFor="let item of dataList; trackBy: serviceCommon.trackByItemWeb"
+    *ngFor="let item of dataList; trackBy: commonService.trackByItemWeb"
     (click)="jumpService.goUrl($event, item.url)"
   >
     <ng-template #titleTemplate let-thing>

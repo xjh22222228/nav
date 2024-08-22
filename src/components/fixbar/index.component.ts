@@ -27,6 +27,7 @@ import mitt from 'src/utils/mitt'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FixbarComponent {
+  @Input() showTop: boolean = true
   @Input() showCollapse: boolean = true
   @Input() collapsed: boolean = false
   @Input() selector: string = ''

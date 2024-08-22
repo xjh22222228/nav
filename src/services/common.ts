@@ -19,7 +19,7 @@ import event from 'src/utils/mitt'
 @Injectable({
   providedIn: 'root',
 })
-export class ServiceCommonService {
+export class CommonService {
   isLogin = isLogin
   settings = settings
   websiteList: INavProps[] = websiteList

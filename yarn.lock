@@ -5344,10 +5344,10 @@ netmask@^2.0.2:
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-2.0.2.tgz#8b01a07644065d536383835823bc52004ebac5e7"
   integrity sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==
 
-ng-zorro-antd@^18.0.0:
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-18.0.0.tgz#d0fe01711f9f845cf7851ae24ae452c04ee826d7"
-  integrity sha512-ocykww3Yt2wYZmywYm4jxq9FILI9L9W6W7Gg5hpQwqEIOAq6FuNg0XBkiYteMzjeBGV1/PDb5R1QApjSRa2Hog==
+ng-zorro-antd@^18.1.1:
+  version "18.1.1"
+  resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-18.1.1.tgz#a0880494650332e792a3c5f3442b3623a4f3d6b1"
+  integrity sha512-YbJN/87XGsKbAwBJH7ci/01Y30QCwJsQU8FtVhtAd5JsB/NsBAfYfsIoPgch6ZUPZ3Jo2+3UA/pTCx1DliagHg==
   dependencies:
     "@angular/cdk" "^18.0.0"
     "@ant-design/icons-angular" "^18.0.0"
