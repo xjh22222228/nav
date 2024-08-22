@@ -88,13 +88,13 @@
 
 2、[https://github.com/settings/tokens/new](https://github.com/settings/tokens/new) 申请 `token`, 勾选相应的权限, 如果不懂就全部选中，复制并保存 Token；[Gitee 申请点这里](https://gitee.com/profile/personal_access_tokens/new)
 
-3、https://github.com/你的用户名/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
+3、https://github.com/licoba/nav/settings/secrets/actions/new 添加申请的 token， name 填写 `TOKEN` 大写。
 
-4、打开 https://github.com/你的用户名/nav/actions 开启 action 自动部署
+4、打开 https://github.com/licoba/nav/actions 开启 action 自动部署
 
 5、修改项目根目录配置文件 [package.json](package.json) 只需要修改仓库地址 `gitRepoUrl` 字段
 
-6、打开 https://你的用户名.github.io/nav 就能看到一个非常强大的导航网站了。
+6、打开 https://licoba.github.io/nav 就能看到一个非常强大的导航网站了。
 
 #### Netlify 推荐(免费)
 
@@ -169,7 +169,7 @@ npm run update
 
 ## 开发构建
 
-NODE: >= v20
+NODE: >= v20，建议用稳定版
 
 ```bash
 # 下载
@@ -187,15 +187,9 @@ yarn start
 yarn build
 ```
 
-## 支持
+## 建议
 
-项目于 2018 年到至今一直坚持维护和开源, 经过 N 次的迭代与优化, 如果项目能帮到您是我的荣幸。
-
-您可以请作者喝杯咖啡，继续战斗下去（请备注 GitHub 名字）~
-
-<img src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/32.png" width="600">
-
-<img src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/thank.png" width="200" />
+如果有任何功能上的建议可通过 [issue](https://github.com/xjh22222228/nav/issues) 发起, Thank you.
 
 ## License
 
