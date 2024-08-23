@@ -27,6 +27,7 @@ export default class ShortcutComponent {
   dayText = ''
   dockList: IWebProps[] = []
   iconSize: number = 0
+  frameLoad = false
 
   constructor(public jumpService: JumpService) {
     event.on('EVENT_DARK', (isDark: any) => {
@@ -126,5 +127,9 @@ export default class ShortcutComponent {
 
   trackByItemWeb(a: any, item: any) {
     return item.id
+  }
+
+  iframeLoad() {
+    this.frameLoad = true
   }
 }

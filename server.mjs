@@ -131,10 +131,8 @@ app.post('/api/contents/get', (req, res) => {
     const { userViewCount, loginViewCount } = getWebCount(params.webs)
     params.internal.userViewCount = userViewCount
     params.internal.loginViewCount = loginViewCount
-    params.webs = setWeb(params.webs)
-    return res.json({
-      ...params,
-    })
+    params.webs = setWeb(params.webs, params.settings)
+    return res.json(params)
   } catch (error) {
     res.status(500)
     res.json({

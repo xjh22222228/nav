@@ -51,6 +51,42 @@
     </nz-form-control>
   </nz-form-item>
 
+  <nz-form-item *ngIf="!isSelfDevelop">
+    <nz-form-label [nzSpan]="4">{{ $t('_imageCDN') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <nz-select formControlName="gitHubCDN">
+        <nz-option
+          nzValue="testingcf.jsdelivr.net"
+          nzLabel="testingcf.jsdelivr.net"
+        ></nz-option>
+        <nz-option
+          nzValue="img.jsdmirror.com"
+          nzLabel="img.jsdmirror.com"
+        ></nz-option
+        ><nz-option
+          nzValue="gcore.jsdelivr.net"
+          nzLabel="gcore.jsdelivr.net"
+        ></nz-option
+        ><nz-option
+          nzValue="cdn.jsdelivr.net"
+          nzLabel="cdn.jsdelivr.net"
+        ></nz-option>
+      </nz-select>
+
+      <div class="mt10">
+        <a
+          target="_blank"
+          [href]="
+            'https://' + cdnUrl + '/gh/xjh22222228/public@gh-pages/nav/logo.svg'
+          "
+          >{{
+            'https://' + cdnUrl + '/gh/xjh22222228/public@gh-pages/nav/logo.svg'
+          }}</a
+        >
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
   <nz-form-item>
     <nz-form-label [nzSpan]="4">Email</nz-form-label>
     <nz-form-control [nzSpan]="10">
@@ -350,6 +386,17 @@
   <nz-tabset [nzSelectedIndex]="tabActive">
     <nz-tab [nzTitle]="'Light ' + $t('_theme')">
       <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_docTitle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input
+            nz-input
+            formControlName="lightDocTitle"
+            [placeholder]="$t('_defaultTitle')"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
         <nz-form-control [nzSpan]="10">
           <nz-radio-group formControlName="lightCardStyle">
@@ -446,6 +493,17 @@
     </nz-tab>
 
     <nz-tab [nzTitle]="'Super ' + $t('_theme')">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_docTitle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input
+            nz-input
+            formControlName="superDocTitle"
+            [placeholder]="$t('_defaultTitle')"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
       <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
         <nz-form-control [nzSpan]="10">
@@ -554,6 +612,17 @@
     </nz-tab>
 
     <nz-tab [nzTitle]="'Sim ' + $t('_theme')">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_docTitle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input
+            nz-input
+            formControlName="simDocTitle"
+            [placeholder]="$t('_defaultTitle')"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
       <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
         <nz-form-control [nzSpan]="10">
@@ -693,6 +762,17 @@
 
     <nz-tab [nzTitle]="'Side ' + $t('_theme')">
       <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_docTitle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input
+            nz-input
+            formControlName="sideDocTitle"
+            [placeholder]="$t('_defaultTitle')"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ $t('_sidebarTitle') }}</nz-form-label>
         <nz-form-control [nzSpan]="10">
           <input
@@ -819,6 +899,17 @@
 
     <nz-tab [nzTitle]="'Shortcut ' + $t('_theme')">
       <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_docTitle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input
+            nz-input
+            formControlName="shortDocTitle"
+            [placeholder]="$t('_defaultTitle')"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
         <nz-form-control [nzSpan]="10">
           <input
@@ -867,6 +958,17 @@
     </nz-tab>
 
     <nz-tab [nzTitle]="'App ' + $t('_theme')">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ $t('_docTitle') }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input
+            nz-input
+            formControlName="appDocTitle"
+            [placeholder]="$t('_defaultTitle')"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
       <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
         <nz-form-control [nzSpan]="10">

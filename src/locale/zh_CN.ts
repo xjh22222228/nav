@@ -215,6 +215,8 @@ const zhCN: Record<string, string> = {
   _retro: '复古',
   _accessTimeout: '爬取超时(秒)',
   _accessTimeoutTip: '爬取网站指定秒数无响应跳过，数字越大成功率越高，但是越慢',
+  _imageCDN: '图片CDN',
+  _docTitle: '文档标题',
 }
 
 export default zhCN

@@ -44,6 +44,10 @@ export default class SystemSettingComponent {
     })
   }
 
+  get cdnUrl(): string {
+    return this.validateForm.get('gitHubCDN')?.value
+  }
+
   onLogoChange(data: any) {
     this.settings.favicon = data.cdn || ''
   }

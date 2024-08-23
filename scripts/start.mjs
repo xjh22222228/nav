@@ -21,7 +21,6 @@ const configJson = {
   branch: packageJson.branch,
   hashMode: packageJson.hashMode,
   address: packageJson.address,
-  password: packageJson.password,
   email: packageJson.email,
   port: packageJson.port,
 }
@@ -112,11 +111,6 @@ try {
       encoding: 'utf-8',
     })
   }
-
-  search = search.map((item) => {
-    item.icon = replaceJsdelivrCDN(item.icon)
-    return item
-  })
 }
 
 {
@@ -190,6 +184,8 @@ try {
   settings.footerContent ??=
     '<div>共收录${total}个网站</div><div>Copyright © 2018-${year} ${hostname}, All Rights Reserved</div>'
   settings.showThemeToggle ??= true
+
+  settings.lightDocTitle ||= ''
   settings.lightCardStyle ||= 'standard'
   settings.lightOverType ||= 'overflow'
   settings.lightFooterHTML ||= ''
@@ -197,14 +193,10 @@ try {
     {
       src: banner1,
       url: '',
-      width: null,
-      height: null,
     },
     {
       src: banner2,
       url: '',
-      width: null,
-      height: null,
     },
   ]
   settings.simThemeDesc ??=
@@ -213,13 +205,15 @@ try {
   settings.simOverType ||= 'overflow'
   settings.simThemeHeight ??= 0
   settings.simThemeAutoplay ??= true
+  settings.simDocTitle ||= ''
   settings.simTitle ||= ''
   settings.simFooterHTML ||= ''
   settings.superCardStyle ||= 'column'
   settings.superOverType ||= 'overflow'
   settings.superFooterHTML ||= ''
-  settings.checkUrl ??= false
-  settings.superTitle ??= ''
+
+  settings.superDocTitle ||= ''
+  settings.superTitle ||= ''
   const defImgs = [
     {
       src: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/nav-1717494364392-ad.jpg',
@@ -239,6 +233,7 @@ try {
     settings.lightImages = defImgs
   }
   settings.sideTitle ||= ''
+  settings.sideDocTitle ||= ''
   settings.sideCardStyle ||= 'example'
   settings.sideFooterHTML ||= ''
   settings.sideThemeHeight ??= 0
@@ -248,28 +243,24 @@ try {
     {
       src: banner2,
       url: '',
-      width: null,
-      height: null,
     },
     {
       src: banner1,
       url: '',
-      width: null,
-      height: null,
     },
   ]
   settings.shortcutTitle ??= ''
+  settings.shortDocTitle ||= ''
   settings.shortcutDockCount ??= 6
   settings.shortcutThemeShowWeather ??= true
   settings.shortcutThemeImages ??= [
     {
       src: backgroundImg,
       url: '',
-      width: null,
-      height: null,
     },
   ]
   settings.mirrorList ||= []
+  settings.checkUrl ??= false
   settings.spiderIcon ??= 'NO'
   settings.spiderDescription ??= 'NO'
   settings.spiderTitle ??= 'NO'
@@ -279,27 +270,33 @@ try {
   settings.loadingCode ??= ''
 
   settings.appCardStyle ??= 'common'
+  settings.appDocTitle ||= ''
+  settings.gitHubCDN ||= 'gcore.jsdelivr.net'
 
   // 替换CDN
-  settings.favicon = replaceJsdelivrCDN(settings.favicon)
+  search = search.map((item) => {
+    item.icon = replaceJsdelivrCDN(item.icon, settings)
+    return item
+  })
+  settings.favicon = replaceJsdelivrCDN(settings.favicon, settings)
   settings.simThemeImages = settings.simThemeImages.map((item) => {
-    item.src = replaceJsdelivrCDN(item.src)
+    item.src = replaceJsdelivrCDN(item.src, settings)
     return item
   })
   settings.superImages = settings.superImages.map((item) => {
-    item.src = replaceJsdelivrCDN(item.src)
+    item.src = replaceJsdelivrCDN(item.src, settings)
     return item
   })
   settings.lightImages = settings.lightImages.map((item) => {
-    item.src = replaceJsdelivrCDN(item.src)
+    item.src = replaceJsdelivrCDN(item.src, settings)
     return item
   })
   settings.sideThemeImages = settings.sideThemeImages.map((item) => {
-    item.src = replaceJsdelivrCDN(item.src)
+    item.src = replaceJsdelivrCDN(item.src, settings)
     return item
   })
   settings.shortcutThemeImages = settings.shortcutThemeImages.map((item) => {
-    item.src = replaceJsdelivrCDN(item.src)
+    item.src = replaceJsdelivrCDN(item.src, settings)
     return item
   })
   fs.writeFileSync(settingsPath, JSON.stringify(settings), {
@@ -311,7 +308,6 @@ const { userViewCount, loginViewCount } = getWebCount(db)
 internal.userViewCount = userViewCount < 0 ? loginViewCount : userViewCount
 internal.loginViewCount = loginViewCount
 internal.buildTime = Date.now()
-fs.writeFileSync(internalPath, JSON.stringify(internal), { encoding: 'utf-8' })
+fs.writeFileSync(internalPath, JSON.stringify(internal))
 
-const data = setWeb(db)
-fs.writeFileSync(dbPath, JSON.stringify(data), { encoding: 'utf-8' })
+fs.writeFileSync(dbPath, JSON.stringify(setWeb(db, settings)))

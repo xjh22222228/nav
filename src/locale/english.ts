@@ -226,6 +226,8 @@ const english: Record<string, string> = {
   _accessTimeout: 'Access timeout (seconds)',
   _accessTimeoutTip:
     'Crawl the website for a specified number of seconds with no response, skip, The larger the number, the higher the success rate, but the slower it is',
+  _imageCDN: 'Image CDN',
+  _docTitle: 'Document title',
 }
 
 export default english

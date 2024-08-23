@@ -3,7 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
-import { Router, ActivatedRoute } from '@angular/router'
+import { Router, ActivatedRoute, ChildActivationStart } from '@angular/router'
 import { queryString, setLocation, isMobile } from '../utils'
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n'
 import { getLocale } from 'src/locale'
@@ -34,6 +34,13 @@ export class AppComponent {
     private notification: NzNotificationService
   ) {
     new Alert(message, notification)
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof ChildActivationStart) {
+        const title = event.snapshot.children?.[0]?.['data']?.['title']
+        document.title = title || settings.title
+      }
+    })
   }
 
   ngOnInit() {

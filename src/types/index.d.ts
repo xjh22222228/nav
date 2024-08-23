@@ -114,11 +114,13 @@ export interface ISettings {
   errorUrlCount?: number
 
   appCardStyle: ICardType
+  appDocTitle: string
 
   lightCardStyle: ICardType
   lightOverType: OverType
   lightImages: Record<string, any>[]
   lightFooterHTML: string
+  lightDocTitle: string
 
   simThemeImages: Record<string, any>[]
   simThemeDesc: string
@@ -128,6 +130,7 @@ export interface ISettings {
   simTitle: string
   simOverType: OverType
   simFooterHTML: string
+  simDocTitle: string
 
   sideThemeImages: Record<string, any>[]
   sideThemeHeight: number
@@ -136,17 +139,20 @@ export interface ISettings {
   sideTitle: string
   sideFooterHTML: string
   sideCollapsed: boolean
+  sideDocTitle: string
 
   shortcutThemeImages: Record<string, any>[]
   shortcutThemeShowWeather: boolean
   shortcutTitle: string
   shortcutDockCount: number
+  shortDocTitle: string
 
   superTitle: string
   superOverType: OverType
   superCardStyle: ICardType
   superImages: Record<string, any>[]
   superFooterHTML: string
+  superDocTitle: string
 
   showRate: boolean
   mirrorList: Record<string, any>[]
@@ -161,6 +167,8 @@ export interface ISettings {
   spiderTimeout: number | string
 
   loadingCode: string
+
+  gitHubCDN: string
 }
 
 export type internalProps = {

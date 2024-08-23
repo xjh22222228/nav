@@ -9,9 +9,6 @@ import { getToken, getAuthCode } from '../utils/user'
 import { VERSION } from 'src/constants'
 import { isLogin } from 'src/utils/user'
 
-const DEFAULT_TITLE = document.title
-const headers: Record<string, string> = {}
-
 const httpInstance = axios.create({
   timeout: 60000 * 3,
   baseURL:
@@ -19,17 +16,14 @@ const httpInstance = axios.create({
     (config.provider === 'Gitee'
       ? 'https://gitee.com/api/v5'
       : 'https://api.github.com'),
-  headers,
 })
 
 function startLoad() {
   NProgress.start()
-  document.title = 'Connecting...'
 }
 
 function stopLoad() {
   NProgress.done()
-  document.title = DEFAULT_TITLE
 }
 
 httpInstance.interceptors.request.use(
