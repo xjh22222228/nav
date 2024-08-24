@@ -221,6 +221,10 @@ export async function bookmarksExport(data: any) {
   })
 }
 
+export async function getIconBase64(data: any) {
+  return httpNav.post('/api/base64', data, { timeout: 20000 })
+}
+
 export async function getUserInfo(data?: Record<string, any>) {
   return httpNav.post('/api/info/get', data)
 }

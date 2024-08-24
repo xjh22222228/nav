@@ -35,6 +35,7 @@ const app = express()
 app.use(compression())
 app.use(history())
 app.use(bodyParser.json({ limit: '10000mb' }))
+app.use(bodyParser.urlencoded({ limit: '10000mb', extended: true }))
 app.use(
   cors({
     origin: '*',

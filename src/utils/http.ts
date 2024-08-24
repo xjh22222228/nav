@@ -62,7 +62,7 @@ httpInstance.interceptors.response.use(
 
 const httpNavInstance = axios.create({
   timeout: 10000,
-  baseURL: 'https://nav-server.netlify.app',
+  baseURL: 'https://api.nav3.cn',
   // baseURL: 'http://localhost:3007',
 })
 

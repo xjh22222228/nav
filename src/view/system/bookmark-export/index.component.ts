@@ -10,9 +10,10 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { parseBookmark } from 'src/utils/bookmark'
 import { INavProps, IWebProps } from 'src/types'
 import { websiteList } from 'src/store'
-import { bookmarksExport } from 'src/api'
+import { bookmarksExport, getIconBase64 } from 'src/api'
 import { saveAs } from 'file-saver'
 import { getAuthCode } from 'src/utils/user'
+import LZString from 'lz-string'
 
 @Component({
   selector: 'system-bookmark-export',
@@ -52,23 +53,43 @@ export default class SystemBookmarkExportComponent {
     })
   }
 
-  async imageToBase64(item: IWebProps) {
-    if (item.icon?.startsWith('data:image')) {
-      return
-    }
-
+  async imageToBase64(item: IWebProps, isGet: boolean = true) {
     const img = await this.loadImage(item.icon)
     if (img) {
       try {
+        const size = 32
         const canvas = document.createElement('canvas')
-        canvas.width = img.width
-        canvas.height = img.height
+        canvas.width = size
+        canvas.height = size
         const ctx = canvas.getContext('2d')
-        ctx.drawImage(img, 0, 0)
-        const dataURL = canvas.toDataURL('image/png')
+        ctx.drawImage(img, 0, 0, size, size)
+        const dataURL = canvas.toDataURL()
         item.icon = dataURL
         return dataURL
-      } catch (error) {}
+      } catch {}
+    } else {
+      if (!isGet) {
+        return
+      }
+      try {
+        if (!item.icon) {
+          return
+        }
+        const res = await getIconBase64({ url: item.icon })
+        if (res.data.base64) {
+          item.icon = res.data.base64
+          await this.imageToBase64(item, false)
+        }
+      } catch (e: any) {
+        const pre = document.getElementById('error-msg')
+        if (pre) {
+          const html = `
+          <a href="${item.icon}" target="_blank">${item.name} ${item.icon}</a>
+          <div>${e.response?.data?.message || e.message}</div>
+        `
+          pre.innerHTML = html + pre.innerHTML
+        }
+      }
     }
   }
 
@@ -83,6 +104,7 @@ export default class SystemBookmarkExportComponent {
     const that = this
     this.seconds = 0
     this.countAll = 0
+    this.currentNumber = 0
     this.submitting = true
     const interval = setInterval(() => {
       this.seconds += 1
@@ -95,10 +117,23 @@ export default class SystemBookmarkExportComponent {
         return
       }
       data.forEach((item) => {
+        // 移除无用属性，减少传输大小
+        delete item.id
+        delete item.createdAt
+        delete item.rate
+        delete item.top
+        delete item.index
+        delete item.ownVisible
+        delete item.breadcrumb
+        delete item.ok
+        delete item.__name__
+        delete item.__desc__
+        delete item.collapsed
         if (Array.isArray(item.nav)) {
           getIconItems(item.nav)
         }
         if (item.url) {
+          delete item.urls
           promiseItems.push(
             that.imageToBase64(item).finally(() => {
               that.currentNumber += 1
@@ -113,7 +148,7 @@ export default class SystemBookmarkExportComponent {
       await Promise.allSettled(promiseItems)
     }
 
-    bookmarksExport({ data: webs })
+    bookmarksExport({ data: LZString.compress(JSON.stringify(webs)) })
       .then((res) => {
         const fileName = '发现导航书签.html'
         const blob = new Blob([res.data.data], {

@@ -26,12 +26,13 @@ export default class VipAuthComponent {
     this.getUserInfo()
   }
 
-  getUserInfo() {
+  async getUserInfo(params?: any) {
     this.submitting = true
-    getUserInfo()
+    return getUserInfo(params)
       .then((res: any) => {
         this.isPermission = true
         this.url = res.data?.data?.url || ''
+        return res
       })
       .finally(() => {
         this.submitting = false
@@ -43,8 +44,9 @@ export default class VipAuthComponent {
       return
     }
 
-    setAuthCode(this.authCode)
-    this.getUserInfo()
+    this.getUserInfo({ code: this.authCode }).then(() => {
+      setAuthCode(this.authCode)
+    })
   }
 
   handleSave() {

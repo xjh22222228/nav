@@ -185,7 +185,7 @@ export class CreateWebComponent {
       this.validateForm.controls[i].updateValueAndValidity()
     }
 
-    const createdAt = new Date().toString()
+    const createdAt = Date.now()
     let urls: Record<string, any> = {}
     let { title, icon, url, top, ownVisible, rate, desc, index } =
       this.validateForm.value
@@ -203,7 +203,7 @@ export class CreateWebComponent {
     const payload = {
       id: -Date.now(),
       name: title,
-      createdAt: (this.detail as any)?.createdAt ?? createdAt,
+      createdAt: this.detail?.createdAt ?? createdAt,
       rate: rate ?? 5,
       desc: desc || '',
       top: top ?? false,

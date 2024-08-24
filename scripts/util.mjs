@@ -82,7 +82,7 @@ export function setWeb(nav, settings) {
 
   function formatDate(item) {
     item.createdAt ||= Date.now()
-    item.createdAt = dayjs(item.createdAt).format('YYYY-MM-DD HH:mm:ss')
+    item.createdAt = dayjs(item.createdAt).format('YYYY-MM-DD HH:mm')
   }
 
   for (let i = 0; i < nav.length; i++) {

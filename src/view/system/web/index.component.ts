@@ -6,7 +6,14 @@
 import { Component } from '@angular/core'
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
 import { INavProps, INavTwoProp, INavThreeProp, IWebProps } from 'src/types'
-import { websiteList, settings, tagMap, internal } from 'src/store'
+import {
+  websiteList,
+  settings,
+  searchEngineList,
+  tagList,
+  tagMap,
+  internal,
+} from 'src/store'
 import { isLogin, removeWebsite } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
@@ -232,9 +239,15 @@ export default class WebpComponent {
   }
 
   handleDownloadBackup() {
-    const value = JSON.stringify(this.websiteList)
+    const params = {
+      webs: this.websiteList,
+      settings,
+      tagList,
+      searchEngineList,
+    }
+    const value = JSON.stringify(params)
     const blob = new Blob([value], { type: 'text/plain;charset=utf-8' })
-    saveAs(blob, 'db.json')
+    saveAs(blob, 'backups_nav.json')
   }
 
   handleUploadBackup(e: any) {
@@ -249,7 +262,7 @@ export default class WebpComponent {
     fileReader.onload = function (data) {
       try {
         const { result } = data.target as any
-        that.websiteList = JSON.parse(result as string)
+        that.websiteList = JSON.parse(result).webs
         setWebsiteList(that.websiteList)
         e.target.value = ''
         that.message.success($t('_actionSuccess'))
@@ -464,7 +477,7 @@ export default class WebpComponent {
   }
 
   handleOk() {
-    const createdAt = new Date().toString()
+    const createdAt = Date.now()
 
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty()
