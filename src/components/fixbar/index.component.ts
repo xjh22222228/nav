@@ -79,9 +79,20 @@ export class FixbarComponent {
     }
 
     const url = this.router.url.split('?')[0]
-    this.themeList = this.themeList.filter((t) => {
-      return t.url !== url
-    })
+    const defaultTheme = settings.theme?.toLowerCase?.()
+    this.themeList = this.themeList
+      .map((item) => {
+        if (item.url === '/' + defaultTheme) {
+          item.url = '/'
+        }
+        return item
+      })
+      .filter((t) => {
+        if (url === '/' && url + settings.theme?.toLowerCase?.() === t.url) {
+          return false
+        }
+        return t.url !== url
+      })
   }
 
   ngOnInit() {}

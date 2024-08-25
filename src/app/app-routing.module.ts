@@ -126,11 +126,21 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: '**',
-    redirectTo: '/' + settings.theme.toLowerCase(),
-  },
 ]
+
+const defaultTheme = settings.theme?.toLowerCase?.()
+const hasDefault = routes.find((item) => item.path === defaultTheme)
+if (hasDefault) {
+  routes.push({
+    ...hasDefault,
+    path: '**',
+  })
+} else {
+  routes.push({
+    path: '**',
+    redirectTo: '/' + defaultTheme,
+  })
+}
 
 @NgModule({
   imports: [
