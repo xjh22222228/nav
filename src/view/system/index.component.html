@@ -34,13 +34,6 @@
             </li>
             <li
               nz-menu-item
-              [nzSelected]="currentMenu === 'bookmarkExport'"
-              (click)="goRoute('/system/bookmarkExport')"
-            >
-              {{ $t('_bookmarkExport') }}
-            </li>
-            <li
-              nz-menu-item
               [nzSelected]="currentMenu === 'search'"
               (click)="goRoute('/system/search')"
             >
@@ -48,8 +41,17 @@
             </li>
             <li
               nz-menu-item
+              [nzSelected]="currentMenu === 'bookmarkExport'"
+              (click)="goRoute('/system/bookmarkExport', !isAuthz)"
+              [nzDisabled]="!isAuthz"
+            >
+              {{ $t('_bookmarkExport') }}
+            </li>
+            <li
+              nz-menu-item
               [nzSelected]="currentMenu === 'collect'"
-              (click)="goRoute('/system/collect')"
+              (click)="goRoute('/system/collect', !isAuthz)"
+              [nzDisabled]="!isAuthz"
             >
               {{ $t('_userCollect') }}
             </li>
