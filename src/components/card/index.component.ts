@@ -82,6 +82,10 @@ export class CardComponent implements OnInit {
     })
   }
 
+  get html() {
+    return this.dataSource.desc.slice(1)
+  }
+
   get getRate() {
     if (!this.dataSource.rate) {
       return null

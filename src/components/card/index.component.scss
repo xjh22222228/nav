@@ -1,6 +1,15 @@
 .container {
   position: relative;
   height: 100%;
+  ::ng-deep {
+    img {
+      max-width: 100%;
+      object-fit: cover;
+    }
+    iframe {
+      width: 100%;
+    }
+  }
   .breadcrumb1 {
     padding: 0 0 0 8px;
     font-size: 12px;
@@ -26,6 +35,10 @@
     top: 12px;
     right: 12px;
   }
+}
+
+.progrcode {
+  cursor: pointer;
 }
 
 .standard {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
 // Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
@@ -36,7 +35,7 @@ export default class SystemBookmarkExportComponent {
 
   ngOnInit() {}
 
-  loadImage(url: string) {
+  loadImage(url: string): Promise<HTMLImageElement | null> {
     return new Promise((resolve) => {
       if (!url) {
         return resolve(null)
@@ -61,7 +60,7 @@ export default class SystemBookmarkExportComponent {
         const canvas = document.createElement('canvas')
         canvas.width = size
         canvas.height = size
-        const ctx = canvas.getContext('2d')
+        const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
         ctx.drawImage(img, 0, 0, size, size)
         const dataURL = canvas.toDataURL()
         item.icon = dataURL
@@ -111,8 +110,8 @@ export default class SystemBookmarkExportComponent {
     }, 1000)
 
     const webs: INavProps = JSON.parse(JSON.stringify(this.websiteList))
-    const promiseItems = []
-    function getIconItems(data) {
+    const promiseItems: Promise<any>[] = []
+    function getIconItems(data: any) {
       if (!Array.isArray(data)) {
         return
       }

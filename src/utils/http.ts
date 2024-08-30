@@ -61,7 +61,7 @@ httpInstance.interceptors.response.use(
 )
 
 const httpNavInstance = axios.create({
-  timeout: 10000,
+  timeout: 15000,
   baseURL: 'https://api.nav3.cn',
   // baseURL: 'http://localhost:3007',
 })
@@ -74,7 +74,8 @@ httpNavInstance.interceptors.request.use(
     }
     conf.data = {
       code,
-      hostname: window.location.hostname,
+      hostname: location.hostname,
+      href: location.href,
       version: VERSION,
       isLogin,
       ...config,

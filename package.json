@@ -22,10 +22,7 @@
     "build": "npm run setup && ng build --index src/index.html && ts-node ./scripts/done.mjs",
     "watch": "ng build --watch --configuration development",
     "update": "git pull && (git remote add upstream https://gitee.com/xiejiahe/nav.git || true) && git fetch upstream main && git merge upstream/main --allow-unrelated-histories --no-edit && git push",
-    "pull": "git pull",
-    "server": "pm2 start server.mjs",
-    "restartServer": "pm2 restart server",
-    "stopServer": "pm2 stop server"
+    "pull": "git pull"
   },
   "private": true,
   "dependencies": {
@@ -66,7 +63,7 @@
     "compression": "^1.7.4",
     "connect-history-api-fallback": "^2.0.0",
     "cors": "^2.8.5",
-    "info-web": "^0.0.29",
+    "info-web": "^0.0.32",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
