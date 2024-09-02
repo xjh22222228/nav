@@ -169,9 +169,6 @@ export function setWeb(nav, settings) {
 
 export function writeSEO(webs, payload) {
   const { settings, pkg } = payload
-  if (!settings.openSEO) {
-    return ''
-  }
   const nowDate = dayjs.tz().format('YYYY-MM-DD HH:mm:ss')
   let seoTemplate = `
 <div data-url="https://github.com/xjh22222228/nav" data-server-time="${Date.now()}" data-a="x.i.e-jiahe" data-date="${nowDate}" data-version="${
@@ -192,7 +189,9 @@ export function writeSEO(webs, payload) {
     }
   }
 
-  r(webs)
+  if (settings.openSEO) {
+    r(webs)
+  }
 
   seoTemplate += '</div>'
 
