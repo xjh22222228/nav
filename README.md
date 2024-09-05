@@ -138,12 +138,12 @@
 |√ | | branch | 部署分支 |
 |√ | √| hashMode | 路由是否 Hash 模式, 如果是部署在 `github pages` 务必设为 true |
 | | √| password | 自有部署登录密码，`Fork` 用户无需填写 |
-| | √| address | 自有部署, 一旦填写认为你是自有部署，`https://你的域名或IP:7777` |
+| | √| address | 自有部署, 一旦填写认为你是自有部署 |
 |√| √| email | 用户提交收录通知 |
 
 ## 后台
 
-将路由地址修改为 `system` 即可进入，如: https://www.nav3.cn/#/light 修改为 https://www.nav3.cn/#/system
+将路由地址修改为 `system` 即可进入，如: https://www.nav3.cn 修改为 https://www.nav3.cn/system
 
 ## 升级
 

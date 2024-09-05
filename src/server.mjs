@@ -14,7 +14,7 @@ import {
   spiderWeb,
   writeSEO,
   writeTemplate,
-} from './scripts/util.mjs'
+} from '../scripts/util.mjs'
 
 const joinPath = (p) => {
   return path.resolve(process.cwd(), p)

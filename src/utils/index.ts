@@ -87,6 +87,9 @@ export function fuzzySearch(
         }
 
         const searchDesc = (): boolean => {
+          if (desc[0] === '!') {
+            return false
+          }
           if (desc.includes(search)) {
             let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
