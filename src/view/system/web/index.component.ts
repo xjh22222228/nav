@@ -453,6 +453,14 @@ export default class WebpComponent {
     this.validateForm.get('ownVisible')!.setValue(!!ownVisible)
   }
 
+  onChangeFile(data: any) {
+    this.validateForm.get('icon')!.setValue(data.cdn)
+  }
+
+  get iconUrl(): string {
+    return this.validateForm.get('icon')?.value || ''
+  }
+
   handleSync() {
     this.modal.info({
       nzTitle: $t('_syncDataOut'),

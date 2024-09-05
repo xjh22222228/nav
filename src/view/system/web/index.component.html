@@ -533,13 +533,20 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="6">图标地址</nz-form-label>
         <nz-form-control [nzSpan]="18">
-          <nz-input-group>
+          <nz-input-group [nzPrefix]="prefixIcon" [nzSuffix]="suffixIconSearch">
             <input
               formControlName="icon"
               nz-input
               placeholder="用于某些主题icon"
             />
           </nz-input-group>
+
+          <ng-template #prefixIcon>
+            <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl"></app-logo>
+          </ng-template>
+          <ng-template #suffixIconSearch>
+            <app-upload (onChange)="onChangeFile($event)"></app-upload>
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
     </form>
