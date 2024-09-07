@@ -33,15 +33,18 @@ export async function fetchWeb() {
   if (isSelfDevelop) {
     return
   }
-  function finish() {
+  function finish(dbData: any) {
+    dbData.forEach((item: any) => {
+      websiteList.push(item)
+    })
     event.emit('WEB_FINISH')
     window.__FINISHED__ = true
   }
   let data = adapterWebsiteList(websiteList)
-  if (!isLogin) {
-    return finish()
-  }
   websiteList.splice(0, websiteList.length)
+  if (!isLogin) {
+    return finish(data)
+  }
   const storageDate = window.localStorage.getItem(STORAGE_KEY_MAP.s_url)
 
   // 检测到网站更新，清除缓存本地保存记录失效
@@ -61,10 +64,7 @@ export async function fetchWeb() {
     }
     window.localStorage.setItem(STORAGE_KEY_MAP.s_url, navConfig.datetime)
     localforage.removeItem(STORAGE_KEY_MAP.website)
-    data.forEach((item) => {
-      websiteList.push(item)
-    })
-    finish()
+    finish(data)
     if (isLogin) {
       setTimeout(() => {
         event.emit('NOTIFICATION', {
@@ -83,11 +83,10 @@ export async function fetchWeb() {
   try {
     const dbData: any =
       (await localforage.getItem(STORAGE_KEY_MAP.website)) || data
-    dbData.forEach((item: any) => {
-      websiteList.push(item)
-    })
-    finish()
-  } catch {}
+    finish(dbData)
+  } catch {
+    finish(data)
+  }
 }
 
 export function setWebsiteList(v?: INavProps[]) {

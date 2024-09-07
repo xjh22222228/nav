@@ -67,8 +67,6 @@
 ## 预览
 
 - [https://nav3.cn/](https://nav3.cn/)
-- [https://faxian.vercel.app/](https://faxian.vercel.app/)
-- [https://xjh22222228.github.io/nav-web/](https://xjh22222228.github.io/nav-web/)
 
 ![Preview](https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/preview.gif)
 
