@@ -1,5 +1,6 @@
 import event from 'src/utils/mitt'
 import localforage from 'localforage'
+import navConfig from '../../nav.config.json'
 import { updateFileContent } from 'src/api'
 import { isLogin } from './user'
 import { IWebProps, INavProps } from '../types'
@@ -32,14 +33,19 @@ export async function fetchWeb() {
   if (isSelfDevelop) {
     return
   }
+  function finish() {
+    event.emit('WEB_FINISH')
+    window.__FINISHED__ = true
+  }
   let data = adapterWebsiteList(websiteList)
+  if (!isLogin) {
+    return finish()
+  }
   websiteList.splice(0, websiteList.length)
-  const metaEl = document.getElementById('META-NAV')
-  const date = metaEl?.dataset?.['date'] || ''
   const storageDate = window.localStorage.getItem(STORAGE_KEY_MAP.s_url)
 
   // 检测到网站更新，清除缓存本地保存记录失效
-  if (storageDate !== date) {
+  if (storageDate !== navConfig.datetime) {
     const whiteList = [
       STORAGE_KEY_MAP.token,
       STORAGE_KEY_MAP.isDark,
@@ -53,19 +59,18 @@ export async function fetchWeb() {
       }
       window.localStorage.removeItem(key)
     }
-    window.localStorage.setItem(STORAGE_KEY_MAP.s_url, date)
+    window.localStorage.setItem(STORAGE_KEY_MAP.s_url, navConfig.datetime)
     localforage.removeItem(STORAGE_KEY_MAP.website)
     data.forEach((item) => {
       websiteList.push(item)
     })
-    event.emit('WEB_FINISH')
-    window.__FINISHED__ = true
+    finish()
     if (isLogin) {
       setTimeout(() => {
         event.emit('NOTIFICATION', {
           type: 'success',
           title: `构建完成`,
-          content: date,
+          content: navConfig.datetime,
           config: {
             nzDuration: 0,
           },
@@ -81,8 +86,7 @@ export async function fetchWeb() {
     dbData.forEach((item: any) => {
       websiteList.push(item)
     })
-    event.emit('WEB_FINISH')
-    window.__FINISHED__ = true
+    finish()
   } catch {}
 }
 

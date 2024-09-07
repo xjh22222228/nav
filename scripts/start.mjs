@@ -3,6 +3,9 @@
 
 import fs from 'fs'
 import path from 'path'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc.js'
+import timezone from 'dayjs/plugin/timezone.js'
 import defaultDb from './db.mjs'
 import {
   TAG_ID1,
@@ -12,6 +15,10 @@ import {
   setWeb,
   replaceJsdelivrCDN,
 } from './util.mjs'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.tz.setDefault('Asia/Shanghai')
 
 const packagePath = path.join('.', 'package.json')
 const packageJson = JSON.parse(fs.readFileSync(packagePath).toString())
@@ -23,6 +30,7 @@ const configJson = {
   address: packageJson.address,
   email: packageJson.email,
   port: packageJson.port,
+  datetime: dayjs.tz().format('YYYY-MM-DD HH:mm'),
 }
 fs.writeFileSync(path.join('.', 'nav.config.json'), JSON.stringify(configJson))
 

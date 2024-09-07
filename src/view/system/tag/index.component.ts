@@ -82,7 +82,7 @@ export default class SystemTagComponent {
       nzOnOk: () => {
         this.submitting = true
         updateFileContent({
-          message: 'Update Tag',
+          message: 'update tag',
           content: JSON.stringify(this.tagList),
           path: TAG_PATH,
         })

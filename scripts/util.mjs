@@ -141,6 +141,9 @@ export function setWeb(nav, settings) {
                 if (!webItem.ownVisible) {
                   delete webItem.ownVisible
                 }
+                if (webItem.index === '') {
+                  delete webItem.index
+                }
 
                 // 兼容现有标签,以id为key
                 for (let k in webItem.urls) {

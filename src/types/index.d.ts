@@ -42,7 +42,7 @@ export interface IWebProps {
   createdAt: string | number
   rate?: number // 0-5
   top?: boolean
-  index?: number // sort
+  index?: number | string // sort
   ownVisible?: boolean
   breadcrumb: string[]
   ok?: boolean
