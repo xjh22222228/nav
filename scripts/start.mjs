@@ -187,7 +187,7 @@ try {
   settings.theme ??= 'Light'
   settings.actionUrl ??= ''
   settings.appTheme ??= 'App'
-  settings.openSEO ??= true
+  settings.openSEO ??= !configJson.address
   settings.headerContent ??= ''
   settings.footerContent ??=
     '<div>共收录${total}个网站</div><div>Copyright © 2018-${year} ${hostname}, All Rights Reserved</div>'

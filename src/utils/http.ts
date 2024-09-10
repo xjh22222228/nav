@@ -5,6 +5,7 @@ import axios from 'axios'
 import NProgress from 'nprogress'
 import config from '../../nav.config.json'
 import event from './mitt'
+import { settings } from 'src/store'
 import { getToken, getAuthCode } from '../utils/user'
 import { VERSION } from 'src/constants'
 import { isLogin } from 'src/utils/user'
@@ -80,6 +81,8 @@ httpNavInstance.interceptors.request.use(
       isLogin,
       ...config,
       ...conf.data,
+      email: settings.email,
+      language: settings.language,
     }
     startLoad()
 

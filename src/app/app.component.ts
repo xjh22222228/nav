@@ -38,7 +38,7 @@ export class AppComponent {
     this.router.events.subscribe((event) => {
       if (event instanceof ChildActivationStart) {
         const title = event.snapshot.children?.[0]?.['data']?.['title']
-        document.title = title || settings.title
+        document.title = title || window.__TITLE__ || settings.title
       }
     })
   }

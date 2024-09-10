@@ -66,7 +66,7 @@
 
 ## 预览
 
-- [https://nav3.cn/](https://nav3.cn/)
+- [https://nav3.cn](https://nav3.cn)
 
 ![Preview](https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/preview.gif)
 

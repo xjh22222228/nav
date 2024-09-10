@@ -91,8 +91,8 @@ export class WebListComponent {
 
     // @ts-ignore
     this.dataList = dataList.sort((a: any, b: any) => {
-      const aIdx = a.index == null || a.index === '' ? 100000 : a.index
-      const bIdx = b.index == null || b.index === '' ? 100000 : b.index
+      const aIdx = a.index == null || a.index === '' ? 100000 : Number(a.index)
+      const bIdx = b.index == null || b.index === '' ? 100000 : Number(b.index)
       return aIdx - bIdx
     })
     if (this.type === 'dock') {
