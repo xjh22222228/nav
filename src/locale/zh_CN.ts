@@ -50,7 +50,9 @@ const zhCN: Record<string, string> = {
   _error: '错误',
   _syncFailTip: '同步失败, 请重试',
   _inputToken: '请输入TOKEN',
-  _inputTokenMsg: '请在下方输入您的TOKEN进行登录校验',
+  _inputTokenMsg: isSelfDevelop
+    ? '请输入密码'
+    : '请在下方输入您的TOKEN进行登录校验',
   _getToken: '不知道Token如何获取？',
   _readDoc: '请先阅读我们的指南',
   _authLogin: '请授权登录',

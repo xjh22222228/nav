@@ -7,6 +7,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { verifyToken, updateFileContent, createBranch } from 'src/api'
 import { setToken, removeToken, removeWebsite } from 'src/utils/user'
 import { $t } from 'src/locale'
+import { isSelfDevelop } from 'src/utils/util'
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   @Output() onCancel = new EventEmitter()
 
   $t = $t
+  isSelfDevelop = isSelfDevelop
   token = ''
   submiting = false
 

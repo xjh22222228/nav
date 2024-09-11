@@ -1,7 +1,7 @@
 <div>
-  <p>TOKEN: {{ token }}</p>
-  <p>{{ $t('_devBranch') }}: {{ config.branch }}</p>
-  <p>{{ $t('_prevDevTime') }}: {{ date }}</p>
+  <p *ngIf="!isSelfDevelop">TOKEN: {{ token }}</p>
+  <p *ngIf="!isSelfDevelop">{{ $t('_devBranch') }}: {{ config.branch }}</p>
+  <p *ngIf="!isSelfDevelop">{{ $t('_prevDevTime') }}: {{ date }}</p>
   <p>{{ $t('_curVer') }}: <img [src]="currentVersionSrc" /></p>
   <p>
     {{ $t('_newVer') }}:

@@ -6,20 +6,16 @@
       [(ngModel)]="authCode"
       autofocus
     />
-    <button
-      class="mt10"
-      nz-button
-      nzType="primary"
-      (click)="handleSubmitAuthCode()"
-      [nzLoading]="submitting"
-    >
-      {{ $t('_save') }}
-    </button>
-    <div class="mt10">
-      <img
-        src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/support2.svg"
-        class="poster"
-      />
+    <div class="text-left">
+      <button
+        class="mt10"
+        nz-button
+        nzType="primary"
+        (click)="handleSubmitAuthCode()"
+        [nzLoading]="submitting"
+      >
+        {{ $t('_save') }}
+      </button>
     </div>
   </div>
 

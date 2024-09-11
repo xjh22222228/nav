@@ -7,6 +7,7 @@ import { Component } from '@angular/core'
 import { $t } from 'src/locale'
 import { getToken } from 'src/utils/user'
 import { VERSION } from 'src/constants'
+import { isSelfDevelop } from 'src/utils/util'
 import config from '../../../../nav.config.json'
 
 @Component({
@@ -16,6 +17,7 @@ import config from '../../../../nav.config.json'
 })
 export default class SystemInfoComponent {
   $t = $t
+  isSelfDevelop = isSelfDevelop
   token = getToken()
   config = config
   date = document.getElementById('META-NAV')?.dataset?.['date'] || $t('_unknow')

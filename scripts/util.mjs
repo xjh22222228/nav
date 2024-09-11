@@ -214,10 +214,10 @@ export function writeTemplate({ html, settings, seoTemplate }) {
   const htmlTemplate = `
   <!-- https://github.com/xjh22222228/nav -->
   <title>${settings.title}</title>
-  <meta name="description" content="${settings.description}">
-  <meta name="keywords" content="${settings.keywords}" id="xjh_2">
-  <link rel="icon" href="${settings.favicon}">
-  <link rel ="apple-touch-icon" href="${settings.favicon}">
+  <meta name="description" content="${settings.description}" />
+  <meta name="keywords" content="${settings.keywords}" id="xjh_2" />
+  <link rel="icon" href="${settings.favicon}" />
+  <link rel ="apple-touch-icon" href="${settings.favicon}" />
 `.trim()
   let t = html
   t = t.replace(

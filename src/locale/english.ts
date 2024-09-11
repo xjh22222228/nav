@@ -51,7 +51,9 @@ const english: Record<string, string> = {
   _error: 'Error',
   _syncFailTip: 'Synchronization failed, please try again',
   _inputToken: 'Please enter token',
-  _inputTokenMsg: 'Please enter your token below for login verification',
+  _inputTokenMsg: isSelfDevelop
+    ? 'Please input a password'
+    : 'Please enter your token below for login verification',
   _getToken: `I don't know how to get the token?`,
   _readDoc: 'Please read our guide first',
   _authLogin: 'Please authorize login',
