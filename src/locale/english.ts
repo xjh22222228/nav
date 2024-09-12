@@ -1,4 +1,4 @@
-// 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
+// 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 import { isSelfDevelop } from 'src/utils/util'
 
 const english: Record<string, string> = {
@@ -211,8 +211,10 @@ const english: Record<string, string> = {
   _spiderRule: 'Spider rule',
   _spiderIcon: 'Spider icon',
   _spiderDesc: 'Spider description',
+  _notSpider: 'Not updating',
   _spiderTitle: 'Spider title',
   _spiderAlways: 'Always update',
+  _spiderEmpty: 'Update for empty time',
   _spiderStatus: 'Spider Status',
   _spiderTip:
     'Crawling rules will be triggered every time saving, affecting the construction speed. Crawling and updating information may be necessary when necessary',
@@ -230,6 +232,7 @@ const english: Record<string, string> = {
     'Crawl the website for a specified number of seconds with no response, skip, The larger the number, the higher the success rate, but the slower it is',
   _imageCDN: 'Image CDN',
   _docTitle: 'Document title',
+  _importEnter: `Enter in browser <a href="chrome://bookmarks/" target="_blank">chrome://bookmarks/</a> Find the export bookmark, export the HTML file, click import below`,
 }
 
 export default english

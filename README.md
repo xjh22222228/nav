@@ -195,7 +195,3 @@ yarn build
 您可以请作者喝杯咖啡，继续战斗下去
 
 <img src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/32.png" width="600">
-
-## License
-
-[MIT](./LICENSE)

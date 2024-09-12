@@ -290,98 +290,6 @@
   </nz-form-item>
 
   <div class="divider"></div>
-  <h2 class="title">{{ $t('_spiderRule') }}</h2>
-  <div class="mb10" *ngIf="!isSelfDevelop">
-    <b>{{ $t('_spiderTip') }}</b>
-  </div>
-  <div class="mb10">
-    <b>{{ $t('_spiderNetTip') }}</b>
-  </div>
-  <div class="mb10" *ngIf="!isSelfDevelop">
-    <b>{{ $t('_spiderBuildTip') }}</b>
-  </div>
-
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
-      $t('_spiderTitle')
-    }}</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <nz-radio-group formControlName="spiderTitle">
-        <label nz-radio nzValue="NO">{{ $t('_notSpider') }}</label>
-        <label nz-radio nzValue="EMPTY">{{ $t('_spiderEmpty') }}</label>
-        <label nz-radio nzValue="ALWAYS">{{ $t('_spiderAlways') }}</label>
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
-      $t('_spiderIcon')
-    }}</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <nz-radio-group formControlName="spiderIcon">
-        <label nz-radio nzValue="NO">{{ $t('_notSpider') }}</label>
-        <label nz-radio nzValue="EMPTY">{{ $t('_spiderEmpty') }}</label>
-        <label nz-radio nzValue="ALWAYS">{{ $t('_spiderAlways') }}</label>
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
-      $t('_spiderDesc')
-    }}</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <nz-radio-group formControlName="spiderDescription">
-        <label nz-radio nzValue="NO">{{ $t('_notSpider') }}</label>
-        <label nz-radio nzValue="EMPTY">{{ $t('_spiderEmpty') }}</label>
-        <label nz-radio nzValue="ALWAYS">{{ $t('_spiderAlways') }}</label>
-      </nz-radio-group>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
-      $t('_spiderStatus')
-    }}</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <label nz-checkbox formControlName="checkUrl">{{
-        $t('_checkStatus')
-      }}</label>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_spiderQty') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <nz-slider
-        formControlName="spiderQty"
-        [nzMin]="0"
-        [nzMax]="5000"
-      ></nz-slider>
-      <div>{{ $t('_spiderQtyTip') }}</div>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSpan]="4">{{ $t('_accessTimeout') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
-      <input nz-input formControlName="spiderTimeout" />
-      <p class="mt10">{{ $t('_accessTimeoutTip') }}</p>
-    </nz-form-control>
-  </nz-form-item>
-
-  <button
-    *ngIf="isSelfDevelop"
-    nz-button
-    nzType="primary"
-    [nzLoading]="submitting"
-    (click)="handleSpider()"
-  >
-    点我爬取更新信息，先保存系统设置在点
-  </button>
-
-  <div class="divider"></div>
 
   <nz-tabset [nzSelectedIndex]="tabActive">
     <nz-tab [nzTitle]="'Light ' + $t('_theme')">
@@ -982,6 +890,98 @@
       </nz-form-item>
     </nz-tab>
   </nz-tabset>
+
+  <div class="divider"></div>
+  <h2 class="title">{{ $t('_spiderRule') }}</h2>
+  <div class="mb10" *ngIf="!isSelfDevelop">
+    <b>{{ $t('_spiderTip') }}</b>
+  </div>
+  <div class="mb10">
+    <b>{{ $t('_spiderNetTip') }}</b>
+  </div>
+  <div class="mb10" *ngIf="!isSelfDevelop">
+    <b>{{ $t('_spiderBuildTip') }}</b>
+  </div>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_spiderTitle')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-radio-group formControlName="spiderTitle">
+        <label nz-radio nzValue="NO">{{ $t('_notSpider') }}</label>
+        <label nz-radio nzValue="EMPTY">{{ $t('_spiderEmpty') }}</label>
+        <label nz-radio nzValue="ALWAYS">{{ $t('_spiderAlways') }}</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_spiderIcon')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-radio-group formControlName="spiderIcon">
+        <label nz-radio nzValue="NO">{{ $t('_notSpider') }}</label>
+        <label nz-radio nzValue="EMPTY">{{ $t('_spiderEmpty') }}</label>
+        <label nz-radio nzValue="ALWAYS">{{ $t('_spiderAlways') }}</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_spiderDesc')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-radio-group formControlName="spiderDescription">
+        <label nz-radio nzValue="NO">{{ $t('_notSpider') }}</label>
+        <label nz-radio nzValue="EMPTY">{{ $t('_spiderEmpty') }}</label>
+        <label nz-radio nzValue="ALWAYS">{{ $t('_spiderAlways') }}</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_spiderStatus')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <label nz-checkbox formControlName="checkUrl">{{
+        $t('_checkStatus')
+      }}</label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_spiderQty') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <nz-slider
+        formControlName="spiderQty"
+        [nzMin]="0"
+        [nzMax]="5000"
+      ></nz-slider>
+      <div>{{ $t('_spiderQtyTip') }}</div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_accessTimeout') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <input nz-input formControlName="spiderTimeout" />
+      <p class="mt10">{{ $t('_accessTimeoutTip') }}</p>
+    </nz-form-control>
+  </nz-form-item>
+
+  <button
+    *ngIf="isSelfDevelop"
+    nz-button
+    nzType="primary"
+    [nzLoading]="submitting"
+    (click)="handleSpider()"
+  >
+    点我爬取更新信息，先保存系统设置在点
+  </button>
 
   <div class="divider"></div>
   <h2 class="title">{{ $t('_mirrorList') }}{{ $t('_ignore') }}</h2>

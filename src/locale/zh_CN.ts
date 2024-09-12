@@ -1,4 +1,4 @@
-// 开源项目MIT，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息，允许商业途径。
+// 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 import { isSelfDevelop } from 'src/utils/util'
 
 const zhCN: Record<string, string> = {
@@ -219,6 +219,7 @@ const zhCN: Record<string, string> = {
   _accessTimeoutTip: '爬取网站指定秒数无响应跳过，数字越大成功率越高，但是越慢',
   _imageCDN: '图片CDN',
   _docTitle: '文档标题',
+  _importEnter: `在浏览器输入 <a href="chrome://bookmarks/" target="_blank">chrome://bookmarks/</a> 找到导出书签，导出 HTML 文件点击下面导入`,
 }
 
 export default zhCN
