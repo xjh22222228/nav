@@ -155,7 +155,6 @@ export interface ISettings {
   superDocTitle: string
 
   showRate: boolean
-  mirrorList: Record<string, any>[]
 
   allowCollect: boolean
   email: string

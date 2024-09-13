@@ -162,7 +162,6 @@ const english: Record<string, any> = {
   _importBackupTip:
     'After importing, all current website data will be cleared and imported',
   _showLanguage: 'Display switch language',
-  _mirrorList: 'Mirror list',
   _mirrorAddr: 'Mirror Address',
   _mirrorName: 'Mirror Name',
   _showRate: 'Show rate',
