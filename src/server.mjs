@@ -9,6 +9,7 @@ import process from 'node:process'
 import bodyParser from 'body-parser'
 import history from 'connect-history-api-fallback'
 import compression from 'compression'
+import nodemailer from 'nodemailer'
 import {
   getWebCount,
   setWeb,
@@ -30,6 +31,10 @@ const SETTINGS_PATH = joinPath('data/settings.json')
 const TAG_PATH = joinPath('data/tag.json')
 const SEARCH_PATH = joinPath('data/search.json')
 const ENTRY_INDEX_HTML = joinPath('dist/index.html')
+
+function getSettings() {
+  return JSON.parse(fs.readFileSync(SETTINGS_PATH).toString())
+}
 
 try {
   fs.chmodSync(DB_PATH, 0o777)
@@ -83,7 +88,7 @@ app.post('/api/contents/update', verifyMiddleware, (req, res) => {
       if (isExistsindexHtml) {
         const indexHtml = fs.readFileSync(ENTRY_INDEX_HTML).toString()
         const webs = JSON.parse(fs.readFileSync(DB_PATH).toString())
-        const settings = JSON.parse(fs.readFileSync(SETTINGS_PATH).toString())
+        const settings = getSettings()
         const pkg = getPackageJson()
         const seoTemplate = writeSEO(webs, { settings, pkg })
         const html = writeTemplate({
@@ -137,7 +142,7 @@ app.post('/api/contents/get', (req, res) => {
   }
   try {
     params.webs = JSON.parse(fs.readFileSync(DB_PATH).toString())
-    params.settings = JSON.parse(fs.readFileSync(SETTINGS_PATH).toString())
+    params.settings = getSettings()
     params.tags = JSON.parse(fs.readFileSync(TAG_PATH).toString())
     params.search = JSON.parse(fs.readFileSync(SEARCH_PATH).toString())
     const { userViewCount, loginViewCount } = getWebCount(params.webs)
@@ -156,7 +161,7 @@ app.post('/api/contents/get', (req, res) => {
 app.post('/api/spider', async (req, res) => {
   try {
     const webs = JSON.parse(fs.readFileSync(DB_PATH).toString())
-    const settings = JSON.parse(fs.readFileSync(SETTINGS_PATH).toString())
+    const settings = getSettings()
     const { time, webs: w, errorUrlCount } = await spiderWeb(webs, settings)
     settings.errorUrlCount = errorUrlCount
     fs.writeFileSync(DB_PATH, JSON.stringify(w))
@@ -170,6 +175,30 @@ app.post('/api/spider', async (req, res) => {
       message: error.message,
     })
   }
+})
+
+app.post('/api/mail', async (req, res) => {
+  try {
+    const mailConfig = getPackageJson().mailConfig
+    const transporter = nodemailer.createTransport({
+      ...mailConfig,
+      message: undefined,
+      title: undefined,
+    })
+    await transporter.sendMail({
+      from: mailConfig.auth.user,
+      to: getSettings().email || getPackageJson().email,
+      subject: mailConfig.title || '',
+      html: mailConfig.message || '',
+    })
+  } catch (error) {
+    return res.json({
+      message: error.message,
+    })
+  }
+  res.json({
+    message: 'OK',
+  })
 })
 
 app.listen(PORT, () => {

@@ -31,6 +31,12 @@ export class LoginComponent implements OnInit {
     this.onCancel.emit()
   }
 
+  onKey(event: KeyboardEvent) {
+    if (event.code === 'Enter') {
+      this.login()
+    }
+  }
+
   login() {
     if (!this.token) {
       return this.message.error($t('_pleaseInputToken'))

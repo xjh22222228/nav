@@ -14,6 +14,7 @@ import {
 } from 'src/store'
 import { ISettings } from 'src/types'
 import { isSelfDevelop } from 'src/utils/util'
+import { isLogin } from 'src/utils/user'
 
 const { gitRepoUrl } = config
 const s = gitRepoUrl.split('/')
@@ -131,6 +132,9 @@ export async function updateFileContent({
   isEncode = true,
 }: Iupdate) {
   if (isSelfDevelop) {
+    if (!isLogin) {
+      return
+    }
     return http
       .post('/api/contents/update', {
         path,
@@ -192,11 +196,18 @@ export async function createFile({
   })
 }
 
+export async function sendMail() {
+  if (isSelfDevelop) {
+    return http.post('/api/mail')
+  }
+}
+
 export async function getUserCollect(data?: Record<string, any>) {
   return httpNav.post('/api/get', data)
 }
 
 export async function saveUserCollect(data?: Record<string, any>) {
+  sendMail()
   return httpNav.post('/api/save', data)
 }
 

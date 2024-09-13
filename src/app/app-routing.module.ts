@@ -25,7 +25,6 @@ import CollectComponent from '../view/system/collect/index.component'
 import WebpComponent from '../view/app/default/app.component'
 import VipAuthComponent from '../view/system/vip-auth/index.component'
 import { isSelfDevelop } from 'src/utils/util'
-import event from 'src/utils/mitt'
 
 export const routes: Routes = [
   {
