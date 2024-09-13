@@ -145,7 +145,7 @@ export interface ISettings {
   shortcutThemeShowWeather: boolean
   shortcutTitle: string
   shortcutDockCount: number
-  shortDocTitle: string
+  shortcutDocTitle: string
 
   superTitle: string
   superOverType: OverType
@@ -168,6 +168,8 @@ export interface ISettings {
   loadingCode: string
 
   gitHubCDN: string
+
+  [key: string]: any
 }
 
 export type internalProps = {

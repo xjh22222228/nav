@@ -24,35 +24,29 @@ import ShortcutComponent from '../view/shortcut/index.component'
 import CollectComponent from '../view/system/collect/index.component'
 import WebpComponent from '../view/app/default/app.component'
 import VipAuthComponent from '../view/system/vip-auth/index.component'
+import { isSelfDevelop } from 'src/utils/util'
+import event from 'src/utils/mitt'
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'sim',
     component: SimComponent,
-    data: {
-      title: settings.simDocTitle,
-    },
+    data: {},
   },
   {
     path: 'super',
     component: SuperComponent,
-    data: {
-      title: settings.superDocTitle,
-    },
+    data: {},
   },
   {
     path: 'side',
     component: SideComponent,
-    data: {
-      title: settings.sideDocTitle,
-    },
+    data: {},
   },
   {
     path: 'shortcut',
     component: ShortcutComponent,
-    data: {
-      title: settings.shortDocTitle,
-    },
+    data: {},
   },
 
   {
@@ -60,17 +54,13 @@ const routes: Routes = [
     component: LightComponent,
     data: {
       renderLinear: true,
-      data: {
-        title: settings.lightDocTitle,
-      },
+      data: {},
     },
   },
   {
     path: 'app',
     component: WebpComponent,
-    data: {
-      title: settings.appDocTitle,
-    },
+    data: {},
   },
   {
     path: 'system',
@@ -128,18 +118,21 @@ const routes: Routes = [
   },
 ]
 
-const defaultTheme = settings.theme?.toLowerCase?.()
-const hasDefault = routes.find((item) => item.path === defaultTheme)
-if (hasDefault) {
-  routes.push({
-    ...hasDefault,
-    path: '**',
-  })
-} else {
-  routes.push({
-    path: '**',
-    redirectTo: '/' + defaultTheme,
-  })
+// 自有部署异步
+if (!isSelfDevelop) {
+  const defaultTheme = settings.theme?.toLowerCase?.()
+  const hasDefault = routes.find((item) => item.path === defaultTheme)
+  if (hasDefault) {
+    routes.push({
+      ...hasDefault,
+      path: '**',
+    })
+  } else {
+    routes.push({
+      path: '**',
+      redirectTo: '/' + defaultTheme,
+    })
+  }
 }
 
 @NgModule({

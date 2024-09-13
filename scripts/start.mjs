@@ -262,7 +262,7 @@ try {
     },
   ]
   settings.shortcutTitle ??= ''
-  settings.shortDocTitle ||= ''
+  settings.shortcutDocTitle ||= ''
   settings.shortcutDockCount ??= 6
   settings.shortcutThemeShowWeather ??= true
   settings.shortcutThemeImages ??= [

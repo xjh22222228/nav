@@ -162,8 +162,6 @@ const english: Record<string, any> = {
   _importBackupTip:
     'After importing, all current website data will be cleared and imported',
   _showLanguage: 'Display switch language',
-  _mirrorAddr: 'Mirror Address',
-  _mirrorName: 'Mirror Name',
   _showRate: 'Show rate',
   _showCopy: 'Display Card Copy',
   _showShare: 'Show card sharing',
@@ -191,8 +189,6 @@ const english: Record<string, any> = {
     'When the height is 0, the width and height of the image will be adaptive, and it is important to ensure that each image has the same size',
   _checkStatus:
     'Check website link status(For any of the above updates, it is recommended to enable this, as it takes the same amount of time.)',
-  _ignore:
-    '(This function is not very useful, it is recommended to ignore or remove it)',
   _standard: 'Standard',
   _column: 'Column',
   _simplicity: 'Simplicity',
