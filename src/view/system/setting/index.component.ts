@@ -1,5 +1,5 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
-// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
@@ -156,33 +156,6 @@ export default class SystemSettingComponent {
     })
   }
 
-  // Mirror ===========================
-  onMirrorBannerChange(data: any, idx: number) {
-    this.settings.sideThemeImages[idx]['src'] = data.cdn
-  }
-
-  onAddMirror() {
-    this.settings.mirrorList.push({
-      url: '',
-      icon: '',
-      name: '',
-    })
-  }
-
-  onDelMirror(idx: number) {
-    this.settings.mirrorList.splice(idx, 1)
-  }
-
-  onChangeMirrorUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.mirrorList[idx]['url'] = value
-  }
-
-  onChangeMirrorName(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.mirrorList[idx]['name'] = value
-  }
-
   onShortcutImgChange(e: any) {
     let url = e?.target?.value?.trim() || e.cdn
     if (!url) {
@@ -233,9 +206,6 @@ export default class SystemSettingComponent {
           sideThemeImages: this.settings.sideThemeImages.filter(filterImage),
           superImages: this.settings.superImages.filter(filterImage),
           lightImages: this.settings.lightImages.filter(filterImage),
-          mirrorList: this.settings.mirrorList.filter(
-            (item) => item['url'] && item['name']
-          ),
         }
 
         this.submitting = true

@@ -1,4 +1,4 @@
-// Copyright @ 2018-present x.iejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present x.iejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 import dayjs from 'dayjs'
 import LOAD_MAP from './loading.mjs'

@@ -1,5 +1,5 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
-// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 import express from 'express'
 import cors from 'cors'
@@ -30,6 +30,16 @@ const SETTINGS_PATH = joinPath('data/settings.json')
 const TAG_PATH = joinPath('data/tag.json')
 const SEARCH_PATH = joinPath('data/search.json')
 const ENTRY_INDEX_HTML = joinPath('dist/index.html')
+
+try {
+  fs.chmodSync(DB_PATH, 0o777)
+  fs.chmodSync(SETTINGS_PATH, 0o777)
+  fs.chmodSync(TAG_PATH, 0o777)
+  fs.chmodSync(SEARCH_PATH, 0o777)
+  fs.chmodSync(ENTRY_INDEX_HTML, 0o777)
+} catch (error) {
+  console.log(error.message)
+}
 
 const app = express()
 

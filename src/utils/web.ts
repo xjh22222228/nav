@@ -8,6 +8,7 @@ import { websiteList } from 'src/store'
 import { STORAGE_KEY_MAP, DB_PATH } from 'src/constants'
 import { isSelfDevelop } from './util'
 import { queryString } from './index'
+import { $t } from 'src/locale'
 
 function adapterWebsiteList(websiteList: any[]) {
   function filterOwn(item: IWebProps) {
@@ -69,7 +70,7 @@ export async function fetchWeb() {
       setTimeout(() => {
         event.emit('NOTIFICATION', {
           type: 'success',
-          title: `构建完成`,
+          title: $t('_buildSuccess'),
           content: navConfig.datetime,
           config: {
             nzDuration: 0,

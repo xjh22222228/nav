@@ -1,5 +1,5 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
-// Copyright @ 2018-present xiejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
 import qs from 'qs'
@@ -14,6 +14,7 @@ import { STORAGE_KEY_MAP } from 'src/constants'
 import { isLogin } from './user'
 import { SearchType } from 'src/components/search-engine/index'
 import { websiteList, searchEngineList } from 'src/store'
+import { $t } from 'src/locale'
 
 export function randomInt(max: number) {
   return Math.floor(Math.random() * max)
@@ -365,15 +366,7 @@ export function isMobile() {
 }
 
 export function getDateTime(): Record<string, any> {
-  const days = [
-    '星期日',
-    '星期一',
-    '星期二',
-    '星期三',
-    '星期四',
-    '星期五',
-    '星期六',
-  ]
+  const days = $t('_weeks')
   const now = new Date()
   const hours = addZero(now.getHours())
   const minutes = addZero(now.getMinutes())

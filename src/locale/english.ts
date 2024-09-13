@@ -1,7 +1,7 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 import { isSelfDevelop } from 'src/utils/util'
 
-const english: Record<string, string> = {
+const english: Record<string, any> = {
   _loading: 'Loading...',
   _webTitle: 'Discovery Navigation',
   _uncategorized: 'Unclassified',
@@ -46,8 +46,9 @@ const english: Record<string, string> = {
   _confirmSyncTip: isSelfDevelop
     ? ''
     : 'Are you sure to synchronize all data to the remote end?',
-  _syncSuccessTip:
-    'The synchronization is successful. It takes about 5 minutes to build',
+  _syncSuccessTip: isSelfDevelop
+    ? 'OK'
+    : 'The synchronization is successful. It takes about 5 minutes to build',
   _error: 'Error',
   _syncFailTip: 'Synchronization failed, please try again',
   _inputToken: 'Please enter token',
@@ -129,7 +130,7 @@ const english: Record<string, string> = {
   _bookmarkImport: 'Book Import',
   _bookmarkExport: 'Book Export',
   _vipAuth: 'VIP Auth',
-  _tagSettings: 'Tag settings',
+  _tagSettings: 'Tag',
   _websiteMang: 'Website',
   _addRow: 'Add',
   _bookImportTip: `<p>Supports most mainstream browsers. If the import fails, it is temporarily not supported</p>`,
@@ -233,6 +234,23 @@ const english: Record<string, string> = {
   _imageCDN: 'Image CDN',
   _docTitle: 'Document title',
   _importEnter: `Enter in browser <a href="chrome://bookmarks/" target="_blank">chrome://bookmarks/</a> Find the export bookmark, export the HTML file, click import below`,
+  _buildSuccess: 'Build succeed',
+  _bindDomain: `Bind domain names, multiple separated by commas, without including protocols such as "example.com,xjh22222228.github.io"`,
+  _clickExport: 'Click on me to export',
+  _exportIcons: 'Simultaneously exporting website icons takes a long time',
+  _errorIcons: 'The following icons cannot be processed properly:',
+  _processing: 'Processing',
+  _weeks: [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ],
+  _shortMonth: ' / ',
+  _shortDay: '',
 }
 
 export default english

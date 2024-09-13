@@ -21,7 +21,7 @@
 
   <div *ngIf="isPermission">
     <div class="mb10 mt10">
-      绑定域名，多个以逗号分隔，不要带协议如：example.com,xjh22222228.github.io
+      {{ $t('_bindDomain') }}
     </div>
     <input nz-input placeholder="example.cn,example.com" [(ngModel)]="url" />
     <button

@@ -1,4 +1,4 @@
-// Copyright @ 2018-present x.iejiahe. All rights reserved. MIT license.
+// Copyright @ 2018-present x.iejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
 import fs from 'fs'
@@ -122,6 +122,10 @@ try {
 }
 
 {
+  const isEn = settings.language !== 'zh-CN'
+  const desc = isEn
+    ? 'The system is built-in and cannot be deleted'
+    : '系统内置不可删除'
   if (!Array.isArray(tags)) {
     tags = []
   }
@@ -129,10 +133,10 @@ try {
   if (!a) {
     tags.push({
       id: TAG_ID1,
-      name: '中文',
+      name: isEn ? 'Chinese' : '中文',
       color: '#2db7f5',
       createdAt: '',
-      desc: '系统内置不可删除',
+      desc,
       isInner: true,
     })
   }
@@ -140,10 +144,10 @@ try {
   if (!b) {
     tags.push({
       id: TAG_ID2,
-      name: '英文',
+      name: isEn ? 'English' : '英文',
       color: '#f50',
       createdAt: '',
-      desc: '系统内置不可删除',
+      desc,
       isInner: true,
     })
   }
@@ -154,7 +158,7 @@ try {
       name: 'Github',
       color: '#108ee9',
       createdAt: '',
-      desc: '系统内置不可删除',
+      desc,
       isInner: true,
     })
   }
@@ -267,7 +271,6 @@ try {
       url: '',
     },
   ]
-  settings.mirrorList ||= []
   settings.checkUrl ??= false
   settings.spiderIcon ??= 'NO'
   settings.spiderDescription ??= 'NO'

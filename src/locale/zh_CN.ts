@@ -1,7 +1,7 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 import { isSelfDevelop } from 'src/utils/util'
 
-const zhCN: Record<string, string> = {
+const zhCN: Record<string, any> = {
   _loading: '加载中...',
   _webTitle: '发现导航',
   _uncategorized: '未分类',
@@ -46,7 +46,9 @@ const zhCN: Record<string, string> = {
   _confirmSyncTip: isSelfDevelop
     ? ''
     : '确定将所有数据同步到远端吗？（每次保存需要等待构建完成再进行下一次操作）',
-  _syncSuccessTip: '同步成功, 大约需要5分钟构建时间',
+  _syncSuccessTip: isSelfDevelop
+    ? '同步成功'
+    : '同步成功, 大约需要5分钟构建时间',
   _error: '错误',
   _syncFailTip: '同步失败, 请重试',
   _inputToken: '请输入TOKEN',
@@ -220,6 +222,24 @@ const zhCN: Record<string, string> = {
   _imageCDN: '图片CDN',
   _docTitle: '文档标题',
   _importEnter: `在浏览器输入 <a href="chrome://bookmarks/" target="_blank">chrome://bookmarks/</a> 找到导出书签，导出 HTML 文件点击下面导入`,
+  _buildSuccess: '构建成功',
+  _bindDomain:
+    '绑定域名，多个以逗号分隔，不要带协议如：example.com,xjh22222228.github.io',
+  _clickExport: '',
+  _exportIcons: '同时导出网站图标，耗时较久',
+  _errorIcons: '以下图标无法被正常处理：',
+  _processing: '正在处理',
+  _weeks: [
+    '星期日',
+    '星期一',
+    '星期二',
+    '星期三',
+    '星期四',
+    '星期五',
+    '星期六',
+  ],
+  _shortMonth: '月',
+  _shortDay: '日',
 }
 
 export default zhCN

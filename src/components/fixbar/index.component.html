@@ -61,26 +61,6 @@
     <img class="iconfont icondark" src="assets/img/light.svg" *ngIf="isDark" />
   </div>
 
-  <div *ngIf="settings.mirrorList.length > 0">
-    <div
-      class="common-show wrapper dark-bg dark-border-color dark-action-hover"
-      nz-dropdown
-      [nzDropdownMenu]="menuMirror"
-      nzPlacement="topRight"
-    >
-      <img src="assets/img/mirror.svg" />
-    </div>
-    <nz-dropdown-menu #menuMirror="nzDropdownMenu">
-      <ul nz-menu nzSelectable>
-        <li nz-menu-item *ngFor="let item of settings.mirrorList">
-          <a [href]="item['url']" target="_blank">
-            {{ item['name'] }}
-          </a>
-        </li>
-      </ul>
-    </nz-dropdown-menu>
-  </div>
-
   <div
     *ngIf="settings.showLanguage"
     class="common-show wrapper dark-bg dark-border-color dark-action-hover"

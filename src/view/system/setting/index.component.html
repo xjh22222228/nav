@@ -983,64 +983,6 @@
     点我爬取更新信息，先保存系统设置在点
   </button>
 
-  <div class="divider"></div>
-  <h2 class="title">{{ $t('_mirrorList') }}{{ $t('_ignore') }}</h2>
-
-  <nz-form-item class="sim-ban">
-    <nz-form-label [nzSpan]="4">{{ $t('_mirrorList') }}</nz-form-label>
-    <nz-form-control [nzSpan]="20">
-      <nz-table
-        #basicTable
-        [nzData]="settings.mirrorList"
-        [nzShowPagination]="false"
-      >
-        <thead>
-          <tr>
-            <th>{{ $t('_mirrorAddr') }}</th>
-            <th>{{ $t('_mirrorName') }}</th>
-            <th>{{ $t('_action') }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of settings.mirrorList; index as idx">
-            <td class="nowrap">
-              <input
-                nz-input
-                type="text"
-                [value]="data['url']"
-                (change)="onChangeMirrorUrl($event, idx)"
-                style="width: 100%; margin-right: 10px"
-              />
-            </td>
-            <td width="400px">
-              <input
-                nz-input
-                [value]="data['name']"
-                maxlength="200"
-                (change)="onChangeMirrorName($event, idx)"
-              />
-            </td>
-            <td>
-              <a
-                nz-popconfirm
-                nzPopconfirmPlacement="rightTop"
-                nzOkType="danger"
-                [nzPopconfirmTitle]="$t('_confirmDel')"
-                nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="onDelMirror(idx)"
-              >
-                <a>
-                  {{ $t('_del') }}
-                </a>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </nz-table>
-      <a (click)="onAddMirror()">{{ $t('_add') }}</a>
-    </nz-form-control>
-  </nz-form-item>
-
   <div class="bottom-bar">
     <button
       nz-button

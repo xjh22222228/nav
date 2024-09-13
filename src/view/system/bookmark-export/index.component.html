@@ -1,10 +1,10 @@
 <nz-spin nzSimple nzSize="large" class="center" *ngIf="submitting"> </nz-spin>
 <div class="center">
   <nz-switch [(ngModel)]="isExportIcon"></nz-switch>
-  <span class="ml10">同时导出网站图标，耗时较久</span>
+  <span class="ml10">{{ $t('_exportIcons') }}</span>
   <p class="mt10" *ngIf="seconds > 0">耗时 {{ seconds }} 秒</p>
   <p class="mt10" *ngIf="countAll > 0">
-    正在处理 {{ currentNumber }} / {{ countAll }}
+    {{ $t('_processing') }} {{ currentNumber }} / {{ countAll }}
   </p>
 </div>
 <div class="book-wrapper mt10">
@@ -16,12 +16,12 @@
       class="logo"
     />
     <p style="white-space: nowrap; margin-top: 5px" (click)="bookmarksExport()">
-      点我导出
+      {{ $t('_clickExport') }}
     </p>
   </div>
 </div>
 
 <div class="err" [class.noopacity]="countAll > 0">
-  <h2>以下图标无法被正常处理：</h2>
+  <h2>{{ $t('_errorIcons') }}</h2>
   <pre id="error-msg"></pre>
 </div>

@@ -1,4 +1,4 @@
-// Copyright @ 2018-present xiejia.he. All rights reserved. MIT license.
+// Copyright @ 2018-present xiejia.he. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
 import fs from 'fs'

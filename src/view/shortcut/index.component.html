@@ -14,7 +14,9 @@
 
     <div class="datetime">{{ hours }}:{{ minutes }}:{{ seconds }}</div>
     <div class="days">
-      <span>{{ month }}月{{ date }}日</span>
+      <span
+        >{{ month }}{{ $t('_shortMonth') }}{{ date }}{{ $t('_shortDay') }}</span
+      >
       <span class="margin">{{ dayText }}</span>
     </div>
 
