@@ -166,7 +166,7 @@ export interface ISettings {
   spiderTimeout: number | string
 
   loadingCode: string
-
+  openSearch: boolean
   gitHubCDN: string
 
   [key: string]: any

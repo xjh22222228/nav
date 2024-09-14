@@ -48,3 +48,4 @@ src/index.html
 nav.config.json
 _upload
 test.md
+data/collect.json

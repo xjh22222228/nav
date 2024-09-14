@@ -120,9 +120,7 @@
 | 存活状态 | 未知             | 只要`GitHub`还在 |
 | 图片     | 走服务器带宽     | 免费 CDN 加速    |
 
-自有部署只有保存快，其他 `Fork` 完虐！
-
-如果是部署在公司内网可以用`自有部署`，其他强烈建议 `Fork` 模式。
+自有部署操作速度快，无需等待，成本较高，按需选择。
 
 ## 配置说明
 
@@ -196,3 +194,11 @@ yarn build
 您可以请作者喝杯咖啡，继续战斗下去
 
 <img src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/32.png" width="600">
+
+## LICENSE
+
+For commercial sites, themes, projects, and applications, keep your source code private/proprietary by purchasing a [Commercial License](https://official.nav3.cn/pricing).
+
+Licensed under the GNU General Public License 3.0 for compatible open source projects and non-commercial use.
+
+Copyright 2024-present xiejiahe

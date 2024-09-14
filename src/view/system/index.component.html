@@ -99,7 +99,7 @@
             />
           </a>
 
-          <span class="ml10">{{ date }}</span>
+          <span class="ml10" *ngIf="!isSelfDevelop">{{ date }}</span>
         </div>
 
         <router-outlet></router-outlet>

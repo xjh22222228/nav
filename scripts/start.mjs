@@ -185,6 +185,7 @@ try {
   settings.showGithub ??= true
   settings.showLanguage ??= true
   settings.showRate ??= true
+  settings.openSearch ??= true
   settings.title ??= '发现导航 - 精选实用导航网站'
   settings.description ??= '发现导航是一个轻量级免费且强大的导航网站'
   settings.keywords ??= '免费导航,开源导航'

@@ -37,6 +37,7 @@ $smallWidth: 300px;
     }
 
     .left-icon {
+      position: relative;
       width: 20px;
       height: 20px;
       background-repeat: no-repeat;
@@ -49,63 +50,37 @@ $smallWidth: 300px;
     }
   }
 
-  .engine-main {
-    z-index: 20;
-    position: absolute;
-    top: 65px;
-    left: 50%;
-    width: $width;
-    max-width: 90vw;
-    padding: 15px 15px 0 15px;
-    background: #fff;
-    transform: translate(-50%, 0);
-    box-shadow: 0 1px 5px #ccc;
-    border-radius: 5px;
-    display: flex;
-    flex-wrap: wrap;
-
-    &:after {
-      content: '';
-      position: absolute;
-      top: -11px;
-      left: 50%;
-      width: 0;
-      height: 0;
-      transform: translateX(-50%);
-      border-style: solid;
-      border-width: 0 10px 20px 10px;
-      border-color: transparent transparent #ffffff transparent;
-    }
-
-    .item {
-      width: calc(33.33% - 10px);
-      padding: 6px;
-      display: flex;
-      background: #f6f6f6;
-      cursor: pointer;
-      margin-bottom: 15px;
-      border-radius: 3px;
-      transition: 0.1s linear;
-      box-sizing: border-box;
-      border: 1px solid transparent;
-      &:hover {
-        background-color: #eee;
-      }
-
-      &:not(:nth-child(3n)) {
-        margin-right: 15px;
-      }
-
-      .name2 {
-        margin-left: 10px;
-        font-size: 15px;
-        align-self: center;
-      }
-    }
-  }
-
   ::ng-deep .removeAddon .ant-input-group-addon {
     display: none !important;
+  }
+}
+
+::ng-deep.engine-main {
+  z-index: 20;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: $width;
+  max-width: 90vw;
+  .item {
+    width: calc(33.33% - 10px);
+    padding: 6px;
+    display: flex;
+    background: #f6f6f6;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.1s linear;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    &:hover {
+      background-color: #eee;
+    }
+    .name2 {
+      margin-left: 10px;
+      font-size: 15px;
+      align-self: center;
+    }
   }
 }
 

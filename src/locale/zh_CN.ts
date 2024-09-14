@@ -126,7 +126,7 @@ const zhCN: Record<string, any> = {
   _userCollect: '用户收录',
   _bookmarkImport: '书签导入',
   _bookmarkExport: '书签导出',
-  _vipAuth: '会员授权',
+  _vipAuth: '绑定域名',
   _tagSettings: '标签设置',
   _websiteMang: '网站管理',
   _addRow: '新增一条',
@@ -169,8 +169,6 @@ const zhCN: Record<string, any> = {
   _checkWeb:
     '上次检测出 {count} 个网站链接失效，具体到管理网站查看，如需再次检测状态直接点保存触发事件即可。',
   _buildTip: '修改完请保存并等待构建完成，离开无效',
-  _updateTip: '系统更新频繁，建议定时执行更新享受最新系统功能',
-  _clickUpdate: '点我更新',
   _enableSEO: '开启SEO(加载稍慢)',
   _allowCollect: '允许用户提交收录',
   _collectMenuView: `具体到用户收录菜单查看`,
@@ -194,7 +192,7 @@ const zhCN: Record<string, any> = {
   _collect: '收录',
   _confirmCollect: '您确定要收录吗？',
   _pendingGet: '正在获取...',
-  _logoutAuthCode: '退出授权',
+  _logoutAuthCode: '退出',
   _spiderRule: '爬取规则',
   _spiderTitle: '更新标题',
   _spiderIcon: '更新图标',
@@ -236,6 +234,8 @@ const zhCN: Record<string, any> = {
   ],
   _shortMonth: '月',
   _shortDay: '日',
+  _classNoMatch: '分类不匹配，采用默认第一个分类',
+  _openSearch: '输入链接允许查找',
 }
 
 export default zhCN

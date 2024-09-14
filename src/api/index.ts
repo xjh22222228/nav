@@ -196,27 +196,36 @@ export async function createFile({
   })
 }
 
-export async function sendMail() {
-  if (isSelfDevelop) {
-    return http.post('/api/mail')
-  }
-}
-
 export async function getUserCollect(data?: Record<string, any>) {
+  if (isSelfDevelop) {
+    return http.post('/api/collect/get', data)
+  }
   return httpNav.post('/api/get', data)
 }
 
 export async function saveUserCollect(data?: Record<string, any>) {
-  sendMail()
+  if (isSelfDevelop) {
+    return http.post('/api/collect/save', data)
+  }
+
   return httpNav.post('/api/save', data)
 }
 
 export async function delUserCollect(data?: Record<string, any>) {
+  if (isSelfDevelop) {
+    return http.post('/api/collect/delete', data)
+  }
   return httpNav.post('/api/delete', data)
 }
 
 export async function getWebInfo(url: string) {
   try {
+    if (isSelfDevelop) {
+      const res = await http.post('/api/web/info', { url })
+      return {
+        ...res.data,
+      }
+    }
     const res = await httpNav.post('/api/icon', { url })
     return {
       ...res.data,

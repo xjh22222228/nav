@@ -129,7 +129,7 @@ const english: Record<string, any> = {
   _userCollect: 'Collect',
   _bookmarkImport: 'Book Import',
   _bookmarkExport: 'Book Export',
-  _vipAuth: 'VIP Auth',
+  _vipAuth: 'Bind domain',
   _tagSettings: 'Tag',
   _websiteMang: 'Website',
   _addRow: 'Add',
@@ -174,9 +174,6 @@ const english: Record<string, any> = {
     'Last time, {count} website links were detected to be invalid. Please refer to the management website for details. If you need to check the status again, simply click Save to trigger the event.',
   _buildTip:
     'After modification, please save and wait for the build to complete. Leaving is invalid',
-  _updateTip:
-    'Frequent system updates, it is recommended to execute updates regularly to enjoy the latest system functions',
-  _clickUpdate: 'Click me to update',
   _enableSEO: 'Enable SEO (loading slightly slower)',
   _allowCollect: 'Allow users to submit indexed content',
   _collectMenuView: `Please refer to the user's inclusion menu for specific details`,
@@ -203,7 +200,7 @@ const english: Record<string, any> = {
   _collect: 'Get',
   _confirmCollect: 'Are you sure?',
   _pendingGet: 'Getting...',
-  _logoutAuthCode: 'Exit authorization',
+  _logoutAuthCode: 'Exit',
   _spiderRule: 'Spider rule',
   _spiderIcon: 'Spider icon',
   _spiderDesc: 'Spider description',
@@ -246,6 +243,8 @@ const english: Record<string, any> = {
   ],
   _shortMonth: ' / ',
   _shortDay: '',
+  _classNoMatch: 'Classification mismatch, using the default first category',
+  _openSearch: 'Enter link to allow searching',
 }
 
 export default english

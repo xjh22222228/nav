@@ -1,6 +1,6 @@
 <div
   class="search-engine"
-  *ngIf="searchEngineList && searchEngineList.length > 0"
+  *ngIf="searchList && searchList.length > 0"
   [class.small]="size === 'small'"
 >
   <div
@@ -27,10 +27,31 @@
     <ng-template #prefixIcon>
       <div
         class="left-icon"
-        (click)="toggleEngine($event)"
+        nzPopoverTrigger="click"
         [ngStyle]="{ 'background-image': 'url(' + currentEngine.icon + ')' }"
+        nz-popover
+        nzPopoverPlacement="bottom"
+        [nzPopoverContent]="contentTemplate"
       ></div>
+
+      <ng-template #contentTemplate>
+        <div class="engine-main">
+          <div
+            class="item ellipsis dark-bg-gary dark-item-hover"
+            *ngFor="let item of searchList; let i = index"
+            (click)="clickEngineItem(i)"
+          >
+            <app-logo
+              [src]="item.icon || ''"
+              [size]="20"
+              [check]="false"
+            ></app-logo>
+            <span class="name2 dark-text ellipsis">{{ item.name }}</span>
+          </div>
+        </div>
+      </ng-template>
     </ng-template>
+
     <ng-template #suffixIcon>
       <i
         class="search-icon iconfont iconsousuo dark-text"
@@ -61,19 +82,5 @@
         ></nz-option>
       </nz-select>
     </ng-template>
-  </div>
-
-  <div
-    class="engine-main dark-bg dark-border-color dark-shadow"
-    *ngIf="showEngine"
-  >
-    <div
-      class="item dark-bg-gary dark-item-hover"
-      *ngFor="let item of searchEngineList; let i = index"
-      (click)="clickEngineItem(i)"
-    >
-      <app-logo [src]="item.icon || ''" [size]="20" [check]="false"></app-logo>
-      <span class="name2 dark-text">{{ item.name }}</span>
-    </div>
   </div>
 </div>

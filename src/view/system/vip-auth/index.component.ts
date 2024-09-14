@@ -46,6 +46,7 @@ export default class VipAuthComponent {
 
     this.getUserInfo({ code: this.authCode }).then(() => {
       setAuthCode(this.authCode)
+      window.location.reload()
     })
   }
 

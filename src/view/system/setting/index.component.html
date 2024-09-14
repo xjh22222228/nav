@@ -224,6 +224,15 @@
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_openSearch')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <label nz-checkbox formControlName="openSearch"></label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
       $t('_defTheme')
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">

@@ -126,6 +126,10 @@ export class CreateWebComponent {
   }
 
   async onUrlBlur(e: any) {
+    if (!settings.openSearch) {
+      return
+    }
+
     let url = e.target?.value
     if (!url) {
       return
@@ -226,7 +230,7 @@ export class CreateWebComponent {
         const { page, id } = queryString()
         const oneIndex = this.oneIndex ?? page
         const twoIndex = this.twoIndex ?? id
-        const threeIndex = this.threeIndex as number
+        const threeIndex = this.threeIndex || 0
         const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
         this.uploading = true
         if (this.isLogin) {
@@ -241,7 +245,7 @@ export class CreateWebComponent {
           }
         } else if (this.settings.allowCollect) {
           try {
-            await saveUserCollect({
+            const params = {
               email: this.settings.email,
               data: {
                 ...payload,
@@ -253,7 +257,8 @@ export class CreateWebComponent {
                     websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
                 },
               },
-            })
+            }
+            await saveUserCollect(params)
             this.message.success($t('_waitHandle'))
           } catch {}
         }
