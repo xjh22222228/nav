@@ -50,8 +50,8 @@
             <li
               nz-menu-item
               [nzSelected]="currentMenu === 'collect'"
-              (click)="goRoute('/system/collect', !isAuthz)"
-              [nzDisabled]="!isAuthz"
+              (click)="goRoute('/system/collect', !isAuthz && !isSelfDevelop)"
+              [nzDisabled]="!isAuthz && !isSelfDevelop"
             >
               {{ $t('_userCollect') }}
             </li>
