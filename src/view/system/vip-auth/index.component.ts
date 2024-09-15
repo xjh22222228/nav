@@ -30,8 +30,10 @@ export default class VipAuthComponent {
     this.submitting = true
     return getUserInfo(params)
       .then((res: any) => {
-        this.isPermission = true
-        this.url = res.data?.data?.url || ''
+        if (typeof res.data?.data?.url === 'string') {
+          this.isPermission = true
+          this.url = res.data.data.url
+        }
         return res
       })
       .finally(() => {

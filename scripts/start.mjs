@@ -23,6 +23,7 @@ dayjs.tz.setDefault('Asia/Shanghai')
 const packagePath = path.join('.', 'package.json')
 const packageJson = JSON.parse(fs.readFileSync(packagePath).toString())
 const configJson = {
+  version: packageJson.version,
   gitRepoUrl: packageJson.gitRepoUrl,
   provider: packageJson.provider,
   branch: packageJson.branch,

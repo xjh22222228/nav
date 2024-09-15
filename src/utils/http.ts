@@ -7,7 +7,6 @@ import config from '../../nav.config.json'
 import event from './mitt'
 import { settings } from 'src/store'
 import { getToken, getAuthCode } from '../utils/user'
-import { VERSION } from 'src/constants'
 import { isLogin } from 'src/utils/user'
 
 const httpInstance = axios.create({
@@ -77,7 +76,6 @@ httpNavInstance.interceptors.request.use(
       code,
       hostname: location.hostname,
       href: location.href,
-      version: VERSION,
       isLogin,
       ...config,
       ...conf.data,
