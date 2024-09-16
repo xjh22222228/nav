@@ -30,11 +30,8 @@
       <th>{{ $t('_action') }}</th>
     </tr>
   </thead>
-  <tbody cdkDropList (cdkDropListDropped)="onDrop($event)">
-    <tr
-      *ngFor="let data of searchList; index as idx; trackBy: trackByItem"
-      cdkDrag
-    >
+  <tbody>
+    <tr *ngFor="let data of searchList; index as idx; trackBy: trackByItem">
       <td width="150px">
         <input nz-input [(ngModel)]="data.name" maxlength="10" />
       </td>
@@ -59,6 +56,8 @@
       </td>
       <td>
         <div *ngIf="!data.isInner">
+          <a (click)="moveUp(idx)">{{ $t('_moveUp') }}</a>
+          <a (click)="moveDown(idx)" class="ml10">{{ $t('_moveDown') }}</a>
           <a
             nz-popconfirm
             nzPopconfirmPlacement="rightTop"
@@ -66,8 +65,9 @@
             [nzPopconfirmTitle]="$t('_confirmDel')"
             nzPopconfirmPlacement="bottom"
             (nzOnConfirm)="handleDelete(idx)"
+            class="ml10 color-red"
           >
-            <a>{{ $t('_del') }}</a>
+            {{ $t('_del') }}
           </a>
         </div>
       </td>

@@ -11,6 +11,7 @@ import { websiteList, tagMap } from 'src/store'
 import { setAuthCode, getAuthCode } from 'src/utils/user'
 import { getUserCollect, delUserCollect, updateFileContent } from 'src/api'
 import { DB_PATH } from 'src/constants'
+import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -20,7 +21,6 @@ import event from 'src/utils/mitt'
 })
 export default class CollectComponent {
   $t = $t
-  objectKeys = Object.keys
   submitting: boolean = false
   isPermission = !!getAuthCode()
   dataList: Array<any> = []
@@ -30,7 +30,8 @@ export default class CollectComponent {
   constructor(
     private message: NzMessageService,
     private modal: NzModalService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    public jumpService: JumpService
   ) {}
 
   ngOnInit() {

@@ -24,7 +24,6 @@ export class CardComponent implements OnInit {
   @Input() cardStyle: ICardType = 'standard'
 
   $t = $t
-  objectKeys = Object.keys
   settings = settings
   websiteList: INavProps[] = websiteList
   isLogin: boolean = isLogin

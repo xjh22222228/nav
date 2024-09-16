@@ -189,6 +189,7 @@ const english: Record<string, any> = {
   _standard: 'Standard',
   _column: 'Column',
   _simplicity: 'Simplicity',
+  _original: 'Original',
   _navOver: 'First level navigation beyond display',
   _scrollBar: 'Scroll bar',
   _ellipsis: 'Ellipsis',
@@ -245,6 +246,8 @@ const english: Record<string, any> = {
   _shortDay: '',
   _classNoMatch: 'Classification mismatch, using the default first category',
   _openSearch: 'Enter link to allow searching',
+  _moveUp: 'Up',
+  _moveDown: 'Down',
 }
 
 export default english

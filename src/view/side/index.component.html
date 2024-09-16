@@ -91,7 +91,7 @@
       <app-search-engine class="mt10 mobile-search" />
 
       <nz-content class="content" id="content">
-        <app-web-list [search]="false" [overflow]="true"></app-web-list>
+        <app-web-list [search]="false" [overflow]="true" />
 
         <div class="box">
           <div *ngIf="commonService.currentList.length > 0; else noData">
@@ -110,8 +110,7 @@
                   [dataSource]="item"
                   (onCollapse)="commonService.onCollapse(item, i)"
                   [index]="i"
-                >
-                </app-toolbar-title>
+                />
 
                 <div
                   nz-row
@@ -132,9 +131,7 @@
                     [nzMd]="12"
                     [nzLg]="8"
                     [nzXl]="6"
-                    [nzXXl]="
-                      commonService.settings.sideCardStyle === 'example' ? 4 : 6
-                    "
+                    [nzXXl]="nzXXl"
                   >
                     <app-card
                       [cardStyle]="commonService.settings.sideCardStyle"
@@ -142,7 +139,7 @@
                       [indexs]="[commonService.page, commonService.id, i, j]"
                       [searchKeyword]="commonService.searchKeyword"
                       class="column-border"
-                    ></app-card>
+                    />
                   </div>
                 </div>
               </div>
@@ -150,14 +147,14 @@
           </div>
 
           <ng-template #noData>
-            <app-no-data></app-no-data>
+            <app-no-data />
           </ng-template>
         </div>
 
         <app-footer
           className="side-footer"
           [content]="commonService.settings.sideFooterHTML"
-        ></app-footer>
+        />
       </nz-content>
     </nz-layout>
   </nz-layout>

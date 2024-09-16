@@ -72,7 +72,8 @@
       [class.noads]="commonService.settings.superImages.length <= 0"
     >
       <div class="search-t dark-border-color">
-        <app-search-engine size="small"></app-search-engine>
+        <app-search-engine size="small" />
+
         <div class="bar dark-scrollbar">
           <div
             class="bar-item"
@@ -91,6 +92,7 @@
       </div>
 
       <div
+        class="card-container"
         *ngIf="
           commonService.currentList[commonService.selectedIndex]?.nav?.length;
           else noData
@@ -112,10 +114,10 @@
           [cardStyle]="commonService.settings.superCardStyle"
           [dataSource]="el"
           [searchKeyword]="commonService.searchKeyword"
-        ></app-card>
+        />
       </div>
       <ng-template #noData>
-        <app-no-data></app-no-data>
+        <app-no-data />
       </ng-template>
 
       <div
@@ -146,7 +148,7 @@
     </div>
   </div>
 
-  <app-footer [content]="commonService.settings.superFooterHTML"></app-footer>
+  <app-footer [content]="commonService.settings.superFooterHTML" />
 
-  <app-fixbar [showCollapse]="false"> </app-fixbar>
+  <app-fixbar [showCollapse]="false" />
 </section>

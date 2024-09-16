@@ -6,7 +6,7 @@ import { Component, Output, EventEmitter } from '@angular/core'
 import { queryString, getTextContent } from 'src/utils'
 import { setWebsiteList, updateByWeb } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
-import { IWebProps } from 'src/types'
+import type { IWebProps, IWebTag } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { saveUserCollect, getWebInfo } from 'src/api'
 import { $t } from 'src/locale'
@@ -92,17 +92,17 @@ export class CreateWebComponent {
     this.validateForm.get('ownVisible')!.setValue(detail?.ownVisible ?? false)
     this.validateForm.get('rate')!.setValue(detail?.rate ?? 5)
     if (detail) {
-      if (typeof detail.urls === 'object') {
-        for (let k in detail.urls) {
+      if (Array.isArray(detail.tags)) {
+        detail.tags.forEach((item: IWebTag) => {
           // @ts-ignore
           this.validateForm?.get('urlArr').push?.(
             this.fb.group({
-              id: Number(k),
-              name: tagMap[k]?.name ?? '',
-              url: detail.urls[k],
+              id: Number(item.id),
+              name: tagMap[item.id].name ?? '',
+              url: item.url || '',
             })
           )
-        }
+        })
       }
     }
   }
@@ -190,7 +190,7 @@ export class CreateWebComponent {
     }
 
     const createdAt = Date.now()
-    let urls: Record<string, any> = {}
+    const tags: IWebTag[] = []
     let { title, icon, url, top, ownVisible, rate, desc, index } =
       this.validateForm.value
 
@@ -200,7 +200,10 @@ export class CreateWebComponent {
     const urlArr = this.validateForm.get('urlArr')?.value || []
     urlArr.forEach((item: any) => {
       if (item.id) {
-        urls[item.id] = item.url
+        tags.push({
+          id: item.id,
+          url: item.url,
+        })
       }
     })
 
@@ -215,7 +218,7 @@ export class CreateWebComponent {
       ownVisible: ownVisible ?? false,
       icon,
       url,
-      urls,
+      tags,
     }
 
     if (this.detail) {

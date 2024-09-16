@@ -86,7 +86,7 @@ export class MoveWebComponent {
   }
 
   hanldeOk() {
-    const indexs = this.indexs.filter((i) => i != null)
+    const indexs = this.indexs
     const oneSelect = this.oneSelect as number
     const twoSelect = this.twoSelect as number
     const threeSelect = this.threeSelect as number

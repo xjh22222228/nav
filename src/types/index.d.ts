@@ -10,7 +10,7 @@ export type ThemeType =
   | 'App'
   | 'Shortcut'
 
-export type ICardType = 'standard' | 'column' | 'example' | 'common'
+export type ICardType = 'standard' | 'column' | 'example' | 'retro' | 'original'
 
 type OverType = 'overflow' | 'ellipsis'
 
@@ -31,6 +31,11 @@ export interface ITagProp {
   [tagName: string]: ITagPropValues
 }
 
+export interface IWebTag {
+  id: number | string
+  url?: string
+}
+
 export interface IWebProps {
   __name__?: string // 搜索原name值
   __desc__?: string
@@ -46,9 +51,7 @@ export interface IWebProps {
   ownVisible?: boolean
   breadcrumb: string[]
   ok?: boolean
-  urls?: {
-    [tagName: string]: string
-  }
+  tags?: IWebTag[]
   [key: string]: any
 }
 

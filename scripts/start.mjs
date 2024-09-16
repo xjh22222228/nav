@@ -123,7 +123,7 @@ try {
 }
 
 {
-  const isEn = settings.language !== 'zh-CN'
+  const isEn = settings.language === 'en'
   const desc = isEn
     ? 'The system is built-in and cannot be deleted'
     : '系统内置不可删除'
@@ -282,7 +282,7 @@ try {
   settings.spiderTimeout = Number(settings.spiderTimeout) || 6
   settings.loadingCode ??= ''
 
-  settings.appCardStyle ??= 'common'
+  settings.appCardStyle ??= 'retro'
   settings.appDocTitle ||= ''
   settings.gitHubCDN ||= 'gcore.jsdelivr.net'
 
@@ -323,4 +323,4 @@ internal.loginViewCount = loginViewCount
 internal.buildTime = Date.now()
 fs.writeFileSync(internalPath, JSON.stringify(internal))
 
-fs.writeFileSync(dbPath, JSON.stringify(setWeb(db, settings)))
+fs.writeFileSync(dbPath, JSON.stringify(setWeb(db, settings, tags)))

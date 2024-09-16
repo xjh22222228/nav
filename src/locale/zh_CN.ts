@@ -181,6 +181,7 @@ const zhCN: Record<string, any> = {
   _standard: '标准',
   _column: '栏目',
   _simplicity: '简约',
+  _original: '原始',
   _navOver: '一级导航超出显示',
   _scrollBar: '滚动条',
   _ellipsis: '三点式',
@@ -236,6 +237,8 @@ const zhCN: Record<string, any> = {
   _shortDay: '日',
   _classNoMatch: '分类不匹配，采用默认第一个分类',
   _openSearch: '输入链接允许查找',
+  _moveUp: '上移',
+  _moveDown: '下移',
 }
 
 export default zhCN

@@ -64,7 +64,7 @@ export function getWebCount(websiteList) {
 }
 
 // 设置网站的面包屑类目显示
-export function setWeb(nav, settings) {
+export function setWeb(nav, settings, tags = []) {
   let id = 0 // 为每个网站设置唯一ID
   if (!Array.isArray(nav)) return
 
@@ -119,6 +119,7 @@ export function setWeb(nav, settings) {
 
                 // 新字段补充
                 webItem.urls ||= {}
+                webItem.tags ||= []
                 webItem.rate ??= 5
                 webItem.top ??= false
                 webItem.ownVisible ??= false
@@ -147,8 +148,8 @@ export function setWeb(nav, settings) {
                   delete webItem.index
                 }
 
-                // 兼容现有标签,以id为key
-                for (let k in webItem.urls) {
+                // 兼容现有标签,以id为key (V9版本删除)
+                for (const k in webItem.urls) {
                   if (k === TAG_ID_NAME1) {
                     webItem.urls[TAG_ID1] = webItem.urls[k]
                     delete webItem.urls[TAG_ID_NAME1]
@@ -162,6 +163,23 @@ export function setWeb(nav, settings) {
                     delete webItem.urls[TAG_ID_NAME3]
                   }
                 }
+
+                // 从 v8.10.0 开始为了能够排序标签从对象改为数组
+                if (webItem.tags.length <= 0) {
+                  for (const k in webItem.urls) {
+                    const id = String(k)
+                    // 网站标签和系统标签关联，如果系统标签删除了，网站标签也被删除
+                    const has = tags.some((item) => String(item.id) === id)
+                    if (has) {
+                      webItem.tags.push({
+                        id: String(k),
+                        url: webItem.urls[k],
+                      })
+                    }
+                  }
+                }
+
+                delete webItem.urls
               }
             }
           }

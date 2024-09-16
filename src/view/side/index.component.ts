@@ -11,6 +11,7 @@ import { settings } from 'src/store'
 import { $t } from 'src/locale'
 import { CommonService } from 'src/services/common'
 import { STORAGE_KEY_MAP } from 'src/constants'
+import { isSelfDevelop } from 'src/utils/util'
 
 @Component({
   selector: 'app-side',
@@ -29,6 +30,14 @@ export default class SideComponent {
     }
   }
 
+  get nzXXl(): number {
+    const cardStyle = this.commonService.settings.sideCardStyle
+    if (cardStyle === 'original' || cardStyle === 'example') {
+      return 4
+    }
+    return 6
+  }
+
   openMenu(item: any, index: number) {
     this.websiteList.forEach((data, idx) => {
       if (idx === index) {
@@ -37,7 +46,9 @@ export default class SideComponent {
         data.collapsed = false
       }
     })
-    setWebsiteList(this.websiteList)
+    if (!isSelfDevelop) {
+      setWebsiteList(this.websiteList)
+    }
   }
 
   handleCollapsed() {

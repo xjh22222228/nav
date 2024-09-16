@@ -128,11 +128,11 @@ export default class SystemBookmarkExportComponent {
         delete item.__name__
         delete item.__desc__
         delete item.collapsed
+        delete item.tags
         if (Array.isArray(item.nav)) {
           getIconItems(item.nav)
         }
         if (item.url) {
-          delete item.urls
           promiseItems.push(
             that.imageToBase64(item).finally(() => {
               that.currentNumber += 1

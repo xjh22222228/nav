@@ -117,28 +117,41 @@ export function toggleCollapseAll(wsList?: INavProps[]): boolean {
   return collapsed
 }
 
-export function deleteByWeb(data: IWebProps) {
+export function deleteByWeb(data: IWebProps): boolean {
+  let hasDelete = false
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
       if (item.name) {
         if (item.id === data.id) {
+          hasDelete = true
           arr.splice(i, 1)
-          const { q } = queryString()
-          q && window.location.reload()
           break
         }
         continue
       }
 
       if (Array.isArray(item.nav)) {
+        item.nav = item.nav.filter((w: IWebProps) => {
+          if (w.name && w.id === data.id) {
+            hasDelete = true
+            return false
+          }
+          return true
+        })
         f(item.nav)
       }
     }
   }
 
   f(websiteList)
-  setWebsiteList(websiteList)
+  if (hasDelete) {
+    setWebsiteList(websiteList)
+    const { q } = queryString()
+    // 在搜索结果删除需要刷新重新刷结果
+    q && window.location.reload()
+  }
+  return hasDelete
 }
 
 export function updateByWeb(oldData: IWebProps, newData: IWebProps) {

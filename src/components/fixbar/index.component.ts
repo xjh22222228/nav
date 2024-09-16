@@ -91,6 +91,9 @@ export class FixbarComponent {
         if (url === '/' && url + settings.theme?.toLowerCase?.() === t.url) {
           return false
         }
+        if (t.url === '/' && url === t.url + settings.theme?.toLowerCase?.()) {
+          return false
+        }
         return t.url !== url
       })
   }

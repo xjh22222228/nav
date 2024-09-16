@@ -62,15 +62,12 @@
           </td>
           <td>
             <nz-tag
-              *ngFor="let key of objectKeys(data.urls || {})"
-              [nzColor]="(tagMap[key] && tagMap[key].color) || '#1890ff'"
+              *ngFor="let item of data.tags || []"
+              [nzColor]="tagMap[item.id].color"
               style="margin-bottom: 5px"
+              (click)="jumpService.goUrl($event, item.url)"
             >
-              <a
-                [href]="data.urls?.[key] || 'javascript:void(0)'"
-                [target]="data.urls?.[key] ? '_blank' : ''"
-                >{{ tagMap[key] && tagMap[key].name }}</a
-              >
+              {{ tagMap[item.id].name }}
             </nz-tag>
           </td>
           <td>

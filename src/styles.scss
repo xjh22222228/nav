@@ -52,6 +52,7 @@ h2 {
 img,
 iframe {
   border: none;
+  max-width: 100%;
 }
 
 button,
@@ -304,4 +305,7 @@ textarea.ant-input {
 }
 .color-black {
   color: #000 !important;
+}
+.color-red {
+  color: red !important;
 }

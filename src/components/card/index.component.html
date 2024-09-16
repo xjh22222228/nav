@@ -1,5 +1,5 @@
 <div
-  class="container standard progrcode"
+  class="container progrcode"
   *ngIf="dataSource.desc && dataSource.desc[0] === '!'; else other"
   [innerHTML]="html | safeHtml"
 ></div>
@@ -44,10 +44,7 @@
         class="cursor-pointer"
       >
         <div class="top">
-          <app-logo
-            [src]="dataSource.icon || ''"
-            [name]="dataSource.name"
-          ></app-logo>
+          <app-logo [src]="dataSource.icon || ''" [name]="dataSource.name" />
           <div
             class="title ellipsis2 dark-white"
             [innerHTML]="dataSource.name"
@@ -66,19 +63,16 @@
             [title]="dataSource.__desc__ || dataSource.desc"
           ></pre>
         </div>
-        <div class="tagbox">
+        <div class="tagbox" *ngIf="dataSource.tags">
           <div
             class="tag-item"
-            *ngFor="let key of objectKeys(dataSource.urls || {})"
-            [style]="
-              'background-color: ' +
-              ((tagMap[key] && tagMap[key].color) || '#1890ff')
-            "
+            *ngFor="let item of dataSource.tags"
+            [style]="'background-color: ' + tagMap[item.id].color"
           >
             <span
-              (click)="jumpService.goUrl($event, dataSource.urls?.[key])"
+              (click)="jumpService.goUrl($event, item.url)"
               class="cursor-pointer"
-              >{{ tagMap[key] && tagMap[key].name }}</span
+              >{{ tagMap[item.id].name }}</span
             >
           </div>
         </div>
@@ -159,6 +153,7 @@
     <!-- example style -->
     <div
       class="container example2 dark-bg dark-white dark-shadow"
+      [class.noDesc]="!dataSource.desc"
       *ngSwitchCase="'example'"
       (click)="jumpService.goUrl($event, dataSource.url)"
     >
@@ -187,20 +182,64 @@
           [src]="dataSource.icon || ''"
           [name]="dataSource.name"
         ></app-logo>
-        <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
+        <div
+          class="right-box ellipsis"
+          [title]="dataSource.__desc__ || dataSource.desc"
+        >
           <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
-          <pre
+          <div
             class="desc dark-text ellipsis"
             [innerHTML]="dataSource.desc"
-          ></pre>
+          ></div>
         </div>
       </div>
     </div>
 
-    <!-- common style -->
+    <!-- original style -->
     <div
-      class="container common2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
-      *ngSwitchCase="'common'"
+      class="container original2 dark-bg dark-white dark-shadow"
+      *ngSwitchCase="'original'"
+      (click)="jumpService.goUrl($event, dataSource.url)"
+    >
+      <span
+        nz-icon
+        nzType="stop"
+        nzTheme="outline"
+        class="stop-icon"
+        title="疑似异常"
+        *ngIf="isLogin && dataSource.ok === false"
+      ></span>
+
+      <div
+        class="breadcrumb1 ellipsis"
+        *ngIf="searchKeyword && dataSource?.breadcrumb"
+      >
+        <span *ngFor="let n of dataSource.breadcrumb; let idx = index"
+          >{{ n
+          }}<span class="slash" *ngIf="idx !== dataSource.breadcrumb.length - 1"
+            >/</span
+          ></span
+        >
+      </div>
+      <div class="wrapper ellipsis">
+        <app-logo
+          [src]="dataSource.icon || ''"
+          [name]="dataSource.name"
+          [size]="30"
+        />
+        <div
+          class="right-box ellipsis"
+          [title]="dataSource.__desc__ || dataSource.desc"
+        >
+          <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- retro style -->
+    <div
+      class="container retro2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
+      *ngSwitchCase="'retro'"
     >
       <div class="item-list">
         <div
@@ -221,21 +260,19 @@
           </div>
           <div
             class="desc ellipsis3 dark-white dark-border-color"
+            *ngIf="dataSource.desc"
             [title]="dataSource.__desc__ || dataSource.desc"
             [innerHTML]="dataSource.desc"
           ></div>
 
-          <div class="tagbox">
+          <div class="tagbox" *ngIf="dataSource.tags">
             <div
               class="tag-item"
-              *ngFor="let key of objectKeys(dataSource.urls || {})"
-              [style]="
-                'background-color: ' +
-                ((tagMap[key] && tagMap[key].color) || '#1890ff')
-              "
-              (click)="jumpService.goUrl($event, dataSource.urls?.[key])"
+              *ngFor="let item of dataSource.tags"
+              [style]="'background-color: ' + tagMap[item.id].color"
+              (click)="jumpService.goUrl($event, item.url)"
             >
-              {{ tagMap[key] && tagMap[key].name }}
+              {{ tagMap[item.id].name }}
             </div>
           </div>
         </div>
@@ -293,14 +330,11 @@
           <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
           <div
             class="tag-item"
-            *ngFor="let key of objectKeys(dataSource.urls || {})"
-            [style]="
-              'background-color: ' +
-              ((tagMap[key] && tagMap[key].color) || '#1890ff')
-            "
-            (click)="jumpService.goUrl($event, dataSource.urls?.[key])"
+            *ngFor="let item of dataSource.tags || []"
+            [style]="'background-color: ' + tagMap[item.id].color"
+            (click)="jumpService.goUrl($event, item.url)"
           >
-            {{ tagMap[key] && tagMap[key].name }}
+            {{ tagMap[item.id].name }}
           </div>
 
           <span
