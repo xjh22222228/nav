@@ -13,9 +13,9 @@ dayjs.tz.setDefault('Asia/Shanghai')
 export const TAG_ID1 = -1
 export const TAG_ID2 = -2
 export const TAG_ID3 = -3
-const TAG_ID_NAME1 = '中文'
-const TAG_ID_NAME2 = '英文'
-const TAG_ID_NAME3 = 'Github'
+export const TAG_ID_NAME1 = '中文'
+export const TAG_ID_NAME2 = '英文'
+export const TAG_ID_NAME3 = 'GitHub'
 
 // 统计网站数量
 export function getWebCount(websiteList) {

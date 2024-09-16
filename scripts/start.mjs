@@ -11,6 +11,9 @@ import {
   TAG_ID1,
   TAG_ID2,
   TAG_ID3,
+  TAG_ID_NAME1,
+  TAG_ID_NAME2,
+  TAG_ID_NAME3,
   getWebCount,
   setWeb,
   replaceJsdelivrCDN,
@@ -134,7 +137,7 @@ try {
   if (!a) {
     tags.push({
       id: TAG_ID1,
-      name: isEn ? 'Chinese' : '中文',
+      name: isEn ? 'Chinese' : TAG_ID_NAME1,
       color: '#2db7f5',
       createdAt: '',
       desc,
@@ -145,7 +148,7 @@ try {
   if (!b) {
     tags.push({
       id: TAG_ID2,
-      name: isEn ? 'English' : '英文',
+      name: isEn ? 'English' : TAG_ID_NAME2,
       color: '#f50',
       createdAt: '',
       desc,
@@ -156,7 +159,7 @@ try {
   if (!c) {
     tags.push({
       id: TAG_ID3,
-      name: 'Github',
+      name: TAG_ID_NAME3,
       color: '#108ee9',
       createdAt: '',
       desc,

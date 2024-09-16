@@ -373,16 +373,16 @@
               <tr *ngFor="let data of settings.lightImages; index as idx">
                 <td width="260px" class="nowrap">
                   <img [src]="data['src']" class="icon" />
-                  <input
-                    nz-input
-                    type="text"
-                    [value]="data['src']"
-                    style="width: 180px; margin-right: 10px"
-                    (change)="onChangeLightBannerUrl($event, idx)"
-                  />
-                  <app-upload
-                    (onChange)="onLightBannerChange($event, idx)"
-                  ></app-upload>
+                  <div>
+                    <input
+                      nz-input
+                      type="text"
+                      [value]="data['src']"
+                      style="width: 180px; margin-right: 10px"
+                      (change)="onChangeLightBannerUrl($event, idx)"
+                    />
+                    <app-upload (onChange)="onLightBannerChange($event, idx)" />
+                  </div>
                 </td>
                 <td>
                   <input
@@ -493,16 +493,17 @@
               <tr *ngFor="let data of settings.superImages; index as idx">
                 <td width="260px" class="nowrap">
                   <img [src]="data['src']" class="icon" />
-                  <input
-                    nz-input
-                    type="text"
-                    [value]="data['src']"
-                    style="width: 180px; margin-right: 10px"
-                    (change)="onChangeSuperBannerUrl($event, idx)"
-                  />
-                  <app-upload
-                    (onChange)="onSuperBannerChange($event, idx)"
-                  ></app-upload>
+
+                  <div>
+                    <input
+                      nz-input
+                      type="text"
+                      [value]="data['src']"
+                      style="width: 180px; margin-right: 10px"
+                      (change)="onChangeSuperBannerUrl($event, idx)"
+                    />
+                    <app-upload (onChange)="onSuperBannerChange($event, idx)" />
+                  </div>
                 </td>
                 <td>
                   <input
@@ -613,16 +614,16 @@
               <tr *ngFor="let data of settings.simThemeImages; index as idx">
                 <td width="260px" class="nowrap">
                   <img [src]="data['src']" class="icon" />
-                  <input
-                    nz-input
-                    type="text"
-                    [value]="data['src']"
-                    style="width: 180px; margin-right: 10px"
-                    (change)="onChangeSimBannerUrl($event, idx)"
-                  />
-                  <app-upload
-                    (onChange)="onSimBannerChange($event, idx)"
-                  ></app-upload>
+                  <div>
+                    <input
+                      nz-input
+                      type="text"
+                      [value]="data['src']"
+                      style="width: 180px; margin-right: 10px"
+                      (change)="onChangeSimBannerUrl($event, idx)"
+                    />
+                    <app-upload (onChange)="onSimBannerChange($event, idx)" />
+                  </div>
                 </td>
                 <td>
                   <input
@@ -762,16 +763,16 @@
               <tr *ngFor="let data of settings.sideThemeImages; index as idx">
                 <td width="260px" class="nowrap">
                   <img [src]="data['src']" class="icon" />
-                  <input
-                    nz-input
-                    type="text"
-                    [value]="data['src']"
-                    style="width: 180px; margin-right: 10px"
-                    (change)="onChangeSideBannerUrl($event, idx)"
-                  />
-                  <app-upload
-                    (onChange)="onSideBannerChange($event, idx)"
-                  ></app-upload>
+                  <div>
+                    <input
+                      nz-input
+                      type="text"
+                      [value]="data['src']"
+                      style="width: 180px; margin-right: 10px"
+                      (change)="onChangeSideBannerUrl($event, idx)"
+                    />
+                    <app-upload (onChange)="onSideBannerChange($event, idx)" />
+                  </div>
                 </td>
                 <td>
                   <input
@@ -883,7 +884,6 @@
         <nz-form-label [nzSpan]="4">{{ $t('_backgroundImage') }}</nz-form-label>
         <nz-form-control [nzSpan]="10">
           <img [src]="settings.shortcutThemeImages[0]['src']" />
-          <app-upload (onChange)="onShortcutImgChange($event)"></app-upload>
 
           <input
             nz-input
@@ -892,6 +892,7 @@
             (change)="onShortcutImgChange($event)"
             style="width: 300px; margin-top: 10px"
           />
+          <app-upload (onChange)="onShortcutImgChange($event)" />
         </nz-form-control>
       </nz-form-item>
     </nz-tab>

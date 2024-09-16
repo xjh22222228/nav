@@ -54,18 +54,18 @@
         />
       </td>
       <td>
-        <div *ngIf="!data.isInner">
-          <a
-            nz-popconfirm
-            nzPopconfirmPlacement="rightTop"
-            nzOkType="danger"
-            [nzPopconfirmTitle]="$t('_confirmDel')"
-            nzPopconfirmPlacement="bottom"
-            (nzOnConfirm)="handleDelete(idx)"
-          >
-            <a>{{ $t('_del') }}</a>
-          </a>
-        </div>
+        <a
+          *ngIf="!data.isInner"
+          nz-popconfirm
+          nzPopconfirmPlacement="rightTop"
+          nzOkType="danger"
+          [nzPopconfirmTitle]="$t('_confirmDel')"
+          nzPopconfirmPlacement="bottom"
+          (nzOnConfirm)="handleDelete(idx)"
+          class="color-red"
+        >
+          {{ $t('_del') }}
+        </a>
       </td>
     </tr>
   </tbody>

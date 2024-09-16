@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
             createBranch('image').finally(() => {
               this.message.success($t('_tokenVerSuc'))
               removeWebsite()
-              setTimeout(() => window.location.reload(), 2000)
+              window.location.reload()
             })
           })
           .catch(() => {
