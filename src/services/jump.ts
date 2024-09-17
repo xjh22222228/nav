@@ -15,7 +15,7 @@ export class JumpService {
     e?.stopPropagation?.()
     e?.preventDefault?.()
 
-    if (typeof url !== 'string') {
+    if (typeof url !== 'string' || !url) {
       return
     }
 

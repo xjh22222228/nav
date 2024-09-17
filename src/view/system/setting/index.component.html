@@ -73,7 +73,7 @@
         ></nz-option>
       </nz-select>
 
-      <div class="mt10">
+      <div class="mt-2.5">
         <a
           target="_blank"
           [href]="
@@ -174,7 +174,7 @@
         nz-input
         formControlName="loadingCode"
         [nzAutosize]="textareaSize"
-        placeholder="<div style='text-align:center'>Loading...</div>"
+        placeholder="<div class='text-center'>Loading...</div>"
       ></textarea>
     </nz-form-control>
   </nz-form-item>
@@ -185,7 +185,6 @@
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label nz-checkbox formControlName="allowCollect"></label>
-      <!-- <span class="ml10">{{ $t('_collectMenuView') }}</span> -->
     </nz-form-control>
   </nz-form-item>
 
@@ -296,7 +295,9 @@
         [nzAutosize]="textareaSize"
       ></textarea>
 
-      <div class="mt10 mb10">{{ $t('_footTemplateDesc') }}</div>
+      <div class="mt-2.5">{{ $t('_footTemplateDesc') }}</div>
+
+      <div class="my-2.5">{{ $t('_builtTailwind') }}</div>
 
       <nz-radio-group
         formControlName="footTemplate"
@@ -349,7 +350,7 @@
             <label nz-radio nzValue="original">{{ $t('_original') }}</label>
           </nz-radio-group>
 
-          <div class="mt10">
+          <div class="mt-2.5">
             <img
               src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/card-style-example.png"
             />
@@ -384,7 +385,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let data of settings.lightImages; index as idx">
-                <td width="260px" class="nowrap">
+                <td width="260px" class="whitespace-nowrap">
                   <img [src]="data['src']" class="icon" />
                   <div>
                     <input
@@ -421,7 +422,7 @@
               </tr>
             </tbody>
           </nz-table>
-          <a (click)="onAddLightBanner()" class="mt10 display-block">{{
+          <a (click)="onAddLightBanner()" class="mt-2.5 display-block">{{
             $t('_add')
           }}</a>
         </nz-form-control>
@@ -502,7 +503,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let data of settings.superImages; index as idx">
-                <td width="260px" class="nowrap">
+                <td width="260px" class="whitespace-nowrap">
                   <img [src]="data['src']" class="icon" />
 
                   <div>
@@ -540,7 +541,7 @@
               </tr>
             </tbody>
           </nz-table>
-          <a (click)="onAddSuperBanner()" class="mt10 display-block">{{
+          <a (click)="onAddSuperBanner()" class="mt-2.5 display-block">{{
             $t('_add')
           }}</a>
         </nz-form-control>
@@ -621,7 +622,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let data of settings.simThemeImages; index as idx">
-                <td width="260px" class="nowrap">
+                <td width="260px" class="whitespace-nowrap">
                   <img [src]="data['src']" class="icon" />
                   <div>
                     <input
@@ -658,7 +659,7 @@
               </tr>
             </tbody>
           </nz-table>
-          <a (click)="onAddSimBanner()" class="mt10 display-block">{{
+          <a (click)="onAddSimBanner()" class="mt-2.5 display-block">{{
             $t('_add')
           }}</a>
         </nz-form-control>
@@ -768,7 +769,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let data of settings.sideThemeImages; index as idx">
-                <td width="260px" class="nowrap">
+                <td width="260px" class="whitespace-nowrap">
                   <img [src]="data['src']" class="icon" />
                   <div>
                     <input
@@ -805,7 +806,7 @@
               </tr>
             </tbody>
           </nz-table>
-          <a (click)="onAddSideBanner()" class="mt10 display-block">{{
+          <a (click)="onAddSideBanner()" class="mt-2.5 display-block">{{
             $t('_add')
           }}</a>
         </nz-form-control>
@@ -931,13 +932,13 @@
 
   <div class="divider"></div>
   <h2 class="title">{{ $t('_spiderRule') }}</h2>
-  <div class="mb10" *ngIf="!isSelfDevelop">
+  <div class="mb-2.5" *ngIf="!isSelfDevelop">
     <b>{{ $t('_spiderTip') }}</b>
   </div>
-  <div class="mb10">
+  <div class="mb-2.5">
     <b>{{ $t('_spiderNetTip') }}</b>
   </div>
-  <div class="mb10" *ngIf="!isSelfDevelop">
+  <div class="mb-2.5" *ngIf="!isSelfDevelop">
     <b>{{ $t('_spiderBuildTip') }}</b>
   </div>
 
@@ -1007,7 +1008,7 @@
     <nz-form-label [nzSpan]="4">{{ $t('_accessTimeout') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
       <input nz-input formControlName="spiderTimeout" />
-      <p class="mt10">{{ $t('_accessTimeoutTip') }}</p>
+      <p class="mt-2.5">{{ $t('_accessTimeoutTip') }}</p>
     </nz-form-control>
   </nz-form-item>
 

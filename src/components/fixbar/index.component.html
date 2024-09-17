@@ -48,7 +48,10 @@
     nz-tooltip
     [nzTooltipTitle]="collapsed ? $t('_collapse') : $t('_put')"
   >
-    <i class="iconfont iconweibiaoti25 collapse" [class.active]="collapsed"></i>
+    <i
+      class="iconfont iconweibiaoti25 collapse-icon"
+      [class.active]="collapsed"
+    ></i>
   </div>
 
   <div

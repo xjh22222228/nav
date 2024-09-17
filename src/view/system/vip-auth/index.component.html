@@ -1,5 +1,5 @@
 <nz-spin nzTip="Loading..." [nzSpinning]="submitting">
-  <div *ngIf="!isPermission" class="center">
+  <div *ngIf="!isPermission" class="text-center">
     <input
       nz-input
       [placeholder]="$t('_inputAuthCode')"
@@ -8,7 +8,7 @@
     />
     <div class="text-left">
       <button
-        class="mt10"
+        class="mt-2.5"
         nz-button
         nzType="primary"
         (click)="handleSubmitAuthCode()"
@@ -20,7 +20,7 @@
   </div>
 
   <div *ngIf="isPermission">
-    <div class="mb10 mt10">
+    <div class="mb-2.5 mt-2.5">
       {{ $t('_bindDomain') }}
     </div>
     <input nz-input placeholder="example.cn,example.com" [(ngModel)]="url" />
@@ -29,7 +29,7 @@
       nzType="primary"
       (click)="handleSave()"
       [nzLoading]="submitting"
-      class="mt10"
+      class="mt-2.5"
     >
       {{ $t('_save') }}
     </button>
@@ -39,7 +39,7 @@
       nzDanger
       (click)="logoutAuthCode()"
       [nzLoading]="submitting"
-      class="mt10 ml10"
+      class="mt-2.5 ml-2.5"
     >
       {{ $t('_logoutAuthCode') }}
     </button>

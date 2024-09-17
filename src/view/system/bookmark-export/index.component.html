@@ -1,13 +1,14 @@
-<nz-spin nzSimple nzSize="large" class="center" *ngIf="submitting"> </nz-spin>
-<div class="center">
+<nz-spin nzSimple nzSize="large" class="text-center" *ngIf="submitting">
+</nz-spin>
+<div class="text-center">
   <nz-switch [(ngModel)]="isExportIcon"></nz-switch>
-  <span class="ml10">{{ $t('_exportIcons') }}</span>
-  <p class="mt10" *ngIf="seconds > 0">耗时 {{ seconds }} 秒</p>
-  <p class="mt10" *ngIf="countAll > 0">
+  <span class="ml-2.5">{{ $t('_exportIcons') }}</span>
+  <p class="mt-2.5" *ngIf="seconds > 0">耗时 {{ seconds }} 秒</p>
+  <p class="mt-2.5" *ngIf="countAll > 0">
     {{ $t('_processing') }} {{ currentNumber }} / {{ countAll }}
   </p>
 </div>
-<div class="book-wrapper mt10">
+<div class="book-wrapper mt-2.5">
   <div>
     <img
       src="assets/img/bookmark.svg"
@@ -15,7 +16,7 @@
       draggable="false"
       class="logo"
     />
-    <p style="white-space: nowrap; margin-top: 5px" (click)="bookmarksExport()">
+    <p class="whitespace-nowrap mt-2.5" (click)="bookmarksExport()">
       {{ $t('_clickExport') }}
     </p>
   </div>

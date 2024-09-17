@@ -1,7 +1,8 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
-
+@import './assets/styles/tailwind.css';
 @import './assets/styles/dark.scss';
+@import './assets/styles/nprogress.css';
 @import '../node_modules/ng-zorro-antd/ng-zorro-antd.css';
 @import './assets/styles/ng-zorro-antd.dark.scss';
 
@@ -54,6 +55,9 @@ iframe {
   border: none;
   max-width: 100%;
 }
+img {
+  display: inline-block;
+}
 
 button,
 input,
@@ -72,19 +76,6 @@ i,
 em {
   font-style: normal;
 }
-.user-select-none {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-}
-.white-space-nowrap,
-.nowrap {
-  white-space: nowrap;
-}
-.text-align-center,
-.center {
-  text-align: center;
-}
 .position-center {
   z-index: 9;
   position: absolute;
@@ -92,27 +83,11 @@ em {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.text-align-left {
-  text-align: left;
-}
-.text-align-right {
-  text-align: right;
-}
 .border-none {
   border: none;
 }
-.pointer-events-none {
-  pointer-events: none;
-}
-.overflow-hidden {
-  overflow: hidden;
-}
 .touch-active:active {
   background: rgba(0, 0, 0, 0.2) !important;
-}
-
-.cursor-pointer {
-  cursor: pointer;
 }
 
 .clamp3 {
@@ -121,16 +96,6 @@ em {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.ml10 {
-  margin-left: 10px;
-}
-.mt10 {
-  margin-top: 10px;
-}
-.mb10 {
-  margin-bottom: 10px;
-}
-
 .remove {
   position: fixed !important;
   top: -10000px !important;
@@ -174,85 +139,6 @@ b {
 textarea.ant-input {
   word-break: break-all;
 }
-/* NProgress Make clicks pass-through */
-#nprogress {
-  pointer-events: none;
-}
-
-#nprogress .bar {
-  background: #29d;
-  position: fixed;
-  z-index: 1031;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-}
-
-/* Fancy blur effect */
-#nprogress .peg {
-  display: block;
-  position: absolute;
-  right: 0px;
-  width: 100px;
-  height: 100%;
-  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
-  opacity: 1;
-
-  -webkit-transform: rotate(3deg) translate(0px, -4px);
-  -ms-transform: rotate(3deg) translate(0px, -4px);
-  transform: rotate(3deg) translate(0px, -4px);
-}
-
-/* Remove these to get rid of the spinner */
-#nprogress .spinner {
-  display: block;
-  position: fixed;
-  z-index: 1031;
-  top: 25px;
-  right: 25px;
-}
-
-#nprogress .spinner-icon {
-  width: 18px;
-  height: 18px;
-  box-sizing: border-box;
-
-  border: solid 2px transparent;
-  border-top-color: #29d;
-  border-left-color: #29d;
-  border-radius: 50%;
-
-  -webkit-animation: nprogress-spinner 400ms linear infinite;
-  animation: nprogress-spinner 400ms linear infinite;
-}
-
-.nprogress-custom-parent {
-  overflow: hidden;
-  position: relative;
-}
-
-.nprogress-custom-parent #nprogress .spinner,
-.nprogress-custom-parent #nprogress .bar {
-  position: absolute;
-}
-
-@-webkit-keyframes nprogress-spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@keyframes nprogress-spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 .ellipsis {
   white-space: nowrap !important;
@@ -275,9 +161,6 @@ textarea.ant-input {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.font-bold {
-  font-weight: bold;
-}
 .display-block {
   display: block !important;
 }
@@ -286,45 +169,14 @@ textarea.ant-input {
   align-items: center;
   justify-content: center;
 }
-.hidden {
-  display: none;
-}
-.text-left {
-  text-align: left;
-}
-.w100 {
-  width: 100%;
-}
-.h100 {
-  height: 100%;
-}
 @media screen and (max-width: 768px) {
   .max768none {
     display: none !important;
   }
-}
-.color-black {
-  color: #000 !important;
 }
 .color-red {
   color: red !important;
 }
 .color-white {
   color: #fff;
-}
-.grid {
-  display: grid;
-}
-.grid-cols-1 {
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-@media (min-width: 768px) {
-  .md\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (min-width: 1024px) {
-  .lg\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }

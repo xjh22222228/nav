@@ -91,15 +91,15 @@
           <button nz-button style="margin-left: 15px" (click)="logout()">
             {{ $t('_logout') }}
           </button>
-          <img [src]="currentVersionSrc" class="ml10" />
+          <img [src]="currentVersionSrc" class="ml-2.5" />
           <a href="https://github.com/xjh22222228/nav/releases" target="_blank">
             <img
               src="https://img.shields.io/github/v/release/xjh22222228/nav"
-              class="ml10"
+              class="ml-2.5"
             />
           </a>
 
-          <span class="ml10" *ngIf="!isSelfDevelop">{{ date }}</span>
+          <span class="ml-2.5" *ngIf="!isSelfDevelop">{{ date }}</span>
         </div>
 
         <router-outlet></router-outlet>

@@ -75,7 +75,7 @@ export class FixbarComponent {
     private activatedRoute: ActivatedRoute
   ) {
     if (this.isDark) {
-      document.documentElement.classList.add('dark-container')
+      document.documentElement.classList.add('dark-container', 'dark')
     }
 
     const url = this.router.url.split('?')[0]
@@ -142,6 +142,7 @@ export class FixbarComponent {
       String(Number(this.isDark))
     )
     document.documentElement.classList.toggle('dark-container')
+    document.documentElement.classList.toggle('dark')
 
     if (this.isDark) {
       this.removeBackground()

@@ -38,7 +38,7 @@
       <td width="220px">
         <input *ngIf="!data.isInner" nz-input [(ngModel)]="data.url" />
       </td>
-      <td width="260px" class="nowrap">
+      <td width="260px" class="whitespace-nowrap">
         <img *ngIf="data.icon" [src]="data.icon" class="icon" />
         <input
           nz-input
@@ -57,7 +57,7 @@
       <td>
         <div *ngIf="!data.isInner">
           <a (click)="moveUp(idx)">{{ $t('_moveUp') }}</a>
-          <a (click)="moveDown(idx)" class="ml10">{{ $t('_moveDown') }}</a>
+          <a (click)="moveDown(idx)" class="ml-2.5">{{ $t('_moveDown') }}</a>
           <a
             nz-popconfirm
             nzPopconfirmPlacement="rightTop"
@@ -65,7 +65,7 @@
             [nzPopconfirmTitle]="$t('_confirmDel')"
             nzPopconfirmPlacement="bottom"
             (nzOnConfirm)="handleDelete(idx)"
-            class="ml10 color-red"
+            class="ml-2.5 color-red"
           >
             {{ $t('_del') }}
           </a>

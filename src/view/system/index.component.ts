@@ -27,7 +27,7 @@ export default class SystemComponent {
 
   constructor(private router: Router) {
     // 解决暗黑模式部分样式不正确问题，后台没有暗黑
-    document.documentElement.classList.remove('dark-container')
+    document.documentElement.classList.remove('dark-container', 'dark')
   }
 
   ngOnInit() {

@@ -59,9 +59,11 @@
     "ng-zorro-antd": "^18.1.1",
     "nodemailer": "^6.9.15",
     "nprogress": "^0.2.0",
+    "postcss": "^8.4.47",
     "qs": "^6.13.0",
     "rough-notation": "^0.5.1",
     "rxjs": "~7.8.1",
+    "tailwindcss": "^3.4.11",
     "tslib": "^2.7.0",
     "zone.js": "~0.15.0"
   },

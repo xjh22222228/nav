@@ -56,7 +56,7 @@
         (nzOnConfirm)="onBatchDelete(1)"
         nz-button
         nzDanger
-        class="ml10"
+        class="ml-2.5"
         [disabled]="setOfCheckedId.size <= 0"
       >
         {{ $t('_batchDel') }}
@@ -101,12 +101,12 @@
               ></i>
             </td>
             <td>{{ data.createdAt }}</td>
-            <td class="user-select-none">
+            <td class="select-none">
               <a (click)="moveOneUp(idx)">{{ $t('_moveUp') }}</a>
-              <a (click)="moveOneDown(idx)" class="ml10">{{
+              <a (click)="moveOneDown(idx)" class="ml-2.5">{{
                 $t('_moveDown')
               }}</a>
-              <a (click)="handleEditBtn(data, idx)" class="ml10">{{
+              <a (click)="handleEditBtn(data, idx)" class="ml-2.5">{{
                 $t('_edit')
               }}</a>
               <a
@@ -114,7 +114,7 @@
                 [nzPopconfirmTitle]="$t('_delWarn')"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelOne(idx)"
-                class="color-red ml10"
+                class="color-red ml-2.5"
               >
                 {{ $t('_del') }}
               </a>
@@ -155,7 +155,7 @@
         (nzOnConfirm)="onBatchDelete(2)"
         nz-button
         nzDanger
-        class="ml10"
+        class="ml-2.5"
         [disabled]="setOfCheckedId.size <= 0"
       >
         {{ $t('_batchDel') }}
@@ -200,15 +200,15 @@
               ></i>
             </td>
             <td>{{ data.createdAt }}</td>
-            <td class="user-select-none">
+            <td class="select-none">
               <a (click)="moveTwoUp(idx)">{{ $t('_moveUp') }}</a>
-              <a (click)="moveTwoDown(idx)" class="ml10">{{
+              <a (click)="moveTwoDown(idx)" class="ml-2.5">{{
                 $t('_moveDown')
               }}</a>
-              <a (click)="handleEditBtn(data, idx)" class="ml10">{{
+              <a (click)="handleEditBtn(data, idx)" class="ml-2.5">{{
                 $t('_edit')
               }}</a>
-              <a (click)="openMoveWebModal(data, idx, 2)" class="ml10">{{
+              <a (click)="openMoveWebModal(data, idx, 2)" class="ml-2.5">{{
                 $t('_move')
               }}</a>
               <a
@@ -216,7 +216,7 @@
                 [nzPopconfirmTitle]="$t('_delWarn')"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelTwo(idx)"
-                class="color-red ml10"
+                class="color-red ml-2.5"
               >
                 {{ $t('_del') }}
               </a>
@@ -272,7 +272,7 @@
         (nzOnConfirm)="onBatchDelete(3)"
         nz-button
         nzDanger
-        class="ml10"
+        class="ml-2.5"
         [disabled]="setOfCheckedId.size <= 0"
       >
         {{ $t('_batchDel') }}
@@ -317,15 +317,15 @@
               ></i>
             </td>
             <td>{{ data.createdAt }}</td>
-            <td class="user-select-none">
+            <td class="select-none">
               <a (click)="moveThreeUp(idx)">{{ $t('_moveUp') }}</a>
-              <a (click)="moveThreeDown(idx)" class="ml10">{{
+              <a (click)="moveThreeDown(idx)" class="ml-2.5">{{
                 $t('_moveDown')
               }}</a>
-              <a (click)="handleEditBtn(data, idx)" class="ml10">{{
+              <a (click)="handleEditBtn(data, idx)" class="ml-2.5">{{
                 $t('_edit')
               }}</a>
-              <a (click)="openMoveWebModal(data, idx, 3)" class="ml10">{{
+              <a (click)="openMoveWebModal(data, idx, 3)" class="ml-2.5">{{
                 $t('_move')
               }}</a>
               <a
@@ -333,7 +333,7 @@
                 [nzPopconfirmTitle]="$t('_delWarn')"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelThree(idx)"
-                class="color-red ml10"
+                class="color-red ml-2.5"
               >
                 {{ $t('_del') }}
               </a>
@@ -412,7 +412,7 @@
         (nzOnConfirm)="onBatchDelete(4)"
         nz-button
         nzDanger
-        class="ml10"
+        class="ml-2.5"
         [disabled]="setOfCheckedId.size <= 0"
       >
         {{ $t('_batchDel') }}
@@ -432,7 +432,7 @@
               [nzChecked]="checkedAll"
               (nzCheckedChange)="onAllChecked($event, 4)"
             ></th>
-            <th nzWidth="60px" class="center">{{ $t('_action') }}</th>
+            <th nzWidth="60px" class="text-center">{{ $t('_action') }}</th>
             <th nzWidth="70px">状态</th>
             <th nzWidth="80px">{{ $t('_icon') }}</th>
             <th nzWidth="100px">{{ $t('_webName') }}</th>
@@ -449,7 +449,7 @@
               [nzChecked]="setOfCheckedId.has(data.name)"
               (nzCheckedChange)="onItemChecked(data.name, $event)"
             ></td>
-            <td class="center user-select-none">
+            <td class="text-center select-none">
               <div *ngIf="errorWebs.length <= 0">
                 <a (click)="moveWebUp(idx)">{{ $t('_moveUp') }}</a>
               </div>

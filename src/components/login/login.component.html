@@ -7,7 +7,13 @@
 >
   <ng-container *nzModalContent>
     <p>{{ $t('_inputTokenMsg') }}</p>
-    <input nz-input [(ngModel)]="token" autofocus (keyup)="onKey($event)" />
+    <input
+      autofocus
+      nz-input
+      [(ngModel)]="token"
+      autofocus
+      (keyup)="onKey($event)"
+    />
     <p *ngIf="!isSelfDevelop" style="margin-top: 15px">
       {{ $t('_getToken')
       }}<a
