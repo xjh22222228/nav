@@ -21,7 +21,7 @@
   "----------------": "----------------以下字段无需处理--------------------------",
   "================": "网站所有内容都是可以在后台系统配置的，不懂的不要擅自修改源代码，出现异常请自行处理",
   "name": "nav",
-  "version": "8.9.0",
+  "version": "8.10.0",
   "author": "xiejiahe",
   "homepage": "https://github.com/xjh22222228/nav",
   "scripts": {
@@ -29,8 +29,8 @@
     "start": "npm run build-start && ng serve --port=7001",
     "build-start": "ts-node ./scripts/start.mjs",
     "setup": "npm run build-start && ts-node ./scripts/build.mjs",
-    "build-gh-pages": "npm run setup && ng build --base-href ./ --index src/index.html && ts-node",
-    "build": "npm run setup && ng build --index src/index.html && ts-node",
+    "build-gh-pages": "npm run setup && ng build --base-href ./ --index src/index.html",
+    "build": "npm run setup && ng build --index src/index.html",
     "watch": "ng build --watch --configuration development",
     "update": "git pull && (git remote add upstream https://gitee.com/xiejiahe/nav.git || true) && git fetch upstream main && git merge upstream/main --allow-unrelated-histories --no-edit && git push",
     "pull": "git pull"
