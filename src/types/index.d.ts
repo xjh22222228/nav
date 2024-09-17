@@ -172,6 +172,8 @@ export interface ISettings {
   openSearch: boolean
   gitHubCDN: string
 
+  runtime: number
+
   [key: string]: any
 }
 

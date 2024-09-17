@@ -16,6 +16,9 @@
 
     &-white {
       color: #fff !important;
+      &-700 {
+        color: rgba(255, 255, 255, 0.7) !important;
+      }
     }
 
     &-shadow {

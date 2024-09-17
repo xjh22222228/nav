@@ -5,6 +5,7 @@
 import { Component, Input } from '@angular/core'
 import { settings, internal } from 'src/store'
 import { isLogin } from 'src/utils/user'
+import event from 'src/utils/mitt'
 
 @Component({
   selector: 'app-footer',
@@ -27,5 +28,23 @@ export class FooterComponent {
       )
       .replace('${hostname}', window.location.hostname)
       .replace('${year}', String(new Date().getFullYear()))
+  }
+
+  ngOnDestroy() {
+    const applyWebEls = document.querySelectorAll('#app-footer .applyweb')
+    applyWebEls.forEach((el) => {
+      el.removeEventListener('click', this.handleApplyWeb)
+    })
+  }
+
+  handleApplyWeb() {
+    event.emit('CREATE_WEB')
+  }
+
+  ngAfterViewInit() {
+    const applyWebEls = document.querySelectorAll('#app-footer .applyweb')
+    applyWebEls.forEach((el) => {
+      el.addEventListener('click', this.handleApplyWeb)
+    })
   }
 }

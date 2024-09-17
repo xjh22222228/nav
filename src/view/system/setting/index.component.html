@@ -173,7 +173,7 @@
       <textarea
         nz-input
         formControlName="loadingCode"
-        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+        [nzAutosize]="textareaSize"
         placeholder="<div style='text-align:center'>Loading...</div>"
       ></textarea>
     </nz-form-control>
@@ -281,7 +281,7 @@
       <textarea
         nz-input
         formControlName="headerContent"
-        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+        [nzAutosize]="textareaSize"
         placeholder="位于 head 标签尾部，你可以在这里插入脚本代码或各种样式网站统计等"
       ></textarea>
     </nz-form-control>
@@ -293,9 +293,22 @@
       <textarea
         nz-input
         formControlName="footerContent"
-        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-        placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+        [nzAutosize]="textareaSize"
       ></textarea>
+
+      <div class="mt10 mb10">{{ $t('_footTemplateDesc') }}</div>
+
+      <nz-radio-group
+        formControlName="footTemplate"
+        (ngModelChange)="onFootTemplateChange($event)"
+      >
+        <label nz-radio nzValue="footTemplate1">{{
+          $t('_footTemplate1')
+        }}</label>
+        <label nz-radio nzValue="footTemplate2">{{
+          $t('_footTemplate2')
+        }}</label>
+      </nz-radio-group>
     </nz-form-control>
   </nz-form-item>
 
@@ -400,10 +413,9 @@
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
                     (nzOnConfirm)="onDeleteLightBanner(idx)"
+                    class="color-red"
                   >
-                    <a>
-                      {{ $t('_del') }}
-                    </a>
+                    {{ $t('_del') }}
                   </a>
                 </td>
               </tr>
@@ -421,8 +433,7 @@
           <textarea
             nz-input
             formControlName="lightFooterHTML"
-            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-            placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+            [nzAutosize]="textareaSize"
           ></textarea>
         </nz-form-control>
       </nz-form-item>
@@ -521,10 +532,9 @@
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
                     (nzOnConfirm)="onDeleteSuperBanner(idx)"
+                    class="color-red"
                   >
-                    <a>
-                      {{ $t('_del') }}
-                    </a>
+                    {{ $t('_del') }}
                   </a>
                 </td>
               </tr>
@@ -542,8 +552,7 @@
           <textarea
             nz-input
             formControlName="superFooterHTML"
-            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-            placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+            [nzAutosize]="textareaSize"
           ></textarea>
         </nz-form-control>
       </nz-form-item>
@@ -641,10 +650,9 @@
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
                     (nzOnConfirm)="onDeleteSimBanner(idx)"
+                    class="color-red"
                   >
-                    <a>
-                      {{ $t('_del') }}
-                    </a>
+                    {{ $t('_del') }}
                   </a>
                 </td>
               </tr>
@@ -681,7 +689,7 @@
           <textarea
             nz-input
             formControlName="simThemeDesc"
-            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+            [nzAutosize]="textareaSize"
           ></textarea>
         </nz-form-control>
       </nz-form-item>
@@ -692,8 +700,7 @@
           <textarea
             nz-input
             formControlName="simFooterHTML"
-            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-            placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+            [nzAutosize]="textareaSize"
           ></textarea>
         </nz-form-control>
       </nz-form-item>
@@ -790,10 +797,9 @@
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
                     (nzOnConfirm)="onDeleteSideBanner(idx)"
+                    class="color-red"
                   >
-                    <a>
-                      {{ $t('_del') }}
-                    </a>
+                    {{ $t('_del') }}
                   </a>
                 </td>
               </tr>
@@ -830,8 +836,7 @@
           <textarea
             nz-input
             formControlName="sideFooterHTML"
-            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-            placeholder="现有变量：${total} = 网站数量； ${hostname} = 域名； ${year} = 今年年份"
+            [nzAutosize]="textareaSize"
           ></textarea>
         </nz-form-control>
       </nz-form-item>

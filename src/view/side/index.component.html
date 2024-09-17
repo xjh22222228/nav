@@ -36,7 +36,7 @@
               isCollapsed && item.icon
                 ? ''
                 : isCollapsed && !item.icon
-                ? item.title.slice(0, 2)
+                ? item.title.slice(0, 4)
                 : item.title
             }}</span>
           </ng-template>
@@ -150,12 +150,12 @@
             <app-no-data />
           </ng-template>
         </div>
-
-        <app-footer
-          className="side-footer"
-          [content]="commonService.settings.sideFooterHTML"
-        />
       </nz-content>
+
+      <app-footer
+        className="side-footer"
+        [content]="commonService.settings.sideFooterHTML"
+      />
     </nz-layout>
   </nz-layout>
 </nz-layout>

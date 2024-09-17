@@ -13,6 +13,12 @@ import { updateFileContent, spiderWeb } from 'src/api'
 import { settings } from 'src/store'
 import { isSelfDevelop } from 'src/utils/util'
 import event from 'src/utils/mitt'
+import footTemplate from 'src/components/footer/template'
+
+// 额外添加的字段，但不添加到配置中
+const extraForm = {
+  footTemplate: '',
+}
 
 @Component({
   selector: 'system-setting',
@@ -26,6 +32,7 @@ export default class SystemSettingComponent {
   settings = settings
   tabActive = 0
   isSelfDevelop = isSelfDevelop
+  textareaSize = { minRows: 3, maxRows: 20 }
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +41,7 @@ export default class SystemSettingComponent {
     private modal: NzModalService
   ) {
     this.validateForm = this.fb.group({
+      ...extraForm,
       ...settings,
     })
 
@@ -46,6 +54,12 @@ export default class SystemSettingComponent {
 
   get cdnUrl(): string {
     return this.validateForm.get('gitHubCDN')?.value
+  }
+
+  onFootTemplateChange(v: string) {
+    this.validateForm
+      .get('footerContent')!
+      .setValue(footTemplate[v]?.trim?.() || '')
   }
 
   onLogoChange(data: any) {
@@ -206,6 +220,9 @@ export default class SystemSettingComponent {
           sideThemeImages: this.settings.sideThemeImages.filter(filterImage),
           superImages: this.settings.superImages.filter(filterImage),
           lightImages: this.settings.lightImages.filter(filterImage),
+        }
+        for (const k in extraForm) {
+          delete values[k]
         }
 
         this.submitting = true

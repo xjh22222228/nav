@@ -184,6 +184,7 @@ try {
     'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg'
   settings.language ||= 'zh-CN'
   settings.loading ??= 'random'
+  settings.runtime ??= dayjs.tz().valueOf()
   settings.allowCollect ??= true
   settings.email ||= configJson.email || ''
   settings.showGithub ??= true
@@ -198,8 +199,10 @@ try {
   settings.appTheme ??= 'App'
   settings.openSEO ??= !configJson.address
   settings.headerContent ??= ''
-  settings.footerContent ??=
-    '<div>共收录${total}个网站</div><div>Copyright © 2018-${year} ${hostname}, All Rights Reserved</div>'
+  settings.footerContent ??= `
+<div>共收录$\{total\}个网站</div>
+<div>Copyright © 2018-$\{year} $\{hostname}, All Rights Reserved</div>  
+`.trim()
   settings.showThemeToggle ??= true
 
   settings.lightDocTitle ||= ''
@@ -218,7 +221,7 @@ try {
   ]
   settings.simThemeDesc ??=
     '这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活'
-  settings.simCardStyle ||= 'standard'
+  settings.simCardStyle ||= 'original'
   settings.simOverType ||= 'overflow'
   settings.simThemeHeight ??= 0
   settings.simThemeAutoplay ??= true
@@ -323,7 +326,5 @@ try {
 const { userViewCount, loginViewCount } = getWebCount(db)
 internal.userViewCount = userViewCount < 0 ? loginViewCount : userViewCount
 internal.loginViewCount = loginViewCount
-internal.buildTime = Date.now()
 fs.writeFileSync(internalPath, JSON.stringify(internal))
-
 fs.writeFileSync(dbPath, JSON.stringify(setWeb(db, settings, tags)))
