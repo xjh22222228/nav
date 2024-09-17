@@ -1,5 +1,5 @@
 <div
-  class="container progrcode"
+  class="card-container progrcode"
   *ngIf="dataSource.desc && dataSource.desc[0] === '!'; else other"
   [innerHTML]="html | safeHtml"
 ></div>
@@ -7,7 +7,7 @@
 <ng-template #other>
   <ng-container [ngSwitch]="cardStyle">
     <div
-      class="container standard dark-border-color dark-bg"
+      class="card-container standard dark-border-color dark-bg"
       *ngSwitchCase="'standard'"
     >
       <span
