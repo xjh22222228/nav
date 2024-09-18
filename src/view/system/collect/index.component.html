@@ -48,27 +48,20 @@
                 [nzPopconfirmTitle]="$t('_confirmDel')"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleDelete(idx)"
+                class="color-red"
               >
-                <b>{{ $t('_del') }}</b>
+                {{ $t('_del') }}
               </a>
             </div>
           </td>
           <td>
-            <app-logo *ngIf="data.icon" [src]="data.icon" [name]="data.name">
-            </app-logo>
+            <app-logo *ngIf="data.icon" [src]="data.icon" [name]="data.name" />
           </td>
           <td>
             <a [href]="data.url" target="_blank">{{ data.name }}</a>
           </td>
           <td>
-            <nz-tag
-              *ngFor="let item of data.tags || []"
-              [nzColor]="tagMap[item.id].color"
-              style="margin-bottom: 5px"
-              (click)="jumpService.goUrl($event, item.url)"
-            >
-              {{ tagMap[item.id].name }}
-            </nz-tag>
+            <tag-list [data]="data.tags" *ngIf="data.tags" />
           </td>
           <td>
             <pre class="desc">{{ data.desc }}</pre>

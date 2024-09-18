@@ -9,7 +9,6 @@ import {
   settings,
   searchEngineList,
   tagList,
-  tagMap,
   internal,
 } from 'src/store'
 import { isLogin, removeWebsite } from 'src/utils/user'
@@ -23,7 +22,6 @@ import { updateFileContent } from 'src/api'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import { $t } from 'src/locale'
 import { saveAs } from 'file-saver'
-import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 import config from '../../../../nav.config.json'
 
@@ -49,7 +47,6 @@ export default class WebpComponent {
   oneSelect = ''
   twoSelect = ''
   threeSelect = ''
-  tagMap = tagMap
 
   checkedAll = false
   setOfCheckedId = new Set<string>()
@@ -59,8 +56,7 @@ export default class WebpComponent {
     private fb: FormBuilder,
     private modal: NzModalService,
     private notification: NzNotificationService,
-    private message: NzMessageService,
-    public jumpService: JumpService
+    private message: NzMessageService
   ) {
     this.validateForm = this.fb.group({
       title: ['', [Validators.required]],

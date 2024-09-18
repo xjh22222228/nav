@@ -8,7 +8,7 @@ import { copyText, getTextContent } from 'src/utils'
 import { setWebsiteList, deleteByWeb } from 'src/utils/web'
 import { INavProps, IWebProps, ICardType } from 'src/types'
 import { $t } from 'src/locale'
-import { settings, websiteList, tagMap } from 'src/store'
+import { settings, websiteList } from 'src/store'
 import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
@@ -29,7 +29,6 @@ export class CardComponent implements OnInit {
   isLogin: boolean = isLogin
   copyUrlDone = false
   copyPathDone = false
-  tagMap = tagMap
 
   constructor(public jumpService: JumpService) {}
 

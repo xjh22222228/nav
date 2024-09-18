@@ -11,7 +11,6 @@ import { websiteList, tagMap } from 'src/store'
 import { setAuthCode, getAuthCode } from 'src/utils/user'
 import { getUserCollect, delUserCollect, updateFileContent } from 'src/api'
 import { DB_PATH } from 'src/constants'
-import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -30,8 +29,7 @@ export default class CollectComponent {
   constructor(
     private message: NzMessageService,
     private modal: NzModalService,
-    private notification: NzNotificationService,
-    public jumpService: JumpService
+    private notification: NzNotificationService
   ) {}
 
   ngOnInit() {

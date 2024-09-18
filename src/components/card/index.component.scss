@@ -1,5 +1,6 @@
 .card-container {
   position: relative;
+  width: 100%;
   height: 100%;
   ::ng-deep {
     img {
@@ -19,7 +20,7 @@
     }
   }
   .desc {
-    color: rgba(0, 0, 0, 0.45);
+    color: rgba(0, 0, 0, 0.5);
     word-break: break-all;
     white-space: pre-wrap;
   }
@@ -60,6 +61,7 @@
   }
   .middle {
     flex: 1;
+    padding: 8px 8px 0;
   }
   .top {
     margin-top: 5px;
@@ -70,32 +72,12 @@
       margin-left: $padding;
       font-weight: 500;
       color: #000;
+      font-size: 15px;
     }
   }
   .desc {
-    padding: $padding $padding 0;
-    margin-bottom: 5px;
-  }
-  .tagbox {
-    display: flex;
-    padding: 0 $padding;
-    flex-wrap: wrap;
-  }
-  .tag-item {
-    margin: 6px 6px 0 0;
-    padding: 0 6px;
-    border-radius: 2px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    transition: all 0.1s linear;
-    color: #fff;
-    a {
-      color: currentColor;
-    }
-    &:hover {
-      opacity: 0.8;
-    }
+    padding-bottom: 5px;
+    font-size: 13px;
   }
   .actionbar {
     display: flex;
@@ -103,8 +85,8 @@
     padding: 8px 0;
     margin-top: 10px;
     .action-item {
+      justify-content: center;
       flex: 1;
-      text-align: center;
       font-size: 16px;
       color: #999;
       cursor: pointer;
@@ -165,7 +147,6 @@
     width: 100%;
     margin: 0;
     font-size: 12px;
-    color: #666;
   }
 }
 
@@ -243,40 +224,23 @@
   .desc {
     margin: 0;
     font-size: 12px;
-    color: #666;
   }
   .bottom-bar {
     display: flex;
-    margin-top: 4px;
-  }
-  .tagbox {
-    display: flex;
-    flex: 1;
-    justify-content: flex-start;
-    align-items: center;
     flex-wrap: wrap;
-    row-gap: 5px;
-    color: #fff;
-  }
-  .tag-item {
-    margin-right: 6px;
-    padding: 0 6px;
-    border-radius: 2px;
-    font-size: 12px;
-    display: flex;
     align-items: center;
-    transition: all 0.1s linear;
-    cursor: pointer;
-    &:hover {
-      opacity: 0.8;
-    }
+    margin-top: 4px;
   }
   .rate2 {
     color: #8a919f;
     margin-right: 10px;
   }
+  .actions {
+    display: flex;
+    gap: 4px;
+    margin-left: 4px;
+  }
   .action-btn {
-    margin-right: 4px;
     color: #8a919f;
     font-size: 12px;
     display: none;
@@ -305,35 +269,10 @@
   &:hover {
     transform: translate(0, -3px);
   }
-  a {
-    color: #333;
-  }
-
   .item-list {
     z-index: 111;
     position: relative;
     overflow: hidden;
-  }
-  .tagbox {
-    display: flex;
-    padding: 0 8px 8px 8px;
-    flex-wrap: wrap;
-  }
-  .tag-item {
-    margin: 6px 6px 0 0;
-    padding: 0 6px;
-    border-radius: 2px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    transition: all 0.1s linear;
-    color: #fff;
-    a {
-      color: currentColor;
-    }
-    &:hover {
-      opacity: 0.8;
-    }
   }
   .name {
     display: inline-block;
@@ -343,12 +282,12 @@
   }
 
   .desc {
-    padding: 10px;
     margin-bottom: 0;
     word-break: break-all;
     word-wrap: break-word;
     white-space: pre-wrap;
     font-size: 12px;
+    padding: 5px 0;
   }
 
   .top {

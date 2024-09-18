@@ -185,17 +185,9 @@
     .site-box {
       flex: 1;
       position: relative;
-      background-color: #fff;
+      background-color: #f9f9f9;
       padding: 15px;
       border-radius: 4px;
     }
-  }
-}
-
-::ng-deep {
-  #app-footer,
-  #app-footer .copyright {
-    margin-bottom: 10px;
-    color: #666;
   }
 }

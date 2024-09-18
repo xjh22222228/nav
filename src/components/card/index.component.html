@@ -55,27 +55,11 @@
       <div class="middle">
         <div
           (click)="jumpService.goUrl($event, dataSource.url)"
-          class="cursor-pointer"
-        >
-          <pre
-            class="desc dark-text ellipsis3"
-            [innerHTML]="dataSource.desc"
-            [title]="dataSource.__desc__ || dataSource.desc"
-          ></pre>
-        </div>
-        <div class="tagbox" *ngIf="dataSource.tags">
-          <div
-            class="tag-item"
-            *ngFor="let item of dataSource.tags"
-            [style]="'background-color: ' + tagMap[item.id].color"
-          >
-            <span
-              (click)="jumpService.goUrl($event, item.url)"
-              class="cursor-pointer"
-              >{{ tagMap[item.id].name }}</span
-            >
-          </div>
-        </div>
+          class="cursor-pointer desc dark-text ellipsis3"
+          [innerHTML]="dataSource.desc"
+          [title]="dataSource.__desc__ || dataSource.desc"
+        ></div>
+        <tag-list [data]="dataSource.tags" *ngIf="dataSource.tags" />
       </div>
 
       <div class="actionbar dark-border-color">
@@ -83,58 +67,42 @@
           class="action-item dark-border-color"
           nz-tooltip
           [nzTooltipTitle]="copyUrlDone ? $t('_copySuccess') : $t('_copyUrl')"
-        >
-          <i
-            nz-icon
-            [nzType]="copyUrlDone ? 'check' : 'copy'"
-            nzTheme="outline"
-            (click)="copyUrl($event, 2)"
-            (mouseout)="copyMouseout()"
-          >
-          </i>
-        </div>
+          nz-icon
+          [nzType]="copyUrlDone ? 'check' : 'copy'"
+          nzTheme="outline"
+          (click)="copyUrl($event, 2)"
+          (mouseout)="copyMouseout()"
+        ></div>
         <div
           class="action-item dark-border-color"
           nz-tooltip
           [nzTooltipTitle]="copyPathDone ? $t('_copySuccess') : $t('_shareWeb')"
-        >
-          <i
-            nz-icon
-            [nzType]="copyPathDone ? 'check' : 'share-alt'"
-            nzTheme="outline"
-            (click)="copyUrl($event, 1)"
-            (mouseout)="copyMouseout()"
-          >
-          </i>
-        </div>
+          nz-icon
+          [nzType]="copyPathDone ? 'check' : 'share-alt'"
+          nzTheme="outline"
+          (click)="copyUrl($event, 1)"
+          (mouseout)="copyMouseout()"
+        ></div>
         <div
           class="action-item dark-border-color"
           *ngIf="isLogin"
           nz-tooltip
           [nzTooltipTitle]="$t('_edit')"
-        >
-          <i
-            nz-icon
-            nzType="edit"
-            nzTheme="outline"
-            (click)="openEditWebMoal()"
-          >
-          </i>
-        </div>
+          nz-icon
+          nzType="edit"
+          nzTheme="outline"
+          (click)="openEditWebMoal()"
+        ></div>
         <div
           class="action-item dark-border-color"
           *ngIf="isLogin && indexs.length === 4"
           nz-tooltip
           [nzTooltipTitle]="$t('_move')"
-        >
-          <i
-            nz-icon
-            nzType="swap"
-            nzTheme="outline"
-            (click)="openMoveWebModal()"
-          >
-          </i>
-        </div>
+          nz-icon
+          nzType="swap"
+          nzTheme="outline"
+          (click)="openMoveWebModal()"
+        ></div>
         <div
           class="action-item dark-border-color"
           *ngIf="isLogin"
@@ -144,15 +112,16 @@
           [nzPopconfirmTitle]="$t('_confirmDel')"
           nzPopconfirmPlacement="bottom"
           (nzOnConfirm)="confirmDel()"
-        >
-          <i nz-icon nzType="delete" nzTheme="outline"> </i>
-        </div>
+          nz-icon
+          nzType="delete"
+          nzTheme="outline"
+        ></div>
       </div>
     </div>
 
     <!-- example style -->
     <div
-      class="container example2 dark-bg dark-white dark-shadow"
+      class="card-container example2 dark-bg dark-white dark-shadow"
       [class.noDesc]="!dataSource.desc"
       *ngSwitchCase="'example'"
       (click)="jumpService.goUrl($event, dataSource.url)"
@@ -178,10 +147,7 @@
         >
       </div>
       <div class="wrapper ellipsis">
-        <app-logo
-          [src]="dataSource.icon || ''"
-          [name]="dataSource.name"
-        ></app-logo>
+        <app-logo [src]="dataSource.icon || ''" [name]="dataSource.name" />
         <div
           class="right-box ellipsis"
           [title]="dataSource.__desc__ || dataSource.desc"
@@ -197,7 +163,7 @@
 
     <!-- original style -->
     <div
-      class="container original2 dark-bg dark-white dark-shadow"
+      class="card-container original2 dark-bg dark-white dark-shadow"
       *ngSwitchCase="'original'"
       (click)="jumpService.goUrl($event, dataSource.url)"
     >
@@ -238,7 +204,7 @@
 
     <!-- retro style -->
     <div
-      class="container retro2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
+      class="card-container retro2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
       *ngSwitchCase="'retro'"
     >
       <div class="item-list">
@@ -246,7 +212,7 @@
           (click)="jumpService.goUrl($event, dataSource.url)"
           class="cursor-pointer"
         >
-          <div class="top">
+          <div class="top dark-border-color">
             <app-logo
               [src]="dataSource.icon || ''"
               [name]="dataSource.name"
@@ -258,22 +224,14 @@
               [innerHTML]="dataSource.name"
             ></div>
           </div>
-          <div
-            class="desc ellipsis3 dark-white dark-border-color"
-            *ngIf="dataSource.desc"
-            [title]="dataSource.__desc__ || dataSource.desc"
-            [innerHTML]="dataSource.desc"
-          ></div>
-
-          <div class="tagbox" *ngIf="dataSource.tags">
+          <div class="px-2.5 pb-2.5">
             <div
-              class="tag-item"
-              *ngFor="let item of dataSource.tags"
-              [style]="'background-color: ' + tagMap[item.id].color"
-              (click)="jumpService.goUrl($event, item.url)"
-            >
-              {{ tagMap[item.id].name }}
-            </div>
+              class="desc ellipsis3 dark-white"
+              *ngIf="dataSource.desc"
+              [title]="dataSource.__desc__ || dataSource.desc"
+              [innerHTML]="dataSource.desc"
+            ></div>
+            <tag-list *ngIf="dataSource.tags" [data]="dataSource.tags" />
           </div>
         </div>
       </div>
@@ -281,7 +239,7 @@
 
     <!-- column style -->
     <div
-      class="container column2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
+      class="card-container column2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
       *ngSwitchDefault
     >
       <span
@@ -326,43 +284,32 @@
       </div>
 
       <div class="bottom-bar">
-        <div class="tagbox">
-          <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
-          <div
-            class="tag-item"
-            *ngFor="let item of dataSource.tags || []"
-            [style]="'background-color: ' + tagMap[item.id].color"
-            (click)="jumpService.goUrl($event, item.url)"
-          >
-            {{ tagMap[item.id].name }}
-          </div>
+        <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
+        <tag-list [data]="dataSource.tags" *ngIf="dataSource.tags" />
 
+        <div class="actions" *ngIf="isLogin">
           <span
             class="action-btn dark-text dark-hover-text"
             (click)="openEditWebMoal()"
-            *ngIf="isLogin"
             >{{ $t('_edit') }}</span
           >
           <span
             class="action-btn dark-text dark-hover-text"
             (click)="openMoveWebModal()"
-            *ngIf="isLogin && indexs.length === 4"
+            *ngIf="indexs.length === 4"
             >{{ $t('_move') }}</span
           >
 
-          <div
-            *ngIf="isLogin"
+          <span
             nz-popconfirm
             nzPopconfirmPlacement="rightTop"
             nzOkType="danger"
             [nzPopconfirmTitle]="$t('_confirmDel')"
             nzPopconfirmPlacement="bottom"
             (nzOnConfirm)="confirmDel()"
+            class="action-btn dark-text dark-hover-text"
+            >{{ $t('_del') }}</span
           >
-            <span class="action-btn dark-text dark-hover-text">{{
-              $t('_del')
-            }}</span>
-          </div>
         </div>
       </div>
     </div>

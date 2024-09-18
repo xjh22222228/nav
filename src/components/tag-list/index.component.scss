@@ -1,0 +1,17 @@
+.tagbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag-item {
+  padding: 0 6px;
+  border-radius: 2px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  transition: all 0.1s linear;
+  color: #fff;
+  &:hover {
+    opacity: 0.8;
+  }
+}

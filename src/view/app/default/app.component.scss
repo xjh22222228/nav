@@ -1,9 +1,10 @@
 $bg-color: #fbfbfb;
 
 .app-page {
-  padding: 45px 0 15px 0;
+  padding: 45px 0 0 0;
   min-height: 100vh;
   background: #f6f6f6;
+  overflow: hidden;
 
   .header {
     z-index: 9999;
@@ -90,7 +91,7 @@ $bg-color: #fbfbfb;
   }
 
   .wrapper {
-    margin: 0 0 30px 0;
+    margin: 0 0 60px 0;
 
     .children-nav {
       background: $bg-color;
@@ -127,17 +128,6 @@ $bg-color: #fbfbfb;
       padding: 10px 0 10px 15px;
       border-bottom: 1px solid #eee;
       color: #3f51b5;
-    }
-  }
-
-  ::ng-deep {
-    #app-footer {
-      margin-top: 40px;
-    }
-    #app-footer,
-    #app-footer .copyright {
-      margin-bottom: 10px;
-      color: #666;
     }
   }
 }

@@ -490,15 +490,7 @@
               <a [href]="data.url" target="_blank">{{ data.name }}</a>
             </td>
             <td>
-              <nz-tag
-                *ngFor="let item of data.tags || []"
-                [nzColor]="tagMap[item.id].color"
-                style="margin-bottom: 5px"
-                (click)="jumpService.goUrl($event, item.url)"
-                class="cursor-pointer"
-              >
-                {{ tagMap[item.id].name }}
-              </nz-tag>
+              <tag-list [data]="data.tags" *ngIf="data.tags" />
             </td>
             <td>
               <i
