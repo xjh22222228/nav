@@ -232,6 +232,9 @@ export function writeTemplate({ html, settings, seoTemplate }) {
   const htmlTemplate = `
   <!-- https://github.com/xjh22222228/nav -->
   <title>${settings.title}</title>
+  <meta property="og:title" content="${settings.title}" />
+  <meta property="og:description" content="${settings.description}" />
+  <meta property="og:type" content="website" />
   <meta name="description" content="${settings.description}" />
   <meta name="keywords" content="${settings.keywords}" id="xjh_2" />
   <link rel="icon" href="${settings.favicon}" />

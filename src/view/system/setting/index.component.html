@@ -297,7 +297,7 @@
 
       <div class="mt-2.5">{{ $t('_footTemplateDesc') }}</div>
 
-      <div class="my-2.5">{{ $t('_builtTailwind') }}</div>
+      <div class="my-2.5" [innerHTML]="$t('_builtTailwind')"></div>
 
       <nz-radio-group
         formControlName="footTemplate"

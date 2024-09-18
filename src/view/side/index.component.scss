@@ -53,13 +53,17 @@
       display: flex;
       align-items: center;
     }
-    .ant-menu.ant-menu-inline-collapsed
-      > .ant-menu-submenu
-      > .ant-menu-submenu-title {
-      padding: 0 !important;
-      text-align: center;
-      font-weight: 400;
+    .ant-menu.ant-menu-inline-collapsed {
+      & > .ant-menu-submenu > .ant-menu-submenu-title {
+        padding: 0 !important;
+        text-align: center;
+        font-weight: 400;
+      }
+      .sideicon {
+        margin-right: 0;
+      }
     }
+
     .mobile-search {
       .engine-main {
         max-width: 95% !important;

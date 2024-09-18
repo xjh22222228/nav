@@ -27,8 +27,18 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
+  ngAfterViewInit() {
+    this.inputFocus()
+  }
+
   hanldeCancel() {
     this.onCancel.emit()
+  }
+
+  inputFocus() {
+    setTimeout(() => {
+      document.getElementById('loginInput')?.focus?.()
+    }, 300)
   }
 
   onKey(event: KeyboardEvent) {
@@ -55,8 +65,9 @@ export class LoginComponent implements OnInit {
           .then(() => {
             createBranch('image').finally(() => {
               this.message.success($t('_tokenVerSuc'))
-              removeWebsite()
-              window.location.reload()
+              removeWebsite().finally(() => {
+                window.location.reload()
+              })
             })
           })
           .catch(() => {

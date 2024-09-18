@@ -324,7 +324,9 @@ export default class WebpComponent {
         that.websiteList = JSON.parse(result)
         setWebsiteList(that.websiteList)
         that.message.success($t('_actionSuccess'))
-        location.reload()
+        setTimeout(() => {
+          location.reload()
+        }, 1000)
       } catch (error: any) {
         that.notification.error($t('_error'), error.message)
       }
