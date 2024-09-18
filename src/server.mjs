@@ -154,7 +154,7 @@ app.post('/api/contents/create', verifyMiddleware, (req, res) => {
     try {
       fs.statSync(UPLOAD_FOLDER_PATH)
     } catch (error) {
-      fs.mkdirSync(UPLOAD_FOLDER_PATH)
+      fs.mkdirSync(UPLOAD_FOLDER_PATH, { recursive: true })
     }
 
     const dataBuffer = Buffer.from(content, 'base64')

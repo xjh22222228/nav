@@ -25,7 +25,6 @@
   "author": "xiejiahe",
   "homepage": "https://github.com/xjh22222228/nav",
   "scripts": {
-    "ng": "ng",
     "start": "npm run build-start && ng serve --port=7001",
     "build-start": "ts-node ./scripts/start.mjs",
     "setup": "npm run build-start && ts-node ./scripts/build.mjs",
