@@ -5,6 +5,8 @@
   [ngStyle]="{
     width: size === 0 ? '' : size + 'px',
     height: size === 0 ? '' : size + 'px',
+    minWidth: size + 'px',
+    minHeight: size + 'px',
     borderRadius: radius + 'px'
   }"
   draggable="false"
@@ -17,7 +19,9 @@
     class="circle common-icon"
     [ngStyle]="{
       width: size === 0 ? '' : size + 'px',
-      height: size === 0 ? '' : size + 'px'
+      height: size === 0 ? '' : size + 'px',
+      minWidth: size + 'px',
+      minHeight: size + 'px'
     }"
   >
     {{ name ? name[0] : '' }}

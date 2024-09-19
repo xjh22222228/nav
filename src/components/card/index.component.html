@@ -59,7 +59,7 @@
           [innerHTML]="dataSource.desc"
           [title]="dataSource.__desc__ || dataSource.desc"
         ></div>
-        <tag-list [data]="dataSource.tags" *ngIf="dataSource.tags" />
+        <tag-list [data]="dataSource.tags" *ngIf="dataSource.tags?.length" />
       </div>
 
       <div class="actionbar dark-border-color">
@@ -219,7 +219,7 @@
               [size]="30"
             />
             <div
-              class="name ellipsis dark-white"
+              class="title ellipsis dark-white"
               [title]="dataSource.__name__ || dataSource.name"
               [innerHTML]="dataSource.name"
             ></div>
@@ -231,7 +231,10 @@
               [title]="dataSource.__desc__ || dataSource.desc"
               [innerHTML]="dataSource.desc"
             ></div>
-            <tag-list *ngIf="dataSource.tags" [data]="dataSource.tags" />
+            <tag-list
+              *ngIf="dataSource.tags?.length"
+              [data]="dataSource.tags"
+            />
           </div>
         </div>
       </div>
@@ -285,7 +288,7 @@
 
       <div class="bottom-bar">
         <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
-        <tag-list [data]="dataSource.tags" *ngIf="dataSource.tags" />
+        <tag-list [data]="dataSource.tags" *ngIf="dataSource.tags?.length" />
 
         <div class="actions" *ngIf="isLogin">
           <span

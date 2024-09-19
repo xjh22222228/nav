@@ -27,6 +27,7 @@
   .title {
     white-space: normal;
     word-break: break-all;
+    color: rgba(0, 0, 0, 0.8);
   }
   .stop-icon {
     z-index: 3;
@@ -71,7 +72,6 @@
     .title {
       margin-left: $padding;
       font-weight: 500;
-      color: #000;
       font-size: 15px;
     }
   }
@@ -126,7 +126,6 @@
     width: 100%;
     font-weight: 500;
     line-height: 18px;
-    color: rgba(0, 0, 0, 0.8);
   }
   .breadcrumb1 {
     padding: 0 0 4px 0;
@@ -166,6 +165,10 @@
     .title {
       color: #007bff;
     }
+  }
+  .title {
+    width: 100%;
+    font-weight: 500;
   }
   .breadcrumb1 {
     padding: 0 0 4px 0;
@@ -219,7 +222,6 @@
     font-weight: 500;
     margin-left: 10px;
     font-size: 15px;
-    color: rgba(0, 0, 0, 0.8);
   }
   .desc {
     margin: 0;
@@ -274,20 +276,18 @@
     position: relative;
     overflow: hidden;
   }
-  .name {
-    display: inline-block;
+  .title {
     font-size: 14px;
-    vertical-align: middle;
     margin-left: 4px;
+    font-weight: 500;
   }
 
   .desc {
-    margin-bottom: 0;
     word-break: break-all;
     word-wrap: break-word;
     white-space: pre-wrap;
     font-size: 12px;
-    padding: 5px 0;
+    margin: 5px 0;
   }
 
   .top {
