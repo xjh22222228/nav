@@ -36,6 +36,7 @@ export function userLogout() {
   const code = getAuthCode()
   localforage.clear()
   window.localStorage.clear()
+  window.sessionStorage.clear()
   setAuthCode(code)
 }
 

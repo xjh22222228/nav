@@ -256,7 +256,9 @@ app.post('/api/collect/save', async (req, res) => {
     const collects = getCollects()
     collects.unshift(data)
     fs.writeFileSync(COLLECT_PATH, JSON.stringify(collects))
-    sendMail()
+    sendMail().catch((e) => {
+      console.log(e.message)
+    })
   } catch (error) {
     return res.json({
       message: error.message,

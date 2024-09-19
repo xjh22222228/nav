@@ -1,5 +1,6 @@
 <div class="admin">
   <button
+    *ngIf="!isSelfDevelop"
     nz-button
     nzType="primary"
     (click)="handleSync()"
@@ -7,7 +8,12 @@
   >
     {{ $t('_save') }}
   </button>
-  <button nz-button style="margin: 0 15px 20px 15px" (click)="handleReset()">
+  <button
+    *ngIf="!isSelfDevelop"
+    nz-button
+    style="margin: 0 15px 20px 15px"
+    (click)="handleReset()"
+  >
     {{ $t('_resetInitData') }}
   </button>
   <button nz-button (click)="handleDownloadBackup()" style="margin-right: 15px">

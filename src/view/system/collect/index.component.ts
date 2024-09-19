@@ -11,6 +11,7 @@ import { websiteList, tagMap } from 'src/store'
 import { setAuthCode, getAuthCode } from 'src/utils/user'
 import { getUserCollect, delUserCollect, updateFileContent } from 'src/api'
 import { DB_PATH } from 'src/constants'
+import { isSelfDevelop } from 'src/utils/util'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -20,6 +21,7 @@ import event from 'src/utils/mitt'
 })
 export default class CollectComponent {
   $t = $t
+  isSelfDevelop = isSelfDevelop
   submitting: boolean = false
   isPermission = !!getAuthCode()
   dataList: Array<any> = []

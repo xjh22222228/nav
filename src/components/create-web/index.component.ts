@@ -249,7 +249,6 @@ export class CreateWebComponent {
         } else if (this.settings.allowCollect) {
           try {
             const params = {
-              email: this.settings.email,
               data: {
                 ...payload,
                 extra: {

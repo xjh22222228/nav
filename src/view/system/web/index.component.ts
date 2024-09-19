@@ -22,6 +22,7 @@ import { updateFileContent } from 'src/api'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import { $t } from 'src/locale'
 import { saveAs } from 'file-saver'
+import { isSelfDevelop } from 'src/utils/util'
 import event from 'src/utils/mitt'
 import config from '../../../../nav.config.json'
 
@@ -32,6 +33,7 @@ import config from '../../../../nav.config.json'
 })
 export default class WebpComponent {
   $t = $t
+  isSelfDevelop = isSelfDevelop
   settings = settings
   internal = internal
   validateForm!: FormGroup
@@ -279,11 +281,10 @@ export default class WebpComponent {
       nzContent: $t('_warnReset'),
       nzOnOk: () => {
         this.message.success($t('_actionSuccess'))
-        removeWebsite()
         window.localStorage.removeItem(STORAGE_KEY_MAP.s_url)
-        setTimeout(() => {
+        removeWebsite().finally(() => {
           window.location.reload()
-        }, 500)
+        })
       },
     })
   }
@@ -318,11 +319,10 @@ export default class WebpComponent {
       try {
         const { result } = data.target as any
         that.websiteList = JSON.parse(result)
-        setWebsiteList(that.websiteList)
         that.message.success($t('_actionSuccess'))
-        setTimeout(() => {
+        setWebsiteList(that.websiteList).finally(() => {
           location.reload()
-        }, 1000)
+        })
       } catch (error: any) {
         that.notification.error($t('_error'), error.message)
       }

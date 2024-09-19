@@ -90,16 +90,15 @@ export async function fetchWeb() {
   }
 }
 
-export function setWebsiteList(v?: INavProps[]) {
+export function setWebsiteList(v?: INavProps[]): Promise<any> {
   v = v || websiteList
   if (isSelfDevelop) {
-    updateFileContent({
+    return updateFileContent({
       content: JSON.stringify(v),
       path: DB_PATH,
     })
-    return
   }
-  localforage.setItem(STORAGE_KEY_MAP.website, v)
+  return localforage.setItem(STORAGE_KEY_MAP.website, v)
 }
 
 export function toggleCollapseAll(wsList?: INavProps[]): boolean {

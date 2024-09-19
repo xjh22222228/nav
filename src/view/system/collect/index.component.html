@@ -1,7 +1,8 @@
 <nz-spin nzTip="Loading..." [nzSpinning]="submitting">
   <div *ngIf="isPermission">
     <button
-      class="mt-2.5"
+      *ngIf="!isSelfDevelop"
+      class="mt-2.5 mr-2.5"
       nz-button
       nzType="primary"
       (click)="handleSubmit()"
@@ -10,17 +11,12 @@
       {{ $t('_save') }}
     </button>
 
-    <button
-      class="ml-2.5"
-      nz-button
-      (click)="getUserCollect()"
-      [nzLoading]="submitting"
-    >
+    <button nz-button (click)="getUserCollect()" [nzLoading]="submitting">
       {{ $t('_refresh') }}
     </button>
 
-    <div class="mb-2.5 mt-2.5">
-      <b>处理完成所有数据后需要点击一次保存方可生效</b>
+    <div class="mb-2.5 mt-2.5 color-red font-bold" *ngIf="!isSelfDevelop">
+      处理完成所有数据后需要点击一次保存方可生效
     </div>
     <nz-table #basicTable [nzData]="dataList" [nzShowPagination]="false">
       <thead>
