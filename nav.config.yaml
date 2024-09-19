@@ -1,0 +1,40 @@
+# 发现导航 在未授权的情况下，您可以免费使用，必须公开可见，禁止商业用途。
+# LICENSE GPL-3.0 https://github.com/xjh22222228/nav/blob/main/LICENSE
+# 配置信息：https://github.com/xjh22222228/nav?tab=readme-ov-file#%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E
+# 网站所有内容都是可以在后台系统配置的，不懂的不要擅自修改源代码，出现异常请自行处理
+# Fork 用户通常只需要修改 gitRepoUrl ，其他默认处理
+
+# 仓库地址
+gitRepoUrl: https://github.com/xjh22222228/nav
+
+# Gitee | GitHub
+provider: GitHub
+
+# Fork 部署分支
+branch: main
+
+# 只有GitHub pages用户需要设置为true， 其他建议设置为 false
+hashMode: true
+
+# 一旦填写认为你是自有部署，Fork 不要填写
+address: ''
+
+# 自有部署后台登录密码
+password: admin
+
+# 自有部署启动端口
+port: 7777
+
+# 收录通知邮箱
+email: ''
+
+# 自有部署邮件通知系统
+mailConfig:
+  host: smtp.mxhichina.com
+  port: 465
+  secure: true
+  auth:
+    user: ''
+    pass: ''
+  title: 网站收录通知
+  message: 有用户提交网站收录啦

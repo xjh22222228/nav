@@ -1,25 +1,4 @@
 {
-  "gitRepoUrl": "https://github.com/xjh22222228/nav",
-  "provider": "Github",
-  "branch": "main",
-  "hashMode": true,
-  "address": "",
-  "password": "admin",
-  "port": 7777,
-  "email": "",
-  "mailConfig": {
-    "host": "smtp.mxhichina.com",
-    "port": 465,
-    "secure": true,
-    "auth": {
-      "user": "",
-      "pass": ""
-    },
-    "title": "网站收录通知",
-    "message": "有用户提交网站收录啦"
-  },
-  "----------------": "----------------以下字段无需处理--------------------------",
-  "================": "网站所有内容都是可以在后台系统配置的，不懂的不要擅自修改源代码，出现异常请自行处理",
   "name": "nav",
   "version": "8.10.0",
   "author": "xiejiahe",
@@ -52,6 +31,7 @@
     "express": "^4.21.0",
     "file-saver": "^2.0.5",
     "js-base64": "^3.7.7",
+    "js-yaml": "^4.1.0",
     "localforage": "^1.10.0",
     "lz-string": "^1.5.0",
     "mitt": "^3.0.1",

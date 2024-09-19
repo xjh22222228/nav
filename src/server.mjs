@@ -14,6 +14,7 @@ import compression from 'compression'
 import nodemailer from 'nodemailer'
 import dayjs from 'dayjs'
 import getWebInfo from 'info-web'
+import yaml from 'js-yaml'
 import {
   getWebCount,
   setWeb,
@@ -25,10 +26,7 @@ import {
 const joinPath = (p) => {
   return path.resolve(process.cwd(), p)
 }
-function getPackageJson() {
-  return JSON.parse(fs.readFileSync(joinPath('package.json')).toString())
-}
-const PORT = getPackageJson().port
+
 const UPLOAD_FOLDER_PATH = joinPath('_upload/images')
 const DB_PATH = joinPath('data/db.json')
 const SETTINGS_PATH = joinPath('data/settings.json')
@@ -36,6 +34,12 @@ const TAG_PATH = joinPath('data/tag.json')
 const SEARCH_PATH = joinPath('data/search.json')
 const COLLECT_PATH = joinPath('data/collect.json')
 const ENTRY_INDEX_HTML = joinPath('dist/index.html')
+
+function getConfigJson() {
+  return yaml.load(fs.readFileSync(joinPath('nav.config.yaml')))
+}
+
+const PORT = getConfigJson().port
 
 function getSettings() {
   return JSON.parse(fs.readFileSync(SETTINGS_PATH).toString())
@@ -87,7 +91,7 @@ app.use(express.static('dist'))
 app.use(express.static('_upload'))
 
 async function sendMail() {
-  const mailConfig = getPackageJson().mailConfig
+  const mailConfig = getConfigJson().mailConfig
   const transporter = nodemailer.createTransport({
     ...mailConfig,
     message: undefined,
@@ -95,7 +99,7 @@ async function sendMail() {
   })
   await transporter.sendMail({
     from: mailConfig.auth.user,
-    to: getSettings().email || getPackageJson().email,
+    to: getSettings().email || getConfigJson().email,
     subject: mailConfig.title || '',
     html: mailConfig.message || '',
   })
@@ -103,7 +107,7 @@ async function sendMail() {
 
 function verifyMiddleware(req, res, next) {
   const token = req.headers['authorization']
-  if (token !== `token ${getPackageJson().password}`) {
+  if (token !== `token ${getConfigJson().password}`) {
     res.status(401)
     return res.json({
       status: 401,
@@ -128,8 +132,7 @@ app.post('/api/contents/update', verifyMiddleware, (req, res) => {
         const indexHtml = fs.readFileSync(ENTRY_INDEX_HTML).toString()
         const webs = JSON.parse(fs.readFileSync(DB_PATH).toString())
         const settings = getSettings()
-        const pkg = getPackageJson()
-        const seoTemplate = writeSEO(webs, { settings, pkg })
+        const seoTemplate = writeSEO(webs, { settings })
         const html = writeTemplate({
           html: indexHtml,
           settings,

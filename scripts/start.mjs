@@ -1,3 +1,4 @@
+// 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 // Copyright @ 2018-present x.iejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
@@ -7,6 +8,7 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc.js'
 import timezone from 'dayjs/plugin/timezone.js'
 import defaultDb from './db.mjs'
+import yaml from 'js-yaml'
 import {
   TAG_ID1,
   TAG_ID2,
@@ -23,17 +25,19 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.tz.setDefault('Asia/Shanghai')
 
-const packagePath = path.join('.', 'package.json')
-const packageJson = JSON.parse(fs.readFileSync(packagePath).toString())
+const pkgPath = path.join('.', 'package.json')
+const configPath = path.join('.', 'nav.config.yaml')
+const pkgJson = JSON.parse(fs.readFileSync(pkgPath).toString())
+const config = yaml.load(fs.readFileSync(configPath))
 const configJson = {
-  version: packageJson.version,
-  gitRepoUrl: packageJson.gitRepoUrl,
-  provider: packageJson.provider,
-  branch: packageJson.branch,
-  hashMode: packageJson.hashMode,
-  address: packageJson.address,
-  email: packageJson.email,
-  port: packageJson.port,
+  version: pkgJson.version,
+  gitRepoUrl: config.gitRepoUrl,
+  provider: config.provider,
+  branch: config.branch,
+  hashMode: config.hashMode,
+  address: config.address,
+  email: config.email,
+  port: config.port,
   datetime: dayjs.tz().format('YYYY-MM-DD HH:mm'),
 }
 fs.writeFileSync(path.join('.', 'nav.config.json'), JSON.stringify(configJson))

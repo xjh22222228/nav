@@ -90,7 +90,7 @@
 
 4、打开 https://github.com/你的用户名/nav/actions 开启 action 自动部署
 
-5、修改项目根目录配置文件 [package.json](package.json) 只需要修改仓库地址 `gitRepoUrl` 字段
+5、修改项目根目录配置文件 [nav.config.yaml](nav.config.yaml) 只需要修改仓库地址 `gitRepoUrl` 字段
 
 6、打开 https://你的用户名.github.io/nav 就能看到一个非常强大的导航网站了。
 
@@ -124,7 +124,7 @@
 
 ## 配置说明
 
-只需要修改根目录 `package.json` 以下相关字段
+只需要修改根目录 `nav.config.yaml` 以下相关字段
 |Fork |自有部署 | 字段 | 说明 |
 | --------------------------------------------- | -------- |--- |--- |
 |√ | | gitRepoUrl | 填写您的仓库地址 |
