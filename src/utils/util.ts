@@ -3,6 +3,18 @@
 // See https://github.com/xjh22222228/nav
 
 import navConfig from '../../nav.config.json'
+import { internal } from 'src/store'
+import { isLogin } from 'src/utils/user'
 
 // 是否自有部署
 export const isSelfDevelop = !!navConfig.address
+
+export function compilerTemplate(str: string) {
+  return str
+    .replace(
+      '${total}',
+      String(isLogin ? internal.loginViewCount : internal.userViewCount)
+    )
+    .replace('${hostname}', window.location.hostname)
+    .replace('${year}', String(new Date().getFullYear()))
+}

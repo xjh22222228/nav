@@ -276,7 +276,7 @@
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_headHtml') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
+    <nz-form-control [nzSpan]="20">
       <textarea
         nz-input
         formControlName="headerContent"
@@ -288,15 +288,16 @@
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_footHtml') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
+    <nz-form-control [nzSpan]="20">
       <textarea
         nz-input
         formControlName="footerContent"
         [nzAutosize]="textareaSize"
       ></textarea>
 
-      <div class="mt-2.5">{{ $t('_footTemplateDesc') }}</div>
+      <div [innerHTML]="footTemplate" class="text-center mt-2.5"></div>
 
+      <div class="mt-2.5">{{ $t('_footTemplateDesc') }}</div>
       <div class="my-2.5" [innerHTML]="$t('_builtTailwind')"></div>
 
       <nz-radio-group

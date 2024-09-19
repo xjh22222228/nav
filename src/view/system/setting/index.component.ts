@@ -11,7 +11,7 @@ import { NzModalService } from 'ng-zorro-antd/modal'
 import { SETTING_PATH } from 'src/constants'
 import { updateFileContent, spiderWeb } from 'src/api'
 import { settings } from 'src/store'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop, compilerTemplate } from 'src/utils/util'
 import event from 'src/utils/mitt'
 import footTemplate from 'src/components/footer/template'
 
@@ -54,6 +54,10 @@ export default class SystemSettingComponent {
 
   get cdnUrl(): string {
     return this.validateForm.get('gitHubCDN')?.value
+  }
+
+  get footTemplate(): string {
+    return compilerTemplate(this.validateForm.get('footerContent')?.value || '')
   }
 
   onFootTemplateChange(v: string) {

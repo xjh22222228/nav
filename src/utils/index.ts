@@ -243,7 +243,11 @@ export function getDefaultSearchEngine(): ISearchEngineProps {
   try {
     const engine = window.localStorage.getItem(STORAGE_KEY_MAP.engine)
     if (engine) {
-      DEFAULT = JSON.parse(engine)
+      const local = JSON.parse(engine)
+      const findItem = searchEngineList.find((item) => item.name === local.name)
+      if (findItem) {
+        DEFAULT = findItem
+      }
     }
   } catch {}
   return DEFAULT

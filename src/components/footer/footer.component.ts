@@ -3,8 +3,8 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
-import { settings, internal } from 'src/store'
-import { isLogin } from 'src/utils/user'
+import { settings } from 'src/store'
+import { compilerTemplate } from 'src/utils/util'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -21,13 +21,9 @@ export class FooterComponent {
   constructor() {}
 
   ngOnInit() {
-    this.footerContent = (this.content || settings.footerContent)
-      .replace(
-        '${total}',
-        String(isLogin ? internal.loginViewCount : internal.userViewCount)
-      )
-      .replace('${hostname}', window.location.hostname)
-      .replace('${year}', String(new Date().getFullYear()))
+    this.footerContent = compilerTemplate(
+      this.content || settings.footerContent
+    )
   }
 
   ngOnDestroy() {
