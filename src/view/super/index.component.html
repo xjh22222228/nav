@@ -8,10 +8,14 @@
   <header class="sheader dark-bg">
     <div class="headerbox">
       <div class="hitem">
-        <img class="logo" [src]="commonService.settings.favicon" />
-        <span class="title dark-white">{{
-          commonService.settings.superTitle || commonService.title
-        }}</span>
+        <img
+          class="logo"
+          [src]="commonService.settings.favicon"
+          draggable="false"
+        />
+        <div class="title dark-white">
+          {{ commonService.settings.superTitle || commonService.title }}
+        </div>
       </div>
 
       <div class="topnav dark-scrollbar">
@@ -135,7 +139,7 @@
     </div>
 
     <div
-      class="right dark-scrollbar"
+      class="right dark-scrollbar hidden-scrollbar"
       *ngIf="commonService.settings.superImages.length > 0"
     >
       <div

@@ -183,3 +183,8 @@ textarea.ant-input {
 .color-white {
   color: #fff;
 }
+.hidden-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

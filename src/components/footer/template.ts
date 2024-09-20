@@ -44,7 +44,7 @@ const t: Record<string, any> = {
 `,
 
   footTemplate2: `
-<div>
+<div class="dark-white">
   <div>共收录$\{total}个网站</div>
   <div>Copyright © 2018-$\{year} $\{hostname}, All Rights Reserved</div>  
 </div>
@@ -52,7 +52,7 @@ const t: Record<string, any> = {
 
   footTemplate3: `
 <div
-  class="text-gray-600 px-3.5 max-w-full flex-wrap text-xs py-1 flex items-center justify-center flex-col-reverse md:flex-row"
+  class="text-gray-600 dark-white px-3.5 max-w-full flex-wrap text-xs py-1 flex items-center justify-center flex-col-reverse md:flex-row"
 >
   <div class="mt-2 md:mt-0 flex justify-center items-center mr-4">
     <img

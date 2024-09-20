@@ -11,10 +11,10 @@ export const isSelfDevelop = !!navConfig.address
 
 export function compilerTemplate(str: string) {
   return str
-    .replace(
+    .replaceAll(
       '${total}',
       String(isLogin ? internal.loginViewCount : internal.userViewCount)
     )
-    .replace('${hostname}', window.location.hostname)
-    .replace('${year}', String(new Date().getFullYear()))
+    .replaceAll('${hostname}', window.location.hostname)
+    .replaceAll('${year}', String(new Date().getFullYear()))
 }

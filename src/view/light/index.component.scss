@@ -34,6 +34,7 @@
   flex-direction: column;
   height: 100vh;
   padding-top: var(--top, 15px);
+  overflow: hidden;
   .light-box {
     display: flex;
     justify-content: center;
@@ -116,7 +117,7 @@
   .sidebar {
     position: relative;
     width: $sidebarWidth;
-    height: 100%;
+    height: calc(100% - 25px);
     text-align: center;
     border-right: 1px solid #eee;
     overflow-y: auto;

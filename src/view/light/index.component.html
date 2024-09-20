@@ -37,7 +37,7 @@
       </nav>
 
       <section class="index-section select-none dark-bg">
-        <aside
+        <div
           class="sidebar dark-bg dark-border-color dark-scrollbar"
           id="sidebar"
         >
@@ -56,10 +56,10 @@
               {{ item.title }}
             </div>
           </div>
-        </aside>
+        </div>
 
         <div class="main dark-scrollbar">
-          <app-search-engine></app-search-engine>
+          <app-search-engine />
 
           <div *ngIf="commonService.currentList.length > 0; else noData">
             <nz-spin
@@ -81,8 +81,7 @@
                 [dataSource]="item"
                 (onCollapse)="commonService.onCollapse(item, i)"
                 [index]="i"
-              >
-              </app-toolbar-title>
+              />
 
               <div
                 style="padding: 0 10px"
@@ -116,14 +115,14 @@
           </div>
 
           <ng-template #noData>
-            <app-no-data></app-no-data>
+            <app-no-data />
           </ng-template>
         </div>
       </section>
     </main>
 
     <div
-      class="right dark-scrollbar"
+      class="right dark-scrollbar hidden-scrollbar"
       *ngIf="commonService.settings.lightImages.length > 0"
     >
       <div
@@ -137,7 +136,7 @@
   </div>
 
   <div>
-    <app-footer [content]="commonService.settings.lightFooterHTML"></app-footer>
+    <app-footer [content]="commonService.settings.lightFooterHTML" />
   </div>
   <app-fixbar
     (onCollapse)="commonService.onCollapseAll()"

@@ -9,6 +9,7 @@ import {
   INavThreeProp,
   INavProps,
   ISearchEngineProps,
+  IWebTag,
 } from '../types'
 import { STORAGE_KEY_MAP } from 'src/constants'
 import { isLogin } from './user'
@@ -50,14 +51,13 @@ export function fuzzySearch(
         const desc = item.desc.toLowerCase()
         const url = item.url.toLowerCase()
         const search = keyword.toLowerCase()
-        const urls: string[] = Object.values(item.urls || {})
 
         const searchTitle = (): boolean => {
           if (name.includes(search)) {
             let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
             result.__name__ = result.name
-            result.name = result.name.replace(regex, `$1`.bold())
+            result.name = result.name.replace(regex, '<b>$1</b>')
 
             if (!urlRecordMap[result.id]) {
               urlRecordMap[result.id] = true
@@ -77,7 +77,9 @@ export function fuzzySearch(
             }
           }
 
-          const find = urls.some((item: string) => item.includes(keyword))
+          const find = item.tags.some((item: IWebTag) =>
+            item.url?.includes(keyword)
+          )
           if (find) {
             if (!urlRecordMap[item.id]) {
               urlRecordMap[item.id] = true
@@ -95,7 +97,23 @@ export function fuzzySearch(
             let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
             result.__desc__ = result.desc
-            result.desc = result.desc.replace(regex, `$1`.bold())
+            result.desc = result.desc.replace(regex, '<b>$1</b>')
+
+            if (!urlRecordMap[result.id]) {
+              urlRecordMap[result.id] = true
+              navData.push(result)
+              return true
+            }
+          }
+          return false
+        }
+
+        const searchQuick = (): boolean => {
+          if (item.top && name.includes(search)) {
+            let result = item
+            const regex = new RegExp(`(${keyword})`, 'i')
+            result.__name__ = result.name
+            result.name = result.name.replace(regex, '<b>$1</b>')
 
             if (!urlRecordMap[result.id]) {
               urlRecordMap[result.id] = true
@@ -118,6 +136,10 @@ export function fuzzySearch(
 
             case SearchType.Desc:
               searchDesc()
+              break
+
+            case SearchType.Quick:
+              searchQuick()
               break
 
             default:

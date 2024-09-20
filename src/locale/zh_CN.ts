@@ -244,6 +244,7 @@ const zhCN: Record<string, any> = {
     '所有底部HTML通用,将获取的模版代码拷贝到需要设置的主题或全局，现有变量：${total} = 网站数量； ${hostname} = 域名；${year} = 今年年份；class="applyweb" = 申请收录',
   _builtTailwind:
     '系统已内置 <a href="https://play.tailwindcss.com" target="_blank">https://play.tailwindcss.com</a>，您无需书写样式',
+  _quick: '快捷',
 }
 
 export default zhCN

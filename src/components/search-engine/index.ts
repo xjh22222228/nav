@@ -6,4 +6,5 @@ export enum SearchType {
   Desc,
   Url,
   Current,
+  Quick,
 }

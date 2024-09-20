@@ -101,6 +101,7 @@
       }
     }
     .topnav {
+      flex: 1;
       display: flex;
       overflow: hidden;
       overflow-x: auto;
@@ -118,6 +119,7 @@
       top: var(--stickyTop);
       width: var(--leftWidth);
       min-width: var(--leftWidth);
+      max-height: calc(100vh - 110px);
       text-align: left;
       background-color: #fff;
       padding: 8px;
@@ -125,7 +127,6 @@
       border-radius: 4px;
       overflow: hidden;
       overflow-y: auto;
-      max-height: calc(100vh - 100px);
       border: 1px solid transparent;
       .bar-item {
         padding: 10px 17px;
@@ -217,7 +218,7 @@
       top: var(--stickyTop);
       width: var(--rightWidth);
       min-width: var(--rightWidth);
-      max-height: calc(100vh - 100px);
+      max-height: calc(100vh - 110px);
       overflow: hidden;
       overflow-y: auto;
       .adsimg {
