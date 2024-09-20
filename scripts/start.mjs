@@ -204,8 +204,10 @@ try {
   settings.openSEO ??= !configJson.address
   settings.headerContent ??= ''
   settings.footerContent ??= `
-<div>共收录$\{total\}个网站</div>
-<div>Copyright © 2018-$\{year} $\{hostname}, All Rights Reserved</div>  
+<div>
+  <div>共收录$\{total\}个网站</div>
+  <div>Copyright © 2018-$\{year} $\{hostname}, All Rights Reserved</div>  
+</div>
 `.trim()
   settings.showThemeToggle ??= true
 

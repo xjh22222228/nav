@@ -44,9 +44,60 @@ const t: Record<string, any> = {
 `,
 
   footTemplate2: `
-<div>共收录$\{total}个网站</div>
-<div>Copyright © 2018-$\{year} $\{hostname}, All Rights Reserved</div>  
+<div>
+  <div>共收录$\{total}个网站</div>
+  <div>Copyright © 2018-$\{year} $\{hostname}, All Rights Reserved</div>  
+</div>
 `,
+
+  footTemplate3: `
+<div
+  class="text-gray-600 px-3.5 max-w-full flex-wrap text-xs py-1 flex items-center justify-center flex-col-reverse md:flex-row"
+>
+  <div class="mt-2 md:mt-0 flex justify-center items-center mr-4">
+    <img
+      class="w-6 h-6 mr-2"
+      src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg"
+    />
+    &commat; $\{year} $\{hostname}, $\{total}.
+  </div>
+
+  <div
+    class="flex break-all justify-center flex-wrap items-center gap-x-4 gap-y-1"
+  >
+    <a
+      href="https://github.com/xjh22222228"
+      target="_blank"
+      class="text-gray-600 hover:underline"
+      >Author</a
+    >
+    <a
+      href="https://github.com/xjh22222228/nav"
+      target="_blank"
+      class="text-gray-600 hover:underline"
+      >Nav</a
+    >
+    <a
+      href="https://github.com/xjh22222228/boomb"
+      target="_blank"
+      class="text-gray-600 hover:underline"
+      >Boomb</a
+    >
+    <a
+      href="https://github.com/xjh22222228/beautiful-window"
+      target="_blank"
+      class="text-gray-600 hover:underline"
+      >Beautiful window</a
+    >
+    <a
+      href="https://github.com/xjh22222228/tomato-work"
+      target="_blank"
+      class="text-gray-600 hover:underline"
+      >Tomato work</a
+    >
+  </div>
+</div>
+  `,
 }
 
 export default t

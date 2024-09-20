@@ -152,7 +152,10 @@
           class="right-box ellipsis"
           [title]="dataSource.__desc__ || dataSource.desc"
         >
-          <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
+          <div
+            class="title ellipsis dark-white"
+            [innerHTML]="dataSource.name"
+          ></div>
           <div
             class="desc dark-text ellipsis"
             [innerHTML]="dataSource.desc"
@@ -197,7 +200,10 @@
           class="right-box ellipsis"
           [title]="dataSource.__desc__ || dataSource.desc"
         >
-          <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
+          <div
+            class="title ellipsis dark-white"
+            [innerHTML]="dataSource.name"
+          ></div>
         </div>
       </div>
     </div>
@@ -274,8 +280,11 @@
             [src]="dataSource.icon || ''"
             [name]="dataSource.name"
             [size]="30"
-          ></app-logo>
-          <div class="title ellipsis" [innerHTML]="dataSource.name"></div>
+          />
+          <div
+            class="title ellipsis dark-white"
+            [innerHTML]="dataSource.name"
+          ></div>
         </div>
 
         <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">

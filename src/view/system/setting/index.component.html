@@ -298,18 +298,21 @@
       <div [innerHTML]="footTemplate" class="text-center mt-2.5"></div>
 
       <div class="mt-2.5">{{ $t('_footTemplateDesc') }}</div>
-      <div class="my-2.5" [innerHTML]="$t('_builtTailwind')"></div>
+      <div class="my-2.5" [innerHTML]="$t('_builtTailwind') | safeHtml"></div>
 
       <nz-radio-group
         formControlName="footTemplate"
         (ngModelChange)="onFootTemplateChange($event)"
       >
-        <label nz-radio nzValue="footTemplate1">{{
-          $t('_footTemplate1')
-        }}</label>
-        <label nz-radio nzValue="footTemplate2">{{
-          $t('_footTemplate2')
-        }}</label>
+        <label nz-radio nzValue="footTemplate1"
+          >{{ $t('_footTemplate') }}1</label
+        >
+        <label nz-radio nzValue="footTemplate2"
+          >{{ $t('_footTemplate') }}2</label
+        >
+        <label nz-radio nzValue="footTemplate3"
+          >{{ $t('_footTemplate') }}3</label
+        >
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>

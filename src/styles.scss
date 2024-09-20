@@ -126,7 +126,10 @@ b {
   animation: quickRotate 1s linear infinite;
   transform-origin: center;
 }
-
+.rotate10s {
+  animation: quickRotate 10s linear infinite;
+  transform-origin: center;
+}
 @keyframes quickRotate {
   from {
     transform: rotate(0deg);
