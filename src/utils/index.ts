@@ -14,7 +14,7 @@ import {
 import { STORAGE_KEY_MAP } from 'src/constants'
 import { isLogin } from './user'
 import { SearchType } from 'src/components/search-engine/index'
-import { websiteList, searchEngineList } from 'src/store'
+import { websiteList, searchEngineList, settings } from 'src/store'
 import { $t } from 'src/locale'
 
 export function randomInt(max: number) {
@@ -408,4 +408,12 @@ export function getDateTime(): Record<string, any> {
     date,
     dayText: days[day],
   }
+}
+
+export function getDefaultTheme() {
+  const t = isMobile() ? settings.appTheme : settings.theme
+  if (t === 'Current') {
+    return settings.theme
+  }
+  return t
 }

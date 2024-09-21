@@ -121,6 +121,7 @@ export default class SystemBookmarkExportComponent {
         delete item.createdAt
         delete item.rate
         delete item.top
+        delete item.topTypes
         delete item.index
         delete item.ownVisible
         delete item.breadcrumb

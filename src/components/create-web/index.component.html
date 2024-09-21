@@ -57,7 +57,12 @@
       <nz-form-item *ngIf="isLogin">
         <nz-form-label [nzSpan]="4">{{ $t('_shortcut') }}</nz-form-label>
         <nz-form-control [nzSpan]="20">
-          <nz-switch formControlName="top"></nz-switch>
+          <nz-switch class="mr-4" formControlName="top"></nz-switch>
+
+          <nz-checkbox-group
+            *ngIf="isTop"
+            formControlName="topOptions"
+          ></nz-checkbox-group>
         </nz-form-control>
       </nz-form-item>
 

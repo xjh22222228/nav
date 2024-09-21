@@ -4,7 +4,7 @@
 
 import { Component } from '@angular/core'
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router'
-import { queryString, setLocation, isMobile } from '../utils'
+import { queryString, setLocation, isMobile, getDefaultTheme } from '../utils'
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n'
 import { getLocale } from 'src/locale'
 import { settings } from 'src/store'
@@ -82,7 +82,7 @@ export class AppComponent {
       getContentes().then(() => {
         // 处理默认主题
         const currentRoutes = this.router.config
-        const defaultTheme = settings.theme?.toLowerCase?.()
+        const defaultTheme = getDefaultTheme().toLowerCase()
         const hasDefault = routes.find((item) => item.path === defaultTheme)
         const isHome = this.router.url.split('?')[0] === '/'
         if (hasDefault) {

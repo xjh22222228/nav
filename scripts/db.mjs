@@ -13,6 +13,7 @@ export default [
                 createdAt: '2021-02-18 21:06',
                 rate: 5,
                 top: true,
+                topTypes: [2],
                 desc: '发现导航, 最强轻量级导航网站',
                 icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/logo.svg',
                 url: 'https://github.com/xjh22222228/nav',

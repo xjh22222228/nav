@@ -147,6 +147,9 @@ export function setWeb(nav, settings, tags = []) {
                 if (webItem.index === '') {
                   delete webItem.index
                 }
+                if (webItem.topTypes?.length <= 0) {
+                  delete webItem.topTypes
+                }
 
                 // 兼容现有标签,以id为key (V9版本删除)
                 for (const k in webItem.urls) {

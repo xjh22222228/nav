@@ -6,7 +6,7 @@ import { Component, Output, EventEmitter } from '@angular/core'
 import { queryString, getTextContent } from 'src/utils'
 import { setWebsiteList, updateByWeb } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
-import type { IWebProps, IWebTag } from 'src/types'
+import { IWebProps, IWebTag, TopType } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { saveUserCollect, getWebInfo } from 'src/api'
 import { $t } from 'src/locale'
@@ -36,6 +36,10 @@ export class CreateWebComponent {
   twoIndex: number | undefined
   threeIndex: number | undefined
   callback: Function = () => {}
+  topOptions = [
+    { label: TopType[1], value: TopType.Side, checked: false },
+    { label: TopType[2], value: TopType.Shortcut, checked: false },
+  ]
 
   constructor(private fb: FormBuilder, private message: NzMessageService) {
     event.on('CREATE_WEB', (props: any) => {
@@ -47,10 +51,12 @@ export class CreateWebComponent {
         this[k] = props[k]
       }
     })
+
     this.validateForm = this.fb.group({
       title: ['', [Validators.required]],
       url: ['', [Validators.required]],
       top: [false],
+      topOptions: [this.topOptions],
       ownVisible: [false],
       rate: [5],
       icon: [''],
@@ -62,6 +68,10 @@ export class CreateWebComponent {
 
   get urlArray(): FormArray {
     return this.validateForm.get('urlArr') as FormArray
+  }
+
+  get isTop(): boolean {
+    return this.validateForm.get('top')?.value || false
   }
 
   open(
@@ -105,6 +115,17 @@ export class CreateWebComponent {
         })
       }
     }
+    const topOptions = this.topOptions.map((item) => {
+      item.checked = false
+      type V = typeof item.value
+      if (detail?.topTypes) {
+        const checked = detail.topTypes.some((value: V) => value === item.value)
+        item.checked = checked
+      }
+      return item
+    })
+
+    this.validateForm.get('topOptions')!.setValue(topOptions)
   }
 
   get iconUrl() {
@@ -191,7 +212,7 @@ export class CreateWebComponent {
 
     const createdAt = Date.now()
     const tags: IWebTag[] = []
-    let { title, icon, url, top, ownVisible, rate, desc, index } =
+    let { title, icon, url, top, ownVisible, rate, desc, index, topOptions } =
       this.validateForm.value
 
     if (!title || !url) return
@@ -207,18 +228,24 @@ export class CreateWebComponent {
       }
     })
 
+    type TopTypes = typeof this.topOptions
+    const topTypes: number[] = (topOptions as TopTypes)
+      .filter((item) => item.checked)
+      .map((item) => item.value)
+
     const payload = {
       id: -Date.now(),
       name: title,
       createdAt: this.detail?.createdAt ?? createdAt,
-      rate: rate ?? 5,
-      desc: desc || '',
-      top: top ?? false,
+      rate,
+      desc,
+      top,
       index,
-      ownVisible: ownVisible ?? false,
+      ownVisible,
       icon,
       url,
       tags,
+      topTypes,
     }
 
     if (this.detail) {

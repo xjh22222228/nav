@@ -25,6 +25,7 @@ import CollectComponent from '../view/system/collect/index.component'
 import WebpComponent from '../view/app/default/app.component'
 import VipAuthComponent from '../view/system/vip-auth/index.component'
 import { isSelfDevelop } from 'src/utils/util'
+import { getDefaultTheme } from 'src/utils'
 
 export const routes: Routes = [
   {
@@ -119,7 +120,7 @@ export const routes: Routes = [
 
 // 自有部署异步
 if (!isSelfDevelop) {
-  const defaultTheme = settings.theme?.toLowerCase?.()
+  const defaultTheme = getDefaultTheme().toLowerCase()
   const hasDefault = routes.find((item) => item.path === defaultTheme)
   if (hasDefault) {
     routes.push({
