@@ -27,6 +27,10 @@ export default class SideComponent {
     }
   }
 
+  ngOnDestroy() {
+    this.commonService.overIndex = Number.MAX_SAFE_INTEGER
+  }
+
   openCreateWebModal() {
     event.emit('CREATE_WEB', {
       threeIndex: this.commonService.selectedIndex,

@@ -59,6 +59,8 @@ import { CardComponent } from '../components/card/index.component'
 import { MoveWebComponent } from '../components/move-web/index.component'
 import { WebMoreMenuComponent } from '../components/web-more-menu/index.component'
 import { TagListComponent } from '../components/tag-list/index.component'
+import { CalendarComponent } from '../components/calendar/index.component'
+import { ComponentGroupComponent } from '../components/component-group/index.component'
 
 import LightComponent from '../view/light/index.component'
 import SuperComponent from '../view/super/index.component'
@@ -145,6 +147,8 @@ const icons: IconDefinition[] = [
     MoveWebComponent,
     WebMoreMenuComponent,
     TagListComponent,
+    CalendarComponent,
+    ComponentGroupComponent,
     SafeHtmlPipe,
   ],
   imports: [

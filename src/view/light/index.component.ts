@@ -22,6 +22,10 @@ export default class LightComponent {
     randomBgImg()
   }
 
+  ngOnDestroy() {
+    this.commonService.overIndex = Number.MAX_SAFE_INTEGER
+  }
+
   ngAfterViewInit() {
     if (this.commonService.settings.lightOverType === 'ellipsis') {
       this.commonService.getOverIndex('.top-nav .over-item')

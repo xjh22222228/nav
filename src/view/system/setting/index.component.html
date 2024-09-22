@@ -328,6 +328,13 @@
     </nz-form-control>
   </nz-form-item>
 
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_components') }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-checkbox-group formControlName="componentOptions"></nz-checkbox-group>
+    </nz-form-control>
+  </nz-form-item>
+
   <div class="divider"></div>
 
   <nz-tabset [nzSelectedIndex]="tabActive">

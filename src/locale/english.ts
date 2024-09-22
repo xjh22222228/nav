@@ -253,6 +253,8 @@ const english: Record<string, any> = {
     'All bottom HTML is universal, copy the obtained template code to the desired theme or global setting, existing variable: ${total} = Number of websites; ${hostname} = Domain name; ${year} = This year; class="applyweb" = Add web',
   _builtTailwind: `System is already built-in <a href="https://play.tailwindcss.com" target="_blank">https://play.tailwindcss.com</a> You don't need to write`,
   _quick: 'Quick',
+  _components: 'Components',
+  _calendar: 'Calendar',
 }
 
 export default english

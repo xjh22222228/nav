@@ -26,6 +26,10 @@
     </div>
   </div>
 
+  <div class="sim-component">
+    <component-group></component-group>
+  </div>
+
   <app-search-engine class="hidden search-sm" />
 
   <nav class="top-nav dark-border-color dark-scrollbar dark-bg">
@@ -136,11 +140,10 @@
 <app-footer
   className="sim-footer"
   [content]="commonService.settings.simFooterHTML"
-></app-footer>
+/>
 <app-fixbar
   (onCollapse)="commonService.onCollapseAll()"
   [collapsed]="commonService.collapsed"
->
-</app-fixbar>
+/>
 
 <div class="sim-bg dark-bg"></div>

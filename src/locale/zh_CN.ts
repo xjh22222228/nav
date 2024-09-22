@@ -245,6 +245,8 @@ const zhCN: Record<string, any> = {
   _builtTailwind:
     '系统已内置 <a href="https://play.tailwindcss.com" target="_blank">https://play.tailwindcss.com</a>，您无需书写样式',
   _quick: '快捷',
+  _components: '小组件',
+  _calendar: '日历',
 }
 
 export default zhCN

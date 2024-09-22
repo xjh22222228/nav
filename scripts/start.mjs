@@ -297,6 +297,7 @@ try {
   settings.appCardStyle ??= 'retro'
   settings.appDocTitle ||= ''
   settings.gitHubCDN ||= 'gcore.jsdelivr.net'
+  settings.components ||= []
 
   // 替换CDN
   search = search.map((item) => {

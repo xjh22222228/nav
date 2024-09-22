@@ -19,7 +19,9 @@ export default class SimComponent {
 
   constructor(public commonService: CommonService) {}
 
-  ngOnInit() {}
+  ngOnDestroy() {
+    this.commonService.overIndex = Number.MAX_SAFE_INTEGER
+  }
 
   ngAfterViewInit() {
     if (this.commonService.settings.simOverType === 'ellipsis') {

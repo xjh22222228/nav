@@ -21,8 +21,8 @@ export default class ShortcutComponent {
   isDark: boolean = isDarkFn()
   shortcutThemeImage = settings.shortcutThemeImages?.[0]?.['src']
   timer: any = null
-  month = ''
-  date = ''
+  month = 0
+  date = 0
   hours = ''
   minutes = ''
   seconds = ''

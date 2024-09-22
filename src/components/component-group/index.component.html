@@ -1,0 +1,10 @@
+<div
+  class="component-group justify-center md:justify-start"
+  *ngIf="settings.components.length > 0"
+>
+  <ng-container *ngFor="let value of settings.components">
+    <app-calendar *ngIf="value === ComponentType.Calendar" />
+  </ng-container>
+
+  <ng-content />
+</div>

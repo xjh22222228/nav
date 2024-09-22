@@ -15,6 +15,11 @@ export enum TopType {
   Shortcut,
 }
 
+export enum ComponentType {
+  Calendar = 1,
+  OffWork,
+}
+
 export type ICardType = 'standard' | 'column' | 'example' | 'retro' | 'original'
 
 type OverType = 'overflow' | 'ellipsis'
@@ -177,6 +182,7 @@ export interface ISettings {
   loadingCode: string
   openSearch: boolean
   gitHubCDN: string
+  components: number[]
 
   runtime: number
 
