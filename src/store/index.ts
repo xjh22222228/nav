@@ -6,6 +6,7 @@ import searchJson from '../../data/search.json'
 import settingsJson from '../../data/settings.json'
 import tagJson from '../../data/tag.json'
 import internalJson from '../../data/internal.json'
+import componentJson from '../../data/component.json'
 import {
   ISettings,
   ISearchEngineProps,
@@ -45,3 +46,5 @@ export let internal: internalProps = internalJson
 export let websiteList: INavProps[] = isSelfDevelop
   ? []
   : (dbJson as INavProps[])
+
+export let components: any[] = isSelfDevelop ? [] : componentJson

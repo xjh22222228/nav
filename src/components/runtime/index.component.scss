@@ -1,0 +1,43 @@
+.runtime {
+  pointer-events: none;
+  position: relative;
+  width: 300px;
+  height: var(--componentHeight);
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  color: #fff;
+  font-family: text;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  padding: 30px 30px;
+  flex-direction: column;
+  background: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  font-weight: bold;
+
+  .title {
+    z-index: 2;
+    position: relative;
+    font-size: 18px;
+    color: #fff;
+  }
+  .days {
+    z-index: 2;
+    position: relative;
+    margin-top: 10px;
+    font-size: 48px;
+    line-height: 1;
+    color: #856767;
+  }
+  .unit {
+    font-size: 15px;
+  }
+  .img {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+  }
+}

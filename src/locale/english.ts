@@ -255,6 +255,12 @@ const english: Record<string, any> = {
   _quick: 'Quick',
   _components: 'Components',
   _calendar: 'Calendar',
+  _submit: 'Submit',
+  _cancel: 'Cancel',
+  _calendarTopColor: 'Top background color',
+  _calendarBgColor: 'Background color',
+  _runtime: 'Running time',
+  _runtimeTitle: 'Title',
 }
 
 export default english

@@ -33,6 +33,7 @@ const SETTINGS_PATH = joinPath('data/settings.json')
 const TAG_PATH = joinPath('data/tag.json')
 const SEARCH_PATH = joinPath('data/search.json')
 const COLLECT_PATH = joinPath('data/collect.json')
+const COMPONENT_PATH = joinPath('data/component.json')
 const ENTRY_INDEX_HTML = joinPath('dist/index.html')
 
 function getConfigJson() {
@@ -51,7 +52,14 @@ function getCollects() {
       return []
     }
     return data
-  } catch (error) {
+  } catch {
+    return []
+  }
+}
+function getComponents() {
+  try {
+    return JSON.parse(fs.readFileSync(COMPONENT_PATH).toString())
+  } catch {
     return []
   }
 }
@@ -62,6 +70,7 @@ try {
   fs.chmodSync(TAG_PATH, 0o777)
   fs.chmodSync(SEARCH_PATH, 0o777)
   fs.chmodSync(ENTRY_INDEX_HTML, 0o777)
+  fs.chmodSync(COMPONENT_PATH, 0o777)
 } catch (error) {
   console.log(error.message)
 }
@@ -181,10 +190,12 @@ app.post('/api/contents/get', (req, res) => {
     tags: [],
     search: [],
     internal: {},
+    components: [],
   }
   try {
     params.webs = JSON.parse(fs.readFileSync(DB_PATH).toString())
     params.settings = getSettings()
+    params.components = getComponents()
     params.tags = JSON.parse(fs.readFileSync(TAG_PATH).toString())
     params.search = JSON.parse(fs.readFileSync(SEARCH_PATH).toString())
     const { userViewCount, loginViewCount } = getWebCount(params.webs)

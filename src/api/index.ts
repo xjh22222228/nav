@@ -11,6 +11,7 @@ import {
   getTagMap,
   searchEngineList,
   internal,
+  components,
 } from 'src/store'
 import { ISettings } from 'src/types'
 import { isSelfDevelop } from 'src/utils/util'
@@ -40,22 +41,17 @@ export function verifyToken(token: string) {
 // 获取自有部署内容
 export function getContentes() {
   return http.post('/api/contents/get').then((res: any) => {
-    // 清空内容
     websiteList.splice(0, websiteList.length)
     searchEngineList.splice(0, searchEngineList.length)
     tagList.splice(0, tagList.length)
+    components.splice(0, components.length)
 
     internal.loginViewCount = res.data.internal.loginViewCount
     internal.userViewCount = res.data.internal.userViewCount
-    res.data.webs.forEach((item: any) => {
-      websiteList.push(item)
-    })
-    res.data.tags.forEach((item: any) => {
-      tagList.push(item)
-    })
-    res.data.search.forEach((item: any) => {
-      searchEngineList.push(item)
-    })
+    websiteList.push(...res.data.webs)
+    tagList.push(...res.data.tags)
+    searchEngineList.push(...res.data.search)
+    components.push(...res.data.components)
     const resSettings = res.data.settings as ISettings
     for (const k in resSettings) {
       // @ts-ignore

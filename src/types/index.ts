@@ -17,7 +17,8 @@ export enum TopType {
 
 export enum ComponentType {
   Calendar = 1,
-  OffWork,
+  OffWork = 2,
+  Runtime = 3,
 }
 
 export type ICardType = 'standard' | 'column' | 'example' | 'retro' | 'original'

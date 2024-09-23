@@ -47,24 +47,59 @@ const internalPath = path.join('.', 'data', 'internal.json')
 const settingsPath = path.join('.', 'data', 'settings.json')
 const tagPath = path.join('.', 'data', 'tag.json')
 const searchPath = path.join('.', 'data', 'search.json')
+const componentPath = path.join('.', 'data', 'component.json')
 
 let internal = {}
 let db = []
 let settings = {}
 let tags = []
 let search = []
+let components = []
 try {
   db = JSON.parse(fs.readFileSync(dbPath).toString())
 } catch (error) {
   db = defaultDb
 }
 try {
-  internal = JSON.parse(fs.readFileSync(internalPath).toString() || '{}')
-  settings = JSON.parse(fs.readFileSync(settingsPath).toString() || '{}')
-  tags = JSON.parse(fs.readFileSync(tagPath).toString() || '[]')
-  search = JSON.parse(fs.readFileSync(searchPath).toString() || '[]')
-} catch (error) {
-  console.log('parse JSON: ', error.message)
+  internal = JSON.parse(fs.readFileSync(internalPath).toString())
+  settings = JSON.parse(fs.readFileSync(settingsPath).toString())
+  tags = JSON.parse(fs.readFileSync(tagPath).toString())
+  search = JSON.parse(fs.readFileSync(searchPath).toString())
+} catch {}
+
+try {
+  components = JSON.parse(fs.readFileSync(componentPath).toString())
+} catch {
+} finally {
+  /** @type {import('./src/types/index.ts').ComponentType} */
+  let idx = components.findIndex((item) => item.type === 1)
+  const calendar = {
+    type: 1,
+    topColor: '#ff5a5d',
+    bgColor: '#1d1d1d',
+  }
+  if (idx >= 0) {
+    components[idx] = {
+      ...calendar,
+      ...components[idx],
+    }
+  } else {
+    components.push(calendar)
+  }
+  idx = components.findIndex((item) => item.type === 3)
+  const runtime = {
+    title: '已稳定运行',
+    type: 3,
+  }
+  if (idx >= 0) {
+    components[idx] = {
+      ...runtime,
+      ...components[idx],
+    }
+  } else {
+    components.push(runtime)
+  }
+  fs.writeFileSync(componentPath, JSON.stringify(components))
 }
 
 {
@@ -131,9 +166,7 @@ try {
 
 {
   const isEn = settings.language === 'en'
-  const desc = isEn
-    ? 'The system is built-in and cannot be deleted'
-    : '系统内置不可删除'
+  const desc = isEn ? 'The system is built-in' : '系统内置不可删除'
   if (!Array.isArray(tags)) {
     tags = []
   }

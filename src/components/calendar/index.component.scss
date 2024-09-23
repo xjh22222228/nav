@@ -1,5 +1,6 @@
 .calendar {
   width: 130px;
+  height: var(--componentHeight);
   max-width: 100%;
   max-height: 100%;
   border-radius: 12px;
@@ -7,10 +8,12 @@
   overflow: hidden;
   color: #fff;
   font-family: text;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
   .ctop {
-    background-color: #ff5a5d;
-    font-size: 16px;
-    height: 34px;
+    font-size: 17px;
+    height: 40px;
     line-height: 0;
     display: flex;
     align-items: center;
@@ -18,17 +21,16 @@
     font-weight: 500;
   }
   .box {
-    background-color: rgb(29, 29, 29);
+    flex: 1;
   }
   .cday {
     font-weight: bold;
     font-size: 38px;
     line-height: 1;
-    padding: 10px 0 5px 0;
+    padding: 20px 0 5px 0;
   }
   .cdate {
     color: rgba(255, 255, 255, 0.7);
-    padding-bottom: 10px;
     font-size: 13px;
   }
 }

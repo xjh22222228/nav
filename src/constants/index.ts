@@ -11,6 +11,8 @@ export const SETTING_PATH = 'data/settings.json'
 
 export const SEARCH_PATH = 'data/search.json'
 
+export const COMPONENT_PATH = 'data/component.json'
+
 export const VERSION = navConfig.version
 
 export const STORAGE_KEY_MAP = {

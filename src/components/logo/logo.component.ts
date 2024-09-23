@@ -1,7 +1,10 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
-import { Component, Input } from '@angular/core'
+// Copyright @ 2018-present xiejiahe. All rights reserved.
+// See https://github.com/xjh22222228/nav
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-logo',
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],

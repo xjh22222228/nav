@@ -2,19 +2,32 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, ChangeDetectionStrategy } from '@angular/core'
-import { settings } from 'src/store'
+import { Component } from '@angular/core'
+import { settings, components } from 'src/store'
 import { ComponentType } from 'src/types'
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'component-group',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
 export class ComponentGroupComponent {
-  settings = settings
   ComponentType = ComponentType
+  components: number[] = []
 
-  constructor() {}
+  constructor() {
+    const c: number[] = []
+    // 按照系统设置顺序排序显示
+    components.forEach((item) => {
+      const has = settings.components.find((value) => value === item.type)
+      if (has) {
+        c.push(has)
+      }
+    })
+    this.components = c
+  }
+
+  trackByItem(i: number, type: any) {
+    return type
+  }
 }

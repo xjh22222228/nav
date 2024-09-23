@@ -1,11 +1,15 @@
 <div
   class="swiper"
-  [id]="swiperId"
   [ngStyle]="{ height: height <= 0 ? '' : height + 'px' }"
+  *ngIf="images.length > 0"
 >
-  <div class="swiper-wrapper">
+  <nz-carousel
+    [nzAutoPlay]="autoplay"
+    [nzAutoPlaySpeed]="5000"
+    [nzDots]="images.length > 1"
+  >
     <div
-      class="swiper-slide"
+      nz-carousel-content
       [class.cursor-pointer]="item['url']"
       *ngFor="let item of images; let i = index"
       (click)="jumpService.goUrl($event, item['url'])"
@@ -17,8 +21,7 @@
         draggable="false"
       />
     </div>
-  </div>
-  <div class="swiper-pagination"></div>
+  </nz-carousel>
 
   <ng-content></ng-content>
 </div>

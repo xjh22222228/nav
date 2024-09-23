@@ -247,6 +247,12 @@ const zhCN: Record<string, any> = {
   _quick: '快捷',
   _components: '小组件',
   _calendar: '日历',
+  _submit: '提交',
+  _cancel: '取消',
+  _calendarTopColor: '顶部背景色',
+  _calendarBgColor: '背景色',
+  _runtime: '运行时长',
+  _runtimeTitle: '标题',
 }
 
 export default zhCN

@@ -2,7 +2,12 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit, Input } from '@angular/core'
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core'
 import { isLogin } from 'src/utils/user'
 import { copyText, getTextContent } from 'src/utils'
 import { setWebsiteList, deleteByWeb } from 'src/utils/web'
@@ -13,6 +18,7 @@ import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-card',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

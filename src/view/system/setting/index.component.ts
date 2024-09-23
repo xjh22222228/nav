@@ -21,6 +21,7 @@ const extraForm = {
   footTemplate: '',
   componentOptions: [
     { label: $t('_calendar'), value: ComponentType.Calendar, checked: false },
+    { label: $t('_runtime'), value: ComponentType.Runtime, checked: false },
   ],
 }
 

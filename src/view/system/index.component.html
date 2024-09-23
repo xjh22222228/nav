@@ -41,6 +41,14 @@
             </li>
             <li
               nz-menu-item
+              [nzSelected]="currentMenu === 'component'"
+              (click)="goRoute('/system/component', !isAuthz && !isSelfDevelop)"
+              [nzDisabled]="!isAuthz && !isSelfDevelop"
+            >
+              {{ $t('_components') }}
+            </li>
+            <li
+              nz-menu-item
               [nzSelected]="currentMenu === 'bookmarkExport'"
               (click)="goRoute('/system/bookmarkExport', !isAuthz)"
               [nzDisabled]="!isAuthz"
@@ -70,13 +78,6 @@
             >
               {{ $t('_webInfo') }}
             </li>
-            <!-- <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'about'"
-              (click)="goRoute('/system/about')"
-            >
-              {{ $t('_about') }}
-            </li> -->
           </ul>
         </li>
       </ul>

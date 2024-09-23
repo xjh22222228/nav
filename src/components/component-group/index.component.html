@@ -1,9 +1,12 @@
 <div
-  class="component-group justify-center md:justify-start"
-  *ngIf="settings.components.length > 0"
+  class="component-group dark-scrollbar justify-center md:justify-start"
+  *ngIf="components.length > 0"
 >
-  <ng-container *ngFor="let value of settings.components">
-    <app-calendar *ngIf="value === ComponentType.Calendar" />
+  <ng-container *ngFor="let value of components; trackBy: trackByItem">
+    <ng-container [ngSwitch]="value">
+      <app-calendar *ngSwitchCase="ComponentType.Calendar" />
+      <app-runtime *ngSwitchCase="ComponentType.Runtime" />
+    </ng-container>
   </ng-container>
 
   <ng-content />
