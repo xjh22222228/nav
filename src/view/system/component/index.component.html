@@ -3,18 +3,22 @@
   nzType="primary"
   (click)="handleSubmit()"
   [nzLoading]="submitting"
+  class="mb-4"
 >
   {{ $t('_save') }}
 </button>
 
-<div class="my-4 color-red font-bold">{{ $t('_buildTip') }}</div>
+<div class="mb-4 color-red font-bold" *ngIf="!isSelfDevelop">
+  {{ $t('_buildTip') }}
+</div>
 
 <div class="flex gap-4">
   <div *ngFor="let item of components; let idx = index; trackBy: trackByItem">
     <ng-container [ngSwitch]="item.type">
-      <app-calendar *ngSwitchCase="ComponentType.Calendar" />
-      <app-runtime *ngSwitchCase="ComponentType.Runtime" />
-      <app-offwork *ngSwitchCase="ComponentType.OffWork" />
+      <app-calendar *ngSwitchCase="ComponentType.Calendar" [data]="item" />
+      <app-runtime *ngSwitchCase="ComponentType.Runtime" [data]="item" />
+      <app-offwork *ngSwitchCase="ComponentType.OffWork" [data]="item" />
+      <app-image *ngSwitchCase="ComponentType.Image" [data]="item" />
     </ng-container>
 
     <div class="text-center mt-3">
@@ -22,6 +26,19 @@
       <a (click)="moveUp(idx)">{{ $t('_moveUp') }}</a>
       <a (click)="moveDown(idx)" class="mx-2.5">{{ $t('_moveDown') }}</a>
       <a (click)="handleEdit(item, idx)">{{ $t('_edit') }}</a>
+      <div>
+        <a (click)="onAdd(item)">{{ $t('_copy') }}</a>
+        <a
+          *ngIf="item.id >= 0"
+          class="color-red ml-2"
+          nz-popconfirm
+          nzOkType="danger"
+          [nzPopconfirmTitle]="$t('_confirmDel')"
+          nzPopconfirmPlacement="bottom"
+          (nzOnConfirm)="onDelete(idx)"
+          >{{ $t('_del') }}</a
+        >
+      </div>
     </div>
   </div>
 </div>
@@ -29,3 +46,4 @@
 <calendar-drawer #calendar (ok)="handleOk($event)" />
 <runtime-drawer #runtime (ok)="handleOk($event)" />
 <offwork-drawer #offwork (ok)="handleOk($event)" />
+<image-drawer #image (ok)="handleOk($event)" />

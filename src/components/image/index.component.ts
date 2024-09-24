@@ -3,28 +3,22 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
-import { components, settings } from 'src/store'
+import { components } from 'src/store'
 import { ComponentType, IComponentProps } from 'src/types'
 
 @Component({
-  selector: 'app-runtime',
+  selector: 'app-image',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class RuntimeComponent {
+export class ImageComponent {
   @Input() data!: IComponentProps
 
-  runDays = 0
-
-  constructor() {
-    let now = Date.now() - settings.runtime
-    now = now < 0 ? 0 : now
-    this.runDays = Math.floor(now / (1000 * 60 * 60 * 24))
-  }
+  constructor() {}
 
   get component(): any {
     const data = components.find(
-      (item) => item.type === ComponentType.Runtime && item.id === this.data.id
+      (item) => item.type === ComponentType.Image && item.id === this.data.id
     )
     return data || {}
   }

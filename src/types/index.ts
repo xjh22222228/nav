@@ -19,6 +19,13 @@ export enum ComponentType {
   Calendar = 1,
   OffWork = 2,
   Runtime = 3,
+  Image = 4,
+}
+
+export interface IComponentProps {
+  id: number
+  type: number
+  [key: string]: any
 }
 
 export type ICardType = 'standard' | 'column' | 'example' | 'retro' | 'original'
@@ -183,7 +190,7 @@ export interface ISettings {
   loadingCode: string
   openSearch: boolean
   gitHubCDN: string
-  components: number[]
+  components: IComponentProps[]
 
   runtime: number
 

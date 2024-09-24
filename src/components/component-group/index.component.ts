@@ -4,7 +4,7 @@
 
 import { Component } from '@angular/core'
 import { settings, components } from 'src/store'
-import { ComponentType } from 'src/types'
+import { ComponentType, IComponentProps } from 'src/types'
 
 @Component({
   selector: 'component-group',
@@ -13,13 +13,15 @@ import { ComponentType } from 'src/types'
 })
 export class ComponentGroupComponent {
   ComponentType = ComponentType
-  components: number[] = []
+  components: IComponentProps[] = []
 
   constructor() {
-    const c: number[] = []
+    const c: IComponentProps[] = []
     // 按照系统设置顺序排序显示
     components.forEach((item) => {
-      const has = settings.components.find((value) => value === item.type)
+      const has = settings.components.find(
+        (c) => c.type === item.type && c.id === item.id
+      )
       if (has) {
         c.push(has)
       }
@@ -27,7 +29,7 @@ export class ComponentGroupComponent {
     this.components = c
   }
 
-  trackByItem(i: number, type: any) {
-    return type
+  trackByItem(i: number, item: any) {
+    return item.id
   }
 }

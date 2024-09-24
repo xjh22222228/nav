@@ -44,11 +44,12 @@ export default class SystemSettingComponent {
   ) {
     extraForm['componentOptions'] = components.map((item) => {
       const checked = settings.components.some(
-        (value: number) => item.type === value
+        (c) => item.type === c.type && item.id === c.id
       )
       return {
         label: componentTitleMap[item.type],
         value: item.type,
+        id: item.id,
         checked,
       }
     })
@@ -244,7 +245,7 @@ export default class SystemSettingComponent {
           lightImages: this.settings.lightImages.filter(filterImage),
           components: formValues.componentOptions
             .filter((item: any) => item.checked)
-            .map((item: any) => item.value),
+            .map((item: any) => ({ type: item.value, id: item.id })),
         }
         for (const k in extraForm) {
           delete values[k]

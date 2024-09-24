@@ -16,7 +16,9 @@
   {{ $t('_save') }}
 </button>
 
-<div class="mb-4 color-red font-bold">{{ $t('_buildTip') }}</div>
+<div class="mb-4 color-red font-bold" *ngIf="!isSelfDevelop">
+  {{ $t('_buildTip') }}
+</div>
 
 <nz-table #basicTable [nzData]="tagList">
   <thead>
@@ -55,7 +57,6 @@
         <a
           *ngIf="!data.isInner"
           nz-popconfirm
-          nzPopconfirmPlacement="rightTop"
           nzOkType="danger"
           [nzPopconfirmTitle]="$t('_confirmDel')"
           nzPopconfirmPlacement="bottom"

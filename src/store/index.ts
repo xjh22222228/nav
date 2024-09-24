@@ -14,6 +14,7 @@ import {
   internalProps,
   ITagPropValues,
   INavProps,
+  IComponentProps,
 } from 'src/types'
 import { isSelfDevelop } from 'src/utils/util'
 
@@ -47,4 +48,4 @@ export let websiteList: INavProps[] = isSelfDevelop
   ? []
   : (dbJson as INavProps[])
 
-export let components: any[] = isSelfDevelop ? [] : componentJson
+export let components: IComponentProps[] = isSelfDevelop ? [] : componentJson

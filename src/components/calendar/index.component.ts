@@ -2,10 +2,10 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { getDateTime, getDayOfYear } from 'src/utils'
 import { components } from 'src/store'
-import { ComponentType } from 'src/types'
+import { ComponentType, IComponentProps } from 'src/types'
 
 @Component({
   selector: 'app-calendar',
@@ -13,6 +13,8 @@ import { ComponentType } from 'src/types'
   styleUrls: ['./index.component.scss'],
 })
 export class CalendarComponent {
+  @Input() data!: IComponentProps
+
   date = ''
   day = 0
   week = ''
@@ -26,8 +28,10 @@ export class CalendarComponent {
     this.dayOfYear = getDayOfYear()
   }
 
-  get data(): any {
-    const data = components.find((item) => item.type === ComponentType.Calendar)
+  get component(): any {
+    const data = components.find(
+      (item) => item.type === ComponentType.Calendar && item.id === this.data.id
+    )
     return data || {}
   }
 }

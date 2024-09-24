@@ -264,6 +264,8 @@ const english: Record<string, any> = {
   _offWork: 'Off work',
   _workTitle: 'Work title',
   _restTitle: 'Rest title',
+  _image: 'Image',
+  _text: 'Text',
 }
 
 export default english

@@ -256,6 +256,8 @@ const zhCN: Record<string, any> = {
   _offWork: '下班',
   _workTitle: '工作标题',
   _restTitle: '休息标题',
+  _image: '图片',
+  _text: '文本',
 }
 
 export default zhCN

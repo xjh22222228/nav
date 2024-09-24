@@ -1,0 +1,28 @@
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="visible"
+  nzPlacement="right"
+  [nzTitle]="$t('_edit')"
+  (nzOnClose)="handleClose()"
+  [nzFooter]="footerTpl"
+>
+  <form nz-form [formGroup]="validateForm" *nzDrawerContent>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="8">{{ $t('_runtimeTitle') }}</nz-form-label>
+      <nz-form-control [nzSpan]="16">
+        <input nz-input formControlName="title" maxlength="20" />
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px" (click)="handleClose()">
+        {{ $t('_cancel') }}
+      </button>
+      <button nz-button nzType="primary" (click)="handleSubmit()">
+        {{ $t('_submit') }}
+      </button>
+    </div>
+  </ng-template>
+</nz-drawer>

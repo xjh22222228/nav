@@ -8,9 +8,22 @@
 >
   <form nz-form [formGroup]="validateForm" *nzDrawerContent>
     <nz-form-item>
-      <nz-form-label [nzSpan]="8">{{ $t('_runtimeTitle') }}</nz-form-label>
-      <nz-form-control [nzSpan]="16">
-        <input nz-input formControlName="title" maxlength="10" />
+      <nz-form-label [nzSpan]="4">{{ $t('_image') }}</nz-form-label>
+      <nz-form-control [nzSpan]="20">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input formControlName="url" nz-input />
+        </nz-input-group>
+
+        <ng-template #suffixIconSearch>
+          <app-upload (onChange)="onUploadImage($event)"></app-upload>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">{{ $t('_text') }}</nz-form-label>
+      <nz-form-control [nzSpan]="20">
+        <input nz-input formControlName="text" maxlength="20" />
       </nz-form-control>
     </nz-form-item>
   </form>

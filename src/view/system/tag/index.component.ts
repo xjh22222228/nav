@@ -10,6 +10,7 @@ import { ITagPropValues } from 'src/types'
 import { updateFileContent } from 'src/api'
 import { TAG_PATH } from 'src/constants'
 import { tagList } from 'src/store'
+import { isSelfDevelop } from 'src/utils/util'
 
 @Component({
   selector: 'system-tag',
@@ -18,6 +19,7 @@ import { tagList } from 'src/store'
 })
 export default class SystemTagComponent {
   $t = $t
+  isSelfDevelop = isSelfDevelop
   tagList: ITagPropValues[] = tagList
   submitting: boolean = false
   incrementId = Math.max(...tagList.map((item) => Number(item.id))) + 1

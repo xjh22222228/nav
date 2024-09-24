@@ -75,6 +75,7 @@ try {
   let idx = components.findIndex((item) => item.type === 1)
   const calendar = {
     type: 1,
+    id: -1,
     topColor: '#ff5a5d',
     bgColor: '#1d1d1d',
   }
@@ -86,10 +87,12 @@ try {
   } else {
     components.push(calendar)
   }
+  //
   idx = components.findIndex((item) => item.type === 3)
   const runtime = {
-    title: '已稳定运行',
     type: 3,
+    id: -3,
+    title: '已稳定运行',
   }
   if (idx >= 0) {
     components[idx] = {
@@ -99,12 +102,14 @@ try {
   } else {
     components.push(runtime)
   }
+  //
   idx = components.findIndex((item) => item.type === 2)
   const offWork = {
+    type: 2,
+    id: -2,
     workTitle: '距离下班还有',
     restTitle: '休息啦',
-    date: new Date(2024, 7, 26, 18, 0, 0).getTime(),
-    type: 2,
+    date: dayjs.tz(new Date(2024, 7, 26, 18, 0, 0)).valueOf(),
   }
   if (idx >= 0) {
     components[idx] = {
@@ -113,6 +118,23 @@ try {
     }
   } else {
     components.push(offWork)
+  }
+  //
+  idx = components.findIndex((item) => item.type === 4)
+  const image = {
+    type: 4,
+    id: -4,
+    url: 'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/component1.jpg',
+    text: '只有认可，才能强大',
+  }
+  if (idx >= 0) {
+    components[idx] = {
+      ...image,
+      ...components[idx],
+    }
+    components[idx].url = replaceJsdelivrCDN(components[idx].url, settings)
+  } else {
+    components.push(image)
   }
   fs.writeFileSync(componentPath, JSON.stringify(components))
 }

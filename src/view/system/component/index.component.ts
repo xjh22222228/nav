@@ -9,11 +9,13 @@ import { NzModalService } from 'ng-zorro-antd/modal'
 import { updateFileContent } from 'src/api'
 import { COMPONENT_PATH } from 'src/constants'
 import { components } from 'src/store'
-import { ComponentType } from 'src/types'
-import { CalendarDrawerComponent } from 'src/components/calendar/calendar-drawer/index.component'
-import { RuntimeDrawerComponent } from 'src/components/runtime/runtime-drawer/index.component'
-import { OffWorkDrawerComponent } from 'src/components/off-work/offwork-drawer/index.component'
+import { ComponentType, IComponentProps } from 'src/types'
+import { CalendarDrawerComponent } from 'src/components/calendar/drawer/index.component'
+import { RuntimeDrawerComponent } from 'src/components/runtime/drawer/index.component'
+import { OffWorkDrawerComponent } from 'src/components/off-work/drawer/index.component'
+import { ImageDrawerComponent } from 'src/components/image/drawer/index.component'
 import { componentTitleMap } from './types'
+import { isSelfDevelop } from 'src/utils/util'
 
 @Component({
   selector: 'system-component',
@@ -24,8 +26,10 @@ export default class SystemComponentComponent {
   @ViewChild('calendar') calendarChild!: CalendarDrawerComponent
   @ViewChild('runtime') runtimeChild!: RuntimeDrawerComponent
   @ViewChild('offwork') offworkChild!: OffWorkDrawerComponent
+  @ViewChild('image') imageChild!: ImageDrawerComponent
 
   $t = $t
+  isSelfDevelop = isSelfDevelop
   componentTitleMap = componentTitleMap
   ComponentType = ComponentType
   components = components
@@ -66,9 +70,21 @@ export default class SystemComponentComponent {
       1: this.calendarChild,
       2: this.offworkChild,
       3: this.runtimeChild,
+      4: this.imageChild,
     }
     types[type]?.open(data, idx)
   }
+
+  onAdd(data: IComponentProps) {
+    let max = Math.max(...this.components.map((item) => item.id))
+    max = max <= 0 ? 1 : max + 1
+    this.components.push({
+      ...data,
+      id: max,
+    })
+  }
+
+  onDelete(idx: number) {}
 
   handleOk(data: any) {
     const { index, ...values } = data
@@ -105,6 +121,6 @@ export default class SystemComponentComponent {
   }
 
   trackByItem(i: number, item: any) {
-    return item.type
+    return item.id
   }
 }

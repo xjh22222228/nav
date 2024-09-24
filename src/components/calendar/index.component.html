@@ -1,6 +1,8 @@
 <div class="calendar family">
-  <div class="ctop" [style.backgroundColor]="data.topColor">{{ date }}</div>
-  <div class="box" [style.backgroundColor]="data.bgColor">
+  <div class="ctop" [style.backgroundColor]="component.topColor">
+    {{ date }}
+  </div>
+  <div class="box" [style.backgroundColor]="component.bgColor">
     <div class="cday">{{ day }}</div>
     <div class="cdate">
       <span class="mr-1.5">第{{ dayOfYear }}天</span>
