@@ -3,6 +3,7 @@
 
 import config from '../../nav.config.json'
 import http, { httpNav } from '../utils/http'
+import qs from 'qs'
 import { encode } from 'js-base64'
 import {
   settings,
@@ -17,15 +18,27 @@ import { ISettings } from 'src/types'
 import { isSelfDevelop } from 'src/utils/util'
 import { isLogin } from 'src/utils/user'
 
-const { gitRepoUrl } = config
+const { gitRepoUrl, imageGitRepoUrl } = config
 const s = gitRepoUrl.split('/')
 const DEFAULT_BRANCH = config.branch
 
-export const authorName = s[s.length - 2]
-export const repoName = s[s.length - 1]
+export let imageRepo = ''
+export let imageBranch = ''
+
+if (imageGitRepoUrl) {
+  const split = imageGitRepoUrl.split('?')
+  imageRepo = split[0].split('/').at(-1) || ''
+  const query = qs.parse(split.at(-1) || '')
+  if (query['branch']) {
+    imageBranch = query['branch'] as string
+  }
+}
+
+export const authorName = s.at(-2)
+export const repoName = s.at(-1)
 
 function isGitee() {
-  return config.provider === 'Gitee'
+  return config.gitRepoUrl.includes('gitee.com')
 }
 
 // 验证Token
@@ -182,11 +195,14 @@ export async function createFile({
   }
 
   const method = isGitee() ? http.post : http.put
-  return method(`/repos/${authorName}/${repoName}/contents/${path}`, {
-    message: `rebot(CI): ${message}`,
-    branch,
-    content: isEncode ? encode(content) : content,
-  }).then((res) => {
+  return method(
+    `/repos/${authorName}/${imageRepo || repoName}/contents/${path}`,
+    {
+      message: `rebot(CI): ${message}`,
+      branch,
+      content: isEncode ? encode(content) : content,
+    }
+  ).then((res) => {
     requestActionUrl()
     return res
   })
@@ -249,11 +265,13 @@ export async function updateUserInfo(data?: Record<string, any>) {
   return httpNav.post('/api/info/update', data)
 }
 
-export function getCDN(path: string, branch = 'image') {
+export function getCDN(path: string) {
+  const branch = imageBranch || 'image'
+  const repo = imageRepo || repoName
   if (isGitee()) {
-    return `https://gitee.com/${authorName}/${repoName}/raw/${branch}/${path}`
+    return `https://gitee.com/${authorName}/${repo}/raw/${branch}/${path}`
   }
-  return `https://${settings.gitHubCDN}/gh/${authorName}/${repoName}@${branch}/${path}`
+  return `https://${settings.gitHubCDN}/gh/${authorName}/${repo}@${branch}/${path}`
 }
 
 function requestActionUrl() {

@@ -5,7 +5,7 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { createFile, getCDN } from 'src/api'
+import { createFile, getCDN, imageBranch } from 'src/api'
 
 @Component({
   selector: 'app-upload',
@@ -54,7 +54,7 @@ export class UploadComponent {
         const path = `nav-${Date.now()}-${fileName}`
 
         createFile({
-          branch: 'image',
+          branch: imageBranch || 'image',
           message: 'create image',
           content: url,
           isEncode: false,

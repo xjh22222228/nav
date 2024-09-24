@@ -129,13 +129,13 @@
 |Fork |自有部署 | 字段 | 说明 |
 | --------------------------------------------- | -------- |--- |--- |
 |√ | | gitRepoUrl | 填写您的仓库地址 |
-|√ | | provider | 部署平台，`Github` / `Gitee`, 作者 `Gitee` 仓库地址 [https://gitee.com/xiejiahe/nav](https://gitee.com/xiejiahe/nav) |
 |√ | | branch | 部署分支 |
 |√ | √| hashMode | 路由是否 Hash 模式, 如果是部署在 `github pages` 务必设为 true |
 | | √| password | 自有部署登录密码，`Fork` 用户无需填写 |
 | | √| address | 自有部署, 一旦填写认为你是自有部署 |
 |√| √| email | 用户提交收录通知 |
 | | √| mailConfig | 自有部署，用户收录通知邮箱配置 |
+|√ | | imageGitRepoUrl | 图片仓库, 默认主仓库 `https://github.com/xjh22222228/image?branch=main` |
 
 ## 后台
 

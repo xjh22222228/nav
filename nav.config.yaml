@@ -6,11 +6,9 @@
 # 问题反馈：xjh22222228@gmail.com ，非授权不接收功能建议
 # 联系授权：https://official.nav3.cn/pricing
 
-# 仓库地址
+# 仓库地址，填写 Fork 后的仓库地址，支持 Gitee / GitHub
+# 作者 Gitee 仓库地址 https://gitee.com/xiejiahe/nav
 gitRepoUrl: https://github.com/xjh22222228/nav
-
-# Gitee | GitHub
-provider: GitHub
 
 # Fork 部署分支
 branch: main
@@ -40,3 +38,7 @@ mailConfig:
     pass: ''
   title: 网站收录通知
   message: 有用户提交网站收录啦
+
+# 默认主仓库，当仓库作为私密，上传的图片是无法访问的，需要转移到公开仓库
+# 'https://github.com/xjh22222228/image?branch=main'
+imageGitRepoUrl: ''

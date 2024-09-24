@@ -32,7 +32,7 @@ const config = yaml.load(fs.readFileSync(configPath))
 const configJson = {
   version: pkgJson.version,
   gitRepoUrl: config.gitRepoUrl,
-  provider: config.provider,
+  imageGitRepoUrl: config.imageGitRepoUrl,
   branch: config.branch,
   hashMode: config.hashMode,
   address: config.address,
@@ -135,6 +135,24 @@ try {
     components[idx].url = replaceJsdelivrCDN(components[idx].url, settings)
   } else {
     components.push(image)
+  }
+  //
+  idx = components.findIndex((item) => item.type === 5)
+  const holiday = {
+    type: 5,
+    id: -5,
+    url: 'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/component1.jpg',
+    title: '距离春节还有',
+    date: dayjs.tz(new Date(2025, 0, 29)).valueOf(),
+  }
+  if (idx >= 0) {
+    components[idx] = {
+      ...holiday,
+      ...components[idx],
+    }
+    components[idx].url = replaceJsdelivrCDN(components[idx].url, settings)
+  } else {
+    components.push(holiday)
   }
   fs.writeFileSync(componentPath, JSON.stringify(components))
 }

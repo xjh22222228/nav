@@ -32,7 +32,7 @@ export default class SystemComponent {
 
   ngOnInit() {
     const u = window.location.href.split('/')
-    this.currentMenu = u[u.length - 1]
+    this.currentMenu = u.at(-1)
   }
 
   goBack() {

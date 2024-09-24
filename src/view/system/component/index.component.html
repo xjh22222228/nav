@@ -12,7 +12,7 @@
   {{ $t('_buildTip') }}
 </div>
 
-<div class="flex gap-4">
+<div class="flex gap-4 w-full flex-wrap select-none">
   <div *ngFor="let item of components; let idx = index; trackBy: trackByItem">
     <ng-container [ngSwitch]="item.type">
       <app-calendar *ngSwitchCase="ComponentType.Calendar" [data]="item" />

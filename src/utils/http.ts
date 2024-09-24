@@ -13,7 +13,7 @@ const httpInstance = axios.create({
   timeout: 60000 * 3,
   baseURL:
     config.address ||
-    (config.provider === 'Gitee'
+    (config.gitRepoUrl.includes('gitee.com')
       ? 'https://gitee.com/api/v5'
       : 'https://api.github.com'),
 })
