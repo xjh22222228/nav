@@ -261,6 +261,9 @@ const english: Record<string, any> = {
   _calendarBgColor: 'Background color',
   _runtime: 'Running time',
   _runtimeTitle: 'Title',
+  _offWork: 'Off work',
+  _workTitle: 'Work title',
+  _restTitle: 'Rest title',
 }
 
 export default english

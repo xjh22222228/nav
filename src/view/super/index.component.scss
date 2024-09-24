@@ -108,6 +108,11 @@
     }
   }
 
+  .component-box {
+    width: var(--width);
+    margin: 10px auto -10px;
+  }
+
   .main-box {
     width: var(--width);
     margin: 24px auto 40px;

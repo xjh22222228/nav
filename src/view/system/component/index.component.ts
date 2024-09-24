@@ -12,6 +12,8 @@ import { components } from 'src/store'
 import { ComponentType } from 'src/types'
 import { CalendarDrawerComponent } from 'src/components/calendar/calendar-drawer/index.component'
 import { RuntimeDrawerComponent } from 'src/components/runtime/runtime-drawer/index.component'
+import { OffWorkDrawerComponent } from 'src/components/off-work/offwork-drawer/index.component'
+import { componentTitleMap } from './types'
 
 @Component({
   selector: 'system-component',
@@ -21,8 +23,10 @@ import { RuntimeDrawerComponent } from 'src/components/runtime/runtime-drawer/in
 export default class SystemComponentComponent {
   @ViewChild('calendar') calendarChild!: CalendarDrawerComponent
   @ViewChild('runtime') runtimeChild!: RuntimeDrawerComponent
+  @ViewChild('offwork') offworkChild!: OffWorkDrawerComponent
 
   $t = $t
+  componentTitleMap = componentTitleMap
   ComponentType = ComponentType
   components = components
   submitting: boolean = false
@@ -60,6 +64,7 @@ export default class SystemComponentComponent {
     const type = data.type
     const types: Record<string, any> = {
       1: this.calendarChild,
+      2: this.offworkChild,
       3: this.runtimeChild,
     }
     types[type]?.open(data, idx)

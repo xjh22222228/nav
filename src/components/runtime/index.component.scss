@@ -8,20 +8,20 @@
   border-radius: 12px;
   overflow: hidden;
   color: #fff;
-  font-family: text;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   padding: 30px 30px;
   flex-direction: column;
-  background: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  background: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+
   font-weight: bold;
 
   .title {
     z-index: 2;
     position: relative;
     font-size: 18px;
-    color: #fff;
+    color: #f9f6f6;
   }
   .days {
     z-index: 2;
@@ -29,7 +29,7 @@
     margin-top: 10px;
     font-size: 48px;
     line-height: 1;
-    color: #856767;
+    color: #d67272;
   }
   .unit {
     font-size: 15px;

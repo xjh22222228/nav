@@ -144,11 +144,6 @@
   .sim-component {
     width: var(--width);
     margin: 0 auto;
-    ::ng-deep {
-      .component-group {
-        padding-bottom: 0;
-      }
-    }
   }
 
   .wrapper {

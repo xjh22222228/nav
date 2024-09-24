@@ -1,0 +1,14 @@
+<div class="offwork family" [class.rest]="isRest">
+  <div class="title">
+    {{ isRest ? data['restTitle'] : data['workTitle'] }}
+  </div>
+  <div class="coutdown" *ngIf="!isRest">{{ countdownStr }}</div>
+  <img
+    *ngIf="isRest; else noData"
+    src="assets/img/component/rest.svg"
+    class="img restimg"
+  />
+  <ng-template #noData>
+    <img src="assets/img/component/rest.svg" class="img" />
+  </ng-template>
+</div>

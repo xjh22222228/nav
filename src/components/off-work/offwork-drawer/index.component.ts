@@ -7,11 +7,11 @@ import { $t } from 'src/locale'
 import { FormBuilder, FormGroup } from '@angular/forms'
 
 @Component({
-  selector: 'runtime-drawer',
+  selector: 'offwork-drawer',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class RuntimeDrawerComponent {
+export class OffWorkDrawerComponent {
   @Output() ok = new EventEmitter<void>()
 
   $t = $t
@@ -21,7 +21,9 @@ export class RuntimeDrawerComponent {
 
   constructor(private fb: FormBuilder) {
     this.validateForm = this.fb.group({
-      title: [''],
+      workTitle: [''],
+      restTitle: [''],
+      date: [null],
     })
   }
 
@@ -41,6 +43,7 @@ export class RuntimeDrawerComponent {
     const values = this.validateForm.value
     this.ok.emit({
       ...values,
+      date: new Date(values.date).getTime(),
       index: this.index,
     })
     this.handleClose()

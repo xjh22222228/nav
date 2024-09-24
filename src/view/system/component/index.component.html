@@ -14,9 +14,11 @@
     <ng-container [ngSwitch]="item.type">
       <app-calendar *ngSwitchCase="ComponentType.Calendar" />
       <app-runtime *ngSwitchCase="ComponentType.Runtime" />
+      <app-offwork *ngSwitchCase="ComponentType.OffWork" />
     </ng-container>
 
     <div class="text-center mt-3">
+      <div>{{ componentTitleMap[item.type] }}</div>
       <a (click)="moveUp(idx)">{{ $t('_moveUp') }}</a>
       <a (click)="moveDown(idx)" class="mx-2.5">{{ $t('_moveDown') }}</a>
       <a (click)="handleEdit(item, idx)">{{ $t('_edit') }}</a>
@@ -26,3 +28,4 @@
 
 <calendar-drawer #calendar (ok)="handleOk($event)" />
 <runtime-drawer #runtime (ok)="handleOk($event)" />
+<offwork-drawer #offwork (ok)="handleOk($event)" />

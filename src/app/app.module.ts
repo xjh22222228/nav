@@ -4,6 +4,8 @@
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
+import { registerLocaleData } from '@angular/common'
+import zh from '@angular/common/locales/zh'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -42,6 +44,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { NzDrawerModule } from 'ng-zorro-antd/drawer'
 import { NzColorPickerModule } from 'ng-zorro-antd/color-picker'
 import { NzCarouselModule } from 'ng-zorro-antd/carousel'
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker'
 
 import { NZ_I18N } from 'ng-zorro-antd/i18n'
 import { zh_CN } from 'ng-zorro-antd/i18n'
@@ -67,6 +70,8 @@ import { CalendarDrawerComponent } from '../components/calendar/calendar-drawer/
 import { ComponentGroupComponent } from '../components/component-group/index.component'
 import { RuntimeComponent } from '../components/runtime/index.component'
 import { RuntimeDrawerComponent } from '../components/runtime/runtime-drawer/index.component'
+import { OffWorkComponent } from '../components/off-work/index.component'
+import { OffWorkDrawerComponent } from '../components/off-work/offwork-drawer/index.component'
 
 import LightComponent from '../view/light/index.component'
 import SuperComponent from '../view/super/index.component'
@@ -101,6 +106,8 @@ import {
   PlusOutline,
   StopOutline,
 } from '@ant-design/icons-angular/icons'
+
+registerLocaleData(zh)
 
 const icons: IconDefinition[] = [
   CheckOutline,
@@ -154,6 +161,8 @@ const icons: IconDefinition[] = [
     CalendarComponent,
     RuntimeComponent,
     RuntimeDrawerComponent,
+    OffWorkComponent,
+    OffWorkDrawerComponent,
     CalendarDrawerComponent,
     ComponentGroupComponent,
     SafeHtmlPipe,
@@ -189,6 +198,7 @@ const icons: IconDefinition[] = [
     NzDrawerModule,
     NzColorPickerModule,
     NzCarouselModule,
+    NzTimePickerModule,
     NzSwitchModule,
     DragDropModule,
     BrowserModule,

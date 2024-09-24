@@ -6,6 +6,7 @@
     <ng-container [ngSwitch]="value">
       <app-calendar *ngSwitchCase="ComponentType.Calendar" />
       <app-runtime *ngSwitchCase="ComponentType.Runtime" />
+      <app-offwork *ngSwitchCase="ComponentType.OffWork" />
     </ng-container>
   </ng-container>
 

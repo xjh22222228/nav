@@ -50,6 +50,10 @@
     </div>
   </header>
 
+  <div class="component-box" *ngIf="commonService.settings.components.length">
+    <component-group></component-group>
+  </div>
+
   <div class="main-box">
     <div
       class="left dark-bg dark-border-color dark-scrollbar"

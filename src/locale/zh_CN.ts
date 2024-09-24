@@ -253,6 +253,9 @@ const zhCN: Record<string, any> = {
   _calendarBgColor: '背景色',
   _runtime: '运行时长',
   _runtimeTitle: '标题',
+  _offWork: '下班',
+  _workTitle: '工作标题',
+  _restTitle: '休息标题',
 }
 
 export default zhCN

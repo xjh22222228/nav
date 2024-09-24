@@ -10,19 +10,16 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { SETTING_PATH } from 'src/constants'
 import { updateFileContent, spiderWeb } from 'src/api'
-import { settings } from 'src/store'
+import { settings, components } from 'src/store'
 import { isSelfDevelop, compilerTemplate } from 'src/utils/util'
-import { ComponentType } from 'src/types'
+import { componentTitleMap } from '../component/types'
 import event from 'src/utils/mitt'
 import footTemplate from 'src/components/footer/template'
 
 // 额外添加的字段，但不添加到配置中
-const extraForm = {
+const extraForm: Record<string, any> = {
   footTemplate: '',
-  componentOptions: [
-    { label: $t('_calendar'), value: ComponentType.Calendar, checked: false },
-    { label: $t('_runtime'), value: ComponentType.Runtime, checked: false },
-  ],
+  componentOptions: [],
 }
 
 @Component({
@@ -45,12 +42,15 @@ export default class SystemSettingComponent {
     private message: NzMessageService,
     private modal: NzModalService
   ) {
-    extraForm.componentOptions.map((item) => {
+    extraForm['componentOptions'] = components.map((item) => {
       const checked = settings.components.some(
-        (value: number) => item.value === value
+        (value: number) => item.type === value
       )
-      item.checked = checked
-      return item
+      return {
+        label: componentTitleMap[item.type],
+        value: item.type,
+        checked,
+      }
     })
     const group: any = {
       ...extraForm,

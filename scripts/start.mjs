@@ -99,6 +99,21 @@ try {
   } else {
     components.push(runtime)
   }
+  idx = components.findIndex((item) => item.type === 2)
+  const offWork = {
+    workTitle: '距离下班还有',
+    restTitle: '休息啦',
+    date: new Date(2024, 7, 26, 18, 0, 0).getTime(),
+    type: 2,
+  }
+  if (idx >= 0) {
+    components[idx] = {
+      ...offWork,
+      ...components[idx],
+    }
+  } else {
+    components.push(offWork)
+  }
   fs.writeFileSync(componentPath, JSON.stringify(components))
 }
 

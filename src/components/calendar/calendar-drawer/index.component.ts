@@ -28,8 +28,9 @@ export class CalendarDrawerComponent {
 
   open(data: any, idx: number) {
     this.index = idx
-    this.validateForm.get('topColor')!.setValue(data.topColor)
-    this.validateForm.get('bgColor')!.setValue(data.bgColor)
+    for (const k in data) {
+      this.validateForm.get(k)!?.setValue(data[k])
+    }
     this.visible = true
   }
 
