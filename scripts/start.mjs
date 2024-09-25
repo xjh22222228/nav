@@ -9,6 +9,7 @@ import utc from 'dayjs/plugin/utc.js'
 import timezone from 'dayjs/plugin/timezone.js'
 import defaultDb from './db.mjs'
 import yaml from 'js-yaml'
+import LZString from 'lz-string'
 import {
   TAG_ID1,
   TAG_ID2,
@@ -56,8 +57,16 @@ let tags = []
 let search = []
 let components = []
 try {
-  db = JSON.parse(fs.readFileSync(dbPath).toString())
-} catch (error) {
+  const strings = fs.readFileSync(dbPath).toString().trim()
+  if (strings[0] === '[' && strings.at(-1) === ']') {
+    db = JSON.parse(strings)
+  } else {
+    db = JSON.parse(LZString.decompressFromBase64(strings))
+    if (!db) {
+      db = defaultDb
+    }
+  }
+} catch (e) {
   db = defaultDb
 }
 try {

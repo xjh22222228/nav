@@ -37,6 +37,7 @@ export class CountdownComponent {
         'day'
       )
       payload.dayStr = payload.dayStr < 0 ? 0 : payload.dayStr
+      payload.dayStr = payload.dayStr > 9999 ? 9999 : payload.dayStr
     }
     this.component = payload
   }

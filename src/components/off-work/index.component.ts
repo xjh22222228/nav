@@ -64,11 +64,12 @@ export class OffWorkComponent {
       const decimal = Math.floor((hours % 1) * 10) / 10
       const minutes = Math.floor((diffTime / 60) % 60)
       const seconds = Math.floor(diffTime % 60)
+      const hoursDecimal = Math.floor(hours) + decimal
       if (diffTime <= 0) {
         this.isRest = true
         return clearTimeout(this.timer)
-      } else if (hours > 0) {
-        this.countdownStr = `${Math.floor(hours) + decimal}小时`
+      } else if (hoursDecimal >= 1) {
+        this.countdownStr = `${hoursDecimal}小时`
       } else if (minutes > 0) {
         this.countdownStr = `${minutes}分钟`
       } else if (seconds >= 0) {

@@ -17,6 +17,8 @@ import {
 import { ISettings } from 'src/types'
 import { isSelfDevelop } from 'src/utils/util'
 import { isLogin } from 'src/utils/user'
+import { DB_PATH } from 'src/constants'
+import LZString from 'lz-string'
 
 const { gitRepoUrl, imageRepoUrl } = config
 const s = gitRepoUrl.split('/')
@@ -160,6 +162,9 @@ export async function updateFileContent({
   }
 
   const fileInfo = await getFileContent(path, branch)
+  if (path === DB_PATH) {
+    content = LZString.compressToBase64(content)
+  }
 
   return http
     .put(`/repos/${authorName}/${repoName}/contents/${path}`, {
