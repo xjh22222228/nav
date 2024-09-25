@@ -2,7 +2,7 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { settings, components } from 'src/store'
 import { ComponentType, IComponentProps } from 'src/types'
 
@@ -12,6 +12,8 @@ import { ComponentType, IComponentProps } from 'src/types'
   styleUrls: ['./index.component.scss'],
 })
 export class ComponentGroupComponent {
+  @Input() direction: string = ''
+
   ComponentType = ComponentType
   components: IComponentProps[] = []
 

@@ -43,6 +43,11 @@
     column-gap: 20px;
     overflow: hidden;
   }
+  .component-box {
+    width: 250px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
   .right {
     width: var(--rightWidth, 230px);
     min-width: var(--rightWidth, 230px);

@@ -1,7 +1,7 @@
 .runtime {
   pointer-events: none;
   position: relative;
-  width: 300px;
+  width: 230px;
   height: var(--componentHeight);
   max-width: 100%;
   max-height: 100%;
@@ -30,8 +30,14 @@
     line-height: 1;
     color: #d67272;
   }
+  .day {
+    vertical-align: text-bottom;
+  }
   .unit {
     font-size: 15px;
+    margin-left: 2px;
+    margin-bottom: 2px;
+    font-weight: 500;
   }
   .img {
     position: absolute;

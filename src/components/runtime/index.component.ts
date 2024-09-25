@@ -17,11 +17,19 @@ export class RuntimeComponent {
 
   component: Record<string, any> = {}
   runDays = 0
+  unit = ''
 
   constructor() {
     let now = Date.now() - settings.runtime
     now = now < 0 ? 0 : now
-    this.runDays = Math.floor(now / (1000 * 60 * 60 * 24))
+    const diffYear = Math.floor(now / (1000 * 60 * 60 * 24 * 365))
+    if (diffYear > 0) {
+      this.runDays = diffYear
+      this.unit = '年'
+    } else {
+      this.runDays = Math.floor(now / (1000 * 60 * 60 * 24))
+      this.unit = '天'
+    }
   }
 
   ngOnInit() {

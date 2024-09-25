@@ -3,6 +3,13 @@
   [class.noimg]="commonService.settings.lightImages.length <= 0"
 >
   <div class="light-box">
+    <div
+      class="component-box hidden-scrollbar hidden 2xl:block"
+      *ngIf="commonService.settings.components.length"
+    >
+      <component-group direction="column"></component-group>
+    </div>
+
     <main class="homepage dark-border-color dark-bg">
       <nav
         *ngIf="commonService.websiteList.length"
@@ -135,9 +142,7 @@
     </div>
   </div>
 
-  <div>
-    <app-footer [content]="commonService.settings.lightFooterHTML" />
-  </div>
+  <app-footer [content]="commonService.settings.lightFooterHTML" />
   <app-fixbar
     (onCollapse)="commonService.onCollapseAll()"
     [collapsed]="commonService.collapsed"

@@ -1,6 +1,7 @@
 <div
   class="component-group dark-scrollbar justify-center md:justify-start"
   *ngIf="components.length > 0"
+  [class.directionCol]="direction === 'column'"
 >
   <ng-container *ngFor="let item of components; trackBy: trackByItem">
     <ng-container [ngSwitch]="item.type">

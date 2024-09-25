@@ -88,21 +88,6 @@ try {
     components.push(calendar)
   }
   //
-  idx = components.findIndex((item) => item.type === 3)
-  const runtime = {
-    type: 3,
-    id: -3,
-    title: '已稳定运行',
-  }
-  if (idx >= 0) {
-    components[idx] = {
-      ...runtime,
-      ...components[idx],
-    }
-  } else {
-    components.push(runtime)
-  }
-  //
   idx = components.findIndex((item) => item.type === 2)
   const offWork = {
     type: 2,
@@ -157,6 +142,21 @@ try {
     components[idx].url = replaceJsdelivrCDN(components[idx].url, settings)
   } else {
     components.push(countdown)
+  }
+  //
+  idx = components.findIndex((item) => item.type === 3)
+  const runtime = {
+    type: 3,
+    id: -3,
+    title: '已稳定运行',
+  }
+  if (idx >= 0) {
+    components[idx] = {
+      ...runtime,
+      ...components[idx],
+    }
+  } else {
+    components.push(runtime)
   }
   fs.writeFileSync(componentPath, JSON.stringify(components))
 }
