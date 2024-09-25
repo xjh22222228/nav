@@ -23,7 +23,8 @@
               "nprogress",
               "clipboard",
               "file-saver",
-              "localforage"
+              "localforage",
+              "dayjs"
             ],
             "outputPath": "dist",
             "index": "src/main.html",

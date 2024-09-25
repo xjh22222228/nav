@@ -8,17 +8,27 @@
 >
   <form nz-form [formGroup]="validateForm" *nzDrawerContent>
     <nz-form-item>
-      <nz-form-label [nzSpan]="8">{{ $t('_calendarTopColor') }}</nz-form-label>
+      <nz-form-label [nzSpan]="8">{{ $t('_topColor') }}</nz-form-label>
       <nz-form-control [nzSpan]="16">
         <nz-color-picker nzTrigger="hover" formControlName="topColor" />
       </nz-form-control>
+      <div>
+        <nz-form-control>
+          <input nz-input formControlName="topColor" />
+        </nz-form-control>
+      </div>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSpan]="8">{{ $t('_calendarBgColor') }}</nz-form-label>
+      <nz-form-label [nzSpan]="8">{{ $t('_bgColor') }}</nz-form-label>
       <nz-form-control [nzSpan]="16">
         <nz-color-picker nzTrigger="hover" formControlName="bgColor" />
       </nz-form-control>
+      <div>
+        <nz-form-control>
+          <input nz-input formControlName="bgColor" />
+        </nz-form-control>
+      </div>
     </nz-form-item>
   </form>
 

@@ -45,6 +45,7 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer'
 import { NzColorPickerModule } from 'ng-zorro-antd/color-picker'
 import { NzCarouselModule } from 'ng-zorro-antd/carousel'
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker'
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker'
 
 import { NZ_I18N } from 'ng-zorro-antd/i18n'
 import { zh_CN } from 'ng-zorro-antd/i18n'
@@ -74,6 +75,8 @@ import { OffWorkComponent } from '../components/off-work/index.component'
 import { OffWorkDrawerComponent } from '../components/off-work/drawer/index.component'
 import { ImageComponent } from '../components/image/index.component'
 import { ImageDrawerComponent } from '../components/image/drawer/index.component'
+import { CountdownComponent } from '../components/countdown/index.component'
+import { CountdownDrawerComponent } from '../components/countdown/drawer/index.component'
 
 import LightComponent from '../view/light/index.component'
 import SuperComponent from '../view/super/index.component'
@@ -166,6 +169,8 @@ const icons: IconDefinition[] = [
     OffWorkComponent,
     ImageComponent,
     ImageDrawerComponent,
+    CountdownComponent,
+    CountdownDrawerComponent,
     OffWorkDrawerComponent,
     CalendarDrawerComponent,
     ComponentGroupComponent,
@@ -203,6 +208,7 @@ const icons: IconDefinition[] = [
     NzColorPickerModule,
     NzCarouselModule,
     NzTimePickerModule,
+    NzDatePickerModule,
     NzSwitchModule,
     DragDropModule,
     BrowserModule,

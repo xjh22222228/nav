@@ -51,7 +51,7 @@
 - 🍰 支持检测网站存活状态
 - 🍰 支持配置仅自己可见
 - 🍰 自动抓取网站图标/名称/描述
-- 🍰 海量小组件配置
+- 🍰 海量小组件个性化定制
 - 🍰 支持暗黑模式
 - 🍰 支持后台管理, 无需部署
 - 🍰 支持多种浏览模式，创新
@@ -135,7 +135,7 @@
 | | √| address | 自有部署, 一旦填写认为你是自有部署 |
 |√| √| email | 用户提交收录通知 |
 | | √| mailConfig | 自有部署，用户收录通知邮箱配置 |
-|√ | | imageGitRepoUrl | 图片仓库, 默认主仓库 `https://github.com/xjh22222228/image?branch=main` |
+|√ | | imageRepoUrl | 图片仓库, 默认主仓库 `https://github.com/xjh22222228/image?branch=main` |
 
 ## 后台
 

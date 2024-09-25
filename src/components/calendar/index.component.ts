@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core'
 import { getDateTime, getDayOfYear } from 'src/utils'
 import { components } from 'src/store'
 import { ComponentType, IComponentProps } from 'src/types'
+import event from 'src/utils/mitt'
 
 @Component({
   selector: 'app-calendar',
@@ -15,6 +16,7 @@ import { ComponentType, IComponentProps } from 'src/types'
 export class CalendarComponent {
   @Input() data!: IComponentProps
 
+  component: Record<string, any> = {}
   date = ''
   day = 0
   week = ''
@@ -28,10 +30,15 @@ export class CalendarComponent {
     this.dayOfYear = getDayOfYear()
   }
 
-  get component(): any {
+  ngOnInit() {
+    this.init()
+    event.on('COMPONENT_OK', this.init.bind(this))
+  }
+
+  init() {
     const data = components.find(
       (item) => item.type === ComponentType.Calendar && item.id === this.data.id
     )
-    return data || {}
+    this.component = data || {}
   }
 }

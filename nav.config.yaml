@@ -40,5 +40,5 @@ mailConfig:
   message: 有用户提交网站收录啦
 
 # 默认主仓库，当仓库作为私密，上传的图片是无法访问的，需要转移到公开仓库
-# 'https://github.com/xjh22222228/image?branch=main'
-imageGitRepoUrl: ''
+# e.g 'https://github.com/xjh22222228/image?branch=main'
+imageRepoUrl: ''

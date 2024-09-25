@@ -391,6 +391,7 @@ export function isMobile() {
   return 'ontouchstart' in window
 }
 
+// 今年第几天
 export function getDayOfYear() {
   const now = new Date()
   const startOfYear = new Date(now.getFullYear(), 0, 0)

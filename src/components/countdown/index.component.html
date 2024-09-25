@@ -1,0 +1,19 @@
+<div class="holiday family">
+  <div class="top" [style.background]="component['topColor']">
+    {{ component['title'] }}
+  </div>
+  <div
+    class="box"
+    [style.backgroundImage]="
+      component['url'] && 'url(' + component['url'] + ')'
+    "
+    [style.backgroundColor]="component['bgColor']"
+  >
+    <div class="days" [style.color]="component['dayColor']">
+      {{ component['dayStr'] }}
+    </div>
+    <div class="date" [style.color]="component['dateColor']">
+      - {{ component['dateStr'] }} -
+    </div>
+  </div>
+</div>

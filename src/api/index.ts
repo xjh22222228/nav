@@ -18,15 +18,15 @@ import { ISettings } from 'src/types'
 import { isSelfDevelop } from 'src/utils/util'
 import { isLogin } from 'src/utils/user'
 
-const { gitRepoUrl, imageGitRepoUrl } = config
+const { gitRepoUrl, imageRepoUrl } = config
 const s = gitRepoUrl.split('/')
 const DEFAULT_BRANCH = config.branch
 
 export let imageRepo = ''
 export let imageBranch = ''
 
-if (imageGitRepoUrl) {
-  const split = imageGitRepoUrl.split('?')
+if (imageRepoUrl) {
+  const split = imageRepoUrl.split('?')
   imageRepo = split[0].split('/').at(-1) || ''
   const query = qs.parse(split.at(-1) || '')
   if (query['branch']) {
@@ -90,6 +90,9 @@ export function spiderWeb(data?: any) {
 // 创建分支
 export async function createBranch(branch: string) {
   if (isSelfDevelop) {
+    return
+  }
+  if (imageRepoUrl) {
     return
   }
 

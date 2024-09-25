@@ -19,6 +19,7 @@
       <app-runtime *ngSwitchCase="ComponentType.Runtime" [data]="item" />
       <app-offwork *ngSwitchCase="ComponentType.OffWork" [data]="item" />
       <app-image *ngSwitchCase="ComponentType.Image" [data]="item" />
+      <app-countdown *ngSwitchCase="ComponentType.Countdown" [data]="item" />
     </ng-container>
 
     <div class="text-center mt-3">
@@ -47,3 +48,4 @@
 <runtime-drawer #runtime (ok)="handleOk($event)" />
 <offwork-drawer #offwork (ok)="handleOk($event)" />
 <image-drawer #image (ok)="handleOk($event)" />
+<countdown-drawer #countdown (ok)="handleOk($event)" />

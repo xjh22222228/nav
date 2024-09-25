@@ -14,8 +14,10 @@ import { CalendarDrawerComponent } from 'src/components/calendar/drawer/index.co
 import { RuntimeDrawerComponent } from 'src/components/runtime/drawer/index.component'
 import { OffWorkDrawerComponent } from 'src/components/off-work/drawer/index.component'
 import { ImageDrawerComponent } from 'src/components/image/drawer/index.component'
+import { CountdownDrawerComponent } from 'src/components/countdown/drawer/index.component'
 import { componentTitleMap } from './types'
 import { isSelfDevelop } from 'src/utils/util'
+import event from 'src/utils/mitt'
 
 @Component({
   selector: 'system-component',
@@ -27,6 +29,7 @@ export default class SystemComponentComponent {
   @ViewChild('runtime') runtimeChild!: RuntimeDrawerComponent
   @ViewChild('offwork') offworkChild!: OffWorkDrawerComponent
   @ViewChild('image') imageChild!: ImageDrawerComponent
+  @ViewChild('countdown') countdownChild!: CountdownDrawerComponent
 
   $t = $t
   isSelfDevelop = isSelfDevelop
@@ -67,10 +70,11 @@ export default class SystemComponentComponent {
   handleEdit(data: any, idx: number) {
     const type = data.type
     const types: Record<string, any> = {
-      1: this.calendarChild,
-      2: this.offworkChild,
-      3: this.runtimeChild,
-      4: this.imageChild,
+      [ComponentType.Calendar]: this.calendarChild,
+      [ComponentType.OffWork]: this.offworkChild,
+      [ComponentType.Runtime]: this.runtimeChild,
+      [ComponentType.Image]: this.imageChild,
+      [ComponentType.Countdown]: this.countdownChild,
     }
     types[type]?.open(data, idx)
   }
@@ -92,6 +96,7 @@ export default class SystemComponentComponent {
       ...this.components[index],
       ...values,
     }
+    event.emit('COMPONENT_OK')
   }
 
   handleSubmit() {

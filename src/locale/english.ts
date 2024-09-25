@@ -257,8 +257,8 @@ const english: Record<string, any> = {
   _calendar: 'Calendar',
   _submit: 'Submit',
   _cancel: 'Cancel',
-  _calendarTopColor: 'Top background color',
-  _calendarBgColor: 'Background color',
+  _topColor: 'Top background color',
+  _bgColor: 'Background color',
   _runtime: 'Running time',
   _runtimeTitle: 'Title',
   _offWork: 'Off work',
@@ -266,6 +266,11 @@ const english: Record<string, any> = {
   _restTitle: 'Rest title',
   _image: 'Image',
   _text: 'Text',
+  _countdown: 'Count down',
+  _dateColor: 'Date color',
+  _timeColor: 'Time color',
+  _date: 'Date',
+  _time: 'Time',
 }
 
 export default english

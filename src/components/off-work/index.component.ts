@@ -5,6 +5,7 @@
 import { Component, Input } from '@angular/core'
 import { components } from 'src/store'
 import { ComponentType, IComponentProps } from 'src/types'
+import event from 'src/utils/mitt'
 
 @Component({
   selector: 'app-offwork',
@@ -28,6 +29,10 @@ export class OffWorkComponent {
 
   ngOnInit() {
     this.init()
+    event.on('COMPONENT_OK', () => {
+      clearTimeout(this.timer)
+      this.init()
+    })
   }
 
   ngOnDestroy() {

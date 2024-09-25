@@ -20,7 +20,7 @@ export enum ComponentType {
   OffWork = 2,
   Runtime = 3,
   Image = 4,
-  Holiday = 5,
+  Countdown = 5,
 }
 
 export interface IComponentProps {

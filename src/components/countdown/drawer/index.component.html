@@ -1,0 +1,86 @@
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="visible"
+  nzPlacement="right"
+  [nzTitle]="$t('_edit')"
+  (nzOnClose)="handleClose()"
+  [nzFooter]="footerTpl"
+>
+  <form nz-form [formGroup]="validateForm" *nzDrawerContent>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">{{ $t('_topColor') }}</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-color-picker nzTrigger="hover" formControlName="topColor" />
+      </nz-form-control>
+      <div>
+        <nz-form-control>
+          <input nz-input formControlName="topColor" />
+        </nz-form-control>
+      </div>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">{{ $t('_image') }}</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input formControlName="url" nz-input />
+        </nz-input-group>
+
+        <ng-template #suffixIconSearch>
+          <app-upload (onChange)="onUploadImage($event)"></app-upload>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">{{ $t('_bgColor') }}</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-color-picker nzTrigger="hover" formControlName="bgColor" />
+      </nz-form-control>
+      <div>
+        <nz-form-control>
+          <input nz-input formControlName="bgColor" />
+        </nz-form-control>
+      </div>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">{{ $t('_title') }}</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <input nz-input formControlName="title" maxlength="20" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">{{ $t('_dateColor') }}</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-color-picker nzTrigger="hover" formControlName="dateColor" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">{{ $t('_timeColor') }}</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-color-picker nzTrigger="hover" formControlName="dayColor" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">{{ $t('_date') }}</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-date-picker formControlName="date"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px" (click)="handleClose()">
+        {{ $t('_cancel') }}
+      </button>
+      <button nz-button nzType="primary" (click)="handleSubmit()">
+        {{ $t('_submit') }}
+      </button>
+    </div>
+  </ng-template>
+</nz-drawer>

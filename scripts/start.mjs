@@ -32,7 +32,7 @@ const config = yaml.load(fs.readFileSync(configPath))
 const configJson = {
   version: pkgJson.version,
   gitRepoUrl: config.gitRepoUrl,
-  imageGitRepoUrl: config.imageGitRepoUrl,
+  imageRepoUrl: config.imageRepoUrl,
   branch: config.branch,
   hashMode: config.hashMode,
   address: config.address,
@@ -138,21 +138,25 @@ try {
   }
   //
   idx = components.findIndex((item) => item.type === 5)
-  const holiday = {
+  const countdown = {
     type: 5,
     id: -5,
-    url: 'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/component1.jpg',
+    topColor: 'linear-gradient(90deg, #FAD961 0%, #F76B1C 100%)',
+    bgColor: 'rgb(235,129,124)',
+    url: 'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/component2.jpg',
     title: '距离春节还有',
-    date: dayjs.tz(new Date(2025, 0, 29)).valueOf(),
+    dateColor: '#fff',
+    dayColor: '#fff',
+    date: '2025-01-29',
   }
   if (idx >= 0) {
     components[idx] = {
-      ...holiday,
+      ...countdown,
       ...components[idx],
     }
     components[idx].url = replaceJsdelivrCDN(components[idx].url, settings)
   } else {
-    components.push(holiday)
+    components.push(countdown)
   }
   fs.writeFileSync(componentPath, JSON.stringify(components))
 }
@@ -170,7 +174,7 @@ try {
       {
         name: '百度',
         url: 'https://www.baidu.com/s?wd=',
-        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/baidu.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/baidu.svg',
         placeholder: '百度一下',
         blocked: false,
         isInner: false,
@@ -178,21 +182,21 @@ try {
       {
         name: 'Google',
         url: 'https://www.google.com/search?q=',
-        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/google.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/google.svg',
         blocked: false,
         isInner: false,
       },
       {
         name: '必应',
         url: 'https://cn.bing.com/search?q=',
-        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/bing.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/bing.svg',
         blocked: false,
         isInner: false,
       },
       {
         name: 'GitHub',
         url: 'https://github.com/search?q=',
-        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/github.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/github.svg',
         placeholder: 'Search GitHub',
         blocked: false,
         isInner: false,
@@ -200,14 +204,14 @@ try {
       {
         name: '知乎',
         url: 'https://www.zhihu.com/search?type=content&q=',
-        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/zhihu.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/zhihu.svg',
         blocked: false,
         isInner: false,
       },
       {
         name: '豆瓣',
         url: 'https://search.douban.com/book/subject_search?search_text=',
-        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/douban.svg',
+        icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/douban.svg',
         placeholder: '书名、作者、ISBN',
         blocked: false,
         isInner: false,
@@ -330,7 +334,7 @@ try {
   settings.superTitle ||= ''
   const defImgs = [
     {
-      src: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-web@image/nav-1717494364392-ad.jpg',
+      src: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/nav-1717494364392-ad.jpg',
       url: 'https://haokawx.lot-ml.com/Product/index/454266',
     },
     {
