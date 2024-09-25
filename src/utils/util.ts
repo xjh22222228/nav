@@ -18,3 +18,27 @@ export function compilerTemplate(str: string) {
     .replaceAll('${hostname}', window.location.hostname)
     .replaceAll('${year}', String(new Date().getFullYear()))
 }
+
+export function addDark() {
+  const darkCSS = '//unpkg.com/ng-zorro-antd@18.1.1/ng-zorro-antd.dark.min.css'
+  const id = 'dark-css'
+  const darkNode = document.getElementById(id)
+  if (darkNode) {
+    return
+  }
+  const link = document.createElement('link')
+  link.rel = 'stylesheet'
+  link.href = darkCSS
+  link.id = id
+  document.body.appendChild(link)
+  document.documentElement.classList.add('dark-container', 'dark')
+}
+
+export function removeDark() {
+  const id = 'dark-css'
+  const darkNode = document.getElementById(id)
+  document.documentElement.classList.remove('dark-container', 'dark')
+  if (darkNode) {
+    darkNode.parentNode?.removeChild(darkNode)
+  }
+}

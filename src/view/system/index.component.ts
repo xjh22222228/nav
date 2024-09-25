@@ -8,7 +8,7 @@ import { $t } from 'src/locale'
 import { isLogin, userLogout, getAuthCode } from 'src/utils/user'
 import { Router } from '@angular/router'
 import { VERSION } from 'src/constants'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop, removeDark } from 'src/utils/util'
 
 @Component({
   selector: 'app-system',
@@ -27,7 +27,7 @@ export default class SystemComponent {
 
   constructor(private router: Router) {
     // 解决暗黑模式部分样式不正确问题，后台没有暗黑
-    document.documentElement.classList.remove('dark-container', 'dark')
+    removeDark()
   }
 
   ngOnInit() {
