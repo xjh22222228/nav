@@ -3,8 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
-import { components } from 'src/store'
-import { ComponentType, IComponentProps } from 'src/types'
+import { IComponentProps } from 'src/types'
 import dayjs from 'dayjs'
 import event from 'src/utils/mitt'
 
@@ -21,21 +20,20 @@ export class CountdownComponent {
 
   ngOnInit() {
     this.init()
-    event.on('COMPONENT_OK', this.init.bind(this))
+    event.on('COMPONENT_OK', () => {
+      setTimeout(() => {
+        this.init()
+      }, 100)
+    })
   }
 
   init() {
-    const data = components.find(
-      (item) =>
-        item.type === ComponentType.Countdown && item.id === this.data.id
-    )
-    const payload: any = { ...data }
-    if (payload.date) {
-      payload.dateStr = dayjs(payload.date).format('YYYY.MM.DD')
-      payload.dayStr = dayjs(dayjs(payload.date).format('YYYY-MM-DD')).diff(
-        dayjs().format('YYYY-MM-DD'),
-        'day'
-      )
+    const payload: any = {}
+    if (this.data['date']) {
+      payload.dateStr = dayjs(this.data['date']).format('YYYY.MM.DD')
+      payload.dayStr = dayjs(
+        dayjs(this.data['date']).format('YYYY-MM-DD')
+      ).diff(dayjs().format('YYYY-MM-DD'), 'day')
       payload.dayStr = payload.dayStr < 0 ? 0 : payload.dayStr
       payload.dayStr = payload.dayStr > 9999 ? 9999 : payload.dayStr
     }

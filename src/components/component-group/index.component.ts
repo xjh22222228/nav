@@ -25,7 +25,10 @@ export class ComponentGroupComponent {
         (c) => c.type === item.type && c.id === item.id
       )
       if (has) {
-        c.push(has)
+        c.push({
+          ...item,
+          ...has,
+        })
       }
     })
     this.components = c

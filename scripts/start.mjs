@@ -168,6 +168,21 @@ try {
   } else {
     components.push(runtime)
   }
+  //
+  idx = components.findIndex((item) => item.type === 6)
+  const html = {
+    type: 6,
+    id: -6,
+    html: 'hello world',
+  }
+  if (idx >= 0) {
+    components[idx] = {
+      ...html,
+      ...components[idx],
+    }
+  } else {
+    components.push(html)
+  }
   fs.writeFileSync(componentPath, JSON.stringify(components))
 }
 

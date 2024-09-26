@@ -3,8 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
-import { components } from 'src/store'
-import { ComponentType, IComponentProps } from 'src/types'
+import { IComponentProps } from 'src/types'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -18,7 +17,6 @@ export class OffWorkComponent {
   countdownStr = ''
   isRest = false
   timer: any
-  component: Record<string, any> = {}
 
   constructor() {
     document.addEventListener(
@@ -31,7 +29,9 @@ export class OffWorkComponent {
     this.init()
     event.on('COMPONENT_OK', () => {
       clearTimeout(this.timer)
-      this.init()
+      setTimeout(() => {
+        this.init()
+      }, 100)
     })
   }
 
@@ -49,19 +49,15 @@ export class OffWorkComponent {
   }
 
   init() {
-    const component = components.find(
-      (item) => item.type === ComponentType.OffWork && item.id === this.data?.id
-    )
-    if (component) {
-      this.component = component
+    if (this.data) {
       const now = new Date()
       const nowTime = now.getTime()
-      const startDate = new Date(component['startDate'])
+      const startDate = new Date(this.data['startDate'])
       startDate.setFullYear(now.getFullYear())
       startDate.setMonth(now.getMonth())
       startDate.setDate(now.getDate())
       const startTime = startDate.getTime()
-      const date = new Date(component['date'])
+      const date = new Date(this.data['date'])
       date.setFullYear(now.getFullYear())
       date.setMonth(now.getMonth())
       date.setDate(now.getDate())

@@ -10,6 +10,11 @@
       <app-offwork *ngSwitchCase="ComponentType.OffWork" [data]="item" />
       <app-image *ngSwitchCase="ComponentType.Image" [data]="item" />
       <app-countdown *ngSwitchCase="ComponentType.Countdown" [data]="item" />
+      <app-html
+        *ngSwitchCase="ComponentType.HTML"
+        [data]="item"
+        [class.hidden]="!item['html']"
+      />
     </ng-container>
   </ng-container>
 
