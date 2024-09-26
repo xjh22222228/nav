@@ -263,6 +263,8 @@ const zhCN: Record<string, any> = {
   _timeColor: '时间颜色',
   _date: '日期',
   _time: '时间',
+  _workHours: '工作时间',
+  _breakTime: '休息时间',
 }
 
 export default zhCN

@@ -55,25 +55,35 @@ export class OffWorkComponent {
     if (component) {
       this.component = component
       const now = new Date()
+      const nowTime = now.getTime()
+      const startDate = new Date(component['startDate'])
+      startDate.setFullYear(now.getFullYear())
+      startDate.setMonth(now.getMonth())
+      startDate.setDate(now.getDate())
+      const startTime = startDate.getTime()
       const date = new Date(component['date'])
       date.setFullYear(now.getFullYear())
       date.setMonth(now.getMonth())
       date.setDate(now.getDate())
-      const diffTime = (date.getTime() - now.getTime()) / 1000
+      const dateTime = date.getTime()
+      const diffTime = (dateTime - nowTime) / 1000
       const hours = diffTime / (60 * 60)
       const decimal = Math.floor((hours % 1) * 10) / 10
       const minutes = Math.floor((diffTime / 60) % 60)
       const seconds = Math.floor(diffTime % 60)
       const hoursDecimal = Math.floor(hours) + decimal
-      if (diffTime <= 0) {
+
+      if (nowTime >= startTime && nowTime <= dateTime) {
+        if (hoursDecimal >= 1) {
+          this.countdownStr = `${hoursDecimal}小时`
+        } else if (minutes > 0) {
+          this.countdownStr = `${minutes}分钟`
+        } else if (seconds >= 0) {
+          this.countdownStr = `${seconds}秒`
+        }
+      } else {
         this.isRest = true
         return clearTimeout(this.timer)
-      } else if (hoursDecimal >= 1) {
-        this.countdownStr = `${hoursDecimal}小时`
-      } else if (minutes > 0) {
-        this.countdownStr = `${minutes}分钟`
-      } else if (seconds >= 0) {
-        this.countdownStr = `${seconds}秒`
       }
       this.isRest = false
     }
