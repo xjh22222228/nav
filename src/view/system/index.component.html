@@ -42,24 +42,24 @@
             <li
               nz-menu-item
               [nzSelected]="currentMenu === 'component'"
-              (click)="goRoute('/system/component', !isAuthz && !isSelfDevelop)"
-              [nzDisabled]="!isAuthz && !isSelfDevelop"
+              (click)="goRoute('/system/component')"
+              *ngIf="isAuthz || isSelfDevelop"
             >
               {{ $t('_components') }}
             </li>
             <li
               nz-menu-item
               [nzSelected]="currentMenu === 'bookmarkExport'"
-              (click)="goRoute('/system/bookmarkExport', !isAuthz)"
-              [nzDisabled]="!isAuthz"
+              (click)="goRoute('/system/bookmarkExport')"
+              *ngIf="isAuthz"
             >
               {{ $t('_bookmarkExport') }}
             </li>
             <li
               nz-menu-item
               [nzSelected]="currentMenu === 'collect'"
-              (click)="goRoute('/system/collect', !isAuthz && !isSelfDevelop)"
-              [nzDisabled]="!isAuthz && !isSelfDevelop"
+              (click)="goRoute('/system/collect')"
+              *ngIf="isAuthz || isSelfDevelop"
             >
               {{ $t('_userCollect') }}
             </li>
