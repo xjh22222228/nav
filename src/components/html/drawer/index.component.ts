@@ -5,14 +5,13 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { $t } from 'src/locale'
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { NzMessageService } from 'ng-zorro-antd/message'
 
 @Component({
-  selector: 'offwork-drawer',
+  selector: 'html-drawer',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class OffWorkDrawerComponent {
+export class HTMLDrawerComponent {
   @Output() ok = new EventEmitter<void>()
 
   $t = $t
@@ -20,12 +19,9 @@ export class OffWorkDrawerComponent {
   validateForm!: FormGroup
   index = 0
 
-  constructor(private fb: FormBuilder, private message: NzMessageService) {
+  constructor(private fb: FormBuilder) {
     this.validateForm = this.fb.group({
-      workTitle: [''],
-      restTitle: [''],
-      startDate: [null],
-      date: [null],
+      html: [''],
     })
   }
 
@@ -43,15 +39,8 @@ export class OffWorkDrawerComponent {
 
   handleSubmit() {
     const values = this.validateForm.value
-    const startDate = new Date(values.startDate).getTime()
-    const date = new Date(values.date).getTime()
-    if (startDate >= date) {
-      return this.message.error('休息时间需要比工作时间大')
-    }
     this.ok.emit({
       ...values,
-      startDate,
-      date,
       index: this.index,
     })
     this.handleClose()

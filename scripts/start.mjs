@@ -103,7 +103,8 @@ try {
     id: -2,
     workTitle: '距离下班还有',
     restTitle: '休息啦',
-    date: dayjs.tz(new Date(2024, 7, 26, 18, 0, 0)).valueOf(),
+    startDate: new Date(2018, 3, 26, 9, 0, 0).getTime(),
+    date: new Date(2018, 3, 26, 18, 0, 0).getTime(),
   }
   if (idx >= 0) {
     components[idx] = {
@@ -166,6 +167,21 @@ try {
     }
   } else {
     components.push(runtime)
+  }
+  //
+  idx = components.findIndex((item) => item.type === 6)
+  const html = {
+    type: 6,
+    id: -6,
+    html: 'hello world',
+  }
+  if (idx >= 0) {
+    components[idx] = {
+      ...html,
+      ...components[idx],
+    }
+  } else {
+    components.push(html)
   }
   fs.writeFileSync(componentPath, JSON.stringify(components))
 }

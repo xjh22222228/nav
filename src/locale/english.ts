@@ -271,6 +271,8 @@ const english: Record<string, any> = {
   _timeColor: 'Time color',
   _date: 'Date',
   _time: 'Time',
+  _workHours: 'Work hours',
+  _breakTime: 'Break time',
 }
 
 export default english

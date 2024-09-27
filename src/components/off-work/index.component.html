@@ -1,6 +1,6 @@
 <div class="offwork family citems" [class.rest]="isRest">
   <div class="title">
-    {{ isRest ? component['restTitle'] : component['workTitle'] }}
+    {{ isRest ? data['restTitle'] : data['workTitle'] }}
   </div>
   <div class="coutdown" *ngIf="!isRest">{{ countdownStr }}</div>
   <img

@@ -3,8 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
-import { components } from 'src/store'
-import { ComponentType, IComponentProps } from 'src/types'
+import { IComponentProps } from 'src/types'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -18,7 +17,6 @@ export class OffWorkComponent {
   countdownStr = ''
   isRest = false
   timer: any
-  component: Record<string, any> = {}
 
   constructor() {
     document.addEventListener(
@@ -31,7 +29,9 @@ export class OffWorkComponent {
     this.init()
     event.on('COMPONENT_OK', () => {
       clearTimeout(this.timer)
-      this.init()
+      setTimeout(() => {
+        this.init()
+      }, 100)
     })
   }
 
@@ -49,31 +49,37 @@ export class OffWorkComponent {
   }
 
   init() {
-    const component = components.find(
-      (item) => item.type === ComponentType.OffWork && item.id === this.data?.id
-    )
-    if (component) {
-      this.component = component
+    if (this.data) {
       const now = new Date()
-      const date = new Date(component['date'])
+      const nowTime = now.getTime()
+      const startDate = new Date(this.data['startDate'])
+      startDate.setFullYear(now.getFullYear())
+      startDate.setMonth(now.getMonth())
+      startDate.setDate(now.getDate())
+      const startTime = startDate.getTime()
+      const date = new Date(this.data['date'])
       date.setFullYear(now.getFullYear())
       date.setMonth(now.getMonth())
       date.setDate(now.getDate())
-      const diffTime = (date.getTime() - now.getTime()) / 1000
+      const dateTime = date.getTime()
+      const diffTime = (dateTime - nowTime) / 1000
       const hours = diffTime / (60 * 60)
       const decimal = Math.floor((hours % 1) * 10) / 10
       const minutes = Math.floor((diffTime / 60) % 60)
       const seconds = Math.floor(diffTime % 60)
       const hoursDecimal = Math.floor(hours) + decimal
-      if (diffTime <= 0) {
+
+      if (nowTime >= startTime && nowTime <= dateTime) {
+        if (hoursDecimal >= 1) {
+          this.countdownStr = `${hoursDecimal}小时`
+        } else if (minutes > 0) {
+          this.countdownStr = `${minutes}分钟`
+        } else if (seconds >= 0) {
+          this.countdownStr = `${seconds}秒`
+        }
+      } else {
         this.isRest = true
         return clearTimeout(this.timer)
-      } else if (hoursDecimal >= 1) {
-        this.countdownStr = `${hoursDecimal}小时`
-      } else if (minutes > 0) {
-        this.countdownStr = `${minutes}分钟`
-      } else if (seconds >= 0) {
-        this.countdownStr = `${seconds}秒`
       }
       this.isRest = false
     }
