@@ -35,7 +35,6 @@
           <input
             formControlName="title"
             nz-input
-            [placeholder]="$t('_webTitle')"
             [readonly]="getting"
             [placeholder]="getting ? $t('_pendingGet') : ''"
           />
@@ -132,7 +131,6 @@
         <nz-form-control [nzSpan]="20">
           <textarea
             formControlName="desc"
-            [placeholder]="settings.description"
             nz-input
             [nzAutosize]="{ minRows: 3, maxRows: 5 }"
             [readonly]="getting"

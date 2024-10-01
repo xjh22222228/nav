@@ -16,9 +16,9 @@
     >
       <img
         class="bgimg"
-        [class.h-full]="height > 0"
         [src]="item.src"
         draggable="false"
+        [ngStyle]="{ height: height <= 0 ? '' : height + 'px' }"
       />
     </div>
   </nz-carousel>

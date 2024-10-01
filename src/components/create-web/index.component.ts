@@ -104,8 +104,7 @@ export class CreateWebComponent {
     if (detail) {
       if (Array.isArray(detail.tags)) {
         detail.tags.forEach((item: IWebTag) => {
-          // @ts-ignore
-          this.validateForm?.get('urlArr').push?.(
+          ;(this.validateForm?.get('urlArr') as FormArray).push?.(
             this.fb.group({
               id: Number(item.id),
               name: tagMap[item.id].name ?? '',
@@ -185,8 +184,7 @@ export class CreateWebComponent {
   }
 
   addMoreUrl() {
-    // @ts-ignore
-    this.validateForm.get('urlArr').push(
+    ;(this.validateForm.get('urlArr') as FormArray).push(
       this.fb.group({
         id: '',
         name: '',
@@ -196,8 +194,7 @@ export class CreateWebComponent {
   }
 
   lessMoreUrl(idx: number) {
-    // @ts-ignore
-    this.validateForm.get('urlArr').removeAt(idx)
+    ;(this.validateForm.get('urlArr') as FormArray).removeAt(idx)
   }
 
   onChangeFile(data: any) {

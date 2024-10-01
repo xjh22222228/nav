@@ -41,8 +41,10 @@ const english: Record<string, any> = {
   _prevDevTime: 'Last build time',
   _unknow: 'Unknow',
   _repeatOper: 'Please do not operate frequently',
-  _syncDataOut: isSelfDevelop ? 'OK to sync' : 'Synchronize data to remote',
-  _confirmSync: 'OK to sync',
+  _syncDataOut: isSelfDevelop
+    ? 'Are you sure to save'
+    : 'Synchronize data to remote',
+  _confirmSync: 'OK',
   _confirmSyncTip: isSelfDevelop
     ? ''
     : 'Are you sure to synchronize all data to the remote end?',
@@ -273,6 +275,7 @@ const english: Record<string, any> = {
   _time: 'Time',
   _workHours: 'Work hours',
   _breakTime: 'Break time',
+  _holiday: 'Holiday',
 }
 
 export default english

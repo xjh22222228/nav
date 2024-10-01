@@ -12,4 +12,5 @@ export const componentTitleMap: Record<string, any> = {
   [ComponentType.Image]: $t('_image'),
   [ComponentType.Countdown]: $t('_countdown'),
   [ComponentType.HTML]: 'HTML',
+  [ComponentType.Holiday]: $t('_holiday'),
 }

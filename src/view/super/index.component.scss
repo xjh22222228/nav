@@ -109,7 +109,8 @@
   }
 
   .component-box {
-    width: var(--width);
+    min-width: var(--width);
+    max-width: 100%;
     margin: 10px auto -10px;
   }
 

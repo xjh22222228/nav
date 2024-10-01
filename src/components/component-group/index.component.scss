@@ -21,15 +21,21 @@
   user-select: none;
   column-gap: 15px;
   justify-content: flex-start;
+  max-width: 100%;
   &.directionCol {
     flex-wrap: wrap;
     justify-content: center;
     row-gap: 15px;
     overflow-x: hidden;
+    ::ng-deep {
+      > .ng-star-inserted,
+      .citems {
+        max-width: 100%;
+      }
+    }
   }
   ::ng-deep {
     > .ng-star-inserted {
-      max-width: 100%;
       animation-duration: 0.5s;
       animation-fill-mode: both;
       animation-name: zoomInDown;

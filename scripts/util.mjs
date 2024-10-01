@@ -78,6 +78,7 @@ export function setWeb(nav, settings, tags = []) {
     if (typeof item.icon === 'string' && item.icon.startsWith('icon')) {
       item.icon = ''
     }
+    item.icon = replaceJsdelivrCDN(item.icon, settings)
   }
 
   function formatDate(item) {

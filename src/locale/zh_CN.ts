@@ -41,8 +41,8 @@ const zhCN: Record<string, any> = {
   _prevDevTime: '上次构建时间',
   _unknow: '未知',
   _repeatOper: '请不要频繁操作',
-  _syncDataOut: isSelfDevelop ? '确定同步吗？' : '同步数据到远端',
-  _confirmSync: '确定同步',
+  _syncDataOut: isSelfDevelop ? '确定保存吗？' : '同步数据到远端',
+  _confirmSync: '确定',
   _confirmSyncTip: isSelfDevelop
     ? ''
     : '确定将所有数据同步到远端吗？（每次保存需要等待构建完成再进行下一次操作）',
@@ -265,6 +265,7 @@ const zhCN: Record<string, any> = {
   _time: '时间',
   _workHours: '工作时间',
   _breakTime: '休息时间',
+  _holiday: '节假日',
 }
 
 export default zhCN
