@@ -5,10 +5,13 @@
   <div class="coutdown" *ngIf="!isRest">{{ countdownStr }}</div>
   <img
     *ngIf="isRest; else other"
-    src="assets/img/component/rest.svg"
+    src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/rest.svg"
     class="img"
   />
   <ng-template #other>
-    <img src="assets/img/component/rest.svg" class="img" />
+    <img
+      src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/rest.svg"
+      class="img"
+    />
   </ng-template>
 </div>

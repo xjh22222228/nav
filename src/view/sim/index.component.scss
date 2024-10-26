@@ -142,7 +142,8 @@
   }
 
   .sim-component {
-    width: var(--width);
+    min-width: var(--width);
+    max-width: 100%;
     margin: 0 auto;
   }
 

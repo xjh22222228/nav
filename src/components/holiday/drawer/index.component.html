@@ -1,0 +1,68 @@
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="visible"
+  nzPlacement="right"
+  [nzTitle]="$t('_edit')"
+  (nzOnClose)="handleClose()"
+  [nzFooter]="footerTpl"
+>
+  <form nz-form [formGroup]="validateForm" *nzDrawerContent>
+    <div formArrayName="items">
+      <div
+        *ngFor="let n of items.controls; let idx = index"
+        class="border-b border-solid mb-4"
+      >
+        <ng-container [formGroupName]="idx">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6">{{ $t('_title') }}</nz-form-label>
+            <nz-form-control [nzSpan]="18">
+              <input
+                formControlName="title"
+                type="text"
+                nz-input
+                maxlength="10"
+              />
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- <nz-form-item>
+            <nz-form-label [nzSpan]="6">{{
+              $t('_backgroundImage')
+            }}</nz-form-label>
+            <nz-form-control [nzSpan]="18">
+              <input formControlName="url" type="text" nz-input />
+            </nz-form-control>
+          </nz-form-item> -->
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6">休息天数</nz-form-label>
+            <nz-form-control [nzSpan]="18">
+              <input formControlName="day" type="text" nz-input />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6">{{ $t('_date') }}</nz-form-label>
+            <nz-form-control [nzSpan]="18">
+              <nz-date-picker formControlName="date"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </ng-container>
+      </div>
+    </div>
+
+    <button class="mt-4" nz-button nzType="primary" (click)="handleAdd()">
+      {{ $t('_add') }}
+    </button>
+  </form>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px" (click)="handleClose()">
+        {{ $t('_cancel') }}
+      </button>
+      <button nz-button nzType="primary" (click)="handleSubmit()">
+        {{ $t('_submit') }}
+      </button>
+    </div>
+  </ng-template>
+</nz-drawer>

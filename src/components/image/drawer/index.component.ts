@@ -23,6 +23,7 @@ export class ImageDrawerComponent {
     this.validateForm = this.fb.group({
       url: [''],
       text: [''],
+      go: [''],
     })
   }
 
