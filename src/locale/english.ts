@@ -1,4 +1,6 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
+// Copyright @ 2018-present xiejiahe. All rights reserved.
+// See https://github.com/xjh22222228/nav
 import { isSelfDevelop } from 'src/utils/util'
 
 const english: Record<string, any> = {
@@ -276,6 +278,13 @@ const english: Record<string, any> = {
   _workHours: 'Work hours',
   _breakTime: 'Break time',
   _holiday: 'Holiday',
+  _year: 'Year',
+  _day: 'Day',
+  _calendarDate: '{year}.{month}',
+  _dayOfYear: 'Day {day}',
+  _errCountTip:
+    "Last time, {count} website links were detected to be invalid. Please refer to the management website for details. If you need to check the status again, simply click on 'Save' to trigger the event.",
+  _getErrorWeb: 'Get error web',
 }
 
 export default english

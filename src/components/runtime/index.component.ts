@@ -5,6 +5,7 @@
 import { Component, Input } from '@angular/core'
 import { settings } from 'src/store'
 import { IComponentProps } from 'src/types'
+import { $t } from 'src/locale'
 
 @Component({
   selector: 'app-runtime',
@@ -23,10 +24,10 @@ export class RuntimeComponent {
     const diffYear = Math.floor(now / (1000 * 60 * 60 * 24 * 365))
     if (diffYear > 0) {
       this.runDays = diffYear
-      this.unit = '年'
+      this.unit = $t('_year')
     } else {
       this.runDays = Math.floor(now / (1000 * 60 * 60 * 24))
-      this.unit = '天'
+      this.unit = $t('_day')
     }
   }
 }

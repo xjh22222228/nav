@@ -41,6 +41,7 @@ export default class SystemComponentComponent {
   ComponentType = ComponentType
   components = components
   submitting: boolean = false
+  compoentZoom = components[0]['zoom'] || 1
 
   constructor(
     private message: NzMessageService,
@@ -94,7 +95,16 @@ export default class SystemComponentComponent {
     })
   }
 
-  onDelete(idx: number) {}
+  onDelete(idx: number) {
+    this.components.splice(idx, 1)
+  }
+
+  handleZoomChange(value: number) {
+    this.components = this.components.map((item) => {
+      item['zoom'] = value
+      return item
+    })
+  }
 
   handleOk(data: any) {
     const { index, ...values } = data

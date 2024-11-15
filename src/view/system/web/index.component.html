@@ -38,9 +38,7 @@
   </label>
 
   <div class="tip2">
-    上次检测出
-    {{ settings.errorUrlCount || 0 }}
-    个网站链接失效，具体到管理网站查看，如需再次检测状态直接点保存触发事件即可。
+    {{ $t('_errCountTip', { count: settings.errorUrlCount || 0 }) }}
   </div>
 
   <nz-tabset
@@ -406,7 +404,7 @@
         (click)="getAllErrorWeb()"
         style="margin-left: 20px"
       >
-        检索所有异常网站
+        {{ $t('_getErrorWeb') }}
       </button>
       <button
         nz-popconfirm
@@ -436,7 +434,7 @@
               (nzCheckedChange)="onAllChecked($event, 4)"
             ></th>
             <th nzWidth="60px" class="text-center">{{ $t('_action') }}</th>
-            <th nzWidth="70px">状态</th>
+            <th nzWidth="70px">{{ $t('_status') }}</th>
             <th nzWidth="80px">{{ $t('_icon') }}</th>
             <th nzWidth="100px">{{ $t('_webName') }}</th>
             <th nzWidth="100px">{{ $t('_associatedLabels') }}</th>

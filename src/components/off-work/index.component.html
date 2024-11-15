@@ -1,4 +1,8 @@
-<div class="offwork family citems" [class.rest]="isRest">
+<div
+  class="offwork family citems"
+  [class.rest]="isRest"
+  [style.zoom]="data['zoom']"
+>
   <div class="title">
     {{ isRest ? data['restTitle'] : data['workTitle'] }}
   </div>

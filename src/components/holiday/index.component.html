@@ -1,4 +1,8 @@
-<div class="holiday family citems" *ngIf="items.length">
+<div
+  class="holiday family citems"
+  *ngIf="items.length"
+  [style.zoom]="data['zoom']"
+>
   <div class="left" [class.today]="items[0].isToday || items[0].isRest">
     <div class="title">
       {{

@@ -17,11 +17,19 @@ export function getLocale(): string {
 
 const l = getLocale()
 
-export function $t(s: string): string {
-  if (l === 'zh-CN') {
-    return o.cn[s]
+export function $t(s: string, map?: Record<string, any>): string {
+  function replaceStr(s: string, map?: Record<string, any>) {
+    if (map) {
+      for (const k in map) {
+        s = s.replaceAll(`{${k}}`, map[k])
+      }
+    }
+    return s
   }
-  return o.en[s] ?? o.cn[s]
+  if (l === 'zh-CN') {
+    return replaceStr(o.cn[s], map)
+  }
+  return replaceStr(o.en[s] ?? o.cn[s], map)
 }
 
 export default o

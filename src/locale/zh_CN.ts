@@ -1,4 +1,6 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
+// Copyright @ 2018-present xiejiahe. All rights reserved.
+// See https://github.com/xjh22222228/nav
 import { isSelfDevelop } from 'src/utils/util'
 
 const zhCN: Record<string, any> = {
@@ -266,6 +268,13 @@ const zhCN: Record<string, any> = {
   _workHours: '工作时间',
   _breakTime: '休息时间',
   _holiday: '节假日',
+  _year: '年',
+  _day: '天',
+  _calendarDate: '{year}年{month}月',
+  _dayOfYear: '第{day}天',
+  _errCountTip:
+    '上次检测出 {count} 个网站链接失效，具体到管理网站查看，如需再次检测状态直接点保存触发事件即可。',
+  _getErrorWeb: '检索所有异常网站',
 }
 
 export default zhCN

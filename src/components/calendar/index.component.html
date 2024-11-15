@@ -1,11 +1,11 @@
-<div class="calendar family citems">
+<div class="calendar family citems" [style.zoom]="data['zoom']">
   <div class="ctop" [style.background]="data['topColor']">
     {{ date }}
   </div>
   <div class="box" [style.background]="data['bgColor']">
     <div class="cday">{{ day }}</div>
     <div class="cdate">
-      <span class="mr-1.5">第{{ dayOfYear }}天</span>
+      <span class="mr-1.5">{{ dayOfYear }}</span>
       <span>{{ week }}</span>
     </div>
   </div>

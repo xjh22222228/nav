@@ -12,6 +12,20 @@
   {{ $t('_buildTip') }}
 </div>
 
+<div class="mb-4">
+  <div class="flex items-center">
+    <span class="mr-2">Size:</span>
+    <nz-slider
+      style="width: 200px"
+      [(ngModel)]="compoentZoom"
+      [nzStep]="0.1"
+      [nzMin]="0.1"
+      [nzMax]="2"
+      (ngModelChange)="handleZoomChange($event)"
+    ></nz-slider>
+  </div>
+</div>
+
 <div class="flex gap-4 w-full flex-wrap select-none">
   <div *ngFor="let item of components; let idx = index; trackBy: trackByItem">
     <ng-container [ngSwitch]="item.type">
