@@ -1,5 +1,5 @@
 {
-  "favicon": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1715406462037-logo.png",
+  "favicon": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1731826764907-logo (4).png",
   "homeUrl": "https://nav3.cn",
   "language": "zh-CN",
   "loading": "loading1",
@@ -16,7 +16,7 @@
   "cnzzStatisticsUrl": "",
   "simThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1715406791303-f0d4f536-b06d-5acb-966b-e7a30c27a3ce_0.png",
+      "src": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1731826701637-pexels-pengwhan-1767434.jpg",
       "url": "",
       "width": null,
       "height": null
@@ -27,7 +27,7 @@
   "simThemeAutoplay": false,
   "sideThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1731481679160-pexels-francesco-ungaro-673648.jpg",
+      "src": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1731826741058-pexels-francesco-ungaro-673648.jpg",
       "url": "",
       "width": null,
       "height": null
@@ -38,7 +38,7 @@
   "shortcutThemeShowWeather": true,
   "shortcutThemeImages": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1731481669430-pexels-francesco-ungaro-673648.jpg",
+      "src": "https://cdn.jsdelivr.net/gh/koltluo/nav@image/nav-1731826723404-pexels-jessbaileydesign-743986.jpg",
       "url": "",
       "width": null,
       "height": null
