@@ -80,9 +80,9 @@
       [class.noads]="commonService.settings.superImages.length <= 0"
     >
       <div class="search-t dark-border-color">
-        <app-search-engine size="small" />
+        <app-search-engine />
 
-        <div class="bar dark-scrollbar">
+        <div class="bar dark-scrollbar select-none">
           <div
             class="bar-item"
             *ngFor="
@@ -91,6 +91,7 @@
               trackBy: commonService.trackByItem
             "
             [class.active]="commonService.selectedIndex === i"
+            [class.dark-white]="commonService.selectedIndex === i"
             [class.none]="!item.title"
             (click)="commonService.handleCheckThree(i)"
           >

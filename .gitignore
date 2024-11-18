@@ -50,3 +50,5 @@ nav.config.json
 _upload
 test.md
 data/collect.json
+/.dockerignore
+/Dockerfile
