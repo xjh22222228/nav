@@ -3,6 +3,8 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
@@ -11,8 +13,22 @@ import { updateFileContent } from 'src/api'
 import { TAG_PATH } from 'src/constants'
 import { tagList } from 'src/store'
 import { isSelfDevelop } from 'src/utils/util'
+import { NzButtonModule } from 'ng-zorro-antd/button'
+import { NzInputModule } from 'ng-zorro-antd/input'
+import { NzTableModule } from 'ng-zorro-antd/table'
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 
 @Component({
+  standalone: true,
+  imports: [
+    FormsModule,
+    CommonModule,
+    NzButtonModule,
+    NzInputModule,
+    NzTableModule,
+    NzPopconfirmModule,
+  ],
+  providers: [NzModalService, NzMessageService],
   selector: 'system-tag',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

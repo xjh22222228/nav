@@ -2,9 +2,12 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 import config from '../../../nav.config.json'
 import { Component, ChangeDetectionStrategy } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { settings } from 'src/store'
 
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-icon-git',
   templateUrl: './icon-git.component.html',

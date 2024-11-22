@@ -3,11 +3,31 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, EventEmitter, Output } from '@angular/core'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { $t } from 'src/locale'
 import { FormBuilder, FormGroup } from '@angular/forms'
+import { NzDrawerModule } from 'ng-zorro-antd/drawer'
+import { NzFormModule } from 'ng-zorro-antd/form'
+import { NzButtonModule } from 'ng-zorro-antd/button'
+import { NzInputModule } from 'ng-zorro-antd/input'
+import { UploadComponent } from 'src/components/upload/index.component'
+import { NzColorPickerModule } from 'ng-zorro-antd/color-picker'
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker'
 import dayjs from 'dayjs'
 
 @Component({
+  standalone: true,
+  imports: [
+    NzDatePickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzDrawerModule,
+    NzFormModule,
+    NzButtonModule,
+    NzInputModule,
+    UploadComponent,
+    NzColorPickerModule,
+  ],
   selector: 'countdown-drawer',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

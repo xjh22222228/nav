@@ -3,11 +3,14 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { IComponentProps } from 'src/types'
 import dayjs from 'dayjs'
 import event from 'src/utils/mitt'
 
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   selector: 'app-holiday',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

@@ -3,11 +3,15 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { settings } from 'src/store'
 import { compilerTemplate } from 'src/utils/util'
+import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import event from 'src/utils/mitt'
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, SafeHtmlPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-footer',
   templateUrl: './footer.component.html',

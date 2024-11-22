@@ -3,10 +3,26 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, EventEmitter, Output } from '@angular/core'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { $t } from 'src/locale'
 import { FormBuilder, FormGroup } from '@angular/forms'
+import { NzDrawerModule } from 'ng-zorro-antd/drawer'
+import { NzFormModule } from 'ng-zorro-antd/form'
+import { NzButtonModule } from 'ng-zorro-antd/button'
+import { NzInputModule } from 'ng-zorro-antd/input'
+import { NzColorPickerModule } from 'ng-zorro-antd/color-picker'
 
 @Component({
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NzDrawerModule,
+    NzFormModule,
+    NzButtonModule,
+    NzInputModule,
+    NzColorPickerModule,
+  ],
   selector: 'calendar-drawer',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

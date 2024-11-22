@@ -109,8 +109,9 @@
       >
         <app-card
           *ngFor="
-            let el of commonService.currentList[commonService.selectedIndex]
-              .nav;
+            let el of commonService.currentList[
+              commonService.selectedIndex
+            ].nav.slice(0, commonService.sliceMax);
             index as j;
             trackBy: commonService.trackByItemWeb
           "

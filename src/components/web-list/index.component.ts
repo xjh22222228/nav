@@ -3,18 +3,24 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
-import { websiteList, settings } from 'src/store'
+import { CommonModule } from '@angular/common'
+import { websiteList } from 'src/store'
 import { IWebProps, INavProps, TopType } from 'src/types'
 import { queryString, fuzzySearch, isMobile, getDefaultTheme } from 'src/utils'
 import { isLogin } from 'src/utils/user'
 import { ActivatedRoute, Router } from '@angular/router'
 import { CommonService } from 'src/services/common'
 import { JumpService } from 'src/services/jump'
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
+import { NzButtonModule } from 'ng-zorro-antd/button'
+import { LogoComponent } from 'src/components/logo/logo.component'
 import event from 'src/utils/mitt'
 
 let DEFAULT_WEBSITE: Array<IWebProps> = []
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, NzToolTipModule, NzButtonModule, LogoComponent],
   selector: 'app-web-list',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

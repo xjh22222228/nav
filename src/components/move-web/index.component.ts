@@ -3,14 +3,27 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { setWebsiteList } from 'src/utils/web'
 import { websiteList } from '../../store'
 import { INavProps, INavTwoProp, INavThreeProp, IWebProps } from '../../types'
 import { NzMessageService } from 'ng-zorro-antd/message'
+import { NzModalModule } from 'ng-zorro-antd/modal'
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
+import { NzSelectModule } from 'ng-zorro-antd/select'
 import event from 'src/utils/mitt'
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    NzCheckboxModule,
+    NzModalModule,
+    NzSelectModule,
+  ],
   selector: 'app-move-web',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
@@ -21,9 +34,9 @@ export class MoveWebComponent {
   twoOptList: INavTwoProp[] = []
   threeOptList: INavThreeProp[] = []
   isCopy = false
-  oneSelect: number | undefined
-  twoSelect: number | undefined
-  threeSelect: number | undefined
+  oneSelect: number | undefined = undefined
+  twoSelect: number | undefined = undefined
+  threeSelect: number | undefined = undefined
   moveSites: any[] = []
   showModal = false
   indexs: Array<number> = []
@@ -85,7 +98,7 @@ export class MoveWebComponent {
     this.showModal = false
   }
 
-  hanldeOk() {
+  hanldeOk(): any {
     const indexs = this.indexs
     const oneSelect = this.oneSelect as number
     const twoSelect = this.twoSelect as number

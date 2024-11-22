@@ -97,7 +97,7 @@
 
 #### Netlify 推荐(免费)
 
-作者目前使用，速度较快
+作者目前使用，速度较快, 打包路径 `dist/browser`
 
 [https://www.netlify.com/](https://www.netlify.com/)
 
@@ -162,30 +162,6 @@ git push
 
 # 如果安装了node只需执行
 npm run update
-```
-
-## 更新日志
-
-[CHANGELOG](https://github.com/xjh22222228/nav/releases)
-
-## 开发构建
-
-NODE: >= v20
-
-```bash
-# 下载
-git clone --depth=1 https://github.com/xjh22222228/nav.git
-
-cd nav
-
-# 安装依赖
-yarn
-
-# 启动
-yarn start
-
-# 打包
-yarn build
 ```
 
 ## 支持

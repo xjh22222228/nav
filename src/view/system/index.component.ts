@@ -4,13 +4,28 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterOutlet } from '@angular/router'
 import { $t } from 'src/locale'
 import { isLogin, userLogout, getAuthCode } from 'src/utils/user'
 import { Router } from '@angular/router'
 import { VERSION } from 'src/constants'
 import { isSelfDevelop, removeDark } from 'src/utils/util'
+import { NzLayoutModule } from 'ng-zorro-antd/layout'
+import { NzMenuModule } from 'ng-zorro-antd/menu'
+import { NzButtonModule } from 'ng-zorro-antd/button'
+import { LoginComponent } from 'src/components/login/login.component'
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    NzLayoutModule,
+    NzMenuModule,
+    NzButtonModule,
+    LoginComponent,
+    RouterOutlet,
+  ],
   selector: 'app-system',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

@@ -2,6 +2,8 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 
 import { Component, Input } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { FormsModule } from '@angular/forms'
 import {
   getDefaultSearchEngine,
   setDefaultSearchEngine,
@@ -12,8 +14,21 @@ import { searchEngineList } from 'src/store'
 import { ISearchEngineProps } from '../../types'
 import { SearchType } from './index'
 import { $t } from 'src/locale'
+import { NzInputModule } from 'ng-zorro-antd/input'
+import { NzPopoverModule } from 'ng-zorro-antd/popover'
+import { NzSelectModule } from 'ng-zorro-antd/select'
+import { LogoComponent } from 'src/components/logo/logo.component'
 
 @Component({
+  standalone: true,
+  imports: [
+    FormsModule,
+    CommonModule,
+    NzInputModule,
+    NzPopoverModule,
+    LogoComponent,
+    NzSelectModule,
+  ],
   selector: 'app-search-engine',
   templateUrl: './search-engine.component.html',
   styleUrls: ['./search-engine.component.scss'],

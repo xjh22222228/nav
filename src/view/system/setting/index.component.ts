@@ -3,6 +3,8 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -13,6 +15,20 @@ import { updateFileContent, spiderWeb } from 'src/api'
 import { settings, components } from 'src/store'
 import { isSelfDevelop, compilerTemplate } from 'src/utils/util'
 import { componentTitleMap } from '../component/types'
+import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
+import { NzButtonModule } from 'ng-zorro-antd/button'
+import { NzFormModule } from 'ng-zorro-antd/form'
+import { NzSliderModule } from 'ng-zorro-antd/slider'
+import { NzInputModule } from 'ng-zorro-antd/input'
+import { NzSwitchModule } from 'ng-zorro-antd/switch'
+import { NzTableModule } from 'ng-zorro-antd/table'
+import { NzRadioModule } from 'ng-zorro-antd/radio'
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
+import { NzTabsModule } from 'ng-zorro-antd/tabs'
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
+import { NzPopoverModule } from 'ng-zorro-antd/popover'
+import { NzSelectModule } from 'ng-zorro-antd/select'
+import { UploadComponent } from 'src/components/upload/index.component'
 import event from 'src/utils/mitt'
 import footTemplate from 'src/components/footer/template'
 
@@ -23,6 +39,27 @@ const extraForm: Record<string, any> = {
 }
 
 @Component({
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    NzSelectModule,
+    NzPopoverModule,
+    NzTabsModule,
+    SafeHtmlPipe,
+    NzButtonModule,
+    NzFormModule,
+    NzSliderModule,
+    NzInputModule,
+    NzSwitchModule,
+    NzTableModule,
+    NzRadioModule,
+    NzCheckboxModule,
+    NzPopconfirmModule,
+    UploadComponent,
+  ],
+  providers: [NzModalService, NzNotificationService, NzMessageService],
   selector: 'system-setting',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
@@ -79,7 +116,7 @@ export default class SystemSettingComponent {
     return compilerTemplate(this.validateForm.get('footerContent')?.value || '')
   }
 
-  onFootTemplateChange(v: string) {
+  onFootTemplateChange(v: any) {
     this.validateForm
       .get('footerContent')!
       .setValue(footTemplate[v]?.trim?.() || '')

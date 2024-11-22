@@ -10,8 +10,11 @@ import { setWebsiteList } from 'src/utils/web'
 import { parseBookmark } from 'src/utils/bookmark'
 import { INavProps } from 'src/types'
 import { websiteList } from 'src/store'
+import { NzInputModule } from 'ng-zorro-antd/input'
 
 @Component({
+  standalone: true,
+  imports: [NzInputModule],
   selector: 'system-bookmark',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

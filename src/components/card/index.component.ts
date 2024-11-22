@@ -8,6 +8,8 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common'
 import { isLogin } from 'src/utils/user'
 import { copyText, getTextContent } from 'src/utils'
 import { setWebsiteList, deleteByWeb } from 'src/utils/web'
@@ -15,9 +17,30 @@ import { INavProps, IWebProps, ICardType } from 'src/types'
 import { $t } from 'src/locale'
 import { settings, websiteList } from 'src/store'
 import { JumpService } from 'src/services/jump'
+import { NzRateModule } from 'ng-zorro-antd/rate'
+import { LogoComponent } from 'src/components/logo/logo.component'
+import { NzButtonModule } from 'ng-zorro-antd/button'
+import { TagListComponent } from 'src/components/tag-list/index.component'
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
+import { NzIconModule } from 'ng-zorro-antd/icon'
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
+import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import event from 'src/utils/mitt'
 
 @Component({
+  standalone: true,
+  imports: [
+    FormsModule,
+    CommonModule,
+    NzRateModule,
+    LogoComponent,
+    NzButtonModule,
+    TagListComponent,
+    NzToolTipModule,
+    NzIconModule,
+    NzPopconfirmModule,
+    SafeHtmlPipe,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-card',
   templateUrl: './index.component.html',
@@ -66,7 +89,7 @@ export class CardComponent implements OnInit {
     })
   }
 
-  onRateChange(n: number) {
+  onRateChange(n: any) {
     this.dataSource.rate = n
     setWebsiteList(this.websiteList)
   }

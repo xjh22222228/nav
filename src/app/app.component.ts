@@ -3,7 +3,13 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router'
+import { CommonModule } from '@angular/common'
+import {
+  Router,
+  ActivatedRoute,
+  NavigationEnd,
+  RouterOutlet,
+} from '@angular/router'
 import { queryString, setLocation, isMobile, getDefaultTheme } from '../utils'
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n'
 import { getLocale } from 'src/locale'
@@ -12,13 +18,26 @@ import { verifyToken, getContentes } from 'src/api'
 import { getToken, userLogout, isLogin } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
+import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { fetchWeb } from 'src/utils/web'
 import { isSelfDevelop } from 'src/utils/util'
-import { routes } from './app-routing.module'
+import { routes } from './app.routes'
+import { MoveWebComponent } from 'src/components/move-web/index.component'
+import { CreateWebComponent } from 'src/components/create-web/index.component'
+import { IconGitComponent } from 'src/components/icon-git/icon-git.component'
 import Alert from './alert-event'
 import event from 'src/utils/mitt'
 
 @Component({
+  standalone: true,
+  imports: [
+    NzSpinModule,
+    IconGitComponent,
+    RouterOutlet,
+    CommonModule,
+    MoveWebComponent,
+    CreateWebComponent,
+  ],
   selector: 'app-xiejiahe',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -83,7 +102,9 @@ export class AppComponent {
         // 处理默认主题
         const currentRoutes = this.router.config
         const defaultTheme = getDefaultTheme().toLowerCase()
-        const hasDefault = routes.find((item) => item.path === defaultTheme)
+        const hasDefault = routes.find(
+          (item: any) => item.path === defaultTheme
+        )
         const isHome = this.router.url.split('?')[0] === '/'
         if (hasDefault) {
           this.router.resetConfig([

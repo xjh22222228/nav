@@ -20,7 +20,7 @@ export function compilerTemplate(str: string) {
 }
 
 export function addDark() {
-  const darkCSS = '//unpkg.com/ng-zorro-antd@18.1.1/ng-zorro-antd.dark.min.css'
+  const darkCSS = '//unpkg.com/ng-zorro-antd@18.2.1/ng-zorro-antd.dark.min.css'
   const id = 'dark-css'
   const darkNode = document.getElementById(id)
   if (darkNode) {

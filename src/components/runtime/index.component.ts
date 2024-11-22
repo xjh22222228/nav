@@ -8,6 +8,7 @@ import { IComponentProps } from 'src/types'
 import { $t } from 'src/locale'
 
 @Component({
+  standalone: true,
   selector: 'app-runtime',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

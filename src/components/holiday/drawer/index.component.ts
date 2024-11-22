@@ -3,11 +3,29 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, EventEmitter, Output } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { $t } from 'src/locale'
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms'
+import { NzDrawerModule } from 'ng-zorro-antd/drawer'
+import { NzFormModule } from 'ng-zorro-antd/form'
+import { NzButtonModule } from 'ng-zorro-antd/button'
+import { NzInputModule } from 'ng-zorro-antd/input'
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker'
 import dayjs from 'dayjs'
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzDrawerModule,
+    NzFormModule,
+    NzButtonModule,
+    NzInputModule,
+    NzDatePickerModule,
+  ],
   selector: 'holiday-drawer',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

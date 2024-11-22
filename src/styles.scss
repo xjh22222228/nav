@@ -1,9 +1,10 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
-@import './assets/styles/tailwind.css';
-@import './assets/styles/dark.scss';
-@import './assets/styles/nprogress.css';
-@import '../node_modules/ng-zorro-antd/ng-zorro-antd.css';
+@use './assets/styles/tailwind.css' as *;
+@use './assets/styles/dark.scss' as *;
+@use './assets/styles/nprogress.css' as *;
+@use './assets/fonts/iconfont.css' as *;
+@use '../node_modules/ng-zorro-antd/ng-zorro-antd.css' as *;
 
 @font-face {
   font-family: 'text';

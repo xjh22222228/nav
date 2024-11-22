@@ -3,9 +3,13 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { JumpService } from 'src/services/jump'
+import { NzCarouselModule } from 'ng-zorro-antd/carousel'
 
 @Component({
+  standalone: true,
+  imports: [NzCarouselModule, CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-swiper',
   templateUrl: './index.component.html',

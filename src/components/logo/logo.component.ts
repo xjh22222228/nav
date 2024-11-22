@@ -2,8 +2,11 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
+import { CommonModule } from '@angular/common'
 
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-logo',
   templateUrl: './logo.component.html',

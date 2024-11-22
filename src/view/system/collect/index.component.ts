@@ -3,6 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
@@ -12,9 +13,26 @@ import { setAuthCode, getAuthCode } from 'src/utils/user'
 import { getUserCollect, delUserCollect, updateFileContent } from 'src/api'
 import { DB_PATH } from 'src/constants'
 import { isSelfDevelop } from 'src/utils/util'
+import { NzSpinModule } from 'ng-zorro-antd/spin'
+import { NzButtonModule } from 'ng-zorro-antd/button'
+import { NzTableModule } from 'ng-zorro-antd/table'
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
+import { LogoComponent } from 'src/components/logo/logo.component'
+import { TagListComponent } from 'src/components/tag-list/index.component'
 import event from 'src/utils/mitt'
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    NzSpinModule,
+    NzButtonModule,
+    NzTableModule,
+    NzPopconfirmModule,
+    LogoComponent,
+    TagListComponent,
+  ],
+  providers: [NzMessageService, NzModalService, NzNotificationService],
   selector: 'user-collect',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

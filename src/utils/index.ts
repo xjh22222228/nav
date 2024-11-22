@@ -68,7 +68,7 @@ export function fuzzySearch(
           return false
         }
 
-        const searchUrl = () => {
+        const searchUrl = (): any => {
           if (url?.includes?.(search)) {
             if (!urlRecordMap[item.id]) {
               urlRecordMap[item.id] = true

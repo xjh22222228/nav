@@ -3,11 +3,15 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, EventEmitter, Output } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { createFile, getCDN, imageBranch } from 'src/api'
+import { NzIconModule } from 'ng-zorro-antd/icon'
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, NzIconModule],
   selector: 'app-upload',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
@@ -22,7 +26,7 @@ export class UploadComponent {
 
   constructor(private message: NzMessageService) {}
 
-  onChangeFile(e: any) {
+  onChangeFile(e: any): any {
     if (this.uploading) {
       return
     }

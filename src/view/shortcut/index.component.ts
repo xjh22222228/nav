@@ -2,14 +2,30 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 
 import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { NgStyle } from '@angular/common'
 import { isDark as isDarkFn, getDateTime, isMobile } from 'src/utils'
 import { settings } from 'src/store'
 import { IWebProps } from 'src/types'
 import { JumpService } from 'src/services/jump'
 import { $t } from 'src/locale'
+import { SearchEngineComponent } from 'src/components/search-engine/search-engine.component'
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
+import { FixbarComponent } from 'src/components/fixbar/index.component'
+import { WebListComponent } from 'src/components/web-list/index.component'
+import { LogoComponent } from 'src/components/logo/logo.component'
 import event from 'src/utils/mitt'
 
 @Component({
+  imports: [
+    CommonModule,
+    NgStyle,
+    SearchEngineComponent,
+    NzToolTipModule,
+    FixbarComponent,
+    WebListComponent,
+    LogoComponent,
+  ],
   selector: 'app-shortcut',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

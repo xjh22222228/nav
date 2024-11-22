@@ -34,7 +34,7 @@ const TAG_PATH = joinPath('data/tag.json')
 const SEARCH_PATH = joinPath('data/search.json')
 const COLLECT_PATH = joinPath('data/collect.json')
 const COMPONENT_PATH = joinPath('data/component.json')
-const ENTRY_INDEX_HTML = joinPath('dist/index.html')
+const ENTRY_INDEX_HTML = joinPath('dist/browser/index.html')
 
 function getConfigJson() {
   return yaml.load(fs.readFileSync(joinPath('nav.config.yaml')))
@@ -96,7 +96,7 @@ app.use(
     allowedHeaders: '*',
   })
 )
-app.use(express.static('dist'))
+app.use(express.static('dist/browser'))
 app.use(express.static('_upload'))
 
 async function sendMail() {

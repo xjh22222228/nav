@@ -8,6 +8,7 @@ import dayjs from 'dayjs'
 import event from 'src/utils/mitt'
 
 @Component({
+  standalone: true,
   selector: 'app-countdown',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

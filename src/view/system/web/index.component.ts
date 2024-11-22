@@ -3,6 +3,8 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { INavProps, INavTwoProp, INavThreeProp, IWebProps } from 'src/types'
 import {
   websiteList,
@@ -24,10 +26,46 @@ import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import { $t } from 'src/locale'
 import { saveAs } from 'file-saver'
 import { isSelfDevelop } from 'src/utils/util'
+import { NzInputModule } from 'ng-zorro-antd/input'
+import { NzButtonModule } from 'ng-zorro-antd/button'
+import { NzSpinModule } from 'ng-zorro-antd/spin'
+import { NzTableModule } from 'ng-zorro-antd/table'
+import { NzTabsModule } from 'ng-zorro-antd/tabs'
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
+import { NzSelectModule } from 'ng-zorro-antd/select'
+import { NzIconModule } from 'ng-zorro-antd/icon'
+import { NzModalModule } from 'ng-zorro-antd/modal'
+import { NzFormModule } from 'ng-zorro-antd/form'
+import { NzSwitchModule } from 'ng-zorro-antd/switch'
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
+import { LogoComponent } from 'src/components/logo/logo.component'
+import { UploadComponent } from 'src/components/upload/index.component'
+import { TagListComponent } from 'src/components/tag-list/index.component'
 import event from 'src/utils/mitt'
 import config from '../../../../nav.config.json'
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    NzToolTipModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzInputModule,
+    NzButtonModule,
+    NzSpinModule,
+    NzTableModule,
+    NzTabsModule,
+    NzPopconfirmModule,
+    NzSelectModule,
+    LogoComponent,
+    NzIconModule,
+    NzModalModule,
+    NzFormModule,
+    NzSwitchModule,
+    UploadComponent,
+    TagListComponent,
+  ],
   selector: 'app-admin',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
@@ -343,7 +381,7 @@ export default class WebpComponent {
     })
   }
 
-  openCreateWebModal() {
+  openCreateWebModal(): any {
     if (this.tabActive === 3 && !this.threeSelect) {
       return this.message.error($t('_sel3'))
     }
@@ -360,7 +398,7 @@ export default class WebpComponent {
     })
   }
 
-  toggleCreateModal() {
+  toggleCreateModal(): any {
     // 检测是否有选择
     if (!this.showCreateModal) {
       if (this.tabActive === 1 && !this.oneSelect) {
@@ -632,7 +670,7 @@ export default class WebpComponent {
     })
   }
 
-  handleOk() {
+  handleOk(): any {
     const createdAt = Date.now()
 
     for (const i in this.validateForm.controls) {

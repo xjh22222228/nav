@@ -9,6 +9,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { isDark as isDarkFn, randomBgImg, queryString } from 'src/utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -19,13 +20,18 @@ import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import { Router, ActivatedRoute } from '@angular/router'
 import { $t, getLocale } from 'src/locale'
 import { addDark, removeDark } from 'src/utils/util'
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import mitt from 'src/utils/mitt'
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, NzDropDownModule, NzToolTipModule],
   selector: 'app-fixbar',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [NzModalService, NzMessageService],
 })
 export class FixbarComponent {
   @Input() showTop: boolean = true

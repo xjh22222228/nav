@@ -3,10 +3,13 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { IComponentProps } from 'src/types'
 import event from 'src/utils/mitt'
 
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   selector: 'app-offwork',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

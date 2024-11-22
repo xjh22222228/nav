@@ -3,9 +3,13 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input, Output, EventEmitter } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { INavProps } from 'src/types'
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, NzDropDownModule],
   selector: 'app-web-more-menu',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

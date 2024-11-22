@@ -3,18 +3,23 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { FormsModule } from '@angular/forms'
 import { $t } from 'src/locale'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { parseBookmark } from 'src/utils/bookmark'
 import { INavProps, IWebProps } from 'src/types'
 import { websiteList } from 'src/store'
 import { bookmarksExport, getIconBase64 } from 'src/api'
 import { saveAs } from 'file-saver'
 import { getAuthCode } from 'src/utils/user'
+import { NzSwitchModule } from 'ng-zorro-antd/switch'
+import { NzSpinModule } from 'ng-zorro-antd/spin'
 import LZString from 'lz-string'
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, NzSwitchModule, NzSpinModule, FormsModule],
   selector: 'system-bookmark-export',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
@@ -52,7 +57,7 @@ export default class SystemBookmarkExportComponent {
     })
   }
 
-  async imageToBase64(item: IWebProps, isGet: boolean = true) {
+  async imageToBase64(item: IWebProps, isGet: boolean = true): Promise<any> {
     const img = await this.loadImage(item.icon)
     if (img) {
       try {
@@ -92,7 +97,7 @@ export default class SystemBookmarkExportComponent {
     }
   }
 
-  async bookmarksExport() {
+  async bookmarksExport(): Promise<any> {
     if (!getAuthCode()) {
       return this.notification.error('Error', '请授权')
     }
