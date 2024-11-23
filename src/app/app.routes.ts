@@ -1,21 +1,10 @@
 import { Routes } from '@angular/router'
-import LightComponent from '../view/light/index.component'
-import SuperComponent from '../view/super/index.component'
-import SimComponent from '../view/sim/index.component'
-import SystemComponent from '../view/system/index.component'
-import SystemInfoComponent from '../view/system/info/index.component'
-import SystemBookmarkComponent from '../view/system/bookmark/index.component'
-import SystemBookmarkExportComponent from '../view/system/bookmark-export/index.component'
-import SystemTagComponent from '../view/system/tag/index.component'
-import SystemSearchComponent from '../view/system/search/index.component'
-import SystemSettingComponent from '../view/system/setting/index.component'
-import SystemWebComponent from '../view/system/web/index.component'
-import SystemComponentComponent from '../view/system/component/index.component'
-import SideComponent from '../view/side/index.component'
-import ShortcutComponent from '../view/shortcut/index.component'
-import CollectComponent from '../view/system/collect/index.component'
-import WebpComponent from '../view/app/default/app.component'
-import VipAuthComponent from '../view/system/vip-auth/index.component'
+import LightComponent from 'src/view/light/index.component'
+import SuperComponent from 'src/view/super/index.component'
+import SimComponent from 'src/view/sim/index.component'
+import SideComponent from 'src/view/side/index.component'
+import ShortcutComponent from 'src/view/shortcut/index.component'
+import WebpComponent from 'src/view/app/default/app.component'
 import { isSelfDevelop } from 'src/utils/util'
 import { getDefaultTheme } from 'src/utils'
 
@@ -56,47 +45,49 @@ export const routes: Routes = [
   },
   {
     path: 'system',
-    component: SystemComponent,
+    loadComponent: () => import('src/view/system/index.component'),
     children: [
       {
         path: 'info',
-        component: SystemInfoComponent,
+        loadComponent: () => import('src/view/system/info/index.component'),
       },
       {
         path: 'bookmark',
-        component: SystemBookmarkComponent,
+        loadComponent: () => import('src/view/system/bookmark/index.component'),
       },
       {
         path: 'bookmarkExport',
-        component: SystemBookmarkExportComponent,
+        loadComponent: () =>
+          import('src/view/system/bookmark-export/index.component'),
       },
       {
         path: 'collect',
-        component: CollectComponent,
+        loadComponent: () => import('src/view/system/collect/index.component'),
       },
       {
         path: 'vip',
-        component: VipAuthComponent,
+        loadComponent: () => import('src/view/system/vip-auth/index.component'),
       },
       {
         path: 'tag',
-        component: SystemTagComponent,
+        loadComponent: () => import('src/view/system/tag/index.component'),
       },
       {
         path: 'search',
-        component: SystemSearchComponent,
+        loadComponent: () => import('src/view/system/search/index.component'),
       },
       {
         path: 'setting',
-        component: SystemSettingComponent,
+        loadComponent: () => import('src/view/system/setting/index.component'),
       },
       {
         path: 'component',
-        component: SystemComponentComponent,
+        loadComponent: () =>
+          import('src/view/system/component/index.component'),
       },
       {
         path: 'web',
-        component: SystemWebComponent,
+        loadComponent: () => import('src/view/system/web/index.component'),
       },
       {
         path: '**',
