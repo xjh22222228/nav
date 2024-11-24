@@ -1,9 +1,9 @@
 const t: Record<string, any> = {
   footTemplate1: `
-<div class="bg-white py-8 px-8 mx-auto text-left dark-bg dark-border-color">
+<div class="bg-white py-8 px-4 mx-auto text-left dark-bg dark-border-color">
   <div
-    style="width: 1050px"
-    class="max-w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+    style="width: 1080px"
+    class="max-w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
   >
     <div>
       <div class="dark-white text-base font-bold mb-8">联系方式</div>
@@ -37,6 +37,12 @@ const t: Record<string, any> = {
         >
           Beautiful window
         </a>
+      </div>
+    </div>
+
+    <div class="text-center w-32 max-full">
+      <div>
+        <img src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/202.jpg" class="w-full" />
       </div>
     </div>
   </div>

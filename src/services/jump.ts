@@ -4,6 +4,7 @@
 
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
+import event from 'src/utils/mitt'
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,11 @@ export class JumpService {
     e?.preventDefault?.()
 
     if (typeof url !== 'string' || !url) {
+      return
+    }
+
+    if (url === '@apply') {
+      event.emit('CREATE_WEB')
       return
     }
 
