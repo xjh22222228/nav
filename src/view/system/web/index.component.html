@@ -513,54 +513,7 @@
   </nz-tabset>
 </div>
 
-<nz-modal
-  [(nzVisible)]="showCreateModal"
-  [nzTitle]="isEdit ? $t('_edit') : $t('_add')"
-  (nzOnCancel)="toggleCreateModal()"
-  (nzOnOk)="handleOk()"
->
-  <ng-container *nzModalContent>
-    <form nz-form [formGroup]="validateForm">
-      <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzRequired>分类名称</nz-form-label>
-        <nz-form-control [nzSpan]="18" [nzErrorTip]="$t('_requiredName')">
-          <input
-            formControlName="title"
-            nz-input
-            [placeholder]="$t('_webTitle')"
-            maxlength="50"
-          />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzRequired>{{
-          $t('_onlyOwnVisible')
-        }}</nz-form-label>
-        <nz-form-control [nzSpan]="18">
-          <nz-switch formControlName="ownVisible"></nz-switch>
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSpan]="6">图标地址</nz-form-label>
-        <nz-form-control [nzSpan]="18">
-          <nz-input-group [nzPrefix]="prefixIcon" [nzSuffix]="suffixIconSearch">
-            <input
-              formControlName="icon"
-              nz-input
-              placeholder="用于某些主题icon"
-            />
-          </nz-input-group>
-
-          <ng-template #prefixIcon>
-            <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl" />
-          </ng-template>
-          <ng-template #suffixIconSearch>
-            <app-upload (onChange)="onChangeFile($event)"></app-upload>
-          </ng-template>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
-  </ng-container>
-</nz-modal>
+<edit-category
+  (onOk)="handleOk($event)"
+  [title]="isEdit ? $t('_edit') : $t('_add')"
+/>

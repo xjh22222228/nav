@@ -17,6 +17,7 @@ import { LogoComponent } from 'src/components/logo/logo.component'
 import event from 'src/utils/mitt'
 
 @Component({
+  standalone: true,
   imports: [
     CommonModule,
     NgStyle,

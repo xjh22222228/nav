@@ -285,6 +285,7 @@ const english: Record<string, any> = {
   _errCountTip:
     "Last time, {count} website links were detected to be invalid. Please refer to the management website for details. If you need to check the status again, simply click on 'Save' to trigger the event.",
   _getErrorWeb: 'Get error web',
+  _categoryName: 'Name',
 }
 
 export default english

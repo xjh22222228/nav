@@ -10,7 +10,15 @@
   margin-bottom: 15px;
   user-select: none;
   margin-top: 10px;
-
+  .edit-icon {
+    display: none;
+    vertical-align: middle;
+  }
+  // &:hover {
+  //   .edit-icon {
+  //     display: inline-block;
+  //   }
+  // }
   .add-icon {
     position: absolute;
     top: 50%;
