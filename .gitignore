@@ -49,3 +49,4 @@ test.md
 data/collect.json
 /.dockerignore
 /Dockerfile
+.next
