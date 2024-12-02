@@ -1,7 +1,0 @@
-node_modules
-_upload
-dist
-.angular
-.vscode
-.github
-src/index.html
