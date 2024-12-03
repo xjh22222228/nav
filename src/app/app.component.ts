@@ -25,12 +25,14 @@ import { routes } from './app.routes'
 import { MoveWebComponent } from 'src/components/move-web/index.component'
 import { CreateWebComponent } from 'src/components/create-web/index.component'
 import { IconGitComponent } from 'src/components/icon-git/icon-git.component'
+import { EditCategoryComponent } from 'src/components/edit-category/index.component'
 import Alert from './alert-event'
 import event from 'src/utils/mitt'
 
 @Component({
   standalone: true,
   imports: [
+    EditCategoryComponent,
     NzSpinModule,
     IconGitComponent,
     RouterOutlet,

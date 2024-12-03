@@ -38,7 +38,6 @@ import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzSwitchModule } from 'ng-zorro-antd/switch'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { LogoComponent } from 'src/components/logo/logo.component'
-import { UploadComponent } from 'src/components/upload/index.component'
 import { TagListComponent } from 'src/components/tag-list/index.component'
 import { EditCategoryComponent } from 'src/components/edit-category/index.component'
 import event from 'src/utils/mitt'
@@ -64,7 +63,6 @@ import config from '../../../../nav.config.json'
     NzModalModule,
     NzFormModule,
     NzSwitchModule,
-    UploadComponent,
     TagListComponent,
   ],
   selector: 'app-web',

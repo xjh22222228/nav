@@ -10,5 +10,6 @@
 
     <app-create-web />
     <app-move-web *ngIf="isLogin" />
+    <edit-category *ngIf="isLogin" [app]="true" />
   </div>
 </ng-template>

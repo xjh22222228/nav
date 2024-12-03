@@ -12,7 +12,13 @@
     <span style="margin-left: 10px; align-self: center; vertical-align: middle">
       {{ dataSource.title }} x {{ dataSource.nav.length }}
     </span>
-    <i nz-icon nzType="edit" class="edit-icon" *ngIf="isLogin"></i>
+    <i
+      nz-icon
+      nzType="edit"
+      class="edit-icon"
+      *ngIf="isLogin"
+      (click)="handleEditName($event, dataSource)"
+    ></i>
   </span>
 
   <i

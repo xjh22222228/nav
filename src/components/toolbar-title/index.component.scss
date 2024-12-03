@@ -14,11 +14,11 @@
     display: none;
     vertical-align: middle;
   }
-  // &:hover {
-  //   .edit-icon {
-  //     display: inline-block;
-  //   }
-  // }
+  &:hover {
+    .edit-icon {
+      display: inline-block;
+    }
+  }
   .add-icon {
     position: absolute;
     top: 50%;
