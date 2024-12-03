@@ -35,4 +35,10 @@ export class ToolbarTitleWebComponent implements OnInit {
       threeIndex: this.index,
     })
   }
+
+  handleEditName(e: Event, data: INavThreeProp) {
+    e.stopPropagation()
+    e.preventDefault()
+    event.emit('EDIT_CATEGORY_OPEN', { ...data, index: this.index })
+  }
 }
