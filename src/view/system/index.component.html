@@ -103,6 +103,12 @@
           <span class="ml-2.5" *ngIf="!isSelfDevelop">{{ date }}</span>
         </div>
 
+        <nz-spin
+          nzSimple
+          [nzSize]="'large'"
+          class="fixed-center"
+          *ngIf="pageLoading"
+        ></nz-spin>
         <router-outlet></router-outlet>
       </nz-content>
     </nz-layout>

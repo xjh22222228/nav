@@ -68,17 +68,14 @@ export function setWeb(nav, settings, tags = []) {
   let id = 0 // 为每个网站设置唯一ID
   if (!Array.isArray(nav)) return
 
-  function removeIconFont(item) {
+  function handleAdapter(item) {
     delete item.collapsed
     delete item.id
     if (!item.ownVisible) {
       delete item.ownVisible
     }
-    item.icon ||= ''
-    if (typeof item.icon === 'string' && item.icon.startsWith('icon')) {
-      item.icon = ''
-    }
     item.icon = replaceJsdelivrCDN(item.icon, settings)
+    item.nav ||= []
   }
 
   function formatDate(item) {
@@ -88,27 +85,27 @@ export function setWeb(nav, settings, tags = []) {
 
   for (let i = 0; i < nav.length; i++) {
     const item = nav[i]
-    removeIconFont(item)
+    handleAdapter(item)
     formatDate(item)
     if (item.nav) {
       for (let j = 0; j < item.nav.length; j++) {
         const navItem = item.nav[j]
-        removeIconFont(navItem)
+        handleAdapter(navItem)
         formatDate(navItem)
         if (navItem.nav) {
           for (let k = 0; k < navItem.nav.length; k++) {
             const navItemItem = navItem.nav[k]
-            removeIconFont(navItemItem)
+            handleAdapter(navItemItem)
             formatDate(navItemItem)
 
-            navItemItem.nav.sort((a, b) => {
-              const aIdx =
-                a.index == null || a.index === '' ? 100000 : Number(a.index)
-              const bIdx =
-                b.index == null || b.index === '' ? 100000 : Number(b.index)
-              return aIdx - bIdx
-            })
             if (navItemItem.nav) {
+              navItemItem.nav.sort((a, b) => {
+                const aIdx =
+                  a.index == null || a.index === '' ? 100000 : Number(a.index)
+                const bIdx =
+                  b.index == null || b.index === '' ? 100000 : Number(b.index)
+                return aIdx - bIdx
+              })
               for (let l = 0; l < navItemItem.nav.length; l++) {
                 let breadcrumb = []
                 const webItem = navItemItem.nav[l]

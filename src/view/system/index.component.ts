@@ -5,15 +5,22 @@
 
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { RouterOutlet } from '@angular/router'
+import {
+  RouterOutlet,
+  Router,
+  NavigationStart,
+  NavigationEnd,
+  NavigationCancel,
+  NavigationError,
+} from '@angular/router'
 import { $t } from 'src/locale'
 import { isLogin, userLogout, getAuthCode } from 'src/utils/user'
-import { Router } from '@angular/router'
 import { VERSION } from 'src/constants'
 import { isSelfDevelop, removeDark } from 'src/utils/util'
 import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 import { NzButtonModule } from 'ng-zorro-antd/button'
+import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { LoginComponent } from 'src/components/login/login.component'
 
 @Component({
@@ -25,6 +32,7 @@ import { LoginComponent } from 'src/components/login/login.component'
     NzButtonModule,
     LoginComponent,
     RouterOutlet,
+    NzSpinModule,
   ],
   selector: 'app-system',
   templateUrl: './index.component.html',
@@ -39,10 +47,23 @@ export default class SystemComponent {
   date = document.getElementById('META-NAV')?.dataset?.['date'] || ''
   currentVersionSrc = `https://img.shields.io/badge/current-v${VERSION}-red.svg?longCache=true&style=flat-square`
   isAuthz = !!getAuthCode()
+  pageLoading = false
 
   constructor(private router: Router) {
     // 解决暗黑模式部分样式不正确问题，后台没有暗黑
     removeDark()
+
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        this.pageLoading = true
+      } else if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError
+      ) {
+        this.pageLoading = false
+      }
+    })
   }
 
   ngOnInit() {
