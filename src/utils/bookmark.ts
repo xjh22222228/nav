@@ -37,7 +37,7 @@ function getIcon(node: Element) {
 
 const nowCratedAt = getCreatedAt()
 
-function findAllNoCate(roolDL: Element) {
+function findUnclassifiedData(roolDL: Element) {
   const data = []
   for (let i = 0; i < roolDL.childElementCount; i++) {
     const iItem = roolDL.childNodes[i] as any
@@ -104,16 +104,16 @@ export function parseBookmark(htmlStr: string) {
         // Two Level
         jj = 0
         const DL = iItem.querySelector('dl')
-        const allNoCateData = findAllNoCate(DL)
-        if (allNoCateData.length > 0) {
+        const unclassifiedData = findUnclassifiedData(DL)
+        if (unclassifiedData.length > 0) {
           jj++
           data[ii - 1].nav.push({
             createdAt: nowCratedAt,
-            title: $t('_uncategorized'),
+            title,
             nav: [
               {
-                title: $t('_uncategorized'),
-                nav: allNoCateData,
+                title,
+                nav: unclassifiedData,
               },
             ],
           })
@@ -137,13 +137,13 @@ export function parseBookmark(htmlStr: string) {
             // Three Level
             kk = 0
             const DL3 = jItem.querySelector('dl')
-            const allNoCateData = findAllNoCate(DL3)
-            if (allNoCateData.length > 0) {
+            const unclassifiedData = findUnclassifiedData(DL3)
+            if (unclassifiedData.length > 0) {
               kk++
               data[ii - 1].nav[jj - 1].nav.push({
                 createdAt: nowCratedAt,
-                title: $t('_uncategorized'),
-                nav: allNoCateData,
+                title,
+                nav: unclassifiedData,
               })
             }
             for (let k = 0; k < DL3.childElementCount; k++) {
@@ -193,8 +193,8 @@ export function parseBookmark(htmlStr: string) {
       }
     }
 
-    const allNoCateData = findAllNoCate(roolDL)
-    if (allNoCateData.length > 0) {
+    const unclassifiedData = findUnclassifiedData(roolDL)
+    if (unclassifiedData.length > 0) {
       data.push({
         title: $t('_uncategorized'),
         createdAt: nowCratedAt,
@@ -205,7 +205,7 @@ export function parseBookmark(htmlStr: string) {
             nav: [
               {
                 title: $t('_uncategorized'),
-                nav: allNoCateData,
+                nav: unclassifiedData,
               },
             ],
           },

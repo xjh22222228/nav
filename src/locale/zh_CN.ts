@@ -132,7 +132,6 @@ const zhCN: Record<string, any> = {
   _tagSettings: '标签设置',
   _websiteMang: '网站管理',
   _addRow: '新增一条',
-  _bookImportTip: `<p>支持大部分主流浏览器，若导入失败表示暂不支持</p><p>自动检测满足三级分类导航，其他一律设为未分类</p>`,
   _engineName: '引擎名称',
   _status: '状态',
   _isDisable: '是否禁用',

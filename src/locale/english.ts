@@ -137,7 +137,6 @@ const english: Record<string, any> = {
   _tagSettings: 'Tag',
   _websiteMang: 'Website',
   _addRow: 'Add',
-  _bookImportTip: `<p>Supports most mainstream browsers. If the import fails, it is temporarily not supported</p>`,
   _engineName: 'Engine name',
   _status: 'Status',
   _isDisable: 'Disable',
