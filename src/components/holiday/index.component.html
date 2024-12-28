@@ -7,13 +7,13 @@
     <div class="title">
       {{
         items[0].isToday || items[0].isRest
-          ? '今天就是'
-          : '距离' + items[0].title
+          ? $t('_dayIs')
+          : $t('_distance') + items[0].title
       }}
     </div>
     <div class="days">{{ items[0].diffStr }}</div>
     <div class="flex items-center justify-center whitespace-nowrap">
-      <span class="tag" *ngIf="items[0].day > 0">休</span>
+      <span class="tag" *ngIf="items[0].day > 0">{{ $t('_rest') }}</span>
       <span
         >{{ items[0].dateStr }}
         <ng-container *ngIf="items[0].afterDay"
@@ -26,9 +26,11 @@
     <div class="items" *ngFor="let item of items; let idx = index">
       <div class="cleft">
         {{ item.title }} {{ item.dateStr
-        }}<span class="tag" *ngIf="item.day > 0">休</span>
+        }}<span class="tag" *ngIf="item.day > 0">{{ $t('_rest') }}</span>
       </div>
-      <div class="cright" *ngIf="item.diffDay > 0">{{ item.diffDay }}天</div>
+      <div class="cright" *ngIf="item.diffDay > 0">
+        {{ item.diffDay }}{{ $t('_day') }}
+      </div>
     </div>
   </div>
 </div>

@@ -5,6 +5,7 @@
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { IComponentProps } from 'src/types'
+import { $t } from 'src/locale'
 import dayjs from 'dayjs'
 import event from 'src/utils/mitt'
 
@@ -18,6 +19,7 @@ import event from 'src/utils/mitt'
 export class HolidayComponent {
   @Input() data!: IComponentProps
   items: any[] = []
+  $t = $t
 
   constructor() {}
 
