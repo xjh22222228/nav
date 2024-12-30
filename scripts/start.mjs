@@ -58,16 +58,19 @@ let search = []
 let components = []
 try {
   const strings = fs.readFileSync(dbPath).toString().trim()
+  if (!strings) {
+    throw new Error('empty')
+  }
   if (strings[0] === '[' && strings.at(-1) === ']') {
     db = JSON.parse(strings)
   } else {
     db = JSON.parse(LZString.decompressFromBase64(strings))
     if (!db) {
-      db = defaultDb
+      db = JSON.parse(LZString.decompressFromBase64(defaultDb))
     }
   }
 } catch (e) {
-  db = defaultDb
+  db = JSON.parse(LZString.decompressFromBase64(defaultDb))
 }
 try {
   internal = JSON.parse(fs.readFileSync(internalPath).toString())
