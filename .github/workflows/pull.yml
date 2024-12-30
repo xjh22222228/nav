@@ -4,8 +4,6 @@ rules: # Array of rules
     upstream: xjh22222228/nav:main # Required. Must be in the same fork network.
     mergeMethod: merge # Optional, one of [none, merge, squash, rebase, hardreset], Default: none.
     mergeUnstable: false # Optional, merge pull request even when the mergeable_state is not clean. Default: false
-  - base: dev
-    upstream: main # Required. Can be a branch in the same forked repo.
     assignees: # Optional
       - xjh22222228/nav
     reviewers: # Optional
