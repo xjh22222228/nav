@@ -9,13 +9,13 @@
 
 # 仓库地址，填写 Fork 后的仓库地址，支持 Gitee / GitHub
 # 作者 Gitee 仓库地址 https://gitee.com/xiejiahe/nav
-gitRepoUrl: https://github.com/xjh22222228/nav
+gitRepoUrl: https://github.com/kuiyr0810/nav
 
 # Fork 部署分支
 branch: main
 
 # 只有GitHub pages用户需要设置为true， 其他建议设置为 false
-hashMode: true
+hashMode: false
 
 # 一旦填写认为你是自有部署，Fork 不要填写
 address: ''
@@ -27,7 +27,7 @@ password: admin
 port: 7777
 
 # 收录通知邮箱
-email: ''
+email: '2115908525@qq.com'
 
 # 自有部署邮件通知系统
 mailConfig:
