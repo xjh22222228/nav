@@ -113,7 +113,7 @@ export class EditCategoryComponent {
     this.onCancel()
 
     try {
-      if (!this.isSystemPage()) {
+      if (this.app) {
         const { page, id } = queryString()
         websiteList[page].nav[id].nav[this.index] = {
           ...websiteList[page].nav[id].nav[this.index],
