@@ -314,31 +314,6 @@
           (onEdit)="openEditWebMoal()"
           (onMove)="openMoveWebModal()"
         />
-
-        <div class="actions" *ngIf="isLogin">
-          <span
-            class="action-btn dark-text dark-hover-text"
-            (click)="openEditWebMoal()"
-            >{{ $t('_edit') }}</span
-          >
-          <span
-            class="action-btn dark-text dark-hover-text"
-            (click)="openMoveWebModal()"
-            *ngIf="indexs.length === 4"
-            >{{ $t('_move') }}</span
-          >
-
-          <span
-            nz-popconfirm
-            nzPopconfirmPlacement="rightTop"
-            nzOkType="danger"
-            [nzPopconfirmTitle]="$t('_confirmDel')"
-            nzPopconfirmPlacement="bottom"
-            (nzOnConfirm)="confirmDel()"
-            class="action-btn dark-text dark-hover-text"
-            >{{ $t('_del') }}</span
-          >
-        </div>
       </div>
     </div>
   </ng-container>
