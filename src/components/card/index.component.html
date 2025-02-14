@@ -218,7 +218,12 @@
           (click)="jumpService.goUrl($event, dataSource.url)"
           class="cursor-pointer"
         >
-          <div class="top dark-border-color">
+          <div
+            class="top dark-border-color"
+            [class.border-transparent]="
+              !dataSource.desc && !dataSource.tags?.length
+            "
+          >
             <app-logo
               [src]="dataSource.icon || ''"
               [name]="dataSource.name"
@@ -230,7 +235,7 @@
               [innerHTML]="dataSource.name"
             ></div>
           </div>
-          <div class="px-2.5 pb-2.5">
+          <div class="p-2.5">
             <div
               class="desc ellipsis3 dark-white"
               *ngIf="dataSource.desc"
@@ -238,8 +243,12 @@
               [innerHTML]="dataSource.desc"
             ></div>
             <tag-list
-              *ngIf="dataSource.tags?.length"
+              *ngIf="dataSource.tags?.length || isLogin"
               [data]="dataSource.tags"
+              [action]="true"
+              (onDelete)="confirmDel()"
+              (onEdit)="openEditWebMoal()"
+              (onMove)="openMoveWebModal()"
             />
           </div>
         </div>
@@ -297,7 +306,14 @@
 
       <div class="bottom-bar">
         <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
-        <tag-list [data]="dataSource.tags" *ngIf="dataSource.tags?.length" />
+        <tag-list
+          [data]="dataSource.tags"
+          *ngIf="dataSource.tags?.length || isLogin"
+          [action]="true"
+          (onDelete)="confirmDel()"
+          (onEdit)="openEditWebMoal()"
+          (onMove)="openMoveWebModal()"
+        />
 
         <div class="actions" *ngIf="isLogin">
           <span
