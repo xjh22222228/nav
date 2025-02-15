@@ -3,17 +3,13 @@
   .content {
     padding: 30px;
     background-color: #fff;
+    min-width: 1200px;
   }
   .sidebar {
-    z-index: 3;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
     background-color: #fff;
   }
   .inner-layout {
-    margin-left: 170px;
+    margin-left: 15px;
   }
   .fixed-center {
     position: fixed;

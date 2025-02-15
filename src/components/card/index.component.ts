@@ -14,7 +14,7 @@ import { isLogin } from 'src/utils/user'
 import { copyText, getTextContent } from 'src/utils'
 import { setWebsiteList, deleteByWeb } from 'src/utils/web'
 import { INavProps, IWebProps, ICardType } from 'src/types'
-import { $t } from 'src/locale'
+import { $t, isZhCN } from 'src/locale'
 import { settings, websiteList } from 'src/store'
 import { JumpService } from 'src/services/jump'
 import { NzRateModule } from 'ng-zorro-antd/rate'
@@ -115,13 +115,17 @@ export class CardComponent implements OnInit {
 
   get getRate() {
     if (!this.dataSource.rate) {
-      return null
+      return ''
     }
     const rate = Number(this.dataSource.rate)
     // 0分不显示
     if (!rate) {
-      return null
+      return ''
     }
-    return rate.toFixed(1) + '分'
+    const n = rate.toFixed(1)
+    if (isZhCN()) {
+      return n + '分'
+    }
+    return n
   }
 }

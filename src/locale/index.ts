@@ -32,4 +32,8 @@ export function $t(s: string, map?: Record<string, any>): string {
   return replaceStr(o.en[s] ?? o.cn[s], map)
 }
 
+export function isZhCN(): boolean {
+  return l === 'zh-CN'
+}
+
 export default o
