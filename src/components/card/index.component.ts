@@ -47,29 +47,29 @@ import event from 'src/utils/mitt'
   styleUrls: ['./index.component.scss'],
 })
 export class CardComponent implements OnInit {
-  @Input() searchKeyword: string = ''
+  @Input() searchKeyword = ''
   @Input() dataSource: IWebProps | Record<string, any> = {}
-  @Input() indexs: Array<number> = []
+  @Input() indexs: number[] = []
   @Input() cardStyle: ICardType = 'standard'
 
-  $t = $t
-  settings = settings
-  websiteList: INavProps[] = websiteList
-  isLogin: boolean = isLogin
+  readonly $t = $t
+  readonly settings = settings
+  readonly websiteList: INavProps[] = websiteList
+  readonly isLogin = isLogin
   copyUrlDone = false
   copyPathDone = false
 
-  constructor(public jumpService: JumpService) {}
+  constructor(public readonly jumpService: JumpService) {}
 
   ngOnInit(): void {}
 
-  async copyUrl(e: Event, type: number) {
-    const w = this.dataSource
+  async copyUrl(e: Event, type: 1 | 2): Promise<void> {
+    const { name, url } = this.dataSource
     const { origin, hash, pathname } = window.location
-    const pathUrl = `${origin}${pathname}${hash}?q=${
-      w.name
-    }&url=${encodeURIComponent(w.url)}`
-    const isDone = await copyText(e, type === 1 ? pathUrl : w.url)
+    const pathUrl = `${origin}${pathname}${hash}?q=${name}&url=${encodeURIComponent(
+      url
+    )}`
+    const isDone = await copyText(e, type === 1 ? pathUrl : url)
 
     if (type === 1) {
       this.copyPathDone = isDone
@@ -78,23 +78,23 @@ export class CardComponent implements OnInit {
     }
   }
 
-  copyMouseout() {
+  copyMouseout(): void {
     this.copyUrlDone = false
     this.copyPathDone = false
   }
 
-  openEditWebMoal() {
+  openEditWebMoal(): void {
     event.emit('CREATE_WEB', {
       detail: this.dataSource,
     })
   }
 
-  onRateChange(n: any) {
-    this.dataSource.rate = n
+  onRateChange(rate: number): void {
+    this.dataSource.rate = rate
     setWebsiteList(this.websiteList)
   }
 
-  confirmDel() {
+  confirmDel(): void {
     deleteByWeb({
       ...(this.dataSource as IWebProps),
       name: getTextContent(this.dataSource.name),
@@ -102,30 +102,19 @@ export class CardComponent implements OnInit {
     })
   }
 
-  openMoveWebModal() {
+  openMoveWebModal(): void {
     event.emit('MOVE_WEB', {
       indexs: this.indexs,
       data: [this.dataSource],
     })
   }
 
-  get html() {
+  get html(): string {
     return this.dataSource.desc.slice(1)
   }
 
-  get getRate() {
-    if (!this.dataSource.rate) {
-      return ''
-    }
-    const rate = Number(this.dataSource.rate)
-    // 0分不显示
-    if (!rate) {
-      return ''
-    }
-    const n = rate.toFixed(1)
-    if (isZhCN()) {
-      return n + '分'
-    }
-    return n
+  get getRate(): string {
+    const rate = Number(this.dataSource.rate ?? 0)
+    return rate > 0 ? `${rate.toFixed(1)}${isZhCN() ? '分' : ''}` : ''
   }
 }

@@ -98,14 +98,23 @@ httpNavInstance.interceptors.response.use(
     return res
   },
   function (error) {
+    let showError = true
     const status =
       error.status || error.response?.data?.status || error.code || ''
     const errorMsg = error.response?.data?.message || error.message || ''
-    event.emit('NOTIFICATION', {
-      type: 'error',
-      title: 'Error：' + status,
-      content: errorMsg,
-    })
+    try {
+      if (JSON.parse(error.config.data).showError === false) {
+        showError = false
+      }
+    } catch {}
+    if (showError) {
+      event.emit('NOTIFICATION', {
+        type: 'error',
+        title: 'Error：' + status,
+        content: errorMsg,
+      })
+    }
+
     stopLoad()
     return Promise.reject(error)
   }

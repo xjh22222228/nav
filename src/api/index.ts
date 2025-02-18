@@ -223,6 +223,14 @@ export async function getUserCollect(data?: Record<string, any>) {
   return httpNav.post('/api/get', data)
 }
 
+export async function getUserCollectCount(data: Record<string, any> = {}) {
+  data['showError'] = false
+  if (isSelfDevelop) {
+    return http.post('/api/collect/get', data)
+  }
+  return httpNav.post('/api/collect/count', data)
+}
+
 export async function saveUserCollect(data?: Record<string, any>) {
   if (isSelfDevelop) {
     return http.post('/api/collect/save', data)

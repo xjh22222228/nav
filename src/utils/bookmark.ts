@@ -2,7 +2,7 @@
 // Copyright @ 2018-present xie.jiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { INavProps } from '../types'
+import { INavProps, IWebProps, INavTwoProp, INavThreeProp } from '../types'
 import { websiteList } from '../store'
 import { $t } from '../locale'
 
@@ -10,63 +10,47 @@ let id = -Date.now()
 
 function getCreatedAt(node?: Element): string {
   const now = new Date().toString()
-  if (!node) {
-    return now
-  }
-
-  const addDate = node.getAttribute('add_date')
-
-  if (!addDate) {
-    return now
-  }
-
-  return new Date(Number(addDate) * 1000).toString()
+  const addDate = node?.getAttribute('add_date')
+  return addDate ? new Date(Number(addDate) * 1000).toString() : now
 }
 
-function getTitle(node: Element) {
-  return node.textContent || ''
-}
-
-function getUrl(node: Element) {
-  return node.getAttribute('href') || ''
-}
-
-function getIcon(node: Element) {
-  return node.getAttribute('icon') || ''
-}
+const getTitle = (node: Element): string => node.textContent || ''
+const getUrl = (node: Element): string => node.getAttribute('href') || ''
+const getIcon = (node: Element): string => node.getAttribute('icon') || ''
 
 const nowCratedAt = getCreatedAt()
 
-function findUnclassifiedData(roolDL: Element) {
-  const data = []
-  for (let i = 0; i < roolDL.childElementCount; i++) {
-    const iItem = roolDL.childNodes[i] as any
-
-    if (iItem && iItem.nodeName === 'DT') {
-      let a = iItem.firstElementChild
-      if (!a || a.nodeName !== 'A') continue
-
-      const name = getTitle(a)
-      const createdAt = getCreatedAt(a)
-      const icon = getIcon(a)
-      const url = getUrl(a)
-      data.push({
-        name,
-        createdAt,
-        icon,
-        url,
-        tags: [],
-        desc: '',
-        rate: 5,
-        id: (id += 1),
-        breadcrumb: [],
-      })
+function findUnclassifiedData(roolDL: Element): IWebProps[] {
+  const data: IWebProps[] = []
+  Array.from(roolDL.children).forEach((iItem) => {
+    if (iItem.nodeName === 'DT') {
+      const a = iItem.firstElementChild
+      if (a?.nodeName === 'A') {
+        data.push({
+          name: getTitle(a),
+          createdAt: getCreatedAt(a),
+          icon: getIcon(a),
+          url: getUrl(a),
+          tags: [],
+          desc: '',
+          rate: 5,
+          id: (id += 1),
+          breadcrumb: [],
+        })
+      }
     }
-  }
+  })
   return data
 }
 
-export function parseBookmark(htmlStr: string) {
+interface BookmarkParseResult {
+  message?: string
+  data?: INavProps[]
+}
+
+export function parseBookmark(
+  htmlStr: string
+): BookmarkParseResult | INavProps[] {
   const copyWebList = JSON.parse(JSON.stringify(websiteList))
   const data: INavProps[] = []
   const importEl = document.createElement('div')
@@ -79,119 +63,117 @@ export function parseBookmark(htmlStr: string) {
     }
   }
 
-  let ii = 0
-  let jj = 0
-  let kk = 0
   try {
-    // One Level
-    for (let i = 0; i < roolDL.childElementCount; i++) {
-      const iItem = roolDL.childNodes[i] as any
-      if (iItem && iItem.nodeName === 'DT') {
-        const titleEl = iItem.querySelector('h3') as Element
-        // PERSONAL_TOOLBAR_FOLDER 收藏栏
-        if (!titleEl) continue
-
-        ii++
-        const title = getTitle(titleEl)
-        const createdAt = getCreatedAt(titleEl)
-        data.push({
-          title,
-          createdAt,
-          icon: '',
-          nav: [],
-        })
-
-        // Two Level
-        jj = 0
-        const DL = iItem.querySelector('dl')
-        const unclassifiedData = findUnclassifiedData(DL)
-        if (unclassifiedData.length > 0) {
-          jj++
-          data[ii - 1].nav.push({
-            createdAt: nowCratedAt,
-            title,
-            nav: [
-              {
-                title,
-                nav: unclassifiedData,
-              },
-            ],
-          })
-        }
-
-        for (let j = 0; j < DL.childElementCount; j++) {
-          const jItem = DL.childNodes[j]
-          if (jItem && jItem.nodeName === 'DT') {
-            const titleEl = jItem.querySelector('h3')
-            if (!titleEl) continue
-            jj++
-            const title = getTitle(titleEl)
-            const createdAt = getCreatedAt(titleEl)
-            data[ii - 1].nav.push({
-              title,
-              createdAt,
-              icon: '',
-              nav: [],
+    function processWebsiteLevel(DL3: Element, parentData: INavThreeProp) {
+      Array.from(DL3.children).forEach((wItem) => {
+        if (wItem.nodeName === 'DT') {
+          const titleEl = wItem.querySelector('a')
+          if (titleEl) {
+            parentData.nav.push({
+              name: getTitle(titleEl),
+              createdAt: getCreatedAt(titleEl),
+              url: getUrl(titleEl),
+              desc: '',
+              tags: [],
+              rate: 5,
+              top: false,
+              icon: getIcon(titleEl),
+              id: (id += 1),
+              breadcrumb: [],
             })
+          }
+        }
+      })
+    }
 
-            // Three Level
-            kk = 0
-            const DL3 = jItem.querySelector('dl')
-            const unclassifiedData = findUnclassifiedData(DL3)
-            if (unclassifiedData.length > 0) {
-              kk++
-              data[ii - 1].nav[jj - 1].nav.push({
-                createdAt: nowCratedAt,
-                title,
-                nav: unclassifiedData,
-              })
+    function processThreeLevel(DL3: Element, parentNav: INavTwoProp) {
+      Array.from(DL3.children).forEach((kItem) => {
+        if (kItem.nodeName === 'DT') {
+          const titleEl = kItem.querySelector('h3')
+          if (titleEl) {
+            const title = getTitle(titleEl)
+            const threeLevel: INavThreeProp = {
+              title,
+              createdAt: getCreatedAt(titleEl),
+              nav: [],
+              icon: '',
             }
-            for (let k = 0; k < DL3.childElementCount; k++) {
-              const kItem = DL3.childNodes[k]
-              if (kItem && kItem.nodeName === 'DT') {
-                const titleEl = kItem.querySelector('h3')
-                if (!titleEl) continue
-                kk++
-                const title = getTitle(titleEl)
-                const createdAt = getCreatedAt(titleEl)
-                data[ii - 1].nav[jj - 1].nav.push({
-                  title,
-                  createdAt,
-                  nav: [],
-                  icon: '',
-                })
+            parentNav.nav.push(threeLevel)
 
-                // Website Level
-                const DL3 = kItem.querySelector('dl')
-                for (let b = 0; b < DL3.childElementCount; b++) {
-                  const wItem = DL3.childNodes[b]
-                  if (wItem && wItem.nodeName === 'DT') {
-                    const titleEl = wItem.querySelector('a')
-                    if (!titleEl) continue
-                    const title = getTitle(titleEl)
-                    const createdAt = getCreatedAt(titleEl)
-                    const icon = getIcon(titleEl)
-                    const url = getUrl(titleEl)
-                    data[ii - 1].nav[jj - 1].nav[kk - 1].nav.push({
-                      name: title,
-                      createdAt,
-                      url,
-                      desc: '',
-                      tags: [],
-                      rate: 5,
-                      top: false,
-                      icon,
-                      id: (id += 1),
-                      breadcrumb: [],
-                    })
-                  }
-                }
-              }
+            const websiteDL = kItem.querySelector('dl')
+            if (websiteDL) {
+              processWebsiteLevel(websiteDL, threeLevel)
             }
           }
         }
-      }
+      })
     }
+
+    function processTwoLevel(DL: Element, parentData: INavProps) {
+      Array.from(DL.children).forEach((jItem) => {
+        if (jItem.nodeName === 'DT') {
+          const titleEl = jItem.querySelector('h3')
+          if (titleEl) {
+            const title = getTitle(titleEl)
+            const twoLevel: INavTwoProp = {
+              title,
+              createdAt: getCreatedAt(titleEl),
+              icon: '',
+              nav: [],
+            }
+            parentData.nav.push(twoLevel)
+
+            const DL3 = jItem.querySelector('dl')
+            if (DL3) {
+              const unclassifiedData = findUnclassifiedData(DL3)
+              if (unclassifiedData.length > 0) {
+                twoLevel.nav.push({
+                  createdAt: nowCratedAt,
+                  title,
+                  nav: unclassifiedData,
+                })
+              }
+              processThreeLevel(DL3, twoLevel)
+            }
+          }
+        }
+      })
+    }
+
+    // Process One Level
+    Array.from(roolDL.children).forEach((iItem) => {
+      if (iItem.nodeName === 'DT') {
+        const titleEl = iItem.querySelector('h3')
+        if (titleEl) {
+          const title = getTitle(titleEl)
+          const oneLevel: INavProps = {
+            title,
+            createdAt: getCreatedAt(titleEl),
+            icon: '',
+            nav: [],
+          }
+          data.push(oneLevel)
+
+          const DL = iItem.querySelector('dl')
+          if (DL) {
+            const unclassifiedData = findUnclassifiedData(DL)
+            if (unclassifiedData.length > 0) {
+              oneLevel.nav.push({
+                createdAt: nowCratedAt,
+                title,
+                nav: [
+                  {
+                    title,
+                    nav: unclassifiedData,
+                  },
+                ],
+              })
+            }
+            processTwoLevel(DL, oneLevel)
+          }
+        }
+      }
+    })
 
     const unclassifiedData = findUnclassifiedData(roolDL)
     if (unclassifiedData.length > 0) {

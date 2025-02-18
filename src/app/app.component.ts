@@ -14,7 +14,7 @@ import { queryString, setLocation, isMobile, getDefaultTheme } from '../utils'
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n'
 import { getLocale } from 'src/locale'
 import { settings } from 'src/store'
-import { verifyToken, getContentes } from 'src/api'
+import { verifyToken, getContentes, getUserCollectCount } from 'src/api'
 import { getToken, userLogout, isLogin } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
@@ -26,6 +26,7 @@ import { MoveWebComponent } from 'src/components/move-web/index.component'
 import { CreateWebComponent } from 'src/components/create-web/index.component'
 import { IconGitComponent } from 'src/components/icon-git/icon-git.component'
 import { EditCategoryComponent } from 'src/components/edit-category/index.component'
+import { $t } from 'src/locale'
 import Alert from './alert-event'
 import event from 'src/utils/mitt'
 
@@ -81,23 +82,7 @@ export class AppComponent {
       this.i18n.setLocale(en_US)
     }
 
-    const token = getToken()
-    if (token) {
-      verifyToken(token)
-        .then((res) => {
-          const data = res.data || {}
-          if (!settings.email && data.email) {
-            settings.email = data.email
-          }
-          event.emit('GITHUB_USER_INFO', data)
-        })
-        .catch(() => {
-          userLogout()
-          setTimeout(() => {
-            location.reload()
-          }, 1000)
-        })
-    }
+    this.verifyToken()
 
     if (isSelfDevelop) {
       getContentes().then(() => {
@@ -129,6 +114,45 @@ export class AppComponent {
     } else {
       fetchWeb().finally(() => {
         this.fetchIng = false
+      })
+    }
+
+    this.getCollectCount()
+  }
+
+  verifyToken() {
+    const token = getToken()
+    if (token) {
+      verifyToken(token)
+        .then((res) => {
+          const data = res.data || {}
+          if (!settings.email && data.email) {
+            settings.email = data.email
+          }
+          event.emit('GITHUB_USER_INFO', data)
+        })
+        .catch(() => {
+          userLogout()
+          setTimeout(() => {
+            location.reload()
+          }, 1000)
+        })
+    }
+  }
+
+  getCollectCount() {
+    if (isLogin && settings.allowCollect) {
+      getUserCollectCount().then((res) => {
+        const count = res.data.count
+        if (count > 0) {
+          this.notification.info(
+            $t('_colTitle', { count }),
+            $t('_collectTip'),
+            {
+              nzDuration: 0,
+            }
+          )
+        }
       })
     }
   }

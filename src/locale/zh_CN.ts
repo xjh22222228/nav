@@ -278,6 +278,8 @@ const zhCN: Record<string, any> = {
   _dayIs: '今天是',
   _rest: '休',
   _distance: '距离',
+  _collectTip: '有用户申请收录请去处理',
+  _colTitle: '收录处理（{count}）',
 }
 
 export default zhCN

@@ -295,7 +295,11 @@
         [nzAutosize]="textareaSize"
       ></textarea>
 
-      <div [innerHTML]="footTemplate" class="text-center mt-2.5"></div>
+      <div
+        [innerHTML]="footTemplate"
+        class="text-center mt-2.5"
+        style="background: rgba(0, 0, 0, 0.028)"
+      ></div>
 
       <div class="mt-2.5">{{ $t('_footTemplateDesc') }}</div>
       <div class="my-2.5" [innerHTML]="$t('_builtTailwind') | safeHtml"></div>

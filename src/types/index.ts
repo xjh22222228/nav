@@ -73,7 +73,7 @@ export interface IWebProps {
   ownVisible?: boolean
   breadcrumb: string[]
   ok?: boolean
-  tags?: IWebTag[]
+  tags: IWebTag[]
   [key: string]: any
 }
 
