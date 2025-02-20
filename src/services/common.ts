@@ -34,20 +34,24 @@ export class CommonService {
   title: string = settings.title.trim().split(/\s/)[0]
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    const getData = () => {
+      const { id, page, q } = queryString()
+      this.page = page
+      this.id = id
+      this.searchKeyword = q
+      this.handleCheckThree(0)
+
+      if (q) {
+        this.currentList = fuzzySearch(websiteList, q)
+      } else {
+        this.currentList = matchCurrentList()
+      }
+    }
+
     const init = () => {
       this.activatedRoute.queryParams.subscribe(() => {
-        const { id, page, q } = queryString()
-        this.page = page
-        this.id = id
-        this.searchKeyword = q
-        this.handleCheckThree(0)
         this.sliceMax = 0
-
-        if (q) {
-          this.currentList = fuzzySearch(websiteList, q)
-        } else {
-          this.currentList = matchCurrentList()
-        }
+        getData()
         setTimeout(() => {
           this.sliceMax = Number.MAX_SAFE_INTEGER
         }, 100)
@@ -58,6 +62,11 @@ export class CommonService {
     } else {
       event.on('WEB_FINISH', () => {
         init()
+      })
+    }
+    if (isSelfDevelop) {
+      event.on('WEB_REFRESH', () => {
+        getData()
       })
     }
   }

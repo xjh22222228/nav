@@ -2,12 +2,7 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectionStrategy,
-} from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { isLogin } from 'src/utils/user'
@@ -41,7 +36,6 @@ import event from 'src/utils/mitt'
     NzPopconfirmModule,
     SafeHtmlPipe,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-card',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

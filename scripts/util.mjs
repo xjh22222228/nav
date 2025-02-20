@@ -413,7 +413,7 @@ export async function spiderWeb(db, settings) {
   }
 
   const diff = Math.ceil((Date.now() - now) / 1000)
-  console.log(`Time: ${diff} seconds`)
+  console.log(`OK: Time: ${diff} seconds`)
 
   return {
     webs: db,

@@ -2,13 +2,7 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import {
-  Component,
-  Output,
-  EventEmitter,
-  Input,
-  ChangeDetectionStrategy,
-} from '@angular/core'
+import { Component, Output, EventEmitter, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { isDark as isDarkFn, randomBgImg, queryString } from 'src/utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
