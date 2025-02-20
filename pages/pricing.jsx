@@ -22,6 +22,7 @@ export default function Home() {
       title: t('subeVersion'),
       desc: t('giveTry'),
       price: 99,
+      originalPrice: 199,
       style: {
         background:
           'linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)',
@@ -40,6 +41,7 @@ export default function Home() {
       title: t('permanentVersion'),
       desc: t('highlyDesc'),
       price: 299,
+      originalPrice: 699,
       subtitle: t('highly'),
       style: {
         background: 'black',
@@ -89,6 +91,9 @@ export default function Home() {
                 {item.unit && (
                   <span className="text-base ml-1">{item.unit}</span>
                 )}
+                <del className="text-sm text-slate-300 font-normal ml-1">
+                  {item.originalPrice && `￥${item.originalPrice}`}
+                </del>
               </div>
               {item.items.map((text) => (
                 <div key={text} className="flex justify-center px-4">

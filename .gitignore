@@ -38,3 +38,5 @@ next-env.d.ts
 avatar.json
 .angular
 dist
+nav.config.json
+data/
