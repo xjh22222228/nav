@@ -29,7 +29,7 @@ export function compilerTemplate(str: string): string {
 }
 
 const DARK_THEME = {
-  cssUrl: '//unpkg.com/ng-zorro-antd@19.0.2/ng-zorro-antd.dark.min.css',
+  cssUrl: '//unpkg.com/ng-zorro-antd@19.1.0/ng-zorro-antd.dark.min.css',
   cssId: 'dark-css',
   classes: ['dark-container', 'dark'],
 } as const

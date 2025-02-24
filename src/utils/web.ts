@@ -54,6 +54,7 @@ export async function fetchWeb() {
       STORAGE_KEY_MAP.token,
       STORAGE_KEY_MAP.isDark,
       STORAGE_KEY_MAP.authCode,
+      STORAGE_KEY_MAP.location,
     ]
     const len = window.localStorage.length
     for (let i = 0; i < len; i++) {

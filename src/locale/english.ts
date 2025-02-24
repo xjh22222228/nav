@@ -5,7 +5,6 @@ import { isSelfDevelop } from 'src/utils/util'
 
 const english: Record<string, any> = {
   _loading: 'Loading...',
-  _webTitle: 'Discovery Navigation',
   _uncategorized: 'Unclassified',
   _modifySuccess: 'Modification succeeded!',
   _copySuccess: 'Copy succeeded!',

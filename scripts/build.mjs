@@ -13,28 +13,48 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.tz.setDefault('Asia/Shanghai')
 
-const dbPath = path.join('.', 'data', 'db.json')
-const setPath = path.join('.', 'data', 'settings.json')
+const PATHS = {
+  db: path.join('.', 'data', 'db.json'),
+  settings: path.join('.', 'data', 'settings.json'),
+  html: {
+    main: path.join('.', 'src', 'main.html'),
+    write: path.join('.', 'src', 'index.html'),
+  },
+}
 
-const db = JSON.parse(fs.readFileSync(dbPath).toString())
-const settings = JSON.parse(fs.readFileSync(setPath).toString())
+const handleFileOperation = (operation) => {
+  try {
+    return operation()
+  } catch (error) {
+    console.error(`File operation failed: ${error.message}`)
+    return null
+  }
+}
+
+const db = handleFileOperation(() =>
+  JSON.parse(fs.readFileSync(PATHS.db).toString())
+)
+const settings = handleFileOperation(() =>
+  JSON.parse(fs.readFileSync(PATHS.settings).toString())
+)
 
 const seoTemplate = writeSEO(db, { settings })
-const htmlPath = path.join('.', 'src', 'main.html')
-const writePath = path.join('.', 'src', 'index.html')
 const html = writeTemplate({
-  html: fs.readFileSync(htmlPath).toString(),
+  html: fs.readFileSync(PATHS.html.main).toString(),
   settings,
   seoTemplate,
 })
-fs.writeFileSync(writePath, html)
+
+handleFileOperation(() => fs.writeFileSync(PATHS.html.write, html))
 
 let errorUrlCount = 0
 
 process.on('exit', () => {
   settings.errorUrlCount = errorUrlCount
-  fs.writeFileSync(setPath, JSON.stringify(settings), { encoding: 'utf-8' })
-  fs.writeFileSync(dbPath, JSON.stringify(db), { encoding: 'utf-8' })
+  handleFileOperation(() => {
+    fs.writeFileSync(PATHS.settings, JSON.stringify(settings))
+    fs.writeFileSync(PATHS.db, JSON.stringify(db))
+  })
   console.log('All success!')
 })
 
