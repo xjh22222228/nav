@@ -85,7 +85,7 @@
         ></div>
         <div
           class="action-item dark-border-color"
-          *ngIf="isLogin"
+          *ngIf="isLogin || permissions.edit"
           nz-tooltip
           [nzTooltipTitle]="$t('_edit')"
           nz-icon
@@ -105,7 +105,7 @@
         ></div>
         <div
           class="action-item dark-border-color"
-          *ngIf="isLogin"
+          *ngIf="isLogin || permissions.del"
           nz-popconfirm
           nzPopconfirmPlacement="rightTop"
           nzOkType="danger"
@@ -243,7 +243,12 @@
               [innerHTML]="dataSource.desc"
             ></div>
             <tag-list
-              *ngIf="dataSource.tags?.length || isLogin"
+              *ngIf="
+                dataSource.tags?.length ||
+                isLogin ||
+                permissions.edit ||
+                permissions.del
+              "
               [data]="dataSource.tags"
               [action]="true"
               (onDelete)="confirmDel()"
@@ -308,7 +313,12 @@
         <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
         <tag-list
           [data]="dataSource.tags"
-          *ngIf="dataSource.tags?.length || isLogin"
+          *ngIf="
+            dataSource.tags?.length ||
+            isLogin ||
+            permissions.edit ||
+            permissions.del
+          "
           [action]="true"
           (onDelete)="confirmDel()"
           (onEdit)="openEditWebMoal()"

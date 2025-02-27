@@ -23,6 +23,7 @@
         <tr>
           <th nzWidth="80px">{{ $t('_action') }}</th>
           <th nzWidth="80px">{{ $t('_type') }}</th>
+          <th nzWidth="80px">ID</th>
           <th nzWidth="80px">{{ $t('_icon') }}</th>
           <th nzWidth="100px">{{ $t('_webName') }}</th>
           <th nzWidth="100px">{{ $t('_associatedLabels') }}</th>
@@ -35,7 +36,7 @@
         <tr *ngFor="let data of dataList; index as idx; trackBy: trackByItem">
           <td>
             <div>
-              <a (click)="handleConfirmGet(data, idx)">{{ $t('_collect') }}</a>
+              <a (click)="handleClick(data, idx)">{{ $t('_handle') }}</a>
             </div>
             <div class="mt-2.5">
               <a
@@ -52,6 +53,7 @@
             </div>
           </td>
           <td>{{ typeMap[data.extra.type] }}</td>
+          <td>{{ data.id }}</td>
           <td>
             <app-logo [src]="data.icon" [name]="data.name" />
           </td>
@@ -64,9 +66,8 @@
           <td>
             <pre class="desc">{{ data.desc }}</pre>
           </td>
-          <td nzWidth="300px" *ngIf="data.extra">
-            {{ data.extra.oneName }} / {{ data.extra.twoName }} /
-            {{ data.extra.threeName }}
+          <td nzWidth="300px">
+            {{ data.breadcrumb }}
           </td>
           <td>{{ data.createdAt }}</td>
         </tr>

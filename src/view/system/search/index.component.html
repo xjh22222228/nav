@@ -16,7 +16,7 @@
   {{ $t('_save') }}
 </button>
 
-<div class="mb12">
+<div class="mb12" *ngIf="!isSelfDevelop">
   <b>{{ $t('_buildTip') }}</b>
 </div>
 <nz-table #basicTable [nzData]="searchList">

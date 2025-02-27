@@ -4,9 +4,9 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { IWebTag } from 'src/types'
-import { tagMap } from 'src/store'
+import { tagMap, settings } from 'src/store'
 import { JumpService } from 'src/services/jump'
-import { isLogin } from 'src/utils/user'
+import { isLogin, getPermissions } from 'src/utils/user'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { $t } from 'src/locale'
@@ -28,6 +28,7 @@ export class TagListComponent {
   $t = $t
   isLogin = isLogin
   tagMap = tagMap
+  permissions = getPermissions(settings)
 
   constructor(public jumpService: JumpService) {}
 

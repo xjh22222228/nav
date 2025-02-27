@@ -135,7 +135,7 @@
         *ngIf="
           commonService.currentList.length &&
           commonService.currentList[0].title &&
-          (commonService.isLogin || commonService.settings.allowCollect)
+          (commonService.isLogin || commonService.permissions.create)
         "
       >
         <span class="appbtn" (click)="openCreateWebModal()">{{

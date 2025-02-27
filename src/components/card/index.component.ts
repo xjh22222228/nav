@@ -2,13 +2,13 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
-import { isLogin } from 'src/utils/user'
+import { isLogin, getPermissions } from 'src/utils/user'
 import { copyText, getTextContent } from 'src/utils'
-import { setWebsiteList, deleteByWeb } from 'src/utils/web'
-import { INavProps, IWebProps, ICardType } from 'src/types'
+import { setWebsiteList, deleteWebById } from 'src/utils/web'
+import { INavProps, IWebProps, ICardType, ActionType } from 'src/types'
 import { $t, isZhCN } from 'src/locale'
 import { settings, websiteList } from 'src/store'
 import { JumpService } from 'src/services/jump'
@@ -20,6 +20,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
+import { saveUserCollect } from 'src/api'
+import { NzMessageService } from 'ng-zorro-antd/message'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -40,7 +42,7 @@ import event from 'src/utils/mitt'
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
   @Input() searchKeyword = ''
   @Input() dataSource: IWebProps | Record<string, any> = {}
   @Input() indexs: number[] = []
@@ -50,12 +52,14 @@ export class CardComponent implements OnInit {
   readonly settings = settings
   readonly websiteList: INavProps[] = websiteList
   readonly isLogin = isLogin
+  readonly permissions = getPermissions(settings)
   copyUrlDone = false
   copyPathDone = false
 
-  constructor(public readonly jumpService: JumpService) {}
-
-  ngOnInit(): void {}
+  constructor(
+    public readonly jumpService: JumpService,
+    private message: NzMessageService
+  ) {}
 
   async copyUrl(e: Event, type: 1 | 2): Promise<void> {
     const { name, url } = this.dataSource
@@ -88,12 +92,29 @@ export class CardComponent implements OnInit {
     setWebsiteList(this.websiteList)
   }
 
-  confirmDel(): void {
-    deleteByWeb({
+  async confirmDel(): Promise<void> {
+    const params: IWebProps = {
       ...(this.dataSource as IWebProps),
       name: getTextContent(this.dataSource.name),
       desc: getTextContent(this.dataSource.desc),
-    })
+    }
+    if (isLogin) {
+      deleteWebById(params.id)
+    } else {
+      try {
+        await saveUserCollect({
+          data: {
+            ...params,
+            extra: {
+              type: ActionType.Delete,
+            },
+          },
+        })
+        this.message.success($t('_waitHandle'))
+      } catch (error: any) {
+        this.message.error(error.message)
+      }
+    }
   }
 
   openMoveWebModal(): void {

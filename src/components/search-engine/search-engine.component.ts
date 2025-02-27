@@ -8,16 +8,17 @@ import {
   getDefaultSearchEngine,
   setDefaultSearchEngine,
   queryString,
-} from '../../utils'
+} from 'src/utils'
 import { Router } from '@angular/router'
 import { searchEngineList } from 'src/store'
-import { ISearchEngineProps } from '../../types'
+import { ISearchEngineProps } from 'src/types'
 import { SearchType } from './index'
 import { $t } from 'src/locale'
 import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { LogoComponent } from 'src/components/logo/logo.component'
+import { isLogin } from 'src/utils/user'
 
 @Component({
   standalone: true,
@@ -37,17 +38,16 @@ export class SearchEngineComponent {
   @Input() size: 'small' | 'default' | 'large' = 'default'
 
   $t = $t
-  searchEngineList: ISearchEngineProps[] = searchEngineList
+  searchEngineList: ISearchEngineProps[] = searchEngineList.filter(
+    (item) => !item.blocked
+  )
   currentEngine: ISearchEngineProps = getDefaultSearchEngine()
   SearchType = SearchType
-  searchTypeValue = SearchType.All
+  searchTypeValue = Number(queryString()['type']) || SearchType.All
   keyword = queryString().q
+  isLogin = isLogin
 
   constructor(private router: Router) {}
-
-  get searchList() {
-    return this.searchEngineList.filter((item) => !item.blocked)
-  }
 
   inputFocus() {
     setTimeout(() => {
@@ -61,7 +61,7 @@ export class SearchEngineComponent {
 
   clickEngineItem(index: number) {
     document.body.click()
-    this.currentEngine = this.searchList[index]
+    this.currentEngine = this.searchEngineList[index]
     this.inputFocus()
     setDefaultSearchEngine(this.currentEngine)
   }

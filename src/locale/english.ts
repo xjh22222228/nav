@@ -177,7 +177,7 @@ const english: Record<string, any> = {
   _buildTip:
     'After modification, please save and wait for the build to complete. Leaving is invalid',
   _enableSEO: 'Enable SEO (loading slightly slower)',
-  _allowCollect: 'Allow users to submit indexed content',
+  _allowUser: 'Allow users to submit',
   _collectMenuView: `Please refer to the user's inclusion menu for specific details`,
   _displaySwitchTheme: 'Display Switch Theme',
   _requestAddress: 'Request Address',
@@ -290,6 +290,7 @@ const english: Record<string, any> = {
   _collectTip: 'If a user applies for inclusion, please handle it',
   _colTitle: 'Collection processing ({count})',
   _type: 'Type',
+  _handle: 'Handle',
 }
 
 export default english

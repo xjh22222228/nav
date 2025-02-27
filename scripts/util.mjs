@@ -155,6 +155,7 @@ export function setWeb(nav, settings, tags = []) {
 
                 delete webItem.__desc__
                 delete webItem.__name__
+                delete webItem.extra
 
                 // 节省空间
                 !webItem.top && delete webItem.top

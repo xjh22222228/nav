@@ -15,7 +15,7 @@ import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n'
 import { getLocale } from 'src/locale'
 import { settings } from 'src/store'
 import { verifyToken, getContentes, getUserCollectCount } from 'src/api'
-import { getToken, userLogout, isLogin } from 'src/utils/user'
+import { getToken, userLogout, isLogin, getPermissions } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
@@ -141,7 +141,7 @@ export class AppComponent {
   }
 
   getCollectCount() {
-    if (isLogin && settings.allowCollect) {
+    if (isLogin && getPermissions(settings).ok) {
       getUserCollectCount().then((res) => {
         const count = res.data.count
         if (count > 0) {

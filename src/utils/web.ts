@@ -117,13 +117,13 @@ export function toggleCollapseAll(wsList?: INavProps[]): boolean {
   return collapsed
 }
 
-export function deleteByWeb(data: IWebProps): boolean {
+export function deleteWebById(id: number): boolean {
   let hasDelete = false
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
       if (item.name) {
-        if (item.id === data.id) {
+        if (item.id === id) {
           hasDelete = true
           arr.splice(i, 1)
           break
@@ -133,7 +133,7 @@ export function deleteByWeb(data: IWebProps): boolean {
 
       if (Array.isArray(item.nav)) {
         item.nav = item.nav.filter((w: IWebProps) => {
-          if (w.name && w.id === data.id) {
+          if (w.name && w.id === id) {
             hasDelete = true
             return false
           }
@@ -154,14 +154,14 @@ export function deleteByWeb(data: IWebProps): boolean {
   return hasDelete
 }
 
-export function updateByWeb(oldData: IWebProps, newData: IWebProps) {
+export function updateByWeb(oldId: number, newData: IWebProps) {
   const keys = Object.keys(newData)
   let ok = false
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
       if (item.name) {
-        if (item.id === oldData.id) {
+        if (item.id === oldId) {
           ok = true
           for (let k of keys) {
             item[k] = newData[k]

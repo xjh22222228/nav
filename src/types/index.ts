@@ -66,7 +66,7 @@ export interface IWebTag {
 export interface IWebProps {
   __name__?: string // 搜索原name值
   __desc__?: string
-  id: string | number
+  id: number
   name: string
   desc: string
   url: string
@@ -186,8 +186,6 @@ export interface ISettings {
   superDocTitle: string
 
   showRate: boolean
-
-  allowCollect: boolean
   userActions: ActionType[]
   email: string
 

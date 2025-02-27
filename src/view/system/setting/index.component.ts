@@ -29,7 +29,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { UploadComponent } from 'src/components/upload/index.component'
-import { IComponentProps } from 'src/types'
+import { ActionType, IComponentProps } from 'src/types'
 import event from 'src/utils/mitt'
 import footTemplate from 'src/components/footer/template'
 
@@ -74,6 +74,20 @@ export default class SystemSettingComponent {
   isSelfDevelop = isSelfDevelop
   textareaSize = { minRows: 3, maxRows: 20 }
   componentOptions: any[] = []
+  actionOptions = [
+    {
+      label: $t('_add'),
+      value: ActionType.Create,
+    },
+    {
+      label: $t('_edit'),
+      value: ActionType.Edit,
+    },
+    {
+      label: $t('_del'),
+      value: ActionType.Delete,
+    },
+  ]
 
   constructor(
     private fb: FormBuilder,

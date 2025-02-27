@@ -181,10 +181,13 @@
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
-      $t('_allowCollect')
+      $t('_allowUser')
     }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
-      <label nz-checkbox formControlName="allowCollect"></label>
+      <nz-checkbox-group
+        [nzOptions]="actionOptions"
+        formControlName="userActions"
+      ></nz-checkbox-group>
     </nz-form-control>
   </nz-form-item>
 

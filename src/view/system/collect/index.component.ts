@@ -20,6 +20,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { LogoComponent } from 'src/components/logo/logo.component'
 import { TagListComponent } from 'src/components/tag-list/index.component'
 import { ActionType } from 'src/types'
+import { deleteWebById, updateByWeb } from 'src/utils/web'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -96,20 +97,20 @@ export default class CollectComponent {
     this.getUserCollect()
   }
 
-  handleConfirmGet(data: any, idx: number) {
+  handleCreate(data: any, idx: number) {
     const that = this
     let oneIndex = 0
     let twoIndex = 0
     let threeIndex = 0
     try {
       oneIndex = websiteList.findIndex(
-        (item) => item.title === data.extra.oneName
+        (item) => item.title === data.breadcrumb[0]
       )
       twoIndex = websiteList[oneIndex].nav.findIndex(
-        (item) => item.title === data.extra.twoName
+        (item) => item.title === data.breadcrumb[1]
       )
       threeIndex = websiteList[oneIndex].nav[twoIndex].nav.findIndex(
-        (item) => item.title === data.extra.threeName
+        (item) => item.title === data.breadcrumb[2]
       )
     } catch (error: any) {
       this.notification.error(
@@ -134,6 +135,32 @@ export default class CollectComponent {
       })
     } catch (error: any) {
       this.notification.error($t('_error'), error.message)
+    }
+  }
+
+  handleDeleteWeb(data: any, idx: number) {
+    this.modal.info({
+      nzTitle: $t('_confirmDel'),
+      nzOnOk: () => {
+        deleteWebById(data.id)
+        this.handleDelete(idx)
+      },
+    })
+  }
+
+  handleUpdateWeb(data: any) {
+    event.emit('CREATE_WEB', {
+      detail: data,
+    })
+  }
+
+  handleClick(data: any, idx: number) {
+    if (data.extra.type === ActionType.Create) {
+      this.handleCreate(data, idx)
+    } else if (data.extra.type === ActionType.Delete) {
+      this.handleDeleteWeb(data, idx)
+    } else if (data.extra.type === ActionType.Edit) {
+      this.handleUpdateWeb(data)
     }
   }
 

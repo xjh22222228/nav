@@ -28,17 +28,18 @@ export function fuzzySearch(
   if (!keyword.trim()) {
     return []
   }
+  keyword = keyword.toLowerCase()
 
   const { type, page, id } = queryString()
-  const sType = Number(type) || SearchType.Title
+  const sType = Number(type) || SearchType.All
   const navData: IWebProps[] = []
   const resultList: INavThreeProp[] = [{ nav: navData }]
-  const urlRecordMap: Record<string, any> = {}
+  const urlRecordMap = new Map<number, boolean>()
 
   function f(arr?: any[]) {
     arr = arr || navList
 
-    for (let i = 0; i < arr.length; i++) {
+    outerLoop: for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
       if (Array.isArray(item.nav)) {
         f(item.nav)
@@ -50,17 +51,16 @@ export function fuzzySearch(
         const name = item.name.toLowerCase()
         const desc = item.desc.toLowerCase()
         const url = item.url.toLowerCase()
-        const search = keyword.toLowerCase()
 
         const searchTitle = (): boolean => {
-          if (name.includes(search)) {
+          if (name.includes(keyword)) {
             let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
             result.__name__ = result.name
             result.name = result.name.replace(regex, '<b>$1</b>')
 
-            if (!urlRecordMap[result.id]) {
-              urlRecordMap[result.id] = true
+            if (!urlRecordMap.has(result.id)) {
+              urlRecordMap.set(result.id, true)
               navData.push(result)
               return true
             }
@@ -69,9 +69,9 @@ export function fuzzySearch(
         }
 
         const searchUrl = (): any => {
-          if (url?.includes?.(search)) {
-            if (!urlRecordMap[item.id]) {
-              urlRecordMap[item.id] = true
+          if (url.includes(keyword)) {
+            if (!urlRecordMap.has(item.id)) {
+              urlRecordMap.set(item.id, true)
               navData.push(item)
               return true
             }
@@ -81,8 +81,8 @@ export function fuzzySearch(
             item.url?.includes(keyword)
           )
           if (find) {
-            if (!urlRecordMap[item.id]) {
-              urlRecordMap[item.id] = true
+            if (!urlRecordMap.has(item.id)) {
+              urlRecordMap.set(item.id, true)
               navData.push(item)
               return true
             }
@@ -93,14 +93,14 @@ export function fuzzySearch(
           if (desc[0] === '!') {
             return false
           }
-          if (desc.includes(search)) {
+          if (desc.includes(keyword)) {
             let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
             result.__desc__ = result.desc
             result.desc = result.desc.replace(regex, '<b>$1</b>')
 
-            if (!urlRecordMap[result.id]) {
-              urlRecordMap[result.id] = true
+            if (!urlRecordMap.has(result.id)) {
+              urlRecordMap.set(result.id, true)
               navData.push(result)
               return true
             }
@@ -109,17 +109,25 @@ export function fuzzySearch(
         }
 
         const searchQuick = (): boolean => {
-          if (item.top && name.includes(search)) {
+          if (item.top && name.includes(keyword)) {
             let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
             result.__name__ = result.name
             result.name = result.name.replace(regex, '<b>$1</b>')
 
-            if (!urlRecordMap[result.id]) {
-              urlRecordMap[result.id] = true
+            if (!urlRecordMap.has(result.id)) {
+              urlRecordMap.set(result.id, true)
               navData.push(result)
               return true
             }
+          }
+          return false
+        }
+
+        const searchId = (): boolean => {
+          if (item.id == keyword) {
+            navData.push(item)
+            return true
           }
           return false
         }
@@ -140,6 +148,12 @@ export function fuzzySearch(
 
             case SearchType.Quick:
               searchQuick()
+              break
+
+            case SearchType.Id:
+              if (searchId()) {
+                break outerLoop
+              }
               break
 
             default:

@@ -19,7 +19,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { getTextContent } from 'src/utils'
-import { setWebsiteList, deleteByWeb } from 'src/utils/web'
+import { setWebsiteList, deleteWebById } from 'src/utils/web'
 import { updateFileContent } from 'src/api'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import { $t } from 'src/locale'
@@ -288,11 +288,7 @@ export default class WebpComponent {
             return has
           })
           deleteData.forEach((item) => {
-            deleteByWeb({
-              ...item,
-              name: getTextContent(item.name),
-              desc: getTextContent(item.desc),
-            })
+            deleteWebById(item.id)
           })
           if (this.errorWebs.length) {
             this.getAllErrorWeb()
@@ -591,8 +587,8 @@ export default class WebpComponent {
   }
 
   // 删除网站
-  handleConfirmDelWebsite(data: any, idx: number) {
-    const ok = deleteByWeb(data)
+  handleConfirmDelWeb(data: any) {
+    const ok = deleteWebById(data.id)
     if (ok) {
       this.message.success($t('_delSuccess'))
       if (this.errorWebs.length) {

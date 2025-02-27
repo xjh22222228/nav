@@ -13,7 +13,7 @@ import {
 } from 'src/utils'
 import { setWebsiteList, toggleCollapseAll } from 'src/utils/web'
 import { INavProps, INavThreeProp } from 'src/types'
-import { isLogin } from 'src/utils/user'
+import { isLogin, getPermissions } from 'src/utils/user'
 import { isSelfDevelop } from 'src/utils/util'
 import event from 'src/utils/mitt'
 
@@ -32,6 +32,7 @@ export class CommonService {
   searchKeyword = ''
   overIndex = Number.MAX_SAFE_INTEGER
   title: string = settings.title.trim().split(/\s/)[0]
+  permissions = getPermissions(settings)
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     const getData = () => {

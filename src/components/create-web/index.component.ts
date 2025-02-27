@@ -13,7 +13,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { saveUserCollect, getWebInfo } from 'src/api'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagList, tagMap } from 'src/store'
-import { isLogin } from 'src/utils/user'
+import { isLogin, getPermissions } from 'src/utils/user'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzInputModule } from 'ng-zorro-antd/input'
@@ -59,6 +59,7 @@ export class CreateWebComponent {
   uploading = false
   getting = false
   settings = settings
+  permissions = getPermissions(settings)
   showModal = false
   detail: any = null
   isMove = false // 提交完是否可以移动
@@ -260,10 +261,11 @@ export class CreateWebComponent {
       .filter((item) => item.checked)
       .map((item) => item.value)
 
-    const payload = {
-      id: -Date.now(),
+    const payload: Record<string, any> = {
+      id: this.detail?.id,
       name: title,
       createdAt: this.detail?.createdAt ?? createdAt,
+      breadcrumb: this.detail?.breadcrumb ?? [],
       rate,
       desc,
       top,
@@ -276,13 +278,28 @@ export class CreateWebComponent {
     }
 
     if (this.detail) {
-      const ok = updateByWeb(this.detail, payload as IWebProps)
-      if (ok) {
-        this.message.success($t('_modifySuccess'))
-      } else {
-        this.message.error('修改失败，找不到ID，请同步远端后尝试')
+      if (isLogin) {
+        const ok = updateByWeb(this.detail.id, payload as IWebProps)
+        if (ok) {
+          this.message.success($t('_modifySuccess'))
+        } else {
+          this.message.error('修改失败，找不到ID，请同步远端后尝试')
+        }
+      } else if (this.permissions.edit) {
+        this.uploading = true
+        const params = {
+          data: {
+            ...payload,
+            extra: {
+              type: ActionType.Edit,
+            },
+          },
+        }
+        await saveUserCollect(params)
+        this.message.success($t('_waitHandle'))
       }
     } else {
+      payload['id'] = -Date.now()
       try {
         const { page, id } = queryString()
         const oneIndex = this.oneIndex ?? page
@@ -300,17 +317,18 @@ export class CreateWebComponent {
               data: [payload],
             })
           }
-        } else if (this.settings.allowCollect) {
+        } else if (this.permissions.create) {
           try {
             const params = {
               data: {
                 ...payload,
                 extra: {
                   type: ActionType.Create,
-                  oneName: websiteList[oneIndex].title,
-                  twoName: websiteList[oneIndex].nav[twoIndex].title,
-                  threeName:
+                  breadcrumb: [
+                    websiteList[oneIndex].title,
+                    websiteList[oneIndex].nav[twoIndex].title,
                     websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
+                  ],
                 },
               },
             }

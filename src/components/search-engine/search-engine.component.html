@@ -1,6 +1,6 @@
 <div
   class="search-engine"
-  *ngIf="searchList && searchList.length > 0"
+  *ngIf="searchEngineList && searchEngineList.length > 0"
   [class.small]="size === 'small'"
 >
   <div
@@ -38,7 +38,7 @@
         <div class="engine-main">
           <div
             class="item ellipsis dark-bg-gary dark-item-hover"
-            *ngFor="let item of searchList; let i = index"
+            *ngFor="let item of searchEngineList; let i = index"
             (click)="clickEngineItem(i)"
           >
             <app-logo [src]="item.icon || ''" [size]="20" [check]="false" />
@@ -79,6 +79,11 @@
         <nz-option
           [nzLabel]="$t('_quick')"
           [nzValue]="SearchType.Quick"
+        ></nz-option>
+        <nz-option
+          *ngIf="isLogin"
+          nzLabel="ID"
+          [nzValue]="SearchType.Id"
         ></nz-option>
       </nz-select>
     </ng-template>
