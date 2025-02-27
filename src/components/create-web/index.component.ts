@@ -322,13 +322,13 @@ export class CreateWebComponent {
             const params = {
               data: {
                 ...payload,
+                breadcrumb: [
+                  websiteList[oneIndex].title,
+                  websiteList[oneIndex].nav[twoIndex].title,
+                  websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
+                ],
                 extra: {
                   type: ActionType.Create,
-                  breadcrumb: [
-                    websiteList[oneIndex].title,
-                    websiteList[oneIndex].nav[twoIndex].title,
-                    websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
-                  ],
                 },
               },
             }

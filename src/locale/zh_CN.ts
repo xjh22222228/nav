@@ -189,7 +189,7 @@ const zhCN: Record<string, any> = {
   _sidebarTitle: '侧栏标题',
   _defTitle4: '默认网站标题, 建议4字以内',
   _inputAuthCode: '请输入授权码',
-  _waitHandle: '提交成功，等待站长处理',
+  _waitHandle: '提交成功，等待站长审核',
   _collect: '收录',
   _confirmCollect: '您确定要收录吗？',
   _pendingGet: '正在获取...',

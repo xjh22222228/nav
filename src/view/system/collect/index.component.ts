@@ -20,7 +20,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { LogoComponent } from 'src/components/logo/logo.component'
 import { TagListComponent } from 'src/components/tag-list/index.component'
 import { ActionType } from 'src/types'
-import { deleteWebById, updateByWeb } from 'src/utils/web'
+import { deleteWebById } from 'src/utils/web'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -142,7 +142,9 @@ export default class CollectComponent {
     this.modal.info({
       nzTitle: $t('_confirmDel'),
       nzOnOk: () => {
-        deleteWebById(data.id)
+        if (deleteWebById(data.id)) {
+          this.message.success($t('_delSuccess'))
+        }
         this.handleDelete(idx)
       },
     })

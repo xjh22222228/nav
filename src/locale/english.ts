@@ -199,7 +199,7 @@ const english: Record<string, any> = {
   _sidebarTitle: 'Sidebar title',
   _defTitle4: 'Default website title, recommended to be within 4 words',
   _inputAuthCode: 'Please enter the authorization code',
-  _waitHandle: 'Waiting for the stationmaster to handle',
+  _waitHandle: 'Submitted successfully, waiting for webmaster review',
   _collect: 'Get',
   _confirmCollect: 'Are you sure?',
   _pendingGet: 'Getting...',
