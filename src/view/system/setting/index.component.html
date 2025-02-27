@@ -335,7 +335,10 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_components') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
-      <nz-checkbox-group formControlName="componentOptions"></nz-checkbox-group>
+      <nz-checkbox-group
+        [nzOptions]="componentOptions"
+        formControlName="componentOptions"
+      ></nz-checkbox-group>
     </nz-form-control>
   </nz-form-item>
 
@@ -408,9 +411,11 @@
                       type="text"
                       [value]="data['src']"
                       style="width: 180px; margin-right: 10px"
-                      (change)="onChangeLightBannerUrl($event, idx)"
+                      (change)="onChangeBannerUrl($event, 'lightImages', idx)"
                     />
-                    <app-upload (onChange)="onLightBannerChange($event, idx)" />
+                    <app-upload
+                      (onChange)="onBannerChange($event, 'lightImages', idx)"
+                    />
                   </div>
                 </td>
                 <td>
@@ -418,7 +423,7 @@
                     nz-input
                     [value]="data['url']"
                     maxlength="200"
-                    (change)="onChangeLightJumpUrl($event, idx)"
+                    (change)="onChangeJumpUrl($event, 'lightImages', idx)"
                   />
                 </td>
                 <td>
@@ -428,7 +433,7 @@
                     nzOkType="danger"
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
-                    (nzOnConfirm)="onDeleteLightBanner(idx)"
+                    (nzOnConfirm)="onDeleteBanner('lightImages', idx)"
                     class="color-red"
                   >
                     {{ $t('_del') }}
@@ -437,9 +442,11 @@
               </tr>
             </tbody>
           </nz-table>
-          <a (click)="onAddLightBanner()" class="mt-2.5 display-block">{{
-            $t('_add')
-          }}</a>
+          <a
+            (click)="onAddBanner('lightImages')"
+            class="mt-2.5 display-block"
+            >{{ $t('_add') }}</a
+          >
         </nz-form-control>
       </nz-form-item>
 
@@ -527,9 +534,11 @@
                       type="text"
                       [value]="data['src']"
                       style="width: 180px; margin-right: 10px"
-                      (change)="onChangeSuperBannerUrl($event, idx)"
+                      (change)="onChangeBannerUrl($event, 'superImages', idx)"
                     />
-                    <app-upload (onChange)="onSuperBannerChange($event, idx)" />
+                    <app-upload
+                      (onChange)="onBannerChange($event, 'superImages', idx)"
+                    />
                   </div>
                 </td>
                 <td>
@@ -537,7 +546,7 @@
                     nz-input
                     [value]="data['url']"
                     maxlength="200"
-                    (change)="onChangeSuperJumpUrl($event, idx)"
+                    (change)="onChangeJumpUrl($event, 'superImages', idx)"
                   />
                 </td>
                 <td>
@@ -547,7 +556,7 @@
                     nzOkType="danger"
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
-                    (nzOnConfirm)="onDeleteSuperBanner(idx)"
+                    (nzOnConfirm)="onDeleteBanner('superImages', idx)"
                     class="color-red"
                   >
                     {{ $t('_del') }}
@@ -556,9 +565,11 @@
               </tr>
             </tbody>
           </nz-table>
-          <a (click)="onAddSuperBanner()" class="mt-2.5 display-block">{{
-            $t('_add')
-          }}</a>
+          <a
+            (click)="onAddBanner('superImages')"
+            class="mt-2.5 display-block"
+            >{{ $t('_add') }}</a
+          >
         </nz-form-control>
       </nz-form-item>
 
@@ -645,9 +656,13 @@
                       type="text"
                       [value]="data['src']"
                       style="width: 180px; margin-right: 10px"
-                      (change)="onChangeSimBannerUrl($event, idx)"
+                      (change)="
+                        onChangeBannerUrl($event, 'simThemeImages', idx)
+                      "
                     />
-                    <app-upload (onChange)="onSimBannerChange($event, idx)" />
+                    <app-upload
+                      (onChange)="onBannerChange($event, 'simThemeImages', idx)"
+                    />
                   </div>
                 </td>
                 <td>
@@ -655,7 +670,7 @@
                     nz-input
                     [value]="data['url']"
                     maxlength="200"
-                    (change)="onChangeSimJumpUrl($event, idx)"
+                    (change)="onChangeJumpUrl($event, 'simThemeImages', idx)"
                   />
                 </td>
                 <td>
@@ -665,7 +680,7 @@
                     nzOkType="danger"
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
-                    (nzOnConfirm)="onDeleteSimBanner(idx)"
+                    (nzOnConfirm)="onDeleteBanner('simThemeImages', idx)"
                     class="color-red"
                   >
                     {{ $t('_del') }}
@@ -674,9 +689,11 @@
               </tr>
             </tbody>
           </nz-table>
-          <a (click)="onAddSimBanner()" class="mt-2.5 display-block">{{
-            $t('_add')
-          }}</a>
+          <a
+            (click)="onAddBanner('simThemeImages')"
+            class="mt-2.5 display-block"
+            >{{ $t('_add') }}</a
+          >
         </nz-form-control>
       </nz-form-item>
 
@@ -792,9 +809,15 @@
                       type="text"
                       [value]="data['src']"
                       style="width: 180px; margin-right: 10px"
-                      (change)="onChangeSideBannerUrl($event, idx)"
+                      (change)="
+                        onChangeBannerUrl($event, 'sideThemeImages', idx)
+                      "
                     />
-                    <app-upload (onChange)="onSideBannerChange($event, idx)" />
+                    <app-upload
+                      (onChange)="
+                        onBannerChange($event, 'sideThemeImages', idx)
+                      "
+                    />
                   </div>
                 </td>
                 <td>
@@ -802,7 +825,7 @@
                     nz-input
                     [value]="data['url']"
                     maxlength="200"
-                    (change)="onChangeSideJumpUrl($event, idx)"
+                    (change)="onChangeJumpUrl($event, 'sideThemeImages', idx)"
                   />
                 </td>
                 <td>
@@ -812,7 +835,7 @@
                     nzOkType="danger"
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
-                    (nzOnConfirm)="onDeleteSideBanner(idx)"
+                    (nzOnConfirm)="onDeleteBanner('sideThemeImages', idx)"
                     class="color-red"
                   >
                     {{ $t('_del') }}
@@ -821,9 +844,11 @@
               </tr>
             </tbody>
           </nz-table>
-          <a (click)="onAddSideBanner()" class="mt-2.5 display-block">{{
-            $t('_add')
-          }}</a>
+          <a
+            (click)="onAddBanner('sideThemeImages')"
+            class="mt-2.5 display-block"
+            >{{ $t('_add') }}</a
+          >
         </nz-form-control>
       </nz-form-item>
 

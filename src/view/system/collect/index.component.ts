@@ -19,6 +19,7 @@ import { NzTableModule } from 'ng-zorro-antd/table'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { LogoComponent } from 'src/components/logo/logo.component'
 import { TagListComponent } from 'src/components/tag-list/index.component'
+import { ActionType } from 'src/types'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -45,6 +46,11 @@ export default class CollectComponent {
   dataList: Array<any> = []
   authCode = ''
   tagMap = tagMap
+  typeMap: any = {
+    [ActionType.Create]: $t('_add'),
+    [ActionType.Edit]: $t('_edit'),
+    [ActionType.Delete]: $t('_del'),
+  }
 
   constructor(
     private message: NzMessageService,
@@ -105,8 +111,11 @@ export default class CollectComponent {
       threeIndex = websiteList[oneIndex].nav[twoIndex].nav.findIndex(
         (item) => item.title === data.extra.threeName
       )
-    } catch (error) {
-      this.notification.error($t('_error'), $t('_classNoMatch'))
+    } catch (error: any) {
+      this.notification.error(
+        $t('_error'),
+        `${$t('_classNoMatch')}：${error.message}`
+      )
     }
 
     try {

@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { queryString, getTextContent } from 'src/utils'
 import { setWebsiteList, updateByWeb } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
-import { IWebProps, IWebTag, TopType } from 'src/types'
+import { IWebProps, IWebTag, TopType, ActionType } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { saveUserCollect, getWebInfo } from 'src/api'
 import { $t } from 'src/locale'
@@ -306,7 +306,7 @@ export class CreateWebComponent {
               data: {
                 ...payload,
                 extra: {
-                  type: 'create',
+                  type: ActionType.Create,
                   oneName: websiteList[oneIndex].title,
                   twoName: websiteList[oneIndex].nav[twoIndex].title,
                   threeName:

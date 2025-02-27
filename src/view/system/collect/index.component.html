@@ -22,6 +22,7 @@
       <thead>
         <tr>
           <th nzWidth="80px">{{ $t('_action') }}</th>
+          <th nzWidth="80px">{{ $t('_type') }}</th>
           <th nzWidth="80px">{{ $t('_icon') }}</th>
           <th nzWidth="100px">{{ $t('_webName') }}</th>
           <th nzWidth="100px">{{ $t('_associatedLabels') }}</th>
@@ -50,6 +51,7 @@
               </a>
             </div>
           </td>
+          <td>{{ typeMap[data.extra.type] }}</td>
           <td>
             <app-logo [src]="data.icon" [name]="data.name" />
           </td>

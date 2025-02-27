@@ -289,6 +289,7 @@ const english: Record<string, any> = {
   _distance: 'Distance',
   _collectTip: 'If a user applies for inclusion, please handle it',
   _colTitle: 'Collection processing ({count})',
+  _type: 'Type',
 }
 
 export default english

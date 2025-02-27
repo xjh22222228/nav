@@ -29,6 +29,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { UploadComponent } from 'src/components/upload/index.component'
+import { IComponentProps } from 'src/types'
 import event from 'src/utils/mitt'
 import footTemplate from 'src/components/footer/template'
 
@@ -72,6 +73,7 @@ export default class SystemSettingComponent {
   tabActive = 0
   isSelfDevelop = isSelfDevelop
   textareaSize = { minRows: 3, maxRows: 20 }
+  componentOptions: any[] = []
 
   constructor(
     private fb: FormBuilder,
@@ -79,16 +81,18 @@ export default class SystemSettingComponent {
     private message: NzMessageService,
     private modal: NzModalService
   ) {
-    extraForm['componentOptions'] = components.map((item) => {
-      const checked = settings.components.some(
+    this.componentOptions = components.map((item) => {
+      const data = settings.components.find(
         (c) => item.type === c.type && item.id === c.id
       )
+      if (data) {
+        extraForm['componentOptions'].push(data.id)
+      }
       return {
         label: componentTitleMap[item.type],
         value: item.id,
         type: item.type,
         id: item.id,
-        checked,
       }
     })
     const group: any = {
@@ -126,115 +130,33 @@ export default class SystemSettingComponent {
     this.settings.favicon = data.cdn || ''
   }
 
-  // Sim ===========================
-  onSimBannerChange(data: any, idx: number) {
-    this.settings.simThemeImages[idx]['src'] = data.cdn
+  onBannerChange(data: any, key: string, idx: number) {
+    this.settings[key][idx]['src'] = data.cdn
   }
 
-  onChangeSimBannerUrl(e: any, idx: number) {
+  onChangeBannerUrl(e: any, key: string, idx: number) {
     const value = e.target.value.trim()
-    this.settings.simThemeImages[idx]['src'] = value
+    this.settings[key][idx]['src'] = value
   }
 
-  onChangeSimJumpUrl(e: any, idx: number) {
+  onChangeJumpUrl(e: any, key: string, idx: number) {
     const value = e.target.value.trim()
-    this.settings.simThemeImages[idx]['url'] = value
+    this.settings[key][idx]['url'] = value
   }
 
-  onDeleteSimBanner(idx: number) {
-    this.settings.simThemeImages.splice(idx, 1)
+  onDeleteBanner(key: string, idx: number) {
+    this.settings[key].splice(idx, 1)
   }
 
-  onAddSimBanner() {
-    this.settings.simThemeImages.push({
-      src: '',
-      url: '',
-    })
-  }
-
-  // Super ===========================
-  onSuperBannerChange(data: any, idx: number) {
-    this.settings.superImages[idx]['src'] = data.cdn
-  }
-
-  onChangeSuperBannerUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.superImages[idx]['src'] = value
-  }
-
-  onChangeSuperJumpUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.superImages[idx]['url'] = value
-  }
-
-  onDeleteSuperBanner(idx: number) {
-    this.settings.superImages.splice(idx, 1)
-  }
-
-  onAddSuperBanner() {
-    this.settings.superImages.push({
-      src: '',
-      url: '',
-    })
-  }
-
-  // Light ===========================
-  onLightBannerChange(data: any, idx: number) {
-    this.settings.lightImages[idx]['src'] = data.cdn
-  }
-
-  onChangeLightBannerUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.lightImages[idx]['src'] = value
-  }
-
-  onChangeLightJumpUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.lightImages[idx]['url'] = value
-  }
-
-  onDeleteLightBanner(idx: number) {
-    this.settings.lightImages.splice(idx, 1)
-  }
-
-  onAddLightBanner() {
-    this.settings.lightImages.push({
-      src: '',
-      url: '',
-    })
-  }
-
-  // Side ===========================
-  onSideBannerChange(data: any, idx: number) {
-    this.settings.sideThemeImages[idx]['src'] = data.cdn
-  }
-
-  onChangeSideBannerUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.sideThemeImages[idx]['src'] = value
-  }
-
-  onChangeSideJumpUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.sideThemeImages[idx]['url'] = value
-  }
-
-  onDeleteSideBanner(idx: number) {
-    this.settings.sideThemeImages.splice(idx, 1)
-  }
-
-  onAddSideBanner() {
-    this.settings.sideThemeImages.push({
+  onAddBanner(key: string) {
+    this.settings[key].push({
       src: '',
       url: '',
     })
   }
 
   onShortcutImgChange(e: any) {
-    let url = e?.target?.value?.trim() || e.cdn
-    if (!url) {
-      url = ''
-    }
+    let url = e?.target?.value?.trim() || e.cdn || ''
     this.settings.shortcutThemeImages[0]['src'] = url
   }
 
@@ -282,8 +204,16 @@ export default class SystemSettingComponent {
           superImages: this.settings.superImages.filter(filterImage),
           lightImages: this.settings.lightImages.filter(filterImage),
           components: formValues.componentOptions
-            .filter((item: any) => item.checked)
-            .map((item: any) => ({ type: item.type, id: item.id })),
+            .map((id: number) => {
+              const data = components.find(
+                (item: IComponentProps) => item.id === id
+              )
+              return {
+                id: data?.id,
+                type: data?.type,
+              }
+            })
+            .filter((item: any) => item.type),
         }
         for (const k in extraForm) {
           delete values[k]

@@ -22,11 +22,11 @@ import { NzSpinModule } from 'ng-zorro-antd/spin'
     NzButtonModule,
     NzSpinModule,
   ],
-  selector: 'user-collect',
+  selector: 'auth',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export default class VipAuthComponent {
+export default class AuthComponent {
   $t = $t
   submitting: boolean = false
   isPermission = !!getAuthCode()

@@ -39,17 +39,6 @@ const PATHS = {
   },
 }
 
-const DEFAULT_IMAGES = {
-  banner1:
-    'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/banner1.jpg',
-  banner2:
-    'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/banner2.jpg',
-  background:
-    'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/background.jpg',
-  favicon:
-    'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg',
-}
-
 const initConfig = () => {
   const pkgJson = JSON.parse(fs.readFileSync(PATHS.pkg).toString())
   const config = yaml.load(fs.readFileSync(PATHS.config))
@@ -79,20 +68,6 @@ const readDb = () => {
   } catch (e) {
     return JSON.parse(LZString.decompressFromBase64(defaultDb))
   }
-}
-
-// 初始化设置
-const initSettings = (settings, configJson) => {
-  const defaultSettings = {
-    favicon: DEFAULT_IMAGES.favicon,
-    language: 'zh-CN',
-    loading: 'random',
-    runtime: dayjs.tz().valueOf(),
-    allowCollect: true,
-    email: configJson.email || '',
-  }
-
-  return { ...defaultSettings, ...settings }
 }
 
 const main = async () => {
@@ -362,6 +337,7 @@ const main = async () => {
     settings.loading ??= 'random'
     settings.runtime ??= dayjs.tz().valueOf()
     settings.allowCollect ??= true
+    settings.userActions ||= []
     settings.email ||= configJson.email || ''
     settings.showGithub ??= true
     settings.showLanguage ??= true
@@ -501,8 +477,6 @@ const main = async () => {
       encoding: 'utf-8',
     })
   }
-
-  settings = initSettings(settings, configJson)
 
   const { userViewCount, loginViewCount } = getWebCount(db)
   internal.userViewCount = userViewCount < 0 ? loginViewCount : userViewCount

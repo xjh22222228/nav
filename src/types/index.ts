@@ -25,6 +25,12 @@ export enum ComponentType {
   Holiday = 7,
 }
 
+export enum ActionType {
+  Create = 1,
+  Edit = 2,
+  Delete = 3,
+}
+
 export interface IComponentProps {
   id: number
   type: number
@@ -182,6 +188,7 @@ export interface ISettings {
   showRate: boolean
 
   allowCollect: boolean
+  userActions: ActionType[]
   email: string
 
   spiderIcon: Spider

@@ -63,9 +63,30 @@ export function getWebCount(websiteList) {
   }
 }
 
-// 设置网站的面包屑类目显示
+let maxId = 0
+function getMaxId(nav) {
+  function f(nav) {
+    for (let i = 0; i < nav.length; i++) {
+      const item = nav[i]
+      if (item.name && item.id > maxId) {
+        maxId = item.id
+      }
+      if (item.nav) {
+        f(item.nav)
+      }
+    }
+  }
+  f(nav)
+}
+
+function incrementId(id) {
+  if (id < 0) {
+    return ++maxId
+  }
+  return id
+}
+
 export function setWeb(nav, settings, tags = []) {
-  let id = 0 // 为每个网站设置唯一ID
   if (!Array.isArray(nav)) return
 
   function handleAdapter(item) {
@@ -82,6 +103,7 @@ export function setWeb(nav, settings, tags = []) {
     item.createdAt ||= Date.now()
     item.createdAt = dayjs(item.createdAt).format('YYYY-MM-DD HH:mm')
   }
+  getMaxId(nav)
 
   for (let i = 0; i < nav.length; i++) {
     const item = nav[i]
@@ -113,10 +135,9 @@ export function setWeb(nav, settings, tags = []) {
                 breadcrumb.push(item.title, navItem.title, navItemItem.title)
                 breadcrumb = breadcrumb.filter(Boolean)
                 webItem.breadcrumb = breadcrumb
-                webItem.id = id += 1
+                webItem.id = incrementId(webItem.id)
 
                 // 新字段补充
-                webItem.urls ||= {}
                 webItem.tags ||= []
                 webItem.rate ??= 5
                 webItem.top ??= false
@@ -136,51 +157,15 @@ export function setWeb(nav, settings, tags = []) {
                 delete webItem.__name__
 
                 // 节省空间
-                if (!webItem.top) {
-                  delete webItem.top
-                }
-                if (!webItem.ownVisible) {
-                  delete webItem.ownVisible
-                }
-                if (webItem.index === '') {
-                  delete webItem.index
-                }
-                if (webItem.topTypes?.length <= 0) {
-                  delete webItem.topTypes
-                }
+                !webItem.top && delete webItem.top
+                !webItem.ownVisible && delete webItem.ownVisible
+                webItem.index === '' && delete webItem.index
+                webItem.topTypes?.length <= 0 && delete webItem.topTypes
 
-                // 兼容现有标签,以id为key (V9版本删除)
-                for (const k in webItem.urls) {
-                  if (k === TAG_ID_NAME1) {
-                    webItem.urls[TAG_ID1] = webItem.urls[k]
-                    delete webItem.urls[TAG_ID_NAME1]
-                  }
-                  if (k === TAG_ID_NAME2) {
-                    webItem.urls[TAG_ID2] = webItem.urls[k]
-                    delete webItem.urls[TAG_ID_NAME2]
-                  }
-                  if (k === TAG_ID_NAME3) {
-                    webItem.urls[TAG_ID3] = webItem.urls[k]
-                    delete webItem.urls[TAG_ID_NAME3]
-                  }
-                }
-
-                // 从 v8.10.0 开始为了能够排序标签从对象改为数组
-                if (webItem.tags.length <= 0) {
-                  for (const k in webItem.urls) {
-                    const id = String(k)
-                    // 网站标签和系统标签关联，如果系统标签删除了，网站标签也被删除
-                    const has = tags.some((item) => String(item.id) === id)
-                    if (has) {
-                      webItem.tags.push({
-                        id: String(k),
-                        url: webItem.urls[k],
-                      })
-                    }
-                  }
-                }
-
-                delete webItem.urls
+                // 网站标签和系统标签关联
+                webItem.tags = webItem.tags.filter((item) => {
+                  return tags.some((tag) => String(tag.id) === String(item.id))
+                })
               }
             }
           }

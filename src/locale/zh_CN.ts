@@ -279,6 +279,7 @@ const zhCN: Record<string, any> = {
   _distance: '距离',
   _collectTip: '有用户申请收录请去处理',
   _colTitle: '收录处理（{count}）',
+  _type: '类型',
 }
 
 export default zhCN
