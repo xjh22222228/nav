@@ -111,6 +111,7 @@ export function setWeb(nav, settings, tags = []) {
   function handleAdapter(item) {
     delete item.collapsed
     delete item.id
+    delete item.createdAt
     if (!item.ownVisible) {
       delete item.ownVisible
     }
@@ -118,26 +119,19 @@ export function setWeb(nav, settings, tags = []) {
     item.nav ||= []
   }
 
-  function formatDate(item) {
-    item.createdAt ||= Date.now()
-    item.createdAt = dayjs(item.createdAt).format('YYYY-MM-DD HH:mm')
-  }
   getMaxId(nav)
 
   for (let i = 0; i < nav.length; i++) {
     const item = nav[i]
     handleAdapter(item)
-    formatDate(item)
     if (item.nav) {
       for (let j = 0; j < item.nav.length; j++) {
         const navItem = item.nav[j]
         handleAdapter(navItem)
-        formatDate(navItem)
         if (navItem.nav) {
           for (let k = 0; k < navItem.nav.length; k++) {
             const navItemItem = navItem.nav[k]
             handleAdapter(navItemItem)
-            formatDate(navItemItem)
 
             if (navItemItem.nav) {
               navItemItem.nav.sort((a, b) => {
@@ -150,13 +144,10 @@ export function setWeb(nav, settings, tags = []) {
               for (let l = 0; l < navItemItem.nav.length; l++) {
                 let breadcrumb = []
                 const webItem = navItemItem.nav[l]
-                formatDate(webItem)
                 breadcrumb.push(item.title, navItem.title, navItemItem.title)
                 breadcrumb = breadcrumb.filter(Boolean)
                 webItem.breadcrumb = breadcrumb
-                webItem.id = incrementId(webItem.id)
-
-                // 新字段补充
+                webItem.id = Math.trunc(incrementId(webItem.id))
                 webItem.tags ||= []
                 webItem.rate ??= 5
                 webItem.top ??= false
@@ -168,13 +159,13 @@ export function setWeb(nav, settings, tags = []) {
                 webItem.icon = replaceJsdelivrCDN(webItem.icon, settings)
                 webItem.url = webItem.url.trim()
                 webItem.desc = webItem.desc.trim()
-
                 webItem.name = webItem.name.replace(/<b>|<\/b>/g, '')
                 webItem.desc = webItem.desc.replace(/<b>|<\/b>/g, '')
 
                 delete webItem.__desc__
                 delete webItem.__name__
                 delete webItem.extra
+                delete webItem.createdAt
 
                 // 节省空间
                 !webItem.top && delete webItem.top

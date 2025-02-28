@@ -278,7 +278,6 @@ const main = async () => {
         id: TAG_ID1,
         name: isEn ? 'Chinese' : TAG_ID_NAME1,
         color: '#2db7f5',
-        createdAt: '',
         desc,
         isInner: true,
       })
@@ -289,7 +288,6 @@ const main = async () => {
         id: TAG_ID2,
         name: isEn ? 'English' : TAG_ID_NAME2,
         color: '#f50',
-        createdAt: '',
         desc,
         isInner: true,
       })
@@ -300,7 +298,6 @@ const main = async () => {
         id: TAG_ID3,
         name: TAG_ID_NAME3,
         color: '#108ee9',
-        createdAt: '',
         desc,
         isInner: true,
       })

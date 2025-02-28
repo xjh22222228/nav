@@ -650,7 +650,6 @@ export default class WebpComponent {
   }
 
   handleOk(payload: any): any {
-    const createdAt = Date.now()
     let { title, icon, ownVisible } = payload
 
     if (this.isEdit) {
@@ -711,7 +710,6 @@ export default class WebpComponent {
             }
 
             this.websiteList.unshift({
-              createdAt,
               title,
               icon,
               ownVisible,
@@ -731,7 +729,6 @@ export default class WebpComponent {
             }
 
             this.twoTableData.unshift({
-              createdAt,
               title,
               icon,
               ownVisible,
@@ -751,7 +748,6 @@ export default class WebpComponent {
             }
 
             this.threeTableData.unshift({
-              createdAt,
               title,
               icon,
               ownVisible,

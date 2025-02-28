@@ -25,7 +25,6 @@
     <tr>
       <th>{{ $t('_tagName') }}</th>
       <th>{{ $t('_color') }}</th>
-      <th>{{ $t('_createAt') }}</th>
       <th>{{ $t('_remark') }}</th>
       <th>{{ $t('_action') }}</th>
     </tr>
@@ -43,7 +42,6 @@
         />
         - {{ data.color }}
       </td>
-      <td width="220px">{{ data.createdAt }}</td>
       <td width="200px">
         <div *ngIf="data.isInner">{{ data.desc }}</div>
         <input

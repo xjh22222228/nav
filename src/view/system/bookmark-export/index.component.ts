@@ -122,19 +122,22 @@ export default class SystemBookmarkExportComponent {
       }
       data.forEach((item) => {
         // 移除无用属性，减少传输大小
-        delete item.id
-        delete item.createdAt
-        delete item.rate
-        delete item.top
-        delete item.topTypes
-        delete item.index
-        delete item.ownVisible
-        delete item.breadcrumb
-        delete item.ok
-        delete item.__name__
-        delete item.__desc__
-        delete item.collapsed
-        delete item.tags
+        ;[
+          'id',
+          'rate',
+          'top',
+          'topTypes',
+          'index',
+          'ownVisible',
+          'breadcrumb',
+          'ok',
+          '__name__',
+          '__desc__',
+          'collapsed',
+          'tags',
+        ].forEach((key) => {
+          delete item[key]
+        })
         if (Array.isArray(item.nav)) {
           getIconItems(item.nav)
         }

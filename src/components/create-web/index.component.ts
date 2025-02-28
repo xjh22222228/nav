@@ -238,7 +238,6 @@ export class CreateWebComponent {
       this.validateForm.controls[i].updateValueAndValidity()
     }
 
-    const createdAt = Date.now()
     const tags: IWebTag[] = []
     let { title, icon, url, top, ownVisible, rate, desc, index, topOptions } =
       this.validateForm.value
@@ -264,7 +263,6 @@ export class CreateWebComponent {
     const payload: Record<string, any> = {
       id: this.detail?.id,
       name: title,
-      createdAt: this.detail?.createdAt ?? createdAt,
       breadcrumb: this.detail?.breadcrumb ?? [],
       rate,
       desc,

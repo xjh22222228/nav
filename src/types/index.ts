@@ -47,7 +47,6 @@ export interface ITagPropValues {
   id: number
   name: string
   color: string
-  createdAt: string | number
   desc: string
   isInner: boolean
 
@@ -71,7 +70,6 @@ export interface IWebProps {
   desc: string
   url: string
   icon: string
-  createdAt: string | number
   rate?: number // 0-5
   top?: boolean
   topTypes?: number[]
@@ -86,7 +84,6 @@ export interface IWebProps {
 export interface INavThreeProp {
   title?: string
   icon?: string
-  createdAt?: string | number
   collapsed?: boolean
   ownVisible?: boolean
   nav: IWebProps[]
@@ -96,7 +93,6 @@ export interface INavThreeProp {
 export interface INavTwoProp {
   title?: string
   icon?: string
-  createdAt?: string | number
   collapsed?: boolean
   ownVisible?: boolean
   nav: INavThreeProp[]
@@ -107,7 +103,6 @@ export interface INavProps extends Object {
   title: string
   id?: number
   icon?: string | null
-  createdAt?: string | number
   ownVisible?: boolean
   collapsed?: boolean
   nav: INavTwoProp[]

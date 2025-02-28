@@ -61,7 +61,6 @@ export default class SystemTagComponent {
     this.tagList.unshift({
       id: this.incrementId,
       name: '',
-      createdAt: '',
       color: '#f50000',
       desc: '',
       isInner: false,

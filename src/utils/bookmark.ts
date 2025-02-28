@@ -8,17 +8,9 @@ import { $t } from '../locale'
 
 let id = -Date.now()
 
-function getCreatedAt(node?: Element): string {
-  const now = new Date().toString()
-  const addDate = node?.getAttribute('add_date')
-  return addDate ? new Date(Number(addDate) * 1000).toString() : now
-}
-
 const getTitle = (node: Element): string => node.textContent || ''
 const getUrl = (node: Element): string => node.getAttribute('href') || ''
 const getIcon = (node: Element): string => node.getAttribute('icon') || ''
-
-const nowCratedAt = getCreatedAt()
 
 function findUnclassifiedData(roolDL: Element): IWebProps[] {
   const data: IWebProps[] = []
@@ -28,7 +20,6 @@ function findUnclassifiedData(roolDL: Element): IWebProps[] {
       if (a?.nodeName === 'A') {
         data.push({
           name: getTitle(a),
-          createdAt: getCreatedAt(a),
           icon: getIcon(a),
           url: getUrl(a),
           tags: [],
@@ -71,7 +62,6 @@ export function parseBookmark(
           if (titleEl) {
             parentData.nav.push({
               name: getTitle(titleEl),
-              createdAt: getCreatedAt(titleEl),
               url: getUrl(titleEl),
               desc: '',
               tags: [],
@@ -94,7 +84,6 @@ export function parseBookmark(
             const title = getTitle(titleEl)
             const threeLevel: INavThreeProp = {
               title,
-              createdAt: getCreatedAt(titleEl),
               nav: [],
               icon: '',
             }
@@ -117,7 +106,6 @@ export function parseBookmark(
             const title = getTitle(titleEl)
             const twoLevel: INavTwoProp = {
               title,
-              createdAt: getCreatedAt(titleEl),
               icon: '',
               nav: [],
             }
@@ -128,7 +116,6 @@ export function parseBookmark(
               const unclassifiedData = findUnclassifiedData(DL3)
               if (unclassifiedData.length > 0) {
                 twoLevel.nav.push({
-                  createdAt: nowCratedAt,
                   title,
                   nav: unclassifiedData,
                 })
@@ -148,7 +135,6 @@ export function parseBookmark(
           const title = getTitle(titleEl)
           const oneLevel: INavProps = {
             title,
-            createdAt: getCreatedAt(titleEl),
             icon: '',
             nav: [],
           }
@@ -159,7 +145,6 @@ export function parseBookmark(
             const unclassifiedData = findUnclassifiedData(DL)
             if (unclassifiedData.length > 0) {
               oneLevel.nav.push({
-                createdAt: nowCratedAt,
                 title,
                 nav: [
                   {
@@ -179,10 +164,8 @@ export function parseBookmark(
     if (unclassifiedData.length > 0) {
       data.push({
         title: $t('_uncategorized'),
-        createdAt: nowCratedAt,
         nav: [
           {
-            createdAt: nowCratedAt,
             title: $t('_uncategorized'),
             nav: [
               {

@@ -79,7 +79,6 @@
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
-            <th>{{ $t('_createAt') }}</th>
             <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
@@ -101,7 +100,6 @@
                 nzTheme="outline"
               ></i>
             </td>
-            <td>{{ data.createdAt }}</td>
             <td class="select-none">
               <a (click)="moveOneUp(idx)">{{ $t('_moveUp') }}</a>
               <a (click)="moveOneDown(idx)" class="ml-2.5">{{
@@ -178,7 +176,6 @@
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
-            <th>{{ $t('_createAt') }}</th>
             <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
@@ -200,7 +197,6 @@
                 nzTheme="outline"
               ></i>
             </td>
-            <td>{{ data.createdAt }}</td>
             <td class="select-none">
               <a (click)="moveTwoUp(idx)">{{ $t('_moveUp') }}</a>
               <a (click)="moveTwoDown(idx)" class="ml-2.5">{{
@@ -295,7 +291,6 @@
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
-            <th>{{ $t('_createAt') }}</th>
             <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
@@ -317,7 +312,6 @@
                 nzTheme="outline"
               ></i>
             </td>
-            <td>{{ data.createdAt }}</td>
             <td class="select-none">
               <a (click)="moveThreeUp(idx)">{{ $t('_moveUp') }}</a>
               <a (click)="moveThreeDown(idx)" class="ml-2.5">{{
@@ -441,7 +435,6 @@
             <th nzWidth="120px">{{ $t('_onlyOwnVisible') }}</th>
             <th nzWidth="300px">{{ $t('_webDesc') }}</th>
             <th nzWidth="300px">{{ $t('_webTag') }}</th>
-            <th>{{ $t('_createAt') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -505,7 +498,6 @@
               <pre class="desc">{{ data.desc }}</pre>
             </td>
             <th nzWidth="300px">{{ data.breadcrumb }}</th>
-            <td>{{ data.createdAt }}</td>
           </tr>
         </tbody>
       </nz-table>
