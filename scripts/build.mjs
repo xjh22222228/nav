@@ -3,24 +3,14 @@
 // See https://github.com/xjh22222228/nav
 
 import fs from 'fs'
-import path from 'path'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc.js'
 import timezone from 'dayjs/plugin/timezone.js'
-import { writeSEO, writeTemplate, spiderWeb } from './util.mjs'
+import { writeSEO, writeTemplate, spiderWeb, PATHS } from './util.mjs'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.tz.setDefault('Asia/Shanghai')
-
-const PATHS = {
-  db: path.join('.', 'data', 'db.json'),
-  settings: path.join('.', 'data', 'settings.json'),
-  html: {
-    main: path.join('.', 'src', 'main.html'),
-    write: path.join('.', 'src', 'index.html'),
-  },
-}
 
 const handleFileOperation = (operation) => {
   try {

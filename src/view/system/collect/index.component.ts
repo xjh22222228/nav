@@ -66,7 +66,7 @@ export default class CollectComponent {
   handleDelete(idx: number) {
     this.submitting = true
     delUserCollect({
-      data: this.dataList[idx],
+      data: [this.dataList[idx]],
     })
       .then((res) => {
         this.dataList = res.data?.data || []

@@ -20,24 +20,12 @@ import {
   getWebCount,
   setWeb,
   replaceJsdelivrCDN,
+  PATHS,
 } from './util.mjs'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.tz.setDefault('Asia/Shanghai')
-
-const PATHS = {
-  pkg: path.join('.', 'package.json'),
-  config: path.join('.', 'nav.config.yaml'),
-  data: {
-    db: path.join('.', 'data', 'db.json'),
-    internal: path.join('.', 'data', 'internal.json'),
-    settings: path.join('.', 'data', 'settings.json'),
-    tag: path.join('.', 'data', 'tag.json'),
-    search: path.join('.', 'data', 'search.json'),
-    component: path.join('.', 'data', 'component.json'),
-  },
-}
 
 const initConfig = () => {
   const pkgJson = JSON.parse(fs.readFileSync(PATHS.pkg).toString())
@@ -58,7 +46,7 @@ const initConfig = () => {
 
 const readDb = () => {
   try {
-    const strings = fs.readFileSync(PATHS.data.db).toString().trim()
+    const strings = fs.readFileSync(PATHS.db).toString().trim()
     if (!strings) throw new Error('empty')
 
     return strings[0] === '['
@@ -85,14 +73,14 @@ const main = async () => {
   let components = []
 
   try {
-    internal = JSON.parse(fs.readFileSync(PATHS.data.internal).toString())
-    settings = JSON.parse(fs.readFileSync(PATHS.data.settings).toString())
-    tags = JSON.parse(fs.readFileSync(PATHS.data.tag).toString())
-    search = JSON.parse(fs.readFileSync(PATHS.data.search).toString())
+    internal = JSON.parse(fs.readFileSync(PATHS.internal).toString())
+    settings = JSON.parse(fs.readFileSync(PATHS.settings).toString())
+    tags = JSON.parse(fs.readFileSync(PATHS.tag).toString())
+    search = JSON.parse(fs.readFileSync(PATHS.search).toString())
   } catch {}
 
   try {
-    components = JSON.parse(fs.readFileSync(PATHS.data.component).toString())
+    components = JSON.parse(fs.readFileSync(PATHS.component).toString())
   } catch {
   } finally {
     /** @type {import('./src/types/index.ts').ComponentType} */
@@ -213,7 +201,7 @@ const main = async () => {
     } else {
       components.push(holiday)
     }
-    fs.writeFileSync(PATHS.data.component, JSON.stringify(components))
+    fs.writeFileSync(PATHS.component, JSON.stringify(components))
   }
 
   {
@@ -272,7 +260,7 @@ const main = async () => {
           isInner: false,
         },
       ]
-      fs.writeFileSync(PATHS.data.search, JSON.stringify(search), {
+      fs.writeFileSync(PATHS.search, JSON.stringify(search), {
         encoding: 'utf-8',
       })
     }
@@ -318,7 +306,7 @@ const main = async () => {
       })
     }
     tags = tags.filter((item) => item.name && item.id)
-    fs.writeFileSync(PATHS.data.tag, JSON.stringify(tags), {
+    fs.writeFileSync(PATHS.tag, JSON.stringify(tags), {
       encoding: 'utf-8',
     })
   }
@@ -472,7 +460,7 @@ const main = async () => {
       item.src = replaceJsdelivrCDN(item.src, settings)
       return item
     })
-    fs.writeFileSync(PATHS.data.settings, JSON.stringify(settings), {
+    fs.writeFileSync(PATHS.settings, JSON.stringify(settings), {
       encoding: 'utf-8',
     })
   }
@@ -481,8 +469,8 @@ const main = async () => {
   internal.userViewCount = userViewCount < 0 ? loginViewCount : userViewCount
   internal.loginViewCount = loginViewCount
 
-  fs.writeFileSync(PATHS.data.internal, JSON.stringify(internal))
-  fs.writeFileSync(PATHS.data.db, JSON.stringify(setWeb(db, settings, tags)))
+  fs.writeFileSync(PATHS.internal, JSON.stringify(internal))
+  fs.writeFileSync(PATHS.db, JSON.stringify(setWeb(db, settings, tags)))
 }
 
 main().catch(console.error)

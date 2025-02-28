@@ -5,6 +5,7 @@ import LOAD_MAP from './loading.mjs'
 import utc from 'dayjs/plugin/utc.js'
 import timezone from 'dayjs/plugin/timezone.js'
 import getWebInfo from 'info-web'
+import path from 'node:path'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -16,6 +17,24 @@ export const TAG_ID3 = -3
 export const TAG_ID_NAME1 = '中文'
 export const TAG_ID_NAME2 = '英文'
 export const TAG_ID_NAME3 = 'GitHub'
+
+export const PATHS = {
+  upload: path.resolve('_upload', 'images'),
+  db: path.resolve('data', 'db.json'),
+  settings: path.resolve('data', 'settings.json'),
+  tag: path.resolve('data', 'tag.json'),
+  search: path.resolve('data', 'search.json'),
+  collect: path.resolve('data', 'collect.json'),
+  component: path.resolve('data', 'component.json'),
+  internal: path.resolve('data', 'internal.json'),
+  config: path.resolve('nav.config.yaml'),
+  pkg: path.resolve('package.json'),
+  html: {
+    index: path.resolve('dist', 'browser', 'index.html'),
+    main: path.resolve('src', 'main.html'),
+    write: path.resolve('src', 'index.html'),
+  },
+}
 
 // 统计网站数量
 export function getWebCount(websiteList) {
