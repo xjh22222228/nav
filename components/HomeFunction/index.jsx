@@ -43,6 +43,11 @@ export default function HomeFunction() {
       src: '/card.svg',
     },
     {
+      title: t('cardAd'),
+      desc: t('cardAdDesc'),
+      src: '/ad.svg',
+    },
+    {
       title: t('responsiveDesign'),
       desc: t('responsiveDesignDesc'),
       src: '/respon.svg',

@@ -6,6 +6,15 @@ import Link from 'next/link'
 export default function Home() {
   const { t, i18n } = useTranslation()
   const isEn = i18n.language === 'en'
+  const now = new Date()
+
+  const firstDayThisMonth = new Date(now.getFullYear(), now.getMonth(), 1)
+  const lastDayThisMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0)
+  const limitStr = `${
+    firstDayThisMonth.getMonth() + 1
+  }.${firstDayThisMonth.getDate()} - ${
+    lastDayThisMonth.getMonth() + 1
+  }.${lastDayThisMonth.getDate()}`
 
   const list = [
     {
@@ -54,9 +63,11 @@ export default function Home() {
         t('unlimit'),
         t('commercial'),
         t('componentConfig'),
+        t('docs'),
         t('techSupport'),
       ],
       widthClass: isEn ? 'w-60' : 'w-40',
+      limited: true,
     },
   ]
 
@@ -86,7 +97,7 @@ export default function Home() {
               </div>
               <div className="font-bold text-3xl mt-8">{item.title}</div>
               <div className="text-sm mt-3 text-slate-900">{item.desc}</div>
-              <div className="font-bold text-3xl mt-5 mb-5">
+              <div className="font-bold text-3xl mt-5 mb-5 relative">
                 ￥{item.price}
                 {item.unit && (
                   <span className="text-base ml-1">{item.unit}</span>
@@ -94,6 +105,9 @@ export default function Home() {
                 <del className="text-sm text-slate-300 font-normal ml-1">
                   {item.originalPrice && `￥${item.originalPrice}`}
                 </del>
+                {item.limited && (
+                  <div className={styles.limited}>限时优惠 {limitStr}</div>
+                )}
               </div>
               {item.items.map((text) => (
                 <div key={text} className="flex justify-center px-4">
