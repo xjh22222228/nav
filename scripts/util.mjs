@@ -82,13 +82,17 @@ export function getWebCount(websiteList) {
   }
 }
 
-let maxId = 0
-function getMaxId(nav) {
+let maxWebId = 0
+let maxClassId = 0
+function getMaxWebId(nav) {
   function f(nav) {
     for (let i = 0; i < nav.length; i++) {
       const item = nav[i]
-      if (item.name && item.id > maxId) {
-        maxId = item.id
+      if (item.name && item.id > maxWebId) {
+        maxWebId = item.id
+      }
+      if (item.title && item.id > maxClassId) {
+        maxClassId = item.id
       }
       if (item.nav) {
         f(item.nav)
@@ -98,9 +102,16 @@ function getMaxId(nav) {
   f(nav)
 }
 
-function incrementId(id) {
-  if (id < 0) {
-    return ++maxId
+function incrementWebId(id) {
+  if (id == null || id < 0) {
+    return ++maxWebId
+  }
+  return id
+}
+
+function incrementClassId(id) {
+  if (id == null || id < 0) {
+    return ++maxClassId
   }
   return id
 }
@@ -110,16 +121,16 @@ export function setWeb(nav, settings, tags = []) {
 
   function handleAdapter(item) {
     delete item.collapsed
-    delete item.id
     delete item.createdAt
     if (!item.ownVisible) {
       delete item.ownVisible
     }
+    item.id = incrementClassId(item.id)
     item.icon = replaceJsdelivrCDN(item.icon, settings)
     item.nav ||= []
   }
 
-  getMaxId(nav)
+  getMaxWebId(nav)
 
   for (let i = 0; i < nav.length; i++) {
     const item = nav[i]
@@ -147,7 +158,7 @@ export function setWeb(nav, settings, tags = []) {
                 breadcrumb.push(item.title, navItem.title, navItemItem.title)
                 breadcrumb = breadcrumb.filter(Boolean)
                 webItem.breadcrumb = breadcrumb
-                webItem.id = Math.trunc(incrementId(webItem.id))
+                webItem.id = Math.trunc(incrementWebId(webItem.id))
                 webItem.tags ||= []
                 webItem.rate ??= 5
                 webItem.top ??= false
@@ -158,9 +169,11 @@ export function setWeb(nav, settings, tags = []) {
                 webItem.icon ||= ''
                 webItem.icon = replaceJsdelivrCDN(webItem.icon, settings)
                 webItem.url = webItem.url.trim()
-                webItem.desc = webItem.desc.trim()
-                webItem.name = webItem.name.replace(/<b>|<\/b>/g, '')
-                webItem.desc = webItem.desc.replace(/<b>|<\/b>/g, '')
+                if (webItem.url.endsWith('/')) {
+                  webItem.url = webItem.url.slice(0, -1)
+                }
+                webItem.name = webItem.name.trim().replace(/<b>|<\/b>/g, '')
+                webItem.desc = webItem.desc.trim().replace(/<b>|<\/b>/g, '')
 
                 delete webItem.__desc__
                 delete webItem.__name__

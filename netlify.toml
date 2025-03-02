@@ -7,3 +7,7 @@
 [build]
   command = "npm run build"
   publish = "dist/browser"
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"

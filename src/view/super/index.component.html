@@ -28,9 +28,9 @@
             index as i;
             trackBy: commonService.trackByItem
           "
-          (click)="commonService.handleCilckTopNav(i)"
-          [class.active]="commonService.page === i"
-          [class.dark-text-active]="commonService.page === i"
+          (click)="commonService.handleClickClass(item.id)"
+          [class.active]="commonService.oneIndex === i"
+          [class.dark-text-active]="commonService.oneIndex === i"
           class="hitem over-item dark-text"
         >
           {{ item.title }}
@@ -42,8 +42,8 @@
             commonService.websiteList.slice(commonService.overIndex, 99999)
           "
           [index]="commonService.overIndex"
-          [page]="commonService.page"
-          (onClick)="commonService.handleCilckTopNav($event)"
+          [page]="commonService.oneIndex"
+          (onClick)="commonService.handleClickClass($event)"
           class="flex-center"
         />
       </div>
@@ -57,15 +57,15 @@
   <div class="main-box">
     <div
       class="left dark-bg dark-border-color dark-scrollbar"
-      *ngIf="commonService.websiteList[commonService.page]"
+      *ngIf="commonService.websiteList[commonService.oneIndex]"
     >
       <div
         class="bar-item dark-text dark-hover ellipsis"
-        [class.active]="commonService.id === i"
-        [class.dark-item-active]="commonService.id === i"
-        (click)="commonService.handleSidebarNav(i)"
+        [class.active]="commonService.twoIndex === i"
+        [class.dark-item-active]="commonService.twoIndex === i"
+        (click)="commonService.handleClickClass(item.id)"
         *ngFor="
-          let item of commonService.websiteList[commonService.page].nav;
+          let item of commonService.websiteList[commonService.oneIndex].nav;
           index as i;
           trackBy: commonService.trackByItem
         "
@@ -90,10 +90,10 @@
               index as i;
               trackBy: commonService.trackByItem
             "
-            [class.active]="commonService.selectedIndex === i"
-            [class.dark-white]="commonService.selectedIndex === i"
+            [class.active]="commonService.selectedThreeIndex === i"
+            [class.dark-white]="commonService.selectedThreeIndex === i"
             [class.none]="!item.title"
-            (click)="commonService.handleCheckThree(i)"
+            (click)="commonService.handleClickClass(item.id)"
           >
             {{ item.title }}
           </div>
@@ -103,22 +103,23 @@
       <div
         class="card-container"
         *ngIf="
-          commonService.currentList[commonService.selectedIndex]?.nav?.length;
+          commonService.currentList[commonService.selectedThreeIndex]?.nav
+            ?.length;
           else noData
         "
       >
         <app-card
           *ngFor="
             let el of commonService.currentList[
-              commonService.selectedIndex
+              commonService.selectedThreeIndex
             ].nav.slice(0, commonService.sliceMax);
             index as j;
             trackBy: commonService.trackByItemWeb
           "
           [indexs]="[
-            commonService.page,
-            commonService.id,
-            commonService.selectedIndex,
+            commonService.oneIndex,
+            commonService.twoIndex,
+            commonService.selectedThreeIndex,
             j
           ]"
           [cardStyle]="commonService.settings.superCardStyle"

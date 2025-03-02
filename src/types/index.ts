@@ -62,10 +62,18 @@ export interface IWebTag {
   url?: string
 }
 
+interface BaseNavItem {
+  id: number
+  title: string
+  icon?: string
+  collapsed?: boolean
+  ownVisible?: boolean
+}
+
 export interface IWebProps {
+  id: number
   __name__?: string // 搜索原name值
   __desc__?: string
-  id: number
   name: string
   desc: string
   url: string
@@ -81,30 +89,17 @@ export interface IWebProps {
   [key: string]: any
 }
 
-export interface INavThreeProp {
-  title?: string
-  icon?: string
-  collapsed?: boolean
-  ownVisible?: boolean
+export interface INavThreeProp extends BaseNavItem {
   nav: IWebProps[]
   [key: string]: any
 }
 
-export interface INavTwoProp {
-  title?: string
-  icon?: string
-  collapsed?: boolean
-  ownVisible?: boolean
+export interface INavTwoProp extends BaseNavItem {
   nav: INavThreeProp[]
   [key: string]: any
 }
 
-export interface INavProps extends Object {
-  title: string
-  id?: number
-  icon?: string | null
-  ownVisible?: boolean
-  collapsed?: boolean
+export interface INavProps extends BaseNavItem {
   nav: INavTwoProp[]
   [key: string]: any
 }

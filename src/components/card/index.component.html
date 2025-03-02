@@ -2,6 +2,7 @@
   class="card-container progrcode"
   *ngIf="dataSource.desc && dataSource.desc[0] === '!'; else other"
   [innerHTML]="html | safeHtml"
+  #root
 ></div>
 
 <ng-template #other>

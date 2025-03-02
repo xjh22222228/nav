@@ -5,7 +5,7 @@
 import { Component, Output, EventEmitter } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { queryString, getTextContent } from 'src/utils'
+import { queryString, getTextContent, getClassById } from 'src/utils'
 import { setWebsiteList, updateByWeb } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps, IWebTag, TopType, ActionType } from 'src/types'
@@ -299,10 +299,14 @@ export class CreateWebComponent {
     } else {
       payload['id'] = -Date.now()
       try {
-        const { page, id } = queryString()
-        const oneIndex = this.oneIndex ?? page
-        const twoIndex = this.twoIndex ?? id
-        const threeIndex = this.threeIndex || 0
+        const {
+          oneIndex: oneIdx,
+          twoIndex: twoIdx,
+          threeIndex: threeIdx,
+        } = getClassById(queryString().id)
+        const oneIndex = this.oneIndex ?? oneIdx
+        const twoIndex = this.twoIndex ?? twoIdx
+        const threeIndex = this.threeIndex ?? threeIdx
         const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
         this.uploading = true
         if (this.isLogin) {
@@ -316,23 +320,22 @@ export class CreateWebComponent {
             })
           }
         } else if (this.permissions.create) {
-          try {
-            const params = {
-              data: {
-                ...payload,
-                breadcrumb: [
-                  websiteList[oneIndex].title,
-                  websiteList[oneIndex].nav[twoIndex].title,
-                  websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
-                ],
-                extra: {
-                  type: ActionType.Create,
-                },
+          const params = {
+            data: {
+              ...payload,
+              parentId: websiteList[oneIndex].nav[twoIndex].nav[threeIndex].id,
+              breadcrumb: [
+                websiteList[oneIndex].title,
+                websiteList[oneIndex].nav[twoIndex].title,
+                websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
+              ],
+              extra: {
+                type: ActionType.Create,
               },
-            }
-            await saveUserCollect(params)
-            this.message.success($t('_waitHandle'))
-          } catch {}
+            },
+          }
+          await saveUserCollect(params)
+          this.message.success($t('_waitHandle'))
         }
       } catch (error: any) {
         this.message.error(error.message)

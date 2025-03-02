@@ -7,7 +7,7 @@
   <p align="center">A powerful navigation website that is purely static, supports SEO, and online editing</p>
   <p align="center">Built-in collection of 800+ high-quality websites to assist your work, study, and life</p>
   <p align="center">
-    <a href="README.md"><img alt="简体中文" src="https://img.shields.io/static/v1.svg?label=&message=简体中文&style=flat-square&color=ff5000"></a>
+    <a href="README.md"><img alt="简体中文" src="https://img.shields.io/static/v1.svg?label=&message=zh_cn&style=flat-square&color=ff5000"></a>
     <img src="https://img.shields.io/github/v/release/xjh22222228/nav" />
     <a href="https://github.com/xjh22222228/nav/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/nav" alt="Stars"/></a>
     <img alt="Angular" src="https://img.shields.io/static/v1.svg?label=&message=Angular&style=flat-square&color=C82B38">
@@ -59,6 +59,7 @@ The philosophy of `Discovery Navigation` is to create a simple and convenient so
 - 🍰 Footprint memory
 - 🍰 Multiple search queries
 - 🍰 Custom search engine support
+- 🍰 Support card advertising display
 - 🍰 Multiple aesthetic themes
 - 🍰 Powerful responsive system
 - 🍰 Various loading animations
@@ -98,13 +99,11 @@ Zero-cost deployment, as easy as counting `3-2-1`.
 
 #### Netlify (Recommended, Free)
 
-Currently used by the author, faster speed, build path `dist/browser`
+build path `dist/browser`
 
 [https://www.netlify.com/](https://www.netlify.com/)
 
 #### Vercel (Recommended, Free)
-
-Slower access in China, test before use
 
 [https://github.com/apps/vercel](https://github.com/apps/vercel)
 

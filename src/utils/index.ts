@@ -30,10 +30,11 @@ export function fuzzySearch(
   }
   keyword = keyword.toLowerCase()
 
-  const { type, page, id } = queryString()
+  const { type, id } = queryString()
+  const { oneIndex, twoIndex } = getClassById(id)
   const sType = Number(type) || SearchType.All
   const navData: IWebProps[] = []
-  const resultList: INavThreeProp[] = [{ nav: navData }]
+  const resultList: INavThreeProp[] = [{ nav: navData, id: -1, title: '' }]
   const urlRecordMap = new Map<number, boolean>()
 
   function f(arr?: any[]) {
@@ -169,7 +170,7 @@ export function fuzzySearch(
   }
 
   if (sType === SearchType.Current) {
-    f(navList[page].nav[id].nav)
+    f(navList[oneIndex].nav[twoIndex].nav)
   } else {
     f()
   }
@@ -219,56 +220,36 @@ export function randomBgImg() {
   randomTimer = setInterval(setBg, 10000)
 }
 
-export function queryString(): {
-  q: string
-  id: number
-  page: number
-  [key: string]: any
-} {
+export function queryString() {
   const { href } = window.location
   const search = href.split('?')[1] || ''
   const parseQs = qs.parse(search)
-  let id = parseInt(parseQs['id'] as string) || 0
-  let page = parseInt(parseQs['page'] as string) || 0
+  let id = parseQs['id']
 
-  if (parseQs['id'] === undefined && parseQs['page'] === undefined) {
+  if (parseQs['id'] == null) {
     try {
       const location = window.localStorage.getItem(STORAGE_KEY_MAP.location)
       if (location) {
         const localLocation = JSON.parse(location)
-        page = localLocation.page || 0
-        id = localLocation.id || 0
+        id = localLocation.id
       }
     } catch {}
   }
 
-  if (page > websiteList.length - 1) {
-    page = 0
-    id = 0
-  } else {
-    if (websiteList[page] && !(id <= websiteList[page].nav.length - 1)) {
-      id = websiteList[page].nav.length - 1
-    }
-  }
-
-  page = page < 0 ? 0 : page
-  id = id < 0 ? 0 : id
-
   return {
     ...parseQs,
+    type: parseQs['type'],
     q: (parseQs['q'] || '') as string,
     id,
-    page,
-  }
+  } as const
 }
 
 export function setLocation() {
-  const { page, id } = queryString()
+  const { id } = queryString()
 
   window.localStorage.setItem(
     STORAGE_KEY_MAP.location,
     JSON.stringify({
-      page,
       id,
     })
   )
@@ -356,16 +337,17 @@ export function getTextContent(value: string): string {
 }
 
 export function matchCurrentList(): INavThreeProp[] {
-  const { id, page } = queryString()
+  const { id } = queryString()
+  const { oneIndex, twoIndex } = getClassById(id)
   let data: INavThreeProp[] = []
 
   try {
     if (
-      websiteList[page] &&
-      websiteList[page]?.nav?.length > 0 &&
-      (isLogin || !websiteList[page].nav[id].ownVisible)
+      websiteList[oneIndex] &&
+      websiteList[oneIndex]?.nav?.length > 0 &&
+      (isLogin || !websiteList[oneIndex].nav[twoIndex].ownVisible)
     ) {
-      data = websiteList[page].nav[id].nav
+      data = websiteList[oneIndex].nav[twoIndex].nav
     } else {
       data = []
     }
@@ -377,7 +359,7 @@ export function matchCurrentList(): INavThreeProp[] {
 }
 
 export function addZero(n: number): string {
-  return n < 10 ? `0${n}` : String(n)
+  return String(n).padStart(2, '0')
 }
 
 // 获取第几个元素超出父节点宽度
@@ -444,4 +426,50 @@ export function getDefaultTheme() {
     return settings.theme
   }
   return t
+}
+
+export function getClassById(id: any) {
+  id = Number(id)
+  let oneIndex = 0
+  let twoIndex = 0
+  let threeIndex = 0
+
+  outerLoop: for (let i = 0; i < websiteList.length; i++) {
+    const item = websiteList[i]
+    if (item.title) {
+      if (item.id === id) {
+        oneIndex = i
+        break
+      }
+    }
+    if (Array.isArray(item.nav)) {
+      for (let j = 0; j < item.nav.length; j++) {
+        const twoItem = item.nav[j]
+        if (twoItem.title) {
+          if (twoItem.id === id) {
+            oneIndex = i
+            twoIndex = j
+            break outerLoop
+          }
+        }
+        if (Array.isArray(twoItem.nav)) {
+          for (let k = 0; k < twoItem.nav.length; k++) {
+            const threeItem = twoItem.nav[k]
+            if (threeItem.id === id) {
+              oneIndex = i
+              twoIndex = j
+              threeIndex = k
+              break outerLoop
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return {
+    oneIndex,
+    twoIndex,
+    threeIndex,
+  } as const
 }

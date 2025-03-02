@@ -18,7 +18,6 @@ import { isLogin, removeWebsite } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { getTextContent } from 'src/utils'
 import { setWebsiteList, deleteWebById } from 'src/utils/web'
 import { updateFileContent } from 'src/api'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
@@ -700,6 +699,14 @@ export default class WebpComponent {
 
       this.message.success($t('_saveSuccess'))
     } else {
+      const id = -Date.now()
+      const data = {
+        id,
+        title,
+        icon,
+        ownVisible,
+        nav: [],
+      }
       switch (this.tabActive) {
         // 新增一级分类
         case 0:
@@ -709,12 +716,7 @@ export default class WebpComponent {
               return this.message.error(`${$t('_repeatAdd')} "${title}"`)
             }
 
-            this.websiteList.unshift({
-              title,
-              icon,
-              ownVisible,
-              nav: [],
-            })
+            this.websiteList.unshift(data)
           }
           break
 
@@ -728,12 +730,7 @@ export default class WebpComponent {
               return this.message.error(`${$t('_repeatAdd')} "${title}"`)
             }
 
-            this.twoTableData.unshift({
-              title,
-              icon,
-              ownVisible,
-              nav: [],
-            })
+            this.twoTableData.unshift(data)
           }
           break
 
@@ -747,12 +744,7 @@ export default class WebpComponent {
               return this.message.error(`${$t('_repeatAdd')} "${title}"`)
             }
 
-            this.threeTableData.unshift({
-              title,
-              icon,
-              ownVisible,
-              nav: [],
-            })
+            this.threeTableData.unshift(data)
           }
           break
       }

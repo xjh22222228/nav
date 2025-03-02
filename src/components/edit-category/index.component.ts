@@ -22,7 +22,7 @@ import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { websiteList } from 'src/store'
 import { setWebsiteList } from 'src/utils/web'
-import { queryString } from 'src/utils/index'
+import { queryString, getClassById } from 'src/utils/index'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -114,9 +114,10 @@ export class EditCategoryComponent {
 
     try {
       if (this.app) {
-        const { page, id } = queryString()
-        websiteList[page].nav[id].nav[this.index] = {
-          ...websiteList[page].nav[id].nav[this.index],
+        const { id } = queryString()
+        const { oneIndex, twoIndex } = getClassById(id)
+        websiteList[oneIndex].nav[twoIndex].nav[this.index] = {
+          ...websiteList[oneIndex].nav[twoIndex].nav[this.index],
           ...params,
         }
         setWebsiteList(websiteList)

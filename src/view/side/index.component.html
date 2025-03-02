@@ -54,16 +54,18 @@
                 trackBy: commonService.trackByItem
               "
               [nzSelected]="
-                commonService.page === pageIdx && commonService.id === idIdx
+                commonService.oneIndex === pageIdx &&
+                commonService.twoIndex === idIdx
               "
-              (click)="commonService.handleSidebarNav(idIdx, pageIdx)"
+              (click)="commonService.handleClickClass(el.id)"
             >
               <img *ngIf="el.icon" class="sideicon fixicon" [src]="el.icon" />
               <span class="ellipsis">{{ el.title }}</span>
 
               <div
                 *ngIf="
-                  commonService.page === pageIdx && commonService.id === idIdx
+                  commonService.oneIndex === pageIdx &&
+                  commonService.twoIndex === idIdx
                 "
                 (click)="commonService.onCollapseAll($event)"
                 class="collapse-wrapper"
@@ -142,7 +144,12 @@
                     <app-card
                       [cardStyle]="commonService.settings.sideCardStyle"
                       [dataSource]="el"
-                      [indexs]="[commonService.page, commonService.id, i, j]"
+                      [indexs]="[
+                        commonService.oneIndex,
+                        commonService.twoIndex,
+                        i,
+                        j
+                      ]"
                       [searchKeyword]="commonService.searchKeyword"
                       class="column-border"
                     />

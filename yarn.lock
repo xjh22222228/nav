@@ -4816,10 +4816,10 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-info-web@^0.0.33:
-  version "0.0.33"
-  resolved "https://registry.yarnpkg.com/info-web/-/info-web-0.0.33.tgz#003b54367e55dbb68d249770f79a08c432f83dcd"
-  integrity sha512-xGwng+aAzQUy4F8XzUg9oHzV8MXdfv3s+ARo5PeFrWJ5ZeoZYJgrVsO7whi+FQLlHlOHppIoATuG6unkL3ZEww==
+info-web@^0.0.35:
+  version "0.0.35"
+  resolved "https://registry.yarnpkg.com/info-web/-/info-web-0.0.35.tgz#ba7f3790511919d87a80c83366447811e3b46e7b"
+  integrity sha512-hxHDmACYh+jpytZq4xL/3KxyjQ4oWZYa/pmPvJoSsu5engDZpTzMGRkCFI5R6h6SvcbFEv/0tA3qB4rG7vi3pg==
   dependencies:
     axios "^1.7.5"
     jschardet "^3.1.3"

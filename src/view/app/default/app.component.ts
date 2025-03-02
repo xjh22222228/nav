@@ -28,10 +28,8 @@ export default class WebpComponent {
 
   constructor(public commonService: CommonService) {}
 
-  ngOnInit() {}
-
-  handleCilckNav(index: number) {
-    this.commonService.handleCilckTopNav(index)
+  handleCilckNav(id: number) {
+    this.commonService.handleClickClass(id)
     this.handleToggleOpen()
   }
 

@@ -178,6 +178,7 @@ const main = async () => {
       type: 6,
       id: -6,
       html: '你好，发现导航',
+      width: 160,
     }
     if (idx >= 0) {
       components[idx] = {

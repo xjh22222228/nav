@@ -10,6 +10,7 @@ import {
   fuzzySearch,
   matchCurrentList,
   getOverIndex,
+  getClassById,
 } from 'src/utils'
 import { setWebsiteList, toggleCollapseAll } from 'src/utils/web'
 import { INavProps, INavThreeProp } from 'src/types'
@@ -25,10 +26,10 @@ export class CommonService {
   settings = settings
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
-  id = 0
-  page = 0
+  twoIndex = 0
+  oneIndex = 0
   sliceMax = 0
-  selectedIndex = 0 // 第三级菜单选中
+  selectedThreeIndex = 0 // 第三级菜单选中
   searchKeyword = ''
   overIndex = Number.MAX_SAFE_INTEGER
   title: string = settings.title.trim().split(/\s/)[0]
@@ -36,11 +37,12 @@ export class CommonService {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     const getData = () => {
-      const { id, page, q } = queryString()
-      this.page = page
-      this.id = id
+      const { id, q } = queryString()
+      const { oneIndex, twoIndex, threeIndex } = getClassById(id)
+      this.oneIndex = oneIndex
+      this.twoIndex = twoIndex
+      this.selectedThreeIndex = threeIndex
       this.searchKeyword = q
-      this.handleCheckThree(0)
 
       if (q) {
         this.currentList = fuzzySearch(websiteList, q)
@@ -72,30 +74,13 @@ export class CommonService {
     }
   }
 
-  handleCilckTopNav(index: number) {
-    const id = websiteList[index].id || 0
+  handleClickClass(id: number) {
     this.router.navigate([this.router.url.split('?')[0]], {
       queryParams: {
-        page: index,
         id,
         _: Date.now(),
       },
     })
-  }
-  handleSidebarNav(index: number, pageIndex?: number) {
-    const { page } = queryString()
-    websiteList[pageIndex ?? page].id = index
-    this.router.navigate([this.router.url.split('?')[0]], {
-      queryParams: {
-        page: pageIndex ?? page,
-        id: index,
-        _: Date.now(),
-      },
-    })
-  }
-
-  handleCheckThree(index: number) {
-    this.selectedIndex = index
   }
 
   onCollapseAll = (e?: Event) => {
@@ -113,15 +98,15 @@ export class CommonService {
 
   get collapsed() {
     try {
-      return !!websiteList[this.page].nav[this.id].collapsed
-    } catch (error) {
+      return !!websiteList[this.oneIndex].nav[this.twoIndex].collapsed
+    } catch {
       return false
     }
   }
 
   onCollapse = (item: any, index: number) => {
     item.collapsed = !item.collapsed
-    this.websiteList[this.page].nav[this.id].nav[index] = item
+    this.websiteList[this.oneIndex].nav[this.twoIndex].nav[index] = item
     if (!isSelfDevelop) {
       setWebsiteList(this.websiteList)
     }

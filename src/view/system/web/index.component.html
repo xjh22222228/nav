@@ -182,11 +182,11 @@
         <tbody>
           <tr *ngFor="let data of twoTableData; let idx = index">
             <td
-              [nzChecked]="setOfCheckedId.has(data.title || '')"
+              [nzChecked]="setOfCheckedId.has(data.title)"
               (nzCheckedChange)="onItemChecked(data.title, $event)"
             ></td>
             <td>
-              <app-logo [src]="data.icon || ''" [name]="data.title || ''" />
+              <app-logo [src]="data.icon || ''" [name]="data.title" />
             </td>
             <td>{{ data.title }}</td>
             <td>
@@ -248,7 +248,7 @@
       >
         <nz-option
           *ngFor="let item of twoTableData"
-          [nzLabel]="item.title || ''"
+          [nzLabel]="item.title"
           [nzValue]="item.title"
         >
         </nz-option>
@@ -297,11 +297,11 @@
         <tbody>
           <tr *ngFor="let data of threeTableData; let idx = index">
             <td
-              [nzChecked]="setOfCheckedId.has(data.title || '')"
+              [nzChecked]="setOfCheckedId.has(data.title)"
               (nzCheckedChange)="onItemChecked(data.title, $event)"
             ></td>
             <td>
-              <app-logo [src]="data.icon || ''" [name]="data.title || ''" />
+              <app-logo [src]="data.icon || ''" [name]="data.title" />
             </td>
             <td>{{ data.title }}</td>
             <td>
@@ -363,7 +363,7 @@
       >
         <nz-option
           *ngFor="let item of twoTableData"
-          [nzLabel]="item.title || ''"
+          [nzLabel]="item.title"
           [nzValue]="item.title"
         >
         </nz-option>
@@ -378,8 +378,8 @@
       >
         <nz-option
           *ngFor="let item of threeTableData"
-          [nzLabel]="item.title || ''"
-          [nzValue]="item.title || ''"
+          [nzLabel]="item.title"
+          [nzValue]="item.title"
         >
         </nz-option>
       </nz-select>
@@ -388,15 +388,16 @@
         nz-button
         nzType="primary"
         (click)="openCreateWebModal()"
-        style="margin-left: 20px"
+        style="margin-left: 10px"
       >
         {{ $t('_addWeb') }}（{{ websiteTableData.length }}）
       </button>
       <button
         nz-button
         nzType="primary"
+        nzDanger
         (click)="getAllErrorWeb()"
-        style="margin-left: 20px"
+        style="margin: 0 10px"
       >
         {{ $t('_getErrorWeb') }}
       </button>
@@ -407,7 +408,6 @@
         (nzOnConfirm)="onBatchDelete(4)"
         nz-button
         nzDanger
-        class="ml-2.5"
         [disabled]="setOfCheckedId.size <= 0"
       >
         {{ $t('_batchDel') }}

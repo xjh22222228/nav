@@ -16,8 +16,8 @@
           let i = index;
           trackBy: commonService.trackByItem
         "
-        (click)="handleCilckNav(i)"
-        [class.active]="commonService.page === i"
+        (click)="handleCilckNav(item.id)"
+        [class.active]="commonService.oneIndex === i"
         class="nav-title"
       >
         {{ item.title }}
@@ -27,20 +27,23 @@
 
   <app-search-engine />
 
-  <div class="wrapper" *ngIf="commonService.websiteList[commonService.page]">
+  <div
+    class="wrapper"
+    *ngIf="commonService.websiteList[commonService.oneIndex]"
+  >
     <nav
       class="children-nav"
-      *ngIf="commonService.websiteList[commonService.page]?.nav?.length"
+      *ngIf="commonService.websiteList[commonService.oneIndex]?.nav?.length"
     >
       <span
         class="tag"
         *ngFor="
-          let item of commonService.websiteList[commonService.page].nav;
+          let item of commonService.websiteList[commonService.oneIndex].nav;
           let i = index;
           trackBy: commonService.trackByItem
         "
-        [class.active]="commonService.id === i"
-        (click)="commonService.handleSidebarNav(i)"
+        [class.active]="commonService.twoIndex === i"
+        (click)="commonService.handleClickClass(item.id)"
       >
         {{ item.title }}
       </span>
@@ -72,7 +75,7 @@
           <app-card
             [cardStyle]="commonService.settings.appCardStyle"
             [dataSource]="el"
-            [indexs]="[commonService.page, commonService.id, i, j]"
+            [indexs]="[commonService.oneIndex, commonService.twoIndex, i, j]"
             [searchKeyword]="commonService.searchKeyword"
             class="column-border"
           ></app-card>

@@ -39,10 +39,10 @@
         let i = index;
         trackBy: commonService.trackByItem
       "
-      [class.active]="commonService.page === i"
-      [class.dark-text-active]="commonService.page === i"
+      [class.active]="commonService.oneIndex === i"
+      [class.dark-text-active]="commonService.oneIndex === i"
       class="over-item dark-text"
-      (click)="commonService.handleCilckTopNav(i)"
+      (click)="commonService.handleClickClass(item.id)"
     >
       {{ item.title }}
     </span>
@@ -51,8 +51,8 @@
       *ngIf="commonService.overIndex < commonService.websiteList.length"
       [data]="commonService.websiteList.slice(commonService.overIndex, 99999)"
       [index]="commonService.overIndex"
-      [page]="commonService.page"
-      (onClick)="commonService.handleCilckTopNav($event)"
+      [page]="commonService.oneIndex"
+      (onClick)="commonService.handleClickClass($event)"
     />
   </nav>
 
@@ -60,17 +60,17 @@
     <nav
       class="sidebar dark-bg"
       id="sidebar"
-      *ngIf="commonService.websiteList[commonService.page]?.nav?.length"
+      *ngIf="commonService.websiteList[commonService.oneIndex]?.nav?.length"
     >
       <div
         *ngFor="
-          let item of commonService.websiteList[commonService.page].nav;
+          let item of commonService.websiteList[commonService.oneIndex].nav;
           let i = index;
           trackBy: commonService.trackByItem
         "
-        (click)="commonService.handleSidebarNav(i)"
-        [class.active]="commonService.id === i"
-        [class.dark-item-active]="commonService.id === i"
+        (click)="commonService.handleClickClass(item.id)"
+        [class.active]="commonService.twoIndex === i"
+        [class.dark-item-active]="commonService.twoIndex === i"
         class="ripple-btn dark-text dark-hover"
       >
         {{ item.title }}
@@ -120,7 +120,12 @@
                 <app-card
                   [cardStyle]="commonService.settings.simCardStyle"
                   [dataSource]="el"
-                  [indexs]="[commonService.page, commonService.id, i, j]"
+                  [indexs]="[
+                    commonService.oneIndex,
+                    commonService.twoIndex,
+                    i,
+                    j
+                  ]"
                   [searchKeyword]="commonService.searchKeyword"
                   class="column-border"
                 ></app-card>

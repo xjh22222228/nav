@@ -59,6 +59,7 @@
 - 🍰 支持足迹记忆
 - 🍰 支持多种搜索查询
 - 🍰 支持自定义引擎搜索
+- 🍰 支持卡片广告展示
 - 🍰 多款高颜值主题切换
 - 🍰 强大的响应式系统
 - 🍰 多种 Loading 加载动画
@@ -98,13 +99,11 @@
 
 #### Netlify 推荐(免费)
 
-作者目前使用，速度较快, 打包路径 `dist/browser`
+打包路径 `dist/browser`
 
 [https://www.netlify.com/](https://www.netlify.com/)
 
 #### Vercel 推荐(免费)
-
-国内访问速度较慢，建议测试后使用
 
 [https://github.com/apps/vercel](https://github.com/apps/vercel)
 

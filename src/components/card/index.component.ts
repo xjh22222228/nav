@@ -2,11 +2,12 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, Input } from '@angular/core'
+import { Component, Input, ViewChild, ElementRef } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { isLogin, getPermissions } from 'src/utils/user'
 import { copyText, getTextContent } from 'src/utils'
+import { parseHtmlWithDescription } from 'src/utils/util'
 import { setWebsiteList, deleteWebById } from 'src/utils/web'
 import { INavProps, IWebProps, ICardType, ActionType } from 'src/types'
 import { $t, isZhCN } from 'src/locale'
@@ -47,6 +48,7 @@ export class CardComponent {
   @Input() dataSource: IWebProps | Record<string, any> = {}
   @Input() indexs: number[] = []
   @Input() cardStyle: ICardType = 'standard'
+  @ViewChild('root', { static: false }) root!: ElementRef
 
   readonly $t = $t
   readonly settings = settings
@@ -60,6 +62,14 @@ export class CardComponent {
     public readonly jumpService: JumpService,
     private message: NzMessageService
   ) {}
+
+  ngAfterViewInit() {
+    this.parseDescription()
+  }
+
+  private parseDescription() {
+    parseHtmlWithDescription(this.root?.nativeElement, this.dataSource.desc)
+  }
 
   async copyUrl(e: Event, type: 1 | 2): Promise<void> {
     const { name, url } = this.dataSource

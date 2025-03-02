@@ -83,6 +83,7 @@ export function parseBookmark(
           if (titleEl) {
             const title = getTitle(titleEl)
             const threeLevel: INavThreeProp = {
+              id: (id += 1),
               title,
               nav: [],
               icon: '',
@@ -105,6 +106,7 @@ export function parseBookmark(
           if (titleEl) {
             const title = getTitle(titleEl)
             const twoLevel: INavTwoProp = {
+              id: (id += 1),
               title,
               icon: '',
               nav: [],
@@ -116,6 +118,7 @@ export function parseBookmark(
               const unclassifiedData = findUnclassifiedData(DL3)
               if (unclassifiedData.length > 0) {
                 twoLevel.nav.push({
+                  id: (id += 1),
                   title,
                   nav: unclassifiedData,
                 })
@@ -134,6 +137,7 @@ export function parseBookmark(
         if (titleEl) {
           const title = getTitle(titleEl)
           const oneLevel: INavProps = {
+            id: (id += 1),
             title,
             icon: '',
             nav: [],
@@ -145,9 +149,11 @@ export function parseBookmark(
             const unclassifiedData = findUnclassifiedData(DL)
             if (unclassifiedData.length > 0) {
               oneLevel.nav.push({
+                id: (id += 1),
                 title,
                 nav: [
                   {
+                    id: (id += 1),
                     title,
                     nav: unclassifiedData,
                   },
@@ -163,12 +169,15 @@ export function parseBookmark(
     const unclassifiedData = findUnclassifiedData(roolDL)
     if (unclassifiedData.length > 0) {
       data.push({
+        id: (id += 1),
         title: $t('_uncategorized'),
         nav: [
           {
+            id: (id += 1),
             title: $t('_uncategorized'),
             nav: [
               {
+                id: (id += 1),
                 title: $t('_uncategorized'),
                 nav: unclassifiedData,
               },

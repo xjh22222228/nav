@@ -51,3 +51,25 @@ export function removeDark(): void {
   document.documentElement.classList.remove(...DARK_THEME.classes)
   darkNode?.parentNode?.removeChild(darkNode)
 }
+
+export function parseHtmlWithDescription(node: HTMLElement, str: string) {
+  if (str.startsWith('!')) {
+    if (!node) return
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(str, 'text/html')
+    const scripts = doc.querySelectorAll('script')
+    scripts.forEach((script) => {
+      const newScript: any = document.createElement('script')
+      const text = script.textContent?.trim() || ''
+      const attributes = script.attributes
+      for (let i = 0; i < attributes.length; i++) {
+        const attr = attributes[i]
+        newScript[attr.name] = attr.value
+      }
+      if (text) {
+        newScript.textContent = text
+      }
+      node.appendChild(newScript)
+    })
+  }
+}

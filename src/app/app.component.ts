@@ -161,8 +161,8 @@ export class AppComponent {
     // is App
     if (settings.appTheme !== 'Current' && isMobile()) {
       const url = (this.router.url.split('?')[0] || '').toLowerCase()
-      const { page, id, q } = queryString()
-      const queryParams = { page, id, q }
+      const { id, q } = queryString()
+      const queryParams = { id, q }
       const path = '/' + String(settings.appTheme).toLowerCase()
 
       if (!url.includes(path)) {

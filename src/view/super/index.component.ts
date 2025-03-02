@@ -58,7 +58,7 @@ export default class SideComponent {
 
   openCreateWebModal() {
     event.emit('CREATE_WEB', {
-      threeIndex: this.commonService.selectedIndex,
+      threeIndex: this.commonService.selectedThreeIndex,
     })
   }
 }

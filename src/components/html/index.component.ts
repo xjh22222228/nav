@@ -2,9 +2,10 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, Input } from '@angular/core'
+import { Component, Input, ViewChild, ElementRef } from '@angular/core'
 import { IComponentProps } from 'src/types'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
+import { parseHtmlWithDescription } from 'src/utils/util'
 
 @Component({
   standalone: true,
@@ -15,6 +16,15 @@ import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 })
 export class HTMLComponent {
   @Input() data!: IComponentProps
+  @ViewChild('root', { static: false }) root!: ElementRef
 
   constructor() {}
+
+  ngAfterViewInit() {
+    this.parseDescription()
+  }
+
+  private parseDescription() {
+    parseHtmlWithDescription(this.root?.nativeElement, `!${this.data['html']}`)
+  }
 }

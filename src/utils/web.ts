@@ -7,7 +7,7 @@ import { IWebProps, INavProps } from '../types'
 import { websiteList } from 'src/store'
 import { STORAGE_KEY_MAP, DB_PATH } from 'src/constants'
 import { isSelfDevelop } from './util'
-import { queryString } from './index'
+import { queryString, getClassById } from './index'
 import { $t } from 'src/locale'
 
 function adapterWebsiteList(websiteList: any[]) {
@@ -104,10 +104,11 @@ export function setWebsiteList(v?: INavProps[]): Promise<any> {
 
 export function toggleCollapseAll(wsList?: INavProps[]): boolean {
   wsList ||= websiteList
-  const { page, id } = queryString()
-  const collapsed = !wsList[page].nav[id].collapsed
-  wsList[page].nav[id].collapsed = collapsed
-  wsList[page].nav[id].nav.map((item) => {
+  const { id } = queryString()
+  const { oneIndex, twoIndex } = getClassById(id)
+  const collapsed = !wsList[oneIndex].nav[twoIndex].collapsed
+  wsList[oneIndex].nav[twoIndex].collapsed = collapsed
+  wsList[oneIndex].nav[twoIndex].nav.map((item) => {
     item.collapsed = collapsed
     return item
   })
