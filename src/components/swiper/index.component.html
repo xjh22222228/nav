@@ -11,15 +11,10 @@
     <div
       nz-carousel-content
       [class.cursor-pointer]="item['url']"
-      *ngFor="let item of images; let i = index"
+      *ngFor="let item of images"
       (click)="jumpService.goUrl($event, item['url'])"
     >
-      <img
-        class="bgimg"
-        [src]="item.src"
-        draggable="false"
-        [ngStyle]="{ height: height <= 0 ? '' : height + 'px' }"
-      />
+      <app-swiper-item [data]="item" [height]="height" />
     </div>
   </nz-carousel>
 

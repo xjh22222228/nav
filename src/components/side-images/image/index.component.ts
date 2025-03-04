@@ -3,35 +3,32 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input, ViewChild, ElementRef } from '@angular/core'
-import { IComponentProps } from 'src/types'
-import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
+import { CommonModule } from '@angular/common'
+import { ImageProps } from 'src/types'
 import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/util'
-import { set } from 'nprogress'
+import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 
 @Component({
   standalone: true,
-  imports: [SafeHtmlPipe],
-  selector: 'app-html',
+  imports: [CommonModule, SafeHtmlPipe],
+  selector: 'app-side-image',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class HTMLComponent {
-  @Input() data!: IComponentProps
+export class SideImageComponent {
+  @Input() data: ImageProps = {} as ImageProps
   @ViewChild('root', { static: false }) root!: ElementRef
+
+  isCode = false
   html = ''
 
   constructor() {}
 
   ngOnInit() {
-    this.init()
-  }
-
-  ngOnChanges() {
-    this.init()
-  }
-
-  private init() {
-    this.html = parseLoadingWithContent(`!${this.data['html']}`)
+    this.isCode = this.data.url[0] === '!'
+    if (this.isCode) {
+      this.html = parseLoadingWithContent(this.data.url)
+    }
   }
 
   ngAfterViewInit() {
@@ -39,6 +36,8 @@ export class HTMLComponent {
   }
 
   private parseDescription() {
-    parseHtmlWithContent(this.root?.nativeElement, `!${this.data['html']}`)
+    if (this.isCode) {
+      parseHtmlWithContent(this.root?.nativeElement, this.data.url)
+    }
   }
 }

@@ -291,6 +291,11 @@ const english: Record<string, any> = {
   _colTitle: 'Collection processing ({count})',
   _type: 'Type',
   _handle: 'Handle',
+  _headCode:
+    '<head>You can insert styles, scripts, statistics, etc. here</head>',
+  _hours: '{num} hr',
+  _minutes: '{num} min',
+  _seconds: '{num} s',
 }
 
 export default english

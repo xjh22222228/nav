@@ -96,7 +96,7 @@
 
       <component-group></component-group>
 
-      <app-search-engine class="mobile-search" />
+      <app-search class="mobile-search" />
 
       <nz-content class="content" id="content">
         <app-web-list [search]="false" [overflow]="true" />
@@ -128,7 +128,6 @@
                   <div
                     *ngFor="
                       let el of item.nav;
-                      index as j;
                       trackBy: commonService.trackByItemWeb
                     "
                     class="gutter-row"
@@ -144,12 +143,6 @@
                     <app-card
                       [cardStyle]="commonService.settings.sideCardStyle"
                       [dataSource]="el"
-                      [indexs]="[
-                        commonService.oneIndex,
-                        commonService.twoIndex,
-                        i,
-                        j
-                      ]"
                       [searchKeyword]="commonService.searchKeyword"
                       class="column-border"
                     />

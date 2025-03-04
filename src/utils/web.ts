@@ -30,7 +30,7 @@ function adapterWebsiteList(websiteList: any[]) {
   return websiteList
 }
 
-export async function fetchWeb() {
+export async function getWebs() {
   if (isSelfDevelop) {
     return
   }
@@ -118,25 +118,18 @@ export function toggleCollapseAll(wsList?: INavProps[]): boolean {
   return collapsed
 }
 
-export function deleteWebById(id: number): boolean {
+export async function deleteWebByIds(ids: number[]): Promise<boolean> {
   let hasDelete = false
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
-      if (item.name) {
-        if (item.id === id) {
-          hasDelete = true
-          arr.splice(i, 1)
-          break
-        }
-        continue
-      }
-
       if (Array.isArray(item.nav)) {
         item.nav = item.nav.filter((w: IWebProps) => {
-          if (w.name && w.id === id) {
-            hasDelete = true
-            return false
+          if (w.name) {
+            if (ids.includes(w.id)) {
+              hasDelete = true
+              return false
+            }
           }
           return true
         })
@@ -147,10 +140,11 @@ export function deleteWebById(id: number): boolean {
 
   f(websiteList)
   if (hasDelete) {
-    setWebsiteList(websiteList)
+    await setWebsiteList(websiteList)
     const { q } = queryString()
-    // 在搜索结果删除需要刷新重新刷结果
-    q && window.location.reload()
+    if (q && !isSelfDevelop) {
+      event.emit('WEB_REFRESH')
+    }
   }
   return hasDelete
 }
@@ -181,4 +175,45 @@ export function updateByWeb(oldId: number, newData: IWebProps) {
   f(websiteList)
   setWebsiteList(websiteList)
   return ok
+}
+
+export async function deleteClassByIds(ids: number[]): Promise<boolean> {
+  let hasDelete = false
+
+  function f(arr: any[]) {
+    for (let i = 0; i < arr.length; i++) {
+      const item = arr[i]
+      if (Array.isArray(item.nav)) {
+        f(item.nav)
+        if (item.nav[0]?.name) {
+          break
+        }
+        item.nav = item.nav.filter((w: INavProps) => {
+          if (w.title) {
+            if (ids.includes(w.id)) {
+              hasDelete = true
+              return false
+            }
+          }
+          return true
+        })
+      }
+    }
+  }
+
+  // 删除一级分类
+  ids.forEach((id) => {
+    websiteList.forEach((item, index) => {
+      if (item.id === id) {
+        hasDelete = true
+        websiteList.splice(index, 1)
+      }
+    })
+  })
+
+  f(websiteList)
+  if (hasDelete) {
+    await setWebsiteList(websiteList)
+  }
+  return hasDelete
 }

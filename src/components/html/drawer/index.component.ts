@@ -11,6 +11,7 @@ import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
+import { NzColorPickerModule } from 'ng-zorro-antd/color-picker'
 
 @Component({
   standalone: true,
@@ -22,6 +23,7 @@ import { NzSliderModule } from 'ng-zorro-antd/slider'
     NzButtonModule,
     NzInputModule,
     NzSliderModule,
+    NzColorPickerModule,
   ],
   selector: 'html-drawer',
   templateUrl: './index.component.html',
@@ -39,6 +41,7 @@ export class HTMLDrawerComponent {
     this.validateForm = this.fb.group({
       html: [''],
       width: [0],
+      bgColor: [''],
     })
   }
 

@@ -205,7 +205,7 @@ export default class SystemSettingComponent {
       nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
         function filterImage(item: Record<string, any>) {
-          return item['src']
+          return item['src'] || item['url'][0] === '!'
         }
         const formValues = this.validateForm.value
         const values = {

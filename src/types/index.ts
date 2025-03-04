@@ -62,7 +62,7 @@ export interface IWebTag {
   url?: string
 }
 
-interface BaseNavItem {
+export interface BaseNavItem {
   id: number
   title: string
   icon?: string
@@ -104,13 +104,25 @@ export interface INavProps extends BaseNavItem {
   [key: string]: any
 }
 
-export interface ISearchEngineProps {
+export interface ISearchProps {
   name: string
   url?: string
   icon: string | null
   placeholder?: string
   blocked: boolean
   isInner: boolean
+}
+
+export interface ImageProps {
+  url: string
+  src: string
+}
+
+export interface IClassProps {
+  id: number
+  title: string
+  icon: string
+  ownVisible?: boolean
 }
 
 export interface ISettings {
@@ -139,11 +151,11 @@ export interface ISettings {
 
   lightCardStyle: ICardType
   lightOverType: OverType
-  lightImages: Record<string, any>[]
+  lightImages: ImageProps[]
   lightFooterHTML: string
   lightDocTitle: string
 
-  simThemeImages: Record<string, any>[]
+  simThemeImages: ImageProps[]
   simThemeDesc: string
   simThemeHeight: number
   simThemeAutoplay: boolean
@@ -153,7 +165,7 @@ export interface ISettings {
   simFooterHTML: string
   simDocTitle: string
 
-  sideThemeImages: Record<string, any>[]
+  sideThemeImages: ImageProps[]
   sideThemeHeight: number
   sideThemeAutoplay: boolean
   sideCardStyle: ICardType
@@ -162,7 +174,7 @@ export interface ISettings {
   sideCollapsed: boolean
   sideDocTitle: string
 
-  shortcutThemeImages: Record<string, any>[]
+  shortcutThemeImages: ImageProps[]
   shortcutThemeShowWeather: boolean
   shortcutTitle: string
   shortcutDockCount: number
@@ -171,7 +183,7 @@ export interface ISettings {
   superTitle: string
   superOverType: OverType
   superCardStyle: ICardType
-  superImages: Record<string, any>[]
+  superImages: ImageProps[]
   superFooterHTML: string
   superDocTitle: string
 
@@ -195,7 +207,7 @@ export interface ISettings {
   [key: string]: any
 }
 
-export type internalProps = {
+export type InternalProps = {
   loginViewCount: number
   userViewCount: number
 }

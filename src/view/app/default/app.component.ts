@@ -5,7 +5,7 @@
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { CommonService } from 'src/services/common'
-import { SearchEngineComponent } from 'src/components/search-engine/search-engine.component'
+import { SearchComponent } from 'src/components/search/index.component'
 import { CardComponent } from 'src/components/card/index.component'
 import { FooterComponent } from 'src/components/footer/footer.component'
 import { NzGridModule } from 'ng-zorro-antd/grid'
@@ -15,7 +15,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid'
   imports: [
     CommonModule,
     NzGridModule,
-    SearchEngineComponent,
+    SearchComponent,
     CardComponent,
     FooterComponent,
   ],

@@ -2,6 +2,7 @@
   class="html family citems"
   [style.zoom]="data['zoom']"
   [style.width]="data['width'] + 'px'"
-  [innerHTML]="data['html'] | safeHtml"
+  [style.backgroundColor]="data['bgColor']"
+  [innerHTML]="html | safeHtml"
   #root
 ></div>

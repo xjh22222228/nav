@@ -19,18 +19,24 @@ export class JumpService {
     if (typeof url !== 'string' || !url) {
       return
     }
+    const firstSymbol = url[0]
+
+    // Code
+    if (firstSymbol === '!') {
+      return
+    }
 
     if (url === '@apply') {
       event.emit('CREATE_WEB')
       return
     }
 
-    if (url[0] === '@') {
+    if (firstSymbol === '@') {
       this.router.navigate([url.slice(1)])
       return
     }
 
-    const self = url[0] === '!'
+    const self = firstSymbol === '^'
     if (self) {
       window.open(url.slice(1), '_self')
     } else {

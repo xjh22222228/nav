@@ -30,13 +30,13 @@ export class ToolbarTitleWebComponent {
 
   openCreateWebModal() {
     event.emit('CREATE_WEB', {
-      threeIndex: this.index,
+      parentId: this.dataSource.id,
     })
   }
 
   handleEditName(e: Event, data: INavThreeProp) {
     e.stopPropagation()
     e.preventDefault()
-    event.emit('EDIT_CATEGORY_OPEN', { ...data, index: this.index })
+    event.emit('EDIT_CLASS_OPEN', { ...data })
   }
 }

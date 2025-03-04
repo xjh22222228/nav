@@ -25,7 +25,7 @@
     </nav>
   </header>
 
-  <app-search-engine />
+  <app-search />
 
   <div
     class="wrapper"
@@ -66,16 +66,11 @@
           [nzMd]="12"
           [nzXl]="6"
           [nzXs]="24"
-          *ngFor="
-            let el of item.nav;
-            index as j;
-            trackBy: commonService.trackByItemWeb
-          "
+          *ngFor="let el of item.nav; trackBy: commonService.trackByItemWeb"
         >
           <app-card
             [cardStyle]="commonService.settings.appCardStyle"
             [dataSource]="el"
-            [indexs]="[commonService.oneIndex, commonService.twoIndex, i, j]"
             [searchKeyword]="commonService.searchKeyword"
             class="column-border"
           ></app-card>

@@ -2,21 +2,21 @@
   .super-xjh {
     --width: 960px;
     --leftWidth: 180px;
-    --rightWidth: 200px;
+    --sideImagesWidth: 200px;
   }
 }
 @media (max-width: 998px) {
   .super-xjh {
     --width: 100%;
     --leftWidth: 150px;
-    --rightWidth: 160px;
+    --sideImagesWidth: 160px;
   }
 }
 @media (max-width: 768px) {
   .super-xjh {
     --width: 100%;
     --leftWidth: 100%;
-    --rightWidth: 100%;
+    --sideImagesWidth: 100%;
   }
   .main-box {
     flex-direction: column;
@@ -28,21 +28,24 @@
     top: 0;
     left: 0;
   }
-  .right,
   .left {
     position: initial !important;
     max-height: initial !important;
   }
-  .right {
-    padding: 0 20px;
-    background-color: #fff;
+  ::ng-deep {
+    .sideimg {
+      position: initial !important;
+      padding: 20px 20px 0 20px;
+      background-color: #fff;
+      max-height: initial !important;
+    }
   }
 }
 @media (min-width: 1200px) {
   .super-xjh {
     --width: 1150px;
     --leftWidth: 180px;
-    --rightWidth: 250px;
+    --sideImagesWidth: 250px;
   }
 }
 
@@ -218,29 +221,15 @@
         font-size: 12px;
       }
     }
-
-    .right {
-      position: sticky;
-      top: var(--stickyTop);
-      width: var(--rightWidth);
-      min-width: var(--rightWidth);
-      max-height: calc(100vh - 110px);
-      overflow: hidden;
-      overflow-y: auto;
-      .adsimg {
-        display: block;
-        width: 100%;
-        border-radius: 4px;
-      }
-      .aditem {
-        margin-bottom: 20px;
-        border-radius: 4px;
-        overflow: hidden;
-      }
-    }
   }
 
   ::ng-deep {
+    .sideimg {
+      position: sticky;
+      top: var(--stickyTop);
+      min-width: var(--sideImagesWidth);
+      max-height: calc(100vh - 110px);
+    }
     .standard {
       margin: 0 0 15px 0px;
     }

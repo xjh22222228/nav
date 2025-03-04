@@ -80,7 +80,7 @@
       [class.noads]="commonService.settings.superImages.length <= 0"
     >
       <div class="search-t dark-border-color">
-        <app-search-engine />
+        <app-search />
 
         <div class="bar dark-scrollbar select-none">
           <div
@@ -113,15 +113,8 @@
             let el of commonService.currentList[
               commonService.selectedThreeIndex
             ].nav.slice(0, commonService.sliceMax);
-            index as j;
             trackBy: commonService.trackByItemWeb
           "
-          [indexs]="[
-            commonService.oneIndex,
-            commonService.twoIndex,
-            commonService.selectedThreeIndex,
-            j
-          ]"
           [cardStyle]="commonService.settings.superCardStyle"
           [dataSource]="el"
           [searchKeyword]="commonService.searchKeyword"
@@ -145,18 +138,7 @@
       </div>
     </div>
 
-    <div
-      class="right dark-scrollbar hidden-scrollbar"
-      *ngIf="commonService.settings.superImages.length > 0"
-    >
-      <div
-        class="aditem cursor-pointer"
-        *ngFor="let item of commonService.settings.superImages; index as i"
-        (click)="jumpService.goUrl($event, item['url'])"
-      >
-        <img class="adsimg" [src]="item['src']" />
-      </div>
-    </div>
+    <app-side-images [data]="commonService.settings.superImages" />
   </div>
 
   <app-footer [content]="commonService.settings.superFooterHTML" />

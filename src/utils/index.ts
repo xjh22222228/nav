@@ -8,12 +8,12 @@ import {
   IWebProps,
   INavThreeProp,
   INavProps,
-  ISearchEngineProps,
+  ISearchProps,
   IWebTag,
 } from '../types'
 import { STORAGE_KEY_MAP } from 'src/constants'
 import { isLogin } from './user'
-import { SearchType } from 'src/components/search-engine/index'
+import { SearchType } from 'src/components/search/index'
 import { websiteList, searchEngineList, settings } from 'src/store'
 import { $t } from 'src/locale'
 
@@ -52,6 +52,10 @@ export function fuzzySearch(
         const name = item.name.toLowerCase()
         const desc = item.desc.toLowerCase()
         const url = item.url.toLowerCase()
+        const isCode = desc[0] === '!'
+        if (isCode) {
+          continue
+        }
 
         const searchTitle = (): boolean => {
           if (name.includes(keyword)) {
@@ -91,9 +95,6 @@ export function fuzzySearch(
         }
 
         const searchDesc = (): boolean => {
-          if (desc[0] === '!') {
-            return false
-          }
           if (desc.includes(keyword)) {
             let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
@@ -255,8 +256,8 @@ export function setLocation() {
   )
 }
 
-export function getDefaultSearchEngine(): ISearchEngineProps {
-  let DEFAULT = (searchEngineList[0] || {}) as ISearchEngineProps
+export function getDefaultSearchEngine(): ISearchProps {
+  let DEFAULT = (searchEngineList[0] || {}) as ISearchProps
   try {
     const engine = window.localStorage.getItem(STORAGE_KEY_MAP.engine)
     if (engine) {
@@ -270,7 +271,7 @@ export function getDefaultSearchEngine(): ISearchEngineProps {
   return DEFAULT
 }
 
-export function setDefaultSearchEngine(engine: ISearchEngineProps) {
+export function setDefaultSearchEngine(engine: ISearchProps) {
   window.localStorage.setItem(STORAGE_KEY_MAP.engine, JSON.stringify(engine))
 }
 
@@ -331,7 +332,7 @@ export async function isValidImg(url: string): Promise<boolean> {
 }
 
 // value 可能含有标签元素，用于过滤掉标签获取纯文字
-export function getTextContent(value: string): string {
+export function getTextContent(value: string = ''): string {
   if (!value) return ''
   return value.replace(/<b>|<\/b>/g, '')
 }
@@ -428,17 +429,19 @@ export function getDefaultTheme() {
   return t
 }
 
-export function getClassById(id: any) {
+export function getClassById(id: unknown, initValue = 0) {
   id = Number(id)
-  let oneIndex = 0
-  let twoIndex = 0
-  let threeIndex = 0
+  let oneIndex = initValue
+  let twoIndex = initValue
+  let threeIndex = initValue
+  const breadcrumb: string[] = []
 
   outerLoop: for (let i = 0; i < websiteList.length; i++) {
     const item = websiteList[i]
     if (item.title) {
       if (item.id === id) {
         oneIndex = i
+        breadcrumb.push(item.title)
         break
       }
     }
@@ -449,6 +452,7 @@ export function getClassById(id: any) {
           if (twoItem.id === id) {
             oneIndex = i
             twoIndex = j
+            breadcrumb.push(item.title)
             break outerLoop
           }
         }
@@ -459,6 +463,7 @@ export function getClassById(id: any) {
               oneIndex = i
               twoIndex = j
               threeIndex = k
+              breadcrumb.push(item.title)
               break outerLoop
             }
           }
@@ -466,10 +471,10 @@ export function getClassById(id: any) {
       }
     }
   }
-
   return {
     oneIndex,
     twoIndex,
     threeIndex,
+    breadcrumb,
   } as const
 }

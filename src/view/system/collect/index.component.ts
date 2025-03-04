@@ -18,8 +18,7 @@ import { NzTableModule } from 'ng-zorro-antd/table'
 import { LogoComponent } from 'src/components/logo/logo.component'
 import { TagListComponent } from 'src/components/tag-list/index.component'
 import { ActionType } from 'src/types'
-import { deleteWebById } from 'src/utils/web'
-import { getClassById } from 'src/utils'
+import { deleteWebByIds } from 'src/utils/web'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -95,11 +94,12 @@ export default class CollectComponent {
           ),
         })
           .then((res) => {
+            this.checked = false
+            this.setOfCheckedId.clear()
             this.dataList = res.data?.data || []
           })
           .finally(() => {
             this.submitting = false
-            this.setOfCheckedId.clear()
           })
       },
     })
@@ -141,12 +141,9 @@ export default class CollectComponent {
 
   handleCreate(data: any, idx: number) {
     const that = this
-    const { oneIndex, twoIndex, threeIndex } = getClassById(data.parentId)
     event.emit('CREATE_WEB', {
+      parentId: data.parentId,
       detail: data,
-      oneIndex,
-      twoIndex,
-      threeIndex,
       isMove: true,
     })
     event.emit('SET_CREATE_WEB', {
@@ -160,8 +157,8 @@ export default class CollectComponent {
   handleDeleteWeb(data: any, idx: number) {
     this.modal.info({
       nzTitle: $t('_confirmDel'),
-      nzOnOk: () => {
-        if (deleteWebById(data.id)) {
+      nzOnOk: async () => {
+        if (await deleteWebByIds([data.id])) {
           this.message.success($t('_delSuccess'))
         }
         this.handleDelete(idx)

@@ -284,7 +284,7 @@
         nz-input
         formControlName="headerContent"
         [nzAutosize]="textareaSize"
-        placeholder="位于 head 标签尾部，你可以在这里插入脚本代码或各种样式网站统计等"
+        [placeholder]="$t('_headCode')"
       ></textarea>
     </nz-form-control>
   </nz-form-item>
@@ -407,7 +407,7 @@
             <tbody>
               <tr *ngFor="let data of settings.lightImages; index as idx">
                 <td width="260px" class="whitespace-nowrap">
-                  <img [src]="data['src']" class="icon" />
+                  <img [src]="data['src']" *ngIf="data['src']" class="icon" />
                   <div>
                     <input
                       nz-input
@@ -422,12 +422,11 @@
                   </div>
                 </td>
                 <td>
-                  <input
-                    nz-input
+                  <textarea
                     [value]="data['url']"
-                    maxlength="200"
                     (change)="onChangeJumpUrl($event, 'lightImages', idx)"
-                  />
+                    nz-input
+                  ></textarea>
                 </td>
                 <td>
                   <a
@@ -529,7 +528,7 @@
             <tbody>
               <tr *ngFor="let data of settings.superImages; index as idx">
                 <td width="260px" class="whitespace-nowrap">
-                  <img [src]="data['src']" class="icon" />
+                  <img [src]="data['src']" *ngIf="data['src']" class="icon" />
 
                   <div>
                     <input
@@ -545,12 +544,11 @@
                   </div>
                 </td>
                 <td>
-                  <input
-                    nz-input
+                  <textarea
                     [value]="data['url']"
-                    maxlength="200"
                     (change)="onChangeJumpUrl($event, 'superImages', idx)"
-                  />
+                    nz-input
+                  ></textarea>
                 </td>
                 <td>
                   <a
@@ -652,7 +650,7 @@
             <tbody>
               <tr *ngFor="let data of settings.simThemeImages; index as idx">
                 <td width="260px" class="whitespace-nowrap">
-                  <img [src]="data['src']" class="icon" />
+                  <img [src]="data['src']" *ngIf="data['src']" class="icon" />
                   <div>
                     <input
                       nz-input
@@ -669,12 +667,11 @@
                   </div>
                 </td>
                 <td>
-                  <input
-                    nz-input
+                  <textarea
                     [value]="data['url']"
-                    maxlength="200"
                     (change)="onChangeJumpUrl($event, 'simThemeImages', idx)"
-                  />
+                    nz-input
+                  ></textarea>
                 </td>
                 <td>
                   <a
@@ -805,7 +802,7 @@
             <tbody>
               <tr *ngFor="let data of settings.sideThemeImages; index as idx">
                 <td width="260px" class="whitespace-nowrap">
-                  <img [src]="data['src']" class="icon" />
+                  <img [src]="data['src']" *ngIf="data['src']" class="icon" />
                   <div>
                     <input
                       nz-input
@@ -824,12 +821,11 @@
                   </div>
                 </td>
                 <td>
-                  <input
-                    nz-input
+                  <textarea
                     [value]="data['url']"
-                    maxlength="200"
                     (change)="onChangeJumpUrl($event, 'sideThemeImages', idx)"
-                  />
+                    nz-input
+                  ></textarea>
                 </td>
                 <td>
                   <a

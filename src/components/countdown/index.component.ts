@@ -5,7 +5,11 @@
 import { Component, Input } from '@angular/core'
 import { IComponentProps } from 'src/types'
 import dayjs from 'dayjs'
-import event from 'src/utils/mitt'
+
+interface IProps {
+  dateStr: string
+  dayStr: number
+}
 
 @Component({
   standalone: true,
@@ -15,21 +19,20 @@ import event from 'src/utils/mitt'
 })
 export class CountdownComponent {
   @Input() data!: IComponentProps
-  component: Record<string, any> = {}
+  component = {} as IProps
 
   constructor() {}
 
   ngOnInit() {
     this.init()
-    event.on('COMPONENT_OK', () => {
-      setTimeout(() => {
-        this.init()
-      }, 100)
-    })
   }
 
-  init() {
-    const payload: any = {}
+  ngOnChanges() {
+    this.init()
+  }
+
+  private init() {
+    const payload = {} as IProps
     if (this.data['date']) {
       payload.dateStr = dayjs(this.data['date']).format('YYYY.MM.DD')
       payload.dayStr = dayjs(

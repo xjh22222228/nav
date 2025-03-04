@@ -200,3 +200,52 @@ textarea.ant-input {
     display: none;
   }
 }
+
+// loading start
+@keyframes my-rotatex1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loading-dashx2 {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
+}
+.x31 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.x21 {
+  width: 30px;
+  height: 30px;
+  animation: my-rotatex1 2s linear infinite;
+}
+.path {
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  stroke-width: 5;
+  stroke: #409eff;
+  stroke-linecap: round;
+  animation: loading-dashx2 1.5s ease-in-out infinite;
+}
+// loading end

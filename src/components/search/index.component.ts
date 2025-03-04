@@ -11,7 +11,7 @@ import {
 } from 'src/utils'
 import { Router } from '@angular/router'
 import { searchEngineList } from 'src/store'
-import { ISearchEngineProps } from 'src/types'
+import { ISearchProps } from 'src/types'
 import { SearchType } from './index'
 import { $t } from 'src/locale'
 import { NzInputModule } from 'ng-zorro-antd/input'
@@ -30,18 +30,18 @@ import { isLogin } from 'src/utils/user'
     LogoComponent,
     NzSelectModule,
   ],
-  selector: 'app-search-engine',
-  templateUrl: './search-engine.component.html',
-  styleUrls: ['./search-engine.component.scss'],
+  selector: 'app-search',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss'],
 })
-export class SearchEngineComponent {
+export class SearchComponent {
   @Input() size: 'small' | 'default' | 'large' = 'default'
 
   $t = $t
-  searchEngineList: ISearchEngineProps[] = searchEngineList.filter(
+  searchEngineList: ISearchProps[] = searchEngineList.filter(
     (item) => !item.blocked
   )
-  currentEngine: ISearchEngineProps = getDefaultSearchEngine()
+  currentEngine: ISearchProps = getDefaultSearchEngine()
   SearchType = SearchType
   searchTypeValue = Number(queryString()['type']) || SearchType.All
   keyword = queryString().q
@@ -78,6 +78,7 @@ export class SearchEngineComponent {
         ...params,
         q: this.keyword,
         type: this.searchTypeValue,
+        _: Date.now(),
       },
     })
   }

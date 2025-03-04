@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { ISearchEngineProps } from 'src/types'
+import { ISearchProps } from 'src/types'
 import { updateFileContent } from 'src/api'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { SEARCH_PATH } from 'src/constants'
@@ -39,7 +39,7 @@ import { isSelfDevelop } from 'src/utils/util'
 })
 export default class SystemSearchComponent {
   $t = $t
-  searchList: ISearchEngineProps[] = searchEngineList
+  searchList: ISearchProps[] = searchEngineList
   submitting: boolean = false
   isSelfDevelop = isSelfDevelop
 

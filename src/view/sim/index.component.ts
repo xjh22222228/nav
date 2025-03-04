@@ -8,7 +8,7 @@ import { settings, internal } from 'src/store'
 import { CommonService } from 'src/services/common'
 import { ComponentGroupComponent } from 'src/components/component-group/index.component'
 import { WebMoreMenuComponent } from 'src/components/web-more-menu/index.component'
-import { SearchEngineComponent } from 'src/components/search-engine/search-engine.component'
+import { SearchComponent } from 'src/components/search/index.component'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { CardComponent } from 'src/components/card/index.component'
@@ -27,7 +27,7 @@ import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.com
     ToolbarTitleWebComponent,
     ComponentGroupComponent,
     WebMoreMenuComponent,
-    SearchEngineComponent,
+    SearchComponent,
     NzSpinModule,
     NzToolTipModule,
     CardComponent,

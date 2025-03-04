@@ -6,7 +6,6 @@ import navConfig from '../../nav.config.json'
 import { internal } from 'src/store'
 import { isLogin } from 'src/utils/user'
 
-// 是否自有部署
 export const isSelfDevelop = !!navConfig.address
 
 interface TemplateData {
@@ -52,8 +51,8 @@ export function removeDark(): void {
   darkNode?.parentNode?.removeChild(darkNode)
 }
 
-export function parseHtmlWithDescription(node: HTMLElement, str: string) {
-  if (str.startsWith('!')) {
+export function parseHtmlWithContent(node: HTMLElement, str: string) {
+  if (str[0] === '!') {
     if (!node) return
     const parser = new DOMParser()
     const doc = parser.parseFromString(str, 'text/html')
@@ -72,4 +71,22 @@ export function parseHtmlWithDescription(node: HTMLElement, str: string) {
       node.appendChild(newScript)
     })
   }
+}
+
+export function parseLoadingWithContent(str: string): string {
+  if (str[0] !== '!') {
+    return str
+  }
+  const loadingHtml = `
+<div class="x31">
+  <svg viewBox="25 25 50 50" class="x21">
+    <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+  </svg>
+</div>
+`
+  str = str.slice(1)
+  if (str.includes('#loadingx1')) {
+    return str.replaceAll('#loadingx1', '') + loadingHtml
+  }
+  return str
 }

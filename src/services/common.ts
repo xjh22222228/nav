@@ -67,11 +67,9 @@ export class CommonService {
         init()
       })
     }
-    if (isSelfDevelop) {
-      event.on('WEB_REFRESH', () => {
-        getData()
-      })
-    }
+    event.on('WEB_REFRESH', () => {
+      getData()
+    })
   }
 
   handleClickClass(id: number) {

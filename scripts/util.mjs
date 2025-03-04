@@ -103,20 +103,22 @@ function getMaxWebId(nav) {
 }
 
 function incrementWebId(id) {
-  if (id == null || id < 0) {
+  id = Number.parseInt(id)
+  if (!id || id < 0) {
     return ++maxWebId
   }
   return id
 }
 
 function incrementClassId(id) {
-  if (id == null || id < 0) {
+  id = Number.parseInt(id)
+  if (!id || id < 0) {
     return ++maxClassId
   }
   return id
 }
 
-export function setWeb(nav, settings, tags = []) {
+export function setWebs(nav, settings, tags = []) {
   if (!Array.isArray(nav)) return
 
   function handleAdapter(item) {
@@ -275,10 +277,7 @@ export function writeTemplate({ html, settings, seoTemplate }) {
 }
 
 function correctURL(url) {
-  if (!url) {
-    return url
-  }
-  if (url[0] === '!') {
+  if (url[0] === '^') {
     return url.slice(1)
   }
   return url
@@ -293,7 +292,7 @@ export async function spiderWeb(db, settings) {
 
     for (let i = 0; i < nav.length; i++) {
       const item = nav[i]
-      if (item.url) {
+      if (item.url && item.url[0] !== '!') {
         delete item.ok
         if (
           settings.checkUrl ||

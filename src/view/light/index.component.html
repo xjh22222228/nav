@@ -67,7 +67,7 @@
         </div>
 
         <div class="main dark-scrollbar">
-          <app-search-engine />
+          <app-search />
 
           <div *ngIf="commonService.currentList.length > 0; else noData">
             <nz-spin
@@ -106,19 +106,12 @@
                   [nzXs]="24"
                   *ngFor="
                     let el of item.nav;
-                    index as j;
                     trackBy: commonService.trackByItemWeb
                   "
                 >
                   <app-card
                     [cardStyle]="commonService.settings.lightCardStyle"
                     [dataSource]="el"
-                    [indexs]="[
-                      commonService.oneIndex,
-                      commonService.twoIndex,
-                      i,
-                      j
-                    ]"
                     [searchKeyword]="commonService.searchKeyword"
                     class="column-border"
                   />
@@ -134,18 +127,7 @@
       </section>
     </main>
 
-    <div
-      class="right dark-scrollbar hidden-scrollbar"
-      *ngIf="commonService.settings.lightImages.length > 0"
-    >
-      <div
-        class="aditem cursor-pointer"
-        *ngFor="let item of commonService.settings.lightImages; index as i"
-        (click)="jumpService.goUrl($event, item['url'])"
-      >
-        <img class="adsimg" [src]="item['src']" />
-      </div>
-    </div>
+    <app-side-images [data]="commonService.settings.lightImages" />
   </div>
 
   <app-footer [content]="commonService.settings.lightFooterHTML" />

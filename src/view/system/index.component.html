@@ -97,7 +97,13 @@
             {{ $t('_backHome') }}
           </button>
 
-          <button nz-button style="margin-left: 15px" (click)="logout()">
+          <button
+            nz-button
+            nzDanger
+            nzType="primary"
+            style="margin-left: 15px"
+            (click)="logout()"
+          >
             {{ $t('_logout') }}
           </button>
           <img [src]="currentVersionSrc" class="ml-2.5" />

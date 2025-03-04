@@ -18,7 +18,7 @@ import {
   TAG_ID_NAME2,
   TAG_ID_NAME3,
   getWebCount,
-  setWeb,
+  setWebs,
   replaceJsdelivrCDN,
   PATHS,
 } from './util.mjs'
@@ -179,6 +179,7 @@ const main = async () => {
       id: -6,
       html: '你好，发现导航',
       width: 160,
+      bgColor: '#fff',
     }
     if (idx >= 0) {
       components[idx] = {
@@ -468,7 +469,7 @@ const main = async () => {
   internal.loginViewCount = loginViewCount
 
   fs.writeFileSync(PATHS.internal, JSON.stringify(internal))
-  fs.writeFileSync(PATHS.db, JSON.stringify(setWeb(db, settings, tags)))
+  fs.writeFileSync(PATHS.db, JSON.stringify(setWebs(db, settings, tags)))
 }
 
 main().catch(console.error)

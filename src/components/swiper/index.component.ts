@@ -6,17 +6,19 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { JumpService } from 'src/services/jump'
 import { NzCarouselModule } from 'ng-zorro-antd/carousel'
+import { ImageProps } from 'src/types'
+import { SwiperItemComponent } from './swiper-item/index.component'
 
 @Component({
   standalone: true,
-  imports: [NzCarouselModule, CommonModule],
+  imports: [NzCarouselModule, CommonModule, SwiperItemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-swiper',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
 export class SwiperComponent {
-  @Input() images: any[] = []
+  @Input() images: ImageProps[] = []
   @Input() autoplay = true
   @Input() height = 300
 

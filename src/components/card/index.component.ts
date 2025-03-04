@@ -7,8 +7,8 @@ import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { isLogin, getPermissions } from 'src/utils/user'
 import { copyText, getTextContent } from 'src/utils'
-import { parseHtmlWithDescription } from 'src/utils/util'
-import { setWebsiteList, deleteWebById } from 'src/utils/web'
+import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/util'
+import { setWebsiteList, deleteWebByIds } from 'src/utils/web'
 import { INavProps, IWebProps, ICardType, ActionType } from 'src/types'
 import { $t, isZhCN } from 'src/locale'
 import { settings, websiteList } from 'src/store'
@@ -46,7 +46,6 @@ import event from 'src/utils/mitt'
 export class CardComponent {
   @Input() searchKeyword = ''
   @Input() dataSource: IWebProps | Record<string, any> = {}
-  @Input() indexs: number[] = []
   @Input() cardStyle: ICardType = 'standard'
   @ViewChild('root', { static: false }) root!: ElementRef
 
@@ -57,18 +56,25 @@ export class CardComponent {
   readonly permissions = getPermissions(settings)
   copyUrlDone = false
   copyPathDone = false
+  description = ''
+  isCode = false
 
   constructor(
     public readonly jumpService: JumpService,
     private message: NzMessageService
   ) {}
 
+  ngOnInit() {
+    this.isCode = this.dataSource.desc?.[0] === '!'
+    this.description = parseLoadingWithContent(this.dataSource.desc)
+  }
+
   ngAfterViewInit() {
     this.parseDescription()
   }
 
   private parseDescription() {
-    parseHtmlWithDescription(this.root?.nativeElement, this.dataSource.desc)
+    parseHtmlWithContent(this.root?.nativeElement, this.dataSource.desc)
   }
 
   async copyUrl(e: Event, type: 1 | 2): Promise<void> {
@@ -109,7 +115,9 @@ export class CardComponent {
       desc: getTextContent(this.dataSource.desc),
     }
     if (isLogin) {
-      deleteWebById(params.id)
+      if (await deleteWebByIds([params.id])) {
+        this.message.success($t('_delSuccess'))
+      }
     } else {
       try {
         await saveUserCollect({
@@ -129,13 +137,8 @@ export class CardComponent {
 
   openMoveWebModal(): void {
     event.emit('MOVE_WEB', {
-      indexs: this.indexs,
       data: [this.dataSource],
     })
-  }
-
-  get html(): string {
-    return this.dataSource.desc.slice(1)
   }
 
   get getRate(): string {

@@ -5,7 +5,7 @@
 import { Component, Output, EventEmitter } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { queryString, getTextContent, getClassById } from 'src/utils'
+import { getTextContent, getClassById } from 'src/utils'
 import { setWebsiteList, updateByWeb } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps, IWebTag, TopType, ActionType } from 'src/types'
@@ -61,11 +61,9 @@ export class CreateWebComponent {
   settings = settings
   permissions = getPermissions(settings)
   showModal = false
-  detail: any = null
+  detail: IWebProps | null | undefined = null
   isMove = false // 提交完是否可以移动
-  oneIndex: number | undefined
-  twoIndex: number | undefined
-  threeIndex: number | undefined
+  parentId = -1
   callback: Function = () => {}
   topOptions = [
     { label: TopType[1], value: TopType.Side, checked: false },
@@ -107,23 +105,17 @@ export class CreateWebComponent {
 
   open(
     ctx: this,
-    props:
-      | {
-          isMove?: boolean
-          detail: IWebProps | null
-          oneIndex: number | undefined
-          twoIndex: number | undefined
-          threeIndex: number | undefined
-        }
-      | Record<string, any> = {}
+    props?: {
+      isMove?: boolean
+      parentId?: number
+      detail: IWebProps | null | undefined
+    }
   ) {
-    const detail = props.detail
+    const detail = props?.detail
     ctx.detail = detail
     ctx.showModal = true
-    ctx.oneIndex = props.oneIndex
-    ctx.twoIndex = props.twoIndex
-    ctx.threeIndex = props.threeIndex
-    ctx.isMove = !!props.isMove
+    ctx.parentId = props?.parentId ?? -1
+    ctx.isMove = !!props?.isMove
     this.validateForm.get('title')!.setValue(getTextContent(detail?.name))
     this.validateForm.get('desc')!.setValue(getTextContent(detail?.desc))
     this.validateForm.get('index')!.setValue(detail?.index ?? '')
@@ -168,9 +160,6 @@ export class CreateWebComponent {
     this.validateForm.reset()
     this.showModal = false
     this.detail = null
-    this.oneIndex = undefined
-    this.twoIndex = undefined
-    this.threeIndex = undefined
     this.uploading = false
     this.isMove = false
     this.callback = Function
@@ -211,7 +200,7 @@ export class CreateWebComponent {
         this.validateForm.get('desc')!.setValue(res['description'])
       }
       this.getting = false
-    } catch (error) {}
+    } catch {}
   }
 
   addMoreUrl() {
@@ -299,14 +288,10 @@ export class CreateWebComponent {
     } else {
       payload['id'] = -Date.now()
       try {
-        const {
-          oneIndex: oneIdx,
-          twoIndex: twoIdx,
-          threeIndex: threeIdx,
-        } = getClassById(queryString().id)
-        const oneIndex = this.oneIndex ?? oneIdx
-        const twoIndex = this.twoIndex ?? twoIdx
-        const threeIndex = this.threeIndex ?? threeIdx
+        const { oneIndex, twoIndex, threeIndex, breadcrumb } = getClassById(
+          this.parentId
+        )
+
         const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
         this.uploading = true
         if (this.isLogin) {
@@ -315,7 +300,6 @@ export class CreateWebComponent {
           this.message.success($t('_addSuccess'))
           if (this.isMove) {
             event.emit('MOVE_WEB', {
-              indexs: [oneIndex, twoIndex, threeIndex, 0],
               data: [payload],
             })
           }
@@ -323,12 +307,8 @@ export class CreateWebComponent {
           const params = {
             data: {
               ...payload,
-              parentId: websiteList[oneIndex].nav[twoIndex].nav[threeIndex].id,
-              breadcrumb: [
-                websiteList[oneIndex].title,
-                websiteList[oneIndex].nav[twoIndex].title,
-                websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
-              ],
+              parentId: this.parentId,
+              breadcrumb,
               extra: {
                 type: ActionType.Create,
               },

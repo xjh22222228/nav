@@ -281,6 +281,10 @@ const zhCN: Record<string, any> = {
   _colTitle: '收录处理（{count}）',
   _type: '类型',
   _handle: '处理',
+  _headCode: '<head>可以在这里插入样式、脚本、统计等</head>',
+  _hours: '{num}小时',
+  _minutes: '{num}分钟',
+  _seconds: '{num}秒',
 }
 
 export default zhCN

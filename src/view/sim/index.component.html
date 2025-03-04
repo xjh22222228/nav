@@ -30,7 +30,7 @@
     <component-group></component-group>
   </div>
 
-  <app-search-engine class="hidden search-sm" />
+  <app-search class="hidden search-sm" />
 
   <nav class="top-nav dark-border-color dark-scrollbar dark-bg">
     <span
@@ -78,7 +78,7 @@
     </nav>
 
     <aside class="site-box dark-bg">
-      <app-search-engine class="max768none" />
+      <app-search class="max768none" />
 
       <div *ngIf="commonService.currentList.length > 0; else noData">
         <div
@@ -113,19 +113,12 @@
                 [nzXs]="24"
                 *ngFor="
                   let el of item.nav;
-                  index as j;
                   trackBy: commonService.trackByItemWeb
                 "
               >
                 <app-card
                   [cardStyle]="commonService.settings.simCardStyle"
                   [dataSource]="el"
-                  [indexs]="[
-                    commonService.oneIndex,
-                    commonService.twoIndex,
-                    i,
-                    j
-                  ]"
                   [searchKeyword]="commonService.searchKeyword"
                   class="column-border"
                 ></app-card>
