@@ -65,8 +65,8 @@ export const routes: Routes = [
         loadComponent: () => import('src/view/system/collect/index.component'),
       },
       {
-        path: 'vip',
-        loadComponent: () => import('src/view/system/vip-auth/index.component'),
+        path: 'auth',
+        loadComponent: () => import('src/view/system/auth/index.component'),
       },
       {
         path: 'tag',

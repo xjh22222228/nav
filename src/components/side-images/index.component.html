@@ -1,0 +1,10 @@
+<div class="sideimg dark-scrollbar hidden-scrollbar" *ngIf="data.length > 0">
+  <div
+    class="aditem"
+    *ngFor="let item of data"
+    (click)="jumpService.goUrl($event, item['url'])"
+    [class.cursor-pointer]="item['url']"
+  >
+    <app-side-image [data]="item" />
+  </div>
+</div>

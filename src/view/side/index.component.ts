@@ -14,7 +14,7 @@ import { CommonService } from 'src/services/common'
 import { STORAGE_KEY_MAP } from 'src/constants'
 import { isSelfDevelop } from 'src/utils/util'
 import { ComponentGroupComponent } from 'src/components/component-group/index.component'
-import { SearchEngineComponent } from 'src/components/search-engine/search-engine.component'
+import { SearchComponent } from 'src/components/search/index.component'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
@@ -36,7 +36,7 @@ import { WebListComponent } from 'src/components/web-list/index.component'
     WebListComponent,
     ToolbarTitleWebComponent,
     ComponentGroupComponent,
-    SearchEngineComponent,
+    SearchComponent,
     NzSpinModule,
     NzToolTipModule,
     CardComponent,

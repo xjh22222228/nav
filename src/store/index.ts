@@ -1,5 +1,6 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 // Copyright @ 2018-present xiejiahe. All rights reserved.
+// See https://github.com/xjh22222228/nav
 
 import dbJson from '../../data/db.json'
 import searchJson from '../../data/search.json'
@@ -9,9 +10,9 @@ import internalJson from '../../data/internal.json'
 import componentJson from '../../data/component.json'
 import {
   ISettings,
-  ISearchEngineProps,
+  ISearchProps,
   ITagProp,
-  internalProps,
+  InternalProps,
   ITagPropValues,
   INavProps,
   IComponentProps,
@@ -22,9 +23,7 @@ export let settings: ISettings = settingsJson as ISettings
 
 let _tagMap: Record<string, any> = {}
 
-export let searchEngineList: ISearchEngineProps[] = isSelfDevelop
-  ? []
-  : searchJson
+export let searchEngineList: ISearchProps[] = isSelfDevelop ? [] : searchJson
 
 export let tagList: Array<ITagPropValues> = isSelfDevelop ? [] : tagJson
 
@@ -42,7 +41,7 @@ getTagMap()
 
 export let tagMap: ITagProp = _tagMap
 
-export let internal: internalProps = internalJson
+export let internal: InternalProps = internalJson
 
 export let websiteList: INavProps[] = isSelfDevelop
   ? []

@@ -1,5 +1,8 @@
 <div
   class="html family citems"
-  [innerHTML]="data['html'] | safeHtml"
   [style.zoom]="data['zoom']"
+  [style.width]="data['width'] + 'px'"
+  [style.backgroundColor]="data['bgColor']"
+  [innerHTML]="html | safeHtml"
+  #root
 ></div>

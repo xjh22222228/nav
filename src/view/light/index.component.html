@@ -24,9 +24,9 @@
             index as i;
             trackBy: commonService.trackByItem
           "
-          (click)="commonService.handleCilckTopNav(i)"
-          [class.active]="commonService.page === i"
-          [class.dark-text-active]="commonService.page === i"
+          (click)="commonService.handleClickClass(item.id)"
+          [class.active]="commonService.oneIndex === i"
+          [class.dark-text-active]="commonService.oneIndex === i"
           class="over-item ripple-btn dark-text"
         >
           {{ item.title }}
@@ -38,8 +38,8 @@
             commonService.websiteList.slice(commonService.overIndex, 99999)
           "
           [index]="commonService.overIndex"
-          [page]="commonService.page"
-          (onClick)="commonService.handleCilckTopNav($event)"
+          [page]="commonService.oneIndex"
+          (onClick)="commonService.handleClickClass($event)"
         />
       </nav>
 
@@ -48,14 +48,15 @@
           class="sidebar dark-bg dark-border-color dark-scrollbar"
           id="sidebar"
         >
-          <div *ngIf="commonService.websiteList[commonService.page]">
+          <div *ngIf="commonService.websiteList[commonService.oneIndex]">
             <div
               class="tag dark-text"
-              [class.active]="commonService.id === i"
-              [class.dark-item-active]="commonService.id === i"
-              (click)="commonService.handleSidebarNav(i)"
+              [class.active]="commonService.twoIndex === i"
+              [class.dark-item-active]="commonService.twoIndex === i"
+              (click)="commonService.handleClickClass(item.id)"
               *ngFor="
-                let item of commonService.websiteList[commonService.page].nav;
+                let item of commonService.websiteList[commonService.oneIndex]
+                  .nav;
                 index as i;
                 trackBy: commonService.trackByItem
               "
@@ -66,7 +67,7 @@
         </div>
 
         <div class="main dark-scrollbar">
-          <app-search-engine />
+          <app-search />
 
           <div *ngIf="commonService.currentList.length > 0; else noData">
             <nz-spin
@@ -105,14 +106,12 @@
                   [nzXs]="24"
                   *ngFor="
                     let el of item.nav;
-                    index as j;
                     trackBy: commonService.trackByItemWeb
                   "
                 >
                   <app-card
                     [cardStyle]="commonService.settings.lightCardStyle"
                     [dataSource]="el"
-                    [indexs]="[commonService.page, commonService.id, i, j]"
                     [searchKeyword]="commonService.searchKeyword"
                     class="column-border"
                   />
@@ -128,18 +127,7 @@
       </section>
     </main>
 
-    <div
-      class="right dark-scrollbar hidden-scrollbar"
-      *ngIf="commonService.settings.lightImages.length > 0"
-    >
-      <div
-        class="aditem cursor-pointer"
-        *ngFor="let item of commonService.settings.lightImages; index as i"
-        (click)="jumpService.goUrl($event, item['url'])"
-      >
-        <img class="adsimg" [src]="item['src']" />
-      </div>
-    </div>
+    <app-side-images [data]="commonService.settings.lightImages" />
   </div>
 
   <app-footer [content]="commonService.settings.lightFooterHTML" />

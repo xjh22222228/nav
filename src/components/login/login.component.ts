@@ -21,68 +21,70 @@ import { NzInputModule } from 'ng-zorro-antd/input'
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  @Input() visible: boolean = false
-  @Output() onCancel = new EventEmitter()
+  @Input() visible = false
+  @Output() onCancel = new EventEmitter<void>()
 
-  $t = $t
-  isSelfDevelop = isSelfDevelop
+  readonly $t = $t
+  readonly isSelfDevelop = isSelfDevelop
   token = ''
-  submiting = false
+  submitting = false
 
-  constructor(private message: NzMessageService) {}
+  constructor(private readonly message: NzMessageService) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.inputFocus()
   }
 
-  hanldeCancel() {
+  handleCancel(): void {
     this.onCancel.emit()
   }
 
-  inputFocus() {
+  private inputFocus(): void {
     setTimeout(() => {
-      document.getElementById('loginInput')?.focus?.()
+      document.getElementById('loginInput')?.focus()
     }, 300)
   }
 
-  onKey(event: KeyboardEvent) {
+  onKey(event: KeyboardEvent): void {
     if (event.code === 'Enter') {
       this.login()
     }
   }
 
-  login(): any {
+  async login(): Promise<void> {
     if (!this.token) {
-      return this.message.error($t('_pleaseInputToken'))
+      this.message.error($t('_pleaseInputToken'))
+      return
     }
-    const token = this.token.trim()
 
-    this.submiting = true
-    verifyToken(token)
-      .then(() => {
-        setToken(token)
-        updateFileContent({
+    const token = this.token.trim()
+    this.submitting = true
+
+    try {
+      await verifyToken(token)
+      setToken(token)
+
+      try {
+        await updateFileContent({
           message: 'auth',
           path: '.navauth',
           content: 'OK',
         })
-          .then(() => {
-            createBranch('image').finally(() => {
-              this.message.success($t('_tokenVerSuc'))
-              removeWebsite().finally(() => {
-                window.location.reload()
-              })
-            })
+
+        createBranch('image').finally(() => {
+          this.message.success($t('_tokenVerSuc'))
+          removeWebsite().finally(() => {
+            window.location.reload()
           })
-          .catch(() => {
-            removeToken()
-            this.submiting = false
-          })
-      })
-      .catch(() => {
-        this.submiting = false
-      })
+        })
+      } catch {
+        removeToken()
+        this.submitting = false
+      }
+    } catch {
+      this.submitting = false
+    }
   }
 }

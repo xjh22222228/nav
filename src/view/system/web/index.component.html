@@ -20,8 +20,7 @@
     {{ $t('_backup') }}
   </button>
 
-  <label
-    id="file2"
+  <button
     nz-button
     nz-tooltip
     nzTooltipPlacement="bottom"
@@ -35,7 +34,7 @@
       accept=".json"
       class="file-upload"
     />
-  </label>
+  </button>
 
   <div class="tip2">
     {{ $t('_errCountTip', { count: settings.errorUrlCount || 0 }) }}
@@ -47,17 +46,17 @@
     (nzSelectedIndexChange)="onTabChange($event)"
   >
     <nz-tab [nzTitle]="$t('_mgr1')">
-      <button nz-button nzType="primary" (click)="toggleCreateModal()">
+      <button nz-button nzType="primary" (click)="openCreateClass()">
         {{ $t('_addTag') }}
       </button>
       <button
         nz-popconfirm
         [nzPopconfirmTitle]="$t('_confirmDel')"
         nzPopconfirmPlacement="bottom"
-        (nzOnConfirm)="onBatchDelete(1)"
+        (nzOnConfirm)="onBatchDelete()"
         nz-button
         nzDanger
-        class="ml-2.5"
+        style="margin-left: 10px"
         [disabled]="setOfCheckedId.size <= 0"
       >
         {{ $t('_batchDel') }}
@@ -72,22 +71,20 @@
       >
         <thead>
           <tr>
-            <th
-              [nzChecked]="checkedAll"
-              (nzCheckedChange)="onAllChecked($event, 1)"
-            ></th>
+            <th [nzChecked]="checkedAll" (nzCheckedChange)="onCheckAll($event)">
+              ({{ setOfCheckedId.size }})
+            </th>
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
-            <th>{{ $t('_createAt') }}</th>
             <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of websiteList; let idx = index">
             <td
-              [nzChecked]="setOfCheckedId.has(data.title)"
-              (nzCheckedChange)="onItemChecked(data.title, $event)"
+              [nzChecked]="setOfCheckedId.has(data.id)"
+              (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
             <td>
               <app-logo [src]="data.icon || ''" [name]="data.title" />
@@ -101,20 +98,19 @@
                 nzTheme="outline"
               ></i>
             </td>
-            <td>{{ data.createdAt }}</td>
             <td class="select-none">
               <a (click)="moveOneUp(idx)">{{ $t('_moveUp') }}</a>
               <a (click)="moveOneDown(idx)" class="ml-2.5">{{
                 $t('_moveDown')
               }}</a>
-              <a (click)="handleEditBtn(data, idx)" class="ml-2.5">{{
+              <a (click)="openEditClass(data)" class="ml-2.5">{{
                 $t('_edit')
               }}</a>
               <a
                 nz-popconfirm
                 [nzPopconfirmTitle]="$t('_delWarn')"
                 nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="handleConfirmDelOne(idx)"
+                (nzOnConfirm)="handleDeleteClass(data.id)"
                 class="color-red ml-2.5"
               >
                 {{ $t('_del') }}
@@ -136,7 +132,7 @@
         <nz-option
           *ngFor="let item of websiteList"
           [nzLabel]="item.title"
-          [nzValue]="item.title"
+          [nzValue]="item.id"
         >
         </nz-option>
       </nz-select>
@@ -144,7 +140,7 @@
       <button
         nz-button
         nzType="primary"
-        (click)="toggleCreateModal()"
+        (click)="openCreateClass()"
         style="margin-left: 20px"
       >
         {{ $t('_addTag') }}
@@ -153,10 +149,10 @@
         nz-popconfirm
         [nzPopconfirmTitle]="$t('_confirmDel')"
         nzPopconfirmPlacement="bottom"
-        (nzOnConfirm)="onBatchDelete(2)"
+        (nzOnConfirm)="onBatchDelete()"
         nz-button
         nzDanger
-        class="ml-2.5"
+        style="margin-left: 10px"
         [disabled]="setOfCheckedId.size <= 0"
       >
         {{ $t('_batchDel') }}
@@ -171,25 +167,23 @@
       >
         <thead>
           <tr>
-            <th
-              [nzChecked]="checkedAll"
-              (nzCheckedChange)="onAllChecked($event, 2)"
-            ></th>
+            <th [nzChecked]="checkedAll" (nzCheckedChange)="onCheckAll($event)">
+              ({{ setOfCheckedId.size }})
+            </th>
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
-            <th>{{ $t('_createAt') }}</th>
             <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of twoTableData; let idx = index">
             <td
-              [nzChecked]="setOfCheckedId.has(data.title || '')"
-              (nzCheckedChange)="onItemChecked(data.title, $event)"
+              [nzChecked]="setOfCheckedId.has(data.id)"
+              (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
             <td>
-              <app-logo [src]="data.icon || ''" [name]="data.title || ''" />
+              <app-logo [src]="data.icon || ''" [name]="data.title" />
             </td>
             <td>{{ data.title }}</td>
             <td>
@@ -200,23 +194,22 @@
                 nzTheme="outline"
               ></i>
             </td>
-            <td>{{ data.createdAt }}</td>
             <td class="select-none">
               <a (click)="moveTwoUp(idx)">{{ $t('_moveUp') }}</a>
               <a (click)="moveTwoDown(idx)" class="ml-2.5">{{
                 $t('_moveDown')
               }}</a>
-              <a (click)="handleEditBtn(data, idx)" class="ml-2.5">{{
+              <a (click)="openEditClass(data)" class="ml-2.5">{{
                 $t('_edit')
               }}</a>
-              <a (click)="openMoveWebModal(data, idx, 2)" class="ml-2.5">{{
+              <a (click)="openMoveWebModal(data, 2)" class="ml-2.5">{{
                 $t('_move')
               }}</a>
               <a
                 nz-popconfirm
                 [nzPopconfirmTitle]="$t('_delWarn')"
                 nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="handleConfirmDelTwo(idx)"
+                (nzOnConfirm)="handleDeleteClass(data.id)"
                 class="color-red ml-2.5"
               >
                 {{ $t('_del') }}
@@ -238,7 +231,7 @@
         <nz-option
           *ngFor="let item of websiteList"
           [nzLabel]="item.title"
-          [nzValue]="item.title"
+          [nzValue]="item.id"
         >
         </nz-option>
       </nz-select>
@@ -252,8 +245,8 @@
       >
         <nz-option
           *ngFor="let item of twoTableData"
-          [nzLabel]="item.title || ''"
-          [nzValue]="item.title"
+          [nzLabel]="item.title"
+          [nzValue]="item.id"
         >
         </nz-option>
       </nz-select>
@@ -261,7 +254,7 @@
       <button
         nz-button
         nzType="primary"
-        (click)="toggleCreateModal()"
+        (click)="openCreateClass()"
         style="margin-left: 20px"
       >
         {{ $t('_addTag') }}
@@ -270,10 +263,10 @@
         nz-popconfirm
         [nzPopconfirmTitle]="$t('_confirmDel')"
         nzPopconfirmPlacement="bottom"
-        (nzOnConfirm)="onBatchDelete(3)"
+        (nzOnConfirm)="onBatchDelete()"
         nz-button
         nzDanger
-        class="ml-2.5"
+        style="margin-left: 10px"
         [disabled]="setOfCheckedId.size <= 0"
       >
         {{ $t('_batchDel') }}
@@ -288,25 +281,23 @@
       >
         <thead>
           <tr>
-            <th
-              [nzChecked]="checkedAll"
-              (nzCheckedChange)="onAllChecked($event, 3)"
-            ></th>
+            <th [nzChecked]="checkedAll" (nzCheckedChange)="onCheckAll($event)">
+              ({{ setOfCheckedId.size }})
+            </th>
             <th>{{ $t('_icon') }}</th>
             <th>{{ $t('_tagName') }}</th>
             <th>{{ $t('_onlyOwnVisible') }}</th>
-            <th>{{ $t('_createAt') }}</th>
             <th>{{ $t('_action') }}</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of threeTableData; let idx = index">
             <td
-              [nzChecked]="setOfCheckedId.has(data.title || '')"
-              (nzCheckedChange)="onItemChecked(data.title, $event)"
+              [nzChecked]="setOfCheckedId.has(data.id)"
+              (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
             <td>
-              <app-logo [src]="data.icon || ''" [name]="data.title || ''" />
+              <app-logo [src]="data.icon || ''" [name]="data.title" />
             </td>
             <td>{{ data.title }}</td>
             <td>
@@ -317,23 +308,22 @@
                 nzTheme="outline"
               ></i>
             </td>
-            <td>{{ data.createdAt }}</td>
             <td class="select-none">
               <a (click)="moveThreeUp(idx)">{{ $t('_moveUp') }}</a>
               <a (click)="moveThreeDown(idx)" class="ml-2.5">{{
                 $t('_moveDown')
               }}</a>
-              <a (click)="handleEditBtn(data, idx)" class="ml-2.5">{{
+              <a (click)="openEditClass(data)" class="ml-2.5">{{
                 $t('_edit')
               }}</a>
-              <a (click)="openMoveWebModal(data, idx, 3)" class="ml-2.5">{{
+              <a (click)="openMoveWebModal(data, 3)" class="ml-2.5">{{
                 $t('_move')
               }}</a>
               <a
                 nz-popconfirm
                 [nzPopconfirmTitle]="$t('_delWarn')"
                 nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="handleConfirmDelThree(idx)"
+                (nzOnConfirm)="handleDeleteClass(data.id)"
                 class="color-red ml-2.5"
               >
                 {{ $t('_del') }}
@@ -355,7 +345,7 @@
         <nz-option
           *ngFor="let item of websiteList"
           [nzLabel]="item.title"
-          [nzValue]="item.title"
+          [nzValue]="item.id"
         >
         </nz-option>
       </nz-select>
@@ -369,8 +359,8 @@
       >
         <nz-option
           *ngFor="let item of twoTableData"
-          [nzLabel]="item.title || ''"
-          [nzValue]="item.title"
+          [nzLabel]="item.title"
+          [nzValue]="item.id"
         >
         </nz-option>
       </nz-select>
@@ -384,8 +374,8 @@
       >
         <nz-option
           *ngFor="let item of threeTableData"
-          [nzLabel]="item.title || ''"
-          [nzValue]="item.title || ''"
+          [nzLabel]="item.title"
+          [nzValue]="item.id"
         >
         </nz-option>
       </nz-select>
@@ -394,29 +384,24 @@
         nz-button
         nzType="primary"
         (click)="openCreateWebModal()"
-        style="margin-left: 20px"
+        style="margin-left: 10px"
       >
         {{ $t('_addWeb') }}（{{ websiteTableData.length }}）
-      </button>
-      <button
-        nz-button
-        nzType="primary"
-        (click)="getAllErrorWeb()"
-        style="margin-left: 20px"
-      >
-        {{ $t('_getErrorWeb') }}
       </button>
       <button
         nz-popconfirm
         [nzPopconfirmTitle]="$t('_confirmDel')"
         nzPopconfirmPlacement="bottom"
-        (nzOnConfirm)="onBatchDelete(4)"
+        (nzOnConfirm)="onBatchDelete()"
         nz-button
         nzDanger
-        class="ml-2.5"
         [disabled]="setOfCheckedId.size <= 0"
+        style="margin: 0 10px"
       >
         {{ $t('_batchDel') }}
+      </button>
+      <button nz-button nzType="primary" nzDanger (click)="getErrorWebs()">
+        {{ $t('_getErrorWeb') }}
       </button>
 
       <nz-table
@@ -431,8 +416,10 @@
             <th
               nzWidth="70px"
               [nzChecked]="checkedAll"
-              (nzCheckedChange)="onAllChecked($event, 4)"
-            ></th>
+              (nzCheckedChange)="onCheckAll($event)"
+            >
+              ({{ setOfCheckedId.size }})
+            </th>
             <th nzWidth="60px" class="text-center">{{ $t('_action') }}</th>
             <th nzWidth="70px">{{ $t('_status') }}</th>
             <th nzWidth="80px">{{ $t('_icon') }}</th>
@@ -441,14 +428,13 @@
             <th nzWidth="120px">{{ $t('_onlyOwnVisible') }}</th>
             <th nzWidth="300px">{{ $t('_webDesc') }}</th>
             <th nzWidth="300px">{{ $t('_webTag') }}</th>
-            <th>{{ $t('_createAt') }}</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of websiteTableData; let idx = index">
             <td
-              [nzChecked]="setOfCheckedId.has(data.name)"
-              (nzCheckedChange)="onItemChecked(data.name, $event)"
+              [nzChecked]="setOfCheckedId.has(data.id)"
+              (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
             <td class="text-center select-none">
               <div *ngIf="errorWebs.length <= 0">
@@ -457,15 +443,15 @@
               <div *ngIf="errorWebs.length <= 0">
                 <a (click)="moveWebDown(idx)">{{ $t('_moveDown') }}</a>
               </div>
-              <a (click)="openEditModal(data)">{{ $t('_edit') }}</a>
+              <a (click)="openEditWebModal(data)">{{ $t('_edit') }}</a>
               <div *ngIf="errorWebs.length <= 0">
-                <a (click)="openMoveWebModal(data, idx)">{{ $t('_move') }}</a>
+                <a (click)="openMoveWebModal(data)">{{ $t('_move') }}</a>
               </div>
               <a
                 nz-popconfirm
                 [nzPopconfirmTitle]="$t('_confirmDel')"
                 nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="handleConfirmDelWebsite(data, idx)"
+                (nzOnConfirm)="handleDeleteWeb(data)"
                 class="color-red"
               >
                 {{ $t('_del') }}
@@ -505,15 +491,9 @@
               <pre class="desc">{{ data.desc }}</pre>
             </td>
             <th nzWidth="300px">{{ data.breadcrumb }}</th>
-            <td>{{ data.createdAt }}</td>
           </tr>
         </tbody>
       </nz-table>
     </nz-tab>
   </nz-tabset>
 </div>
-
-<edit-category
-  (onOk)="handleOk($event)"
-  [title]="isEdit ? $t('_edit') : $t('_add')"
-/>

@@ -5,15 +5,15 @@
 import { Component, Output, EventEmitter } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { queryString, getTextContent } from 'src/utils'
+import { getTextContent, getClassById } from 'src/utils'
 import { setWebsiteList, updateByWeb } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
-import { IWebProps, IWebTag, TopType } from 'src/types'
+import { IWebProps, IWebTag, TopType, ActionType } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { saveUserCollect, getWebInfo } from 'src/api'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagList, tagMap } from 'src/store'
-import { isLogin } from 'src/utils/user'
+import { isLogin, getPermissions } from 'src/utils/user'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzInputModule } from 'ng-zorro-antd/input'
@@ -59,12 +59,11 @@ export class CreateWebComponent {
   uploading = false
   getting = false
   settings = settings
+  permissions = getPermissions(settings)
   showModal = false
-  detail: any = null
+  detail: IWebProps | null | undefined = null
   isMove = false // 提交完是否可以移动
-  oneIndex: number | undefined
-  twoIndex: number | undefined
-  threeIndex: number | undefined
+  parentId = -1
   callback: Function = () => {}
   topOptions = [
     { label: TopType[1], value: TopType.Side, checked: false },
@@ -106,23 +105,17 @@ export class CreateWebComponent {
 
   open(
     ctx: this,
-    props:
-      | {
-          isMove?: boolean
-          detail: IWebProps | null
-          oneIndex: number | undefined
-          twoIndex: number | undefined
-          threeIndex: number | undefined
-        }
-      | Record<string, any> = {}
+    props?: {
+      isMove?: boolean
+      parentId?: number
+      detail: IWebProps | null | undefined
+    }
   ) {
-    const detail = props.detail
+    const detail = props?.detail
     ctx.detail = detail
     ctx.showModal = true
-    ctx.oneIndex = props.oneIndex
-    ctx.twoIndex = props.twoIndex
-    ctx.threeIndex = props.threeIndex
-    ctx.isMove = !!props.isMove
+    ctx.parentId = props?.parentId ?? -1
+    ctx.isMove = !!props?.isMove
     this.validateForm.get('title')!.setValue(getTextContent(detail?.name))
     this.validateForm.get('desc')!.setValue(getTextContent(detail?.desc))
     this.validateForm.get('index')!.setValue(detail?.index ?? '')
@@ -167,9 +160,6 @@ export class CreateWebComponent {
     this.validateForm.reset()
     this.showModal = false
     this.detail = null
-    this.oneIndex = undefined
-    this.twoIndex = undefined
-    this.threeIndex = undefined
     this.uploading = false
     this.isMove = false
     this.callback = Function
@@ -210,7 +200,7 @@ export class CreateWebComponent {
         this.validateForm.get('desc')!.setValue(res['description'])
       }
       this.getting = false
-    } catch (error) {}
+    } catch {}
   }
 
   addMoreUrl() {
@@ -237,7 +227,6 @@ export class CreateWebComponent {
       this.validateForm.controls[i].updateValueAndValidity()
     }
 
-    const createdAt = Date.now()
     const tags: IWebTag[] = []
     let { title, icon, url, top, ownVisible, rate, desc, index, topOptions } =
       this.validateForm.value
@@ -260,10 +249,10 @@ export class CreateWebComponent {
       .filter((item) => item.checked)
       .map((item) => item.value)
 
-    const payload = {
-      id: -Date.now(),
+    const payload: Record<string, any> = {
+      id: this.detail?.id,
       name: title,
-      createdAt: this.detail?.createdAt ?? createdAt,
+      breadcrumb: this.detail?.breadcrumb ?? [],
       rate,
       desc,
       top,
@@ -276,18 +265,33 @@ export class CreateWebComponent {
     }
 
     if (this.detail) {
-      const ok = updateByWeb(this.detail, payload as IWebProps)
-      if (ok) {
-        this.message.success($t('_modifySuccess'))
-      } else {
-        this.message.error('修改失败，找不到ID，请同步远端后尝试')
+      if (isLogin) {
+        const ok = updateByWeb(this.detail.id, payload as IWebProps)
+        if (ok) {
+          this.message.success($t('_modifySuccess'))
+        } else {
+          this.message.error('修改失败，找不到ID，请同步远端后尝试')
+        }
+      } else if (this.permissions.edit) {
+        this.uploading = true
+        const params = {
+          data: {
+            ...payload,
+            extra: {
+              type: ActionType.Edit,
+            },
+          },
+        }
+        await saveUserCollect(params)
+        this.message.success($t('_waitHandle'))
       }
     } else {
+      payload['id'] = -Date.now()
       try {
-        const { page, id } = queryString()
-        const oneIndex = this.oneIndex ?? page
-        const twoIndex = this.twoIndex ?? id
-        const threeIndex = this.threeIndex || 0
+        const { oneIndex, twoIndex, threeIndex, breadcrumb } = getClassById(
+          this.parentId
+        )
+
         const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
         this.uploading = true
         if (this.isLogin) {
@@ -296,27 +300,22 @@ export class CreateWebComponent {
           this.message.success($t('_addSuccess'))
           if (this.isMove) {
             event.emit('MOVE_WEB', {
-              indexs: [oneIndex, twoIndex, threeIndex, 0],
               data: [payload],
             })
           }
-        } else if (this.settings.allowCollect) {
-          try {
-            const params = {
-              data: {
-                ...payload,
-                extra: {
-                  type: 'create',
-                  oneName: websiteList[oneIndex].title,
-                  twoName: websiteList[oneIndex].nav[twoIndex].title,
-                  threeName:
-                    websiteList[oneIndex].nav[twoIndex].nav[threeIndex].title,
-                },
+        } else if (this.permissions.create) {
+          const params = {
+            data: {
+              ...payload,
+              parentId: this.parentId,
+              breadcrumb,
+              extra: {
+                type: ActionType.Create,
               },
-            }
-            await saveUserCollect(params)
-            this.message.success($t('_waitHandle'))
-          } catch {}
+            },
+          }
+          await saveUserCollect(params)
+          this.message.success($t('_waitHandle'))
         }
       } catch (error: any) {
         this.message.error(error.message)

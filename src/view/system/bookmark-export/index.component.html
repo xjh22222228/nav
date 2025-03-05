@@ -3,7 +3,7 @@
 <div class="text-center">
   <nz-switch [(ngModel)]="isExportIcon"></nz-switch>
   <span class="ml-2.5">{{ $t('_exportIcons') }}</span>
-  <p class="mt-2.5" *ngIf="seconds > 0">耗时 {{ seconds }} 秒</p>
+  <p class="mt-2.5" *ngIf="seconds > 0">{{ seconds }} s</p>
   <p class="mt-2.5" *ngIf="countAll > 0">
     {{ $t('_processing') }} {{ currentNumber }} / {{ countAll }}
   </p>

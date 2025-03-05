@@ -1,6 +1,6 @@
 <nz-modal
   [(nzVisible)]="showModal"
-  [nzTitle]="title"
+  [nzTitle]="isEdit ? $t('_edit') : $t('_add')"
   (nzOnCancel)="onCancel()"
   (nzOnOk)="handleOk()"
 >

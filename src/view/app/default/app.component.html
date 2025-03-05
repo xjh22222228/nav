@@ -16,8 +16,8 @@
           let i = index;
           trackBy: commonService.trackByItem
         "
-        (click)="handleCilckNav(i)"
-        [class.active]="commonService.page === i"
+        (click)="handleCilckNav(item.id)"
+        [class.active]="commonService.oneIndex === i"
         class="nav-title"
       >
         {{ item.title }}
@@ -25,22 +25,25 @@
     </nav>
   </header>
 
-  <app-search-engine />
+  <app-search />
 
-  <div class="wrapper" *ngIf="commonService.websiteList[commonService.page]">
+  <div
+    class="wrapper"
+    *ngIf="commonService.websiteList[commonService.oneIndex]"
+  >
     <nav
       class="children-nav"
-      *ngIf="commonService.websiteList[commonService.page]?.nav?.length"
+      *ngIf="commonService.websiteList[commonService.oneIndex]?.nav?.length"
     >
       <span
         class="tag"
         *ngFor="
-          let item of commonService.websiteList[commonService.page].nav;
+          let item of commonService.websiteList[commonService.oneIndex].nav;
           let i = index;
           trackBy: commonService.trackByItem
         "
-        [class.active]="commonService.id === i"
-        (click)="commonService.handleSidebarNav(i)"
+        [class.active]="commonService.twoIndex === i"
+        (click)="commonService.handleClickClass(item.id)"
       >
         {{ item.title }}
       </span>
@@ -63,16 +66,11 @@
           [nzMd]="12"
           [nzXl]="6"
           [nzXs]="24"
-          *ngFor="
-            let el of item.nav;
-            index as j;
-            trackBy: commonService.trackByItemWeb
-          "
+          *ngFor="let el of item.nav; trackBy: commonService.trackByItemWeb"
         >
           <app-card
             [cardStyle]="commonService.settings.appCardStyle"
             [dataSource]="el"
-            [indexs]="[commonService.page, commonService.id, i, j]"
             [searchKeyword]="commonService.searchKeyword"
             class="column-border"
           ></app-card>

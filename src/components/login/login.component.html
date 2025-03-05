@@ -1,8 +1,8 @@
 <nz-modal
   [(nzVisible)]="visible"
   [nzTitle]="$t('_authLogin')"
-  [nzOkLoading]="submiting"
-  (nzOnCancel)="hanldeCancel()"
+  [nzOkLoading]="submitting"
+  (nzOnCancel)="handleCancel()"
   (nzOnOk)="login()"
 >
   <ng-container *nzModalContent>

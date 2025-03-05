@@ -5,6 +5,7 @@ import LOAD_MAP from './loading.mjs'
 import utc from 'dayjs/plugin/utc.js'
 import timezone from 'dayjs/plugin/timezone.js'
 import getWebInfo from 'info-web'
+import path from 'node:path'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -16,6 +17,24 @@ export const TAG_ID3 = -3
 export const TAG_ID_NAME1 = '中文'
 export const TAG_ID_NAME2 = '英文'
 export const TAG_ID_NAME3 = 'GitHub'
+
+export const PATHS = {
+  upload: path.resolve('_upload', 'images'),
+  db: path.resolve('data', 'db.json'),
+  settings: path.resolve('data', 'settings.json'),
+  tag: path.resolve('data', 'tag.json'),
+  search: path.resolve('data', 'search.json'),
+  collect: path.resolve('data', 'collect.json'),
+  component: path.resolve('data', 'component.json'),
+  internal: path.resolve('data', 'internal.json'),
+  config: path.resolve('nav.config.yaml'),
+  pkg: path.resolve('package.json'),
+  html: {
+    index: path.resolve('dist', 'browser', 'index.html'),
+    main: path.resolve('src', 'main.html'),
+    write: path.resolve('src', 'index.html'),
+  },
+}
 
 // 统计网站数量
 export function getWebCount(websiteList) {
@@ -63,40 +82,69 @@ export function getWebCount(websiteList) {
   }
 }
 
-// 设置网站的面包屑类目显示
-export function setWeb(nav, settings, tags = []) {
-  let id = 0 // 为每个网站设置唯一ID
+let maxWebId = 0
+let maxClassId = 0
+function getMaxWebId(nav) {
+  function f(nav) {
+    for (let i = 0; i < nav.length; i++) {
+      const item = nav[i]
+      if (item.name && item.id > maxWebId) {
+        maxWebId = item.id
+      }
+      if (item.title && item.id > maxClassId) {
+        maxClassId = item.id
+      }
+      if (item.nav) {
+        f(item.nav)
+      }
+    }
+  }
+  f(nav)
+}
+
+function incrementWebId(id) {
+  id = Number.parseInt(id)
+  if (!id || id < 0) {
+    return ++maxWebId
+  }
+  return id
+}
+
+function incrementClassId(id) {
+  id = Number.parseInt(id)
+  if (!id || id < 0) {
+    return ++maxClassId
+  }
+  return id
+}
+
+export function setWebs(nav, settings, tags = []) {
   if (!Array.isArray(nav)) return
 
   function handleAdapter(item) {
     delete item.collapsed
-    delete item.id
+    delete item.createdAt
     if (!item.ownVisible) {
       delete item.ownVisible
     }
+    item.id = incrementClassId(item.id)
     item.icon = replaceJsdelivrCDN(item.icon, settings)
     item.nav ||= []
   }
 
-  function formatDate(item) {
-    item.createdAt ||= Date.now()
-    item.createdAt = dayjs(item.createdAt).format('YYYY-MM-DD HH:mm')
-  }
+  getMaxWebId(nav)
 
   for (let i = 0; i < nav.length; i++) {
     const item = nav[i]
     handleAdapter(item)
-    formatDate(item)
     if (item.nav) {
       for (let j = 0; j < item.nav.length; j++) {
         const navItem = item.nav[j]
         handleAdapter(navItem)
-        formatDate(navItem)
         if (navItem.nav) {
           for (let k = 0; k < navItem.nav.length; k++) {
             const navItemItem = navItem.nav[k]
             handleAdapter(navItemItem)
-            formatDate(navItemItem)
 
             if (navItemItem.nav) {
               navItemItem.nav.sort((a, b) => {
@@ -109,14 +157,10 @@ export function setWeb(nav, settings, tags = []) {
               for (let l = 0; l < navItemItem.nav.length; l++) {
                 let breadcrumb = []
                 const webItem = navItemItem.nav[l]
-                formatDate(webItem)
                 breadcrumb.push(item.title, navItem.title, navItemItem.title)
                 breadcrumb = breadcrumb.filter(Boolean)
                 webItem.breadcrumb = breadcrumb
-                webItem.id = id += 1
-
-                // 新字段补充
-                webItem.urls ||= {}
+                webItem.id = Math.trunc(incrementWebId(webItem.id))
                 webItem.tags ||= []
                 webItem.rate ??= 5
                 webItem.top ??= false
@@ -127,60 +171,27 @@ export function setWeb(nav, settings, tags = []) {
                 webItem.icon ||= ''
                 webItem.icon = replaceJsdelivrCDN(webItem.icon, settings)
                 webItem.url = webItem.url.trim()
-                webItem.desc = webItem.desc.trim()
-
-                webItem.name = webItem.name.replace(/<b>|<\/b>/g, '')
-                webItem.desc = webItem.desc.replace(/<b>|<\/b>/g, '')
+                if (webItem.url.endsWith('/')) {
+                  webItem.url = webItem.url.slice(0, -1)
+                }
+                webItem.name = webItem.name.trim().replace(/<b>|<\/b>/g, '')
+                webItem.desc = webItem.desc.trim().replace(/<b>|<\/b>/g, '')
 
                 delete webItem.__desc__
                 delete webItem.__name__
+                delete webItem.extra
+                delete webItem.createdAt
 
                 // 节省空间
-                if (!webItem.top) {
-                  delete webItem.top
-                }
-                if (!webItem.ownVisible) {
-                  delete webItem.ownVisible
-                }
-                if (webItem.index === '') {
-                  delete webItem.index
-                }
-                if (webItem.topTypes?.length <= 0) {
-                  delete webItem.topTypes
-                }
+                !webItem.top && delete webItem.top
+                !webItem.ownVisible && delete webItem.ownVisible
+                webItem.index === '' && delete webItem.index
+                webItem.topTypes?.length <= 0 && delete webItem.topTypes
 
-                // 兼容现有标签,以id为key (V9版本删除)
-                for (const k in webItem.urls) {
-                  if (k === TAG_ID_NAME1) {
-                    webItem.urls[TAG_ID1] = webItem.urls[k]
-                    delete webItem.urls[TAG_ID_NAME1]
-                  }
-                  if (k === TAG_ID_NAME2) {
-                    webItem.urls[TAG_ID2] = webItem.urls[k]
-                    delete webItem.urls[TAG_ID_NAME2]
-                  }
-                  if (k === TAG_ID_NAME3) {
-                    webItem.urls[TAG_ID3] = webItem.urls[k]
-                    delete webItem.urls[TAG_ID_NAME3]
-                  }
-                }
-
-                // 从 v8.10.0 开始为了能够排序标签从对象改为数组
-                if (webItem.tags.length <= 0) {
-                  for (const k in webItem.urls) {
-                    const id = String(k)
-                    // 网站标签和系统标签关联，如果系统标签删除了，网站标签也被删除
-                    const has = tags.some((item) => String(item.id) === id)
-                    if (has) {
-                      webItem.tags.push({
-                        id: String(k),
-                        url: webItem.urls[k],
-                      })
-                    }
-                  }
-                }
-
-                delete webItem.urls
+                // 网站标签和系统标签关联
+                webItem.tags = webItem.tags.filter((item) => {
+                  return tags.some((tag) => String(tag.id) === String(item.id))
+                })
               }
             }
           }
@@ -238,7 +249,7 @@ export function writeTemplate({ html, settings, seoTemplate }) {
   <meta name="keywords" content="${settings.keywords}" id="xjh_2" />
   <link rel="icon" href="${settings.favicon}" />
   <link rel ="apple-touch-icon" href="${settings.favicon}" />
-  <link rel="prefetch" href="//unpkg.com/ng-zorro-antd@18.1.1/ng-zorro-antd.dark.min.css" />
+  <link rel="prefetch" href="//unpkg.com/ng-zorro-antd@19.1.0/ng-zorro-antd.dark.min.css" />
 `.trim()
   let t = html
   t = t.replace(
@@ -266,10 +277,7 @@ export function writeTemplate({ html, settings, seoTemplate }) {
 }
 
 function correctURL(url) {
-  if (!url) {
-    return url
-  }
-  if (url[0] === '!') {
+  if (url[0] === '^') {
     return url.slice(1)
   }
   return url
@@ -284,7 +292,7 @@ export async function spiderWeb(db, settings) {
 
     for (let i = 0; i < nav.length; i++) {
       const item = nav[i]
-      if (item.url) {
+      if (item.url && item.url[0] !== '!') {
         delete item.ok
         if (
           settings.checkUrl ||
@@ -413,7 +421,7 @@ export async function spiderWeb(db, settings) {
   }
 
   const diff = Math.ceil((Date.now() - now) / 1000)
-  console.log(`Time: ${diff} seconds`)
+  console.log(`OK: Time: ${diff} seconds`)
 
   return {
     webs: db,

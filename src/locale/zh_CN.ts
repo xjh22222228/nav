@@ -5,7 +5,6 @@ import { isSelfDevelop } from 'src/utils/util'
 
 const zhCN: Record<string, any> = {
   _loading: '加载中...',
-  _webTitle: '发现导航',
   _uncategorized: '未分类',
   _modifySuccess: '修改成功！',
   _copySuccess: '复制成功',
@@ -171,7 +170,7 @@ const zhCN: Record<string, any> = {
     '上次检测出 {count} 个网站链接失效，具体到管理网站查看，如需再次检测状态直接点保存触发事件即可。',
   _buildTip: '修改完请保存并等待构建完成，离开无效',
   _enableSEO: '开启SEO(加载稍慢)',
-  _allowCollect: '允许用户提交收录',
+  _allowUser: '允许用户提交',
   _collectMenuView: `具体到用户收录菜单查看`,
   _displaySwitchTheme: '显示切换主题',
   _requestAddress: '请求地址',
@@ -190,7 +189,7 @@ const zhCN: Record<string, any> = {
   _sidebarTitle: '侧栏标题',
   _defTitle4: '默认网站标题, 建议4字以内',
   _inputAuthCode: '请输入授权码',
-  _waitHandle: '提交成功，等待站长处理',
+  _waitHandle: '提交成功，等待站长审核',
   _collect: '收录',
   _confirmCollect: '您确定要收录吗？',
   _pendingGet: '正在获取...',
@@ -278,6 +277,14 @@ const zhCN: Record<string, any> = {
   _dayIs: '今天是',
   _rest: '休',
   _distance: '距离',
+  _collectTip: '有用户申请收录请去处理',
+  _colTitle: '收录处理（{count}）',
+  _type: '类型',
+  _handle: '处理',
+  _headCode: '<head>可以在这里插入样式、脚本、统计等</head>',
+  _hours: '{num}小时',
+  _minutes: '{num}分钟',
+  _seconds: '{num}秒',
 }
 
 export default zhCN

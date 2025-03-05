@@ -1,0 +1,14 @@
+<div
+  class="w-full"
+  *ngIf="isCode; else other"
+  [innerHTML]="html | safeHtml"
+  #root
+></div>
+<ng-template #other>
+  <img
+    class="bgimg"
+    [src]="data.src"
+    draggable="false"
+    [ngStyle]="{ height: height <= 0 ? '' : height + 'px' }"
+  />
+</ng-template>

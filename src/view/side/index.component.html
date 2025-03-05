@@ -2,7 +2,7 @@
   <nz-spin
     nzSimple
     *ngIf="commonService.sliceMax === 0"
-    class="position-center"
+    class="position-center z-50 mt-24"
   />
   <nz-layout>
     <nz-sider
@@ -18,7 +18,11 @@
         }}</span>
       </div>
 
-      <ul nz-menu nzMode="inline" class="sider dark-scrollbar dark-bg">
+      <ul
+        nz-menu
+        nzMode="inline"
+        class="sider dark-scrollbar dark-bg select-none"
+      >
         <li
           nz-submenu
           *ngFor="
@@ -50,16 +54,18 @@
                 trackBy: commonService.trackByItem
               "
               [nzSelected]="
-                commonService.page === pageIdx && commonService.id === idIdx
+                commonService.oneIndex === pageIdx &&
+                commonService.twoIndex === idIdx
               "
-              (click)="commonService.handleSidebarNav(idIdx, pageIdx)"
+              (click)="commonService.handleClickClass(el.id)"
             >
               <img *ngIf="el.icon" class="sideicon fixicon" [src]="el.icon" />
               <span class="ellipsis">{{ el.title }}</span>
 
               <div
                 *ngIf="
-                  commonService.page === pageIdx && commonService.id === idIdx
+                  commonService.oneIndex === pageIdx &&
+                  commonService.twoIndex === idIdx
                 "
                 (click)="commonService.onCollapseAll($event)"
                 class="collapse-wrapper"
@@ -90,7 +96,7 @@
 
       <component-group></component-group>
 
-      <app-search-engine class="mobile-search" />
+      <app-search class="mobile-search" />
 
       <nz-content class="content" id="content">
         <app-web-list [search]="false" [overflow]="true" />
@@ -122,7 +128,6 @@
                   <div
                     *ngFor="
                       let el of item.nav;
-                      index as j;
                       trackBy: commonService.trackByItemWeb
                     "
                     class="gutter-row"
@@ -138,7 +143,6 @@
                     <app-card
                       [cardStyle]="commonService.settings.sideCardStyle"
                       [dataSource]="el"
-                      [indexs]="[commonService.page, commonService.id, i, j]"
                       [searchKeyword]="commonService.searchKeyword"
                       class="column-border"
                     />

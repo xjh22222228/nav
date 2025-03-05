@@ -1,7 +1,6 @@
 .html {
   position: relative;
-  width: var(--componentHeight);
-  height: var(--componentHeight);
+  height: var(--componentHeight) !important;
   max-height: 100%;
   border-radius: 12px;
   overflow: hidden;

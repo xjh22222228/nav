@@ -7,6 +7,7 @@
   <p align="center">一个纯静态、支持SEO、在线编辑的强大导航网站，希望您会喜欢</p>
   <p align="center">内置收录多达 800+ 优质网站， 助您工作、学习和生活</p>
   <p align="center">
+    <a href="README_EN.md"><img alt="english" src="https://img.shields.io/static/v1.svg?label=&message=English&style=flat-square&color=ff5000"></a>
     <img src="https://img.shields.io/github/v/release/xjh22222228/nav" />
     <a href="https://github.com/xjh22222228/nav/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/nav" alt="Stars"/></a>
     <img alt="Angular" src="https://img.shields.io/static/v1.svg?label=&message=Angular&style=flat-square&color=C82B38">
@@ -43,7 +44,7 @@
 - 🍰 支持 [码云 Gitee](https://gitee.com/xiejiahe/nav)
 - 🍰 支持从浏览器书签导入
 - 🍰 支持将数据导出到浏览器书签
-- 🍰 支持用户提交收录
+- 🍰 支持用户提交新增、编辑、删除
 - 🍰 支持自有部署(pm2|Docker|宝塔)/Fork
 - 🍰 丰富的资源配置系统
 - 🍰 支持 SEO 搜索引擎
@@ -58,6 +59,7 @@
 - 🍰 支持足迹记忆
 - 🍰 支持多种搜索查询
 - 🍰 支持自定义引擎搜索
+- 🍰 支持卡片广告展示
 - 🍰 多款高颜值主题切换
 - 🍰 强大的响应式系统
 - 🍰 多种 Loading 加载动画
@@ -73,8 +75,8 @@
 
 ## 可以干嘛
 
-- 公司部署，内部系统网站，不需要员工收藏各种链接
-- 做为个人书签，有些功能浏览器是没有的
+- 部署公司内部导航系统，统一管理常用链接
+- 个人书签管理，替代浏览器收藏夹
 - 个人导航网站，分享、价值、发现
 
 ## 部署
@@ -97,13 +99,11 @@
 
 #### Netlify 推荐(免费)
 
-作者目前使用，速度较快, 打包路径 `dist/browser`
+打包路径 `dist/browser`
 
 [https://www.netlify.com/](https://www.netlify.com/)
 
 #### Vercel 推荐(免费)
-
-国内访问速度较慢，建议测试后使用
 
 [https://github.com/apps/vercel](https://github.com/apps/vercel)
 

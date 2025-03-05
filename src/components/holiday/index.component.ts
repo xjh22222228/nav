@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common'
 import { IComponentProps } from 'src/types'
 import { $t } from 'src/locale'
 import dayjs from 'dayjs'
-import event from 'src/utils/mitt'
 
 @Component({
   standalone: true,
@@ -25,14 +24,13 @@ export class HolidayComponent {
 
   ngOnInit() {
     this.init()
-    event.on('COMPONENT_OK', () => {
-      setTimeout(() => {
-        this.init()
-      }, 100)
-    })
   }
 
-  init() {
+  ngOnChanges() {
+    this.init()
+  }
+
+  private init() {
     let items: any = {}
     const now = dayjs(dayjs().format('YYYY-MM-DD'))
     if (this.data['items']) {

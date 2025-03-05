@@ -6,39 +6,87 @@ import navConfig from '../../nav.config.json'
 import { internal } from 'src/store'
 import { isLogin } from 'src/utils/user'
 
-// 是否自有部署
 export const isSelfDevelop = !!navConfig.address
 
-export function compilerTemplate(str: string) {
-  return str
-    .replaceAll(
-      '${total}',
-      String(isLogin ? internal.loginViewCount : internal.userViewCount)
-    )
-    .replaceAll('${hostname}', window.location.hostname)
-    .replaceAll('${year}', String(new Date().getFullYear()))
+interface TemplateData {
+  total: number
+  hostname: string
+  year: number
 }
 
-export function addDark() {
-  const darkCSS = '//unpkg.com/ng-zorro-antd@18.2.1/ng-zorro-antd.dark.min.css'
-  const id = 'dark-css'
-  const darkNode = document.getElementById(id)
-  if (darkNode) {
-    return
+export function compilerTemplate(str: string): string {
+  const data: TemplateData = {
+    total: isLogin ? internal.loginViewCount : internal.userViewCount,
+    hostname: window.location.hostname,
+    year: new Date().getFullYear(),
   }
+
+  return Object.entries(data).reduce(
+    (result, [key, value]) => result.replaceAll(`\${${key}}`, String(value)),
+    str
+  )
+}
+
+const DARK_THEME = {
+  cssUrl: '//unpkg.com/ng-zorro-antd@19.1.0/ng-zorro-antd.dark.min.css',
+  cssId: 'dark-css',
+  classes: ['dark-container', 'dark'],
+} as const
+
+export function addDark(): void {
+  const darkNode = document.getElementById(DARK_THEME.cssId)
+  if (darkNode) return
+
   const link = document.createElement('link')
   link.rel = 'stylesheet'
-  link.href = darkCSS
-  link.id = id
+  link.href = DARK_THEME.cssUrl
+  link.id = DARK_THEME.cssId
   document.body.appendChild(link)
-  document.documentElement.classList.add('dark-container', 'dark')
+  document.documentElement.classList.add(...DARK_THEME.classes)
 }
 
-export function removeDark() {
-  const id = 'dark-css'
-  const darkNode = document.getElementById(id)
-  document.documentElement.classList.remove('dark-container', 'dark')
-  if (darkNode) {
-    darkNode.parentNode?.removeChild(darkNode)
+export function removeDark(): void {
+  const darkNode = document.getElementById(DARK_THEME.cssId)
+  document.documentElement.classList.remove(...DARK_THEME.classes)
+  darkNode?.parentNode?.removeChild(darkNode)
+}
+
+export function parseHtmlWithContent(node: HTMLElement, str: string) {
+  if (str[0] === '!') {
+    if (!node) return
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(str, 'text/html')
+    const scripts = doc.querySelectorAll('script')
+    scripts.forEach((script) => {
+      const newScript: any = document.createElement('script')
+      const text = script.textContent?.trim() || ''
+      const attributes = script.attributes
+      for (let i = 0; i < attributes.length; i++) {
+        const attr = attributes[i]
+        newScript[attr.name] = attr.value
+      }
+      if (text) {
+        newScript.textContent = text
+      }
+      node.appendChild(newScript)
+    })
   }
+}
+
+export function parseLoadingWithContent(str: string): string {
+  if (str[0] !== '!') {
+    return str
+  }
+  const loadingHtml = `
+<div class="x31">
+  <svg viewBox="25 25 50 50" class="x21">
+    <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+  </svg>
+</div>
+`
+  str = str.slice(1)
+  if (str.includes('#loadingx1')) {
+    return str.replaceAll('#loadingx1', '') + loadingHtml
+  }
+  return str
 }

@@ -15,6 +15,8 @@ import {
   MinusOutline,
   PlusOutline,
   StopOutline,
+  MenuFoldOutline,
+  MenuUnfoldOutline,
 } from '@ant-design/icons-angular/icons'
 import { provideAnimations } from '@angular/platform-browser/animations'
 import { NZ_I18N } from 'ng-zorro-antd/i18n'
@@ -32,6 +34,8 @@ const icons: IconDefinition[] = [
   MinusOutline,
   PlusOutline,
   StopOutline,
+  MenuFoldOutline,
+  MenuUnfoldOutline,
 ]
 
 export const appConfig: ApplicationConfig = {

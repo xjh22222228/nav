@@ -13,6 +13,8 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { NzSelectModule } from 'ng-zorro-antd/select'
+import { deleteWebByIds, deleteClassByIds } from 'src/utils/web'
+import { getClassById } from 'src/utils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -31,16 +33,16 @@ import event from 'src/utils/mitt'
 export class MoveWebComponent {
   $t = $t
   websiteList: INavProps[] = websiteList
-  twoOptList: INavTwoProp[] = []
-  threeOptList: INavThreeProp[] = []
+  twoOptions: INavTwoProp[] = []
+  threeOptions: INavThreeProp[] = []
   isCopy = false
-  oneSelect: number | undefined = undefined
-  twoSelect: number | undefined = undefined
-  threeSelect: number | undefined = undefined
-  moveSites: any[] = []
+  oneSelect: number = -1
+  twoSelect: number = -1
+  threeSelect: number = -1
+  moveItems: any[] = []
   showModal = false
-  indexs: Array<number> = []
   level = 4
+  id = -1
 
   constructor(private message: NzMessageService) {
     event.on('MOVE_WEB', (props: any) => {
@@ -51,127 +53,101 @@ export class MoveWebComponent {
   ngOnInit() {}
 
   open(
-    ctx: any,
+    ctx: this,
     props: {
-      indexs: number[]
+      id?: number
+      level?: number
       data: IWebProps[]
-      level: number
     }
   ) {
-    ctx.oneSelect = undefined
-    ctx.twoSelect = undefined
-    ctx.threeSelect = undefined
-    ctx.twoOptList = []
-    ctx.threeOptList = []
-    ctx.indexs = props.indexs
-    ctx.moveSites = props.data
+    ctx.oneSelect = -1
+    ctx.twoSelect = -1
+    ctx.threeSelect = -1
+    ctx.twoOptions = []
+    ctx.threeOptions = []
+    ctx.moveItems = props.data
     ctx.level = props.level ?? 4
     ctx.showModal = true
+    ctx.id = props.id ?? -1
   }
 
-  pushMoveSites(sites: IWebProps[]) {
-    this.moveSites = sites
+  hanldeOneSelect(id: number) {
+    this.oneSelect = id
+    const data = this.websiteList.find((item) => item.id === id)
+    this.twoOptions = data?.nav || []
+    this.twoSelect = -1
+    this.threeSelect = -1
   }
 
-  hanldeOneSelect(index: number) {
-    this.oneSelect = index
-    const title = this.websiteList[index].title
-    const findItem = this.websiteList.find((item) => item.title === title)
-    this.twoOptList = findItem!.nav
-    this.twoSelect = undefined
-    this.threeSelect = undefined
+  hanldeTwoSelect(id: number) {
+    this.twoSelect = id
+    const data = this.twoOptions.find((item) => item.id === id)
+    this.threeOptions = data?.nav || []
+    this.threeSelect = -1
   }
 
-  hanldeTwoSelect(index: number) {
-    this.twoSelect = index
-    const title = this.twoOptList[index].title
-    const findItem = this.twoOptList.find((item) => item.title === title)
-    this.threeOptList = findItem!.nav
-    this.threeSelect = undefined
-  }
-
-  hanldeThreeSelect(index: number) {
-    this.threeSelect = index
+  hanldeThreeSelect(id: number) {
+    this.threeSelect = id
   }
 
   handleCancel() {
     this.showModal = false
   }
 
-  hanldeOk(): any {
-    const indexs = this.indexs
-    const oneSelect = this.oneSelect as number
-    const twoSelect = this.twoSelect as number
-    const threeSelect = this.threeSelect as number
-
+  async hanldeOk(): Promise<any> {
+    let tempId = -Date.now()
     try {
-      const moveSites = JSON.parse(JSON.stringify(this.moveSites))
+      const moveItems: INavTwoProp[] & IWebProps[] & INavThreeProp[] =
+        JSON.parse(JSON.stringify(this.moveItems))
       if (this.level === 2) {
-        if (this.oneSelect == null) {
+        if (this.oneSelect == -1) {
           return this.message.error($t('_sel1'))
         }
-        moveSites.forEach((item: any) => {
-          const exists = this.websiteList[oneSelect].nav.find(
-            (el: any) => el.title === item.title
-          )
-
-          if (exists) {
-            this.message.error(`${$t('_repeatAdd')} "${item.title}"`)
-          } else {
-            this.websiteList[oneSelect].nav.unshift(item)
-
-            if (!this.isCopy) {
-              const [a, b, c, d] = indexs
-              this.websiteList[a].nav.splice(d, 1)
-            }
-
-            this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
+        const { oneIndex } = getClassById(this.oneSelect)
+        for (const item of moveItems) {
+          const id = item.id
+          tempId -= 1
+          item.id = tempId
+          if (!this.isCopy) {
+            await deleteClassByIds([id])
           }
-        })
+          this.websiteList[oneIndex].nav.unshift(item)
+          this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
+        }
       } else if (this.level === 3) {
-        if (this.twoSelect == null) {
+        if (this.twoSelect == -1) {
           return this.message.error($t('_sel2'))
         }
-        moveSites.forEach((item: any) => {
-          const exists = this.websiteList[oneSelect].nav[twoSelect].nav.find(
-            (el: any) => el.title === item.title
-          )
-
-          if (exists) {
-            this.message.error(`${$t('_repeatAdd')} "${item.title}"`)
-          } else {
-            this.websiteList[oneSelect].nav[twoSelect].nav.unshift(item)
-
-            if (!this.isCopy) {
-              const [a, b, c, d] = indexs
-              this.websiteList[a].nav[b].nav.splice(d, 1)
-            }
-
-            this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
+        const { oneIndex, twoIndex } = getClassById(this.twoSelect)
+        for (const item of moveItems) {
+          const id = item.id
+          tempId -= 1
+          item.id = tempId
+          if (!this.isCopy) {
+            await deleteClassByIds([id])
           }
-        })
+          this.websiteList[oneIndex].nav[twoIndex].nav.unshift(item)
+          this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
+        }
       } else if (this.level === 4) {
-        if (this.threeSelect == null) {
+        if (this.threeSelect == -1) {
           return this.message.error($t('_sel3'))
         }
-        if (indexs.length !== 4) {
-          return this.message.error(
-            `move web: indexs数量不正确${indexs.join(',')}`
-          )
-        }
-        moveSites.forEach((item: any) => {
-          item.id = item.id + `${Math.random()}`
-          this.websiteList[oneSelect].nav[twoSelect].nav[
-            threeSelect
-          ].nav.unshift(item)
-
+        const { oneIndex, twoIndex, threeIndex } = getClassById(
+          this.threeSelect
+        )
+        for (const item of moveItems) {
+          const id = item.id
+          tempId -= 1
+          item.id = tempId
           if (!this.isCopy) {
-            const [a, b, c, d] = indexs
-            this.websiteList[a].nav[b].nav[c].nav.splice(d, 1)
+            await deleteWebByIds([id])
           }
-
+          this.websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav.unshift(
+            item
+          )
           this.message.success(`"${item.name}" ${$t('_moveSuccess')}`)
-        })
+        }
       }
 
       setWebsiteList(this.websiteList)

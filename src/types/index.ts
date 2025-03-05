@@ -25,6 +25,12 @@ export enum ComponentType {
   Holiday = 7,
 }
 
+export enum ActionType {
+  Create = 1,
+  Edit = 2,
+  Delete = 3,
+}
+
 export interface IComponentProps {
   id: number
   type: number
@@ -41,7 +47,6 @@ export interface ITagPropValues {
   id: number
   name: string
   color: string
-  createdAt: string | number
   desc: string
   isInner: boolean
 
@@ -57,15 +62,22 @@ export interface IWebTag {
   url?: string
 }
 
+export interface BaseNavItem {
+  id: number
+  title: string
+  icon?: string
+  collapsed?: boolean
+  ownVisible?: boolean
+}
+
 export interface IWebProps {
+  id: number
   __name__?: string // 搜索原name值
   __desc__?: string
-  id: string | number
   name: string
   desc: string
   url: string
   icon: string
-  createdAt: string | number
   rate?: number // 0-5
   top?: boolean
   topTypes?: number[]
@@ -73,48 +85,44 @@ export interface IWebProps {
   ownVisible?: boolean
   breadcrumb: string[]
   ok?: boolean
-  tags?: IWebTag[]
+  tags: IWebTag[]
   [key: string]: any
 }
 
-export interface INavThreeProp {
-  title?: string
-  icon?: string
-  createdAt?: string | number
-  collapsed?: boolean
-  ownVisible?: boolean
+export interface INavThreeProp extends BaseNavItem {
   nav: IWebProps[]
   [key: string]: any
 }
 
-export interface INavTwoProp {
-  title?: string
-  icon?: string
-  createdAt?: string | number
-  collapsed?: boolean
-  ownVisible?: boolean
+export interface INavTwoProp extends BaseNavItem {
   nav: INavThreeProp[]
   [key: string]: any
 }
 
-export interface INavProps extends Object {
-  title: string
-  id?: number
-  icon?: string | null
-  createdAt?: string | number
-  ownVisible?: boolean
-  collapsed?: boolean
+export interface INavProps extends BaseNavItem {
   nav: INavTwoProp[]
   [key: string]: any
 }
 
-export interface ISearchEngineProps {
+export interface ISearchProps {
   name: string
   url?: string
   icon: string | null
   placeholder?: string
   blocked: boolean
   isInner: boolean
+}
+
+export interface ImageProps {
+  url: string
+  src: string
+}
+
+export interface IClassProps {
+  id: number
+  title: string
+  icon: string
+  ownVisible?: boolean
 }
 
 export interface ISettings {
@@ -143,11 +151,11 @@ export interface ISettings {
 
   lightCardStyle: ICardType
   lightOverType: OverType
-  lightImages: Record<string, any>[]
+  lightImages: ImageProps[]
   lightFooterHTML: string
   lightDocTitle: string
 
-  simThemeImages: Record<string, any>[]
+  simThemeImages: ImageProps[]
   simThemeDesc: string
   simThemeHeight: number
   simThemeAutoplay: boolean
@@ -157,7 +165,7 @@ export interface ISettings {
   simFooterHTML: string
   simDocTitle: string
 
-  sideThemeImages: Record<string, any>[]
+  sideThemeImages: ImageProps[]
   sideThemeHeight: number
   sideThemeAutoplay: boolean
   sideCardStyle: ICardType
@@ -166,7 +174,7 @@ export interface ISettings {
   sideCollapsed: boolean
   sideDocTitle: string
 
-  shortcutThemeImages: Record<string, any>[]
+  shortcutThemeImages: ImageProps[]
   shortcutThemeShowWeather: boolean
   shortcutTitle: string
   shortcutDockCount: number
@@ -175,13 +183,12 @@ export interface ISettings {
   superTitle: string
   superOverType: OverType
   superCardStyle: ICardType
-  superImages: Record<string, any>[]
+  superImages: ImageProps[]
   superFooterHTML: string
   superDocTitle: string
 
   showRate: boolean
-
-  allowCollect: boolean
+  userActions: ActionType[]
   email: string
 
   spiderIcon: Spider
@@ -200,7 +207,7 @@ export interface ISettings {
   [key: string]: any
 }
 
-export type internalProps = {
+export type InternalProps = {
   loginViewCount: number
   userViewCount: number
 }

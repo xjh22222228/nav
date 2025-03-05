@@ -7,7 +7,7 @@ import { IWebProps, INavProps } from '../types'
 import { websiteList } from 'src/store'
 import { STORAGE_KEY_MAP, DB_PATH } from 'src/constants'
 import { isSelfDevelop } from './util'
-import { queryString } from './index'
+import { queryString, getClassById } from './index'
 import { $t } from 'src/locale'
 
 function adapterWebsiteList(websiteList: any[]) {
@@ -30,7 +30,7 @@ function adapterWebsiteList(websiteList: any[]) {
   return websiteList
 }
 
-export async function fetchWeb() {
+export async function getWebs() {
   if (isSelfDevelop) {
     return
   }
@@ -54,6 +54,7 @@ export async function fetchWeb() {
       STORAGE_KEY_MAP.token,
       STORAGE_KEY_MAP.isDark,
       STORAGE_KEY_MAP.authCode,
+      STORAGE_KEY_MAP.location,
     ]
     const len = window.localStorage.length
     for (let i = 0; i < len; i++) {
@@ -103,10 +104,11 @@ export function setWebsiteList(v?: INavProps[]): Promise<any> {
 
 export function toggleCollapseAll(wsList?: INavProps[]): boolean {
   wsList ||= websiteList
-  const { page, id } = queryString()
-  const collapsed = !wsList[page].nav[id].collapsed
-  wsList[page].nav[id].collapsed = collapsed
-  wsList[page].nav[id].nav.map((item) => {
+  const { id } = queryString()
+  const { oneIndex, twoIndex } = getClassById(id)
+  const collapsed = !wsList[oneIndex].nav[twoIndex].collapsed
+  wsList[oneIndex].nav[twoIndex].collapsed = collapsed
+  wsList[oneIndex].nav[twoIndex].nav.map((item) => {
     item.collapsed = collapsed
     return item
   })
@@ -116,25 +118,18 @@ export function toggleCollapseAll(wsList?: INavProps[]): boolean {
   return collapsed
 }
 
-export function deleteByWeb(data: IWebProps): boolean {
+export async function deleteWebByIds(ids: number[]): Promise<boolean> {
   let hasDelete = false
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
-      if (item.name) {
-        if (item.id === data.id) {
-          hasDelete = true
-          arr.splice(i, 1)
-          break
-        }
-        continue
-      }
-
       if (Array.isArray(item.nav)) {
         item.nav = item.nav.filter((w: IWebProps) => {
-          if (w.name && w.id === data.id) {
-            hasDelete = true
-            return false
+          if (w.name) {
+            if (ids.includes(w.id)) {
+              hasDelete = true
+              return false
+            }
           }
           return true
         })
@@ -145,22 +140,23 @@ export function deleteByWeb(data: IWebProps): boolean {
 
   f(websiteList)
   if (hasDelete) {
-    setWebsiteList(websiteList)
+    await setWebsiteList(websiteList)
     const { q } = queryString()
-    // 在搜索结果删除需要刷新重新刷结果
-    q && window.location.reload()
+    if (q && !isSelfDevelop) {
+      event.emit('WEB_REFRESH')
+    }
   }
   return hasDelete
 }
 
-export function updateByWeb(oldData: IWebProps, newData: IWebProps) {
+export function updateByWeb(oldId: number, newData: IWebProps) {
   const keys = Object.keys(newData)
   let ok = false
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
       if (item.name) {
-        if (item.id === oldData.id) {
+        if (item.id === oldId) {
           ok = true
           for (let k of keys) {
             item[k] = newData[k]
@@ -179,4 +175,45 @@ export function updateByWeb(oldData: IWebProps, newData: IWebProps) {
   f(websiteList)
   setWebsiteList(websiteList)
   return ok
+}
+
+export async function deleteClassByIds(ids: number[]): Promise<boolean> {
+  let hasDelete = false
+
+  function f(arr: any[]) {
+    for (let i = 0; i < arr.length; i++) {
+      const item = arr[i]
+      if (Array.isArray(item.nav)) {
+        f(item.nav)
+        if (item.nav[0]?.name) {
+          break
+        }
+        item.nav = item.nav.filter((w: INavProps) => {
+          if (w.title) {
+            if (ids.includes(w.id)) {
+              hasDelete = true
+              return false
+            }
+          }
+          return true
+        })
+      }
+    }
+  }
+
+  // 删除一级分类
+  ids.forEach((id) => {
+    websiteList.forEach((item, index) => {
+      if (item.id === id) {
+        hasDelete = true
+        websiteList.splice(index, 1)
+      }
+    })
+  })
+
+  f(websiteList)
+  if (hasDelete) {
+    await setWebsiteList(websiteList)
+  }
+  return hasDelete
 }

@@ -24,24 +24,25 @@
       {{ $t('_bindDomain') }}
     </div>
     <input nz-input placeholder="example.cn,example.com" [(ngModel)]="url" />
-    <button
-      nz-button
-      nzType="primary"
-      (click)="handleSave()"
-      [nzLoading]="submitting"
-      class="mt-2.5"
-    >
-      {{ $t('_save') }}
-    </button>
-    <button
-      nz-button
-      nzType="primary"
-      nzDanger
-      (click)="logoutAuthCode()"
-      [nzLoading]="submitting"
-      class="mt-2.5 ml-2.5"
-    >
-      {{ $t('_logoutAuthCode') }}
-    </button>
+    <div class="mt-2.5">
+      <button
+        nz-button
+        nzType="primary"
+        (click)="handleSave()"
+        [nzLoading]="submitting"
+      >
+        {{ $t('_save') }}
+      </button>
+      <button
+        nz-button
+        nzType="primary"
+        nzDanger
+        (click)="logoutAuthCode()"
+        [nzLoading]="submitting"
+        style="margin-left: 20px"
+      >
+        {{ $t('_logoutAuthCode') }}
+      </button>
+    </div>
   </div>
 </nz-spin>

@@ -2,13 +2,7 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import {
-  Component,
-  Output,
-  EventEmitter,
-  Input,
-  ChangeDetectionStrategy,
-} from '@angular/core'
+import { Component, Output, EventEmitter, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { isDark as isDarkFn, randomBgImg, queryString } from 'src/utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
@@ -30,7 +24,6 @@ import mitt from 'src/utils/mitt'
   selector: 'app-fixbar',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [NzModalService, NzMessageService],
 })
 export class FixbarComponent {
@@ -47,6 +40,7 @@ export class FixbarComponent {
   isDark: boolean = isDarkFn()
   syncLoading = false
   isLogin = isLogin
+  isShowFace = true
   open = localStorage.getItem(STORAGE_KEY_MAP.fixbarOpen) === 'true'
   themeList = [
     {
@@ -103,6 +97,16 @@ export class FixbarComponent {
         }
         return t.url !== url
       })
+
+    if (!isLogin) {
+      const isShowFace =
+        [settings.showLanguage, settings.showThemeToggle].filter(Boolean)
+          .length === 0
+      if (isShowFace) {
+        this.open = true
+        this.isShowFace = false
+      }
+    }
   }
 
   ngOnInit() {}

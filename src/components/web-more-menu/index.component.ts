@@ -22,7 +22,7 @@ export class WebMoreMenuComponent {
 
   ngOnInit() {}
 
-  handleCilck(index: number) {
-    this.onClick?.emit?.(index)
+  handleCilck(id: number) {
+    this.onClick?.emit?.(id)
   }
 }

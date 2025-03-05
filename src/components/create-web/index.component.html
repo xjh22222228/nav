@@ -8,7 +8,7 @@
   [nzBodyStyle]="{ maxHeight: '70vh', overflowY: 'auto' }"
 >
   <ng-container *nzModalContent>
-    <div class="breadcrumb1" *ngIf="detail?.breadcrumb">
+    <div class="breadcrumb1" *ngIf="detail && detail.breadcrumb">
       <span *ngFor="let n of detail.breadcrumb; let idx = index"
         >{{ n }}
         <span class="arrow" *ngIf="idx !== detail.breadcrumb.length - 1"

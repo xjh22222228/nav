@@ -5,7 +5,6 @@ import { isSelfDevelop } from 'src/utils/util'
 
 const english: Record<string, any> = {
   _loading: 'Loading...',
-  _webTitle: 'Discovery Navigation',
   _uncategorized: 'Unclassified',
   _modifySuccess: 'Modification succeeded!',
   _copySuccess: 'Copy succeeded!',
@@ -178,7 +177,7 @@ const english: Record<string, any> = {
   _buildTip:
     'After modification, please save and wait for the build to complete. Leaving is invalid',
   _enableSEO: 'Enable SEO (loading slightly slower)',
-  _allowCollect: 'Allow users to submit indexed content',
+  _allowUser: 'Allow users to submit',
   _collectMenuView: `Please refer to the user's inclusion menu for specific details`,
   _displaySwitchTheme: 'Display Switch Theme',
   _requestAddress: 'Request Address',
@@ -200,7 +199,7 @@ const english: Record<string, any> = {
   _sidebarTitle: 'Sidebar title',
   _defTitle4: 'Default website title, recommended to be within 4 words',
   _inputAuthCode: 'Please enter the authorization code',
-  _waitHandle: 'Waiting for the stationmaster to handle',
+  _waitHandle: 'Submitted successfully, waiting for webmaster review',
   _collect: 'Get',
   _confirmCollect: 'Are you sure?',
   _pendingGet: 'Getting...',
@@ -288,6 +287,15 @@ const english: Record<string, any> = {
   _dayIs: 'Today is',
   _rest: 'R',
   _distance: 'Distance',
+  _collectTip: 'If a user applies for inclusion, please handle it',
+  _colTitle: 'Collection processing ({count})',
+  _type: 'Type',
+  _handle: 'Handle',
+  _headCode:
+    '<head>You can insert styles, scripts, statistics, etc. here</head>',
+  _hours: '{num} hr',
+  _minutes: '{num} min',
+  _seconds: '{num} s',
 }
 
 export default english

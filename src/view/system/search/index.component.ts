@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { ISearchEngineProps } from 'src/types'
+import { ISearchProps } from 'src/types'
 import { updateFileContent } from 'src/api'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { SEARCH_PATH } from 'src/constants'
@@ -18,6 +18,7 @@ import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzSwitchModule } from 'ng-zorro-antd/switch'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { UploadComponent } from 'src/components/upload/index.component'
+import { isSelfDevelop } from 'src/utils/util'
 
 @Component({
   standalone: true,
@@ -38,8 +39,9 @@ import { UploadComponent } from 'src/components/upload/index.component'
 })
 export default class SystemSearchComponent {
   $t = $t
-  searchList: ISearchEngineProps[] = searchEngineList
+  searchList: ISearchProps[] = searchEngineList
   submitting: boolean = false
+  isSelfDevelop = isSelfDevelop
 
   constructor(
     private message: NzMessageService,
