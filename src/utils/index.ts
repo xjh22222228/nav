@@ -183,35 +183,50 @@ export function fuzzySearch(
   return resultList
 }
 
-function randomColor(): string {
-  const r = randomInt(255)
-  const g = randomInt(255)
-  const b = randomInt(255)
-  const c = `#${r.toString(16)}${g.toString(16)}${b.toString(16)}000`
-  return c.slice(0, 7)
+export function randomColor(): string {
+  const randomValue = Math.floor(Math.random() * 0xffffff)
+  const hexColor = randomValue.toString(16).padStart(6, '0')
+  return `#${hexColor}`
 }
 
 let randomTimer: any
-export function randomBgImg() {
+export function randomBgImg(): void {
   if (isDark()) return
 
-  clearInterval(randomTimer)
+  if (randomTimer) {
+    clearInterval(randomTimer)
+  }
+
   const id = 'random-light-bg'
   const el = document.getElementById(id) || document.createElement('div')
   const deg = randomInt(360)
+
   el.id = id
-  el.style.cssText =
-    'position:fixed;top:0;left:0;right:0;bottom:0;z-index:-3;transition: 1s linear;'
+  el.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -3;
+    transition: 1s linear;
+  `
+
   el.style.backgroundImage = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
   document.body.appendChild(el)
 
-  function setBg() {
+  const setBg = (): void => {
     if (isDark()) {
-      clearInterval(randomTimer)
+      if (randomTimer) {
+        clearInterval(randomTimer)
+        randomTimer = null
+      }
       return
     }
+
     const randomBg = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
-    el.style.opacity = '.3'
+
+    el.style.opacity = '0.3'
     setTimeout(() => {
       el.style.backgroundImage = randomBg
       el.style.opacity = '1'

@@ -87,35 +87,22 @@
             >
               <app-toolbar-title
                 [dataSource]="item"
-                (onCollapse)="commonService.onCollapse(item, i)"
-                [index]="i"
+                (onCollapse)="commonService.onCollapse(item)"
               />
 
               <div
-                style="padding: 0 10px"
-                nz-row
-                [nzGutter]="[16, 16]"
-                [style.display]="item.collapsed ? 'none' : ''"
+                class="px-3 grid gap-x-4 gap-y-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                [class.hidden]="item['collapsed']"
               >
-                <div
-                  class="gutter-row"
-                  nz-col
-                  [nzSpan]="8"
-                  [nzSm]="12"
-                  [nzMd]="8"
-                  [nzXs]="24"
+                <app-card
                   *ngFor="
                     let el of item.nav;
                     trackBy: commonService.trackByItemWeb
                   "
-                >
-                  <app-card
-                    [cardStyle]="commonService.settings.lightCardStyle"
-                    [dataSource]="el"
-                    [searchKeyword]="commonService.searchKeyword"
-                    class="column-border"
-                  />
-                </div>
+                  [cardStyle]="commonService.settings.lightCardStyle"
+                  [dataSource]="el"
+                  class="column-border"
+                />
               </div>
             </div>
           </div>

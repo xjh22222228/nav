@@ -40,26 +40,25 @@ Three No-Needs: `No Database`, `No Server`, `No Cost`
 
 The philosophy of `Discovery Navigation` is to create a simple and convenient solution without relying on backend services, eliminating complex configurations and database concepts, making it ready to use out of the box.
 
-- 🍰 Built-in `800+` quality websites
+- 🍰 Built-in collection of `800+` high-quality websites
 - 🍰 Support for [Gitee](https://gitee.com/xiejiahe/nav)
 - 🍰 Import from browser bookmarks
 - 🍰 Export data to browser bookmarks
 - 🍰 Support user submissions, edits, and deletions
 - 🍰 Support self-deployment (pm2|Docker|BT Panel)/Fork
 - 🍰 Rich resource configuration system
-- 🍰 SEO support
-- 🍰 Support for multiple URLs per website
+- 🍰 SEO support for search engines
+- 🍰 Support for multiple URLs or tags per website
 - 🍰 Website status monitoring
 - 🍰 Private visibility configuration
 - 🍰 Auto-fetch website icons/names/descriptions
 - 🍰 Massive widget customization
 - 🍰 Dark mode support
 - 🍰 Backend management without deployment
-- 🍰 Multiple innovative browsing modes
 - 🍰 Footprint memory
 - 🍰 Multiple search queries
 - 🍰 Custom search engine support
-- 🍰 Support card advertising display
+- 🍰 Card advertisement display
 - 🍰 Multiple aesthetic themes
 - 🍰 Powerful responsive system
 - 🍰 Various loading animations

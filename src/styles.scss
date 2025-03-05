@@ -95,19 +95,11 @@ em {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.border-none {
-  border: none;
-}
+
 .touch-active:active {
   background: rgba(0, 0, 0, 0.2) !important;
 }
 
-.clamp3 {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
 .remove {
   position: fixed !important;
   top: -10000px !important;

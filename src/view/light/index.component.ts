@@ -16,7 +16,6 @@ import { NoDataComponent } from 'src/components/no-data/no-data.component'
 import { FooterComponent } from 'src/components/footer/footer.component'
 import { FixbarComponent } from 'src/components/fixbar/index.component'
 import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.component'
-import { NzGridModule } from 'ng-zorro-antd/grid'
 import { SideImagesComponent } from 'src/components/side-images/index.component'
 
 @Component({
@@ -33,7 +32,6 @@ import { SideImagesComponent } from 'src/components/side-images/index.component'
     NoDataComponent,
     FooterComponent,
     FixbarComponent,
-    NzGridModule,
     SideImagesComponent,
   ],
   selector: 'app-light',
@@ -48,7 +46,7 @@ export default class LightComponent {
   }
 
   ngOnDestroy() {
-    this.commonService.overIndex = Number.MAX_SAFE_INTEGER
+    this.commonService.setOverIndex()
   }
 
   ngAfterViewInit() {

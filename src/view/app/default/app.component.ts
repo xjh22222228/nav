@@ -8,17 +8,10 @@ import { CommonService } from 'src/services/common'
 import { SearchComponent } from 'src/components/search/index.component'
 import { CardComponent } from 'src/components/card/index.component'
 import { FooterComponent } from 'src/components/footer/footer.component'
-import { NzGridModule } from 'ng-zorro-antd/grid'
 
 @Component({
   standalone: true,
-  imports: [
-    CommonModule,
-    NzGridModule,
-    SearchComponent,
-    CardComponent,
-    FooterComponent,
-  ],
+  imports: [CommonModule, SearchComponent, CardComponent, FooterComponent],
   selector: 'app-home',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],

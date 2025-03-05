@@ -22,7 +22,6 @@ import { CardComponent } from 'src/components/card/index.component'
 import { NoDataComponent } from 'src/components/no-data/no-data.component'
 import { FooterComponent } from 'src/components/footer/footer.component'
 import { FixbarComponent } from 'src/components/fixbar/index.component'
-import { NzGridModule } from 'ng-zorro-antd/grid'
 import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { SwiperComponent } from 'src/components/swiper/index.component'
 import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.component'
@@ -43,7 +42,6 @@ import { WebListComponent } from 'src/components/web-list/index.component'
     NoDataComponent,
     FooterComponent,
     FixbarComponent,
-    NzGridModule,
     NzLayoutModule,
     SwiperComponent,
   ],
@@ -61,14 +59,6 @@ export default class SideComponent {
     if (localCollapsed) {
       this.isCollapsed = localCollapsed === 'true'
     }
-  }
-
-  get nzXXl(): number {
-    const cardStyle = this.commonService.settings.sideCardStyle
-    if (cardStyle === 'original' || cardStyle === 'example') {
-      return 4
-    }
-    return 6
   }
 
   openMenu(item: any, index: number) {

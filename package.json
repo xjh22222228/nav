@@ -13,6 +13,7 @@
     "update": "git pull && (git remote add upstream https://gitee.com/xiejiahe/nav.git || true) && git fetch upstream main && git merge upstream/main --allow-unrelated-histories --no-edit && git push",
     "pull": "git pull"
   },
+  "type": "module",
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.2.0",

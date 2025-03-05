@@ -23,6 +23,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import { saveUserCollect } from 'src/api'
 import { NzMessageService } from 'ng-zorro-antd/message'
+import { CommonService } from 'src/services/common'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -44,8 +45,7 @@ import event from 'src/utils/mitt'
   styleUrls: ['./index.component.scss'],
 })
 export class CardComponent {
-  @Input() searchKeyword = ''
-  @Input() dataSource: IWebProps | Record<string, any> = {}
+  @Input() dataSource!: IWebProps
   @Input() cardStyle: ICardType = 'standard'
   @ViewChild('root', { static: false }) root!: ElementRef
 
@@ -60,6 +60,7 @@ export class CardComponent {
   isCode = false
 
   constructor(
+    public commonService: CommonService,
     public readonly jumpService: JumpService,
     private message: NzMessageService
   ) {}

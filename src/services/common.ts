@@ -22,8 +22,10 @@ import event from 'src/utils/mitt'
   providedIn: 'root',
 })
 export class CommonService {
-  isLogin = isLogin
-  settings = settings
+  readonly isLogin = isLogin
+  readonly settings = settings
+  readonly permissions = getPermissions(settings)
+  readonly title: string = settings.title.trim().split(/\s/)[0]
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
   twoIndex = 0
@@ -32,8 +34,6 @@ export class CommonService {
   selectedThreeIndex = 0 // 第三级菜单选中
   searchKeyword = ''
   overIndex = Number.MAX_SAFE_INTEGER
-  title: string = settings.title.trim().split(/\s/)[0]
-  permissions = getPermissions(settings)
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     const getData = () => {
@@ -102,9 +102,11 @@ export class CommonService {
     }
   }
 
-  onCollapse = (item: any, index: number) => {
+  onCollapse = (item: INavThreeProp) => {
+    const { oneIndex, twoIndex, threeIndex } = getClassById(item.id)
     item.collapsed = !item.collapsed
-    this.websiteList[this.oneIndex].nav[this.twoIndex].nav[index] = item
+    this.websiteList[oneIndex].nav[twoIndex].nav[threeIndex].collapsed =
+      !!item.collapsed
     if (!isSelfDevelop) {
       setWebsiteList(this.websiteList)
     }
@@ -118,5 +120,9 @@ export class CommonService {
       }
       this.overIndex = overIndex
     })
+  }
+
+  setOverIndex() {
+    this.overIndex = Number.MAX_SAFE_INTEGER
   }
 }

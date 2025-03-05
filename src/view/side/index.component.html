@@ -116,37 +116,27 @@
               <div class="nav-wrapper">
                 <app-toolbar-title
                   [dataSource]="item"
-                  (onCollapse)="commonService.onCollapse(item, i)"
-                  [index]="i"
+                  (onCollapse)="commonService.onCollapse(item)"
                 />
 
                 <div
-                  nz-row
-                  [nzGutter]="[16, 16]"
-                  [style.display]="item.collapsed ? 'none' : ''"
+                  class="grid gap-x-4 gap-y-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4"
+                  [class.hidden]="item['collapsed']"
+                  [ngClass]="{
+                    '2xl:grid-cols-6':
+                      commonService.settings.sideCardStyle === 'original' ||
+                      commonService.settings.sideCardStyle === 'example'
+                  }"
                 >
-                  <div
+                  <app-card
                     *ngFor="
                       let el of item.nav;
                       trackBy: commonService.trackByItemWeb
                     "
-                    class="gutter-row"
-                    nz-col
-                    [nzSpan]="6"
-                    [nzXs]="24"
-                    [nzSm]="12"
-                    [nzMd]="12"
-                    [nzLg]="8"
-                    [nzXl]="6"
-                    [nzXXl]="nzXXl"
-                  >
-                    <app-card
-                      [cardStyle]="commonService.settings.sideCardStyle"
-                      [dataSource]="el"
-                      [searchKeyword]="commonService.searchKeyword"
-                      class="column-border"
-                    />
-                  </div>
+                    [cardStyle]="commonService.settings.sideCardStyle"
+                    [dataSource]="el"
+                    class="column-border"
+                  />
                 </div>
               </div>
             </div>

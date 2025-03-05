@@ -15,9 +15,8 @@ import { CardComponent } from 'src/components/card/index.component'
 import { NoDataComponent } from 'src/components/no-data/no-data.component'
 import { FooterComponent } from 'src/components/footer/footer.component'
 import { FixbarComponent } from 'src/components/fixbar/index.component'
-import { NzGridModule } from 'ng-zorro-antd/grid'
 import { SideImagesComponent } from 'src/components/side-images/index.component'
-import { queryString, getClassById } from 'src/utils'
+import { queryString } from 'src/utils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -33,7 +32,6 @@ import event from 'src/utils/mitt'
     NoDataComponent,
     FooterComponent,
     FixbarComponent,
-    NzGridModule,
     SideImagesComponent,
   ],
   selector: 'app-side',
@@ -41,7 +39,7 @@ import event from 'src/utils/mitt'
   styleUrls: ['./index.component.scss'],
 })
 export default class SideComponent {
-  $t = $t
+  readonly $t = $t
 
   constructor(public commonService: CommonService) {}
 
@@ -52,7 +50,7 @@ export default class SideComponent {
   }
 
   ngOnDestroy() {
-    this.commonService.overIndex = Number.MAX_SAFE_INTEGER
+    this.commonService.setOverIndex()
   }
 
   openCreateWebModal() {

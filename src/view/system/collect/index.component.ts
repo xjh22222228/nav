@@ -62,6 +62,7 @@ export default class CollectComponent {
   }
 
   onAllChecked(checked: boolean) {
+    this.checked = checked
     this.dataList.forEach((item) => {
       if (checked) {
         this.setOfCheckedId.add(item.extra.uuid)

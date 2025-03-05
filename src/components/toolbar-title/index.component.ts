@@ -18,13 +18,12 @@ import event from 'src/utils/mitt'
   styleUrls: ['./index.component.scss'],
 })
 export class ToolbarTitleWebComponent {
-  @Input() index: number = 0
   @Input() dataSource!: INavThreeProp
   @Output() onCollapse = new EventEmitter()
 
-  isLogin = isLogin
-  websiteList: INavProps[] = websiteList
-  permissions = getPermissions(settings)
+  readonly isLogin = isLogin
+  readonly websiteList: INavProps[] = websiteList
+  readonly permissions = getPermissions(settings)
 
   constructor() {}
 

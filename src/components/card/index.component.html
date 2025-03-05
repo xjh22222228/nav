@@ -22,7 +22,7 @@
 
       <div
         class="breadcrumb1 ellipsis"
-        *ngIf="searchKeyword && dataSource?.breadcrumb"
+        *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
       >
         <span *ngFor="let n of dataSource.breadcrumb; let idx = index"
           >{{ n
@@ -138,7 +138,7 @@
 
       <div
         class="breadcrumb1 ellipsis"
-        *ngIf="searchKeyword && dataSource?.breadcrumb"
+        *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
       >
         <span *ngFor="let n of dataSource.breadcrumb; let idx = index"
           >{{ n
@@ -179,7 +179,7 @@
 
       <div
         class="breadcrumb1 ellipsis"
-        *ngIf="searchKeyword && dataSource?.breadcrumb"
+        *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
       >
         <span *ngFor="let n of dataSource.breadcrumb; let idx = index"
           >{{ n
@@ -218,9 +218,7 @@
         >
           <div
             class="top dark-border-color"
-            [class.border-transparent]="
-              !description && !dataSource.tags?.length
-            "
+            [class.border-transparent]="!description && !dataSource.tags.length"
           >
             <app-logo
               [src]="dataSource.icon || ''"
@@ -274,7 +272,7 @@
 
       <div
         class="breadcrumb1 ellipsis"
-        *ngIf="searchKeyword && dataSource?.breadcrumb"
+        *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
       >
         <span *ngFor="let n of dataSource.breadcrumb; let idx = index"
           >{{ n
