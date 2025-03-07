@@ -5,7 +5,7 @@
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { settings } from 'src/store'
-import { compilerTemplate } from 'src/utils/util'
+import { compilerTemplate } from 'src/utils/utils'
 import { CommonService } from 'src/services/common'
 import { ComponentGroupComponent } from 'src/components/component-group/index.component'
 import { WebMoreMenuComponent } from 'src/components/web-more-menu/index.component'

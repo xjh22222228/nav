@@ -17,7 +17,7 @@ import {
   INavProps,
   IComponentProps,
 } from 'src/types'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 
 export let settings: ISettings = settingsJson as ISettings
 

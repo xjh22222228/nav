@@ -15,7 +15,7 @@ import {
   components,
 } from 'src/store'
 import { ISettings } from 'src/types'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import { isLogin } from 'src/utils/user'
 import { DB_PATH } from 'src/constants'
 import LZString from 'lz-string'

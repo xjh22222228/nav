@@ -5,8 +5,8 @@
   "homepage": "https://github.com/xjh22222228/nav",
   "scripts": {
     "start": "npm run build-start && ng serve --port=7001 --live-reload=false",
-    "build-start": "ts-node ./scripts/start.mjs",
-    "setup": "npm run build-start && ts-node ./scripts/build.mjs",
+    "build-start": "tsx ./scripts/start.ts",
+    "setup": "npm run build-start && tsx ./scripts/build.ts",
     "build-gh-pages": "npm run setup && ng build --base-href ./ --index src/index.html",
     "build": "npm run setup && ng build --index src/index.html",
     "watch": "ng build --watch --configuration development",
@@ -25,7 +25,10 @@
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
     "@tailwindcss/postcss": "^4.0.9",
+    "@types/compression": "^1.7.5",
     "@types/file-saver": "^2.0.7",
+    "@types/js-yaml": "^4.0.9",
+    "@types/nodemailer": "^6.4.17",
     "@types/qs": "^6.9.18",
     "axios": "^1.8.1",
     "clipboard": "^2.0.11",
@@ -46,6 +49,7 @@
     "rxjs": "~7.8.2",
     "tailwindcss": "^4.0.9",
     "tslib": "^2.8.1",
+    "tsx": "^4.19.3",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
@@ -58,7 +62,7 @@
     "compression": "^1.8.0",
     "connect-history-api-fallback": "^2.0.0",
     "cors": "^2.8.5",
-    "info-web": "^0.0.35",
+    "info-web": "^0.0.36",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
@@ -66,7 +70,6 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "pm2": "^5.4.3",
-    "ts-node": "~10.9.2",
     "typescript": "~5.8.2"
   }
 }

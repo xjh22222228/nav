@@ -21,7 +21,7 @@ import { CountdownDrawerComponent } from 'src/components/countdown/drawer/index.
 import { HTMLDrawerComponent } from 'src/components/html/drawer/index.component'
 import { HolidayDrawerComponent } from 'src/components/holiday/drawer/index.component'
 import { componentTitleMap } from './types'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'

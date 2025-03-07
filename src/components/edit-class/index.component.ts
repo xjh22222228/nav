@@ -22,6 +22,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { websiteList } from 'src/store'
 import { setWebsiteList } from 'src/utils/web'
 import { getClassById } from 'src/utils/index'
+import { getTempId } from 'src/utils/utils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -60,7 +61,7 @@ export class EditClassComponent {
       this.isEdit = !!props['title']
       this.validateForm.get('title')!.setValue(props['title'] || '')
       this.validateForm.get('icon')!.setValue(props['icon'] || '')
-      this.validateForm.get('id')!.setValue(props['id'] || -Date.now())
+      this.validateForm.get('id')!.setValue(props['id'] || getTempId())
       this.validateForm.get('ownVisible')!.setValue(!!props['ownVisible'])
       this.showModal = true
     }
@@ -114,7 +115,7 @@ export class EditClassComponent {
           }
         }
       } else {
-        params['id'] = -Date.now()
+        params['id'] = getTempId()
         params['nav'] = []
         const { oneIndex, twoIndex } = getClassById(id, -1)
         if (twoIndex !== -1) {

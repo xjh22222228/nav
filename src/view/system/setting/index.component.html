@@ -428,7 +428,9 @@
                     nz-input
                   ></textarea>
                 </td>
-                <td>
+                <td class="select-none">
+                  <a (click)="handleMoveUp('lightImages', idx)">{{$t('_moveUp')}}</a>
+                  <a class="mx-2" (click)="handleMoveDown('lightImages', idx)">{{$t('_moveDown')}}</a>
                   <a
                     nz-popconfirm
                     nzPopconfirmPlacement="rightTop"
@@ -550,7 +552,9 @@
                     nz-input
                   ></textarea>
                 </td>
-                <td>
+                <td class="select-none">
+                  <a (click)="handleMoveUp('superImages', idx)">{{$t('_moveUp')}}</a>
+                  <a class="mx-2" (click)="handleMoveDown('superImages', idx)">{{$t('_moveDown')}}</a>
                   <a
                     nz-popconfirm
                     nzPopconfirmPlacement="rightTop"
@@ -673,7 +677,9 @@
                     nz-input
                   ></textarea>
                 </td>
-                <td>
+                <td class="select-none">
+                  <a (click)="handleMoveUp('simThemeImages', idx)">{{$t('_moveUp')}}</a>
+                  <a class="mx-2" (click)="handleMoveDown('simThemeImages', idx)">{{$t('_moveDown')}}</a>
                   <a
                     nz-popconfirm
                     nzPopconfirmPlacement="rightTop"
@@ -827,7 +833,9 @@
                     nz-input
                   ></textarea>
                 </td>
-                <td>
+                <td class="select-none">
+                  <a (click)="handleMoveUp('sideThemeImages', idx)">{{$t('_moveUp')}}</a>
+                  <a class="mx-2" (click)="handleMoveDown('sideThemeImages', idx)">{{$t('_moveDown')}}</a>
                   <a
                     nz-popconfirm
                     nzPopconfirmPlacement="rightTop"

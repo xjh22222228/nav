@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { isLogin, getPermissions } from 'src/utils/user'
 import { copyText, getTextContent } from 'src/utils'
-import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/util'
+import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/utils'
 import { setWebsiteList, deleteWebByIds } from 'src/utils/web'
 import { INavProps, IWebProps, ICardType, ActionType } from 'src/types'
 import { $t, isZhCN } from 'src/locale'
@@ -24,6 +24,7 @@ import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import { saveUserCollect } from 'src/api'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { CommonService } from 'src/services/common'
+import { CODE_SYMBOL } from 'src/constants/symbol'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -66,7 +67,7 @@ export class CardComponent {
   ) {}
 
   ngOnInit() {
-    this.isCode = this.dataSource.desc?.[0] === '!'
+    this.isCode = this.dataSource.desc?.[0] === CODE_SYMBOL
     this.description = parseLoadingWithContent(this.dataSource.desc)
   }
 

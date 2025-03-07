@@ -6,31 +6,32 @@ import fs from 'fs'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc.js'
 import timezone from 'dayjs/plugin/timezone.js'
-import { writeSEO, writeTemplate, spiderWeb, PATHS } from './util.mjs'
+import { writeSEO, writeTemplate, spiderWeb, PATHS } from './utils'
+import { INavProps, ISettings } from '../src/types/index'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.tz.setDefault('Asia/Shanghai')
 
-const handleFileOperation = (operation) => {
+const handleFileOperation = (operation: () => any): any => {
   try {
     return operation()
   } catch (error) {
-    console.error(`File operation failed: ${error.message}`)
+    console.error(`File operation failed: ${(error as Error).message}`)
     return null
   }
 }
 
-const db = handleFileOperation(() =>
-  JSON.parse(fs.readFileSync(PATHS.db).toString())
+const db: INavProps[] = handleFileOperation(() =>
+  JSON.parse(fs.readFileSync(PATHS.db, 'utf-8'))
 )
-const settings = handleFileOperation(() =>
-  JSON.parse(fs.readFileSync(PATHS.settings).toString())
+const settings: ISettings = handleFileOperation(() =>
+  JSON.parse(fs.readFileSync(PATHS.settings, 'utf-8'))
 )
 
 const seoTemplate = writeSEO(db, { settings })
 const html = writeTemplate({
-  html: fs.readFileSync(PATHS.html.main).toString(),
+  html: fs.readFileSync(PATHS.html.main, 'utf-8'),
   settings,
   seoTemplate,
 })

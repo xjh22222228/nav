@@ -6,7 +6,7 @@ import { isLogin } from './user'
 import { IWebProps, INavProps } from '../types'
 import { websiteList } from 'src/store'
 import { STORAGE_KEY_MAP, DB_PATH } from 'src/constants'
-import { isSelfDevelop } from './util'
+import { isSelfDevelop } from './utils'
 import { queryString, getClassById } from './index'
 import { $t } from 'src/locale'
 

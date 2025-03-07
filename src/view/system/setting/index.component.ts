@@ -11,9 +11,10 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { SETTING_PATH } from 'src/constants'
+import { CODE_SYMBOL } from 'src/constants/symbol'
 import { updateFileContent, spiderWeb } from 'src/api'
 import { settings, components } from 'src/store'
-import { isSelfDevelop, compilerTemplate } from 'src/utils/util'
+import { isSelfDevelop, compilerTemplate } from 'src/utils/utils'
 import { componentTitleMap } from '../component/types'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import { NzButtonModule } from 'ng-zorro-antd/button'
@@ -174,6 +175,24 @@ export default class SystemSettingComponent {
     this.settings.shortcutThemeImages[0]['src'] = url
   }
 
+  handleMoveUp(key: string, idx: number) {
+    if (idx === 0) {
+      return
+    }
+    const data = this.settings[key][idx]
+    this.settings[key][idx] = this.settings[key][idx - 1]
+    this.settings[key][idx - 1] = data
+  }
+
+  handleMoveDown(key: string, idx: number) {
+    if (idx === this.settings[key].length - 1) {
+      return
+    }
+    const data = this.settings[key][idx]
+    this.settings[key][idx] = this.settings[key][idx + 1]
+    this.settings[key][idx + 1] = data
+  }
+
   handleSpider() {
     if (this.submitting) {
       return
@@ -205,7 +224,7 @@ export default class SystemSettingComponent {
       nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
         function filterImage(item: Record<string, any>) {
-          return item['src'] || item['url'][0] === '!'
+          return item['src'] || item['url'][0] === CODE_SYMBOL
         }
         const formValues = this.validateForm.value
         const values = {

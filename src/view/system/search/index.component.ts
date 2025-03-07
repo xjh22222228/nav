@@ -18,7 +18,7 @@ import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzSwitchModule } from 'ng-zorro-antd/switch'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { UploadComponent } from 'src/components/upload/index.component'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 
 @Component({
   standalone: true,

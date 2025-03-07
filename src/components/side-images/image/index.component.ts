@@ -5,8 +5,9 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ImageProps } from 'src/types'
-import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/util'
+import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/utils'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
+import { CODE_SYMBOL } from 'src/constants/symbol'
 
 @Component({
   standalone: true,
@@ -25,7 +26,7 @@ export class SideImageComponent {
   constructor() {}
 
   ngOnInit() {
-    this.isCode = this.data.url[0] === '!'
+    this.isCode = this.data.url[0] === CODE_SYMBOL
     if (this.isCode) {
       this.html = parseLoadingWithContent(this.data.url)
     }

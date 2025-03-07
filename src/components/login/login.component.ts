@@ -9,7 +9,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { verifyToken, updateFileContent, createBranch } from 'src/api'
 import { setToken, removeToken, removeWebsite } from 'src/utils/user'
 import { $t } from 'src/locale'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzInputModule } from 'ng-zorro-antd/input'
 

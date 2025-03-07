@@ -12,6 +12,7 @@ import {
   IWebTag,
 } from '../types'
 import { STORAGE_KEY_MAP } from 'src/constants'
+import { CODE_SYMBOL } from 'src/constants/symbol'
 import { isLogin } from './user'
 import { SearchType } from 'src/components/search/index'
 import { websiteList, searchEngineList, settings } from 'src/store'
@@ -52,7 +53,7 @@ export function fuzzySearch(
         const name = item.name.toLowerCase()
         const desc = item.desc.toLowerCase()
         const url = item.url.toLowerCase()
-        const isCode = desc[0] === '!'
+        const isCode = desc[0] === CODE_SYMBOL
         if (isCode) {
           continue
         }

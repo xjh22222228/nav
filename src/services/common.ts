@@ -15,7 +15,7 @@ import {
 import { setWebsiteList, toggleCollapseAll } from 'src/utils/web'
 import { INavProps, INavThreeProp } from 'src/types'
 import { isLogin, getPermissions } from 'src/utils/user'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import event from 'src/utils/mitt'
 
 @Injectable({
@@ -103,10 +103,7 @@ export class CommonService {
   }
 
   onCollapse = (item: INavThreeProp) => {
-    const { oneIndex, twoIndex, threeIndex } = getClassById(item.id)
     item.collapsed = !item.collapsed
-    this.websiteList[oneIndex].nav[twoIndex].nav[threeIndex].collapsed =
-      !!item.collapsed
     if (!isSelfDevelop) {
       setWebsiteList(this.websiteList)
     }

@@ -53,8 +53,9 @@
       </nz-option>
     </nz-select>
 
-    <div class="act">
+    <div class="act select-none">
       <label nz-checkbox [(ngModel)]="isCopy">{{ $t('_copy') }}</label>
+      <label nz-checkbox [(ngModel)]="isSame" *ngIf="isCopy">{{ $t('_same') }}</label>
     </div>
   </ng-container>
 </nz-modal>

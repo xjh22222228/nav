@@ -5,7 +5,7 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core'
 import { IComponentProps } from 'src/types'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
-import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/util'
+import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/utils'
 import { set } from 'nprogress'
 
 @Component({

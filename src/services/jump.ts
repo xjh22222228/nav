@@ -4,6 +4,7 @@
 
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
+import { CODE_SYMBOL, SELF_SYMBOL, ROUTER_SYMBOL } from 'src/constants/symbol'
 import event from 'src/utils/mitt'
 
 @Injectable({
@@ -22,7 +23,7 @@ export class JumpService {
     const firstSymbol = url[0]
 
     // Code
-    if (firstSymbol === '!') {
+    if (firstSymbol === CODE_SYMBOL) {
       return
     }
 
@@ -31,12 +32,12 @@ export class JumpService {
       return
     }
 
-    if (firstSymbol === '@') {
+    if (firstSymbol === ROUTER_SYMBOL) {
       this.router.navigate([url.slice(1)])
       return
     }
 
-    const self = firstSymbol === '^'
+    const self = firstSymbol === SELF_SYMBOL
     if (self) {
       window.open(url.slice(1), '_self')
     } else {

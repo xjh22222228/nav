@@ -46,7 +46,7 @@ The philosophy of `Discovery Navigation` is to create a simple and convenient so
 - 🍰 Export data to browser bookmarks
 - 🍰 Support user submissions, edits, and deletions
 - 🍰 Support self-deployment (pm2|Docker|BT Panel)/Fork
-- 🍰 Rich resource configuration system
+- 🍰 Support categorization/website mobility and citation
 - 🍰 SEO support for search engines
 - 🍰 Support for multiple URLs or tags per website
 - 🍰 Website status monitoring

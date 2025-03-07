@@ -6,6 +6,7 @@ import { Component, Output, EventEmitter } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { getTextContent, getClassById } from 'src/utils'
+import { getTempId } from 'src/utils/utils'
 import { setWebsiteList, updateByWeb } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps, IWebTag, TopType, ActionType } from 'src/types'
@@ -25,6 +26,7 @@ import { UploadComponent } from 'src/components/upload/index.component'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSelectModule } from 'ng-zorro-antd/select'
+import { SELF_SYMBOL } from 'src/constants/symbol'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -176,7 +178,7 @@ export class CreateWebComponent {
     }
     try {
       // test url
-      if (url[0] === '!') {
+      if (url[0] === SELF_SYMBOL) {
         url = url.slice(1)
       }
       new URL(url)
@@ -286,7 +288,7 @@ export class CreateWebComponent {
         this.message.success($t('_waitHandle'))
       }
     } else {
-      payload['id'] = -Date.now()
+      payload['id'] = getTempId()
       try {
         const { oneIndex, twoIndex, threeIndex, breadcrumb } = getClassById(
           this.parentId

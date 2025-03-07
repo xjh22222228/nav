@@ -1,7 +1,7 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 
 const zhCN: Record<string, any> = {
   _loading: '加载中...',
@@ -285,6 +285,8 @@ const zhCN: Record<string, any> = {
   _hours: '{num}小时',
   _minutes: '{num}分钟',
   _seconds: '{num}秒',
+  _same: '引用',
+  _sameExists: '已存在',
 }
 
 export default zhCN

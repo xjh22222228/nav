@@ -7,7 +7,7 @@ import path from 'path'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc.js'
 import timezone from 'dayjs/plugin/timezone.js'
-import defaultDb from './db.mjs'
+import defaultDb from './db'
 import yaml from 'js-yaml'
 import LZString from 'lz-string'
 import {
@@ -21,7 +21,13 @@ import {
   setWebs,
   replaceJsdelivrCDN,
   PATHS,
-} from './util.mjs'
+} from './utils'
+import {
+  ITagPropValues,
+  ISettings,
+  INavProps,
+  InternalProps,
+} from '../src/types/index'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -29,22 +35,25 @@ dayjs.tz.setDefault('Asia/Shanghai')
 
 const initConfig = () => {
   const pkgJson = JSON.parse(fs.readFileSync(PATHS.pkg).toString())
-  const config = yaml.load(fs.readFileSync(PATHS.config))
+  const config = yaml.load(fs.readFileSync(PATHS.config).toString()) as Record<
+    string,
+    any
+  >
 
   return {
     version: pkgJson.version,
-    gitRepoUrl: config.gitRepoUrl,
-    imageRepoUrl: config.imageRepoUrl,
-    branch: config.branch,
-    hashMode: config.hashMode,
-    address: config.address,
-    email: config.email,
-    port: config.port,
+    gitRepoUrl: config['gitRepoUrl'],
+    imageRepoUrl: config['imageRepoUrl'],
+    branch: config['branch'],
+    hashMode: config['hashMode'],
+    address: config['address'],
+    email: config['email'],
+    port: config['port'],
     datetime: dayjs.tz().format('YYYY-MM-DD HH:mm'),
-  }
+  } as const
 }
 
-const readDb = () => {
+const readDb = (): INavProps[] => {
   try {
     const strings = fs.readFileSync(PATHS.db).toString().trim()
     if (!strings) throw new Error('empty')
@@ -66,11 +75,11 @@ const main = async () => {
   )
 
   const db = readDb()
-  let internal = {}
-  let settings = {}
-  let tags = []
-  let search = []
-  let components = []
+  let internal = {} as InternalProps
+  let settings = {} as ISettings
+  let tags: ITagPropValues[] = []
+  let search: any[] = []
+  let components: Record<string, any>[] = []
 
   try {
     internal = JSON.parse(fs.readFileSync(PATHS.internal).toString())
@@ -83,9 +92,8 @@ const main = async () => {
     components = JSON.parse(fs.readFileSync(PATHS.component).toString())
   } catch {
   } finally {
-    /** @type {import('./src/types/index.ts').ComponentType} */
-    let idx = components.findIndex((item) => item.type === 1)
-    const calendar = {
+    let idx = components.findIndex((item) => item['type'] === 1)
+    const calendar: Record<string, any> = {
       type: 1,
       id: -1,
       topColor: '#ff5a5d',
@@ -100,8 +108,8 @@ const main = async () => {
       components.push(calendar)
     }
     //
-    idx = components.findIndex((item) => item.type === 2)
-    const offWork = {
+    idx = components.findIndex((item) => item['type'] === 2)
+    const offWork: Record<string, any> = {
       type: 2,
       id: -2,
       workTitle: '距离下班还有',
@@ -118,8 +126,8 @@ const main = async () => {
       components.push(offWork)
     }
     //
-    idx = components.findIndex((item) => item.type === 4)
-    const image = {
+    idx = components.findIndex((item) => item['type'] === 4)
+    const image: Record<string, any> = {
       type: 4,
       id: -4,
       url: 'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/component1.jpg',
@@ -131,13 +139,16 @@ const main = async () => {
         ...image,
         ...components[idx],
       }
-      components[idx].url = replaceJsdelivrCDN(components[idx].url, settings)
+      components[idx]['url'] = replaceJsdelivrCDN(
+        components[idx]['url'],
+        settings
+      )
     } else {
       components.push(image)
     }
     //
-    idx = components.findIndex((item) => item.type === 5)
-    const countdown = {
+    idx = components.findIndex((item) => item['type'] === 5)
+    const countdown: Record<string, any> = {
       type: 5,
       id: -5,
       topColor: 'linear-gradient(90deg, #FAD961 0%, #F76B1C 100%)',
@@ -153,13 +164,16 @@ const main = async () => {
         ...countdown,
         ...components[idx],
       }
-      components[idx].url = replaceJsdelivrCDN(components[idx].url, settings)
+      components[idx]['url'] = replaceJsdelivrCDN(
+        components[idx]['url'],
+        settings
+      )
     } else {
       components.push(countdown)
     }
     //
-    idx = components.findIndex((item) => item.type === 3)
-    const runtime = {
+    idx = components.findIndex((item) => item['type'] === 3)
+    const runtime: Record<string, any> = {
       type: 3,
       id: -3,
       title: '已稳定运行',
@@ -173,8 +187,8 @@ const main = async () => {
       components.push(runtime)
     }
     //
-    idx = components.findIndex((item) => item.type === 6)
-    const html = {
+    idx = components.findIndex((item) => item['type'] === 6)
+    const html: Record<string, any> = {
       type: 6,
       id: -6,
       html: '你好，发现导航',
@@ -189,8 +203,8 @@ const main = async () => {
     } else {
       components.push(html)
     }
-    idx = components.findIndex((item) => item.type === 7)
-    const holiday = {
+    idx = components.findIndex((item) => item['type'] === 7)
+    const holiday: Record<string, any> = {
       type: 7,
       id: -7,
       items: [],

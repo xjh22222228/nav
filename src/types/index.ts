@@ -195,7 +195,7 @@ export interface ISettings {
   spiderDescription: Spider
   spiderTitle: Spider
   spiderQty: number
-  spiderTimeout: number | string
+  spiderTimeout: number
 
   loadingCode: string
   openSearch: boolean
