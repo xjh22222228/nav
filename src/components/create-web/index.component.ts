@@ -2,7 +2,7 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, Output, EventEmitter } from '@angular/core'
+import { Component, ViewChild, ElementRef } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { getTextContent, getClassById } from 'src/utils'
@@ -11,6 +11,7 @@ import { setWebsiteList, updateByWeb } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps, IWebTag, TopType, ActionType } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
+import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { saveUserCollect, getWebInfo } from 'src/api'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagList, tagMap } from 'src/store'
@@ -52,7 +53,7 @@ import event from 'src/utils/mitt'
   styleUrls: ['./index.component.scss'],
 })
 export class CreateWebComponent {
-  @Output() onOk = new EventEmitter()
+  @ViewChild('inputUrl', { static: false }) inputUrl!: ElementRef
 
   $t = $t
   isLogin: boolean = isLogin
@@ -72,7 +73,11 @@ export class CreateWebComponent {
     { label: TopType[2], value: TopType.Shortcut, checked: false },
   ]
 
-  constructor(private fb: FormBuilder, private message: NzMessageService) {
+  constructor(
+    private fb: FormBuilder,
+    private message: NzMessageService,
+    private notification: NzNotificationService
+  ) {
     event.on('CREATE_WEB', (props: any) => {
       this.open(this, props)
     })
@@ -150,10 +155,17 @@ export class CreateWebComponent {
     })
 
     this.validateForm.get('topOptions')!.setValue(topOptions)
+    this.focusUrl()
   }
 
   get iconUrl() {
     return this.validateForm.get('icon')?.value || ''
+  }
+
+  focusUrl() {
+    setTimeout(() => {
+      this.inputUrl?.nativeElement?.focus()
+    }, 400)
   }
 
   onClose() {
@@ -221,6 +233,42 @@ export class CreateWebComponent {
 
   onChangeFile(data: any) {
     this.validateForm.get('icon')!.setValue(data.cdn)
+  }
+
+  checkRepeat() {
+    try {
+      const { url } = this.validateForm.value
+      const { oneIndex, twoIndex, threeIndex } = getClassById(this.parentId)
+
+      const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
+      const repeatData = w.find((item) => {
+        if (item.url === url) {
+          return true
+        }
+        try {
+          const domain = new URL(item.url).host
+          const domain2 = new URL(url).host
+          return domain === domain2
+        } catch {
+          return false
+        }
+      })
+      if (repeatData) {
+        this.notification.error(
+          $t('_repeatTip'),
+          `
+          ID: ${repeatData.id}；
+          ${$t('_title')}: ${repeatData.name}；
+          URL: ${repeatData.url}
+          `,
+          {
+            nzDuration: 10000,
+          }
+        )
+      } else {
+        this.message.success('OK')
+      }
+    } catch {}
   }
 
   async handleOk() {
@@ -293,8 +341,8 @@ export class CreateWebComponent {
         const { oneIndex, twoIndex, threeIndex, breadcrumb } = getClassById(
           this.parentId
         )
-
         const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
+
         this.uploading = true
         if (this.isLogin) {
           w.unshift(payload as IWebProps)
@@ -324,7 +372,6 @@ export class CreateWebComponent {
       }
     }
     this.callback()
-    this.onOk?.emit?.(payload)
     this.onClose()
   }
 }

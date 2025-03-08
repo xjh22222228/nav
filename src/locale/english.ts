@@ -297,7 +297,9 @@ const english: Record<string, any> = {
   _minutes: '{num} min',
   _seconds: '{num} s',
   _same: 'Same',
-  _sameExists: '已存在',
+  _sameExists: 'Already exists',
+  _checkRepeat: 'Check URL',
+  _repeatTip: 'There may be duplicate URLs in this category"',
 }
 
 export default english

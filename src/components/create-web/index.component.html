@@ -3,11 +3,11 @@
   [(nzVisible)]="showModal"
   [nzTitle]="detail ? $t('_edit') : $t('_add')"
   (nzOnCancel)="onClose()"
-  (nzOnOk)="handleOk()"
-  [nzOkLoading]="uploading || getting"
   [nzBodyStyle]="{ maxHeight: '70vh', overflowY: 'auto' }"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
 >
-  <ng-container *nzModalContent>
+  <ng-template #modalContent>
     <div class="breadcrumb1" *ngIf="detail && detail.breadcrumb">
       <span *ngFor="let n of detail.breadcrumb; let idx = index"
         >{{ n }}
@@ -23,7 +23,12 @@
           $t('_webLink')
         }}</nz-form-label>
         <nz-form-control [nzSpan]="20" [nzErrorTip]="$t('_requiredLink')">
-          <input formControlName="url" nz-input (blur)="onUrlBlur($event)" />
+          <input
+            formControlName="url"
+            nz-input
+            (blur)="onUrlBlur($event)"
+            #inputUrl
+          />
         </nz-form-control>
       </nz-form-item>
 
@@ -193,5 +198,28 @@
         </nz-form-control>
       </nz-form-item>
     </form>
-  </ng-container>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button
+      *ngIf="parentId !== -1"
+      nz-button
+      nzType="primary"
+      (click)="checkRepeat()"
+    >
+      <nz-icon nzType="search" />
+      {{ $t('_checkRepeat') }}
+    </button>
+    <button nz-button nzType="default" (click)="onClose()">
+      {{ $t('_cancel') }}
+    </button>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="handleOk()"
+      [nzLoading]="uploading || getting"
+    >
+      {{ $t('_submit') }}
+    </button>
+  </ng-template>
 </nz-modal>

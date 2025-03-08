@@ -287,6 +287,8 @@ const zhCN: Record<string, any> = {
   _seconds: '{num}秒',
   _same: '引用',
   _sameExists: '已存在',
+  _checkRepeat: '检重URL',
+  _repeatTip: '该分类下可能存在重复URL',
 }
 
 export default zhCN
