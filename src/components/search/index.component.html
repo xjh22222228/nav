@@ -81,6 +81,10 @@
           [nzValue]="SearchType.Quick"
         ></nz-option>
         <nz-option
+          [nzLabel]="$t('_tag')"
+          [nzValue]="SearchType.Tag"
+        ></nz-option>
+        <nz-option
           *ngIf="isLogin"
           nzLabel="ID"
           [nzValue]="SearchType.Id"

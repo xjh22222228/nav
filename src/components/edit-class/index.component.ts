@@ -2,7 +2,13 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, Output, EventEmitter } from '@angular/core'
+import {
+  Component,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+} from '@angular/core'
 import { CommonModule } from '@angular/common'
 import {
   FormsModule,
@@ -22,7 +28,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { websiteList } from 'src/store'
 import { setWebsiteList } from 'src/utils/web'
 import { getClassById } from 'src/utils/index'
-import { getTempId } from 'src/utils/utils'
+import { getTempId, isSelfDevelop } from 'src/utils/utils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -44,6 +50,7 @@ import event from 'src/utils/mitt'
 })
 export class EditClassComponent {
   @Output() onOk = new EventEmitter()
+  @ViewChild('input', { static: false }) input!: ElementRef
 
   $t = $t
   validateForm!: FormGroup
@@ -64,12 +71,22 @@ export class EditClassComponent {
       this.validateForm.get('id')!.setValue(props['id'] || getTempId())
       this.validateForm.get('ownVisible')!.setValue(!!props['ownVisible'])
       this.showModal = true
+      this.focusUrl()
     }
     event.on('EDIT_CLASS_OPEN', handleOpen)
   }
 
   get iconUrl(): string {
     return this.validateForm.get('icon')?.value || ''
+  }
+
+  focusUrl() {
+    if (this.validateForm.get('title')?.value) {
+      return
+    }
+    setTimeout(() => {
+      this.input?.nativeElement?.focus()
+    }, 400)
   }
 
   onChangeFile(data: any) {
@@ -133,5 +150,8 @@ export class EditClassComponent {
 
     this.onOk.emit(params)
     this.onCancel()
+    if (!isSelfDevelop) {
+      event.emit('WEB_REFRESH')
+    }
   }
 }

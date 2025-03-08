@@ -15,7 +15,7 @@ import { STORAGE_KEY_MAP } from 'src/constants'
 import { CODE_SYMBOL } from 'src/constants/symbol'
 import { isLogin } from './user'
 import { SearchType } from 'src/components/search/index'
-import { websiteList, searchEngineList, settings } from 'src/store'
+import { websiteList, searchEngineList, settings, tagMap } from 'src/store'
 import { $t } from 'src/locale'
 
 export function randomInt(max: number) {
@@ -127,6 +127,17 @@ export function fuzzySearch(
           return false
         }
 
+        const searchTags = () => {
+          return item.tags.forEach((tag: IWebTag) => {
+            if (tagMap[tag.id]?.name?.toLowerCase() === keyword) {
+              if (!urlRecordMap.has(item.id)) {
+                urlRecordMap.set(item.id, true)
+                navData.push(item)
+              }
+            }
+          })
+        }
+
         const searchId = (): boolean => {
           if (item.id == keyword) {
             navData.push(item)
@@ -151,6 +162,10 @@ export function fuzzySearch(
 
             case SearchType.Quick:
               searchQuick()
+              break
+
+            case SearchType.Tag:
+              searchTags()
               break
 
             case SearchType.Id:

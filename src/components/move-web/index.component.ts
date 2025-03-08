@@ -15,7 +15,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { deleteWebByIds, deleteClassByIds } from 'src/utils/web'
 import { getClassById } from 'src/utils'
-import { getTempId } from 'src/utils/utils'
+import { getTempId, isSelfDevelop } from 'src/utils/utils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -185,6 +185,9 @@ export class MoveWebComponent {
 
       setWebsiteList(this.websiteList)
       this.handleCancel()
+      if (!isSelfDevelop) {
+        event.emit('WEB_REFRESH')
+      }
     } catch (error: any) {
       this.message.error(error.message)
     }

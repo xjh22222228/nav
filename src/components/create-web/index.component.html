@@ -201,6 +201,9 @@
   </ng-template>
 
   <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="onClose()">
+      {{ $t('_cancel') }}
+    </button>
     <button
       *ngIf="parentId !== -1"
       nz-button
@@ -209,9 +212,6 @@
     >
       <nz-icon nzType="search" />
       {{ $t('_checkRepeat') }}
-    </button>
-    <button nz-button nzType="default" (click)="onClose()">
-      {{ $t('_cancel') }}
     </button>
     <button
       nz-button

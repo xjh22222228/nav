@@ -33,14 +33,15 @@ export class FixbarComponent {
   @Input() selector: string = ''
   @Output() onCollapse = new EventEmitter()
 
-  $t = $t
-  settings = settings
-  language = getLocale()
-  websiteList = websiteList
+  readonly $t = $t
+  readonly settings = settings
+  readonly language = getLocale()
+  readonly isLogin = isLogin
   isDark: boolean = isDarkFn()
+  websiteList = websiteList
   syncLoading = false
-  isLogin = isLogin
   isShowFace = true
+  entering = false
   open = localStorage.getItem(STORAGE_KEY_MAP.fixbarOpen) === 'true'
   themeList = [
     {
@@ -164,6 +165,7 @@ export class FixbarComponent {
   }
 
   goSystemPage() {
+    this.entering = true
     this.router.navigate(['system'])
   }
 

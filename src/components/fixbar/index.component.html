@@ -36,6 +36,7 @@
     nz-tooltip
     [nzTooltipTitle]="$t('_addData')"
     class="common-show wrapper dark-bg dark-border-color dark-action-hover"
+    [class.rotate]="entering"
     (click)="goSystemPage()"
   >
     <i class="iconfont iconchuangjian"></i>

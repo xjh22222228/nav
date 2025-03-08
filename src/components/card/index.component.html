@@ -57,8 +57,8 @@
         <div
           (click)="jumpService.goUrl($event, dataSource.url)"
           class="cursor-pointer desc dark-text ellipsis3"
-          [innerHTML]="description"
-          [title]="dataSource.__desc__ || description"
+          [innerHTML]="dataSource.desc"
+          [title]="dataSource.__desc__ || dataSource.desc"
         ></div>
         <tag-list [data]="dataSource.tags" *ngIf="dataSource.tags?.length" />
       </div>
@@ -123,7 +123,7 @@
     <!-- example style -->
     <div
       class="card-container example2 dark-bg dark-white dark-shadow"
-      [class.noDesc]="!description"
+      [class.noDesc]="!dataSource.desc"
       *ngSwitchCase="'example'"
       (click)="jumpService.goUrl($event, dataSource.url)"
     >
@@ -151,13 +151,16 @@
         <app-logo [src]="dataSource.icon || ''" [name]="dataSource.name" />
         <div
           class="right-box ellipsis"
-          [title]="dataSource.__desc__ || description"
+          [title]="dataSource.__desc__ || dataSource.desc"
         >
           <div
             class="title ellipsis dark-white"
             [innerHTML]="dataSource.name"
           ></div>
-          <div class="desc dark-text ellipsis" [innerHTML]="description"></div>
+          <div
+            class="desc dark-text ellipsis"
+            [innerHTML]="dataSource.desc"
+          ></div>
         </div>
       </div>
     </div>
@@ -196,7 +199,7 @@
         />
         <div
           class="right-box ellipsis"
-          [title]="dataSource.__desc__ || description"
+          [title]="dataSource.__desc__ || dataSource.desc"
         >
           <div
             class="title ellipsis dark-white"
@@ -218,7 +221,9 @@
         >
           <div
             class="top dark-border-color"
-            [class.border-transparent]="!description && !dataSource.tags.length"
+            [class.border-transparent]="
+              !dataSource.desc && !dataSource.tags.length
+            "
           >
             <app-logo
               [src]="dataSource.icon || ''"
@@ -234,9 +239,9 @@
           <div class="p-2.5">
             <div
               class="desc ellipsis3 dark-white"
-              *ngIf="description"
-              [title]="dataSource.__desc__ || description"
-              [innerHTML]="description"
+              *ngIf="dataSource.desc"
+              [title]="dataSource.__desc__ || dataSource.desc"
+              [innerHTML]="dataSource.desc"
             ></div>
             <tag-list
               *ngIf="
@@ -297,8 +302,11 @@
           ></div>
         </div>
 
-        <div class="right-box" [title]="dataSource.__desc__ || description">
-          <pre class="desc dark-text ellipsis" [innerHTML]="description"></pre>
+        <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
+          <pre
+            class="desc dark-text ellipsis"
+            [innerHTML]="dataSource.desc"
+          ></pre>
         </div>
       </div>
 

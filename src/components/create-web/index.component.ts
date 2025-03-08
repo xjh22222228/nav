@@ -163,6 +163,9 @@ export class CreateWebComponent {
   }
 
   focusUrl() {
+    if (this.validateForm.get('url')?.value) {
+      return
+    }
     setTimeout(() => {
       this.inputUrl?.nativeElement?.focus()
     }, 400)

@@ -21,7 +21,7 @@ import { isSelfDevelop } from 'src/utils/utils'
 
 export let settings: ISettings = settingsJson as ISettings
 
-let _tagMap: Record<string, any> = {}
+let _tagMap: Record<string, ITagPropValues> = {}
 
 export let searchEngineList: ISearchProps[] = isSelfDevelop ? [] : searchJson
 

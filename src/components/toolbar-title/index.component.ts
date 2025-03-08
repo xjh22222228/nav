@@ -12,6 +12,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { $t } from 'src/locale'
 import { deleteClassByIds } from 'src/utils/web'
 import { NzMessageService } from 'ng-zorro-antd/message'
+import { isSelfDevelop } from 'src/utils/utils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -51,6 +52,9 @@ export class ToolbarTitleWebComponent {
   async handleDelete(id: number) {
     if (await deleteClassByIds([id])) {
       this.message.success($t('_delSuccess'))
+      if (!isSelfDevelop) {
+        event.emit('WEB_REFRESH')
+      }
     }
   }
 
