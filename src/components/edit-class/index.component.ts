@@ -81,9 +81,6 @@ export class EditClassComponent {
   }
 
   focusUrl() {
-    if (this.validateForm.get('title')?.value) {
-      return
-    }
     setTimeout(() => {
       this.input?.nativeElement?.focus()
     }, 400)

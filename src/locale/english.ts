@@ -301,6 +301,7 @@ const english: Record<string, any> = {
   _checkRepeat: 'Check URL',
   _repeatTip: 'There may be duplicate URLs in this category"',
   _tag: 'Tag',
+  _translate: 'Translate',
 }
 
 export default english

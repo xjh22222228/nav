@@ -79,6 +79,7 @@ export class CommonService {
         _: Date.now(),
       },
     })
+    event.emit('SEARCH_FOCUS')
   }
 
   onCollapseAll = (e?: Event) => {

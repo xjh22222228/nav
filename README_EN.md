@@ -40,31 +40,32 @@ Three No-Needs: `No Database`, `No Server`, `No Cost`
 
 The philosophy of `Discovery Navigation` is to create a simple and convenient solution without relying on backend services, eliminating complex configurations and database concepts, making it ready to use out of the box.
 
-- 🍰 Built-in collection of `800+` high-quality websites
+- 🍰 Built-in `800+` high-quality websites
 - 🍰 Support for [Gitee](https://gitee.com/xiejiahe/nav)
-- 🍰 Import from browser bookmarks
-- 🍰 Export data to browser bookmarks
-- 🍰 Support user submissions, edits, and deletions
-- 🍰 Support self-deployment (pm2|Docker|BT Panel)/Fork
-- 🍰 Support categorization/website mobility and citation
-- 🍰 SEO support for search engines
-- 🍰 Support for multiple URLs or tags per website
-- 🍰 Website status monitoring
-- 🍰 Private visibility configuration
-- 🍰 Auto-fetch website icons/names/descriptions
-- 🍰 Massive widget customization
-- 🍰 Dark mode support
-- 🍰 Backend management without deployment
-- 🍰 Footprint memory
-- 🍰 Multiple search queries
-- 🍰 Custom search engine support
-- 🍰 Card advertisement display
-- 🍰 Multiple aesthetic themes
+- 🍰 Support for importing from browser bookmarks
+- 🍰 Support for exporting data to browser bookmarks
+- 🍰 Support for AI translation
+- 🍰 Support for user submissions, edits, and deletions
+- 🍰 Support for self-deployment (pm2|Docker|BT Panel)/Fork
+- 🍰 Support for category/website movement and references
+- 🍰 Support for SEO search engines
+- 🍰 Support for associating websites with multiple URLs or tags
+- 🍰 Support for detecting website status
+- 🍰 Support for configuring visibility only to yourself
+- 🍰 Support for automatically fetching website icons/names/descriptions
+- 🍰 Support for widget personalization
+- 🍰 Support for dark mode
+- 🍰 Support for backend management without deployment
+- 🍰 Support for footprint memory
+- 🍰 Support for multiple search queries
+- 🍰 Support for custom search engines
+- 🍰 Support for card advertisement display
+- 🍰 Multiple high-value themes to switch between
 - 🍰 Powerful responsive system
 - 🍰 Various loading animations
 - 🍰 Multiple card style designs
-- 🍰 Completely static with automated deployment
-- 🍰 Clear ternary tree classification structure
+- 🍰 Completely static with automated deployment functionality
+- 🍰 Ternary tree categorization with clear structure and classification
 
 ## Preview
 

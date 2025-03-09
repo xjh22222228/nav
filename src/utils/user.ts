@@ -6,27 +6,27 @@ import { STORAGE_KEY_MAP } from 'src/constants'
 import { ActionType, ISettings } from 'src/types'
 
 export function getToken() {
-  return window.localStorage.getItem(STORAGE_KEY_MAP.token) || ''
+  return globalThis.localStorage?.getItem(STORAGE_KEY_MAP.token) || ''
 }
 
 export function getAuthCode() {
-  return window.localStorage.getItem(STORAGE_KEY_MAP.authCode) || ''
+  return globalThis.localStorage.getItem(STORAGE_KEY_MAP.authCode) || ''
 }
 
 export function removeAuthCode() {
-  return window.localStorage.removeItem(STORAGE_KEY_MAP.authCode)
+  return globalThis.localStorage.removeItem(STORAGE_KEY_MAP.authCode)
 }
 
 export function setAuthCode(c: string) {
-  return window.localStorage.setItem(STORAGE_KEY_MAP.authCode, c.trim())
+  return globalThis.localStorage.setItem(STORAGE_KEY_MAP.authCode, c.trim())
 }
 
 export function setToken(token: string) {
-  return window.localStorage.setItem(STORAGE_KEY_MAP.token, token)
+  return globalThis.localStorage.setItem(STORAGE_KEY_MAP.token, token)
 }
 
 export function removeToken() {
-  return window.localStorage.removeItem(STORAGE_KEY_MAP.token)
+  return globalThis.localStorage.removeItem(STORAGE_KEY_MAP.token)
 }
 
 export function removeWebsite() {
@@ -36,8 +36,8 @@ export function removeWebsite() {
 export function userLogout() {
   const code = getAuthCode()
   localforage.clear()
-  window.localStorage.clear()
-  window.sessionStorage.clear()
+  globalThis.localStorage.clear()
+  globalThis.sessionStorage.clear()
   setAuthCode(code)
 }
 

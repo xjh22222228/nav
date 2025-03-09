@@ -205,6 +205,15 @@
       {{ $t('_cancel') }}
     </button>
     <button
+      [disabled]="!desc"
+      nz-button
+      nzType="primary"
+      (click)="handleTranslate()"
+      [nzLoading]="translating"
+    >
+      {{ $t('_translate') }}
+    </button>
+    <button
       *ngIf="parentId !== -1"
       nz-button
       nzType="primary"
@@ -217,7 +226,7 @@
       nz-button
       nzType="primary"
       (click)="handleOk()"
-      [nzLoading]="uploading || getting"
+      [nzLoading]="uploading || getting || translating"
     >
       {{ $t('_submit') }}
     </button>

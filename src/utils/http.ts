@@ -60,28 +60,35 @@ httpInstance.interceptors.response.use(
   }
 )
 
+export const HTTP_BASE_URL = 'https://api.nav3.cn'
+
 const httpNavInstance = axios.create({
   timeout: 15000,
-  baseURL: 'https://api.nav3.cn',
-  // baseURL: 'http://localhost:3007',
+  baseURL: HTTP_BASE_URL,
 })
+
+export function getDefaultRequestData(data?: any) {
+  const code = getAuthCode()
+  return {
+    code,
+    hostname: location.hostname,
+    host: location.host,
+    href: location.href,
+    isLogin,
+    ...config,
+    ...data,
+    email: settings.email,
+    language: settings.language,
+  } as const
+}
 
 httpNavInstance.interceptors.request.use(
   function (conf) {
-    const code = getAuthCode()
-    if (code) {
-      conf.headers['Authorization'] = code
+    const data = getDefaultRequestData()
+    if (data.code) {
+      conf.headers['Authorization'] = data.code
     }
-    conf.data = {
-      code,
-      hostname: location.hostname,
-      href: location.href,
-      isLogin,
-      ...config,
-      ...conf.data,
-      email: settings.email,
-      language: settings.language,
-    }
+    conf.data = getDefaultRequestData(conf.data)
     startLoad()
 
     return conf

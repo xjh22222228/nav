@@ -2,7 +2,7 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 
 import config from '../../nav.config.json'
-import http, { httpNav } from '../utils/http'
+import http, { httpNav, getDefaultRequestData } from '../utils/http'
 import qs from 'qs'
 import { encode } from 'js-base64'
 import {
@@ -281,6 +281,13 @@ export async function getUserInfo(data?: Record<string, any>) {
 
 export async function updateUserInfo(data?: Record<string, any>) {
   return httpNav.post('/api/info/update', data)
+}
+
+export async function getTranslate(data?: Record<string, any>) {
+  if (isSelfDevelop) {
+    return http.post('/api/translate', getDefaultRequestData(data))
+  }
+  return httpNav.post('/api/translate', data)
 }
 
 export function getCDN(path: string) {

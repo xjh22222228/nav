@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps, IWebTag, TopType, ActionType } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { saveUserCollect, getWebInfo } from 'src/api'
+import { saveUserCollect, getWebInfo, getTranslate } from 'src/api'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagList, tagMap } from 'src/store'
 import { isLogin, getPermissions } from 'src/utils/user'
@@ -55,14 +55,15 @@ import event from 'src/utils/mitt'
 export class CreateWebComponent {
   @ViewChild('inputUrl', { static: false }) inputUrl!: ElementRef
 
-  $t = $t
-  isLogin: boolean = isLogin
+  readonly $t = $t
+  readonly isLogin: boolean = isLogin
+  readonly settings = settings
+  readonly permissions = getPermissions(settings)
   validateForm!: FormGroup
   tagList = tagList
   uploading = false
   getting = false
-  settings = settings
-  permissions = getPermissions(settings)
+  translating = false
   showModal = false
   detail: IWebProps | null | undefined = null
   isMove = false // 提交完是否可以移动
@@ -108,6 +109,10 @@ export class CreateWebComponent {
 
   get isTop(): boolean {
     return this.validateForm.get('top')?.value || false
+  }
+
+  get desc(): string {
+    return this.validateForm.get('desc')?.value || ''
   }
 
   open(
@@ -162,7 +167,7 @@ export class CreateWebComponent {
     return this.validateForm.get('icon')?.value || ''
   }
 
-  focusUrl() {
+  private focusUrl() {
     if (this.validateForm.get('url')?.value) {
       return
     }
@@ -236,6 +241,19 @@ export class CreateWebComponent {
 
   onChangeFile(data: any) {
     this.validateForm.get('icon')!.setValue(data.cdn)
+  }
+
+  handleTranslate() {
+    this.translating = true
+    getTranslate({
+      content: this.desc,
+    })
+      .then((res) => {
+        this.validateForm.get('desc')!.setValue(res.data.content || '')
+      })
+      .finally(() => {
+        this.translating = false
+      })
   }
 
   checkRepeat() {
