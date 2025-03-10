@@ -114,7 +114,10 @@
       </section>
     </main>
 
-    <app-side-images [data]="commonService.settings.lightImages" />
+    <app-side-images
+      class="app-side"
+      [data]="commonService.settings.lightImages"
+    />
   </div>
 
   <app-footer [content]="commonService.settings.lightFooterHTML" />

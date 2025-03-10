@@ -7,6 +7,7 @@
   color: #3f51b5;
   font-weight: 500;
   display: flex;
+  justify-content: space-between;
   margin-bottom: 15px;
   user-select: none;
   margin-top: 10px;
@@ -21,12 +22,10 @@
     }
   }
   .add-icon {
-    z-index: 2;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+    position: relative;
+    z-index: 6;
     cursor: pointer;
     color: #666;
+    right: 10px;
   }
 }

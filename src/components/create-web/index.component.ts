@@ -2,7 +2,13 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, ViewChild, ElementRef } from '@angular/core'
+import {
+  Component,
+  ViewChild,
+  ViewChildren,
+  QueryList,
+  ElementRef,
+} from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { getTextContent, getClassById } from 'src/utils'
@@ -53,6 +59,7 @@ import event from 'src/utils/mitt'
   styleUrls: ['./index.component.scss'],
 })
 export class CreateWebComponent {
+  @ViewChildren('inputs') inputs!: QueryList<ElementRef>
   @ViewChild('inputUrl', { static: false }) inputUrl!: ElementRef
 
   readonly $t = $t
@@ -112,7 +119,15 @@ export class CreateWebComponent {
   }
 
   get desc(): string {
-    return this.validateForm.get('desc')?.value || ''
+    return (this.validateForm.get('desc')?.value || '').trim()
+  }
+
+  get iconUrl(): string {
+    return (this.validateForm.get('icon')?.value || '').trim()
+  }
+
+  get title(): string {
+    return (this.validateForm.get('title')?.value || '').trim()
   }
 
   open(
@@ -161,10 +176,6 @@ export class CreateWebComponent {
 
     this.validateForm.get('topOptions')!.setValue(topOptions)
     this.focusUrl()
-  }
-
-  get iconUrl() {
-    return this.validateForm.get('icon')?.value || ''
   }
 
   private focusUrl() {
@@ -243,13 +254,21 @@ export class CreateWebComponent {
     this.validateForm.get('icon')!.setValue(data.cdn)
   }
 
-  handleTranslate() {
+  onSelectChange(idx: number) {
+    this.inputs.forEach((item, index) => {
+      if (idx === index) {
+        item.nativeElement.focus()
+      }
+    })
+  }
+
+  handleTranslate(key = 'desc') {
     this.translating = true
     getTranslate({
-      content: this.desc,
+      content: key === 'desc' ? this.desc : this.title,
     })
       .then((res) => {
-        this.validateForm.get('desc')!.setValue(res.data.content || '')
+        this.validateForm.get(key)!.setValue(res.data.content || '')
       })
       .finally(() => {
         this.translating = false
@@ -260,7 +279,6 @@ export class CreateWebComponent {
     try {
       const { url } = this.validateForm.value
       const { oneIndex, twoIndex, threeIndex } = getClassById(this.parentId)
-
       const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
       const repeatData = w.find((item) => {
         if (item.url === url) {
@@ -301,16 +319,15 @@ export class CreateWebComponent {
     const tags: IWebTag[] = []
     let { title, icon, url, top, ownVisible, rate, desc, index, topOptions } =
       this.validateForm.value
-
+    title = title.trim()
     if (!title || !url) return
 
-    title = title.trim()
-    const urlArr = this.validateForm.get('urlArr')?.value || []
+    const urlArr = this.urlArray?.value || []
     urlArr.forEach((item: any) => {
       if (item.id) {
         tags.push({
           id: item.id,
-          url: item.url,
+          url: item.url.trim(),
         })
       }
     })

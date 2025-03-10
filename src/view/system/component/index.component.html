@@ -8,7 +8,7 @@
   {{ $t('_save') }}
 </button>
 
-<div class="mb-4 color-red font-bold" *ngIf="!isSelfDevelop">
+<div class="mb-4 !text-red-500 font-bold" *ngIf="!isSelfDevelop">
   {{ $t('_buildTip') }}
 </div>
 
@@ -47,7 +47,7 @@
         <a (click)="onAdd(item)">{{ $t('_copy') }}</a>
         <a
           *ngIf="item.id >= 0"
-          class="color-red ml-2"
+          class="!text-red-500 ml-2"
           nz-popconfirm
           nzOkType="danger"
           [nzPopconfirmTitle]="$t('_confirmDel')"

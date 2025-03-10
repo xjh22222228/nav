@@ -51,7 +51,7 @@ const english: Record<string, any> = {
     : 'Are you sure to synchronize all data to the remote end?',
   _syncSuccessTip: isSelfDevelop
     ? 'OK'
-    : 'The synchronization is successful. It takes about 5 minutes to build',
+    : 'Synchronization successful, currently building...',
   _error: 'Error',
   _syncFailTip: 'Synchronization failed, please try again',
   _inputToken: 'Please enter token',

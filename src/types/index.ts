@@ -59,7 +59,7 @@ export interface ITagProp {
 
 export interface IWebTag {
   id: number | string
-  url?: string
+  url: string
 }
 
 export interface BaseNavItem {

@@ -37,14 +37,28 @@
           $t('_webName')
         }}</nz-form-label>
         <nz-form-control [nzSpan]="20" [nzErrorTip]="$t('_requiredName')">
-          <input
-            formControlName="title"
-            nz-input
-            [readonly]="getting"
-            [placeholder]="getting ? $t('_pendingGet') : ''"
-          />
+          <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
+            <input
+              formControlName="title"
+              nz-input
+              [readonly]="getting"
+              [placeholder]="getting ? $t('_pendingGet') : ''"
+            />
+          </nz-input-group>
         </nz-form-control>
       </nz-form-item>
+      <ng-template #suffixButton>
+        <button
+          [disabled]="!title"
+          [nzLoading]="translating"
+          nz-button
+          nzType="primary"
+          nzSearch
+          (click)="handleTranslate('title')"
+        >
+          {{ $t('_translate') }}
+        </button>
+      </ng-template>
 
       <nz-form-item *ngIf="isLogin">
         <nz-form-label [nzSpan]="4">{{ $t('_sort') }}</nz-form-label>
@@ -159,6 +173,7 @@
               [nzAddOnAfter]="addOnAfterTemplate"
             >
               <input
+                #inputs
                 formControlName="url"
                 type="text"
                 nz-input
@@ -166,7 +181,11 @@
               />
             </nz-input-group>
             <ng-template #addOnBeforeTemplate>
-              <nz-select style="width: 100px" formControlName="id">
+              <nz-select
+                style="width: 100px"
+                formControlName="id"
+                (ngModelChange)="onSelectChange(idx)"
+              >
                 <nz-option
                   *ngFor="let tag of tagList"
                   [nzLabel]="tag.name"

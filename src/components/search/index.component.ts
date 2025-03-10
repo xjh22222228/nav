@@ -65,6 +65,10 @@ export class SearchComponent {
     this.inputFocus()
   }
 
+  onSelectChange() {
+    this.inputFocus()
+  }
+
   clickEngineItem(index: number) {
     document.body.click()
     this.currentEngine = this.searchEngineList[index]

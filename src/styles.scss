@@ -168,9 +168,6 @@ textarea.ant-input {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.display-block {
-  display: block !important;
-}
 .flex-center {
   display: flex;
   align-items: center;
@@ -180,12 +177,6 @@ textarea.ant-input {
   .max768none {
     display: none !important;
   }
-}
-.color-red {
-  color: red !important;
-}
-.color-white {
-  color: #fff;
 }
 .hidden-scrollbar {
   &::-webkit-scrollbar {
@@ -241,3 +232,10 @@ textarea.ant-input {
   animation: loading-dashx2 1.5s ease-in-out infinite;
 }
 // loading end
+
+// Google ad
+app-card:has(ins.adsbygoogle[data-ad-status='unfilled']),
+app-html:has(ins.adsbygoogle[data-ad-status='unfilled']),
+.aditem:has(ins.adsbygoogle[data-ad-status='unfilled']) {
+  display: none;
+}

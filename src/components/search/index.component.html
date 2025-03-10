@@ -56,7 +56,11 @@
       ></i>
     </ng-template>
     <ng-template #addOnBeforeTemplate>
-      <nz-select [(ngModel)]="searchTypeValue" *ngIf="!currentEngine.url">
+      <nz-select
+        [(ngModel)]="searchTypeValue"
+        *ngIf="!currentEngine.url"
+        (ngModelChange)="onSelectChange()"
+      >
         <nz-option
           [nzLabel]="$t('_default')"
           [nzValue]="SearchType.All"
