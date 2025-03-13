@@ -12,10 +12,16 @@ import {
   getOverIndex,
   getClassById,
 } from 'src/utils'
-import { setWebsiteList, toggleCollapseAll } from 'src/utils/web'
-import { INavProps, INavThreeProp } from 'src/types'
+import {
+  setWebsiteList,
+  toggleCollapseAll,
+  deleteClassByIds,
+  deleteWebByIds,
+} from 'src/utils/web'
+import { INavProps, INavThreeProp, IWebProps } from 'src/types'
 import { isLogin, getPermissions } from 'src/utils/user'
 import { isSelfDevelop } from 'src/utils/utils'
+import { $t } from 'src/locale'
 import event from 'src/utils/mitt'
 
 @Injectable({
@@ -122,5 +128,61 @@ export class CommonService {
 
   setOverIndex() {
     this.overIndex = Number.MAX_SAFE_INTEGER
+  }
+
+  async deleteWebByIds(ids: number[], data?: IWebProps) {
+    const isSame = this.isLogin && data?.['rId']
+
+    return new Promise((resolve) => {
+      event.emit('MODAL', {
+        nzTitle: $t('_confirmDel'),
+        nzContent: `ID${isSame ? `(${$t('_quote')})` : ''}: ${ids.join(',')}`,
+        nzWidth: 350,
+        nzOkType: 'primary',
+        nzOkDanger: true,
+        nzOkText: $t('_del'),
+        nzOnOk: async () => {
+          const ok = await deleteWebByIds(ids)
+          if (ok) {
+            event.emit('MESSAGE', {
+              type: 'success',
+              content: $t('_delSuccess'),
+            })
+          }
+          resolve(ok)
+        },
+        nzOnCancel: () => {
+          resolve(false)
+        },
+      })
+    })
+  }
+
+  async deleteClassByIds(ids: number[], data?: INavThreeProp) {
+    const isSame = this.isLogin && data?.['rId']
+
+    return new Promise((resolve) => {
+      event.emit('MODAL', {
+        nzTitle: $t('_confirmDel'),
+        nzContent: `ID${isSame ? `(${$t('_quote')})` : ''}: ${ids.join(',')}`,
+        nzWidth: 350,
+        nzOkType: 'primary',
+        nzOkDanger: true,
+        nzOkText: $t('_del'),
+        nzOnOk: async () => {
+          const ok = await deleteClassByIds(ids)
+          if (ok) {
+            event.emit('MESSAGE', {
+              type: 'success',
+              content: $t('_delSuccess'),
+            })
+          }
+          resolve(ok)
+        },
+        nzOnCancel: () => {
+          resolve(false)
+        },
+      })
+    })
   }
 }

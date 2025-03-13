@@ -3,6 +3,7 @@
   [nzTitle]="isEdit ? $t('_edit') : $t('_add')"
   (nzOnCancel)="onCancel()"
   (nzOnOk)="handleOk()"
+  [nzOkLoading]="submitting"
 >
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="validateForm">

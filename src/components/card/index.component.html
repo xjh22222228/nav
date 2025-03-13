@@ -107,12 +107,7 @@
         <div
           class="action-item dark-border-color"
           *ngIf="isLogin || permissions.del"
-          nz-popconfirm
-          nzPopconfirmPlacement="rightTop"
-          nzOkType="danger"
-          [nzPopconfirmTitle]="$t('_confirmDel')"
-          nzPopconfirmPlacement="bottom"
-          (nzOnConfirm)="confirmDel()"
+          (click)="confirmDel()"
           nz-icon
           nzType="delete"
           nzTheme="outline"

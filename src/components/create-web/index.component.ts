@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { getTextContent, getClassById } from 'src/utils'
 import { getTempId } from 'src/utils/utils'
-import { setWebsiteList, updateByWeb } from 'src/utils/web'
+import { updateByWeb, pushDataByAny } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import { IWebProps, IWebTag, TopType, ActionType } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -358,7 +358,7 @@ export class CreateWebComponent {
         if (ok) {
           this.message.success($t('_modifySuccess'))
         } else {
-          this.message.error('修改失败，找不到ID，请同步远端后尝试')
+          this.message.error('Update failed')
         }
       } else if (this.permissions.edit) {
         this.uploading = true
@@ -376,16 +376,11 @@ export class CreateWebComponent {
     } else {
       payload['id'] = getTempId()
       try {
-        const { oneIndex, twoIndex, threeIndex, breadcrumb } = getClassById(
-          this.parentId
-        )
-        const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
-
+        const { breadcrumb } = getClassById(this.parentId)
         this.uploading = true
         if (this.isLogin) {
-          w.unshift(payload as IWebProps)
-          setWebsiteList(websiteList)
-          this.message.success($t('_addSuccess'))
+          const ok = pushDataByAny(this.parentId, payload)
+          ok && this.message.success($t('_addSuccess'))
           if (this.isMove) {
             event.emit('MOVE_WEB', {
               data: [payload],

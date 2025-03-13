@@ -30,18 +30,12 @@
     ></div>
     <div
       *ngIf="isLogin || permissions.del"
-      class="tag-item cursor-pointer tag-action"
-      style="background-color: red"
+      class="tag-item cursor-pointer tag-action bg-red-500"
       nz-icon
       nzType="delete"
       nzTheme="outline"
-      nz-popconfirm
-      nzPopconfirmPlacement="rightTop"
       nzOkType="danger"
-      [nzPopconfirmTitle]="$t('_confirmDel')"
-      nzPopconfirmPlacement="bottom"
-      (nzOnConfirm)="confirmDel()"
-      (click)="handleClick($event)"
+      (click)="confirmDel()"
     ></div>
   </ng-container>
 </div>

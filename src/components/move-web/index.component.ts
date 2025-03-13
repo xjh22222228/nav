@@ -37,12 +37,12 @@ export class MoveWebComponent {
   twoOptions: INavTwoProp[] = []
   threeOptions: INavThreeProp[] = []
   isCopy = false
+  isSame = false
   oneSelect: number = -1
   twoSelect: number = -1
   threeSelect: number = -1
   moveItems: any[] = []
   showModal = false
-  isSame = false
   level = 4
   id = -1
 
@@ -93,6 +93,8 @@ export class MoveWebComponent {
   }
 
   handleCancel() {
+    this.isCopy = false
+    this.isSame = false
     this.showModal = false
   }
 
@@ -116,12 +118,15 @@ export class MoveWebComponent {
             return
           }
           if (this.isCopy) {
-            if (!this.isSame) {
-              tempId -= 1
+            tempId -= 1
+            if (this.isSame) {
+              item.rId = tempId
+            } else {
               item.id = tempId
+              delete item.rId
             }
           } else {
-            await deleteClassByIds([id])
+            await deleteClassByIds([item.rId || id], !!item.rId)
           }
           this.websiteList[oneIndex].nav.unshift(item)
           this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
@@ -141,12 +146,15 @@ export class MoveWebComponent {
             return
           }
           if (this.isCopy) {
-            if (!this.isSame) {
-              tempId -= 1
+            tempId -= 1
+            if (this.isSame) {
+              item.rId = tempId
+            } else {
               item.id = tempId
+              delete item.rId
             }
           } else {
-            await deleteClassByIds([id])
+            await deleteClassByIds([item.rId || id], !!item.rId)
           }
           this.websiteList[oneIndex].nav[twoIndex].nav.unshift(item)
           this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
@@ -169,12 +177,15 @@ export class MoveWebComponent {
           }
 
           if (this.isCopy) {
-            if (!this.isSame) {
-              tempId -= 1
+            tempId -= 1
+            if (this.isSame) {
+              item.rId = tempId
+            } else {
               item.id = tempId
+              delete item.rId
             }
           } else {
-            await deleteWebByIds([id])
+            await deleteWebByIds([item.rId || id], !!item.rId)
           }
           this.websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav.unshift(
             item

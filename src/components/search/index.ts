@@ -9,4 +9,5 @@ export enum SearchType {
   Quick,
   Id,
   Tag,
+  Class,
 }

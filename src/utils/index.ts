@@ -35,14 +35,28 @@ export function fuzzySearch(
   const { oneIndex, twoIndex } = getClassById(id)
   const sType = Number(type) || SearchType.All
   const navData: IWebProps[] = []
-  const resultList: INavThreeProp[] = [{ nav: navData, id: -1, title: '' }]
+  let resultList: INavThreeProp[] = [
+    { nav: navData, id: -1, title: $t('_searchRes') },
+  ]
   const urlRecordMap = new Map<number, boolean>()
+
+  if (sType === SearchType.Class) {
+    resultList = []
+  }
 
   function f(arr?: any[]) {
     arr = arr || navList
 
     outerLoop: for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
+
+      if (sType === SearchType.Class && item.title) {
+        if (item.nav[0]?.name && item.title.toLowerCase().includes(keyword)) {
+          resultList.push(item)
+          break
+        }
+      }
+
       if (Array.isArray(item.nav)) {
         f(item.nav)
       }
@@ -192,10 +206,9 @@ export function fuzzySearch(
     f()
   }
 
-  if (navData.length <= 0) {
+  if (sType !== SearchType.Class && navData.length <= 0) {
     return []
   }
-
   return resultList
 }
 
@@ -483,7 +496,7 @@ export function getClassById(id: unknown, initValue = 0) {
           if (twoItem.id === id) {
             oneIndex = i
             twoIndex = j
-            breadcrumb.push(item.title)
+            breadcrumb.push(item.title, twoItem.title)
             break outerLoop
           }
         }
@@ -494,7 +507,7 @@ export function getClassById(id: unknown, initValue = 0) {
               oneIndex = i
               twoIndex = j
               threeIndex = k
-              breadcrumb.push(item.title)
+              breadcrumb.push(item.title, twoItem.title, threeItem.title)
               break outerLoop
             }
           }

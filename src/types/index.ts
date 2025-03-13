@@ -72,30 +72,33 @@ export interface BaseNavItem {
 
 export interface IWebProps {
   id: number
-  __name__?: string // 搜索原name值
-  __desc__?: string
   name: string
   desc: string
   url: string
   icon: string
+  breadcrumb: string[]
+  tags: IWebTag[]
+  rId?: number
+  __name__?: string // 搜索原name值
+  __desc__?: string
   rate?: number // 0-5
   top?: boolean
   topTypes?: number[]
   index?: number | string // sort
   ownVisible?: boolean
-  breadcrumb: string[]
   ok?: boolean
-  tags: IWebTag[]
   [key: string]: any
 }
 
 export interface INavThreeProp extends BaseNavItem {
   nav: IWebProps[]
+  rId?: number
   [key: string]: any
 }
 
 export interface INavTwoProp extends BaseNavItem {
   nav: INavThreeProp[]
+  rId?: number
   [key: string]: any
 }
 

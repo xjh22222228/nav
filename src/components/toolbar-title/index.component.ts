@@ -10,9 +10,8 @@ import { websiteList, settings } from 'src/store'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { $t } from 'src/locale'
-import { deleteClassByIds } from 'src/utils/web'
-import { NzMessageService } from 'ng-zorro-antd/message'
 import { isSelfDevelop } from 'src/utils/utils'
+import { CommonService } from 'src/services/common'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -31,7 +30,7 @@ export class ToolbarTitleWebComponent {
   readonly websiteList: INavProps[] = websiteList
   readonly permissions = getPermissions(settings)
 
-  constructor(private message: NzMessageService) {}
+  constructor(public commonService: CommonService) {}
 
   openCreateWebModal() {
     event.emit('CREATE_WEB', {
@@ -40,8 +39,7 @@ export class ToolbarTitleWebComponent {
   }
 
   openMoveModal(e: Event, data: INavThreeProp) {
-    e.stopPropagation()
-    e.preventDefault()
+    this.stopPropagation(e)
     event.emit('MOVE_WEB', {
       id: data.id,
       data: [data],
@@ -49,9 +47,10 @@ export class ToolbarTitleWebComponent {
     })
   }
 
-  async handleDelete(id: number) {
-    if (await deleteClassByIds([id])) {
-      this.message.success($t('_delSuccess'))
+  async handleDelete(e: Event, id: number) {
+    this.stopPropagation(e)
+    const ok = await this.commonService.deleteClassByIds([id], this.dataSource)
+    if (ok) {
       if (!isSelfDevelop) {
         event.emit('WEB_REFRESH')
       }
@@ -64,8 +63,7 @@ export class ToolbarTitleWebComponent {
   }
 
   handleEditName(e: Event, data: INavThreeProp) {
-    e.stopPropagation()
-    e.preventDefault()
+    this.stopPropagation(e)
     event.emit('EDIT_CLASS_OPEN', { ...data })
   }
 }

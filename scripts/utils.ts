@@ -95,6 +95,7 @@ export function getWebCount(websiteList: INavProps[]): WebCountResult {
 
 let maxWebId = 0
 let maxClassId = 0
+let maxWebRid = 0
 
 function getMaxWebId(nav: any[]): void {
   function f(nav: any[]): void {
@@ -102,6 +103,9 @@ function getMaxWebId(nav: any[]): void {
       const item = nav[i]
       if (item.name && item.id > maxWebId) {
         maxWebId = item.id
+      }
+      if (item.rId && item.rId > maxWebRid) {
+        maxWebRid = item.rId
       }
       if (item.title && item.id > maxClassId) {
         maxClassId = item.id
@@ -118,6 +122,14 @@ function incrementWebId(id: number | string): number {
   id = Number.parseInt(id as string)
   if (!id || id < 0) {
     return ++maxWebId
+  }
+  return id
+}
+
+function incrementWebRId(id: number | string): number {
+  id = Number.parseInt(id as string)
+  if (id < 0) {
+    return ++maxWebRid
   }
   return id
 }
@@ -144,6 +156,9 @@ export function setWebs(
       delete item.ownVisible
     }
     item.id = incrementClassId(item.id)
+    if (item.rId < 0) {
+      item.rId = incrementWebRId(item.rId)
+    }
     item.icon = replaceJsdelivrCDN(item.icon, settings)
     item.nav ||= []
   }
@@ -176,7 +191,10 @@ export function setWebs(
                 breadcrumb.push(item.title, navItem.title, navItemItem.title)
                 breadcrumb = breadcrumb.filter(Boolean)
                 webItem.breadcrumb = breadcrumb
-                webItem.id = Math.trunc(incrementWebId(webItem.id))
+                webItem.id = incrementWebId(webItem.id)
+                if (webItem.rId) {
+                  webItem.rId = incrementWebRId(webItem.rId)
+                }
                 webItem.tags ||= []
                 webItem.rate ??= 5
                 webItem.top ??= false

@@ -302,6 +302,9 @@ const english: Record<string, any> = {
   _repeatTip: 'There may be duplicate URLs in this category"',
   _tag: 'Tag',
   _translate: 'Translate',
+  _searchRes: 'Search result',
+  _class: 'Classify',
+  _quote: 'Quote',
 }
 
 export default english

@@ -90,6 +90,10 @@
           [nzValue]="SearchType.Tag"
         ></nz-option>
         <nz-option
+          [nzLabel]="$t('_class')"
+          [nzValue]="SearchType.Class"
+        ></nz-option>
+        <nz-option
           *ngIf="isLogin"
           nzLabel="ID"
           [nzValue]="SearchType.Id"

@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common'
 import { isLogin, getPermissions } from 'src/utils/user'
 import { copyText, getTextContent } from 'src/utils'
 import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/utils'
-import { setWebsiteList, deleteWebByIds } from 'src/utils/web'
+import { setWebsiteList } from 'src/utils/web'
 import { INavProps, IWebProps, ICardType, ActionType } from 'src/types'
 import { $t, isZhCN } from 'src/locale'
 import { settings, websiteList } from 'src/store'
@@ -117,23 +117,27 @@ export class CardComponent {
       desc: getTextContent(this.dataSource.desc),
     }
     if (isLogin) {
-      if (await deleteWebByIds([params.id])) {
-        this.message.success($t('_delSuccess'))
-      }
+      this.commonService.deleteWebByIds([params.id], params)
     } else {
-      try {
-        await saveUserCollect({
-          data: {
-            ...params,
-            extra: {
-              type: ActionType.Delete,
+      event.emit('MODAL', {
+        nzTitle: $t('_confirmDel'),
+        nzContent: `ID: ${params.id}`,
+        nzWidth: 350,
+        nzOkType: 'primary',
+        nzOkDanger: true,
+        nzOkText: $t('_del'),
+        nzOnOk: async () => {
+          await saveUserCollect({
+            data: {
+              ...params,
+              extra: {
+                type: ActionType.Delete,
+              },
             },
-          },
-        })
-        this.message.success($t('_waitHandle'))
-      } catch (error: any) {
-        this.message.error(error.message)
-      }
+          })
+          this.message.success($t('_waitHandle'))
+        },
+      })
     }
   }
 
