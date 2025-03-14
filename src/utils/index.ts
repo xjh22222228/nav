@@ -36,7 +36,7 @@ export function fuzzySearch(
   const sType = Number(type) || SearchType.All
   const navData: IWebProps[] = []
   let resultList: INavThreeProp[] = [
-    { nav: navData, id: -1, title: $t('_searchRes') },
+    { nav: navData, id: -1, title: $t('_searchRes'), icon: '' },
   ]
   const urlRecordMap = new Map<number, boolean>()
 

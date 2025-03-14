@@ -3,7 +3,7 @@
 // See https://github.com/xjh22222228/nav
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { randomColor } from 'src/utils'
+import { randomColor, getTextContent } from 'src/utils'
 
 @Component({
   standalone: true,
@@ -29,18 +29,23 @@ export class LogoComponent {
   ngOnInit() {
     if (!this.src) {
       this.generateColor()
-    }
-    if (this.name) {
-      this.firstLetter = this.name[0].toUpperCase()
+      this.getFirstLetter()
     }
   }
 
-  generateColor() {
+  private generateColor() {
     this.backgroundColor = `linear-gradient(45deg, #fff, ${randomColor()} 41%)`
+  }
+
+  private getFirstLetter() {
+    if (this.name) {
+      this.firstLetter = getTextContent(this.name)[0].toUpperCase()
+    }
   }
 
   onError() {
     this.isError = true
     this.generateColor()
+    this.getFirstLetter()
   }
 }

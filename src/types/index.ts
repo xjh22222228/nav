@@ -65,7 +65,7 @@ export interface IWebTag {
 export interface BaseNavItem {
   id: number
   title: string
-  icon?: string
+  icon: string
   collapsed?: boolean
   ownVisible?: boolean
 }
@@ -109,11 +109,11 @@ export interface INavProps extends BaseNavItem {
 
 export interface ISearchProps {
   name: string
-  url?: string
-  icon: string | null
-  placeholder?: string
+  icon: string
   blocked: boolean
   isInner: boolean
+  url?: string
+  placeholder?: string
 }
 
 export interface ImageProps {

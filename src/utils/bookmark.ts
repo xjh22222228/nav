@@ -121,6 +121,7 @@ export function parseBookmark(
                 twoLevel.nav.push({
                   id: (id += 1),
                   title,
+                  icon: '',
                   nav: unclassifiedData,
                 })
               }
@@ -152,10 +153,12 @@ export function parseBookmark(
               oneLevel.nav.push({
                 id: (id += 1),
                 title,
+                icon: '',
                 nav: [
                   {
                     id: (id += 1),
                     title,
+                    icon: '',
                     nav: unclassifiedData,
                   },
                 ],
@@ -172,14 +175,17 @@ export function parseBookmark(
       data.push({
         id: (id += 1),
         title: $t('_uncategorized'),
+        icon: '',
         nav: [
           {
             id: (id += 1),
             title: $t('_uncategorized'),
+            icon: '',
             nav: [
               {
                 id: (id += 1),
                 title: $t('_uncategorized'),
+                icon: '',
                 nav: unclassifiedData,
               },
             ],
