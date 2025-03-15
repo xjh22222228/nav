@@ -3,7 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input, ViewChild, ElementRef } from '@angular/core'
-import { IComponentProps } from 'src/types'
+import type { IComponentProps } from 'src/types'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/utils'
 
@@ -17,27 +17,29 @@ import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/utils'
 export class HTMLComponent {
   @Input() data!: IComponentProps
   @ViewChild('root', { static: false }) root!: ElementRef
+
+  private parseDescriptionTimer: any
   html = ''
 
   constructor() {}
 
-  ngOnInit() {
-    this.init()
-  }
-
   ngOnChanges() {
     this.init()
+    this.parseDescription()
+  }
+
+  ngOnDestroy() {
+    clearTimeout(this.parseDescriptionTimer)
   }
 
   private init() {
     this.html = parseLoadingWithContent(`!${this.data['html']}`)
   }
 
-  ngAfterViewInit() {
-    this.parseDescription()
-  }
-
   private parseDescription() {
-    parseHtmlWithContent(this.root?.nativeElement, `!${this.data['html']}`)
+    clearTimeout(this.parseDescriptionTimer)
+    this.parseDescriptionTimer = setTimeout(() => {
+      parseHtmlWithContent(this.root?.nativeElement, `!${this.html}`)
+    }, 300)
   }
 }

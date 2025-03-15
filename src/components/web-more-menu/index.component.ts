@@ -4,7 +4,7 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { INavProps } from 'src/types'
+import type { INavProps } from 'src/types'
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
 
 @Component({

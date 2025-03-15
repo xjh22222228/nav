@@ -3,7 +3,7 @@
 // See https://github.com/xjh22222228/nav
 import { Component, Input, EventEmitter, Output } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { IWebTag } from 'src/types'
+import type { IWebTag } from 'src/types'
 import { tagMap, settings } from 'src/store'
 import { JumpService } from 'src/services/jump'
 import { isLogin, getPermissions } from 'src/utils/user'

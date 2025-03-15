@@ -6,7 +6,12 @@ import utc from 'dayjs/plugin/utc.js'
 import timezone from 'dayjs/plugin/timezone.js'
 import getWebInfo from 'info-web'
 import path from 'node:path'
-import { INavProps, ISettings, ITagPropValues, IWebProps } from '../src/types'
+import type {
+  INavProps,
+  ISettings,
+  ITagPropValues,
+  IWebProps,
+} from '../src/types'
 import { SELF_SYMBOL } from '../src/constants/symbol'
 
 dayjs.extend(utc)

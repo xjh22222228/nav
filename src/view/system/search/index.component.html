@@ -16,8 +16,11 @@
   {{ $t('_save') }}
 </button>
 
-<div class="mb12" *ngIf="!isSelfDevelop">
+<div class="mb-2" *ngIf="!isSelfDevelop">
   <b>{{ $t('_buildTip') }}</b>
+</div>
+<div class="mb-2" *ngIf="isSelfDevelop">
+  e.g. https://example.com/search?q=$&#123;q&#125;
 </div>
 <nz-table #basicTable [nzData]="searchList">
   <thead>

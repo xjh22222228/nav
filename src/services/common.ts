@@ -18,7 +18,7 @@ import {
   deleteClassByIds,
   deleteWebByIds,
 } from 'src/utils/web'
-import { INavProps, INavThreeProp, IWebProps } from 'src/types'
+import type { INavProps, INavThreeProp, IWebProps } from 'src/types'
 import { isLogin, getPermissions } from 'src/utils/user'
 import { isSelfDevelop } from 'src/utils/utils'
 import { $t } from 'src/locale'

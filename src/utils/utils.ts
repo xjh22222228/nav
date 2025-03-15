@@ -55,6 +55,11 @@ export function removeDark(): void {
 export function parseHtmlWithContent(node: HTMLElement, str: string) {
   if (str[0] === CODE_SYMBOL) {
     if (!node) return
+    const s = node.querySelectorAll('script')
+    s.forEach((script) => {
+      script.parentNode?.removeChild(script)
+    })
+
     const parser = new DOMParser()
     const doc = parser.parseFromString(str, 'text/html')
     const scripts = doc.querySelectorAll('script')
@@ -67,7 +72,7 @@ export function parseHtmlWithContent(node: HTMLElement, str: string) {
         newScript[attr.name] = attr.value
       }
       if (text) {
-        newScript.textContent = text
+        newScript.textContent = `{${text}}`
       }
       node.appendChild(newScript)
     })

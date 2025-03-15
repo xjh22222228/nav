@@ -6,7 +6,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { JumpService } from 'src/services/jump'
 import { NzCarouselModule } from 'ng-zorro-antd/carousel'
-import { ImageProps } from 'src/types'
+import type { ImageProps } from 'src/types'
 import { SwiperItemComponent } from './swiper-item/index.component'
 
 @Component({

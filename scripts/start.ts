@@ -22,7 +22,7 @@ import {
   replaceJsdelivrCDN,
   PATHS,
 } from './utils'
-import {
+import type {
   ITagPropValues,
   ISettings,
   INavProps,

@@ -30,7 +30,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { UploadComponent } from 'src/components/upload/index.component'
-import { ActionType, IComponentProps } from 'src/types'
+import { ActionType } from 'src/types'
+import type { IComponentProps } from 'src/types'
 import event from 'src/utils/mitt'
 import footTemplate from 'src/components/footer/template'
 
@@ -67,13 +68,13 @@ const extraForm: Record<string, any> = {
   styleUrls: ['./index.component.scss'],
 })
 export default class SystemSettingComponent {
-  $t = $t
+  readonly $t = $t
+  readonly isSelfDevelop = isSelfDevelop
+  readonly textareaSize = { minRows: 3, maxRows: 20 }
   validateForm!: FormGroup
   submitting: boolean = false
   settings = settings
   tabActive = 0
-  isSelfDevelop = isSelfDevelop
-  textareaSize = { minRows: 3, maxRows: 20 }
   componentOptions: any[] = []
   actionOptions = [
     {

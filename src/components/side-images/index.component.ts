@@ -4,7 +4,7 @@
 
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { ImageProps } from 'src/types'
+import type { ImageProps } from 'src/types'
 import { JumpService } from 'src/services/jump'
 import { SideImageComponent } from './image/index.component'
 

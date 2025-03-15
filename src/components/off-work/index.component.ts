@@ -4,7 +4,7 @@
 
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { IComponentProps } from 'src/types'
+import type { IComponentProps } from 'src/types'
 import { $t } from 'src/locale'
 
 @Component({

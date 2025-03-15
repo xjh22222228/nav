@@ -8,7 +8,7 @@ import settingsJson from '../../data/settings.json'
 import tagJson from '../../data/tag.json'
 import internalJson from '../../data/internal.json'
 import componentJson from '../../data/component.json'
-import {
+import type {
   ISettings,
   ISearchProps,
   ITagProp,

@@ -3,7 +3,8 @@
 // See https://github.com/xjh22222228/nav
 import localforage from 'localforage'
 import { STORAGE_KEY_MAP } from 'src/constants'
-import { ActionType, ISettings } from 'src/types'
+import { ActionType } from 'src/types'
+import type { ISettings } from 'src/types'
 
 export function getToken() {
   return globalThis.localStorage?.getItem(STORAGE_KEY_MAP.token) || ''

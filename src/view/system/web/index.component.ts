@@ -5,7 +5,12 @@
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { INavProps, INavTwoProp, INavThreeProp, IWebProps } from 'src/types'
+import type {
+  INavProps,
+  INavTwoProp,
+  INavThreeProp,
+  IWebProps,
+} from 'src/types'
 import {
   websiteList,
   settings,
@@ -18,7 +23,7 @@ import { isLogin, removeWebsite } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { setWebsiteList, deleteClassByIds } from 'src/utils/web'
+import { setWebsiteList } from 'src/utils/web'
 import { updateFileContent } from 'src/api'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import { $t } from 'src/locale'

@@ -7,7 +7,7 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc.js'
 import timezone from 'dayjs/plugin/timezone.js'
 import { writeSEO, writeTemplate, spiderWeb, PATHS } from './utils'
-import { INavProps, ISettings } from '../src/types/index'
+import type { INavProps, ISettings } from '../src/types/index'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)

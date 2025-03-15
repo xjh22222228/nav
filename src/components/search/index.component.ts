@@ -11,7 +11,7 @@ import {
 } from 'src/utils'
 import { Router } from '@angular/router'
 import { searchEngineList } from 'src/store'
-import { ISearchProps } from 'src/types'
+import type { ISearchProps } from 'src/types'
 import { SearchType } from './index'
 import { $t } from 'src/locale'
 import { NzInputModule } from 'ng-zorro-antd/input'
@@ -78,7 +78,12 @@ export class SearchComponent {
 
   triggerSearch() {
     if (this.currentEngine.url) {
-      window.open(this.currentEngine.url + this.keyword)
+      if (this.currentEngine.url.includes('${q}')) {
+        window.open(this.currentEngine.url.replaceAll('${q}', this.keyword))
+      } else {
+        window.open(this.currentEngine.url + this.keyword)
+      }
+
       return
     }
 

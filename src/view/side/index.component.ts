@@ -4,7 +4,7 @@
 
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { INavProps } from 'src/types'
+import type { INavProps } from 'src/types'
 import { isMobile } from 'src/utils'
 import { setWebsiteList } from 'src/utils/web'
 import { websiteList } from 'src/store'
@@ -50,7 +50,7 @@ import { WebListComponent } from 'src/components/web-list/index.component'
   styleUrls: ['./index.component.scss'],
 })
 export default class SideComponent {
-  $t = $t
+  readonly $t = $t
   websiteList: INavProps[] = websiteList
   isCollapsed = isMobile() || settings.sideCollapsed
 

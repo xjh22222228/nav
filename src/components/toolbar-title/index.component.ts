@@ -4,7 +4,7 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { INavThreeProp, INavProps } from 'src/types'
+import type { INavThreeProp, INavProps } from 'src/types'
 import { isLogin, getPermissions } from 'src/utils/user'
 import { websiteList, settings } from 'src/store'
 import { NzIconModule } from 'ng-zorro-antd/icon'

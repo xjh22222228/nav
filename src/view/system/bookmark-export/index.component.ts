@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { $t } from 'src/locale'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { INavProps, IWebProps } from 'src/types'
+import type { INavProps, IWebProps } from 'src/types'
 import { websiteList } from 'src/store'
 import { bookmarksExport, getIconBase64 } from 'src/api'
 import { saveAs } from 'file-saver'
@@ -24,7 +24,7 @@ import LZString from 'lz-string'
   styleUrls: ['./index.component.scss'],
 })
 export default class SystemBookmarkExportComponent {
-  $t = $t
+  readonly $t = $t
   submitting = false
   websiteList: INavProps[] = websiteList
   isExportIcon = false
@@ -36,7 +36,7 @@ export default class SystemBookmarkExportComponent {
 
   ngOnInit() {}
 
-  loadImage(iconUrl: string): Promise<HTMLImageElement | null> {
+  private loadImage(iconUrl: string): Promise<HTMLImageElement | null> {
     return new Promise((resolve) => {
       if (!iconUrl) {
         return resolve(null)
@@ -53,7 +53,10 @@ export default class SystemBookmarkExportComponent {
     })
   }
 
-  async imageToBase64(item: IWebProps, isGet: boolean = true): Promise<any> {
+  private async imageToBase64(
+    item: IWebProps,
+    isGet: boolean = true
+  ): Promise<any> {
     const iconUrl = await this.loadImage(item.icon)
     if (iconUrl) {
       try {
