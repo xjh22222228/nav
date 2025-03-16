@@ -1,11 +1,18 @@
-// Copyright @ 2018-present x.iejiahe. All rights reserved.
+// Copyright @ 2018-present xie.jiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 import dayjs from 'dayjs'
-import LOAD_MAP from './loading.mjs'
+import LOAD_MAP from './loading'
 import utc from 'dayjs/plugin/utc.js'
 import timezone from 'dayjs/plugin/timezone.js'
 import getWebInfo from 'info-web'
 import path from 'node:path'
+import type {
+  INavProps,
+  ISettings,
+  ITagPropValues,
+  IWebProps,
+} from '../src/types'
+import { SELF_SYMBOL } from '../src/constants/symbol'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -34,16 +41,22 @@ export const PATHS = {
     main: path.resolve('src', 'main.html'),
     write: path.resolve('src', 'index.html'),
   },
+} as const
+
+interface WebCountResult {
+  userViewCount: number
+  loginViewCount: number
 }
 
 // 统计网站数量
-export function getWebCount(websiteList) {
+export function getWebCount(websiteList: INavProps[]): WebCountResult {
   // 用户查看所有数量
   let userViewCount = 0
   // 登陆者统计所有数量
   let loginViewCount = 0
   let diffCount = 0
-  function r(nav) {
+
+  function r(nav: any[]): void {
     if (!Array.isArray(nav)) return
 
     for (let i = 0; i < nav.length; i++) {
@@ -56,7 +69,8 @@ export function getWebCount(websiteList) {
       }
     }
   }
-  function r2(nav, ownVisible) {
+
+  function r2(nav: any[], ownVisible?: boolean): void {
     if (!Array.isArray(nav)) return
 
     for (let i = 0; i < nav.length; i++) {
@@ -74,8 +88,10 @@ export function getWebCount(websiteList) {
       }
     }
   }
+
   r(websiteList)
   r2(websiteList)
+
   return {
     userViewCount: userViewCount - diffCount,
     loginViewCount,
@@ -84,12 +100,17 @@ export function getWebCount(websiteList) {
 
 let maxWebId = 0
 let maxClassId = 0
-function getMaxWebId(nav) {
-  function f(nav) {
+let maxWebRid = 0
+
+function getMaxWebId(nav: any[]): void {
+  function f(nav: any[]): void {
     for (let i = 0; i < nav.length; i++) {
       const item = nav[i]
       if (item.name && item.id > maxWebId) {
         maxWebId = item.id
+      }
+      if (item.rId && item.rId > maxWebRid) {
+        maxWebRid = item.rId
       }
       if (item.title && item.id > maxClassId) {
         maxClassId = item.id
@@ -102,32 +123,47 @@ function getMaxWebId(nav) {
   f(nav)
 }
 
-function incrementWebId(id) {
-  id = Number.parseInt(id)
+function incrementWebId(id: number | string): number {
+  id = Number.parseInt(id as string)
   if (!id || id < 0) {
     return ++maxWebId
   }
   return id
 }
 
-function incrementClassId(id) {
-  id = Number.parseInt(id)
+function incrementWebRId(id: number | string): number {
+  id = Number.parseInt(id as string)
+  if (id < 0) {
+    return ++maxWebRid
+  }
+  return id
+}
+
+function incrementClassId(id: number | string): number {
+  id = Number.parseInt(id as string)
   if (!id || id < 0) {
     return ++maxClassId
   }
   return id
 }
 
-export function setWebs(nav, settings, tags = []) {
-  if (!Array.isArray(nav)) return
+export function setWebs(
+  nav: INavProps[],
+  settings: ISettings,
+  tags: ITagPropValues[] = []
+): INavProps[] {
+  if (!Array.isArray(nav)) return []
 
-  function handleAdapter(item) {
+  function handleAdapter(item: any): void {
     delete item.collapsed
     delete item.createdAt
     if (!item.ownVisible) {
       delete item.ownVisible
     }
     item.id = incrementClassId(item.id)
+    if (item.rId < 0) {
+      item.rId = incrementWebRId(item.rId)
+    }
     item.icon = replaceJsdelivrCDN(item.icon, settings)
     item.nav ||= []
   }
@@ -147,7 +183,7 @@ export function setWebs(nav, settings, tags = []) {
             handleAdapter(navItemItem)
 
             if (navItemItem.nav) {
-              navItemItem.nav.sort((a, b) => {
+              navItemItem.nav.sort((a: any, b: any) => {
                 const aIdx =
                   a.index == null || a.index === '' ? 100000 : Number(a.index)
                 const bIdx =
@@ -155,12 +191,15 @@ export function setWebs(nav, settings, tags = []) {
                 return aIdx - bIdx
               })
               for (let l = 0; l < navItemItem.nav.length; l++) {
-                let breadcrumb = []
-                const webItem = navItemItem.nav[l]
+                let breadcrumb: string[] = []
+                const webItem = navItemItem.nav[l] as IWebProps
                 breadcrumb.push(item.title, navItem.title, navItemItem.title)
                 breadcrumb = breadcrumb.filter(Boolean)
                 webItem.breadcrumb = breadcrumb
-                webItem.id = Math.trunc(incrementWebId(webItem.id))
+                webItem.id = incrementWebId(webItem.id)
+                if (webItem.rId) {
+                  webItem.rId = incrementWebRId(webItem.rId)
+                }
                 webItem.tags ||= []
                 webItem.rate ??= 5
                 webItem.top ??= false
@@ -179,14 +218,15 @@ export function setWebs(nav, settings, tags = []) {
 
                 delete webItem.__desc__
                 delete webItem.__name__
-                delete webItem.extra
-                delete webItem.createdAt
+                delete webItem['extra']
+                delete webItem['createdAt']
 
                 // 节省空间
                 !webItem.top && delete webItem.top
                 !webItem.ownVisible && delete webItem.ownVisible
                 webItem.index === '' && delete webItem.index
-                webItem.topTypes?.length <= 0 && delete webItem.topTypes
+                ;(webItem.topTypes ?? []).length === 0 &&
+                  delete webItem.topTypes
 
                 // 网站标签和系统标签关联
                 webItem.tags = webItem.tags.filter((item) => {
@@ -202,14 +242,18 @@ export function setWebs(nav, settings, tags = []) {
   return nav
 }
 
-export function writeSEO(webs, payload) {
+interface SEOPayload {
+  settings: ISettings
+}
+
+export function writeSEO(webs: INavProps[], payload: SEOPayload): string {
   const { settings } = payload
   const nowDate = dayjs.tz().format('YYYY-MM-DD HH:mm:ss')
   let seoTemplate = `
 <div data-url="https://github.com/xjh22222228/nav" data-server-time="${Date.now()}" data-a="x.i.e-jiahe" data-date="${nowDate}" id="META-NAV" style="z-index:-1;position:fixed;top:-10000vh;left:-10000vh;">
 `
 
-  function r(navList) {
+  function r(navList: any[]): void {
     for (let value of navList) {
       if (Array.isArray(value.nav)) {
         r(value.nav)
@@ -231,8 +275,18 @@ export function writeSEO(webs, payload) {
   return seoTemplate
 }
 
-export function writeTemplate({ html, settings, seoTemplate }) {
-  function getLoadKey() {
+interface TemplateParams {
+  html: string
+  settings: ISettings
+  seoTemplate: string
+}
+
+export function writeTemplate({
+  html,
+  settings,
+  seoTemplate,
+}: TemplateParams): string {
+  function getLoadKey(): string {
     const keys = Object.keys(LOAD_MAP)
     const rand = Math.floor(Math.random() * keys.length)
     const loadingKey =
@@ -276,18 +330,35 @@ export function writeTemplate({ html, settings, seoTemplate }) {
   return t
 }
 
-function correctURL(url) {
-  if (url[0] === '^') {
+function correctURL(url: string): string {
+  if (url[0] === SELF_SYMBOL) {
     return url.slice(1)
   }
   return url
 }
 
-export async function spiderWeb(db, settings) {
-  let errorUrlCount = 0
-  const items = []
+interface SpiderWebResult {
+  webs: INavProps[]
+  errorUrlCount: number
+  time: number
+}
 
-  async function r(nav) {
+interface WebInfoResponse {
+  status: boolean
+  errorMsg?: string
+  iconUrl?: string
+  title?: string
+  description?: string
+}
+
+export async function spiderWeb(
+  db: INavProps[],
+  settings: ISettings
+): Promise<SpiderWebResult> {
+  let errorUrlCount = 0
+  const items: IWebProps[] = []
+
+  async function r(nav: any[]): Promise<void> {
     if (!Array.isArray(nav)) return
 
     for (let i = 0; i < nav.length; i++) {
@@ -311,7 +382,7 @@ export async function spiderWeb(db, settings) {
     }
   }
 
-  r(db)
+  await r(db)
 
   const max = settings.spiderQty ?? 20
   const count = Math.ceil(items.length / max)
@@ -325,7 +396,7 @@ export async function spiderWeb(db, settings) {
   }
 
   while (current < count) {
-    const requestPromises = []
+    const requestPromises: Promise<any>[] = []
     for (let i = current * max; i < current * max + max; i++) {
       const item = items[i]
       if (item) {
@@ -337,12 +408,12 @@ export async function spiderWeb(db, settings) {
       }
     }
 
-    const promises = await Promise.allSettled(requestPromises)
+    const promises = await Promise.all(requestPromises)
 
     for (let i = 0; i < promises.length; i++) {
       const idx = current * max + i
       const item = items[idx]
-      const res = promises[i].value
+      const res = promises[i].value as WebInfoResponse
       console.log(
         `${idx}：${
           res.status ? '正常' : `疑似异常: ${res.errorMsg}`
@@ -377,7 +448,7 @@ export async function spiderWeb(db, settings) {
 
         if (settings.spiderTitle === 'ALWAYS' && res.title) {
           console.log(
-            `更新标题：${correctURL(item.url)}: "${item.title}" => "${
+            `更新标题：${correctURL(item.url)}: "${item['title']}" => "${
               res.title
             }"`
           )
@@ -388,7 +459,7 @@ export async function spiderWeb(db, settings) {
           res.title
         ) {
           console.log(
-            `更新标题：${correctURL(item.url)}: "${item.title}" => "${
+            `更新标题：${correctURL(item.url)}: "${item['title']}" => "${
               res.title
             }"`
           )
@@ -430,7 +501,10 @@ export async function spiderWeb(db, settings) {
   }
 }
 
-export function replaceJsdelivrCDN(str = '', settings) {
+export function replaceJsdelivrCDN(
+  str: string = '',
+  settings: ISettings
+): string {
   const cdn = settings?.gitHubCDN
   if (!cdn) {
     return str

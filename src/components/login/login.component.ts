@@ -2,14 +2,21 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+} from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { verifyToken, updateFileContent, createBranch } from 'src/api'
 import { setToken, removeToken, removeWebsite } from 'src/utils/user'
 import { $t } from 'src/locale'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzInputModule } from 'ng-zorro-antd/input'
 
@@ -20,9 +27,10 @@ import { NzInputModule } from 'ng-zorro-antd/input'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   @Input() visible = false
   @Output() onCancel = new EventEmitter<void>()
+  @ViewChild('input', { static: false }) input!: ElementRef
 
   readonly $t = $t
   readonly isSelfDevelop = isSelfDevelop
@@ -30,8 +38,6 @@ export class LoginComponent implements OnInit {
   submitting = false
 
   constructor(private readonly message: NzMessageService) {}
-
-  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.inputFocus()
@@ -43,7 +49,7 @@ export class LoginComponent implements OnInit {
 
   private inputFocus(): void {
     setTimeout(() => {
-      document.getElementById('loginInput')?.focus()
+      this.input?.nativeElement?.focus()
     }, 300)
   }
 

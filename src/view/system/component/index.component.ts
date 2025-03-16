@@ -12,7 +12,8 @@ import { NzModalService } from 'ng-zorro-antd/modal'
 import { updateFileContent } from 'src/api'
 import { COMPONENT_PATH } from 'src/constants'
 import { components } from 'src/store'
-import { ComponentType, IComponentProps } from 'src/types'
+import { ComponentType } from 'src/types'
+import type { IComponentProps } from 'src/types'
 import { CalendarDrawerComponent } from 'src/components/calendar/drawer/index.component'
 import { RuntimeDrawerComponent } from 'src/components/runtime/drawer/index.component'
 import { OffWorkDrawerComponent } from 'src/components/off-work/drawer/index.component'
@@ -21,7 +22,7 @@ import { CountdownDrawerComponent } from 'src/components/countdown/drawer/index.
 import { HTMLDrawerComponent } from 'src/components/html/drawer/index.component'
 import { HolidayDrawerComponent } from 'src/components/holiday/drawer/index.component'
 import { componentTitleMap } from './types'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
@@ -73,10 +74,10 @@ export default class SystemComponentComponent {
   @ViewChild('html') htmlChild!: HTMLDrawerComponent
   @ViewChild('holiday') holidayChild!: HolidayDrawerComponent
 
-  $t = $t
-  isSelfDevelop = isSelfDevelop
-  componentTitleMap = componentTitleMap
-  ComponentType = ComponentType
+  readonly $t = $t
+  readonly isSelfDevelop = isSelfDevelop
+  readonly componentTitleMap = componentTitleMap
+  readonly ComponentType = ComponentType
   components = components
   submitting: boolean = false
   compoentZoom = components[0]['zoom'] || 1

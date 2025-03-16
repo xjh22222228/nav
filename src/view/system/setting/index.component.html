@@ -428,7 +428,15 @@
                     nz-input
                   ></textarea>
                 </td>
-                <td>
+                <td class="select-none">
+                  <a (click)="handleMoveUp('lightImages', idx)">{{
+                    $t('_moveUp')
+                  }}</a>
+                  <a
+                    class="mx-2"
+                    (click)="handleMoveDown('lightImages', idx)"
+                    >{{ $t('_moveDown') }}</a
+                  >
                   <a
                     nz-popconfirm
                     nzPopconfirmPlacement="rightTop"
@@ -436,7 +444,7 @@
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
                     (nzOnConfirm)="onDeleteBanner('lightImages', idx)"
-                    class="color-red"
+                    class="!text-red-500"
                   >
                     {{ $t('_del') }}
                   </a>
@@ -444,11 +452,9 @@
               </tr>
             </tbody>
           </nz-table>
-          <a
-            (click)="onAddBanner('lightImages')"
-            class="mt-2.5 display-block"
-            >{{ $t('_add') }}</a
-          >
+          <a (click)="onAddBanner('lightImages')" class="mt-2.5 !block">{{
+            $t('_add')
+          }}</a>
         </nz-form-control>
       </nz-form-item>
 
@@ -550,7 +556,15 @@
                     nz-input
                   ></textarea>
                 </td>
-                <td>
+                <td class="select-none">
+                  <a (click)="handleMoveUp('superImages', idx)">{{
+                    $t('_moveUp')
+                  }}</a>
+                  <a
+                    class="mx-2"
+                    (click)="handleMoveDown('superImages', idx)"
+                    >{{ $t('_moveDown') }}</a
+                  >
                   <a
                     nz-popconfirm
                     nzPopconfirmPlacement="rightTop"
@@ -558,7 +572,7 @@
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
                     (nzOnConfirm)="onDeleteBanner('superImages', idx)"
-                    class="color-red"
+                    class="!text-red-500"
                   >
                     {{ $t('_del') }}
                   </a>
@@ -566,11 +580,9 @@
               </tr>
             </tbody>
           </nz-table>
-          <a
-            (click)="onAddBanner('superImages')"
-            class="mt-2.5 display-block"
-            >{{ $t('_add') }}</a
-          >
+          <a (click)="onAddBanner('superImages')" class="mt-2.5 !block">{{
+            $t('_add')
+          }}</a>
         </nz-form-control>
       </nz-form-item>
 
@@ -673,7 +685,15 @@
                     nz-input
                   ></textarea>
                 </td>
-                <td>
+                <td class="select-none">
+                  <a (click)="handleMoveUp('simThemeImages', idx)">{{
+                    $t('_moveUp')
+                  }}</a>
+                  <a
+                    class="mx-2"
+                    (click)="handleMoveDown('simThemeImages', idx)"
+                    >{{ $t('_moveDown') }}</a
+                  >
                   <a
                     nz-popconfirm
                     nzPopconfirmPlacement="rightTop"
@@ -681,7 +701,7 @@
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
                     (nzOnConfirm)="onDeleteBanner('simThemeImages', idx)"
-                    class="color-red"
+                    class="!text-red-500"
                   >
                     {{ $t('_del') }}
                   </a>
@@ -689,11 +709,9 @@
               </tr>
             </tbody>
           </nz-table>
-          <a
-            (click)="onAddBanner('simThemeImages')"
-            class="mt-2.5 display-block"
-            >{{ $t('_add') }}</a
-          >
+          <a (click)="onAddBanner('simThemeImages')" class="mt-2.5 !block">{{
+            $t('_add')
+          }}</a>
         </nz-form-control>
       </nz-form-item>
 
@@ -827,7 +845,15 @@
                     nz-input
                   ></textarea>
                 </td>
-                <td>
+                <td class="select-none">
+                  <a (click)="handleMoveUp('sideThemeImages', idx)">{{
+                    $t('_moveUp')
+                  }}</a>
+                  <a
+                    class="mx-2"
+                    (click)="handleMoveDown('sideThemeImages', idx)"
+                    >{{ $t('_moveDown') }}</a
+                  >
                   <a
                     nz-popconfirm
                     nzPopconfirmPlacement="rightTop"
@@ -835,7 +861,7 @@
                     [nzPopconfirmTitle]="$t('_confirmDel')"
                     nzPopconfirmPlacement="bottom"
                     (nzOnConfirm)="onDeleteBanner('sideThemeImages', idx)"
-                    class="color-red"
+                    class="!text-red-500"
                   >
                     {{ $t('_del') }}
                   </a>
@@ -843,11 +869,9 @@
               </tr>
             </tbody>
           </nz-table>
-          <a
-            (click)="onAddBanner('sideThemeImages')"
-            class="mt-2.5 display-block"
-            >{{ $t('_add') }}</a
-          >
+          <a (click)="onAddBanner('sideThemeImages')" class="mt-2.5 !block">{{
+            $t('_add')
+          }}</a>
         </nz-form-control>
       </nz-form-item>
 

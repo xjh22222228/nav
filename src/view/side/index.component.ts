@@ -4,7 +4,7 @@
 
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { INavProps } from 'src/types'
+import type { INavProps } from 'src/types'
 import { isMobile } from 'src/utils'
 import { setWebsiteList } from 'src/utils/web'
 import { websiteList } from 'src/store'
@@ -12,7 +12,7 @@ import { settings } from 'src/store'
 import { $t } from 'src/locale'
 import { CommonService } from 'src/services/common'
 import { STORAGE_KEY_MAP } from 'src/constants'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import { ComponentGroupComponent } from 'src/components/component-group/index.component'
 import { SearchComponent } from 'src/components/search/index.component'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
@@ -22,7 +22,6 @@ import { CardComponent } from 'src/components/card/index.component'
 import { NoDataComponent } from 'src/components/no-data/no-data.component'
 import { FooterComponent } from 'src/components/footer/footer.component'
 import { FixbarComponent } from 'src/components/fixbar/index.component'
-import { NzGridModule } from 'ng-zorro-antd/grid'
 import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { SwiperComponent } from 'src/components/swiper/index.component'
 import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.component'
@@ -43,7 +42,6 @@ import { WebListComponent } from 'src/components/web-list/index.component'
     NoDataComponent,
     FooterComponent,
     FixbarComponent,
-    NzGridModule,
     NzLayoutModule,
     SwiperComponent,
   ],
@@ -52,7 +50,7 @@ import { WebListComponent } from 'src/components/web-list/index.component'
   styleUrls: ['./index.component.scss'],
 })
 export default class SideComponent {
-  $t = $t
+  readonly $t = $t
   websiteList: INavProps[] = websiteList
   isCollapsed = isMobile() || settings.sideCollapsed
 
@@ -61,14 +59,6 @@ export default class SideComponent {
     if (localCollapsed) {
       this.isCollapsed = localCollapsed === 'true'
     }
-  }
-
-  get nzXXl(): number {
-    const cardStyle = this.commonService.settings.sideCardStyle
-    if (cardStyle === 'original' || cardStyle === 'example') {
-      return 4
-    }
-    return 6
   }
 
   openMenu(item: any, index: number) {

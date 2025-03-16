@@ -16,7 +16,7 @@
   {{ $t('_save') }}
 </button>
 
-<div class="mb-4 color-red font-bold" *ngIf="!isSelfDevelop">
+<div class="mb-4 !text-red-500 font-bold" *ngIf="!isSelfDevelop">
   {{ $t('_buildTip') }}
 </div>
 
@@ -52,6 +52,8 @@
         />
       </td>
       <td>
+        <a (click)="moveUp(idx)">{{ $t('_moveUp') }}</a>
+        <a (click)="moveDown(idx)" class="mx-2.5">{{ $t('_moveDown') }}</a>
         <a
           *ngIf="!data.isInner"
           nz-popconfirm
@@ -59,7 +61,7 @@
           [nzPopconfirmTitle]="$t('_confirmDel')"
           nzPopconfirmPlacement="bottom"
           (nzOnConfirm)="handleDelete(idx)"
-          class="color-red"
+          class="!text-red-500"
         >
           {{ $t('_del') }}
         </a>

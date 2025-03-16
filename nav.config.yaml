@@ -40,7 +40,10 @@ mailConfig:
   title: 网站收录通知
   message: 有用户提交网站收录啦
 
-# 默认主仓库，当仓库作为私密，上传的图片是无法访问的，需要转移到公开仓库
+# 默认Fork仓库
 # 仓库必须自己提前创建，如果打算长期使用本软件，建议每个人都创建一个新的仓库作为图片存储
 # e.g 'https://github.com/xjh22222228/image?branch=main'
 imageRepoUrl: ''
+
+# 自有部署
+XFAPIPassword: ''

@@ -11,9 +11,10 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { SETTING_PATH } from 'src/constants'
+import { CODE_SYMBOL } from 'src/constants/symbol'
 import { updateFileContent, spiderWeb } from 'src/api'
 import { settings, components } from 'src/store'
-import { isSelfDevelop, compilerTemplate } from 'src/utils/util'
+import { isSelfDevelop, compilerTemplate } from 'src/utils/utils'
 import { componentTitleMap } from '../component/types'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import { NzButtonModule } from 'ng-zorro-antd/button'
@@ -29,7 +30,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { UploadComponent } from 'src/components/upload/index.component'
-import { ActionType, IComponentProps } from 'src/types'
+import { ActionType } from 'src/types'
+import type { IComponentProps } from 'src/types'
 import event from 'src/utils/mitt'
 import footTemplate from 'src/components/footer/template'
 
@@ -66,13 +68,13 @@ const extraForm: Record<string, any> = {
   styleUrls: ['./index.component.scss'],
 })
 export default class SystemSettingComponent {
-  $t = $t
+  readonly $t = $t
+  readonly isSelfDevelop = isSelfDevelop
+  readonly textareaSize = { minRows: 3, maxRows: 20 }
   validateForm!: FormGroup
   submitting: boolean = false
   settings = settings
   tabActive = 0
-  isSelfDevelop = isSelfDevelop
-  textareaSize = { minRows: 3, maxRows: 20 }
   componentOptions: any[] = []
   actionOptions = [
     {
@@ -174,6 +176,24 @@ export default class SystemSettingComponent {
     this.settings.shortcutThemeImages[0]['src'] = url
   }
 
+  handleMoveUp(key: string, idx: number) {
+    if (idx === 0) {
+      return
+    }
+    const data = this.settings[key][idx]
+    this.settings[key][idx] = this.settings[key][idx - 1]
+    this.settings[key][idx - 1] = data
+  }
+
+  handleMoveDown(key: string, idx: number) {
+    if (idx === this.settings[key].length - 1) {
+      return
+    }
+    const data = this.settings[key][idx]
+    this.settings[key][idx] = this.settings[key][idx + 1]
+    this.settings[key][idx + 1] = data
+  }
+
   handleSpider() {
     if (this.submitting) {
       return
@@ -205,7 +225,7 @@ export default class SystemSettingComponent {
       nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
         function filterImage(item: Record<string, any>) {
-          return item['src'] || item['url'][0] === '!'
+          return item['src'] || item['url'][0] === CODE_SYMBOL
         }
         const formValues = this.validateForm.value
         const values = {

@@ -11,7 +11,9 @@
 @media (max-width: 1080px) {
   .index-wrapper {
     --width: 800px !important;
-    --sideImagesWidth: 0 !important;
+  }
+  .app-side {
+    display: none;
   }
 }
 

@@ -8,7 +8,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { setWebsiteList } from 'src/utils/web'
 import { parseBookmark } from 'src/utils/bookmark'
-import { INavProps } from 'src/types'
+import type { INavProps } from 'src/types'
 import { websiteList } from 'src/store'
 import { NzInputModule } from 'ng-zorro-antd/input'
 

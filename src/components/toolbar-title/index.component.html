@@ -2,27 +2,47 @@
   class="title tool-title dark-primary dark-border-color"
   *ngIf="dataSource && dataSource.title"
 >
-  <span class="cursor-pointer" (click)="onCollapse.emit()">
+  <div
+    class="cursor-pointer whitespace-nowrap ellipsis pr-4"
+    (click)="onCollapse.emit()"
+  >
     <i
       class="iconfont iconjiantouarrow483 down-arrow"
       [class.active]="dataSource.collapsed"
     >
     </i>
 
-    <span style="margin-left: 10px; align-self: center; vertical-align: middle">
+    <span class="ml-1 self-center align-middle">
       {{ dataSource.title }} x {{ dataSource.nav.length }}
     </span>
-    <i
-      nz-icon
-      nzType="edit"
-      class="edit-icon"
-      *ngIf="isLogin"
-      (click)="handleEditName($event, dataSource)"
-    ></i>
-  </span>
+
+    <ng-content *ngIf="dataSource.id !== -1">
+      <i
+        nz-icon
+        nzType="edit"
+        class="edit-icon"
+        *ngIf="isLogin"
+        (click)="handleEditName($event, dataSource)"
+      ></i>
+      <i
+        nz-icon
+        nzType="swap"
+        class="edit-icon"
+        *ngIf="isLogin"
+        (click)="openMoveModal($event, dataSource)"
+      ></i>
+      <i
+        nz-icon
+        nzType="delete"
+        class="edit-icon"
+        *ngIf="isLogin"
+        (click)="handleDelete($event, dataSource.id)"
+      ></i>
+    </ng-content>
+  </div>
 
   <i
-    *ngIf="isLogin || permissions.create"
+    *ngIf="dataSource.id !== -1 && (isLogin || permissions.create)"
     nz-icon
     nzType="plus"
     nzTheme="outline"

@@ -5,8 +5,9 @@
 import { INavProps, IWebProps, INavTwoProp, INavThreeProp } from '../types'
 import { websiteList } from '../store'
 import { $t } from '../locale'
+import { getTempId } from './utils'
 
-let id = -Date.now()
+let id = getTempId()
 
 const getTitle = (node: Element): string => node.textContent || ''
 const getUrl = (node: Element): string => node.getAttribute('href') || ''
@@ -120,6 +121,7 @@ export function parseBookmark(
                 twoLevel.nav.push({
                   id: (id += 1),
                   title,
+                  icon: '',
                   nav: unclassifiedData,
                 })
               }
@@ -151,10 +153,12 @@ export function parseBookmark(
               oneLevel.nav.push({
                 id: (id += 1),
                 title,
+                icon: '',
                 nav: [
                   {
                     id: (id += 1),
                     title,
+                    icon: '',
                     nav: unclassifiedData,
                   },
                 ],
@@ -171,14 +175,17 @@ export function parseBookmark(
       data.push({
         id: (id += 1),
         title: $t('_uncategorized'),
+        icon: '',
         nav: [
           {
             id: (id += 1),
             title: $t('_uncategorized'),
+            icon: '',
             nav: [
               {
                 id: (id += 1),
                 title: $t('_uncategorized'),
+                icon: '',
                 nav: unclassifiedData,
               },
             ],

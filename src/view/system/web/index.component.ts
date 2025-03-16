@@ -5,7 +5,12 @@
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { INavProps, INavTwoProp, INavThreeProp, IWebProps } from 'src/types'
+import type {
+  INavProps,
+  INavTwoProp,
+  INavThreeProp,
+  IWebProps,
+} from 'src/types'
 import {
   websiteList,
   settings,
@@ -18,12 +23,12 @@ import { isLogin, removeWebsite } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { setWebsiteList, deleteWebByIds, deleteClassByIds } from 'src/utils/web'
+import { setWebsiteList } from 'src/utils/web'
 import { updateFileContent } from 'src/api'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import { $t } from 'src/locale'
 import { saveAs } from 'file-saver'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
@@ -38,6 +43,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { LogoComponent } from 'src/components/logo/logo.component'
 import { TagListComponent } from 'src/components/tag-list/index.component'
+import { CommonService } from 'src/services/common'
 import event from 'src/utils/mitt'
 import config from '../../../../nav.config.json'
 
@@ -88,7 +94,8 @@ export default class WebpComponent {
   constructor(
     private modal: NzModalService,
     private notification: NzNotificationService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    public commonService: CommonService
   ) {}
 
   ngOnInit() {}
@@ -207,16 +214,14 @@ export default class WebpComponent {
       case 0:
       case 1:
       case 2:
-        if (await deleteClassByIds([...this.setOfCheckedId])) {
-          this.message.success($t('_delSuccess'))
-        }
+        await this.commonService.deleteClassByIds([...this.setOfCheckedId])
         break
 
       case 3:
-        if (await deleteWebByIds([...this.setOfCheckedId])) {
-          this.message.success($t('_delSuccess'))
-        }
-        if (this.errorWebs.length) {
+        const ok = await this.commonService.deleteWebByIds([
+          ...this.setOfCheckedId,
+        ])
+        if (ok && this.errorWebs.length) {
           this.getErrorWebs()
         }
         break
@@ -311,12 +316,6 @@ export default class WebpComponent {
     this.tabActive = index ?? this.tabActive
     this.setOfCheckedId.clear()
     this.checkedAll = false
-  }
-
-  async handleDeleteClass(id: number) {
-    if (await deleteClassByIds([id])) {
-      this.message.success($t('_delSuccess'))
-    }
   }
 
   // 上移一级
@@ -466,16 +465,6 @@ export default class WebpComponent {
       setWebsiteList(this.websiteList)
     } catch (error: any) {
       this.notification.error($t('_error'), error.message)
-    }
-  }
-
-  async handleDeleteWeb(data: any) {
-    const ok = await deleteWebByIds([data.id])
-    if (ok) {
-      this.message.success($t('_delSuccess'))
-      if (this.errorWebs.length) {
-        this.getErrorWebs()
-      }
     }
   }
 

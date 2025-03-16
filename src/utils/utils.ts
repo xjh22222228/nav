@@ -5,6 +5,7 @@
 import navConfig from '../../nav.config.json'
 import { internal } from 'src/store'
 import { isLogin } from 'src/utils/user'
+import { CODE_SYMBOL } from 'src/constants/symbol'
 
 export const isSelfDevelop = !!navConfig.address
 
@@ -52,8 +53,13 @@ export function removeDark(): void {
 }
 
 export function parseHtmlWithContent(node: HTMLElement, str: string) {
-  if (str[0] === '!') {
+  if (str[0] === CODE_SYMBOL) {
     if (!node) return
+    const s = node.querySelectorAll('script')
+    s.forEach((script) => {
+      script.parentNode?.removeChild(script)
+    })
+
     const parser = new DOMParser()
     const doc = parser.parseFromString(str, 'text/html')
     const scripts = doc.querySelectorAll('script')
@@ -66,7 +72,7 @@ export function parseHtmlWithContent(node: HTMLElement, str: string) {
         newScript[attr.name] = attr.value
       }
       if (text) {
-        newScript.textContent = text
+        newScript.textContent = `{${text}}`
       }
       node.appendChild(newScript)
     })
@@ -89,4 +95,8 @@ export function parseLoadingWithContent(str: string): string {
     return str.replaceAll('#loadingx1', '') + loadingHtml
   }
   return str
+}
+
+export function getTempId() {
+  return -Date.now()
 }

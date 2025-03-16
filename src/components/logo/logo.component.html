@@ -1,29 +1,47 @@
-<img
-  *ngIf="src; else noSrc"
-  [src]="src"
-  class="icon common-icon"
+<div
+  *ngIf="!src; else img"
+  class="circle common-icon"
   [ngStyle]="{
     width: size === 0 ? '' : size + 'px',
     height: size === 0 ? '' : size + 'px',
     minWidth: size + 'px',
     minHeight: size + 'px',
-    borderRadius: radius + 'px'
+    background: backgroundColor
   }"
-  draggable="false"
-  loading="lazy"
-  [alt]="name ? name[0] : ''"
-/>
+>
+  {{ firstLetter }}
+</div>
 
-<ng-template #noSrc>
+<ng-template #img>
+  <img
+    *ngIf="!isError"
+    [src]="src"
+    class="icon common-icon"
+    [ngStyle]="{
+      width: size === 0 ? '' : size + 'px',
+      height: size === 0 ? '' : size + 'px',
+      minWidth: size + 'px',
+      minHeight: size + 'px',
+      borderRadius: radius + 'px'
+    }"
+    draggable="false"
+    loading="lazy"
+    [alt]="firstLetter"
+    (error)="onError()"
+  />
+
   <div
+    *ngIf="isError"
     class="circle common-icon"
     [ngStyle]="{
       width: size === 0 ? '' : size + 'px',
       height: size === 0 ? '' : size + 'px',
       minWidth: size + 'px',
-      minHeight: size + 'px'
+      minHeight: size + 'px',
+      borderRadius: radius + 'px',
+      background: backgroundColor
     }"
   >
-    {{ name ? name[0] : '' }}
+    {{ firstLetter }}
   </div>
 </ng-template>

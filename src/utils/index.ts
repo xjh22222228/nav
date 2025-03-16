@@ -12,9 +12,10 @@ import {
   IWebTag,
 } from '../types'
 import { STORAGE_KEY_MAP } from 'src/constants'
+import { CODE_SYMBOL } from 'src/constants/symbol'
 import { isLogin } from './user'
 import { SearchType } from 'src/components/search/index'
-import { websiteList, searchEngineList, settings } from 'src/store'
+import { websiteList, searchEngineList, settings, tagMap } from 'src/store'
 import { $t } from 'src/locale'
 
 export function randomInt(max: number) {
@@ -34,14 +35,28 @@ export function fuzzySearch(
   const { oneIndex, twoIndex } = getClassById(id)
   const sType = Number(type) || SearchType.All
   const navData: IWebProps[] = []
-  const resultList: INavThreeProp[] = [{ nav: navData, id: -1, title: '' }]
+  let resultList: INavThreeProp[] = [
+    { nav: navData, id: -1, title: $t('_searchRes'), icon: '' },
+  ]
   const urlRecordMap = new Map<number, boolean>()
+
+  if (sType === SearchType.Class) {
+    resultList = []
+  }
 
   function f(arr?: any[]) {
     arr = arr || navList
 
     outerLoop: for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
+
+      if (sType === SearchType.Class && item.title) {
+        if (item.nav[0]?.name && item.title.toLowerCase().includes(keyword)) {
+          resultList.push(item)
+          break
+        }
+      }
+
       if (Array.isArray(item.nav)) {
         f(item.nav)
       }
@@ -52,7 +67,7 @@ export function fuzzySearch(
         const name = item.name.toLowerCase()
         const desc = item.desc.toLowerCase()
         const url = item.url.toLowerCase()
-        const isCode = desc[0] === '!'
+        const isCode = desc[0] === CODE_SYMBOL
         if (isCode) {
           continue
         }
@@ -126,6 +141,17 @@ export function fuzzySearch(
           return false
         }
 
+        const searchTags = () => {
+          return item.tags.forEach((tag: IWebTag) => {
+            if (tagMap[tag.id]?.name?.toLowerCase() === keyword) {
+              if (!urlRecordMap.has(item.id)) {
+                urlRecordMap.set(item.id, true)
+                navData.push(item)
+              }
+            }
+          })
+        }
+
         const searchId = (): boolean => {
           if (item.id == keyword) {
             navData.push(item)
@@ -152,6 +178,10 @@ export function fuzzySearch(
               searchQuick()
               break
 
+            case SearchType.Tag:
+              searchTags()
+              break
+
             case SearchType.Id:
               if (searchId()) {
                 break outerLoop
@@ -176,42 +206,56 @@ export function fuzzySearch(
     f()
   }
 
-  if (navData.length <= 0) {
+  if (sType !== SearchType.Class && navData.length <= 0) {
     return []
   }
-
   return resultList
 }
 
-function randomColor(): string {
-  const r = randomInt(255)
-  const g = randomInt(255)
-  const b = randomInt(255)
-  const c = `#${r.toString(16)}${g.toString(16)}${b.toString(16)}000`
-  return c.slice(0, 7)
+export function randomColor(): string {
+  const randomValue = Math.floor(Math.random() * 0xffffff)
+  const hexColor = randomValue.toString(16).padStart(6, '0')
+  return `#${hexColor}`
 }
 
 let randomTimer: any
-export function randomBgImg() {
+export function randomBgImg(): void {
   if (isDark()) return
 
-  clearInterval(randomTimer)
+  if (randomTimer) {
+    clearInterval(randomTimer)
+  }
+
   const id = 'random-light-bg'
   const el = document.getElementById(id) || document.createElement('div')
   const deg = randomInt(360)
+
   el.id = id
-  el.style.cssText =
-    'position:fixed;top:0;left:0;right:0;bottom:0;z-index:-3;transition: 1s linear;'
+  el.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -3;
+    transition: 1s linear;
+  `
+
   el.style.backgroundImage = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
   document.body.appendChild(el)
 
-  function setBg() {
+  const setBg = (): void => {
     if (isDark()) {
-      clearInterval(randomTimer)
+      if (randomTimer) {
+        clearInterval(randomTimer)
+        randomTimer = null
+      }
       return
     }
+
     const randomBg = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
-    el.style.opacity = '.3'
+
+    el.style.opacity = '0.3'
     setTimeout(() => {
       el.style.backgroundImage = randomBg
       el.style.opacity = '1'
@@ -452,7 +496,7 @@ export function getClassById(id: unknown, initValue = 0) {
           if (twoItem.id === id) {
             oneIndex = i
             twoIndex = j
-            breadcrumb.push(item.title)
+            breadcrumb.push(item.title, twoItem.title)
             break outerLoop
           }
         }
@@ -463,7 +507,7 @@ export function getClassById(id: unknown, initValue = 0) {
               oneIndex = i
               twoIndex = j
               threeIndex = k
-              breadcrumb.push(item.title)
+              breadcrumb.push(item.title, twoItem.title, threeItem.title)
               break outerLoop
             }
           }

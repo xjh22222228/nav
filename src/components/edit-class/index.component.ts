@@ -2,7 +2,13 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, Output, EventEmitter } from '@angular/core'
+import {
+  Component,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+} from '@angular/core'
 import { CommonModule } from '@angular/common'
 import {
   FormsModule,
@@ -20,8 +26,9 @@ import { UploadComponent } from 'src/components/upload/index.component'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { websiteList } from 'src/store'
-import { setWebsiteList } from 'src/utils/web'
+import { setWebsiteList, updateByClass, pushDataByAny } from 'src/utils/web'
 import { getClassById } from 'src/utils/index'
+import { getTempId, isSelfDevelop } from 'src/utils/utils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -43,11 +50,13 @@ import event from 'src/utils/mitt'
 })
 export class EditClassComponent {
   @Output() onOk = new EventEmitter()
+  @ViewChild('input', { static: false }) input!: ElementRef
 
-  $t = $t
+  readonly $t = $t
   validateForm!: FormGroup
   showModal = false
   isEdit = false
+  submitting = false
 
   constructor(private fb: FormBuilder, private message: NzMessageService) {
     this.validateForm = this.fb.group({
@@ -60,15 +69,22 @@ export class EditClassComponent {
       this.isEdit = !!props['title']
       this.validateForm.get('title')!.setValue(props['title'] || '')
       this.validateForm.get('icon')!.setValue(props['icon'] || '')
-      this.validateForm.get('id')!.setValue(props['id'] || -Date.now())
+      this.validateForm.get('id')!.setValue(props['id'] || getTempId())
       this.validateForm.get('ownVisible')!.setValue(!!props['ownVisible'])
       this.showModal = true
+      this.focusUrl()
     }
     event.on('EDIT_CLASS_OPEN', handleOpen)
   }
 
   get iconUrl(): string {
     return this.validateForm.get('icon')?.value || ''
+  }
+
+  focusUrl() {
+    setTimeout(() => {
+      this.input?.nativeElement?.focus()
+    }, 400)
   }
 
   onChangeFile(data: any) {
@@ -82,11 +98,11 @@ export class EditClassComponent {
 
   handleOk() {
     let { title, icon, ownVisible, id } = this.validateForm.value
-    if (!title || !title.trim()) {
+    title = title.trim()
+    if (!title) {
       this.message.error('Cannot be empty')
       return
     }
-    title = title.trim()
     const params: Record<string, any> = {
       id,
       title,
@@ -95,42 +111,33 @@ export class EditClassComponent {
     }
 
     try {
+      this.submitting = true
       if (this.isEdit) {
-        const { oneIndex, twoIndex, threeIndex } = getClassById(id, -1)
-        if (threeIndex !== -1) {
-          websiteList[oneIndex].nav[twoIndex].nav[threeIndex] = {
-            ...websiteList[oneIndex].nav[twoIndex].nav[threeIndex],
-            ...params,
-          }
-        } else if (twoIndex !== -1) {
-          websiteList[oneIndex].nav[twoIndex] = {
-            ...websiteList[oneIndex].nav[twoIndex],
-            ...params,
-          }
-        } else {
-          websiteList[oneIndex] = {
-            ...websiteList[oneIndex],
-            ...params,
-          }
-        }
+        const ok = updateByClass(id, params)
+        ok && this.message.success($t('_modifySuccess'))
       } else {
-        params['id'] = -Date.now()
+        params['id'] = getTempId()
         params['nav'] = []
+
         const { oneIndex, twoIndex } = getClassById(id, -1)
-        if (twoIndex !== -1) {
-          websiteList[oneIndex].nav[twoIndex].nav.push(params as any)
-        } else if (oneIndex !== -1) {
-          websiteList[oneIndex].nav.push(params as any)
+        if (oneIndex !== -1 || twoIndex !== -1) {
+          const ok = pushDataByAny(id, params)
+          ok && this.message.success($t('_addSuccess'))
         } else {
           websiteList.push(params as any)
+          setWebsiteList(websiteList)
         }
       }
-      setWebsiteList(websiteList)
     } catch (error: any) {
       this.message.error(error.message)
+    } finally {
+      this.submitting = false
     }
 
     this.onOk.emit(params)
     this.onCancel()
+    if (!isSelfDevelop) {
+      event.emit('WEB_REFRESH')
+    }
   }
 }

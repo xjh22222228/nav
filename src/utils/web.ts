@@ -6,7 +6,7 @@ import { isLogin } from './user'
 import { IWebProps, INavProps } from '../types'
 import { websiteList } from 'src/store'
 import { STORAGE_KEY_MAP, DB_PATH } from 'src/constants'
-import { isSelfDevelop } from './util'
+import { isSelfDevelop } from './utils'
 import { queryString, getClassById } from './index'
 import { $t } from 'src/locale'
 
@@ -118,7 +118,10 @@ export function toggleCollapseAll(wsList?: INavProps[]): boolean {
   return collapsed
 }
 
-export async function deleteWebByIds(ids: number[]): Promise<boolean> {
+export async function deleteWebByIds(
+  ids: number[],
+  isSame = false
+): Promise<boolean> {
   let hasDelete = false
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
@@ -126,7 +129,7 @@ export async function deleteWebByIds(ids: number[]): Promise<boolean> {
       if (Array.isArray(item.nav)) {
         item.nav = item.nav.filter((w: IWebProps) => {
           if (w.name) {
-            if (ids.includes(w.id)) {
+            if (ids.includes(isSame ? (w.rId as number) : w.id)) {
               hasDelete = true
               return false
             }
@@ -155,15 +158,13 @@ export function updateByWeb(oldId: number, newData: IWebProps) {
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
-      if (item.name) {
+      if (item['name']) {
         if (item.id === oldId) {
           ok = true
           for (let k of keys) {
             item[k] = newData[k]
           }
-          break
         }
-        continue
       }
 
       if (Array.isArray(item.nav)) {
@@ -177,7 +178,36 @@ export function updateByWeb(oldId: number, newData: IWebProps) {
   return ok
 }
 
-export async function deleteClassByIds(ids: number[]): Promise<boolean> {
+export function updateByClass(oldId: number, newData: any) {
+  const keys = Object.keys(newData)
+  let ok = false
+  function f(arr: any[]) {
+    for (let i = 0; i < arr.length; i++) {
+      const item = arr[i]
+      if (item.title) {
+        if (item.id === oldId) {
+          ok = true
+          for (let k of keys) {
+            item[k] = newData[k]
+          }
+        }
+      }
+
+      if (Array.isArray(item.nav) && !item.nav[0]?.['name']) {
+        f(item.nav)
+      }
+    }
+  }
+
+  f(websiteList)
+  setWebsiteList(websiteList)
+  return ok
+}
+
+export async function deleteClassByIds(
+  ids: number[],
+  isSame = false
+): Promise<boolean> {
   let hasDelete = false
 
   function f(arr: any[]) {
@@ -190,7 +220,7 @@ export async function deleteClassByIds(ids: number[]): Promise<boolean> {
         }
         item.nav = item.nav.filter((w: INavProps) => {
           if (w.title) {
-            if (ids.includes(w.id)) {
+            if (ids.includes(isSame ? (w['rId'] as number) : w.id)) {
               hasDelete = true
               return false
             }
@@ -216,4 +246,27 @@ export async function deleteClassByIds(ids: number[]): Promise<boolean> {
     await setWebsiteList(websiteList)
   }
   return hasDelete
+}
+
+export function pushDataByAny(id: number, data: any) {
+  let ok = false
+  function f(arr: any[]) {
+    for (let i = 0; i < arr.length; i++) {
+      const item = arr[i]
+      if (item.title) {
+        if (item.id === id) {
+          ok = true
+          item.nav.unshift(data)
+        }
+      }
+
+      if (Array.isArray(item.nav)) {
+        f(item.nav)
+      }
+    }
+  }
+
+  f(websiteList)
+  setWebsiteList(websiteList)
+  return ok
 }

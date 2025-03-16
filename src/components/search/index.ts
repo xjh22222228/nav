@@ -8,4 +8,6 @@ export enum SearchType {
   Current,
   Quick,
   Id,
+  Tag,
+  Class,
 }

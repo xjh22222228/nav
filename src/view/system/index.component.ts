@@ -15,7 +15,7 @@ import {
 import { $t } from 'src/locale'
 import { isLogin, userLogout, getAuthCode } from 'src/utils/user'
 import { VERSION } from 'src/constants'
-import { isSelfDevelop, removeDark } from 'src/utils/util'
+import { isSelfDevelop, removeDark } from 'src/utils/utils'
 import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 import { NzButtonModule } from 'ng-zorro-antd/button'
@@ -78,7 +78,11 @@ export default class SystemComponent {
   }
 
   goBack() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/'], {
+      queryParams: {
+        _: Date.now(),
+      },
+    })
   }
 
   goRoute(to: string, disabled = false) {

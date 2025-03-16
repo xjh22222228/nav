@@ -3,7 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
-import { IComponentProps } from 'src/types'
+import type { IComponentProps } from 'src/types'
 import dayjs from 'dayjs'
 
 interface IProps {

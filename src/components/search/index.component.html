@@ -22,6 +22,7 @@
         id="search-engine-input"
         (keyup)="onKey($event)"
         autocomplete="off"
+        #input
       />
     </nz-input-group>
     <ng-template #prefixIcon>
@@ -41,7 +42,7 @@
             *ngFor="let item of searchEngineList; let i = index"
             (click)="clickEngineItem(i)"
           >
-            <app-logo [src]="item.icon || ''" [size]="20" [check]="false" />
+            <app-logo [src]="item.icon" [size]="20" [check]="false" />
             <span class="name2 dark-text ellipsis">{{ item.name }}</span>
           </div>
         </div>
@@ -55,7 +56,11 @@
       ></i>
     </ng-template>
     <ng-template #addOnBeforeTemplate>
-      <nz-select [(ngModel)]="searchTypeValue" *ngIf="!currentEngine.url">
+      <nz-select
+        [(ngModel)]="searchTypeValue"
+        *ngIf="!currentEngine.url"
+        (ngModelChange)="onSelectChange()"
+      >
         <nz-option
           [nzLabel]="$t('_default')"
           [nzValue]="SearchType.All"
@@ -79,6 +84,14 @@
         <nz-option
           [nzLabel]="$t('_quick')"
           [nzValue]="SearchType.Quick"
+        ></nz-option>
+        <nz-option
+          [nzLabel]="$t('_tag')"
+          [nzValue]="SearchType.Tag"
+        ></nz-option>
+        <nz-option
+          [nzLabel]="$t('_class')"
+          [nzValue]="SearchType.Class"
         ></nz-option>
         <nz-option
           *ngIf="isLogin"

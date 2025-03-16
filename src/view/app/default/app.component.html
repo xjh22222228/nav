@@ -54,27 +54,20 @@
       </h2>
 
       <div
-        style="padding: 0 10px"
-        nz-row
-        [nzGutter]="[16, 16]"
-        [style.display]="item.collapsed ? 'none' : ''"
+        class="px-3 grid gap-x-4 gap-y-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4"
+        [class.hidden]="item['collapsed']"
+        [ngClass]="{
+          '2xl:grid-cols-6':
+            commonService.settings.sideCardStyle === 'original' ||
+            commonService.settings.sideCardStyle === 'example'
+        }"
       >
-        <div
-          class="gutter-row"
-          nz-col
-          [nzSpan]="8"
-          [nzMd]="12"
-          [nzXl]="6"
-          [nzXs]="24"
+        <app-card
           *ngFor="let el of item.nav; trackBy: commonService.trackByItemWeb"
-        >
-          <app-card
-            [cardStyle]="commonService.settings.appCardStyle"
-            [dataSource]="el"
-            [searchKeyword]="commonService.searchKeyword"
-            class="column-border"
-          ></app-card>
-        </div>
+          [cardStyle]="commonService.settings.appCardStyle"
+          [dataSource]="el"
+          class="column-border"
+        ></app-card>
       </div>
     </div>
   </div>

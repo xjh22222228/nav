@@ -19,8 +19,10 @@ import { getToken, userLogout, isLogin, getPermissions } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
+import { NzModalService } from 'ng-zorro-antd/modal'
+
 import { getWebs } from 'src/utils/web'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import { routes } from './app.routes'
 import { MoveWebComponent } from 'src/components/move-web/index.component'
 import { CreateWebComponent } from 'src/components/create-web/index.component'
@@ -53,7 +55,8 @@ export class AppComponent {
     private activatedRoute: ActivatedRoute,
     private i18n: NzI18nService,
     private message: NzMessageService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private modal: NzModalService
   ) {
     this.registerEvents()
 
@@ -77,6 +80,10 @@ export class AppComponent {
         props.content,
         props.config
       )
+    })
+
+    event.on('MODAL', (config: any) => {
+      this.modal.create({ ...config })
     })
   }
 

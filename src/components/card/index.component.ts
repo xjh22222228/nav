@@ -7,9 +7,10 @@ import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { isLogin, getPermissions } from 'src/utils/user'
 import { copyText, getTextContent } from 'src/utils'
-import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/util'
-import { setWebsiteList, deleteWebByIds } from 'src/utils/web'
-import { INavProps, IWebProps, ICardType, ActionType } from 'src/types'
+import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/utils'
+import { setWebsiteList } from 'src/utils/web'
+import type { INavProps, IWebProps, ICardType } from 'src/types'
+import { ActionType } from 'src/types'
 import { $t, isZhCN } from 'src/locale'
 import { settings, websiteList } from 'src/store'
 import { JumpService } from 'src/services/jump'
@@ -23,6 +24,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import { saveUserCollect } from 'src/api'
 import { NzMessageService } from 'ng-zorro-antd/message'
+import { CommonService } from 'src/services/common'
+import { CODE_SYMBOL } from 'src/constants/symbol'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -44,8 +47,7 @@ import event from 'src/utils/mitt'
   styleUrls: ['./index.component.scss'],
 })
 export class CardComponent {
-  @Input() searchKeyword = ''
-  @Input() dataSource: IWebProps | Record<string, any> = {}
+  @Input() dataSource!: IWebProps
   @Input() cardStyle: ICardType = 'standard'
   @ViewChild('root', { static: false }) root!: ElementRef
 
@@ -60,12 +62,13 @@ export class CardComponent {
   isCode = false
 
   constructor(
+    public commonService: CommonService,
     public readonly jumpService: JumpService,
     private message: NzMessageService
   ) {}
 
   ngOnInit() {
-    this.isCode = this.dataSource.desc?.[0] === '!'
+    this.isCode = this.dataSource.desc?.[0] === CODE_SYMBOL
     this.description = parseLoadingWithContent(this.dataSource.desc)
   }
 
@@ -115,23 +118,27 @@ export class CardComponent {
       desc: getTextContent(this.dataSource.desc),
     }
     if (isLogin) {
-      if (await deleteWebByIds([params.id])) {
-        this.message.success($t('_delSuccess'))
-      }
+      this.commonService.deleteWebByIds([params.id], params)
     } else {
-      try {
-        await saveUserCollect({
-          data: {
-            ...params,
-            extra: {
-              type: ActionType.Delete,
+      event.emit('MODAL', {
+        nzTitle: $t('_confirmDel'),
+        nzContent: `ID: ${params.id}`,
+        nzWidth: 350,
+        nzOkType: 'primary',
+        nzOkDanger: true,
+        nzOkText: $t('_del'),
+        nzOnOk: async () => {
+          await saveUserCollect({
+            data: {
+              ...params,
+              extra: {
+                type: ActionType.Delete,
+              },
             },
-          },
-        })
-        this.message.success($t('_waitHandle'))
-      } catch (error: any) {
-        this.message.error(error.message)
-      }
+          })
+          this.message.success($t('_waitHandle'))
+        },
+      })
     }
   }
 

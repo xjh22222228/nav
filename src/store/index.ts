@@ -8,7 +8,7 @@ import settingsJson from '../../data/settings.json'
 import tagJson from '../../data/tag.json'
 import internalJson from '../../data/internal.json'
 import componentJson from '../../data/component.json'
-import {
+import type {
   ISettings,
   ISearchProps,
   ITagProp,
@@ -17,11 +17,11 @@ import {
   INavProps,
   IComponentProps,
 } from 'src/types'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 
 export let settings: ISettings = settingsJson as ISettings
 
-let _tagMap: Record<string, any> = {}
+let _tagMap: Record<string, ITagPropValues> = {}
 
 export let searchEngineList: ISearchProps[] = isSelfDevelop ? [] : searchJson
 

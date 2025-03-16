@@ -13,7 +13,7 @@ import { websiteList, settings } from 'src/store'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import { Router, ActivatedRoute } from '@angular/router'
 import { $t, getLocale } from 'src/locale'
-import { addDark, removeDark } from 'src/utils/util'
+import { addDark, removeDark } from 'src/utils/utils'
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import mitt from 'src/utils/mitt'
@@ -33,14 +33,15 @@ export class FixbarComponent {
   @Input() selector: string = ''
   @Output() onCollapse = new EventEmitter()
 
-  $t = $t
-  settings = settings
-  language = getLocale()
-  websiteList = websiteList
+  readonly $t = $t
+  readonly settings = settings
+  readonly language = getLocale()
+  readonly isLogin = isLogin
   isDark: boolean = isDarkFn()
+  websiteList = websiteList
   syncLoading = false
-  isLogin = isLogin
   isShowFace = true
+  entering = false
   open = localStorage.getItem(STORAGE_KEY_MAP.fixbarOpen) === 'true'
   themeList = [
     {
@@ -164,6 +165,7 @@ export class FixbarComponent {
   }
 
   goSystemPage() {
+    this.entering = true
     this.router.navigate(['system'])
   }
 

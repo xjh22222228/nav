@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { getToken } from 'src/utils/user'
 import { VERSION } from 'src/constants'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import config from '../../../../nav.config.json'
 
 @Component({

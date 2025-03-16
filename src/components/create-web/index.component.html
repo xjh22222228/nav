@@ -3,11 +3,11 @@
   [(nzVisible)]="showModal"
   [nzTitle]="detail ? $t('_edit') : $t('_add')"
   (nzOnCancel)="onClose()"
-  (nzOnOk)="handleOk()"
-  [nzOkLoading]="uploading || getting"
   [nzBodyStyle]="{ maxHeight: '70vh', overflowY: 'auto' }"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
 >
-  <ng-container *nzModalContent>
+  <ng-template #modalContent>
     <div class="breadcrumb1" *ngIf="detail && detail.breadcrumb">
       <span *ngFor="let n of detail.breadcrumb; let idx = index"
         >{{ n }}
@@ -23,7 +23,12 @@
           $t('_webLink')
         }}</nz-form-label>
         <nz-form-control [nzSpan]="20" [nzErrorTip]="$t('_requiredLink')">
-          <input formControlName="url" nz-input (blur)="onUrlBlur($event)" />
+          <input
+            formControlName="url"
+            nz-input
+            (blur)="onUrlBlur($event)"
+            #inputUrl
+          />
         </nz-form-control>
       </nz-form-item>
 
@@ -32,14 +37,28 @@
           $t('_webName')
         }}</nz-form-label>
         <nz-form-control [nzSpan]="20" [nzErrorTip]="$t('_requiredName')">
-          <input
-            formControlName="title"
-            nz-input
-            [readonly]="getting"
-            [placeholder]="getting ? $t('_pendingGet') : ''"
-          />
+          <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
+            <input
+              formControlName="title"
+              nz-input
+              [readonly]="getting"
+              [placeholder]="getting ? $t('_pendingGet') : ''"
+            />
+          </nz-input-group>
         </nz-form-control>
       </nz-form-item>
+      <ng-template #suffixButton>
+        <button
+          [disabled]="!title"
+          [nzLoading]="translating"
+          nz-button
+          nzType="primary"
+          nzSearch
+          (click)="handleTranslate('title')"
+        >
+          {{ $t('_translate') }}
+        </button>
+      </ng-template>
 
       <nz-form-item *ngIf="isLogin">
         <nz-form-label [nzSpan]="4">{{ $t('_sort') }}</nz-form-label>
@@ -154,6 +173,7 @@
               [nzAddOnAfter]="addOnAfterTemplate"
             >
               <input
+                #inputs
                 formControlName="url"
                 type="text"
                 nz-input
@@ -161,7 +181,11 @@
               />
             </nz-input-group>
             <ng-template #addOnBeforeTemplate>
-              <nz-select style="width: 100px" formControlName="id">
+              <nz-select
+                style="width: 100px"
+                formControlName="id"
+                (ngModelChange)="onSelectChange(idx)"
+              >
                 <nz-option
                   *ngFor="let tag of tagList"
                   [nzLabel]="tag.name"
@@ -193,5 +217,37 @@
         </nz-form-control>
       </nz-form-item>
     </form>
-  </ng-container>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="onClose()">
+      {{ $t('_cancel') }}
+    </button>
+    <button
+      [disabled]="!desc"
+      nz-button
+      nzType="primary"
+      (click)="handleTranslate()"
+      [nzLoading]="translating"
+    >
+      {{ $t('_translate') }}
+    </button>
+    <button
+      *ngIf="parentId !== -1"
+      nz-button
+      nzType="primary"
+      (click)="checkRepeat()"
+    >
+      <nz-icon nzType="search" />
+      {{ $t('_checkRepeat') }}
+    </button>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="handleOk()"
+      [nzLoading]="uploading || getting || translating"
+    >
+      {{ $t('_submit') }}
+    </button>
+  </ng-template>
 </nz-modal>

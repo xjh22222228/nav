@@ -1,7 +1,7 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 
 const english: Record<string, any> = {
   _loading: 'Loading...',
@@ -51,7 +51,7 @@ const english: Record<string, any> = {
     : 'Are you sure to synchronize all data to the remote end?',
   _syncSuccessTip: isSelfDevelop
     ? 'OK'
-    : 'The synchronization is successful. It takes about 5 minutes to build',
+    : 'Synchronization successful, currently building...',
   _error: 'Error',
   _syncFailTip: 'Synchronization failed, please try again',
   _inputToken: 'Please enter token',
@@ -296,6 +296,15 @@ const english: Record<string, any> = {
   _hours: '{num} hr',
   _minutes: '{num} min',
   _seconds: '{num} s',
+  _same: 'Same',
+  _sameExists: 'Already exists',
+  _checkRepeat: 'Check URL',
+  _repeatTip: 'There may be duplicate URLs in this category"',
+  _tag: 'Tag',
+  _translate: 'Translate',
+  _searchRes: 'Search result',
+  _class: 'Classify',
+  _quote: 'Quote',
 }
 
 export default english

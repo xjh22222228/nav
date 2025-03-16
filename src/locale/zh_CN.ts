@@ -1,7 +1,7 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 
 const zhCN: Record<string, any> = {
   _loading: '加载中...',
@@ -47,9 +47,7 @@ const zhCN: Record<string, any> = {
   _confirmSyncTip: isSelfDevelop
     ? ''
     : '确定将所有数据同步到远端吗？（每次保存需要等待构建完成再进行下一次操作）',
-  _syncSuccessTip: isSelfDevelop
-    ? '同步成功'
-    : '同步成功, 大约需要5分钟构建时间',
+  _syncSuccessTip: isSelfDevelop ? '同步成功' : '同步成功, 正在构建...',
   _error: '错误',
   _syncFailTip: '同步失败, 请重试',
   _inputToken: '请输入TOKEN',
@@ -285,6 +283,15 @@ const zhCN: Record<string, any> = {
   _hours: '{num}小时',
   _minutes: '{num}分钟',
   _seconds: '{num}秒',
+  _same: '引用',
+  _sameExists: '已存在',
+  _checkRepeat: '检重URL',
+  _repeatTip: '该分类下可能存在重复URL',
+  _tag: '标签',
+  _translate: '翻译',
+  _searchRes: '搜索结果',
+  _class: '分类',
+  _quote: '引用',
 }
 
 export default zhCN

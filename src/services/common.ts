@@ -12,18 +12,26 @@ import {
   getOverIndex,
   getClassById,
 } from 'src/utils'
-import { setWebsiteList, toggleCollapseAll } from 'src/utils/web'
-import { INavProps, INavThreeProp } from 'src/types'
+import {
+  setWebsiteList,
+  toggleCollapseAll,
+  deleteClassByIds,
+  deleteWebByIds,
+} from 'src/utils/web'
+import type { INavProps, INavThreeProp, IWebProps } from 'src/types'
 import { isLogin, getPermissions } from 'src/utils/user'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
+import { $t } from 'src/locale'
 import event from 'src/utils/mitt'
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommonService {
-  isLogin = isLogin
-  settings = settings
+  readonly isLogin = isLogin
+  readonly settings = settings
+  readonly permissions = getPermissions(settings)
+  readonly title: string = settings.title.trim().split(/\s/)[0]
   websiteList: INavProps[] = websiteList
   currentList: INavThreeProp[] = []
   twoIndex = 0
@@ -32,8 +40,6 @@ export class CommonService {
   selectedThreeIndex = 0 // 第三级菜单选中
   searchKeyword = ''
   overIndex = Number.MAX_SAFE_INTEGER
-  title: string = settings.title.trim().split(/\s/)[0]
-  permissions = getPermissions(settings)
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     const getData = () => {
@@ -79,6 +85,7 @@ export class CommonService {
         _: Date.now(),
       },
     })
+    event.emit('SEARCH_FOCUS')
   }
 
   onCollapseAll = (e?: Event) => {
@@ -102,9 +109,8 @@ export class CommonService {
     }
   }
 
-  onCollapse = (item: any, index: number) => {
+  onCollapse = (item: INavThreeProp) => {
     item.collapsed = !item.collapsed
-    this.websiteList[this.oneIndex].nav[this.twoIndex].nav[index] = item
     if (!isSelfDevelop) {
       setWebsiteList(this.websiteList)
     }
@@ -117,6 +123,66 @@ export class CommonService {
         return
       }
       this.overIndex = overIndex
+    })
+  }
+
+  setOverIndex() {
+    this.overIndex = Number.MAX_SAFE_INTEGER
+  }
+
+  async deleteWebByIds(ids: number[], data?: IWebProps) {
+    const isSame = this.isLogin && data?.['rId']
+
+    return new Promise((resolve) => {
+      event.emit('MODAL', {
+        nzTitle: $t('_confirmDel'),
+        nzContent: `ID${isSame ? `(${$t('_quote')})` : ''}: ${ids.join(',')}`,
+        nzWidth: 350,
+        nzOkType: 'primary',
+        nzOkDanger: true,
+        nzOkText: $t('_del'),
+        nzOnOk: async () => {
+          const ok = await deleteWebByIds(ids)
+          if (ok) {
+            event.emit('MESSAGE', {
+              type: 'success',
+              content: $t('_delSuccess'),
+            })
+          }
+          resolve(ok)
+        },
+        nzOnCancel: () => {
+          resolve(false)
+        },
+      })
+    })
+  }
+
+  async deleteClassByIds(ids: number[], data?: INavThreeProp) {
+    const isSame = this.isLogin && data?.['rId']
+
+    return new Promise((resolve) => {
+      event.emit('MODAL', {
+        nzTitle: $t('_confirmDel'),
+        nzContent: `ID${isSame ? `(${$t('_quote')})` : ''}: ${ids.join(',')}`,
+        nzWidth: 350,
+        nzOkType: 'primary',
+        nzOkDanger: true,
+        nzOkText: $t('_del'),
+        nzOnOk: async () => {
+          const ok = await deleteClassByIds(ids)
+          if (ok) {
+            event.emit('MESSAGE', {
+              type: 'success',
+              content: $t('_delSuccess'),
+            })
+          }
+          resolve(ok)
+        },
+        nzOnCancel: () => {
+          resolve(false)
+        },
+      })
     })
   }
 }

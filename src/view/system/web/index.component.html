@@ -50,10 +50,7 @@
         {{ $t('_addTag') }}
       </button>
       <button
-        nz-popconfirm
-        [nzPopconfirmTitle]="$t('_confirmDel')"
-        nzPopconfirmPlacement="bottom"
-        (nzOnConfirm)="onBatchDelete()"
+        (click)="onBatchDelete()"
         nz-button
         nzDanger
         style="margin-left: 10px"
@@ -87,7 +84,7 @@
               (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
             <td>
-              <app-logo [src]="data.icon || ''" [name]="data.title" />
+              <app-logo [src]="data.icon" [name]="data.title" />
             </td>
             <td>{{ data.title }}</td>
             <td>
@@ -106,15 +103,6 @@
               <a (click)="openEditClass(data)" class="ml-2.5">{{
                 $t('_edit')
               }}</a>
-              <a
-                nz-popconfirm
-                [nzPopconfirmTitle]="$t('_delWarn')"
-                nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="handleDeleteClass(data.id)"
-                class="color-red ml-2.5"
-              >
-                {{ $t('_del') }}
-              </a>
             </td>
           </tr>
         </tbody>
@@ -146,10 +134,7 @@
         {{ $t('_addTag') }}
       </button>
       <button
-        nz-popconfirm
-        [nzPopconfirmTitle]="$t('_confirmDel')"
-        nzPopconfirmPlacement="bottom"
-        (nzOnConfirm)="onBatchDelete()"
+        (click)="onBatchDelete()"
         nz-button
         nzDanger
         style="margin-left: 10px"
@@ -183,7 +168,7 @@
               (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
             <td>
-              <app-logo [src]="data.icon || ''" [name]="data.title" />
+              <app-logo [src]="data.icon" [name]="data.title" />
             </td>
             <td>{{ data.title }}</td>
             <td>
@@ -205,15 +190,6 @@
               <a (click)="openMoveWebModal(data, 2)" class="ml-2.5">{{
                 $t('_move')
               }}</a>
-              <a
-                nz-popconfirm
-                [nzPopconfirmTitle]="$t('_delWarn')"
-                nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="handleDeleteClass(data.id)"
-                class="color-red ml-2.5"
-              >
-                {{ $t('_del') }}
-              </a>
             </td>
           </tr>
         </tbody>
@@ -260,10 +236,7 @@
         {{ $t('_addTag') }}
       </button>
       <button
-        nz-popconfirm
-        [nzPopconfirmTitle]="$t('_confirmDel')"
-        nzPopconfirmPlacement="bottom"
-        (nzOnConfirm)="onBatchDelete()"
+        (click)="onBatchDelete()"
         nz-button
         nzDanger
         style="margin-left: 10px"
@@ -297,7 +270,7 @@
               (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
             <td>
-              <app-logo [src]="data.icon || ''" [name]="data.title" />
+              <app-logo [src]="data.icon" [name]="data.title" />
             </td>
             <td>{{ data.title }}</td>
             <td>
@@ -319,15 +292,6 @@
               <a (click)="openMoveWebModal(data, 3)" class="ml-2.5">{{
                 $t('_move')
               }}</a>
-              <a
-                nz-popconfirm
-                [nzPopconfirmTitle]="$t('_delWarn')"
-                nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="handleDeleteClass(data.id)"
-                class="color-red ml-2.5"
-              >
-                {{ $t('_del') }}
-              </a>
             </td>
           </tr>
         </tbody>
@@ -389,10 +353,7 @@
         {{ $t('_addWeb') }}（{{ websiteTableData.length }}）
       </button>
       <button
-        nz-popconfirm
-        [nzPopconfirmTitle]="$t('_confirmDel')"
-        nzPopconfirmPlacement="bottom"
-        (nzOnConfirm)="onBatchDelete()"
+        (click)="onBatchDelete()"
         nz-button
         nzDanger
         [disabled]="setOfCheckedId.size <= 0"
@@ -447,15 +408,6 @@
               <div *ngIf="errorWebs.length <= 0">
                 <a (click)="openMoveWebModal(data)">{{ $t('_move') }}</a>
               </div>
-              <a
-                nz-popconfirm
-                [nzPopconfirmTitle]="$t('_confirmDel')"
-                nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="handleDeleteWeb(data)"
-                class="color-red"
-              >
-                {{ $t('_del') }}
-              </a>
             </td>
             <td>
               <span

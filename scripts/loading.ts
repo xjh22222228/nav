@@ -1,7 +1,7 @@
 // Copyright @ 2018-present xiejia.he. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-export default {
+const loadingTemplate: Record<string, string> = {
   loading1: `
 <style>
   @keyframes r {
@@ -39,3 +39,5 @@ export default {
   </div>  
 `,
 }
+
+export default loadingTemplate

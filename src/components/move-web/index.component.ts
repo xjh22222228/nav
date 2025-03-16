@@ -15,6 +15,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { deleteWebByIds, deleteClassByIds } from 'src/utils/web'
 import { getClassById } from 'src/utils'
+import { getTempId, isSelfDevelop } from 'src/utils/utils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -36,6 +37,7 @@ export class MoveWebComponent {
   twoOptions: INavTwoProp[] = []
   threeOptions: INavThreeProp[] = []
   isCopy = false
+  isSame = false
   oneSelect: number = -1
   twoSelect: number = -1
   threeSelect: number = -1
@@ -91,11 +93,13 @@ export class MoveWebComponent {
   }
 
   handleCancel() {
+    this.isCopy = false
+    this.isSame = false
     this.showModal = false
   }
 
   async hanldeOk(): Promise<any> {
-    let tempId = -Date.now()
+    let tempId = getTempId()
     try {
       const moveItems: INavTwoProp[] & IWebProps[] & INavThreeProp[] =
         JSON.parse(JSON.stringify(this.moveItems))
@@ -106,10 +110,23 @@ export class MoveWebComponent {
         const { oneIndex } = getClassById(this.oneSelect)
         for (const item of moveItems) {
           const id = item.id
-          tempId -= 1
-          item.id = tempId
-          if (!this.isCopy) {
-            await deleteClassByIds([id])
+          const has = this.websiteList[oneIndex].nav.some(
+            (item) => item.id === id
+          )
+          if (has) {
+            this.message.error($t('_sameExists'))
+            return
+          }
+          if (this.isCopy) {
+            tempId -= 1
+            if (this.isSame) {
+              item.rId = tempId
+            } else {
+              item.id = tempId
+              delete item.rId
+            }
+          } else {
+            await deleteClassByIds([item.rId || id], !!item.rId)
           }
           this.websiteList[oneIndex].nav.unshift(item)
           this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
@@ -121,10 +138,23 @@ export class MoveWebComponent {
         const { oneIndex, twoIndex } = getClassById(this.twoSelect)
         for (const item of moveItems) {
           const id = item.id
-          tempId -= 1
-          item.id = tempId
-          if (!this.isCopy) {
-            await deleteClassByIds([id])
+          const has = this.websiteList[oneIndex].nav[twoIndex].nav.some(
+            (item) => item.id === id
+          )
+          if (has) {
+            this.message.error($t('_sameExists'))
+            return
+          }
+          if (this.isCopy) {
+            tempId -= 1
+            if (this.isSame) {
+              item.rId = tempId
+            } else {
+              item.id = tempId
+              delete item.rId
+            }
+          } else {
+            await deleteClassByIds([item.rId || id], !!item.rId)
           }
           this.websiteList[oneIndex].nav[twoIndex].nav.unshift(item)
           this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
@@ -138,10 +168,24 @@ export class MoveWebComponent {
         )
         for (const item of moveItems) {
           const id = item.id
-          tempId -= 1
-          item.id = tempId
-          if (!this.isCopy) {
-            await deleteWebByIds([id])
+          const has = this.websiteList[oneIndex].nav[twoIndex].nav[
+            threeIndex
+          ].nav.some((item) => item.id === id)
+          if (has) {
+            this.message.error($t('_sameExists'))
+            return
+          }
+
+          if (this.isCopy) {
+            tempId -= 1
+            if (this.isSame) {
+              item.rId = tempId
+            } else {
+              item.id = tempId
+              delete item.rId
+            }
+          } else {
+            await deleteWebByIds([item.rId || id], !!item.rId)
           }
           this.websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav.unshift(
             item
@@ -152,6 +196,9 @@ export class MoveWebComponent {
 
       setWebsiteList(this.websiteList)
       this.handleCancel()
+      if (!isSelfDevelop) {
+        event.emit('WEB_REFRESH')
+      }
     } catch (error: any) {
       this.message.error(error.message)
     }
