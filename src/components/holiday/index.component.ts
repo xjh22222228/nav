@@ -22,10 +22,6 @@ export class HolidayComponent {
 
   constructor() {}
 
-  ngOnInit() {
-    this.init()
-  }
-
   ngOnChanges() {
     this.init()
   }

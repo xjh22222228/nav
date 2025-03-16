@@ -234,6 +234,8 @@ export class CreateWebComponent {
         this.validateForm.get('desc')!.setValue(res['description'])
       }
       this.getting = false
+      this.inputUrl?.nativeElement?.blur()
+      this.checkRepeat()
     } catch {}
   }
 
@@ -279,7 +281,9 @@ export class CreateWebComponent {
   checkRepeat() {
     try {
       const { url } = this.validateForm.value
-      const { oneIndex, twoIndex, threeIndex } = getClassById(this.parentId)
+      const { oneIndex, twoIndex, threeIndex, breadcrumb } = getClassById(
+        this.parentId
+      )
       const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
       const repeatData = w.find((item) => {
         if (item.url === url) {
@@ -297,12 +301,13 @@ export class CreateWebComponent {
         this.notification.error(
           $t('_repeatTip'),
           `
-          ID: ${repeatData.id}；
-          ${$t('_title')}: ${repeatData.name}；
+          <div>${breadcrumb.join(' / ')}</div>
+          <div>ID: ${repeatData.id}</div>
+          <div>${$t('_title')}: ${repeatData.name}</div>
           URL: ${repeatData.url}
           `,
           {
-            nzDuration: 10000,
+            nzDuration: 20000,
           }
         )
       } else {
