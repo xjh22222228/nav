@@ -178,6 +178,27 @@ export function updateByWeb(oldId: number, newData: IWebProps) {
   return ok
 }
 
+export function getWebById(id: number): IWebProps | null {
+  let web: IWebProps | null = null
+  function f(arr: any[]) {
+    for (let i = 0; i < arr.length; i++) {
+      const item = arr[i]
+      if (item['name']) {
+        if (item.id === id) {
+          web = item
+          break
+        }
+      }
+
+      if (Array.isArray(item.nav)) {
+        f(item.nav)
+      }
+    }
+  }
+  f(websiteList)
+  return web
+}
+
 export function updateByClass(oldId: number, newData: any) {
   const keys = Object.keys(newData)
   let ok = false
