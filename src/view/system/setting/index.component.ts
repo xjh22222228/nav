@@ -30,10 +30,12 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { UploadComponent } from 'src/components/upload/index.component'
+import { CardComponent } from 'src/components/card/index.component'
 import { ActionType } from 'src/types'
-import type { IComponentProps } from 'src/types'
+import type { IComponentProps, IWebProps } from 'src/types'
 import event from 'src/utils/mitt'
 import footTemplate from 'src/components/footer/template'
+import { replaceJsdelivrCDN } from 'src/utils/pureUtils'
 
 // 额外添加的字段，但不添加到配置中
 const extraForm: Record<string, any> = {
@@ -61,6 +63,7 @@ const extraForm: Record<string, any> = {
     NzCheckboxModule,
     NzPopconfirmModule,
     UploadComponent,
+    CardComponent,
   ],
   providers: [NzModalService, NzNotificationService, NzMessageService],
   selector: 'system-setting',
@@ -90,6 +93,19 @@ export default class SystemSettingComponent {
       value: ActionType.Delete,
     },
   ]
+  webDemoData: IWebProps = {
+    id: -1,
+    name: '发现导航',
+    desc: '发现导航 , 最强轻量级导航网站',
+    url: 'https://nav3.cn',
+    icon: replaceJsdelivrCDN(
+      'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/logo.svg',
+      settings
+    ),
+    tags: [],
+    breadcrumb: [],
+    rate: 5,
+  }
 
   constructor(
     private fb: FormBuilder,

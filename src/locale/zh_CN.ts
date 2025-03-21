@@ -292,6 +292,7 @@ const zhCN: Record<string, any> = {
   _searchRes: '搜索结果',
   _class: '分类',
   _quote: '引用',
+  _poster: '海报',
 }
 
 export default zhCN

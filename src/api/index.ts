@@ -1,5 +1,6 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 // Copyright @ 2018-present xiejiahe. All rights reserved.
+// See https://github.com/xjh22222228/nav
 
 import config from '../../nav.config.json'
 import http, { httpNav, getDefaultRequestData } from '../utils/http'
@@ -18,6 +19,7 @@ import type { ISettings } from 'src/types'
 import { isSelfDevelop } from 'src/utils/utils'
 import { isLogin } from 'src/utils/user'
 import { DB_PATH } from 'src/constants'
+import { getIsGitee } from 'src/utils/pureUtils'
 import LZString from 'lz-string'
 import event from 'src/utils/mitt'
 
@@ -25,33 +27,46 @@ const { gitRepoUrl, imageRepoUrl } = config
 const s = gitRepoUrl.split('/')
 const DEFAULT_BRANCH = config.branch
 
-export let imageRepo = ''
-export let imageBranch = ''
-
-if (imageRepoUrl) {
-  const split = imageRepoUrl.split('?')
-  imageRepo = split[0].split('/').at(-1) || ''
-  const query = qs.parse(split.at(-1) || '')
-  if (query['branch']) {
-    imageBranch = query['branch'] as string
-  }
-}
-
 export const authorName = s.at(-2)
 export const repoName = s.at(-1)
 
-function isGitee() {
-  return config.gitRepoUrl.includes('gitee.com')
+export function getImageRepo() {
+  let repo = repoName
+  let branch = 'image'
+  if (imageRepoUrl) {
+    const split = imageRepoUrl.split('?')
+    repo = split[0].split('/').at(-1) || ''
+    const query = qs.parse(split.at(-1) || '')
+    if (query['branch']) {
+      branch = query['branch'] as string
+    }
+  }
+  return {
+    repo,
+    branch,
+  }
 }
 
-// 验证Token
+const isGitee = getIsGitee(config.gitRepoUrl)
+
 export function verifyToken(token: string) {
-  const url = isSelfDevelop ? '/api/users/verify' : `/users/${authorName}`
+  const url = isSelfDevelop ? '/api/users/verify' : `/user`
   return http.get(url, {
     headers: {
       Authorization: `token ${token.trim()}`,
     },
   })
+}
+
+export async function getImageRepoInfo(data?: Record<string, any>) {
+  if (isSelfDevelop) {
+    return
+  }
+  const imageRepo = getImageRepo()
+  return http.get(
+    `/repos/${authorName}/${imageRepo.repo}/branches/${imageRepo.branch}`,
+    data
+  )
 }
 
 // 获取自有部署内容
@@ -100,11 +115,11 @@ export async function createBranch(branch: string) {
     return
   }
 
-  const url = isGitee()
+  const url = isGitee
     ? `/repos/${authorName}/${repoName}/branches`
     : `/repos/${authorName}/${repoName}/git/refs`
   const params: Record<string, any> = {}
-  if (isGitee()) {
+  if (isGitee) {
     params['owner'] = `/${authorName}`
     params['repo'] = `/${authorName}/${repoName}`
     params['refs'] = DEFAULT_BRANCH
@@ -204,9 +219,9 @@ export async function createFile({
       })
   }
 
-  const method = isGitee() ? http.post : http.put
+  const method = isGitee ? http.post : http.put
   return method(
-    `/repos/${authorName}/${imageRepo || repoName}/contents/${path}`,
+    `/repos/${authorName}/${getImageRepo().repo}/contents/${path}`,
     {
       message: `rebot(CI): ${message}`,
       branch,
@@ -291,9 +306,9 @@ export async function getTranslate(data?: Record<string, any>) {
 }
 
 export function getCDN(path: string) {
-  const branch = imageBranch || 'image'
-  const repo = imageRepo || repoName
-  if (isGitee()) {
+  const branch = getImageRepo().branch
+  const repo = getImageRepo().repo
+  if (isGitee) {
     return `https://gitee.com/${authorName}/${repo}/raw/${branch}/${path}`
   }
   return `https://${settings.gitHubCDN}/gh/${authorName}/${repo}@${branch}/${path}`

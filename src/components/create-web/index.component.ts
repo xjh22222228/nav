@@ -286,16 +286,7 @@ export class CreateWebComponent {
       )
       const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
       const repeatData = w.find((item) => {
-        if (item.url === url) {
-          return true
-        }
-        try {
-          const domain = new URL(item.url).host
-          const domain2 = new URL(url).host
-          return domain === domain2
-        } catch {
-          return false
-        }
+        return item.url === url || item.url.includes(url)
       })
       if (repeatData) {
         this.notification.error(

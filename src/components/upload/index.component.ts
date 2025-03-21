@@ -6,7 +6,7 @@ import { Component, EventEmitter, Output } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { createFile, getCDN, imageBranch } from 'src/api'
+import { createFile, getCDN, getImageRepo } from 'src/api'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 
 @Component({
@@ -55,10 +55,10 @@ export class UploadComponent {
         const url = iconUrl.split(',')[1]
         // fileName 方便自动带上文件后缀
         const fileName = file.name.replace(/\s/gi, '')
-        const path = `nav-${Date.now()}-${fileName}`
+        const path = `${Date.now()}_${fileName}`
 
         createFile({
-          branch: imageBranch || 'image',
+          branch: getImageRepo().branch,
           message: 'create image',
           content: url,
           isEncode: false,

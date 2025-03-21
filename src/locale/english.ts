@@ -305,6 +305,7 @@ const english: Record<string, any> = {
   _searchRes: 'Search result',
   _class: 'Classify',
   _quote: 'Quote',
+  _poster: 'Poster',
 }
 
 export default english

@@ -13,7 +13,7 @@ import {
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { verifyToken, updateFileContent, createBranch } from 'src/api'
+import { verifyToken, createBranch, authorName } from 'src/api'
 import { setToken, removeToken, removeWebsite } from 'src/utils/user'
 import { $t } from 'src/locale'
 import { isSelfDevelop } from 'src/utils/utils'
@@ -69,16 +69,14 @@ export class LoginComponent {
     this.submitting = true
 
     try {
-      await verifyToken(token)
+      const res = await verifyToken(token)
+      if (!isSelfDevelop && res?.data?.login !== authorName) {
+        this.message.error('Bad credentials')
+        throw new Error('Bad credentials')
+      }
       setToken(token)
 
       try {
-        await updateFileContent({
-          message: 'auth',
-          path: '.navauth',
-          content: 'OK',
-        })
-
         createBranch('image').finally(() => {
           this.message.success($t('_tokenVerSuc'))
           removeWebsite().finally(() => {

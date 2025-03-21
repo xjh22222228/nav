@@ -1,5 +1,6 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 // Copyright @ 2018-present xiejiahe. All rights reserved.
+// See https://github.com/xjh22222228/nav
 
 import axios from 'axios'
 import NProgress from 'nprogress'
@@ -8,12 +9,13 @@ import event from './mitt'
 import { settings } from 'src/store'
 import { getToken, getAuthCode } from '../utils/user'
 import { isLogin } from 'src/utils/user'
+import { getIsGitee } from 'src/utils/pureUtils'
 
 const httpInstance = axios.create({
   timeout: 60000 * 3,
   baseURL:
     config.address ||
-    (config.gitRepoUrl.includes('gitee.com')
+    (getIsGitee(config.gitRepoUrl)
       ? 'https://gitee.com/api/v5'
       : 'https://api.github.com'),
 })
