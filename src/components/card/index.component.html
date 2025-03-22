@@ -19,18 +19,13 @@
         title="疑似异常"
         *ngIf="isLogin && dataSource.ok === false"
       ></span>
-
       <div
-        class="breadcrumb1 ellipsis"
+        class="ml-2"
         *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
       >
-        <span *ngFor="let n of dataSource.breadcrumb; let idx = index"
-          >{{ n
-          }}<span class="slash" *ngIf="idx !== dataSource.breadcrumb.length - 1"
-            >/</span
-          ></span
-        >
+        <app-breadcrumb [data]="dataSource" />
       </div>
+
       <div class="rate" *ngIf="settings.showRate">
         <nz-rate
           [ngModel]="dataSource.rate"
@@ -132,16 +127,12 @@
       ></span>
 
       <div
-        class="breadcrumb1 ellipsis"
+        class="mb-2"
         *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
       >
-        <span *ngFor="let n of dataSource.breadcrumb; let idx = index"
-          >{{ n
-          }}<span class="slash" *ngIf="idx !== dataSource.breadcrumb.length - 1"
-            >/</span
-          ></span
-        >
+        <app-breadcrumb [data]="dataSource" />
       </div>
+
       <div class="wrapper ellipsis">
         <app-logo [src]="dataSource.icon" [name]="dataSource.name" />
         <div
@@ -176,15 +167,10 @@
       ></span>
 
       <div
-        class="breadcrumb1 ellipsis"
+        class="mb-2"
         *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
       >
-        <span *ngFor="let n of dataSource.breadcrumb; let idx = index"
-          >{{ n
-          }}<span class="slash" *ngIf="idx !== dataSource.breadcrumb.length - 1"
-            >/</span
-          ></span
-        >
+        <app-breadcrumb [data]="dataSource" />
       </div>
       <div class="wrapper ellipsis">
         <app-logo
@@ -209,6 +195,12 @@
       class="card-container retro2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
       *ngSwitchCase="'retro'"
     >
+      <div
+        class="ml-2 mt-2"
+        *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
+      >
+        <app-breadcrumb [data]="dataSource" />
+      </div>
       <div class="item-list">
         <div
           (click)="jumpService.goUrl($event, dataSource.url)"
@@ -258,10 +250,54 @@
 
     <!-- poster style -->
     <div
-      class="card-container column2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
+      class="card-container poster2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
       *ngSwitchCase="'poster'"
+      (click)="jumpService.goUrl($event, dataSource.url)"
     >
-      <div></div>
+      <div class="poster-box" [style.background]="backgroundColor">
+        <div
+          class="breadcrumb"
+          *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
+        >
+          <app-breadcrumb [data]="dataSource" />
+        </div>
+
+        <img
+          class="poster-img"
+          [src]="dataSource.img || dataSource.icon"
+          draggable="false"
+          loading="lazy"
+          *ngIf="!isError"
+          (error)="isError = true"
+        />
+
+        <tag-list
+          class="poster-tag"
+          [data]="dataSource.tags"
+          *ngIf="
+            dataSource.tags?.length ||
+            isLogin ||
+            permissions.edit ||
+            permissions.del
+          "
+          [action]="true"
+          (onDelete)="confirmDel()"
+          (onEdit)="openEditWebMoal()"
+          (onMove)="openMoveWebModal()"
+        />
+      </div>
+
+      <div class="bottom">
+        <div
+          class="title ellipsis dark-white"
+          [innerHTML]="dataSource.name"
+        ></div>
+        <pre
+          class="desc dark-text ellipsis3"
+          [innerHTML]="dataSource.desc"
+          [title]="dataSource.__desc__ || dataSource.desc"
+        ></pre>
+      </div>
     </div>
 
     <!-- column style -->
@@ -279,15 +315,10 @@
       ></span>
 
       <div
-        class="breadcrumb1 ellipsis"
+        class="mb-2"
         *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
       >
-        <span *ngFor="let n of dataSource.breadcrumb; let idx = index"
-          >{{ n
-          }}<span class="slash" *ngIf="idx !== dataSource.breadcrumb.length - 1"
-            >/</span
-          ></span
-        >
+        <app-breadcrumb [data]="dataSource" />
       </div>
       <div
         (click)="jumpService.goUrl($event, dataSource.url)"

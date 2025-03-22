@@ -2,10 +2,11 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component } from '@angular/core'
+import { Component, ViewChild, ElementRef } from '@angular/core'
 import { $t } from 'src/locale'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzMessageService } from 'ng-zorro-antd/message'
+import { NzButtonModule } from 'ng-zorro-antd/button'
 import { setWebsiteList } from 'src/utils/web'
 import { parseBookmark } from 'src/utils/bookmark'
 import type { INavProps } from 'src/types'
@@ -14,13 +15,15 @@ import { NzInputModule } from 'ng-zorro-antd/input'
 
 @Component({
   standalone: true,
-  imports: [NzInputModule],
+  imports: [NzInputModule, NzButtonModule],
   selector: 'system-bookmark',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
 export default class SystemBookmarkComponent {
-  $t = $t
+  @ViewChild('file', { static: false }) file!: ElementRef
+
+  readonly $t = $t
   websiteList: INavProps[] = websiteList
 
   constructor(
@@ -29,6 +32,10 @@ export default class SystemBookmarkComponent {
   ) {}
 
   ngOnInit() {}
+
+  onClickFile() {
+    this.file.nativeElement.click()
+  }
 
   onBookChange(e: any) {
     const that = this

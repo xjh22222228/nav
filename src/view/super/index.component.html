@@ -18,8 +18,9 @@
         </div>
       </div>
 
-      <div class="topnav dark-scrollbar">
+      <div class="topnav dark-scrollbar" #parent>
         <div
+          #item
           *ngFor="
             let item of commonService.websiteList.slice(
               0,
@@ -28,7 +29,7 @@
             index as i;
             trackBy: commonService.trackByItem
           "
-          (click)="commonService.handleClickClass(item.id)"
+          (click)="handleClickTop($event, item)"
           [class.active]="commonService.oneIndex === i"
           [class.dark-text-active]="commonService.oneIndex === i"
           class="hitem over-item dark-text"
@@ -82,8 +83,9 @@
       <div class="search-t dark-border-color">
         <app-search />
 
-        <div class="bar dark-scrollbar select-none">
+        <div class="bar dark-scrollbar select-none" #parentThree>
           <div
+            #itemThree
             class="bar-item"
             *ngFor="
               let item of commonService.currentList;
@@ -93,7 +95,7 @@
             [class.active]="commonService.selectedThreeIndex === i"
             [class.dark-white]="commonService.selectedThreeIndex === i"
             [class.none]="!item.title"
-            (click)="commonService.handleClickClass(item.id)"
+            (click)="handleClickThree($event, item)"
           >
             {{ item.title }}
           </div>

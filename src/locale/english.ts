@@ -306,6 +306,8 @@ const english: Record<string, any> = {
   _class: 'Classify',
   _quote: 'Quote',
   _poster: 'Poster',
+  _screenshot: 'Screenshot',
+  _imgPlaceholder: 'Applied to poster cards',
 }
 
 export default english

@@ -10,15 +10,14 @@
 </div>
 <div class="book-wrapper mt-2.5">
   <div>
-    <img
-      src="assets/img/bookmark.svg"
+    <button
+      nz-button
+      nzType="primary"
       (click)="bookmarksExport()"
-      draggable="false"
-      class="logo"
-    />
-    <p class="whitespace-nowrap mt-2.5" (click)="bookmarksExport()">
+      [nzLoading]="submitting"
+    >
       {{ $t('_clickExport') }}
-    </p>
+    </button>
   </div>
 </div>
 

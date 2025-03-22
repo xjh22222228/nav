@@ -12,14 +12,22 @@ import {
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { getTextContent, getClassById } from 'src/utils'
-import { getTempId } from 'src/utils/utils'
+import { getTempId, isSelfDevelop } from 'src/utils/utils'
 import { updateByWeb, pushDataByAny } from 'src/utils/web'
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms'
 import type { IWebProps, IWebTag } from 'src/types'
 import { TopType, ActionType } from 'src/types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { saveUserCollect, getWebInfo, getTranslate } from 'src/api'
+import {
+  saveUserCollect,
+  getWebInfo,
+  getTranslate,
+  getScreenshot,
+  createFile,
+  getImageRepo,
+  getCDN,
+} from 'src/api'
 import { $t } from 'src/locale'
 import { settings, websiteList, tagList, tagMap } from 'src/store'
 import { isLogin, getPermissions } from 'src/utils/user'
@@ -35,6 +43,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { SELF_SYMBOL } from 'src/constants/symbol'
+import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -69,7 +78,7 @@ export class CreateWebComponent {
   readonly permissions = getPermissions(settings)
   validateForm!: FormGroup
   tagList = tagList
-  uploading = false
+  submitting = false
   getting = false
   translating = false
   showModal = false
@@ -83,6 +92,7 @@ export class CreateWebComponent {
   ]
 
   constructor(
+    public readonly jumpService: JumpService,
     private fb: FormBuilder,
     private message: NzMessageService,
     private notification: NzNotificationService
@@ -107,6 +117,7 @@ export class CreateWebComponent {
       icon: [''],
       desc: [''],
       index: [''],
+      img: [''],
       urlArr: this.fb.array([]),
     })
   }
@@ -125,6 +136,10 @@ export class CreateWebComponent {
 
   get iconUrl(): string {
     return (this.validateForm.get('icon')?.value || '').trim()
+  }
+
+  get imgUrl(): string {
+    return (this.validateForm.get('img')?.value || '').trim()
   }
 
   get title(): string {
@@ -152,6 +167,7 @@ export class CreateWebComponent {
     this.validateForm.get('top')!.setValue(detail?.top ?? false)
     this.validateForm.get('ownVisible')!.setValue(detail?.ownVisible ?? false)
     this.validateForm.get('rate')!.setValue(detail?.rate ?? 5)
+    this.validateForm.get('img')!.setValue(detail?.img ?? '')
     if (detail) {
       if (Array.isArray(detail.tags)) {
         detail.tags.forEach((item: IWebTag) => {
@@ -194,7 +210,7 @@ export class CreateWebComponent {
     this.validateForm.reset()
     this.showModal = false
     this.detail = null
-    this.uploading = false
+    this.submitting = false
     this.isMove = false
     this.callback = Function
   }
@@ -253,8 +269,8 @@ export class CreateWebComponent {
     ;(this.validateForm.get('urlArr') as FormArray).removeAt(idx)
   }
 
-  onChangeFile(data: any) {
-    this.validateForm.get('icon')!.setValue(data.cdn)
+  onChangeFile(data: any, key: string) {
+    this.validateForm.get(key)!.setValue(data.cdn)
   }
 
   onSelectChange(idx: number) {
@@ -275,6 +291,32 @@ export class CreateWebComponent {
       })
       .finally(() => {
         this.translating = false
+      })
+  }
+
+  getScreenshot() {
+    const url = (this.validateForm.get('url')?.value || '').trim()
+    this.submitting = true
+    getScreenshot({ url })
+      .then((res) => {
+        const path = `${Date.now()}.png`
+        createFile({
+          branch: getImageRepo().branch,
+          message: 'create image',
+          content: res.data.image,
+          isEncode: false,
+          path,
+        })
+          .then((res) => {
+            const value = isSelfDevelop ? res.data.fullImagePath : getCDN(path)
+            this.validateForm.get('img')!.setValue(value)
+          })
+          .finally(() => {
+            this.submitting = false
+          })
+      })
+      .catch(() => {
+        this.submitting = false
       })
   }
 
@@ -314,9 +356,9 @@ export class CreateWebComponent {
     }
 
     const tags: IWebTag[] = []
-    let { title, icon, url, top, ownVisible, rate, desc, index, topOptions } =
+    let { url, top, ownVisible, rate, index, topOptions } =
       this.validateForm.value
-    title = title.trim()
+    const title = this.title
     if (!title || !url) return
 
     const urlArr = this.urlArray?.value || []
@@ -339,14 +381,15 @@ export class CreateWebComponent {
       name: title,
       breadcrumb: this.detail?.breadcrumb ?? [],
       rate,
-      desc,
+      desc: this.desc,
       top,
       index,
       ownVisible,
-      icon,
+      icon: this.iconUrl,
       url,
       tags,
       topTypes,
+      img: this.imgUrl || undefined,
     }
 
     if (this.detail) {
@@ -358,7 +401,7 @@ export class CreateWebComponent {
           this.message.error('Update failed')
         }
       } else if (this.permissions.edit) {
-        this.uploading = true
+        this.submitting = true
         const params = {
           data: {
             ...payload,
@@ -374,7 +417,7 @@ export class CreateWebComponent {
       payload['id'] = getTempId()
       try {
         const { breadcrumb } = getClassById(this.parentId)
-        this.uploading = true
+        this.submitting = true
         if (this.isLogin) {
           const ok = pushDataByAny(this.parentId, payload)
           ok && this.message.success($t('_addSuccess'))

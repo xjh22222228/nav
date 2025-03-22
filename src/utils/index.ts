@@ -522,3 +522,19 @@ export function getClassById(id: unknown, initValue = 0) {
     breadcrumb,
   } as const
 }
+
+export function scrollIntoView(
+  parentElement: HTMLElement,
+  target: HTMLElement,
+  config?: ScrollToOptions
+) {
+  const containerWidth = parentElement.offsetWidth
+  const categoryWidth = target.offsetWidth
+  const categoryLeft = target.offsetLeft
+  const scrollPosition = categoryLeft - (containerWidth - categoryWidth) / 2
+  parentElement.scrollTo({
+    left: scrollPosition,
+    behavior: 'smooth',
+    ...config,
+  })
+}

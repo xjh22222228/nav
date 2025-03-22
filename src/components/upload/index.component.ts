@@ -8,6 +8,7 @@ import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { createFile, getCDN, getImageRepo } from 'src/api'
 import { NzIconModule } from 'ng-zorro-antd/icon'
+import { isSelfDevelop } from 'src/utils/utils'
 
 @Component({
   standalone: true,
@@ -19,7 +20,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 export class UploadComponent {
   @Output() onChange = new EventEmitter()
 
-  $t = $t
+  readonly $t = $t
   uploading: boolean = false
   // @ts-ignore
   id = `f${Date.now()}${parseInt(Math.random() * 1000000)}`
@@ -66,8 +67,7 @@ export class UploadComponent {
         })
           .then((res) => {
             const params = {
-              rawPath: path,
-              cdn: res?.data?.imagePath || getCDN(path),
+              cdn: isSelfDevelop ? res?.data?.fullImagePath : getCDN(path),
             }
             that.onChange.emit(params)
             that.message.success($t('_uploadSuccess'))

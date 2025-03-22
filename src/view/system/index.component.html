@@ -37,13 +37,6 @@
         </li>
         <li
           nz-menu-item
-          [nzSelected]="currentMenu === 'bookmark'"
-          (click)="goRoute('/system/bookmark')"
-        >
-          {{ $t('_bookmarkImport') }}
-        </li>
-        <li
-          nz-menu-item
           [nzSelected]="currentMenu === 'search'"
           (click)="goRoute('/system/search')"
         >
@@ -56,6 +49,13 @@
           *ngIf="isAuthz || isSelfDevelop"
         >
           {{ $t('_components') }}
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="currentMenu === 'bookmark'"
+          (click)="goRoute('/system/bookmark')"
+        >
+          {{ $t('_bookmarkImport') }}
         </li>
         <li
           nz-menu-item

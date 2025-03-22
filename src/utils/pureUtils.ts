@@ -18,3 +18,10 @@ export function replaceJsdelivrCDN(
 export function getIsGitee(gitRepoUrl: string): boolean {
   return gitRepoUrl.includes('gitee.com')
 }
+
+export function removeTrailingSlashes(url: string | null | undefined): string {
+  if (!url) {
+    return ''
+  }
+  return url.replace(/\/+$/, '')
+}

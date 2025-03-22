@@ -2,16 +2,19 @@
 // Copyright @ 2018-present xie.jiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { INavProps, IWebProps, INavTwoProp, INavThreeProp } from '../types'
+import type { INavProps, IWebProps, INavTwoProp, INavThreeProp } from '../types'
 import { websiteList } from '../store'
 import { $t } from '../locale'
 import { getTempId } from './utils'
+import { removeTrailingSlashes } from './pureUtils'
 
 let id = getTempId()
 
-const getTitle = (node: Element): string => node.textContent || ''
-const getUrl = (node: Element): string => node.getAttribute('href') || ''
-const getIcon = (node: Element): string => node.getAttribute('icon') || ''
+const getTitle = (node: Element): string => (node.textContent || '').trim()
+const getUrl = (node: Element): string =>
+  (node.getAttribute('href') || '').trim()
+const getIcon = (node: Element): string =>
+  (node.getAttribute('icon') || '').trim()
 
 function findUnclassifiedData(roolDL: Element): IWebProps[] {
   const data: IWebProps[] = []
@@ -78,11 +81,15 @@ export function parseBookmark(
     }
 
     function processThreeLevel(DL3: Element, parentNav: INavTwoProp) {
-      Array.from(DL3.children).forEach((kItem) => {
+      Array.from(DL3.children).forEach((kItem, index) => {
         if (kItem.nodeName === 'DT') {
           const titleEl = kItem.querySelector('h3')
           if (titleEl) {
-            const title = getTitle(titleEl)
+            let title = getTitle(titleEl)
+            const has = parentNav.nav.some((e) => e.title === title)
+            if (has) {
+              title = title + index
+            }
             const threeLevel: INavThreeProp = {
               id: (id += 1),
               title,
@@ -101,11 +108,15 @@ export function parseBookmark(
     }
 
     function processTwoLevel(DL: Element, parentData: INavProps) {
-      Array.from(DL.children).forEach((jItem) => {
+      Array.from(DL.children).forEach((jItem, index) => {
         if (jItem.nodeName === 'DT') {
           const titleEl = jItem.querySelector('h3')
           if (titleEl) {
-            const title = getTitle(titleEl)
+            let title = getTitle(titleEl)
+            const has = parentData.nav.some((e) => e.title === title)
+            if (has) {
+              title = title + index
+            }
             const twoLevel: INavTwoProp = {
               id: (id += 1),
               title,
@@ -133,11 +144,15 @@ export function parseBookmark(
     }
 
     // Process One Level
-    Array.from(roolDL.children).forEach((iItem) => {
+    Array.from(roolDL.children).forEach((iItem, index) => {
       if (iItem.nodeName === 'DT') {
         const titleEl = iItem.querySelector('h3')
         if (titleEl) {
-          const title = getTitle(titleEl)
+          let title = getTitle(titleEl)
+          const has = data.some((e) => e.title === title)
+          if (has) {
+            title = title + index
+          }
           const oneLevel: INavProps = {
             id: (id += 1),
             title,
@@ -202,16 +217,33 @@ export function parseBookmark(
   function r(data: any[], list: any[]) {
     for (let i = 0; i < data.length; i++) {
       const item = data[i] as any
-      const title = item.title || item.url
-      const idx = list.findIndex((item) => (item.title || item.url) === title)
+      const title = (item.title || removeTrailingSlashes(item.url)).trim()
+      const idx = list.findIndex(
+        (item) =>
+          (item.title || removeTrailingSlashes(item.url)).trim() === title
+      )
 
-      // Repeat
       if (idx !== -1) {
         if (Array.isArray(item.nav)) {
           r(item.nav, list[idx].nav)
         }
       } else {
-        list.push(item)
+        const url = removeTrailingSlashes((item.url || '').trim())
+        if (item.url) {
+          const has = list.some(
+            (e) => removeTrailingSlashes(e.url).trim() === url
+          )
+          if (!has) {
+            list.push(item)
+          }
+        }
+        const title = (item.title || '').trim()
+        if (item.title) {
+          const has = list.some((e) => e.title?.trim() === title)
+          if (!has) {
+            list.push(item)
+          }
+        }
       }
     }
   }

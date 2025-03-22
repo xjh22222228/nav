@@ -305,6 +305,17 @@ export async function getTranslate(data?: Record<string, any>) {
   return httpNav.post('/api/translate', data)
 }
 
+export async function getScreenshot(data?: Record<string, any>) {
+  if (isSelfDevelop) {
+    return http.post('/api/screenshot', getDefaultRequestData(data), {
+      timeout: 0,
+    })
+  }
+  return httpNav.post('/api/screenshot', data, {
+    timeout: 0,
+  })
+}
+
 export function getCDN(path: string) {
   const branch = getImageRepo().branch
   const repo = getImageRepo().repo

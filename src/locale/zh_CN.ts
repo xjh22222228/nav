@@ -293,6 +293,8 @@ const zhCN: Record<string, any> = {
   _class: '分类',
   _quote: '引用',
   _poster: '海报',
+  _screenshot: '截图',
+  _imgPlaceholder: '应用在海报卡片',
 }
 
 export default zhCN

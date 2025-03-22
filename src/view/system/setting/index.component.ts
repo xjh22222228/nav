@@ -102,6 +102,10 @@ export default class SystemSettingComponent {
       'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/logo.svg',
       settings
     ),
+    img: replaceJsdelivrCDN(
+      'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/4.png',
+      settings
+    ),
     tags: [],
     breadcrumb: [],
     rate: 5,
