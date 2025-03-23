@@ -365,15 +365,17 @@
         <nz-form-control [nzSpan]="10">
           <nz-radio-group formControlName="lightCardStyle">
             <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+            <label nz-radio nzValue="poster">{{ $t('_poster') }}</label>
             <label nz-radio nzValue="column">{{ $t('_column') }}</label>
             <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
             <label nz-radio nzValue="retro">{{ $t('_retro') }}</label>
             <label nz-radio nzValue="original">{{ $t('_original') }}</label>
           </nz-radio-group>
 
-          <div class="mt-2.5">
-            <img
-              src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/card-style-example.png"
+          <div class="mt-2.5 w-96 pointer-events-none">
+            <app-card
+              [dataSource]="webDemoData"
+              [cardStyle]="validateForm.get('lightCardStyle')?.value"
             />
           </div>
         </nz-form-control>
@@ -498,6 +500,7 @@
         <nz-form-control [nzSpan]="10">
           <nz-radio-group formControlName="superCardStyle">
             <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+            <label nz-radio nzValue="poster">{{ $t('_poster') }}</label>
             <label nz-radio nzValue="column">{{ $t('_column') }}</label>
             <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
             <label nz-radio nzValue="retro">{{ $t('_retro') }}</label>
@@ -626,6 +629,7 @@
         <nz-form-control [nzSpan]="10">
           <nz-radio-group formControlName="simCardStyle">
             <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+            <label nz-radio nzValue="poster">{{ $t('_poster') }}</label>
             <label nz-radio nzValue="column">{{ $t('_column') }}</label>
             <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
             <label nz-radio nzValue="retro">{{ $t('_retro') }}</label>
@@ -785,6 +789,7 @@
         <nz-form-control [nzSpan]="10">
           <nz-radio-group formControlName="sideCardStyle">
             <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+            <label nz-radio nzValue="poster">{{ $t('_poster') }}</label>
             <label nz-radio nzValue="column">{{ $t('_column') }}</label>
             <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
             <label nz-radio nzValue="retro">{{ $t('_retro') }}</label>
@@ -983,6 +988,7 @@
         <nz-form-control [nzSpan]="10">
           <nz-radio-group formControlName="appCardStyle">
             <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
+            <label nz-radio nzValue="poster">{{ $t('_poster') }}</label>
             <label nz-radio nzValue="column">{{ $t('_column') }}</label>
             <label nz-radio nzValue="example">{{ $t('_simplicity') }}</label>
             <label nz-radio nzValue="retro">{{ $t('_retro') }}</label>

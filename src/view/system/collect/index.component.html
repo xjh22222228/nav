@@ -58,17 +58,38 @@
           </td>
           <td>{{ typeMap[data.extra.type] }}</td>
           <td>{{ data.id }}</td>
-          <td>
+          <td class="text-center">
+            <ng-content *ngIf="data.oldData">
+              <app-logo [src]="data.oldData.icon" [name]="data.oldData.name" />
+              <div>↓</div>
+            </ng-content>
             <app-logo [src]="data.icon" [name]="data.name" />
           </td>
           <td>
-            <a [href]="data.url" target="_blank">{{ data.name }}</a>
+            <ng-content *ngIf="data.oldData">
+              <a (click)="jumpService.goUrl($event, data.oldData.url)">{{
+                data.oldData.name
+              }}</a>
+              <div>↓</div>
+            </ng-content>
+            <a
+              (click)="jumpService.goUrl($event, data.url)"
+              [innerHTML]="data.name"
+            ></a>
           </td>
           <td>
+            <ng-content *ngIf="data.oldData">
+              <tag-list [data]="data.oldData.tags" *ngIf="data.oldData.tags" />
+              <div>↓</div>
+            </ng-content>
             <tag-list [data]="data.tags" *ngIf="data.tags" />
           </td>
           <td>
-            <pre class="desc">{{ data.desc }}</pre>
+            <ng-content *ngIf="data.oldData">
+              <pre class="desc">{{ data.oldData.desc }}</pre>
+              <div>↓</div>
+            </ng-content>
+            <pre class="desc" [innerHTML]="data.desc"></pre>
           </td>
           <td nzWidth="300px">
             {{ data.breadcrumb }}

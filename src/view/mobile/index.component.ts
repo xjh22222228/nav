@@ -12,11 +12,11 @@ import { FooterComponent } from 'src/components/footer/footer.component'
 @Component({
   standalone: true,
   imports: [CommonModule, SearchComponent, CardComponent, FooterComponent],
-  selector: 'app-home',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-mobile',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss'],
 })
-export default class WebpComponent {
+export default class MobileComponent {
   open: boolean = false
 
   constructor(public commonService: CommonService) {}

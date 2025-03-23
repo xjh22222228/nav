@@ -18,14 +18,6 @@
       width: 100%;
     }
   }
-  .breadcrumb1 {
-    padding: 0 0 0 8px;
-    font-size: 12px;
-    color: #666;
-    .slash {
-      margin: 0 4px;
-    }
-  }
   .desc {
     color: rgba(0, 0, 0, 0.5);
     word-break: break-all;
@@ -137,9 +129,6 @@
     line-height: 18px;
     font-size: 15px;
   }
-  .breadcrumb1 {
-    padding: 0 0 4px 0;
-  }
   .wrapper {
     display: flex;
   }
@@ -180,9 +169,6 @@
     width: 100%;
     font-weight: 500;
   }
-  .breadcrumb1 {
-    padding: 0 0 4px 0;
-  }
   .wrapper {
     display: flex;
   }
@@ -212,9 +198,6 @@
   transition: all 0.15s linear;
   color: #000;
   display: block;
-  .breadcrumb1 {
-    padding: 0 0 4px 0;
-  }
   &:hover {
     background-color: #f2f3f5;
     .action-btn {
@@ -246,15 +229,6 @@
   .rate2 {
     color: #8a919f;
     margin-right: 10px;
-  }
-}
-
-::ng-deep {
-  .gutter-row .ant-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 }
 
@@ -294,5 +268,60 @@
   }
   .border-transparent {
     border-color: transparent;
+  }
+}
+
+// poster
+.poster2 {
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #fff;
+  padding-bottom: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  .poster-box {
+    position: relative;
+    overflow: hidden;
+    height: 170px;
+  }
+  .breadcrumb {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 0;
+    ::ng-deep {
+      .breadcrumb1 {
+        color: #fff;
+      }
+    }
+  }
+  .poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.2s linear;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  .title {
+    font-size: 16px;
+    margin-top: 5px;
+    font-weight: 500;
+    color: #000;
+  }
+  .desc {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+  .bottom {
+    padding: 0 10px;
+  }
+  .poster-tag {
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 10px 5px 10px;
   }
 }

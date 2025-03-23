@@ -14,13 +14,17 @@ import { queryString, setLocation, isMobile, getDefaultTheme } from '../utils'
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n'
 import { getLocale } from 'src/locale'
 import { settings } from 'src/store'
-import { verifyToken, getContentes, getUserCollectCount } from 'src/api'
+import {
+  verifyToken,
+  authorName,
+  getContentes,
+  getUserCollectCount,
+} from 'src/api'
 import { getToken, userLogout, isLogin, getPermissions } from 'src/utils/user'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { NzModalService } from 'ng-zorro-antd/modal'
-
 import { getWebs } from 'src/utils/web'
 import { isSelfDevelop } from 'src/utils/utils'
 import { routes } from './app.routes'
@@ -152,9 +156,15 @@ export class AppComponent {
       verifyToken(token)
         .then((res) => {
           const data = res.data || {}
-          if (!settings.email && data.email) {
-            settings.email = data.email
+          if (!isSelfDevelop) {
+            if (data.login && data.login !== authorName) {
+              throw new Error('Bad credentials')
+            }
+            if (!settings.email && data.email) {
+              settings.email = data.email
+            }
           }
+
           event.emit('GITHUB_USER_INFO', data)
         })
         .catch((e: any) => {

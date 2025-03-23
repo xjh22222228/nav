@@ -25,31 +25,30 @@ export class TagListComponent {
   @Output() onMove = new EventEmitter<void>()
   @Output() onEdit = new EventEmitter<void>()
 
-  $t = $t
-  isLogin = isLogin
-  tagMap = tagMap
-  permissions = getPermissions(settings)
+  readonly $t = $t
+  readonly isLogin = isLogin
+  readonly tagMap = tagMap
+  readonly permissions = getPermissions(settings)
 
   constructor(public jumpService: JumpService) {}
 
-  handleClick(e: any) {
+  private handleClick(e: any) {
     e.stopPropagation()
     e.preventDefault()
   }
 
   openEditWebMoal(e: any) {
-    e.stopPropagation()
-    e.preventDefault()
+    this.handleClick(e)
     this.onEdit.emit()
   }
 
-  confirmDel() {
+  confirmDel(e: any) {
+    this.handleClick(e)
     this.onDelete.emit()
   }
 
   openMoveWebModal(e: any) {
-    e.stopPropagation()
-    e.preventDefault()
+    this.handleClick(e)
     this.onMove.emit()
   }
 }

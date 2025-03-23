@@ -13,6 +13,10 @@ import type {
   IWebProps,
 } from '../src/types'
 import { SELF_SYMBOL } from '../src/constants/symbol'
+import {
+  replaceJsdelivrCDN,
+  removeTrailingSlashes,
+} from '../src/utils/pureUtils'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -209,10 +213,10 @@ export function setWebs(
                 webItem.desc ||= ''
                 webItem.icon ||= ''
                 webItem.icon = replaceJsdelivrCDN(webItem.icon, settings)
-                webItem.url = webItem.url.trim()
-                if (webItem.url.endsWith('/')) {
-                  webItem.url = webItem.url.slice(0, -1)
+                if (webItem.img) {
+                  webItem.img = replaceJsdelivrCDN(webItem.img, settings)
                 }
+                webItem.url = removeTrailingSlashes(webItem.url.trim())
                 webItem.name = webItem.name.trim().replace(/<b>|<\/b>/g, '')
                 webItem.desc = webItem.desc.trim().replace(/<b>|<\/b>/g, '')
 
@@ -499,19 +503,4 @@ export async function spiderWeb(
     errorUrlCount,
     time: diff,
   }
-}
-
-export function replaceJsdelivrCDN(
-  str: string = '',
-  settings: ISettings
-): string {
-  const cdn = settings?.gitHubCDN
-  if (!cdn) {
-    return str
-  }
-  str = str.replace('cdn.jsdelivr.net', cdn)
-  str = str.replace('testingcf.jsdelivr.net', cdn)
-  str = str.replace('img.jsdmirror.com', cdn)
-  str = str.replace('gcore.jsdelivr.net', cdn)
-  return str
 }

@@ -17,10 +17,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22.x
-      - name: Install
-        uses: borales/actions-yarn@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          cmd: install
+          version: 10
+      - name: Install
+        run: |
+          pnpm install
       # dist/404.html: gh-pages history mode
       - name: Build
         run: |

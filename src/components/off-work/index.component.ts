@@ -28,10 +28,6 @@ export class OffWorkComponent {
     )
   }
 
-  ngOnInit() {
-    this.init()
-  }
-
   ngOnChanges() {
     clearTimeout(this.timer)
     this.init()

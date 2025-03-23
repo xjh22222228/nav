@@ -18,7 +18,8 @@ import { NzTableModule } from 'ng-zorro-antd/table'
 import { LogoComponent } from 'src/components/logo/logo.component'
 import { TagListComponent } from 'src/components/tag-list/index.component'
 import { ActionType } from 'src/types'
-import { deleteWebByIds } from 'src/utils/web'
+import { deleteWebByIds, getWebById } from 'src/utils/web'
+import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -37,14 +38,14 @@ import event from 'src/utils/mitt'
   styleUrls: ['./index.component.scss'],
 })
 export default class CollectComponent {
-  $t = $t
-  isSelfDevelop = isSelfDevelop
-  submitting: boolean = false
+  readonly $t = $t
+  readonly isSelfDevelop = isSelfDevelop
   isPermission = !!getAuthCode()
+  submitting: boolean = false
   dataList: Array<any> = []
   authCode = ''
   tagMap = tagMap
-  typeMap: any = {
+  typeMap: Record<any, string> = {
     [ActionType.Create]: $t('_add'),
     [ActionType.Edit]: $t('_edit'),
     [ActionType.Delete]: $t('_del'),
@@ -54,7 +55,8 @@ export default class CollectComponent {
 
   constructor(
     private message: NzMessageService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    public readonly jumpService: JumpService
   ) {}
 
   ngOnInit() {
@@ -119,12 +121,74 @@ export default class CollectComponent {
       })
   }
 
+  highlightDifferences(original: string, modified: string): string {
+    function getLCS(str1: string, str2: string) {
+      let m = str1.length,
+        n = str2.length
+      let dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(''))
+
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          if (str1[i - 1] === str2[j - 1]) {
+            dp[i][j] = dp[i - 1][j - 1] + str1[i - 1]
+          } else {
+            dp[i][j] =
+              dp[i - 1][j].length > dp[i][j - 1].length
+                ? dp[i - 1][j]
+                : dp[i][j - 1]
+          }
+        }
+      }
+      return dp[m][n]
+    }
+    const lcs = getLCS(original, modified)
+    let result = ''
+    let i = 0,
+      j = 0
+
+    for (let char of lcs) {
+      while (i < original.length && original[i] !== char) {
+        i++ // 跳过删除的字符
+      }
+      while (j < modified.length && modified[j] !== char) {
+        result += `<b>${modified[j]}</b>` // 新增的字符
+        j++
+      }
+      result += char // 相同的字符
+      i++
+      j++
+    }
+
+    // 处理 modified 剩余部分（如果有）
+    while (j < modified.length) {
+      result += `<b>${modified[j]}</b>`
+      j++
+    }
+
+    return result
+  }
+
   getUserCollect() {
     this.submitting = true
     getUserCollect()
       .then((res: any) => {
         this.isPermission = true
-        this.dataList = res.data?.data || []
+        this.dataList = (res.data?.data || []).map((item: any) => {
+          if (item.extra.type === ActionType.Edit) {
+            item.oldData = getWebById(item.id)
+            if (item.oldData) {
+              item.name = this.highlightDifferences(
+                item.oldData.name,
+                item.name
+              )
+              item.desc = this.highlightDifferences(
+                item.oldData.desc,
+                item.desc
+              )
+            }
+          }
+          return item
+        })
       })
       .finally(() => {
         this.submitting = false

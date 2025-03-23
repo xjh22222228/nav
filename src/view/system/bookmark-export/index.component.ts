@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { $t } from 'src/locale'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
+import { NzButtonModule } from 'ng-zorro-antd/button'
 import type { INavProps, IWebProps } from 'src/types'
 import { websiteList } from 'src/store'
 import { bookmarksExport, getIconBase64 } from 'src/api'
@@ -18,7 +19,13 @@ import LZString from 'lz-string'
 
 @Component({
   standalone: true,
-  imports: [CommonModule, NzSwitchModule, NzSpinModule, FormsModule],
+  imports: [
+    CommonModule,
+    NzSwitchModule,
+    NzSpinModule,
+    FormsModule,
+    NzButtonModule,
+  ],
   selector: 'system-bookmark-export',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

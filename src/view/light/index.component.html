@@ -12,10 +12,12 @@
 
     <main class="homepage dark-border-color dark-bg">
       <nav
+        #parent
         *ngIf="commonService.websiteList.length"
         class="top-nav dark-scrollbar dark-border-color dark-bg"
       >
         <span
+          #item
           *ngFor="
             let item of commonService.websiteList.slice(
               0,
@@ -24,7 +26,7 @@
             index as i;
             trackBy: commonService.trackByItem
           "
-          (click)="commonService.handleClickClass(item.id)"
+          (click)="handleClickTop($event, item)"
           [class.active]="commonService.oneIndex === i"
           [class.dark-text-active]="commonService.oneIndex === i"
           class="over-item ripple-btn dark-text"

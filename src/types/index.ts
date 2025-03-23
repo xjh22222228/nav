@@ -37,7 +37,13 @@ export interface IComponentProps {
   [key: string]: any
 }
 
-export type ICardType = 'standard' | 'column' | 'example' | 'retro' | 'original'
+export type ICardType =
+  | 'standard'
+  | 'column'
+  | 'example'
+  | 'retro'
+  | 'original'
+  | 'poster'
 
 type OverType = 'overflow' | 'ellipsis'
 
@@ -78,6 +84,7 @@ export interface IWebProps {
   icon: string
   breadcrumb: string[]
   tags: IWebTag[]
+  img?: string
   rId?: number
   __name__?: string // 搜索原name值
   __desc__?: string

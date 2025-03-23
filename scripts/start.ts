@@ -19,9 +19,9 @@ import {
   TAG_ID_NAME3,
   getWebCount,
   setWebs,
-  replaceJsdelivrCDN,
   PATHS,
 } from './utils'
+import { replaceJsdelivrCDN } from '../src/utils/pureUtils'
 import type {
   ITagPropValues,
   ISettings,
@@ -276,6 +276,10 @@ const main = async () => {
           isInner: false,
         },
       ]
+      search = search.map((item) => {
+        item.icon = replaceJsdelivrCDN(item.icon, settings)
+        return item
+      })
       fs.writeFileSync(PATHS.search, JSON.stringify(search), {
         encoding: 'utf-8',
       })
