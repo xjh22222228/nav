@@ -43,6 +43,10 @@ nav.config.json
 _upload
 test.md
 data/collect.json
+data/serverdb.json
 /.dockerignore
 /Dockerfile
 .next
+
+log/
+logs/

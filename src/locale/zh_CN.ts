@@ -295,6 +295,7 @@ const zhCN: Record<string, any> = {
   _poster: '海报',
   _screenshot: '截图',
   _imgPlaceholder: '应用在海报卡片',
+  _urlNoRepeat: '该分类下链接未查出重复',
 }
 
 export default zhCN

@@ -44,6 +44,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { SELF_SYMBOL } from 'src/constants/symbol'
 import { JumpService } from 'src/services/jump'
+import { removeTrailingSlashes } from 'src/utils/pureUtils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -322,12 +323,17 @@ export class CreateWebComponent {
 
   checkRepeat() {
     try {
-      const { url } = this.validateForm.value
+      let { url } = this.validateForm.value
+      url = removeTrailingSlashes(url.trim())
+
       const { oneIndex, twoIndex, threeIndex, breadcrumb } = getClassById(
         this.parentId
       )
       const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
       const repeatData = w.find((item) => {
+        if (this.detail && item.id === this.detail.id) {
+          return false
+        }
         return item.url === url || item.url.includes(url)
       })
       if (repeatData) {
@@ -344,7 +350,7 @@ export class CreateWebComponent {
           }
         )
       } else {
-        this.message.success('OK')
+        this.message.success($t('_urlNoRepeat'))
       }
     } catch {}
   }
@@ -358,6 +364,7 @@ export class CreateWebComponent {
     const tags: IWebTag[] = []
     let { url, top, ownVisible, rate, index, topOptions } =
       this.validateForm.value
+    url = url.trim()
     const title = this.title
     if (!title || !url) return
 

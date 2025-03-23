@@ -17,6 +17,8 @@ import {
   replaceJsdelivrCDN,
   removeTrailingSlashes,
 } from '../src/utils/pureUtils'
+import fs from 'node:fs'
+import yaml from 'js-yaml'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -32,6 +34,7 @@ export const TAG_ID_NAME3 = 'GitHub'
 export const PATHS = {
   upload: path.resolve('_upload', 'images'),
   db: path.resolve('data', 'db.json'),
+  serverdb: path.resolve('data', 'serverdb.json'),
   settings: path.resolve('data', 'settings.json'),
   tag: path.resolve('data', 'tag.json'),
   search: path.resolve('data', 'search.json'),
@@ -46,6 +49,26 @@ export const PATHS = {
     write: path.resolve('src', 'index.html'),
   },
 } as const
+
+export const getConfig = () => {
+  const pkgJson = JSON.parse(fs.readFileSync(PATHS.pkg).toString())
+  const config = yaml.load(fs.readFileSync(PATHS.config).toString()) as Record<
+    string,
+    any
+  >
+
+  return {
+    version: pkgJson.version,
+    gitRepoUrl: config['gitRepoUrl'],
+    imageRepoUrl: config['imageRepoUrl'],
+    branch: config['branch'],
+    hashMode: config['hashMode'],
+    address: config['address'],
+    email: config['email'],
+    port: config['port'],
+    datetime: dayjs.tz().format('YYYY-MM-DD HH:mm'),
+  } as const
+}
 
 interface WebCountResult {
   userViewCount: number
@@ -355,6 +378,31 @@ interface WebInfoResponse {
   description?: string
 }
 
+function updateItemField(
+  item: IWebProps,
+  field: keyof IWebProps,
+  value: string | undefined,
+  settingKey: keyof ISettings,
+  settings: ISettings,
+  logMessage: string
+) {
+  if (settings[settingKey] === 'ALWAYS' && value) {
+    console.log(
+      `更新${logMessage}：${correctURL(item.url)}: "${
+        item[field]
+      }" => "${value}"`
+    )
+    item[field] = value
+  } else if (settings[settingKey] === 'EMPTY' && !item[field] && value) {
+    console.log(
+      `更新${logMessage}：${correctURL(item.url)}: "${
+        item[field]
+      }" => "${value}"`
+    )
+    item[field] = value
+  }
+}
+
 export async function spiderWeb(
   db: INavProps[],
   settings: ISettings
@@ -362,11 +410,10 @@ export async function spiderWeb(
   let errorUrlCount = 0
   const items: IWebProps[] = []
 
-  async function r(nav: any[]): Promise<void> {
+  const collectItems = (nav: any[]) => {
     if (!Array.isArray(nav)) return
 
-    for (let i = 0; i < nav.length; i++) {
-      const item = nav[i]
+    for (const item of nav) {
       if (item.url && item.url[0] !== '!') {
         delete item.ok
         if (
@@ -381,12 +428,12 @@ export async function spiderWeb(
           items.push(item)
         }
       } else {
-        r(item.nav)
+        collectItems(item.nav)
       }
     }
   }
 
-  await r(db)
+  collectItems(db)
 
   const max = settings.spiderQty ?? 20
   const count = Math.ceil(items.length / max)
@@ -400,95 +447,57 @@ export async function spiderWeb(
   }
 
   while (current < count) {
-    const requestPromises: Promise<any>[] = []
-    for (let i = current * max; i < current * max + max; i++) {
-      const item = items[i]
-      if (item) {
-        requestPromises.push(
-          getWebInfo(correctURL(item.url), {
-            timeout: settings.spiderTimeout * 1000,
-          })
-        )
-      }
-    }
+    const requestPromises = items
+      .slice(current * max, current * max + max)
+      .map((item) =>
+        getWebInfo(correctURL(item.url), {
+          timeout: settings.spiderTimeout * 1000,
+        })
+      )
 
     const promises = await Promise.all(requestPromises)
 
     for (let i = 0; i < promises.length; i++) {
       const idx = current * max + i
       const item = items[idx]
-      const res = promises[i].value as WebInfoResponse
+      const res = promises[i] as WebInfoResponse
+
       console.log(
         `${idx}：${
           res.status ? '正常' : `疑似异常: ${res.errorMsg}`
         } ${correctURL(item.url)}`
       )
-      if (settings.checkUrl) {
-        if (!res.status) {
-          errorUrlCount += 1
-          item.ok = false
-        }
+
+      if (settings.checkUrl && !res.status) {
+        errorUrlCount += 1
+        item.ok = false
       }
-      if (res.status) {
-        if (settings.spiderIcon === 'ALWAYS' && res.iconUrl) {
-          item.icon = res.iconUrl
-          console.log(
-            `更新图标：${correctURL(item.url)}: "${item.icon}" => "${
-              res.iconUrl
-            }"`
-          )
-        } else if (
-          settings.spiderIcon === 'EMPTY' &&
-          !item.icon &&
-          res.iconUrl
-        ) {
-          item.icon = res.iconUrl
-          console.log(
-            `更新图标：${correctURL(item.url)}: "${item.icon}" => "${
-              res.iconUrl
-            }"`
-          )
-        }
 
-        if (settings.spiderTitle === 'ALWAYS' && res.title) {
-          console.log(
-            `更新标题：${correctURL(item.url)}: "${item['title']}" => "${
-              res.title
-            }"`
-          )
-          item.name = res.title
-        } else if (
-          settings.spiderTitle === 'EMPTY' &&
-          !item.name &&
-          res.title
-        ) {
-          console.log(
-            `更新标题：${correctURL(item.url)}: "${item['title']}" => "${
-              res.title
-            }"`
-          )
-          item.name = res.title
-        }
-
-        if (settings.spiderDescription === 'ALWAYS' && res.description) {
-          console.log(
-            `更新描述：${correctURL(item.url)}: "${item.desc}" => "${
-              res.description
-            }"`
-          )
-          item.desc = res.description
-        } else if (
-          settings.spiderDescription === 'EMPTY' &&
-          !item.desc &&
-          res.description
-        ) {
-          console.log(
-            `更新描述：${correctURL(item.url)}: "${item.desc}" => "${
-              res.description
-            }"`
-          )
-          item.desc = res.description
-        }
+      if (res?.status) {
+        updateItemField(
+          item,
+          'icon',
+          res.iconUrl,
+          'spiderIcon',
+          settings,
+          '图标'
+        )
+        updateItemField(
+          item,
+          'name',
+          res.title,
+          'spiderTitle',
+          settings,
+          '标题'
+        )
+        updateItemField(
+          item,
+          'desc',
+          res.description,
+          'spiderDescription',
+          settings,
+          '描述'
+        )
       }
       console.log('-'.repeat(100))
     }

@@ -308,6 +308,7 @@ const english: Record<string, any> = {
   _poster: 'Poster',
   _screenshot: 'Screenshot',
   _imgPlaceholder: 'Applied to poster cards',
+  _urlNoRepeat: 'No duplicate links were found in this category',
 }
 
 export default english

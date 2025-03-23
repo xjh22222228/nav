@@ -2,10 +2,17 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component } from '@angular/core'
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  ViewChildren,
+  QueryList,
+} from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { settings } from 'src/store'
 import { compilerTemplate } from 'src/utils/utils'
+import { scrollIntoView } from 'src/utils'
 import { CommonService } from 'src/services/common'
 import { ComponentGroupComponent } from 'src/components/component-group/index.component'
 import { WebMoreMenuComponent } from 'src/components/web-more-menu/index.component'
@@ -19,6 +26,7 @@ import { FixbarComponent } from 'src/components/fixbar/index.component'
 import { SwiperComponent } from 'src/components/swiper/index.component'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.component'
+import type { INavProps } from 'src/types'
 
 @Component({
   standalone: true,
@@ -42,6 +50,9 @@ import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.com
   styleUrls: ['./index.component.scss'],
 })
 export default class SimComponent {
+  @ViewChild('parent') parentElement!: ElementRef
+  @ViewChildren('item') items!: QueryList<ElementRef>
+
   readonly description: string = compilerTemplate(settings.simThemeDesc)
 
   constructor(public commonService: CommonService) {}
@@ -50,9 +61,28 @@ export default class SimComponent {
     this.commonService.setOverIndex()
   }
 
+  get isEllipsis() {
+    return this.commonService.settings.simOverType === 'ellipsis'
+  }
+
   ngAfterViewInit() {
-    if (this.commonService.settings.simOverType === 'ellipsis') {
+    if (this.isEllipsis) {
       this.commonService.getOverIndex('.top-nav .over-item')
+    } else {
+      this.items.forEach((item, index) => {
+        if (this.commonService.oneIndex === index) {
+          scrollIntoView(this.parentElement.nativeElement, item.nativeElement, {
+            behavior: 'auto',
+          })
+        }
+      })
+    }
+  }
+
+  handleClickTop(e: any, data: INavProps) {
+    this.commonService.handleClickClass(data.id)
+    if (!this.isEllipsis) {
+      scrollIntoView(this.parentElement.nativeElement, e.target)
     }
   }
 }

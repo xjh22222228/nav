@@ -32,8 +32,9 @@
 
   <app-search class="hidden search-sm" />
 
-  <nav class="top-nav dark-border-color dark-scrollbar dark-bg">
+  <nav #parent class="top-nav dark-border-color dark-scrollbar dark-bg">
     <span
+      #item
       *ngFor="
         let item of commonService.websiteList.slice(0, commonService.overIndex);
         let i = index;
@@ -42,7 +43,7 @@
       [class.active]="commonService.oneIndex === i"
       [class.dark-text-active]="commonService.oneIndex === i"
       class="over-item dark-text"
-      (click)="commonService.handleClickClass(item.id)"
+      (click)="handleClickTop($event, item)"
     >
       {{ item.title }}
     </span>
