@@ -16,15 +16,14 @@ export const COMPONENT_PATH = 'data/component.json'
 export const VERSION = navConfig.version
 
 export const STORAGE_KEY_MAP = {
-  token: 'token',
-  location: 'location',
-  s_url: 's_url',
-  isDark: 'isDark',
-  website: 'WEBSITE_DB',
-  engine: 'engine',
-  language: 'language',
-  total: 'total',
-  authCode: 'AUTH_CODE',
-  sideCollapsed: 'SIDE_COLLAPSED',
-  fixbarOpen: 'FIXBAR_OPEN',
+  TOKEN: 'token',
+  LOCATION: 'location',
+  DATE_TIME: 's_url',
+  IS_DARK: 'isDark',
+  WEBSITE: 'WEBSITE_DB',
+  SEARCH_ENGINE: 'engine',
+  LANGUAGE: 'language',
+  AUTH_CODE: 'AUTH_CODE',
+  SIDE_COLLAPSED: 'SIDE_COLLAPSED',
+  FIXBAR_OPEN: 'FIXBAR_OPEN',
 }

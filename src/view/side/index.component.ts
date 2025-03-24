@@ -6,13 +6,11 @@ import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import type { INavProps } from 'src/types'
 import { isMobile } from 'src/utils'
-import { setWebsiteList } from 'src/utils/web'
 import { websiteList } from 'src/store'
 import { settings } from 'src/store'
 import { $t } from 'src/locale'
 import { CommonService } from 'src/services/common'
 import { STORAGE_KEY_MAP } from 'src/constants'
-import { isSelfDevelop } from 'src/utils/utils'
 import { ComponentGroupComponent } from 'src/components/component-group/index.component'
 import { SearchComponent } from 'src/components/search/index.component'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
@@ -53,31 +51,25 @@ export default class SideComponent {
   readonly $t = $t
   websiteList: INavProps[] = websiteList
   isCollapsed = isMobile() || settings.sideCollapsed
+  menuOpenId = 0
 
   constructor(public commonService: CommonService) {
-    const localCollapsed = localStorage.getItem(STORAGE_KEY_MAP.sideCollapsed)
+    const localCollapsed = localStorage.getItem(STORAGE_KEY_MAP.SIDE_COLLAPSED)
     if (localCollapsed) {
       this.isCollapsed = localCollapsed === 'true'
     }
+
+    this.menuOpenId = this.websiteList[commonService.oneIndex]?.id || 0
   }
 
-  openMenu(item: any, index: number) {
-    this.websiteList.forEach((data, idx) => {
-      if (idx === index) {
-        data.collapsed = !data.collapsed
-      } else {
-        data.collapsed = false
-      }
-    })
-    if (!isSelfDevelop) {
-      setWebsiteList(this.websiteList)
-    }
+  openMenu(item: INavProps) {
+    this.menuOpenId = item.id
   }
 
   handleCollapsed() {
     this.isCollapsed = !this.isCollapsed
     localStorage.setItem(
-      STORAGE_KEY_MAP.sideCollapsed,
+      STORAGE_KEY_MAP.SIDE_COLLAPSED,
       String(this.isCollapsed)
     )
   }

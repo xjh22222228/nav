@@ -1,3 +1,6 @@
+// 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
+// Copyright @ 2018-present xiejiahe. All rights reserved.
+// See https://github.com/xjh22222228/nav
 import event from 'src/utils/mitt'
 import localforage from 'localforage'
 import navConfig from '../../nav.config.json'
@@ -9,26 +12,7 @@ import { STORAGE_KEY_MAP, DB_PATH } from 'src/constants'
 import { isSelfDevelop } from './utils'
 import { queryString, getClassById } from './index'
 import { $t } from 'src/locale'
-
-function adapterWebsiteList(websiteList: any[]) {
-  function filterOwn(item: IWebProps) {
-    if (item.ownVisible && !isLogin) {
-      return false
-    }
-    return true
-  }
-  websiteList = websiteList.filter(filterOwn)
-  for (let i = 0; i < websiteList.length; i++) {
-    const item = websiteList[i]
-
-    if (Array.isArray(item.nav)) {
-      item.nav = item.nav.filter(filterOwn)
-      adapterWebsiteList(item.nav)
-    }
-  }
-
-  return websiteList
-}
+import { filterLoginData } from './pureUtils'
 
 export async function getWebs() {
   if (isSelfDevelop) {
@@ -41,31 +25,32 @@ export async function getWebs() {
     event.emit('WEB_FINISH')
     window.__FINISHED__ = true
   }
-  let data = adapterWebsiteList(websiteList)
+  let data = filterLoginData(websiteList, isLogin)
   websiteList.splice(0, websiteList.length)
   if (!isLogin) {
     return finish(data)
   }
-  const storageDate = window.localStorage.getItem(STORAGE_KEY_MAP.s_url)
+  const storageDate = window.localStorage.getItem(STORAGE_KEY_MAP.DATE_TIME)
 
   // 检测到网站更新，清除缓存本地保存记录失效
   if (storageDate !== navConfig.datetime) {
-    const whiteList = [
-      STORAGE_KEY_MAP.token,
-      STORAGE_KEY_MAP.isDark,
-      STORAGE_KEY_MAP.authCode,
-      STORAGE_KEY_MAP.location,
+    const whiteKeys = [
+      STORAGE_KEY_MAP.TOKEN,
+      STORAGE_KEY_MAP.IS_DARK,
+      STORAGE_KEY_MAP.AUTH_CODE,
+      STORAGE_KEY_MAP.LOCATION,
     ]
-    const len = window.localStorage.length
-    for (let i = 0; i < len; i++) {
-      const key = window.localStorage.key(i) as string
-      if (whiteList.includes(key)) {
-        continue
+    Array.from({ length: globalThis.localStorage.length }, (_, i) => {
+      const key = globalThis.localStorage.key(i)
+      if (key && !whiteKeys.includes(key)) {
+        globalThis.localStorage.removeItem(key)
       }
-      window.localStorage.removeItem(key)
-    }
-    window.localStorage.setItem(STORAGE_KEY_MAP.s_url, navConfig.datetime)
-    localforage.removeItem(STORAGE_KEY_MAP.website)
+    })
+    globalThis.localStorage.setItem(
+      STORAGE_KEY_MAP.DATE_TIME,
+      navConfig.datetime
+    )
+    localforage.removeItem(STORAGE_KEY_MAP.WEBSITE)
     finish(data)
     if (isLogin) {
       setTimeout(() => {
@@ -84,7 +69,7 @@ export async function getWebs() {
 
   try {
     const dbData: any =
-      (await localforage.getItem(STORAGE_KEY_MAP.website)) || data
+      (await localforage.getItem(STORAGE_KEY_MAP.WEBSITE)) || data
     finish(dbData)
   } catch {
     finish(data)
@@ -99,7 +84,7 @@ export function setWebsiteList(v?: INavProps[]): Promise<any> {
       path: DB_PATH,
     })
   }
-  return localforage.setItem(STORAGE_KEY_MAP.website, v)
+  return localforage.setItem(STORAGE_KEY_MAP.WEBSITE, v)
 }
 
 export function toggleCollapseAll(wsList?: INavProps[]): boolean {

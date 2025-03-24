@@ -7,7 +7,7 @@ import NProgress from 'nprogress'
 import config from '../../nav.config.json'
 import event from './mitt'
 import { settings } from 'src/store'
-import { getToken, getAuthCode } from '../utils/user'
+import { getToken, getAuthCode, removeAuthCode } from '../utils/user'
 import { isLogin } from 'src/utils/user'
 import { getIsGitee } from 'src/utils/pureUtils'
 
@@ -107,6 +107,11 @@ httpNavInstance.interceptors.response.use(
     return res
   },
   function (error) {
+    if (error.response?.data?.statusCode === 401) {
+      removeAuthCode()
+      location.reload()
+    }
+
     let showError = true
     const status =
       error.status || error.response?.data?.status || error.code || ''

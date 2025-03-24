@@ -30,9 +30,9 @@
             index as pageIdx;
             trackBy: commonService.trackByItem
           "
-          (nzOpenChange)="openMenu(item, pageIdx)"
+          (nzOpenChange)="openMenu(item)"
           [nzTitle]="titleTpl"
-          [nzOpen]="item['collapsed']"
+          [nzOpen]="item.id === menuOpenId"
         >
           <ng-template #titleTpl>
             <img *ngIf="item.icon" class="sideicon" [src]="item.icon" />

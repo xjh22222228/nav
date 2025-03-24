@@ -27,7 +27,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin'
   styleUrls: ['./index.component.scss'],
 })
 export default class AuthComponent {
-  $t = $t
+  readonly $t = $t
   submitting: boolean = false
   isPermission = !!getAuthCode()
   authCode = ''
@@ -36,10 +36,12 @@ export default class AuthComponent {
   constructor(private message: NzMessageService) {}
 
   ngOnInit() {
-    this.getUserInfo()
+    if (this.isPermission) {
+      this.getUserInfo()
+    }
   }
 
-  async getUserInfo(params?: any) {
+  private async getUserInfo(params?: any) {
     this.submitting = true
     return getUserInfo(params)
       .then((res: any) => {

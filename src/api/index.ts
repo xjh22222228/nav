@@ -71,27 +71,29 @@ export async function getImageRepoInfo(data?: Record<string, any>) {
 
 // 获取自有部署内容
 export function getContentes() {
-  return http.post('/api/contents/get').then((res: any) => {
-    websiteList.splice(0, websiteList.length)
-    searchEngineList.splice(0, searchEngineList.length)
-    tagList.splice(0, tagList.length)
-    components.splice(0, components.length)
+  return http
+    .post('/api/contents/get', getDefaultRequestData())
+    .then((res: any) => {
+      websiteList.splice(0, websiteList.length)
+      searchEngineList.splice(0, searchEngineList.length)
+      tagList.splice(0, tagList.length)
+      components.splice(0, components.length)
 
-    internal.loginViewCount = res.data.internal.loginViewCount
-    internal.userViewCount = res.data.internal.userViewCount
-    websiteList.push(...res.data.webs)
-    tagList.push(...res.data.tags)
-    searchEngineList.push(...res.data.search)
-    components.push(...res.data.components)
-    const resSettings = res.data.settings as ISettings
-    for (const k in resSettings) {
-      // @ts-ignore
-      settings[k] = resSettings[k]
-    }
-    getTagMap()
-    event.emit('WEB_REFRESH')
-    return res
-  })
+      internal.loginViewCount = res.data.internal.loginViewCount
+      internal.userViewCount = res.data.internal.userViewCount
+      websiteList.push(...res.data.webs)
+      tagList.push(...res.data.tags)
+      searchEngineList.push(...res.data.search)
+      components.push(...res.data.components)
+      const resSettings = res.data.settings as ISettings
+      for (const k in resSettings) {
+        // @ts-ignore
+        settings[k] = resSettings[k]
+      }
+      getTagMap()
+      event.emit('WEB_REFRESH')
+      return res
+    })
 }
 
 // 自有部署爬取信息

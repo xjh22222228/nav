@@ -7,39 +7,48 @@ import { ActionType } from 'src/types'
 import type { ISettings } from 'src/types'
 
 export function getToken() {
-  return globalThis.localStorage?.getItem(STORAGE_KEY_MAP.token) || ''
+  return globalThis.localStorage?.getItem(STORAGE_KEY_MAP.TOKEN) || ''
 }
 
 export function getAuthCode() {
-  return globalThis.localStorage.getItem(STORAGE_KEY_MAP.authCode) || ''
+  return globalThis.localStorage.getItem(STORAGE_KEY_MAP.AUTH_CODE) || ''
 }
 
 export function removeAuthCode() {
-  return globalThis.localStorage.removeItem(STORAGE_KEY_MAP.authCode)
+  return globalThis.localStorage.removeItem(STORAGE_KEY_MAP.AUTH_CODE)
 }
 
 export function setAuthCode(c: string) {
-  return globalThis.localStorage.setItem(STORAGE_KEY_MAP.authCode, c.trim())
+  return globalThis.localStorage.setItem(STORAGE_KEY_MAP.AUTH_CODE, c.trim())
 }
 
 export function setToken(token: string) {
-  return globalThis.localStorage.setItem(STORAGE_KEY_MAP.token, token)
+  return globalThis.localStorage.setItem(STORAGE_KEY_MAP.TOKEN, token)
 }
 
 export function removeToken() {
-  return globalThis.localStorage.removeItem(STORAGE_KEY_MAP.token)
+  return globalThis.localStorage.removeItem(STORAGE_KEY_MAP.TOKEN)
 }
 
 export function removeWebsite() {
-  return localforage.removeItem(STORAGE_KEY_MAP.website)
+  return localforage.removeItem(STORAGE_KEY_MAP.WEBSITE)
 }
 
 export function userLogout() {
-  const code = getAuthCode()
+  const removeKeys = [STORAGE_KEY_MAP.TOKEN, STORAGE_KEY_MAP.WEBSITE]
   localforage.clear()
-  globalThis.localStorage.clear()
-  globalThis.sessionStorage.clear()
-  setAuthCode(code)
+  Array.from({ length: globalThis.localStorage.length }, (_, i) => {
+    const key = globalThis.localStorage.key(i)
+    if (key && removeKeys.includes(key)) {
+      globalThis.localStorage.removeItem(key)
+    }
+  })
+  Array.from({ length: globalThis.sessionStorage.length }, (_, i) => {
+    const key = globalThis.sessionStorage.key(i)
+    if (key && removeKeys.includes(key)) {
+      globalThis.sessionStorage.removeItem(key)
+    }
+  })
 }
 
 export const isLogin: boolean = !!getToken()

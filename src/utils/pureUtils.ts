@@ -1,4 +1,7 @@
-import { ISettings } from '../types'
+// 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
+// Copyright @ 2018-present xiejiahe. All rights reserved.
+// See https://github.com/xjh22222228/nav
+import type { ISettings } from '../types'
 
 export function replaceJsdelivrCDN(
   url: string = '',
@@ -24,4 +27,24 @@ export function removeTrailingSlashes(url: string | null | undefined): string {
     return ''
   }
   return url.replace(/\/+$/, '')
+}
+
+export function filterLoginData(websiteList: any[], isLogin: boolean): any[] {
+  function filterOwn(item: any) {
+    if (item.ownVisible && !isLogin) {
+      return false
+    }
+    return true
+  }
+  websiteList = websiteList.filter(filterOwn)
+  for (let i = 0; i < websiteList.length; i++) {
+    const item = websiteList[i]
+
+    if (Array.isArray(item.nav)) {
+      item.nav = item.nav.filter(filterOwn)
+      filterLoginData(item.nav, isLogin)
+    }
+  }
+
+  return websiteList
 }

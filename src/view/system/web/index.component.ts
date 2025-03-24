@@ -235,7 +235,7 @@ export default class WebpComponent {
       nzContent: $t('_warnReset'),
       nzOnOk: () => {
         this.message.success($t('_actionSuccess'))
-        window.localStorage.removeItem(STORAGE_KEY_MAP.s_url)
+        window.localStorage.removeItem(STORAGE_KEY_MAP.DATE_TIME)
         removeWebsite().finally(() => {
           window.location.reload()
         })

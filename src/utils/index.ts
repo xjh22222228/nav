@@ -266,14 +266,14 @@ export function randomBgImg(): void {
 }
 
 export function queryString() {
-  const { href } = window.location
+  const { href } = location
   const search = href.split('?')[1] || ''
   const parseQs = qs.parse(search)
   let id = parseQs['id']
 
   if (parseQs['id'] == null) {
     try {
-      const location = window.localStorage.getItem(STORAGE_KEY_MAP.location)
+      const location = localStorage.getItem(STORAGE_KEY_MAP.LOCATION)
       if (location) {
         const localLocation = JSON.parse(location)
         id = localLocation.id
@@ -293,7 +293,7 @@ export function setLocation() {
   const { id } = queryString()
 
   window.localStorage.setItem(
-    STORAGE_KEY_MAP.location,
+    STORAGE_KEY_MAP.LOCATION,
     JSON.stringify({
       id,
     })
@@ -303,7 +303,7 @@ export function setLocation() {
 export function getDefaultSearchEngine(): ISearchProps {
   let DEFAULT = (searchEngineList[0] || {}) as ISearchProps
   try {
-    const engine = window.localStorage.getItem(STORAGE_KEY_MAP.engine)
+    const engine = window.localStorage.getItem(STORAGE_KEY_MAP.SEARCH_ENGINE)
     if (engine) {
       const local = JSON.parse(engine)
       const findItem = searchEngineList.find((item) => item.name === local.name)
@@ -316,11 +316,14 @@ export function getDefaultSearchEngine(): ISearchProps {
 }
 
 export function setDefaultSearchEngine(engine: ISearchProps) {
-  window.localStorage.setItem(STORAGE_KEY_MAP.engine, JSON.stringify(engine))
+  window.localStorage.setItem(
+    STORAGE_KEY_MAP.SEARCH_ENGINE,
+    JSON.stringify(engine)
+  )
 }
 
 export function isDark(): boolean {
-  const storageVal = window.localStorage.getItem(STORAGE_KEY_MAP.isDark)
+  const storageVal = window.localStorage.getItem(STORAGE_KEY_MAP.IS_DARK)
   const darkMode = window?.matchMedia?.('(prefers-color-scheme: dark)')?.matches
 
   if (!storageVal && darkMode) {

@@ -42,7 +42,7 @@ export class FixbarComponent {
   syncLoading = false
   isShowFace = true
   entering = false
-  open = localStorage.getItem(STORAGE_KEY_MAP.fixbarOpen) === 'true'
+  open = localStorage.getItem(STORAGE_KEY_MAP.FIXBAR_OPEN) === 'true'
   themeList = [
     {
       name: $t('_switchTo') + ' Super',
@@ -150,7 +150,7 @@ export class FixbarComponent {
     this.isDark = !this.isDark
     mitt.emit('EVENT_DARK', this.isDark)
     window.localStorage.setItem(
-      STORAGE_KEY_MAP.isDark,
+      STORAGE_KEY_MAP.IS_DARK,
       String(Number(this.isDark))
     )
 
@@ -171,7 +171,7 @@ export class FixbarComponent {
 
   handleOpen() {
     this.open = !this.open
-    localStorage.setItem(STORAGE_KEY_MAP.fixbarOpen, String(this.open))
+    localStorage.setItem(STORAGE_KEY_MAP.FIXBAR_OPEN, String(this.open))
   }
 
   handleSync() {
@@ -204,7 +204,7 @@ export class FixbarComponent {
 
   toggleLocale() {
     const l = this.language === 'en' ? 'zh-CN' : 'en'
-    window.localStorage.setItem(STORAGE_KEY_MAP.language, l)
-    window.location.reload()
+    localStorage.setItem(STORAGE_KEY_MAP.LANGUAGE, l)
+    location.reload()
   }
 }
