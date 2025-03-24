@@ -79,7 +79,8 @@
 
           <nz-checkbox-group
             *ngIf="isTop"
-            formControlName="topOptions"
+            [nzOptions]="topOptions"
+            formControlName="topTypes"
           ></nz-checkbox-group>
         </nz-form-control>
       </nz-form-item>

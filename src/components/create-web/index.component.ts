@@ -88,8 +88,8 @@ export class CreateWebComponent {
   parentId = -1
   callback: Function = () => {}
   topOptions = [
-    { label: TopType[1], value: TopType.Side, checked: false },
-    { label: TopType[2], value: TopType.Shortcut, checked: false },
+    { label: TopType[1], value: TopType.Side },
+    { label: TopType[2], value: TopType.Shortcut },
   ]
 
   constructor(
@@ -112,7 +112,7 @@ export class CreateWebComponent {
       title: ['', [Validators.required]],
       url: ['', [Validators.required]],
       top: [false],
-      topOptions: [this.topOptions],
+      topTypes: [],
       ownVisible: [false],
       rate: [5],
       icon: [''],
@@ -166,6 +166,7 @@ export class CreateWebComponent {
     this.validateForm.get('icon')!.setValue(detail?.icon || '')
     this.validateForm.get('url')!.setValue(detail?.url || '')
     this.validateForm.get('top')!.setValue(detail?.top ?? false)
+    this.validateForm.get('topTypes')!.setValue(detail?.topTypes ?? [])
     this.validateForm.get('ownVisible')!.setValue(detail?.ownVisible ?? false)
     this.validateForm.get('rate')!.setValue(detail?.rate ?? 5)
     this.validateForm.get('img')!.setValue(detail?.img ?? '')
@@ -182,17 +183,6 @@ export class CreateWebComponent {
         })
       }
     }
-    const topOptions = this.topOptions.map((item) => {
-      item.checked = false
-      type V = typeof item.value
-      if (detail?.topTypes) {
-        const checked = detail.topTypes.some((value: V) => value === item.value)
-        item.checked = checked
-      }
-      return item
-    })
-
-    this.validateForm.get('topOptions')!.setValue(topOptions)
     this.focusUrl()
   }
 
@@ -362,7 +352,7 @@ export class CreateWebComponent {
     }
 
     const tags: IWebTag[] = []
-    let { url, top, ownVisible, rate, index, topOptions } =
+    let { url, top, ownVisible, rate, index, topTypes } =
       this.validateForm.value
     url = url.trim()
     const title = this.title
@@ -377,11 +367,6 @@ export class CreateWebComponent {
         })
       }
     })
-
-    type TopTypes = typeof this.topOptions
-    const topTypes: number[] = (topOptions as TopTypes)
-      .filter((item) => item.checked)
-      .map((item) => item.value)
 
     const payload: Record<string, any> = {
       id: this.detail?.id,
