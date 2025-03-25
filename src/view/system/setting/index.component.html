@@ -90,7 +90,11 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="4">Email</nz-form-label>
     <nz-form-control [nzSpan]="10">
-      <input nz-input formControlName="email" placeholder="用户提交收录通知" />
+      <input
+        nz-input
+        formControlName="email"
+        [placeholder]="$t('_submitNotice')"
+      />
     </nz-form-control>
   </nz-form-item>
 

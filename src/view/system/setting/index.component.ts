@@ -65,7 +65,7 @@ const extraForm: Record<string, any> = {
     UploadComponent,
     CardComponent,
   ],
-  providers: [NzModalService, NzNotificationService, NzMessageService],
+  providers: [NzModalService],
   selector: 'system-setting',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],

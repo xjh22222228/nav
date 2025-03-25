@@ -11,10 +11,14 @@ import { getToken, getAuthCode, removeAuthCode } from '../utils/user'
 import { isLogin } from 'src/utils/user'
 import { getIsGitee } from 'src/utils/pureUtils'
 
+function getAddress(): string {
+  return globalThis.__ADDRESS__ || config.address || ''
+}
+
 const httpInstance = axios.create({
   timeout: 60000 * 3,
   baseURL:
-    config.address ||
+    getAddress() ||
     (getIsGitee(config.gitRepoUrl)
       ? 'https://gitee.com/api/v5'
       : 'https://api.github.com'),

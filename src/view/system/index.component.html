@@ -82,6 +82,14 @@
           {{ $t('_vipAuth') }}
         </li>
         <li
+          *ngIf="isSelfDevelop"
+          nz-menu-item
+          [nzSelected]="currentMenu === 'config'"
+          (click)="goRoute('/system/config')"
+        >
+          {{ $t('_confInfo') }}
+        </li>
+        <li
           nz-menu-item
           [nzSelected]="currentMenu === 'info'"
           (click)="goRoute('/system/info')"

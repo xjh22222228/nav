@@ -513,3 +513,84 @@ export async function spiderWeb(
     time: diff,
   }
 }
+
+export async function fileWriteStream(path: string, data: object | string) {
+  const strings = typeof data === 'string' ? data : JSON.stringify(data)
+  const CHUNK_SIZE = 1024 * 1024
+  const stream1 = fs.createWriteStream(path)
+
+  const stream1Promise = new Promise((resolve, reject) => {
+    stream1.on('finish', () => resolve('file1 written'))
+    stream1.on('error', (err) => reject(err))
+  })
+
+  const writeChunks = (stream: fs.WriteStream, data: string) => {
+    return new Promise<void>((resolve, reject) => {
+      const totalLength = data.length
+      let position = 0
+
+      const writeNextChunk = () => {
+        if (position >= totalLength) {
+          stream.end()
+          resolve()
+          return
+        }
+
+        // 计算当前块的结束位置
+        const end = Math.min(position + CHUNK_SIZE, totalLength)
+        // 提取当前块
+        const chunk = data.slice(position, end)
+
+        // 写入当前块
+        const canContinue = stream.write(chunk, 'utf8')
+        position = end
+
+        // 如果流已满，等待'drain'事件后继续
+        if (!canContinue) {
+          stream.once('drain', writeNextChunk)
+        } else {
+          // 使用setImmediate避免调用栈溢出
+          setImmediate(writeNextChunk)
+        }
+      }
+
+      writeNextChunk()
+
+      stream.on('error', (err) => {
+        reject(err)
+      })
+    })
+  }
+
+  try {
+    await writeChunks(stream1, strings)
+    const results = await stream1Promise
+    return results
+  } catch (err) {
+    stream1.end()
+    console.log(`Failed to write files: ${(err as Error).message}`)
+    return err
+  }
+}
+
+export function fileReadStream(path: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const stream = fs.createReadStream(path)
+    let chunks: any[] = []
+
+    stream.on('data', (chunk) => {
+      chunks.push(chunk)
+    })
+
+    stream.on('end', () => {
+      const fullContent = Buffer.concat(chunks)
+      const data = fullContent.toString('utf8')
+      resolve(data)
+    })
+
+    stream.on('error', (err) => {
+      reject(err)
+      console.error('Error:', err)
+    })
+  })
+}

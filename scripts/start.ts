@@ -20,6 +20,7 @@ import {
   setWebs,
   PATHS,
   getConfig,
+  fileWriteStream,
 } from './utils'
 import { replaceJsdelivrCDN } from '../src/utils/pureUtils'
 import type {
@@ -473,10 +474,10 @@ const main = async () => {
 
   fs.writeFileSync(PATHS.internal, JSON.stringify(internal))
 
-  const webs = JSON.stringify(setWebs(db, settings, tags))
-  fs.writeFileSync(PATHS.db, webs)
+  const webs = setWebs(db, settings, tags)
+  await fileWriteStream(PATHS.db, webs)
   if (configJson.address) {
-    fs.writeFileSync(PATHS.serverdb, webs)
+    await fileWriteStream(PATHS.serverdb, webs)
   }
 }
 

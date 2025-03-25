@@ -96,7 +96,6 @@ export function getContentes() {
     })
 }
 
-// 自有部署爬取信息
 export function spiderWeb(data?: any) {
   return http
     .post('/api/spider', data, {
@@ -108,7 +107,6 @@ export function spiderWeb(data?: any) {
     })
 }
 
-// 创建分支
 export async function createBranch(branch: string) {
   if (isSelfDevelop) {
     return
@@ -140,7 +138,6 @@ export async function createBranch(branch: string) {
   return http.post(url, params)
 }
 
-// 获取文件信息
 export function getFileContent(path: string, branch: string = DEFAULT_BRANCH) {
   return http.get(`/repos/${authorName}/${repoName}/contents/${path}`, {
     params: {
@@ -149,7 +146,6 @@ export function getFileContent(path: string, branch: string = DEFAULT_BRANCH) {
   })
 }
 
-// 更新文件内容
 type Iupdate = {
   message?: string
   content: string
@@ -316,6 +312,14 @@ export async function getScreenshot(data?: Record<string, any>) {
   return httpNav.post('/api/screenshot', data, {
     timeout: 0,
   })
+}
+
+export async function getConfigInfo(data: Record<string, any> = {}) {
+  return http.post('/api/config/get', data)
+}
+
+export async function updateConfigInfo(data: Record<string, any> = {}) {
+  return http.post('/api/config/update', data)
 }
 
 export function getCDN(path: string) {
