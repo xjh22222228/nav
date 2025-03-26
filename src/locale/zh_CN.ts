@@ -301,6 +301,7 @@ const zhCN: Record<string, any> = {
   _password: '密码',
   _address: '地址',
   _apiPass: '讯飞大模型密钥',
+  _createWebKey: '按下创建网站',
 }
 
 export default zhCN

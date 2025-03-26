@@ -51,7 +51,7 @@ import event from 'src/utils/mitt'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  isLogin: boolean = isLogin
+  readonly isLogin: boolean = isLogin
   fetchIng = true
 
   constructor(
@@ -63,7 +63,7 @@ export class AppComponent {
     private modal: NzModalService
   ) {
     this.registerEvents()
-
+    this.registerKeyboard()
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateDocumentTitle()
@@ -207,5 +207,30 @@ export class AppComponent {
         this.router.navigate([path], { queryParams })
       }
     }
+  }
+
+  private registerKeyboard() {
+    document.addEventListener('keyup', (e) => {
+      const createWebKey = settings.createWebKey.toLowerCase()
+      if (!createWebKey) {
+        return
+      }
+      const activeElement = document.activeElement
+      if (activeElement) {
+        if (
+          activeElement.nodeName === 'INPUT' ||
+          activeElement.nodeName === 'TEXTAREA'
+        ) {
+          return
+        }
+      }
+
+      const key = e.key.toLowerCase()
+      if (key === createWebKey) {
+        event.emit('CREATE_WEB', {
+          isKeyboard: true,
+        })
+      }
+    })
   }
 }

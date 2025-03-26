@@ -85,12 +85,13 @@ export class CreateWebComponent {
   showModal = false
   detail: IWebProps | null | undefined = null
   isMove = false // 提交完是否可以移动
-  parentId = -1
+  parentId: number = -1
   callback: Function = () => {}
   topOptions = [
     { label: TopType[1], value: TopType.Side },
     { label: TopType[2], value: TopType.Shortcut },
   ]
+  breadcrumb: string[] = []
 
   constructor(
     public readonly jumpService: JumpService,
@@ -123,6 +124,13 @@ export class CreateWebComponent {
     })
   }
 
+  get modalTitle(): string {
+    const breadcrumb = (this.detail?.breadcrumb || this.breadcrumb).join(' / ')
+    return this.detail
+      ? `${$t('_edit')}（${breadcrumb}）`
+      : `${$t('_add')}（${breadcrumb}）`
+  }
+
   get urlArray(): FormArray {
     return this.validateForm.get('urlArr') as FormArray
   }
@@ -150,15 +158,30 @@ export class CreateWebComponent {
   open(
     ctx: this,
     props?: {
+      isKeyboard?: boolean
       isMove?: boolean
       parentId?: number
       detail: IWebProps | null | undefined
     }
   ) {
+    if (props?.isKeyboard && this.showModal) {
+      return
+    }
+
     const detail = props?.detail
+    if (!detail) {
+      ctx.parentId = props?.parentId || ctx.parentId
+      if (websiteList.length === 0) return
+      if (ctx.parentId === -1) {
+        const parentId = websiteList[0]?.nav?.[0]?.nav?.[0]?.id
+        if (!parentId) {
+          return
+        }
+        ctx.parentId = parentId
+      }
+    }
     ctx.detail = detail
     ctx.showModal = true
-    ctx.parentId = props?.parentId ?? -1
     ctx.isMove = !!props?.isMove
     this.validateForm.get('title')!.setValue(getTextContent(detail?.name))
     this.validateForm.get('desc')!.setValue(getTextContent(detail?.desc))
@@ -183,6 +206,15 @@ export class CreateWebComponent {
         })
       }
     }
+
+    if (detail) {
+      const { parentId } = getClassById(detail.id, 0, true)
+      ctx.parentId = parentId
+    } else {
+      const { breadcrumb } = getClassById(ctx.parentId)
+      ctx.breadcrumb = breadcrumb
+    }
+
     this.focusUrl()
   }
 
@@ -200,9 +232,7 @@ export class CreateWebComponent {
     this.validateForm.get('urlArr').controls = []
     this.validateForm.reset()
     this.showModal = false
-    this.detail = null
     this.submitting = false
-    this.isMove = false
     this.callback = Function
   }
 
@@ -408,22 +438,23 @@ export class CreateWebComponent {
     } else {
       payload['id'] = getTempId()
       try {
-        const { breadcrumb } = getClassById(this.parentId)
         this.submitting = true
+        payload['breadcrumb'] = this.breadcrumb
         if (this.isLogin) {
           const ok = pushDataByAny(this.parentId, payload)
-          ok && this.message.success($t('_addSuccess'))
-          if (this.isMove) {
-            event.emit('MOVE_WEB', {
-              data: [payload],
-            })
+          if (ok) {
+            this.message.success($t('_addSuccess'))
+            if (this.isMove) {
+              event.emit('MOVE_WEB', {
+                data: [payload],
+              })
+            }
           }
         } else if (this.permissions.create) {
           const params = {
             data: {
               ...payload,
               parentId: this.parentId,
-              breadcrumb,
               extra: {
                 type: ActionType.Create,
               },

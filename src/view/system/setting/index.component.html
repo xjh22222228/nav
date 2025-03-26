@@ -282,6 +282,18 @@
   </nz-form-item>
 
   <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_createWebKey') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <input
+        nz-input
+        formControlName="createWebKey"
+        maxlength="1"
+        class="max-w-10"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_headHtml') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <textarea

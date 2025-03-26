@@ -254,13 +254,13 @@ export async function deleteClassByIds(
   return hasDelete
 }
 
-export function pushDataByAny(id: number, data: any) {
+export function pushDataByAny(parentId: number, data: any): boolean {
   let ok = false
   function f(arr: any[]) {
     for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
       if (item.title) {
-        if (item.id === id) {
+        if (item.id === parentId) {
           ok = true
           item.nav.unshift(data)
         }

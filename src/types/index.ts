@@ -155,6 +155,7 @@ export interface ISettings {
   actionUrl: string | null
   checkUrl: boolean
   errorUrlCount?: number
+  createWebKey: string
 
   appCardStyle: ICardType
   appDocTitle: string

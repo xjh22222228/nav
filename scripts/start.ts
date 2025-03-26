@@ -340,6 +340,7 @@ const main = async () => {
     settings.actionUrl ??= ''
     settings.appTheme ??= 'App'
     settings.openSEO ??= !configJson.address
+    settings.createWebKey ??= 'E'
     settings.headerContent ??= ''
     settings.footerContent ??= `
 <div class="dark-white">

@@ -476,54 +476,63 @@ export function getDefaultTheme() {
   return t
 }
 
-export function getClassById(id: unknown, initValue = 0) {
+export function getClassById(id: unknown, initValue = 0, isWebId = false) {
   id = Number(id)
   let oneIndex = initValue
   let twoIndex = initValue
   let threeIndex = initValue
+  let parentId = -1
   const breadcrumb: string[] = []
 
   outerLoop: for (let i = 0; i < websiteList.length; i++) {
     const item = websiteList[i]
-    if (item.title) {
-      if (item.id === id) {
-        oneIndex = i
-        breadcrumb.push(item.title)
-        break
-      }
+    if (item.id === id) {
+      oneIndex = i
+      breadcrumb.push(item.title)
+      break
     }
     if (Array.isArray(item.nav)) {
       for (let j = 0; j < item.nav.length; j++) {
         const twoItem = item.nav[j]
-        if (twoItem.title) {
-          if (twoItem.id === id) {
-            oneIndex = i
-            twoIndex = j
-            breadcrumb.push(item.title, twoItem.title)
-            break outerLoop
-          }
+        if (twoItem.id === id) {
+          parentId = item.id
+          oneIndex = i
+          twoIndex = j
+          breadcrumb.push(item.title, twoItem.title)
+          break outerLoop
         }
         if (Array.isArray(twoItem.nav)) {
           for (let k = 0; k < twoItem.nav.length; k++) {
             const threeItem = twoItem.nav[k]
             if (threeItem.id === id) {
+              parentId = twoItem.id
               oneIndex = i
               twoIndex = j
               threeIndex = k
               breadcrumb.push(item.title, twoItem.title, threeItem.title)
               break outerLoop
             }
+            if (isWebId) {
+              if (Array.isArray(threeItem.nav)) {
+                for (let l = 0; l < threeItem.nav.length; l++) {
+                  const web = threeItem.nav[l]
+                  if (web.id === id) {
+                    parentId = threeItem.id
+                    oneIndex = i
+                    twoIndex = j
+                    threeIndex = k
+                    breadcrumb.push(item.title, twoItem.title, threeItem.title)
+                    break outerLoop
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
   }
-  return {
-    oneIndex,
-    twoIndex,
-    threeIndex,
-    breadcrumb,
-  } as const
+  return { parentId, oneIndex, twoIndex, threeIndex, breadcrumb } as const
 }
 
 export function scrollIntoView(

@@ -60,6 +60,9 @@ httpInstance.interceptors.response.use(
       type: 'error',
       title: 'Error：' + status,
       content: errorMsg,
+      config: {
+        nzDuration: 0,
+      },
     })
     stopLoad()
     return Promise.reject(error)
@@ -130,6 +133,9 @@ httpNavInstance.interceptors.response.use(
         type: 'error',
         title: 'Error：' + status,
         content: errorMsg,
+        config: {
+          nzDuration: 0,
+        },
       })
     }
 

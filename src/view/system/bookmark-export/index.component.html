@@ -1,27 +1,13 @@
 <nz-spin nzSimple nzSize="large" class="text-center" *ngIf="submitting">
 </nz-spin>
-<div class="text-center">
-  <nz-switch [(ngModel)]="isExportIcon"></nz-switch>
-  <span class="ml-2.5">{{ $t('_exportIcons') }}</span>
-  <p class="mt-2.5" *ngIf="seconds > 0">{{ seconds }} s</p>
-  <p class="mt-2.5" *ngIf="countAll > 0">
-    {{ $t('_processing') }} {{ currentNumber }} / {{ countAll }}
-  </p>
-</div>
-<div class="book-wrapper mt-2.5">
-  <div>
-    <button
-      nz-button
-      nzType="primary"
-      (click)="bookmarksExport()"
-      [nzLoading]="submitting"
-    >
-      {{ $t('_clickExport') }}
-    </button>
-  </div>
-</div>
 
-<div class="err" [class.noopacity]="countAll > 0">
-  <h2>{{ $t('_errorIcons') }}</h2>
-  <pre id="error-msg"></pre>
+<div class="book-wrapper mt-2.5">
+  <button
+    nz-button
+    nzType="primary"
+    (click)="bookmarksExport()"
+    [nzLoading]="submitting"
+  >
+    {{ $t('_clickExport') }}
+  </button>
 </div>

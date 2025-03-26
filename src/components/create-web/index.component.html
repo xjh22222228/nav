@@ -1,22 +1,13 @@
 <nz-modal
   [nzWidth]="570"
   [(nzVisible)]="showModal"
-  [nzTitle]="detail ? $t('_edit') : $t('_add')"
+  [nzTitle]="modalTitle"
   (nzOnCancel)="onClose()"
   [nzBodyStyle]="{ maxHeight: '70vh', overflowY: 'auto' }"
   [nzContent]="modalContent"
   [nzFooter]="modalFooter"
 >
   <ng-template #modalContent>
-    <div class="breadcrumb1" *ngIf="detail && detail.breadcrumb">
-      <span *ngFor="let n of detail.breadcrumb; let idx = index"
-        >{{ n }}
-        <span class="arrow" *ngIf="idx !== detail.breadcrumb.length - 1"
-          >/</span
-        ></span
-      >
-    </div>
-
     <form nz-form [formGroup]="validateForm">
       <nz-form-item>
         <nz-form-label [nzSpan]="4" nzRequired>{{
@@ -257,12 +248,7 @@
     >
       {{ $t('_translate') }}
     </button>
-    <button
-      *ngIf="parentId !== -1"
-      nz-button
-      nzType="primary"
-      (click)="checkRepeat()"
-    >
+    <button nz-button nzType="primary" (click)="checkRepeat()">
       <nz-icon nzType="search" />
       {{ $t('_checkRepeat') }}
     </button>
