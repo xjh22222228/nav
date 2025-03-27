@@ -13,7 +13,13 @@ import {
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { verifyToken, createBranch, authorName } from 'src/api'
+import {
+  verifyToken,
+  createBranch,
+  authorName,
+  repoName,
+  getImageRepo,
+} from 'src/api'
 import { setToken, removeToken, removeWebsite } from 'src/utils/user'
 import { $t } from 'src/locale'
 import { isSelfDevelop } from 'src/utils/utils'
@@ -77,12 +83,18 @@ export class LoginComponent {
       setToken(token)
 
       try {
-        createBranch('image').finally(() => {
+        const cb = () => {
           this.message.success($t('_tokenVerSuc'))
           removeWebsite().finally(() => {
-            window.location.reload()
+            location.reload()
           })
-        })
+        }
+
+        if (repoName === getImageRepo().repo) {
+          createBranch('image').finally(cb)
+        } else {
+          cb()
+        }
       } catch {
         removeToken()
         this.submitting = false
