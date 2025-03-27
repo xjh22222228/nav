@@ -10,7 +10,7 @@ import {
   QueryList,
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { randomBgImg, scrollIntoView } from 'src/utils'
+import { randomBgImg, removeBgImg, scrollIntoView } from 'src/utils'
 import { CommonService } from 'src/services/common'
 import { ComponentGroupComponent } from 'src/components/component-group/index.component'
 import { WebMoreMenuComponent } from 'src/components/web-more-menu/index.component'
@@ -61,6 +61,7 @@ export default class LightComponent {
 
   ngOnDestroy() {
     this.commonService.setOverIndex()
+    removeBgImg()
   }
 
   ngAfterViewInit() {

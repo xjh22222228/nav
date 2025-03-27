@@ -4,7 +4,7 @@
 
 import { Component, Output, EventEmitter, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { isDark as isDarkFn, randomBgImg, queryString } from 'src/utils'
+import { isDark as isDarkFn, queryString } from 'src/utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { isLogin } from 'src/utils/user'
@@ -110,8 +110,6 @@ export class FixbarComponent {
     }
   }
 
-  ngOnInit() {}
-
   toggleTheme(theme: any) {
     this.router.navigate([theme.url], {
       queryParams: {
@@ -119,7 +117,6 @@ export class FixbarComponent {
         _: Date.now(),
       },
     })
-    this.removeBackground()
   }
 
   goTop() {
@@ -141,11 +138,6 @@ export class FixbarComponent {
     this.onCollapse.emit()
   }
 
-  removeBackground() {
-    const el = document.getElementById('random-light-bg')
-    el?.parentNode?.removeChild?.(el)
-  }
-
   toggleMode() {
     this.isDark = !this.isDark
     mitt.emit('EVENT_DARK', this.isDark)
@@ -156,11 +148,8 @@ export class FixbarComponent {
 
     if (this.isDark) {
       addDark()
-      this.removeBackground()
     } else {
       removeDark()
-      const { data } = this.activatedRoute.snapshot
-      data['renderLinear'] && randomBgImg()
     }
   }
 

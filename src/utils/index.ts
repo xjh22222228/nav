@@ -220,8 +220,6 @@ export function randomColor(): string {
 
 let randomTimer: any
 export function randomBgImg(): void {
-  if (isDark()) return
-
   if (randomTimer) {
     clearInterval(randomTimer)
   }
@@ -229,8 +227,8 @@ export function randomBgImg(): void {
   const id = 'random-light-bg'
   const el = document.getElementById(id) || document.createElement('div')
   const deg = randomInt(360)
-
   el.id = id
+  el.className = 'dark-bg'
   el.style.cssText = `
     position: fixed;
     top: 0;
@@ -240,21 +238,11 @@ export function randomBgImg(): void {
     z-index: -3;
     transition: 1s linear;
   `
-
   el.style.backgroundImage = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
   document.body.appendChild(el)
 
-  const setBg = (): void => {
-    if (isDark()) {
-      if (randomTimer) {
-        clearInterval(randomTimer)
-        randomTimer = null
-      }
-      return
-    }
-
+  const transition = (): void => {
     const randomBg = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
-
     el.style.opacity = '0.3'
     setTimeout(() => {
       el.style.backgroundImage = randomBg
@@ -262,7 +250,18 @@ export function randomBgImg(): void {
     }, 1000)
   }
 
-  randomTimer = setInterval(setBg, 10000)
+  randomTimer = setInterval(transition, 10000)
+}
+
+export function removeBgImg(): void {
+  if (randomTimer) {
+    clearInterval(randomTimer)
+    randomTimer = null
+  }
+  const el = document.getElementById('random-light-bg')
+  if (el) {
+    el.parentNode?.removeChild(el)
+  }
 }
 
 export function queryString() {

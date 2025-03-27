@@ -34,7 +34,6 @@ export const routes: Routes = [
     path: 'light',
     component: LightComponent,
     data: {
-      renderLinear: true,
       data: {},
     },
   },
