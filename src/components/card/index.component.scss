@@ -1,3 +1,23 @@
+.card-parent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .stop-icon {
+    z-index: 3;
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+  .quote {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 5px;
+  }
+}
+
 .card-container {
   position: relative;
   width: 100%;
@@ -27,14 +47,6 @@
     white-space: normal;
     word-break: break-all;
     color: rgba(0, 0, 0, 0.8);
-  }
-  .stop-icon {
-    z-index: 3;
-    color: red;
-    font-weight: bold;
-    position: absolute;
-    top: 12px;
-    right: 12px;
   }
 }
 

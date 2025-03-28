@@ -105,7 +105,7 @@ export function toggleCollapseAll(wsList?: INavProps[]): boolean {
 
 export async function deleteWebByIds(
   ids: number[],
-  isSame = false
+  isDelRid = false
 ): Promise<boolean> {
   let hasDelete = false
   function f(arr: any[]) {
@@ -114,7 +114,7 @@ export async function deleteWebByIds(
       if (Array.isArray(item.nav)) {
         item.nav = item.nav.filter((w: IWebProps) => {
           if (w.name) {
-            if (ids.includes(isSame ? (w.rId as number) : w.id)) {
+            if (ids.includes(isDelRid ? (w.rId as number) : w.id)) {
               hasDelete = true
               return false
             }
@@ -212,7 +212,7 @@ export function updateByClass(oldId: number, newData: any) {
 
 export async function deleteClassByIds(
   ids: number[],
-  isSame = false
+  isDelRid = false
 ): Promise<boolean> {
   let hasDelete = false
 
@@ -226,7 +226,7 @@ export async function deleteClassByIds(
         }
         item.nav = item.nav.filter((w: INavProps) => {
           if (w.title) {
-            if (ids.includes(isSame ? (w['rId'] as number) : w.id)) {
+            if (ids.includes(isDelRid ? (w['rId'] as number) : w.id)) {
               hasDelete = true
               return false
             }

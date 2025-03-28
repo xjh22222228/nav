@@ -1,0 +1,32 @@
+<nz-modal
+  [(nzVisible)]="showModal"
+  [nzTitle]="$t('_confirmDel')"
+  (nzOnCancel)="handleCancel()"
+  nzWidth="350px"
+>
+  <ng-container *nzModalContent>
+    <div>ID: {{ ids }}</div>
+
+    <div *ngIf="data?.rId" class="mt-2">
+      <div class="mb-2">该项目引用自 ID {{ ids }}</div>
+      <label nz-checkbox [(ngModel)]="isChecked">{{
+        $t('_onlyDelItem')
+      }}</label>
+    </div>
+  </ng-container>
+
+  <div *nzModalFooter>
+    <button nz-button nzType="default" (click)="handleCancel()">
+      {{ $t('_cancel') }}
+    </button>
+    <button
+      nz-button
+      nzDanger
+      nzType="primary"
+      (click)="handleOk()"
+      [nzLoading]="submitting"
+    >
+      {{ $t('_del') }}
+    </button>
+  </div>
+</nz-modal>

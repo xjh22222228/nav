@@ -7,10 +7,7 @@
 
 <ng-template #other>
   <ng-container [ngSwitch]="cardStyle">
-    <div
-      class="card-container standard dark-border-color dark-bg"
-      *ngSwitchCase="'standard'"
-    >
+    <div class="card-parent">
       <span
         nz-icon
         nzType="stop"
@@ -19,199 +16,296 @@
         title="疑似异常"
         *ngIf="isLogin && dataSource.ok === false"
       ></span>
-      <div
-        class="ml-2"
-        *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
-      >
-        <app-breadcrumb [data]="dataSource" />
-      </div>
+      <i
+        class="quote iconfont iconyinru text-neutral-400"
+        *ngIf="isLogin && dataSource.rId"
+      ></i>
 
-      <div class="rate" *ngIf="settings.showRate">
-        <nz-rate
-          [ngModel]="dataSource.rate"
-          [nzDisabled]="!isLogin"
-          nzAllowHalf
-          (ngModelChange)="onRateChange($event)"
+      <div
+        class="card-container standard dark-border-color dark-bg"
+        *ngSwitchCase="'standard'"
+      >
+        <div
+          class="ml-2"
+          *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
         >
-        </nz-rate>
-      </div>
-      <div
-        (click)="jumpService.goUrl($event, dataSource.url)"
-        class="cursor-pointer"
-      >
-        <div class="top">
-          <app-logo [src]="dataSource.icon" [name]="dataSource.name" />
-          <div
-            class="title ellipsis2 dark-white"
-            [innerHTML]="dataSource.name"
-            [title]="dataSource.__name__ || dataSource.name"
-          ></div>
+          <app-breadcrumb [data]="dataSource" />
         </div>
-      </div>
-      <div class="middle">
-        <div
-          (click)="jumpService.goUrl($event, dataSource.url)"
-          class="cursor-pointer desc dark-text ellipsis3"
-          [innerHTML]="dataSource.desc"
-          [title]="dataSource.__desc__ || dataSource.desc"
-        ></div>
-        <tag-list [data]="dataSource.tags" *ngIf="dataSource.tags?.length" />
-      </div>
 
-      <div class="actionbar dark-border-color">
-        <div
-          class="action-item dark-border-color"
-          nz-tooltip
-          [nzTooltipTitle]="copyUrlDone ? $t('_copySuccess') : $t('_copyUrl')"
-          nz-icon
-          [nzType]="copyUrlDone ? 'check' : 'copy'"
-          nzTheme="outline"
-          (click)="copyUrl($event, 2)"
-          (mouseout)="copyMouseout()"
-        ></div>
-        <div
-          class="action-item dark-border-color"
-          nz-tooltip
-          [nzTooltipTitle]="copyPathDone ? $t('_copySuccess') : $t('_shareWeb')"
-          nz-icon
-          [nzType]="copyPathDone ? 'check' : 'share-alt'"
-          nzTheme="outline"
-          (click)="copyUrl($event, 1)"
-          (mouseout)="copyMouseout()"
-        ></div>
-        <div
-          class="action-item dark-border-color"
-          *ngIf="isLogin || permissions.edit"
-          nz-tooltip
-          [nzTooltipTitle]="$t('_edit')"
-          nz-icon
-          nzType="edit"
-          nzTheme="outline"
-          (click)="openEditWebMoal()"
-        ></div>
-        <div
-          class="action-item dark-border-color"
-          *ngIf="isLogin"
-          nz-tooltip
-          [nzTooltipTitle]="$t('_move')"
-          nz-icon
-          nzType="swap"
-          nzTheme="outline"
-          (click)="openMoveWebModal()"
-        ></div>
-        <div
-          class="action-item dark-border-color"
-          *ngIf="isLogin || permissions.del"
-          (click)="confirmDel()"
-          nz-icon
-          nzType="delete"
-          nzTheme="outline"
-        ></div>
-      </div>
-    </div>
-
-    <!-- example style -->
-    <div
-      class="card-container example2 dark-bg dark-white dark-shadow"
-      [class.noDesc]="!dataSource.desc"
-      *ngSwitchCase="'example'"
-      (click)="jumpService.goUrl($event, dataSource.url)"
-    >
-      <span
-        nz-icon
-        nzType="stop"
-        nzTheme="outline"
-        class="stop-icon"
-        title="疑似异常"
-        *ngIf="isLogin && dataSource.ok === false"
-      ></span>
-
-      <div
-        class="mb-2"
-        *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
-      >
-        <app-breadcrumb [data]="dataSource" />
-      </div>
-
-      <div class="wrapper ellipsis">
-        <app-logo [src]="dataSource.icon" [name]="dataSource.name" />
-        <div
-          class="right-box ellipsis"
-          [title]="dataSource.__desc__ || dataSource.desc"
-        >
-          <div
-            class="title ellipsis dark-white"
-            [innerHTML]="dataSource.name"
-          ></div>
-          <div
-            class="desc dark-text ellipsis"
-            [innerHTML]="dataSource.desc"
-          ></div>
+        <div class="rate" *ngIf="settings.showRate">
+          <nz-rate
+            [ngModel]="dataSource.rate"
+            [nzDisabled]="!isLogin"
+            nzAllowHalf
+            (ngModelChange)="onRateChange($event)"
+          >
+          </nz-rate>
         </div>
-      </div>
-    </div>
-
-    <!-- original style -->
-    <div
-      class="card-container original2 dark-bg dark-white dark-shadow"
-      *ngSwitchCase="'original'"
-      (click)="jumpService.goUrl($event, dataSource.url)"
-    >
-      <span
-        nz-icon
-        nzType="stop"
-        nzTheme="outline"
-        class="stop-icon"
-        title="疑似异常"
-        *ngIf="isLogin && dataSource.ok === false"
-      ></span>
-
-      <div
-        class="mb-2"
-        *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
-      >
-        <app-breadcrumb [data]="dataSource" />
-      </div>
-      <div class="wrapper ellipsis">
-        <app-logo
-          [src]="dataSource.icon"
-          [name]="dataSource.name"
-          [size]="30"
-        />
-        <div
-          class="right-box ellipsis"
-          [title]="dataSource.__desc__ || dataSource.desc"
-        >
-          <div
-            class="title ellipsis dark-white"
-            [innerHTML]="dataSource.name"
-          ></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- retro style -->
-    <div
-      class="card-container retro2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
-      *ngSwitchCase="'retro'"
-    >
-      <div
-        class="ml-2 mt-2"
-        *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
-      >
-        <app-breadcrumb [data]="dataSource" />
-      </div>
-      <div class="item-list">
         <div
           (click)="jumpService.goUrl($event, dataSource.url)"
           class="cursor-pointer"
         >
+          <div class="top">
+            <app-logo [src]="dataSource.icon" [name]="dataSource.name" />
+            <div
+              class="title ellipsis2 dark-white"
+              [innerHTML]="dataSource.name"
+              [title]="dataSource.__name__ || dataSource.name"
+            ></div>
+          </div>
+        </div>
+        <div class="middle">
           <div
-            class="top dark-border-color"
-            [class.border-transparent]="
-              !dataSource.desc && !dataSource.tags.length
+            (click)="jumpService.goUrl($event, dataSource.url)"
+            class="cursor-pointer desc dark-text ellipsis3"
+            [innerHTML]="dataSource.desc"
+            [title]="dataSource.__desc__ || dataSource.desc"
+          ></div>
+          <tag-list [data]="dataSource.tags" *ngIf="dataSource.tags?.length" />
+        </div>
+
+        <div class="actionbar dark-border-color">
+          <div
+            class="action-item dark-border-color"
+            nz-tooltip
+            [nzTooltipTitle]="copyUrlDone ? $t('_copySuccess') : $t('_copyUrl')"
+            nz-icon
+            [nzType]="copyUrlDone ? 'check' : 'copy'"
+            nzTheme="outline"
+            (click)="copyUrl($event, 2)"
+            (mouseout)="copyMouseout()"
+          ></div>
+          <div
+            class="action-item dark-border-color"
+            nz-tooltip
+            [nzTooltipTitle]="
+              copyPathDone ? $t('_copySuccess') : $t('_shareWeb')
             "
+            nz-icon
+            [nzType]="copyPathDone ? 'check' : 'share-alt'"
+            nzTheme="outline"
+            (click)="copyUrl($event, 1)"
+            (mouseout)="copyMouseout()"
+          ></div>
+          <div
+            class="action-item dark-border-color"
+            *ngIf="isLogin || permissions.edit"
+            nz-tooltip
+            [nzTooltipTitle]="$t('_edit')"
+            nz-icon
+            nzType="edit"
+            nzTheme="outline"
+            (click)="openEditWebMoal()"
+          ></div>
+          <div
+            class="action-item dark-border-color"
+            *ngIf="isLogin"
+            nz-tooltip
+            [nzTooltipTitle]="$t('_move')"
+            nz-icon
+            nzType="swap"
+            nzTheme="outline"
+            (click)="openMoveWebModal()"
+          ></div>
+          <div
+            class="action-item dark-border-color"
+            *ngIf="isLogin || permissions.del"
+            (click)="confirmDel()"
+            nz-icon
+            nzType="delete"
+            nzTheme="outline"
+          ></div>
+        </div>
+      </div>
+
+      <!-- example style -->
+      <div
+        class="card-container example2 dark-bg dark-white dark-shadow"
+        [class.noDesc]="!dataSource.desc"
+        *ngSwitchCase="'example'"
+        (click)="jumpService.goUrl($event, dataSource.url)"
+      >
+        <div
+          class="mb-2"
+          *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
+        >
+          <app-breadcrumb [data]="dataSource" />
+        </div>
+
+        <div class="wrapper ellipsis">
+          <app-logo [src]="dataSource.icon" [name]="dataSource.name" />
+          <div
+            class="right-box ellipsis"
+            [title]="dataSource.__desc__ || dataSource.desc"
           >
+            <div
+              class="title ellipsis dark-white"
+              [innerHTML]="dataSource.name"
+            ></div>
+            <div
+              class="desc dark-text ellipsis"
+              [innerHTML]="dataSource.desc"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- original style -->
+      <div
+        class="card-container original2 dark-bg dark-white dark-shadow"
+        *ngSwitchCase="'original'"
+        (click)="jumpService.goUrl($event, dataSource.url)"
+      >
+        <div
+          class="mb-2"
+          *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
+        >
+          <app-breadcrumb [data]="dataSource" />
+        </div>
+        <div class="wrapper ellipsis">
+          <app-logo
+            [src]="dataSource.icon"
+            [name]="dataSource.name"
+            [size]="30"
+          />
+          <div
+            class="right-box ellipsis"
+            [title]="dataSource.__desc__ || dataSource.desc"
+          >
+            <div
+              class="title ellipsis dark-white"
+              [innerHTML]="dataSource.name"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- retro style -->
+      <div
+        class="card-container retro2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
+        *ngSwitchCase="'retro'"
+      >
+        <div
+          class="ml-2 mt-2"
+          *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
+        >
+          <app-breadcrumb [data]="dataSource" />
+        </div>
+        <div class="item-list">
+          <div
+            (click)="jumpService.goUrl($event, dataSource.url)"
+            class="cursor-pointer"
+          >
+            <div
+              class="top dark-border-color"
+              [class.border-transparent]="
+                !dataSource.desc && !dataSource.tags?.length
+              "
+            >
+              <app-logo
+                [src]="dataSource.icon"
+                [name]="dataSource.name"
+                [size]="30"
+              />
+              <div
+                class="title ellipsis dark-white"
+                [title]="dataSource.__name__ || dataSource.name"
+                [innerHTML]="dataSource.name"
+              ></div>
+            </div>
+            <div class="p-2.5">
+              <div
+                class="desc ellipsis3 dark-white"
+                *ngIf="dataSource.desc"
+                [title]="dataSource.__desc__ || dataSource.desc"
+                [innerHTML]="dataSource.desc"
+              ></div>
+              <tag-list
+                *ngIf="
+                  dataSource.tags?.length ||
+                  isLogin ||
+                  permissions.edit ||
+                  permissions.del
+                "
+                [data]="dataSource.tags"
+                [action]="true"
+                (onDelete)="confirmDel()"
+                (onEdit)="openEditWebMoal()"
+                (onMove)="openMoveWebModal()"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- poster style -->
+      <div
+        class="card-container poster2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
+        *ngSwitchCase="'poster'"
+        (click)="jumpService.goUrl($event, dataSource.url)"
+      >
+        <div class="poster-box" [style.background]="backgroundColor">
+          <div
+            class="breadcrumb"
+            *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
+          >
+            <app-breadcrumb [data]="dataSource" />
+          </div>
+
+          <img
+            class="poster-img"
+            [src]="dataSource.img || dataSource.icon"
+            draggable="false"
+            loading="lazy"
+            *ngIf="!isError"
+            (error)="isError = true"
+          />
+
+          <tag-list
+            class="poster-tag"
+            [data]="dataSource.tags"
+            *ngIf="
+              dataSource.tags?.length ||
+              isLogin ||
+              permissions.edit ||
+              permissions.del
+            "
+            [action]="true"
+            (onDelete)="confirmDel()"
+            (onEdit)="openEditWebMoal()"
+            (onMove)="openMoveWebModal()"
+          />
+        </div>
+
+        <div class="bottom">
+          <div
+            class="title ellipsis dark-white"
+            [innerHTML]="dataSource.name"
+          ></div>
+          <pre
+            class="desc dark-text ellipsis3"
+            [innerHTML]="dataSource.desc"
+            [title]="dataSource.__desc__ || dataSource.desc"
+          ></pre>
+        </div>
+      </div>
+
+      <!-- column style -->
+      <div
+        class="card-container column2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
+        *ngSwitchDefault
+      >
+        <div
+          class="mb-2"
+          *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
+        >
+          <app-breadcrumb [data]="dataSource" />
+        </div>
+        <div
+          (click)="jumpService.goUrl($event, dataSource.url)"
+          class="cursor-pointer"
+        >
+          <div class="title-bar">
             <app-logo
               [src]="dataSource.icon"
               [name]="dataSource.name"
@@ -219,146 +313,37 @@
             />
             <div
               class="title ellipsis dark-white"
-              [title]="dataSource.__name__ || dataSource.name"
               [innerHTML]="dataSource.name"
             ></div>
           </div>
-          <div class="p-2.5">
-            <div
-              class="desc ellipsis3 dark-white"
-              *ngIf="dataSource.desc"
-              [title]="dataSource.__desc__ || dataSource.desc"
+
+          <div
+            class="right-box"
+            [title]="dataSource.__desc__ || dataSource.desc"
+          >
+            <pre
+              class="desc dark-text ellipsis"
               [innerHTML]="dataSource.desc"
-            ></div>
-            <tag-list
-              *ngIf="
-                dataSource.tags?.length ||
-                isLogin ||
-                permissions.edit ||
-                permissions.del
-              "
-              [data]="dataSource.tags"
-              [action]="true"
-              (onDelete)="confirmDel()"
-              (onEdit)="openEditWebMoal()"
-              (onMove)="openMoveWebModal()"
-            />
+            ></pre>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- poster style -->
-    <div
-      class="card-container poster2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
-      *ngSwitchCase="'poster'"
-      (click)="jumpService.goUrl($event, dataSource.url)"
-    >
-      <div class="poster-box" [style.background]="backgroundColor">
-        <div
-          class="breadcrumb"
-          *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
-        >
-          <app-breadcrumb [data]="dataSource" />
-        </div>
-
-        <img
-          class="poster-img"
-          [src]="dataSource.img || dataSource.icon"
-          draggable="false"
-          loading="lazy"
-          *ngIf="!isError"
-          (error)="isError = true"
-        />
-
-        <tag-list
-          class="poster-tag"
-          [data]="dataSource.tags"
-          *ngIf="
-            dataSource.tags?.length ||
-            isLogin ||
-            permissions.edit ||
-            permissions.del
-          "
-          [action]="true"
-          (onDelete)="confirmDel()"
-          (onEdit)="openEditWebMoal()"
-          (onMove)="openMoveWebModal()"
-        />
-      </div>
-
-      <div class="bottom">
-        <div
-          class="title ellipsis dark-white"
-          [innerHTML]="dataSource.name"
-        ></div>
-        <pre
-          class="desc dark-text ellipsis3"
-          [innerHTML]="dataSource.desc"
-          [title]="dataSource.__desc__ || dataSource.desc"
-        ></pre>
-      </div>
-    </div>
-
-    <!-- column style -->
-    <div
-      class="card-container column2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
-      *ngSwitchDefault
-    >
-      <span
-        nz-icon
-        nzType="stop"
-        nzTheme="outline"
-        class="stop-icon"
-        title="疑似异常"
-        *ngIf="isLogin && dataSource.ok === false"
-      ></span>
-
-      <div
-        class="mb-2"
-        *ngIf="commonService.searchKeyword && dataSource?.breadcrumb"
-      >
-        <app-breadcrumb [data]="dataSource" />
-      </div>
-      <div
-        (click)="jumpService.goUrl($event, dataSource.url)"
-        class="cursor-pointer"
-      >
-        <div class="title-bar">
-          <app-logo
-            [src]="dataSource.icon"
-            [name]="dataSource.name"
-            [size]="30"
+        <div class="bottom-bar">
+          <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
+          <tag-list
+            [data]="dataSource.tags"
+            *ngIf="
+              dataSource.tags?.length ||
+              isLogin ||
+              permissions.edit ||
+              permissions.del
+            "
+            [action]="true"
+            (onDelete)="confirmDel()"
+            (onEdit)="openEditWebMoal()"
+            (onMove)="openMoveWebModal()"
           />
-          <div
-            class="title ellipsis dark-white"
-            [innerHTML]="dataSource.name"
-          ></div>
         </div>
-
-        <div class="right-box" [title]="dataSource.__desc__ || dataSource.desc">
-          <pre
-            class="desc dark-text ellipsis"
-            [innerHTML]="dataSource.desc"
-          ></pre>
-        </div>
-      </div>
-
-      <div class="bottom-bar">
-        <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
-        <tag-list
-          [data]="dataSource.tags"
-          *ngIf="
-            dataSource.tags?.length ||
-            isLogin ||
-            permissions.edit ||
-            permissions.del
-          "
-          [action]="true"
-          (onDelete)="confirmDel()"
-          (onEdit)="openEditWebMoal()"
-          (onMove)="openMoveWebModal()"
-        />
       </div>
     </div>
   </ng-container>

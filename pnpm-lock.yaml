@@ -66,8 +66,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
       ng-zorro-antd:
-        specifier: ^19.1.0
-        version: 19.1.0(fe1da1f3acf9aa21837eef3fbd9aa68a)
+        specifier: ^19.2.0
+        version: 19.2.0(fe1da1f3acf9aa21837eef3fbd9aa68a)
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0
@@ -3828,8 +3828,8 @@ packages:
     resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
     engines: {node: '>= 0.4.0'}
 
-  ng-zorro-antd@19.1.0:
-    resolution: {integrity: sha512-D20V597C1614KkNZdZxaOxg0s3GDt/e20Duklyj7kiM73BGyABB2YeCXi8FSmx19Jw6ihyaxKaQsZkD/hFTvwA==}
+  ng-zorro-antd@19.2.0:
+    resolution: {integrity: sha512-mMLJ8woBawjNUyD59ZIEBFsZ4GouJ5ZGx+hVyotrHaazlqvKQzHEc6X8LgDjxEx99vlIH6vXvIvHognfrFG1ig==}
     peerDependencies:
       '@angular/animations': ^19.0.0
       '@angular/common': ^19.0.0
@@ -8980,7 +8980,7 @@ snapshots:
 
   netmask@2.0.2: {}
 
-  ng-zorro-antd@19.1.0(fe1da1f3acf9aa21837eef3fbd9aa68a):
+  ng-zorro-antd@19.2.0(fe1da1f3acf9aa21837eef3fbd9aa68a):
     dependencies:
       '@angular/animations': 19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))
       '@angular/cdk': 19.2.3(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)

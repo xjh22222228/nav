@@ -113,7 +113,7 @@ export class CreateWebComponent {
       title: ['', [Validators.required]],
       url: ['', [Validators.required]],
       top: [false],
-      topTypes: [],
+      topTypes: [[]],
       ownVisible: [false],
       rate: [5],
       icon: [''],

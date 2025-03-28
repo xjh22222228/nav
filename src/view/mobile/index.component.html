@@ -49,9 +49,10 @@
       </span>
     </nav>
     <div *ngFor="let item of commonService.currentList; index as i">
-      <h2 class="block-title" *ngIf="item.title">
-        {{ item.title }} x {{ item.nav.length }}
-      </h2>
+      <app-toolbar-title
+        [dataSource]="item"
+        (onCollapse)="commonService.onCollapse(item)"
+      />
 
       <div
         class="px-3 grid gap-x-4 gap-y-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4"

@@ -50,11 +50,20 @@ export function fuzzySearch(
     outerLoop: for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
 
-      if (sType === SearchType.Class && item.title) {
-        if (item.nav[0]?.name && item.title.toLowerCase().includes(keyword)) {
-          resultList.push(item)
-          break
+      if (sType === SearchType.Class) {
+        if (item.title) {
+          if (
+            item.title.toLowerCase().includes(keyword) ||
+            item.id == keyword
+          ) {
+            resultList.push(item)
+          }
         }
+
+        if (Array.isArray(item.nav)) {
+          f(item.nav)
+        }
+        continue
       }
 
       if (Array.isArray(item.nav)) {

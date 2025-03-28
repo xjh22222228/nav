@@ -49,12 +49,16 @@ export class ToolbarTitleWebComponent {
 
   async handleDelete(e: Event, id: number) {
     this.stopPropagation(e)
-    const ok = await this.commonService.deleteClassByIds([id], this.dataSource)
-    if (ok) {
-      if (!isSelfDevelop) {
-        event.emit('WEB_REFRESH')
-      }
-    }
+    event.emit('DELETE_MODAL', {
+      isClass: true,
+      ids: [id],
+      data: this.dataSource,
+      onOk: () => {
+        if (!isSelfDevelop) {
+          event.emit('WEB_REFRESH')
+        }
+      },
+    })
   }
 
   stopPropagation(e: Event) {

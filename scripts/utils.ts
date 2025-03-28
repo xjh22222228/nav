@@ -42,6 +42,7 @@ export const PATHS = {
   component: path.resolve('data', 'component.json'),
   internal: path.resolve('data', 'internal.json'),
   config: path.resolve('nav.config.yaml'),
+  configJson: path.resolve('nav.config.json'),
   pkg: path.resolve('package.json'),
   html: {
     index: path.resolve('dist', 'browser', 'index.html'),
@@ -57,9 +58,14 @@ export const getConfig = () => {
     any
   >
 
+  const gitRepoUrl = removeTrailingSlashes(config['gitRepoUrl'] || '').replace(
+    /\.git$/,
+    ''
+  )
+
   return {
     version: pkgJson.version,
-    gitRepoUrl: config['gitRepoUrl'],
+    gitRepoUrl,
     imageRepoUrl: config['imageRepoUrl'],
     branch: config['branch'],
     hashMode: config['hashMode'],
@@ -218,11 +224,7 @@ export function setWebs(
                 return aIdx - bIdx
               })
               for (let l = 0; l < navItemItem.nav.length; l++) {
-                let breadcrumb: string[] = []
                 const webItem = navItemItem.nav[l] as IWebProps
-                breadcrumb.push(item.title, navItem.title, navItemItem.title)
-                breadcrumb = breadcrumb.filter(Boolean)
-                webItem.breadcrumb = breadcrumb
                 webItem.id = incrementWebId(webItem.id)
                 if (webItem.rId) {
                   webItem.rId = incrementWebRId(webItem.rId)
@@ -243,22 +245,27 @@ export function setWebs(
                 webItem.name = webItem.name.trim().replace(/<b>|<\/b>/g, '')
                 webItem.desc = webItem.desc.trim().replace(/<b>|<\/b>/g, '')
 
-                delete webItem.__desc__
-                delete webItem.__name__
-                delete webItem['extra']
-                delete webItem['createdAt']
-
-                // 节省空间
-                !webItem.top && delete webItem.top
-                !webItem.ownVisible && delete webItem.ownVisible
-                webItem.index === '' && delete webItem.index
-                ;(webItem.topTypes ?? []).length === 0 &&
-                  delete webItem.topTypes
-
                 // 网站标签和系统标签关联
                 webItem.tags = webItem.tags.filter((item) => {
                   return tags.some((tag) => String(tag.id) === String(item.id))
                 })
+
+                delete webItem.__desc__
+                delete webItem.__name__
+                delete webItem['extra']
+                delete webItem['createdAt']
+                delete webItem.breadcrumb
+                if (webItem.tags.length === 0) {
+                  delete webItem.tags
+                }
+                if (!webItem.top) {
+                  delete webItem.top
+                  delete webItem.topTypes
+                }
+                !webItem.ownVisible && delete webItem.ownVisible
+                webItem.index === '' && delete webItem.index
+                ;(webItem.topTypes ?? []).length === 0 &&
+                  delete webItem.topTypes
               }
             }
           }
@@ -330,7 +337,7 @@ export function writeTemplate({
   <meta name="keywords" content="${settings.keywords}" id="xjh_2" />
   <link rel="icon" href="${settings.favicon}" />
   <link rel ="apple-touch-icon" href="${settings.favicon}" />
-  <link rel="prefetch" href="//unpkg.com/ng-zorro-antd@19.1.0/ng-zorro-antd.dark.min.css" />
+  <link rel="prefetch" href="//gcore.jsdelivr.net/npm/ng-zorro-antd@9.2.0/ng-zorro-antd.dark.min.css" />
 `.trim()
   let t = html
   t = t.replace(

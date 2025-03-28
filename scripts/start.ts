@@ -3,7 +3,6 @@
 // See https://github.com/xjh22222228/nav
 
 import fs from 'fs'
-import path from 'path'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc.js'
 import timezone from 'dayjs/plugin/timezone.js'
@@ -55,10 +54,7 @@ const getWebs = (): INavProps[] => {
 
 const main = async () => {
   const configJson = getConfig()
-  fs.writeFileSync(
-    path.join('.', 'nav.config.json'),
-    JSON.stringify(configJson)
-  )
+  fs.writeFileSync(PATHS.configJson, JSON.stringify(configJson))
 
   const db = getWebs()
   let internal = {} as InternalProps
@@ -72,7 +68,9 @@ const main = async () => {
     settings = JSON.parse(fs.readFileSync(PATHS.settings).toString())
     tags = JSON.parse(fs.readFileSync(PATHS.tag).toString())
     search = JSON.parse(fs.readFileSync(PATHS.search).toString())
-  } catch {}
+  } catch (e: any) {
+    console.log(e.message)
+  }
 
   try {
     components = JSON.parse(fs.readFileSync(PATHS.component).toString())

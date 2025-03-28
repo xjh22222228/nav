@@ -131,7 +131,10 @@ export class CardComponent {
       desc: getTextContent(this.dataSource.desc),
     }
     if (isLogin) {
-      this.commonService.deleteWebByIds([params.id], params)
+      event.emit('DELETE_MODAL', {
+        ids: [params.id],
+        data: params,
+      })
     } else {
       event.emit('MODAL', {
         nzTitle: $t('_confirmDel'),

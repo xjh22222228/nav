@@ -87,8 +87,11 @@ export default class CollectComponent {
       return
     }
 
-    this.modal.info({
+    this.modal.confirm({
       nzTitle: $t('_confirmDel'),
+      nzOkDanger: true,
+      nzWidth: 350,
+      nzOkText: $t('_del'),
       nzOnOk: () => {
         this.submitting = true
         delUserCollect({

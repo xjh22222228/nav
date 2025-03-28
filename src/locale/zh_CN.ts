@@ -302,6 +302,7 @@ const zhCN: Record<string, any> = {
   _address: '地址',
   _apiPass: '讯飞大模型密钥',
   _createWebKey: '按下创建网站',
+  _onlyDelItem: '只删除该项目',
 }
 
 export default zhCN

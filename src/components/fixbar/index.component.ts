@@ -11,11 +11,12 @@ import { isLogin } from 'src/utils/user'
 import { updateFileContent } from 'src/api'
 import { websiteList, settings } from 'src/store'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
-import { Router, ActivatedRoute } from '@angular/router'
+import { Router } from '@angular/router'
 import { $t, getLocale } from 'src/locale'
 import { addDark, removeDark } from 'src/utils/utils'
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
+import { cleanWebAttrs } from 'src/utils/pureUtils'
 import mitt from 'src/utils/mitt'
 
 @Component({
@@ -73,8 +74,7 @@ export class FixbarComponent {
   constructor(
     private message: NzMessageService,
     private modal: NzModalService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private router: Router
   ) {
     if (this.isDark) {
       addDark()
@@ -178,7 +178,9 @@ export class FixbarComponent {
 
         updateFileContent({
           message: 'update db',
-          content: JSON.stringify(this.websiteList),
+          content: JSON.stringify(
+            cleanWebAttrs(JSON.parse(JSON.stringify(this.websiteList)))
+          ),
           path: DB_PATH,
         })
           .then(() => {

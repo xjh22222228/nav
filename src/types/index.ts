@@ -82,8 +82,8 @@ export interface IWebProps {
   desc: string
   url: string
   icon: string
-  breadcrumb: string[]
-  tags: IWebTag[]
+  breadcrumb?: string[]
+  tags?: IWebTag[]
   img?: string
   rId?: number
   __name__?: string // 搜索原name值

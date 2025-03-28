@@ -315,6 +315,7 @@ const english: Record<string, any> = {
   _address: 'Address',
   _apiPass: '讯飞大模型密钥',
   _createWebKey: 'Press to create website',
+  _onlyDelItem: 'Only delete this item',
 }
 
 export default english

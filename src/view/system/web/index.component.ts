@@ -46,6 +46,7 @@ import { TagListComponent } from 'src/components/tag-list/index.component'
 import { CommonService } from 'src/services/common'
 import event from 'src/utils/mitt'
 import config from '../../../../nav.config.json'
+import { cleanWebAttrs } from 'src/utils/pureUtils'
 
 @Component({
   standalone: true,
@@ -214,19 +215,29 @@ export default class WebpComponent {
       case 0:
       case 1:
       case 2:
-        await this.commonService.deleteClassByIds([...this.setOfCheckedId])
+        event.emit('DELETE_MODAL', {
+          ids: [...this.setOfCheckedId],
+          isClass: true,
+          onComplete: () => {
+            this.onTabChange()
+          },
+        })
         break
 
       case 3:
-        const ok = await this.commonService.deleteWebByIds([
-          ...this.setOfCheckedId,
-        ])
-        if (ok && this.errorWebs.length) {
-          this.getErrorWebs()
-        }
+        event.emit('DELETE_MODAL', {
+          ids: [...this.setOfCheckedId],
+          ok: () => {
+            if (this.errorWebs.length) {
+              this.getErrorWebs()
+            }
+          },
+          onComplete: () => {
+            this.onTabChange()
+          },
+        })
         break
     }
-    this.onTabChange()
   }
 
   handleReset() {
@@ -519,7 +530,9 @@ export default class WebpComponent {
 
         updateFileContent({
           message: 'update db',
-          content: JSON.stringify(this.websiteList),
+          content: JSON.stringify(
+            cleanWebAttrs(JSON.parse(JSON.stringify(this.websiteList)))
+          ),
           path: DB_PATH,
         })
           .then(() => {
