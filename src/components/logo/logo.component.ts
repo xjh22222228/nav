@@ -18,7 +18,6 @@ export class LogoComponent {
   @Input() name: string = ''
   @Input() size: number = 35
   @Input() radius: number = 3
-  @Input() check: boolean = true
 
   backgroundColor: string = '#1890ff'
   firstLetter: string = ''

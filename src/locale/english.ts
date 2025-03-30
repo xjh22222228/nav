@@ -207,6 +207,7 @@ const english: Record<string, any> = {
   _spiderRule: 'Spider rule',
   _spiderIcon: 'Spider icon',
   _spiderDesc: 'Spider description',
+  _spiderImg: 'Spider Picture',
   _notSpider: 'Not updating',
   _spiderTitle: 'Spider title',
   _spiderAlways: 'Always update',

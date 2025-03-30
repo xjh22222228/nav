@@ -205,6 +205,7 @@ export interface ISettings {
   spiderIcon: Spider
   spiderDescription: Spider
   spiderTitle: Spider
+  spiderImg: Spider
   spiderQty: number
   spiderTimeout: number
 

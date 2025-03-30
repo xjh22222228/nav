@@ -196,6 +196,7 @@ const zhCN: Record<string, any> = {
   _spiderTitle: '更新标题',
   _spiderIcon: '更新图标',
   _spiderDesc: '更新描述',
+  _spiderImg: '更新图片',
   _notSpider: '不更新',
   _spiderAlways: '总是更新',
   _spiderEmpty: '为空时更新',

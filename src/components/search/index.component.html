@@ -42,7 +42,12 @@
             *ngFor="let item of searchEngineList; let i = index"
             (click)="clickEngineItem(i)"
           >
-            <app-logo [src]="item.icon" [size]="20" [check]="false" />
+            <app-logo
+              *ngIf="item.icon"
+              [src]="item.icon"
+              [name]="item.name"
+              [size]="20"
+            />
             <span class="name2 dark-text ellipsis">{{ item.name }}</span>
           </div>
         </div>

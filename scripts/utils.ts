@@ -63,8 +63,13 @@ export const getConfig = () => {
     ''
   )
 
+  const zorroVersion = pkgJson.dependencies['ng-zorro-antd'].replace(
+    /[^0-9.]/g,
+    ''
+  )
   return {
     version: pkgJson.version,
+    zorroDark: `//gcore.jsdelivr.net/npm/ng-zorro-antd@${zorroVersion}/ng-zorro-antd.dark.min.css`,
     gitRepoUrl,
     imageRepoUrl: config['imageRepoUrl'],
     branch: config['branch'],
@@ -337,7 +342,7 @@ export function writeTemplate({
   <meta name="keywords" content="${settings.keywords}" id="xjh_2" />
   <link rel="icon" href="${settings.favicon}" />
   <link rel ="apple-touch-icon" href="${settings.favicon}" />
-  <link rel="prefetch" href="//gcore.jsdelivr.net/npm/ng-zorro-antd@9.2.0/ng-zorro-antd.dark.min.css" />
+  <link rel="prefetch" href="${getConfig().zorroDark}" />
 `.trim()
   let t = html
   t = t.replace(
@@ -392,29 +397,35 @@ function updateItemField(
   settingKey: keyof ISettings,
   settings: ISettings,
   logMessage: string
-) {
+): string {
   if (settings[settingKey] === 'ALWAYS' && value) {
-    console.log(
-      `更新${logMessage}：${correctURL(item.url)}: "${
-        item[field]
-      }" => "${value}"`
-    )
+    const message = `更新${logMessage}：${correctURL(item.url)}: "${
+      item[field]
+    }" => "${value}"`
+
+    console.log(message)
     item[field] = value
+    return message
   } else if (settings[settingKey] === 'EMPTY' && !item[field] && value) {
-    console.log(
-      `更新${logMessage}：${correctURL(item.url)}: "${
-        item[field]
-      }" => "${value}"`
-    )
+    const message = `更新${logMessage}：${correctURL(item.url)}: "${
+      item[field]
+    }" => "${value}"`
+    console.log(message)
     item[field] = value
+    return message
   }
+  return ''
 }
 
-export async function spiderWeb(
+export async function spiderWebs(
   db: INavProps[],
-  settings: ISettings
+  settings: ISettings,
+  props?: {
+    onOk?: (messages: string[]) => void
+  }
 ): Promise<SpiderWebResult> {
   let errorUrlCount = 0
+  const { onOk } = props || {}
   const items: IWebProps[] = []
 
   const collectItems = (nav: any[]) => {
@@ -463,17 +474,18 @@ export async function spiderWeb(
       )
 
     const promises = await Promise.all(requestPromises)
-
+    let messages = []
     for (let i = 0; i < promises.length; i++) {
       const idx = current * max + i
       const item = items[idx]
       const res = promises[i] as WebInfoResponse
 
-      console.log(
-        `${idx}：${
-          res.status ? '正常' : `疑似异常: ${res.errorMsg}`
-        } ${correctURL(item.url)}`
-      )
+      const message = `${idx}：${
+        res.status ? '正常' : `疑似异常: ${res.errorMsg}`
+      } ${correctURL(item.url)}`
+
+      console.log(message)
+      messages.push(message)
 
       if (settings.checkUrl && !res.status) {
         errorUrlCount += 1
@@ -481,32 +493,38 @@ export async function spiderWeb(
       }
 
       if (res?.status) {
-        updateItemField(
-          item,
-          'icon',
-          res.iconUrl,
-          'spiderIcon',
-          settings,
-          '图标'
-        )
-        updateItemField(
-          item,
-          'name',
-          res.title,
-          'spiderTitle',
-          settings,
-          '标题'
-        )
-        updateItemField(
-          item,
-          'desc',
-          res.description,
-          'spiderDescription',
-          settings,
-          '描述'
+        messages.push(
+          updateItemField(
+            item,
+            'icon',
+            res.iconUrl,
+            'spiderIcon',
+            settings,
+            '图标'
+          ),
+          updateItemField(
+            item,
+            'name',
+            res.title,
+            'spiderTitle',
+            settings,
+            '标题'
+          ),
+          updateItemField(
+            item,
+            'desc',
+            res.description,
+            'spiderDescription',
+            settings,
+            '描述'
+          )
         )
       }
       console.log('-'.repeat(100))
+    }
+    messages = messages.filter(Boolean)
+    if (messages) {
+      onOk?.(messages)
     }
     current += 1
   }

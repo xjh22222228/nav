@@ -29,8 +29,7 @@ export function compilerTemplate(str: string): string {
 }
 
 const DARK_THEME = {
-  cssUrl:
-    '//gcore.jsdelivr.net/npm/ng-zorro-antd@9.2.0/ng-zorro-antd.dark.min.css',
+  cssUrl: navConfig.zorroDark,
   cssId: 'dark-css',
   classes: ['dark-container', 'dark'],
 } as const

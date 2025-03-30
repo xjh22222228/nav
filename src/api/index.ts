@@ -3,7 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import config from '../../nav.config.json'
-import http, { httpNav, getDefaultRequestData } from '../utils/http'
+import http, { httpNav, getDefaultRequestData, getAddress } from '../utils/http'
 import qs from 'qs'
 import { encode } from 'js-base64'
 import {
@@ -19,7 +19,7 @@ import type { ISettings } from 'src/types'
 import { isSelfDevelop } from 'src/utils/utils'
 import { isLogin } from 'src/utils/user'
 import { DB_PATH } from 'src/constants'
-import { getIsGitee } from 'src/utils/pureUtils'
+import { getIsGitee, removeTrailingSlashes } from 'src/utils/pureUtils'
 import LZString from 'lz-string'
 import event from 'src/utils/mitt'
 
@@ -96,15 +96,15 @@ export function getContentes() {
     })
 }
 
-export function spiderWeb(data?: any) {
-  return http
-    .post('/api/spider', data, {
-      timeout: 0,
-    })
-    .then((res) => {
-      getContentes()
-      return res
-    })
+export function spiderWebs(data?: any) {
+  let baseUrl = removeTrailingSlashes(getAddress())
+  return fetch(`${baseUrl}/api/spider`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ ...data }),
+  })
 }
 
 export async function createBranch(branch: string) {

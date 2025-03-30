@@ -66,8 +66,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
       ng-zorro-antd:
-        specifier: ^19.2.0
-        version: 19.2.0(fe1da1f3acf9aa21837eef3fbd9aa68a)
+        specifier: ^19.2.1
+        version: 19.2.1(fe1da1f3acf9aa21837eef3fbd9aa68a)
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0
@@ -136,8 +136,8 @@ importers:
         specifier: ^2.8.5
         version: 2.8.5
       info-web:
-        specifier: ^0.0.41
-        version: 0.0.41
+        specifier: ^0.0.42
+        version: 0.0.42
       jasmine-core:
         specifier: ~5.6.0
         version: 5.6.0
@@ -3182,8 +3182,8 @@ packages:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
     deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
-  info-web@0.0.41:
-    resolution: {integrity: sha512-S6lL7604hvK+a2MTxDcENpnb6QuHccdv9O5kXFIzemfVcSYG10kXODyUO5i/Z7E74mJaIB7ZbUWLFAJiJfx6rw==}
+  info-web@0.0.42:
+    resolution: {integrity: sha512-ynoK9pN/z3gvFxhn/SkUpdqpKitETtSPtBiuP/tEK3ZUiOoFos6KPSZk1bVKshSjSyfYJsSDhpALUpMxyuY4sA==}
 
   inherits@2.0.3:
     resolution: {integrity: sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==}
@@ -3828,8 +3828,8 @@ packages:
     resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
     engines: {node: '>= 0.4.0'}
 
-  ng-zorro-antd@19.2.0:
-    resolution: {integrity: sha512-mMLJ8woBawjNUyD59ZIEBFsZ4GouJ5ZGx+hVyotrHaazlqvKQzHEc6X8LgDjxEx99vlIH6vXvIvHognfrFG1ig==}
+  ng-zorro-antd@19.2.1:
+    resolution: {integrity: sha512-UyfetmUjlVMHNdlpl7a/B2iiCsefyn2X71DUe1cjX1ClN4lXFEl/17+MwQ3BDvLlsnCq6N7S+oIMEqVESLucqA==}
     peerDependencies:
       '@angular/animations': ^19.0.0
       '@angular/common': ^19.0.0
@@ -8349,7 +8349,7 @@ snapshots:
       once: 1.4.0
       wrappy: 1.0.2
 
-  info-web@0.0.41:
+  info-web@0.0.42:
     dependencies:
       axios: 1.8.4
       he: 1.2.0
@@ -8980,7 +8980,7 @@ snapshots:
 
   netmask@2.0.2: {}
 
-  ng-zorro-antd@19.2.0(fe1da1f3acf9aa21837eef3fbd9aa68a):
+  ng-zorro-antd@19.2.1(fe1da1f3acf9aa21837eef3fbd9aa68a):
     dependencies:
       '@angular/animations': 19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))
       '@angular/cdk': 19.2.3(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)

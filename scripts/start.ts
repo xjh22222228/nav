@@ -426,6 +426,7 @@ const main = async () => {
     settings.spiderIcon ??= 'NO'
     settings.spiderDescription ??= 'NO'
     settings.spiderTitle ??= 'NO'
+    settings.spiderImg ??= 'NO'
     settings.spiderQty ??= 200
     settings.spiderTimeout ??= 6
     settings.spiderTimeout = Number(settings.spiderTimeout) || 6

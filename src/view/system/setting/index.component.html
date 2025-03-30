@@ -1077,6 +1077,19 @@
     </nz-form-control>
   </nz-form-item>
 
+  <!-- <nz-form-item *ngIf="isSelfDevelop">
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
+      $t('_spiderImg')
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-radio-group formControlName="spiderImg">
+        <label nz-radio nzValue="NO">{{ $t('_notSpider') }}</label>
+        <label nz-radio nzValue="EMPTY">{{ $t('_spiderEmpty') }}</label>
+        <label nz-radio nzValue="ALWAYS">{{ $t('_spiderAlways') }}</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item> -->
+
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_spiderQty') }}</nz-form-label>
     <nz-form-control [nzSpan]="10">
@@ -1104,7 +1117,7 @@
     [nzLoading]="submitting"
     (click)="handleSpider()"
   >
-    点我爬取更新信息，先保存系统设置在点
+    现在爬取
   </button>
 
   <div class="bottom-bar">

@@ -11,7 +11,7 @@ import { getToken, getAuthCode, removeAuthCode } from '../utils/user'
 import { isLogin } from 'src/utils/user'
 import { getIsGitee } from 'src/utils/pureUtils'
 
-function getAddress(): string {
+export function getAddress(): string {
   return globalThis.__ADDRESS__ || config.address || ''
 }
 

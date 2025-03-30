@@ -9,7 +9,7 @@ import timezone from 'dayjs/plugin/timezone.js'
 import {
   writeSEO,
   writeTemplate,
-  spiderWeb,
+  spiderWebs,
   PATHS,
   getConfig,
   fileWriteStream,
@@ -60,5 +60,5 @@ process.on('exit', async () => {
   console.log('All success!')
 })
 
-const { errorUrlCount: count } = await spiderWeb(db, settings)
+const { errorUrlCount: count } = await spiderWebs(db, settings)
 errorUrlCount = count
