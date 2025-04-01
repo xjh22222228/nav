@@ -74,10 +74,13 @@ export function cleanWebAttrs(data: any) {
   data.forEach((item) => {
     if (item.url) {
       for (const k in item) {
-        const removeKeys = ['breadcrumb', 'tags', '__name__', '__desc__']
+        const removeKeys = ['breadcrumb', '__name__', '__desc__']
         if (removeKeys.includes(k)) {
           delete item[k]
         }
+      }
+      if (item.tags?.length === 0) {
+        delete item.tags
       }
     }
     if (Array.isArray(item.nav)) {

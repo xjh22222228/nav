@@ -28,7 +28,7 @@
     <ng-template #prefixIcon>
       <div
         class="left-icon"
-        nzPopoverTrigger="click"
+        [nzPopoverTrigger]="searchEngineList.length > 1 ? 'click' : null"
         [ngStyle]="{ 'background-image': 'url(' + currentEngine.icon + ')' }"
         nz-popover
         nzPopoverPlacement="bottomLeft"
