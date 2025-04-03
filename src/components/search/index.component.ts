@@ -53,6 +53,9 @@ export class SearchComponent {
     event.on('SEARCH_FOCUS', () => {
       this.inputFocus()
     })
+    if (!this.isLogin && this.searchTypeValue === SearchType.Id) {
+      this.searchTypeValue = SearchType.All
+    }
   }
 
   private inputFocus() {

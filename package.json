@@ -60,7 +60,7 @@
     "compression": "^1.8.0",
     "connect-history-api-fallback": "^2.0.0",
     "cors": "^2.8.5",
-    "info-web": "^0.0.42",
+    "info-web": "^0.0.43",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",

@@ -11,6 +11,7 @@ import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/utils'
 import { setWebsiteList } from 'src/utils/web'
 import type { INavProps, IWebProps, ICardType } from 'src/types'
 import { ActionType } from 'src/types'
+import { SearchType } from 'src/components/search/index'
 import { $t, isZhCN } from 'src/locale'
 import { settings, websiteList } from 'src/store'
 import { JumpService } from 'src/services/jump'
@@ -94,11 +95,9 @@ export class CardComponent {
   }
 
   async copyUrl(e: Event, type: 1 | 2): Promise<void> {
-    const { name, url } = this.dataSource
+    const { id, url } = this.dataSource
     const { origin, hash, pathname } = window.location
-    const pathUrl = `${origin}${pathname}${hash}?q=${name}&url=${encodeURIComponent(
-      url
-    )}`
+    const pathUrl = `${origin}${pathname}${hash}?q=${id}&type=${SearchType.Id}`
     const isDone = await copyText(e, type === 1 ? pathUrl : url)
 
     if (type === 1) {
