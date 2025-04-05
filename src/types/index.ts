@@ -55,6 +55,7 @@ export interface ITagPropValues {
   color: string
   desc: string
   isInner: boolean
+  sort?: number | string
 
   [key: string]: any
 }

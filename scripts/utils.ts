@@ -12,10 +12,11 @@ import type {
   ITagPropValues,
   IWebProps,
 } from '../src/types'
-import { SELF_SYMBOL } from '../src/constants/symbol'
+import { SELF_SYMBOL, DEFAULT_SORT_INDEX } from '../src/constants/symbol'
 import {
   replaceJsdelivrCDN,
   removeTrailingSlashes,
+  isNumber,
 } from '../src/utils/pureUtils'
 import fs from 'node:fs'
 import yaml from 'js-yaml'
@@ -192,6 +193,13 @@ export function setWebs(
 ): INavProps[] {
   if (!Array.isArray(nav)) return []
 
+  const tagMap = new Map<number, ITagPropValues>()
+  for (const tag of tags) {
+    if (tag.id) {
+      tagMap.set(tag.id, tag)
+    }
+  }
+
   function handleAdapter(item: any): void {
     delete item.collapsed
     delete item.createdAt
@@ -221,13 +229,6 @@ export function setWebs(
             handleAdapter(navItemItem)
 
             if (navItemItem.nav) {
-              navItemItem.nav.sort((a: any, b: any) => {
-                const aIdx =
-                  a.index == null || a.index === '' ? 100000 : Number(a.index)
-                const bIdx =
-                  b.index == null || b.index === '' ? 100000 : Number(b.index)
-                return aIdx - bIdx
-              })
               for (let l = 0; l < navItemItem.nav.length; l++) {
                 const webItem = navItemItem.nav[l] as IWebProps
                 webItem.id = incrementWebId(webItem.id)
@@ -252,7 +253,7 @@ export function setWebs(
 
                 // 网站标签和系统标签关联
                 webItem.tags = webItem.tags.filter((item) => {
-                  return tags.some((tag) => String(tag.id) === String(item.id))
+                  return tagMap.has(Number(item.id))
                 })
 
                 delete webItem.__desc__
@@ -272,6 +273,42 @@ export function setWebs(
                 ;(webItem.topTypes ?? []).length === 0 &&
                   delete webItem.topTypes
               }
+
+              navItemItem.nav.sort((a: any, b: any) => {
+                const aIndexs = []
+                if (isNumber(a.index)) {
+                  aIndexs.push(Number(a.index))
+                } else {
+                  for (const tag of a.tags || []) {
+                    const tagItem = tagMap.get(Number(tag.id))
+                    if (tagItem?.sort != null) {
+                      aIndexs.push(Number(tagItem.sort))
+                    }
+                  }
+                  if (aIndexs.length === 0) {
+                    aIndexs.push(DEFAULT_SORT_INDEX)
+                  }
+                }
+
+                const aIdx = Math.min(...aIndexs)
+                const bIndexs = []
+                if (isNumber(b.index)) {
+                  bIndexs.push(Number(b.index))
+                } else {
+                  for (const tag of b.tags || []) {
+                    const tagItem = tagMap.get(Number(tag.id))
+                    if (tagItem?.sort != null) {
+                      bIndexs.push(Number(tagItem.sort))
+                    }
+                  }
+                  if (bIndexs.length === 0) {
+                    bIndexs.push(DEFAULT_SORT_INDEX)
+                  }
+                }
+
+                const bIdx = Math.min(...bIndexs)
+                return aIdx - bIdx
+              })
             }
           }
         }

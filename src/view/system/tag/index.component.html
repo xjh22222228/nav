@@ -25,6 +25,7 @@
     <tr>
       <th>{{ $t('_tagName') }}</th>
       <th>{{ $t('_color') }}</th>
+      <th>{{ $t('_sort') }}</th>
       <th>{{ $t('_remark') }}</th>
       <th>{{ $t('_action') }}</th>
     </tr>
@@ -41,6 +42,9 @@
           (change)="onColorChange($event, idx)"
         />
         - {{ data.color }}
+      </td>
+      <td width="150px">
+        <input nz-input [(ngModel)]="data.sort" maxlength="10" />
       </td>
       <td width="200px">
         <div *ngIf="data.isInner">{{ data.desc }}</div>

@@ -42,7 +42,7 @@ import { UploadComponent } from 'src/components/upload/index.component'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSelectModule } from 'ng-zorro-antd/select'
-import { SELF_SYMBOL } from 'src/constants/symbol'
+import { SELF_SYMBOL, DEFAULT_SORT_INDEX } from 'src/constants/symbol'
 import { JumpService } from 'src/services/jump'
 import { removeTrailingSlashes } from 'src/utils/pureUtils'
 import event from 'src/utils/mitt'
@@ -77,6 +77,7 @@ export class CreateWebComponent {
   readonly isLogin: boolean = isLogin
   readonly settings = settings
   readonly permissions = getPermissions(settings)
+  readonly DEFAULT_SORT_INDEX = DEFAULT_SORT_INDEX
   validateForm!: FormGroup
   tagList = tagList
   submitting = false
@@ -153,6 +154,10 @@ export class CreateWebComponent {
 
   get title(): string {
     return (this.validateForm.get('title')?.value || '').trim()
+  }
+
+  get url(): string {
+    return (this.validateForm.get('url')?.value || '').trim()
   }
 
   open(
@@ -236,12 +241,11 @@ export class CreateWebComponent {
     this.callback = Function
   }
 
-  async onUrlBlur(e: any) {
+  async onUrlBlur() {
     if (!settings.openSearch) {
       return
     }
-
-    let url = e.target?.value
+    let url = this.url
     if (!url) {
       return
     }
@@ -343,9 +347,7 @@ export class CreateWebComponent {
 
   checkRepeat() {
     try {
-      let { url } = this.validateForm.value
-      url = removeTrailingSlashes(url.trim())
-
+      const url = removeTrailingSlashes(this.url)
       const { oneIndex, twoIndex, threeIndex, breadcrumb } = getClassById(
         this.parentId
       )
@@ -382,10 +384,9 @@ export class CreateWebComponent {
     }
 
     const tags: IWebTag[] = []
-    let { url, top, ownVisible, rate, index, topTypes } =
-      this.validateForm.value
-    url = url.trim()
+    let { top, ownVisible, rate, index, topTypes } = this.validateForm.value
     const title = this.title
+    const url = this.url
     if (!title || !url) return
 
     const urlArr = this.urlArray?.value || []

@@ -113,7 +113,24 @@ export default class SystemTagComponent {
       this.message.error($t('_repeatAdd'))
       return
     }
-
+    const tagList = [...this.tagList].map((item) => {
+      item.sort ||= ''
+      if (typeof item.sort === 'string') {
+        item.sort = item.sort.trim()
+      }
+      if (item.sort === '') {
+        delete item.sort
+      }
+      if (Number.isNaN(Number(item.sort))) {
+        delete item.sort
+      }
+      if (item.sort != null) {
+        item.sort = Number(item.sort)
+      }
+      return {
+        ...item,
+      }
+    })
     this.modal.info({
       nzTitle: $t('_syncDataOut'),
       nzOkText: $t('_confirmSync'),
@@ -122,7 +139,7 @@ export default class SystemTagComponent {
         this.submitting = true
         updateFileContent({
           message: 'update tag',
-          content: JSON.stringify(this.tagList),
+          content: JSON.stringify(tagList),
           path: TAG_PATH,
         })
           .then(() => {

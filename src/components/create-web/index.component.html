@@ -17,7 +17,7 @@
           <input
             formControlName="url"
             nz-input
-            (blur)="onUrlBlur($event)"
+            (blur)="onUrlBlur()"
             #inputUrl
           />
         </nz-form-control>
@@ -58,7 +58,7 @@
             formControlName="index"
             nz-input
             type="number"
-            placeholder="100000"
+            [placeholder]="DEFAULT_SORT_INDEX"
           />
         </nz-form-control>
       </nz-form-item>
@@ -248,7 +248,12 @@
     >
       {{ $t('_translate') }}
     </button>
-    <button nz-button nzType="primary" (click)="checkRepeat()">
+    <button
+      nz-button
+      nzType="primary"
+      (click)="checkRepeat()"
+      [disabled]="!url"
+    >
       <nz-icon nzType="search" />
       {{ $t('_checkRepeat') }}
     </button>

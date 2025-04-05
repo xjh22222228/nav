@@ -8,6 +8,7 @@ import { websiteList } from 'src/store'
 import type { IWebProps, INavProps } from 'src/types'
 import { TopType } from 'src/types'
 import { queryString, fuzzySearch, isMobile, getDefaultTheme } from 'src/utils'
+import { isNumber } from 'src/utils/pureUtils'
 import { isLogin } from 'src/utils/user'
 import { ActivatedRoute, Router } from '@angular/router'
 import { CommonService } from 'src/services/common'
@@ -15,6 +16,7 @@ import { JumpService } from 'src/services/jump'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { LogoComponent } from 'src/components/logo/logo.component'
+import { DEFAULT_SORT_INDEX } from 'src/constants/symbol'
 import event from 'src/utils/mitt'
 
 let DEFAULT_WEBSITE: Array<IWebProps> = []
@@ -109,8 +111,8 @@ export class WebListComponent {
 
     // @ts-ignore
     this.dataList = dataList.sort((a: any, b: any) => {
-      const aIdx = a.index == null || a.index === '' ? 100000 : Number(a.index)
-      const bIdx = b.index == null || b.index === '' ? 100000 : Number(b.index)
+      const aIdx = isNumber(a.index) ? Number(a.index) : DEFAULT_SORT_INDEX
+      const bIdx = isNumber(b.index) ? Number(b.index) : DEFAULT_SORT_INDEX
       return aIdx - bIdx
     })
     if (this.type === 'dock') {

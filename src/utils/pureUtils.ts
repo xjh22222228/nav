@@ -90,3 +90,13 @@ export function cleanWebAttrs(data: any) {
 
   return data
 }
+
+export function isNumber(v: any): boolean {
+  if (v === '' || v == null) {
+    return false
+  }
+  if (isNaN(v)) {
+    return false
+  }
+  return true
+}
