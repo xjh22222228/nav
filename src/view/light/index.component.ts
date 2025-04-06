@@ -23,6 +23,7 @@ import { FooterComponent } from 'src/components/footer/footer.component'
 import { FixbarComponent } from 'src/components/fixbar/index.component'
 import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.component'
 import { SideImagesComponent } from 'src/components/side-images/index.component'
+import { ClassTabsComponent } from 'src/components/class-tabs/index.component'
 import type { INavProps } from 'src/types'
 
 @Component({
@@ -40,6 +41,7 @@ import type { INavProps } from 'src/types'
     FooterComponent,
     FixbarComponent,
     SideImagesComponent,
+    ClassTabsComponent,
   ],
   selector: 'app-light',
   templateUrl: './index.component.html',
@@ -68,13 +70,13 @@ export default class LightComponent {
     if (this.isEllipsis) {
       this.commonService.getOverIndex('.top-nav .over-item')
     } else {
-      this.items.forEach((item, index) => {
-        if (this.commonService.oneIndex === index) {
-          scrollIntoView(this.parentElement.nativeElement, item.nativeElement, {
-            behavior: 'auto',
-          })
+      scrollIntoView(
+        this.parentElement.nativeElement,
+        this.items.toArray()[this.commonService.oneIndex].nativeElement,
+        {
+          behavior: 'auto',
         }
-      })
+      )
     }
   }
 

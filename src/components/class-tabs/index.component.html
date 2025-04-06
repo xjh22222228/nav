@@ -1,0 +1,16 @@
+<div
+  *ngIf="data && data.length > 1"
+  class="class-tabs dark-scrollbar dark-bg-gary2"
+  #parent
+>
+  <div #anchor class="anchor"></div>
+  <div
+    #item
+    class="tab dark-hover"
+    [class.active]="activeIndex === i"
+    *ngFor="let tab of data; let i = index"
+    (click)="selectTab(i)"
+  >
+    {{ tab.title }}
+  </div>
+</div>

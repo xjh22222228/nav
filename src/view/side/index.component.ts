@@ -24,6 +24,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { SwiperComponent } from 'src/components/swiper/index.component'
 import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.component'
 import { WebListComponent } from 'src/components/web-list/index.component'
+import { ClassTabsComponent } from 'src/components/class-tabs/index.component'
 
 @Component({
   standalone: true,
@@ -42,6 +43,7 @@ import { WebListComponent } from 'src/components/web-list/index.component'
     FixbarComponent,
     NzLayoutModule,
     SwiperComponent,
+    ClassTabsComponent,
   ],
   selector: 'app-side',
   templateUrl: './index.component.html',

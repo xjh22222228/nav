@@ -63,24 +63,21 @@ export default class SideComponent {
     if (this.isEllipsis) {
       this.commonService.getOverIndex('.topnav .over-item')
     } else {
-      this.items.forEach((item, index) => {
-        if (this.commonService.oneIndex === index) {
-          scrollIntoView(this.parentElement.nativeElement, item.nativeElement, {
-            behavior: 'auto',
-          })
+      scrollIntoView(
+        this.parentElement.nativeElement,
+        this.items.toArray()[this.commonService.oneIndex].nativeElement,
+        {
+          behavior: 'auto',
         }
-      })
+      )
     }
 
-    this.itemsThree.forEach((item, index) => {
-      if (this.commonService.selectedThreeIndex === index) {
-        scrollIntoView(
-          this.parentThreeElement.nativeElement,
-          item.nativeElement,
-          { behavior: 'auto' }
-        )
-      }
-    })
+    scrollIntoView(
+      this.parentThreeElement.nativeElement,
+      this.itemsThree.toArray()[this.commonService.selectedThreeIndex]
+        .nativeElement,
+      { behavior: 'auto' }
+    )
   }
 
   ngOnDestroy() {

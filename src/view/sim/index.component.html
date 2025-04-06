@@ -81,6 +81,13 @@
     <aside class="site-box dark-bg">
       <app-search class="max768none" />
 
+      <div
+        class="px-2.5 sticky top-0 left-0 z-10"
+        *ngIf="commonService.currentList.length > 1"
+      >
+        <app-class-tabs [data]="commonService.currentList" />
+      </div>
+
       <div *ngIf="commonService.currentList.length > 0; else noData">
         <div
           *ngFor="

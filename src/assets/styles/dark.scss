@@ -29,7 +29,7 @@
       background-color: #0d1117 !important;
     }
     &-hover {
-      &:hover {
+      &:hover:not(.active) {
         background-color: #21262d !important;
       }
     }

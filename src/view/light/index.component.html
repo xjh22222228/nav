@@ -68,8 +68,17 @@
           </div>
         </div>
 
-        <div class="main dark-scrollbar">
+        <div class="main dark-scrollbar" id="main-scroll">
           <app-search />
+          <div
+            class="px-2 sticky top-0 left-0 z-10"
+            *ngIf="commonService.currentList.length > 1"
+          >
+            <app-class-tabs
+              [data]="commonService.currentList"
+              selector="#main-scroll"
+            />
+          </div>
 
           <div *ngIf="commonService.currentList.length > 0; else noData">
             <nz-spin
@@ -86,6 +95,7 @@
                 index as i;
                 trackBy: commonService.trackByItem
               "
+              class="nav-wrapper"
             >
               <app-toolbar-title
                 [dataSource]="item"

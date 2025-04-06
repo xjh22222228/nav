@@ -26,6 +26,7 @@ import { FixbarComponent } from 'src/components/fixbar/index.component'
 import { SwiperComponent } from 'src/components/swiper/index.component'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.component'
+import { ClassTabsComponent } from 'src/components/class-tabs/index.component'
 import type { INavProps } from 'src/types'
 
 @Component({
@@ -44,6 +45,7 @@ import type { INavProps } from 'src/types'
     FixbarComponent,
     SwiperComponent,
     SafeHtmlPipe,
+    ClassTabsComponent,
   ],
   selector: 'app-sim',
   templateUrl: './index.component.html',
@@ -69,13 +71,13 @@ export default class SimComponent {
     if (this.isEllipsis) {
       this.commonService.getOverIndex('.top-nav .over-item')
     } else {
-      this.items.forEach((item, index) => {
-        if (this.commonService.oneIndex === index) {
-          scrollIntoView(this.parentElement.nativeElement, item.nativeElement, {
-            behavior: 'auto',
-          })
+      scrollIntoView(
+        this.parentElement.nativeElement,
+        this.items.toArray()[this.commonService.oneIndex].nativeElement,
+        {
+          behavior: 'auto',
         }
-      })
+      )
     }
   }
 

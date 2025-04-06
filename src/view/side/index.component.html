@@ -97,10 +97,17 @@
       <component-group></component-group>
 
       <app-search class="mobile-search" />
+      <div class="px-2.5">
+        <app-web-list [search]="false" [overflow]="true" />
+      </div>
+      <div
+        class="px-2.5 sticky top-0 left-0 z-10"
+        *ngIf="commonService.currentList.length > 1"
+      >
+        <app-class-tabs [data]="commonService.currentList" />
+      </div>
 
       <nz-content class="content" id="content">
-        <app-web-list [search]="false" [overflow]="true" />
-
         <div class="box">
           <div *ngIf="commonService.currentList.length > 0; else noData">
             <div

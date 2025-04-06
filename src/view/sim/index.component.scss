@@ -29,14 +29,6 @@
   .wrapper {
     flex-direction: column;
   }
-  .top-nav {
-    z-index: 9;
-    background-color: #fff;
-    position: sticky !important;
-    top: 0;
-    left: 0;
-    user-select: none;
-  }
   .sidebar {
     position: relative !important;
     top: 0 !important;
@@ -44,6 +36,9 @@
   }
   .sim {
     --width: 100% !important;
+  }
+  .site-box {
+    max-width: 100% !important;
   }
 }
 
@@ -68,7 +63,7 @@
   max-width: var(--width);
   width: 100%;
   margin: 10px auto;
-  padding: 10px;
+  padding: 0 10px;
   overflow: none;
   overflow-x: auto;
   white-space: nowrap;
@@ -150,7 +145,6 @@
 
   .wrapper {
     flex: 1;
-    position: relative;
     width: var(--width);
     padding-bottom: 50px;
     margin: 0 auto;
@@ -163,6 +157,7 @@
       top: 20px;
       left: 0;
       width: 180px;
+      min-width: 180px;
       height: min-content;
       padding: 10px 0;
       text-align: center;
@@ -189,8 +184,8 @@
     }
 
     .site-box {
+      max-width: calc(100% - 180px);
       flex: 1;
-      position: relative;
       background-color: #f9f9f9;
       padding: 15px 5px;
       border-radius: 4px;
