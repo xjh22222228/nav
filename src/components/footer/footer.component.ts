@@ -40,10 +40,7 @@ export class FooterComponent {
   }
 
   handleApplyWeb() {
-    const { id } = queryString()
-    event.emit('CREATE_WEB', {
-      parentId: Number.parseInt(id as string),
-    })
+    event.emit('CREATE_WEB', {})
   }
 
   ngAfterViewInit() {
