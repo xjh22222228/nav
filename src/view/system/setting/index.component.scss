@@ -38,13 +38,15 @@
 .logo-input {
   display: block !important;
   width: 518px;
+  max-width: 100%;
   margin-top: 5px;
 }
 .bottom-bar {
   z-index: 3;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
+  width: 100%;
   padding: 10px 0 10px 200px;
   background-color: #fff;
   box-shadow: 0 0 10px #ccc;

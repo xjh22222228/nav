@@ -2,17 +2,13 @@
   <nz-layout>
     <nz-sider
       class="sidebar select-none"
+      [class.hide]="isCollapsed"
       nzWidth="150px"
       nzTheme="light"
       nzCollapsible
       [(nzCollapsed)]="isCollapsed"
       [nzTrigger]="null"
     >
-      <div class="flex justify-center items-center py-2.5">
-        <button nz-button nzType="primary" (click)="toggleCollapsed()">
-          <nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" />
-        </button>
-      </div>
       <ul nz-menu nzMode="inline" class="sider-menu">
         <li
           nz-menu-item
@@ -98,20 +94,17 @@
         </li>
       </ul>
     </nz-sider>
-    <nz-layout class="inner-layout">
+    <nz-layout class="inner-layout" [class.!ml-0]="isCollapsed">
       <nz-content class="content">
-        <div>
-          <button nz-button style="margin-bottom: 15px" (click)="goBack()">
+        <div class="whitespace-nowrap overflow-x-auto topbar">
+          <button nz-button nzType="primary" (click)="toggleCollapsed()">
+            <nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" />
+          </button>
+          <button nz-button style="margin: 0 15px 15px" (click)="goBack()">
             {{ $t('_backHome') }}
           </button>
 
-          <button
-            nz-button
-            nzDanger
-            nzType="primary"
-            style="margin-left: 15px"
-            (click)="logout()"
-          >
+          <button nz-button nzDanger nzType="primary" (click)="logout()">
             {{ $t('_logout') }}
           </button>
           <img [src]="currentVersionSrc" class="ml-2.5" />

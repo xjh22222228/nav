@@ -1,12 +1,33 @@
 .system-layout {
   min-height: 100vh;
-  .content {
-    padding: 30px;
+  .topbar {
+    z-index: 3;
+    position: sticky;
     background-color: #fff;
-    min-width: 1200px;
+    top: 0;
+    margin-bottom: 10px;
+    padding: 15px 15px 0;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.05);
+  }
+  .content {
+    padding: 0 15px 15px;
+    background-color: #fff;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
+    ::ng-deep.ant-table-content {
+      overflow: auto;
+    }
   }
   .sidebar {
+    position: sticky;
+    top: 0;
     background-color: #fff;
+    &.hide {
+      width: 0 !important;
+      min-width: 0 !important;
+      flex: 0 !important;
+    }
   }
   .inner-layout {
     margin-left: 15px;

@@ -1,4 +1,4 @@
-<form nz-form [formGroup]="validateForm">
+<form nz-form [formGroup]="validateForm" class="!pb-20">
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_webLogo') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
@@ -417,14 +417,14 @@
           >
             <thead>
               <tr>
-                <th>{{ $t('_backgroundImage') }}</th>
-                <th>{{ $t('_jumpAddr') }}</th>
-                <th>{{ $t('_action') }}</th>
+                <th nzWidth="260px">{{ $t('_backgroundImage') }}</th>
+                <th nzWidth="300px">{{ $t('_jumpAddr') }}</th>
+                <th nzWidth="200px">{{ $t('_action') }}</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let data of settings.lightImages; index as idx">
-                <td width="260px" class="whitespace-nowrap">
+                <td class="whitespace-nowrap">
                   <img [src]="data['src']" *ngIf="data['src']" class="icon" />
                   <div>
                     <input
@@ -545,14 +545,14 @@
           >
             <thead>
               <tr>
-                <th>{{ $t('_backgroundImage') }}</th>
-                <th>{{ $t('_jumpAddr') }}</th>
-                <th>{{ $t('_action') }}</th>
+                <th nzWidth="260px">{{ $t('_backgroundImage') }}</th>
+                <th nzWidth="300px">{{ $t('_jumpAddr') }}</th>
+                <th nzWidth="200px">{{ $t('_action') }}</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let data of settings.superImages; index as idx">
-                <td width="260px" class="whitespace-nowrap">
+                <td class="whitespace-nowrap">
                   <img [src]="data['src']" *ngIf="data['src']" class="icon" />
 
                   <div>
@@ -674,14 +674,14 @@
           >
             <thead>
               <tr>
-                <th>{{ $t('_backgroundImage') }}</th>
-                <th>{{ $t('_jumpAddr') }}</th>
-                <th>{{ $t('_action') }}</th>
+                <th nzWidth="260px">{{ $t('_backgroundImage') }}</th>
+                <th nzWidth="300px">{{ $t('_jumpAddr') }}</th>
+                <th nzWidth="200px">{{ $t('_action') }}</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let data of settings.simThemeImages; index as idx">
-                <td width="260px" class="whitespace-nowrap">
+                <td class="whitespace-nowrap">
                   <img [src]="data['src']" *ngIf="data['src']" class="icon" />
                   <div>
                     <input
@@ -833,14 +833,14 @@
           >
             <thead>
               <tr>
-                <th>{{ $t('_backgroundImage') }}</th>
-                <th>{{ $t('_jumpAddr') }}</th>
-                <th>{{ $t('_action') }}</th>
+                <th nzWidth="260px">{{ $t('_backgroundImage') }}</th>
+                <th nzWidth="300px">{{ $t('_jumpAddr') }}</th>
+                <th nzWidth="200px">{{ $t('_action') }}</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let data of settings.sideThemeImages; index as idx">
-                <td width="260px" class="whitespace-nowrap">
+                <td class="whitespace-nowrap">
                   <img [src]="data['src']" *ngIf="data['src']" class="icon" />
                   <div>
                     <input
@@ -980,7 +980,7 @@
             type="text"
             [value]="settings.shortcutThemeImages[0]['src']"
             (change)="onShortcutImgChange($event)"
-            style="width: 300px; margin-top: 10px"
+            class="max-w-full w-full !mt-2.5"
           />
           <app-upload (onChange)="onShortcutImgChange($event)" />
         </nz-form-control>

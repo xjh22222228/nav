@@ -1,5 +1,5 @@
 <nz-spin nzTip="Loading..." [nzSpinning]="submitting">
-  <div *ngIf="isPermission">
+  <div *ngIf="isPermission" class="mt-4">
     <button
       *ngIf="!isSelfDevelop"
       nz-button
@@ -33,6 +33,7 @@
       <thead>
         <tr>
           <th
+            nzWidth="100px"
             [nzChecked]="checked"
             (nzCheckedChange)="onAllChecked($event)"
           ></th>
@@ -44,7 +45,7 @@
           <th nzWidth="100px">{{ $t('_associatedLabels') }}</th>
           <th nzWidth="300px">{{ $t('_webDesc') }}</th>
           <th nzWidth="300px">{{ $t('_webTag') }}</th>
-          <th>{{ $t('_createAt') }}</th>
+          <th nzWidth="200px">{{ $t('_createAt') }}</th>
         </tr>
       </thead>
       <tbody>

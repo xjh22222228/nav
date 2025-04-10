@@ -45,7 +45,7 @@ export class ClassTabsComponent {
   }
 
   ngOnChanges() {
-    this.activeIndex = 0
+    this.selectTab(0)
     this.toolbarItems = []
     requestAnimationFrame(() => {
       this.getToolbarItems()

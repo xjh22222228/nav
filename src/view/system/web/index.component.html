@@ -1,4 +1,4 @@
-<div class="admin">
+<div class="admin mt-2.5">
   <button
     *ngIf="!isSelfDevelop"
     nz-button
@@ -68,13 +68,17 @@
       >
         <thead>
           <tr>
-            <th [nzChecked]="checkedAll" (nzCheckedChange)="onCheckAll($event)">
+            <th
+              nzWidth="100px"
+              [nzChecked]="checkedAll"
+              (nzCheckedChange)="onCheckAll($event)"
+            >
               ({{ setOfCheckedId.size }})
             </th>
-            <th>{{ $t('_icon') }}</th>
-            <th>{{ $t('_tagName') }}</th>
-            <th>{{ $t('_onlyOwnVisible') }}</th>
-            <th>{{ $t('_action') }}</th>
+            <th nzWidth="200px">{{ $t('_action') }}</th>
+            <th nzWidth="100px">{{ $t('_icon') }}</th>
+            <th nzWidth="200px">{{ $t('_tagName') }}</th>
+            <th nzWidth="100px">{{ $t('_onlyOwnVisible') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -83,6 +87,15 @@
               [nzChecked]="setOfCheckedId.has(data.id)"
               (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
+            <td class="select-none">
+              <a (click)="moveOneUp(idx)">{{ $t('_moveUp') }}</a>
+              <a (click)="moveOneDown(idx)" class="ml-2.5">{{
+                $t('_moveDown')
+              }}</a>
+              <a (click)="openEditClass(data)" class="ml-2.5">{{
+                $t('_edit')
+              }}</a>
+            </td>
             <td>
               <app-logo [src]="data.icon" [name]="data.title" />
             </td>
@@ -94,15 +107,6 @@
                 nzType="check"
                 nzTheme="outline"
               ></i>
-            </td>
-            <td class="select-none">
-              <a (click)="moveOneUp(idx)">{{ $t('_moveUp') }}</a>
-              <a (click)="moveOneDown(idx)" class="ml-2.5">{{
-                $t('_moveDown')
-              }}</a>
-              <a (click)="openEditClass(data)" class="ml-2.5">{{
-                $t('_edit')
-              }}</a>
             </td>
           </tr>
         </tbody>
@@ -152,13 +156,17 @@
       >
         <thead>
           <tr>
-            <th [nzChecked]="checkedAll" (nzCheckedChange)="onCheckAll($event)">
+            <th
+              nzWidth="100px"
+              [nzChecked]="checkedAll"
+              (nzCheckedChange)="onCheckAll($event)"
+            >
               ({{ setOfCheckedId.size }})
             </th>
-            <th>{{ $t('_icon') }}</th>
-            <th>{{ $t('_tagName') }}</th>
-            <th>{{ $t('_onlyOwnVisible') }}</th>
-            <th>{{ $t('_action') }}</th>
+            <th nzWidth="200px">{{ $t('_action') }}</th>
+            <th nzWidth="100px">{{ $t('_icon') }}</th>
+            <th nzWidth="200px">{{ $t('_tagName') }}</th>
+            <th nzWidth="100px">{{ $t('_onlyOwnVisible') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -167,18 +175,6 @@
               [nzChecked]="setOfCheckedId.has(data.id)"
               (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
-            <td>
-              <app-logo [src]="data.icon" [name]="data.title" />
-            </td>
-            <td>{{ data.title }}</td>
-            <td>
-              <i
-                *ngIf="data.ownVisible"
-                nz-icon
-                nzType="check"
-                nzTheme="outline"
-              ></i>
-            </td>
             <td class="select-none">
               <a (click)="moveTwoUp(idx)">{{ $t('_moveUp') }}</a>
               <a (click)="moveTwoDown(idx)" class="ml-2.5">{{
@@ -190,6 +186,18 @@
               <a (click)="openMoveWebModal(data, 2)" class="ml-2.5">{{
                 $t('_move')
               }}</a>
+            </td>
+            <td>
+              <app-logo [src]="data.icon" [name]="data.title" />
+            </td>
+            <td>{{ data.title }}</td>
+            <td>
+              <i
+                *ngIf="data.ownVisible"
+                nz-icon
+                nzType="check"
+                nzTheme="outline"
+              ></i>
             </td>
           </tr>
         </tbody>
@@ -254,13 +262,17 @@
       >
         <thead>
           <tr>
-            <th [nzChecked]="checkedAll" (nzCheckedChange)="onCheckAll($event)">
+            <th
+              nzWidth="100px"
+              [nzChecked]="checkedAll"
+              (nzCheckedChange)="onCheckAll($event)"
+            >
               ({{ setOfCheckedId.size }})
             </th>
-            <th>{{ $t('_icon') }}</th>
-            <th>{{ $t('_tagName') }}</th>
-            <th>{{ $t('_onlyOwnVisible') }}</th>
-            <th>{{ $t('_action') }}</th>
+            <th nzWidth="200px">{{ $t('_action') }}</th>
+            <th nzWidth="100px">{{ $t('_icon') }}</th>
+            <th nzWidth="200px">{{ $t('_tagName') }}</th>
+            <th nzWidth="100px">{{ $t('_onlyOwnVisible') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -269,18 +281,6 @@
               [nzChecked]="setOfCheckedId.has(data.id)"
               (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
-            <td>
-              <app-logo [src]="data.icon" [name]="data.title" />
-            </td>
-            <td>{{ data.title }}</td>
-            <td>
-              <i
-                *ngIf="data.ownVisible"
-                nz-icon
-                nzType="check"
-                nzTheme="outline"
-              ></i>
-            </td>
             <td class="select-none">
               <a (click)="moveThreeUp(idx)">{{ $t('_moveUp') }}</a>
               <a (click)="moveThreeDown(idx)" class="ml-2.5">{{
@@ -292,6 +292,18 @@
               <a (click)="openMoveWebModal(data, 3)" class="ml-2.5">{{
                 $t('_move')
               }}</a>
+            </td>
+            <td>
+              <app-logo [src]="data.icon" [name]="data.title" />
+            </td>
+            <td>{{ data.title }}</td>
+            <td>
+              <i
+                *ngIf="data.ownVisible"
+                nz-icon
+                nzType="check"
+                nzTheme="outline"
+              ></i>
             </td>
           </tr>
         </tbody>

@@ -23,23 +23,23 @@
 <nz-table #basicTable [nzData]="searchList">
   <thead>
     <tr>
-      <th>{{ $t('_engineName') }}</th>
-      <th>{{ $t('_engineUrl') }}</th>
-      <th>{{ $t('_icon') }}</th>
-      <th>{{ $t('_desc') }}</th>
-      <th>{{ $t('_isDisable') }}</th>
-      <th>{{ $t('_action') }}</th>
+      <th nzWidth="150px">{{ $t('_engineName') }}</th>
+      <th nzWidth="220px">{{ $t('_engineUrl') }}</th>
+      <th nzWidth="260px">{{ $t('_icon') }}</th>
+      <th nzWidth="220px">{{ $t('_desc') }}</th>
+      <th nzWidth="100px">{{ $t('_isDisable') }}</th>
+      <th nzWidth="200px">{{ $t('_action') }}</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of searchList; index as idx; trackBy: trackByItem">
-      <td width="150px">
+      <td>
         <input nz-input [(ngModel)]="data.name" maxlength="10" />
       </td>
-      <td width="220px">
+      <td>
         <input *ngIf="!data.isInner" nz-input [(ngModel)]="data.url" />
       </td>
-      <td width="260px" class="whitespace-nowrap">
+      <td class="whitespace-nowrap">
         <img *ngIf="data.icon" [src]="data.icon" class="icon" />
         <input
           nz-input
@@ -49,10 +49,10 @@
         />
         <app-upload (onChange)="onChangeUpload($event, idx)"></app-upload>
       </td>
-      <td width="220px">
+      <td>
         <input nz-input [(ngModel)]="data.placeholder" maxlength="50" />
       </td>
-      <td width="100px">
+      <td>
         <nz-switch [(ngModel)]="data.blocked"></nz-switch>
       </td>
       <td class="select-none">

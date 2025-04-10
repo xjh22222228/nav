@@ -22,6 +22,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { LoginComponent } from 'src/components/login/login.component'
+import { STORAGE_KEY_MAP } from 'src/constants'
+import navConfig from '../../../nav.config.json'
 
 @Component({
   standalone: true,
@@ -40,16 +42,16 @@ import { LoginComponent } from 'src/components/login/login.component'
   styleUrls: ['./index.component.scss'],
 })
 export default class SystemComponent {
-  isSelfDevelop = isSelfDevelop
-  $t = $t
-  isLogin: boolean = isLogin
+  readonly isSelfDevelop = isSelfDevelop
+  readonly $t = $t
+  readonly isLogin: boolean = isLogin
+  readonly currentVersionSrc = `https://img.shields.io/badge/current-v${VERSION}-red.svg?longCache=true&style=flat-square`
+  readonly date = navConfig.datetime
   showLoginModal: boolean = !isLogin
   currentMenu: string = ''
-  date = document.getElementById('META-NAV')?.dataset?.['date'] || ''
-  currentVersionSrc = `https://img.shields.io/badge/current-v${VERSION}-red.svg?longCache=true&style=flat-square`
   isAuthz = !!getAuthCode()
   pageLoading = false
-  isCollapsed = false
+  isCollapsed = !!Number(localStorage.getItem(STORAGE_KEY_MAP.SYSTEM_COLLAPSED))
 
   constructor(private router: Router) {
     // 解决暗黑模式部分样式不正确问题，后台没有暗黑
@@ -75,6 +77,10 @@ export default class SystemComponent {
 
   toggleCollapsed() {
     this.isCollapsed = !this.isCollapsed
+    localStorage.setItem(
+      STORAGE_KEY_MAP.SYSTEM_COLLAPSED,
+      String(Number(this.isCollapsed))
+    )
   }
 
   goBack() {
