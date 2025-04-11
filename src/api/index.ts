@@ -19,12 +19,16 @@ import type { ISettings } from 'src/types'
 import { isSelfDevelop } from 'src/utils/utils'
 import { isLogin } from 'src/utils/user'
 import { DB_PATH } from 'src/constants'
-import { getIsGitee, removeTrailingSlashes } from 'src/utils/pureUtils'
+import {
+  getIsGitee,
+  getIsGitLab,
+  removeTrailingSlashes,
+} from 'src/utils/pureUtils'
 import LZString from 'lz-string'
 import event from 'src/utils/mitt'
 
 const { gitRepoUrl, imageRepoUrl } = config
-const s = gitRepoUrl.split('/')
+const s = gitRepoUrl.split('?')[0].split('/')
 const DEFAULT_BRANCH = config.branch
 
 export const authorName = s.at(-2)
@@ -33,6 +37,7 @@ export const repoName = s.at(-1)
 export function getImageRepo() {
   let repo = repoName
   let branch = 'image'
+  let projectId = getLabProjectId()
   if (imageRepoUrl) {
     const split = imageRepoUrl.split('?')
     repo = split[0].split('/').at(-1) || ''
@@ -40,33 +45,32 @@ export function getImageRepo() {
     if (query['branch']) {
       branch = query['branch'] as string
     }
+    if (query['projectId']) {
+      projectId = query['projectId'] as string
+    }
   }
   return {
     repo,
     branch,
-  }
+    projectId,
+  } as const
+}
+
+function getLabProjectId() {
+  const { projectId } = qs.parse(config.gitRepoUrl.split('?').at(-1) || '')
+  return projectId
 }
 
 const isGitee = getIsGitee(config.gitRepoUrl)
+const isGitLab = getIsGitLab(config.gitRepoUrl)
 
 export function verifyToken(token: string) {
   const url = isSelfDevelop ? '/api/users/verify' : `/user`
   return http.get(url, {
     headers: {
-      Authorization: `token ${token.trim()}`,
+      Authorization: `${isGitLab ? 'Bearer' : 'token'} ${token.trim()}`,
     },
   })
-}
-
-export async function getImageRepoInfo(data?: Record<string, any>) {
-  if (isSelfDevelop) {
-    return
-  }
-  const imageRepo = getImageRepo()
-  return http.get(
-    `/repos/${authorName}/${imageRepo.repo}/branches/${imageRepo.branch}`,
-    data
-  )
 }
 
 // 获取自有部署内容
@@ -115,15 +119,24 @@ export async function createBranch(branch: string) {
     return
   }
 
-  const url = isGitee
-    ? `/repos/${authorName}/${repoName}/branches`
-    : `/repos/${authorName}/${repoName}/git/refs`
+  const getUrl = () => {
+    if (isGitee) {
+      return `/repos/${authorName}/${repoName}/branches`
+    } else if (isGitLab) {
+      return `/projects/${getLabProjectId()}/repository/branches`
+    } else {
+      return `/repos/${authorName}/${repoName}/git/refs`
+    }
+  }
   const params: Record<string, any> = {}
   if (isGitee) {
     params['owner'] = `/${authorName}`
     params['repo'] = `/${authorName}/${repoName}`
     params['refs'] = DEFAULT_BRANCH
     params['branch_name'] = branch
+  } else if (isGitLab) {
+    params['ref'] = DEFAULT_BRANCH
+    params['branch'] = branch
   } else {
     params['sha'] = 'c1fdab3d29df4740bb97a4ae7f24ed0eaa682557'
     try {
@@ -135,7 +148,7 @@ export async function createBranch(branch: string) {
 
     params['ref'] = `refs/heads/${branch}`
   }
-  return http.post(url, params)
+  return http.post(getUrl(), params)
 }
 
 export function getFileContent(path: string, branch: string = DEFAULT_BRANCH) {
@@ -176,22 +189,33 @@ export async function updateFileContent({
       })
   }
 
-  const fileInfo = await getFileContent(path, branch)
   if (path === DB_PATH) {
     content = LZString.compressToBase64(content)
   }
+  const commitMessage = `rebot(CI): ${message}`
+  const params: Record<string, any> = {
+    branch,
+    content: isEncode ? encode(content) : content,
+  }
+  if (isGitLab) {
+    params['commit_message'] = commitMessage
+    params['encoding'] = 'base64'
+  } else {
+    const fileInfo = await getFileContent(path, branch)
+    params['message'] = commitMessage
+    params['sha'] = fileInfo.data.sha
+  }
 
-  return http
-    .put(`/repos/${authorName}/${repoName}/contents/${path}`, {
-      message: `rebot(CI): ${message}`,
-      branch,
-      content: isEncode ? encode(content) : content,
-      sha: fileInfo.data.sha,
-    })
-    .then((res) => {
-      requestActionUrl()
-      return res
-    })
+  const url = isGitLab
+    ? `/projects/${getLabProjectId()}/repository/files/${encodeURIComponent(
+        path
+      )}`
+    : `/repos/${authorName}/${repoName}/contents/${path}`
+
+  return http.put(url, params).then((res) => {
+    requestActionUrl()
+    return res
+  })
 }
 
 export function getCommits() {
@@ -217,15 +241,24 @@ export async function createFile({
       })
   }
 
-  const method = isGitee ? http.post : http.put
-  return method(
-    `/repos/${authorName}/${getImageRepo().repo}/contents/${path}`,
-    {
-      message: `rebot(CI): ${message}`,
-      branch,
-      content: isEncode ? encode(content) : content,
-    }
-  ).then((res) => {
+  const method = isGitee || isGitLab ? http.post : http.put
+  const url = isGitLab
+    ? `/projects/${
+        getImageRepo().projectId
+      }/repository/files/${encodeURIComponent(path)}`
+    : `/repos/${authorName}/${getImageRepo().repo}/contents/${path}`
+  const params: Record<string, any> = {
+    branch,
+    content: isEncode ? encode(content) : content,
+  }
+  const commitMessage = `rebot(CI): ${message}`
+  if (isGitLab) {
+    params['commit_message'] = commitMessage
+    params['encoding'] = 'base64'
+  } else {
+    params['message'] = commitMessage
+  }
+  return method(url, params).then((res) => {
     requestActionUrl()
     return res
   })
@@ -327,6 +360,8 @@ export function getCDN(path: string) {
   const repo = getImageRepo().repo
   if (isGitee) {
     return `https://gitee.com/${authorName}/${repo}/raw/${branch}/${path}`
+  } else if (isGitLab) {
+    return `https://gitlab.com/${authorName}/${repo}/-/raw/${branch}/${path}?ref_type=heads`
   }
   return `https://${settings.gitHubCDN}/gh/${authorName}/${repo}@${branch}/${path}`
 }

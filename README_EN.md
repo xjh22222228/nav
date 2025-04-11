@@ -42,6 +42,7 @@ The philosophy of `Discovery Navigation` is to create a simple and convenient so
 
 - 🍰 Built-in `800+` high-quality websites
 - 🍰 Support for [Gitee](https://gitee.com/xiejiahe/nav)
+- 🍰 Support for [GitLab](https://gitlab.com/xjh22222228/nav)
 - 🍰 Support for importing from browser bookmarks
 - 🍰 Support for exporting data to browser bookmarks
 - 🍰 Support for AI translation

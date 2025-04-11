@@ -22,6 +22,10 @@ export function getIsGitee(gitRepoUrl: string): boolean {
   return gitRepoUrl.includes('gitee.com')
 }
 
+export function getIsGitLab(gitRepoUrl: string): boolean {
+  return gitRepoUrl.includes('gitlab.c')
+}
+
 export function removeTrailingSlashes(url: string | null | undefined): string {
   if (!url) {
     return ''

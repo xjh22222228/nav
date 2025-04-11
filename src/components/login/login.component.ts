@@ -70,7 +70,10 @@ export class LoginComponent {
 
     try {
       const res = await verifyToken(token)
-      if (!isSelfDevelop && res?.data?.login !== authorName) {
+      if (
+        !isSelfDevelop &&
+        (res?.data?.login ?? res?.data?.username) !== authorName
+      ) {
         this.message.error('Bad credentials')
         throw new Error('Bad credentials')
       }
