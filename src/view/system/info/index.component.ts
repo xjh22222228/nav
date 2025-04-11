@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
@@ -10,7 +9,6 @@ import { getToken } from 'src/utils/user'
 import { VERSION } from 'src/constants'
 import { isSelfDevelop } from 'src/utils/utils'
 import config from '../../../../nav.config.json'
-import { getImageRepoInfo } from 'src/api'
 
 @Component({
   standalone: true,
@@ -28,12 +26,4 @@ export default class SystemInfoComponent {
   readonly currentVersionSrc = `https://img.shields.io/badge/current-v${VERSION}-red.svg?longCache=true&style=flat-square`
 
   constructor() {}
-
-  ngOnInit() {
-    // this.getImageRepoInfo()
-  }
-
-  private getImageRepoInfo() {
-    getImageRepoInfo().then((res) => {})
-  }
 }

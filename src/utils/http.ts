@@ -9,19 +9,30 @@ import event from './mitt'
 import { settings } from 'src/store'
 import { getToken, getAuthCode, removeAuthCode } from '../utils/user'
 import { isLogin } from 'src/utils/user'
-import { getIsGitee } from 'src/utils/pureUtils'
+import { getIsGitee, getIsGitLab } from 'src/utils/pureUtils'
 
 export function getAddress(): string {
   return globalThis.__ADDRESS__ || config.address || ''
 }
 
+const isGitLab = getIsGitLab(config.gitRepoUrl)
+
+function getBaseUrl() {
+  const address = getAddress()
+  if (address) {
+    return address
+  }
+  if (isGitLab) {
+    return 'https://gitlab.com/api/v4'
+  } else if (getIsGitee(config.gitRepoUrl)) {
+    return 'https://gitee.com/api/v5'
+  }
+  return 'https://api.github.com'
+}
+
 const httpInstance = axios.create({
   timeout: 60000 * 3,
-  baseURL:
-    getAddress() ||
-    (getIsGitee(config.gitRepoUrl)
-      ? 'https://gitee.com/api/v5'
-      : 'https://api.github.com'),
+  baseURL: getBaseUrl(),
 })
 
 function startLoad() {
@@ -36,7 +47,9 @@ httpInstance.interceptors.request.use(
   function (config) {
     const token = getToken()
     if (token) {
-      config.headers['Authorization'] = `token ${token}`
+      config.headers['Authorization'] = `${
+        isGitLab ? 'Bearer' : 'token'
+      } ${token}`
     }
     startLoad()
     return config
