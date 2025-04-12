@@ -17,6 +17,7 @@ import {
   StopOutline,
   MenuFoldOutline,
   MenuUnfoldOutline,
+  DoubleRightOutline,
 } from '@ant-design/icons-angular/icons'
 import { provideAnimations } from '@angular/platform-browser/animations'
 import { NZ_I18N } from 'ng-zorro-antd/i18n'
@@ -37,6 +38,7 @@ const icons: IconDefinition[] = [
   StopOutline,
   MenuFoldOutline,
   MenuUnfoldOutline,
+  DoubleRightOutline,
 ]
 
 const isHashMode = window.__HASH_MODE__ ?? config.hashMode

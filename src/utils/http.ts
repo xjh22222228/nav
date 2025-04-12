@@ -74,7 +74,7 @@ httpInstance.interceptors.response.use(
       title: 'Error：' + status,
       content: errorMsg,
       config: {
-        nzDuration: 20000,
+        nzDuration: document.hidden ? 0 : 5000,
       },
     })
     stopLoad()
@@ -147,7 +147,7 @@ httpNavInstance.interceptors.response.use(
         title: 'Error：' + status,
         content: errorMsg,
         config: {
-          nzDuration: 20000,
+          nzDuration: document.hidden ? 0 : 5000,
         },
       })
     }

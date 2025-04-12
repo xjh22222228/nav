@@ -9,7 +9,7 @@ import {
   setDefaultSearchEngine,
   queryString,
 } from 'src/utils'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { searchEngineList } from 'src/store'
 import type { ISearchProps } from 'src/types'
 import { SearchType } from './index'
@@ -49,7 +49,7 @@ export class SearchComponent {
   searchTypeValue = Number(queryString()['type']) || SearchType.All
   keyword = queryString().q
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     event.on('SEARCH_FOCUS', () => {
       this.inputFocus()
     })
@@ -91,7 +91,8 @@ export class SearchComponent {
     }
 
     const params = queryString()
-    this.router.navigate([this.router.url.split('?')[0]], {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
       queryParams: {
         ...params,
         q: this.keyword,

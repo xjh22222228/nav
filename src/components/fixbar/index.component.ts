@@ -4,7 +4,7 @@
 
 import { Component, Output, EventEmitter, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { isDark as isDarkFn, queryString } from 'src/utils'
+import { isDark as isDarkFn } from 'src/utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { isLogin } from 'src/utils/user'
@@ -113,9 +113,9 @@ export class FixbarComponent {
   toggleTheme(theme: any) {
     this.router.navigate([theme.url], {
       queryParams: {
-        ...queryString(),
         _: Date.now(),
       },
+      queryParamsHandling: 'merge',
     })
   }
 

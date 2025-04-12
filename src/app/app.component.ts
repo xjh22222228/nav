@@ -201,6 +201,10 @@ export class AppComponent {
   private goRoute() {
     // is App
     if (settings.appTheme !== 'Current' && isMobile()) {
+      if (location.href.includes('system')) {
+        return
+      }
+
       const url = (this.router.url.split('?')[0] || '').toLowerCase()
       const { id, q } = queryString()
       const queryParams = { id, q }

@@ -73,7 +73,8 @@ export class CommonService {
   }
 
   handleClickClass(id: number) {
-    this.router.navigate([this.router.url.split('?')[0]], {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
       queryParams: {
         id,
         _: Date.now(),
