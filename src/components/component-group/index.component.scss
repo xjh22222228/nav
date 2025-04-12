@@ -1,14 +1,31 @@
 @keyframes zoomInDown {
   from {
     opacity: 0;
-    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   }
 
-  60% {
+  100% {
     opacity: 1;
-    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
-    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}
+
+@keyframes arrow {
+  0% {
+    transform: translateX(0);
+  }
+  11% {
+    transform: translateX(4px);
+  }
+  21% {
+    transform: translateX(-2px);
+  }
+  31% {
+    transform: translateX(4px);
+  }
+  41% {
+    transform: translateX(-2px);
+  }
+  51% {
+    transform: translateX(0);
   }
 }
 
@@ -17,22 +34,47 @@
   padding: 10px;
   display: flex;
   overflow: hidden;
-  overflow-x: auto;
   user-select: none;
-  column-gap: 15px;
+  gap: 15px;
   justify-content: flex-start;
   max-width: 100%;
+  &.over {
+    padding-bottom: 30px;
+    margin-bottom: 15px;
+  }
+  &.showAll {
+    flex-wrap: wrap;
+    .arrow {
+      transform: translateX(-50%) rotate(-90deg) !important;
+    }
+    .arrowicon {
+      animation: none;
+    }
+  }
   &.directionCol {
     flex-wrap: wrap;
     justify-content: center;
-    row-gap: 15px;
-    overflow-x: hidden;
+    overflow-y: auto;
     ::ng-deep {
       > .ng-star-inserted,
       .citems {
         max-width: 100%;
       }
     }
+  }
+  .arrow {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0) rotate(90deg);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .arrowicon {
+    font-size: 18px;
+    animation: arrow 3s ease-in-out infinite;
+    color: #f38181;
   }
   ::ng-deep {
     > .ng-star-inserted {

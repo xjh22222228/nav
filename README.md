@@ -108,6 +108,10 @@
 
 [https://github.com/apps/vercel](https://github.com/apps/vercel)
 
+#### Cloudflare pages 推荐(免费)
+
+[https://www.cloudflare.com/zh-cn](https://www.cloudflare.com/zh-cn)
+
 ## 配置说明
 
 只需要修改根目录 `nav.config.yaml` 以下相关字段

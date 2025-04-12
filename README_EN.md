@@ -108,6 +108,10 @@ build path `dist/browser`
 
 [https://github.com/apps/vercel](https://github.com/apps/vercel)
 
+#### Cloudflare pages (Recommended, Free)
+
+[https://www.cloudflare.com/zh-cn](https://www.cloudflare.com/zh-cn)
+
 ## Configuration
 
 Only need to modify the following fields in the root `nav.config.yaml`
