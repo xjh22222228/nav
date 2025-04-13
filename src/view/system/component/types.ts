@@ -5,7 +5,7 @@
 import { ComponentType } from 'src/types'
 import { $t } from 'src/locale'
 
-export const componentTitleMap: Record<string, any> = {
+export const componentTitleMap: Record<string, string> = {
   [ComponentType.Calendar]: $t('_calendar'),
   [ComponentType.OffWork]: $t('_offWork'),
   [ComponentType.Runtime]: $t('_runtime'),
@@ -13,4 +13,5 @@ export const componentTitleMap: Record<string, any> = {
   [ComponentType.Countdown]: $t('_countdown'),
   [ComponentType.HTML]: 'HTML',
   [ComponentType.Holiday]: $t('_holiday'),
+  [ComponentType.News]: $t('_news'),
 }

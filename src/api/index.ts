@@ -264,14 +264,14 @@ export async function createFile({
   })
 }
 
-export async function getUserCollect(data?: Record<string, any>) {
+export function getUserCollect(data?: Record<string, any>) {
   if (isSelfDevelop) {
     return http.post('/api/collect/get', data)
   }
   return httpNav.post('/api/get', data)
 }
 
-export async function getUserCollectCount(data: Record<string, any> = {}) {
+export function getUserCollectCount(data: Record<string, any> = {}) {
   data['showError'] = false
   if (isSelfDevelop) {
     return http.post('/api/collect/get', data)
@@ -279,7 +279,7 @@ export async function getUserCollectCount(data: Record<string, any> = {}) {
   return httpNav.post('/api/collect/count', data)
 }
 
-export async function saveUserCollect(data?: Record<string, any>) {
+export function saveUserCollect(data?: Record<string, any>) {
   if (isSelfDevelop) {
     return http.post('/api/collect/save', data)
   }
@@ -287,7 +287,7 @@ export async function saveUserCollect(data?: Record<string, any>) {
   return httpNav.post('/api/save', data)
 }
 
-export async function delUserCollect(data?: Record<string, any>) {
+export function delUserCollect(data?: Record<string, any>) {
   if (isSelfDevelop) {
     return http.post('/api/collect/delete', data)
   }
@@ -311,32 +311,32 @@ export async function getWebInfo(url: string) {
   }
 }
 
-export async function bookmarksExport(data: any) {
+export function bookmarksExport(data: any) {
   return httpNav.post('/api/export', data, {
     timeout: 0,
   })
 }
 
-export async function getIconBase64(data: any) {
+export function getIconBase64(data: any) {
   return httpNav.post('/api/base64', data, { timeout: 20000 })
 }
 
-export async function getUserInfo(data?: Record<string, any>) {
+export function getUserInfo(data?: Record<string, any>) {
   return httpNav.post('/api/info/get', data)
 }
 
-export async function updateUserInfo(data?: Record<string, any>) {
+export function updateUserInfo(data?: Record<string, any>) {
   return httpNav.post('/api/info/update', data)
 }
 
-export async function getTranslate(data?: Record<string, any>) {
+export function getTranslate(data?: Record<string, any>) {
   if (isSelfDevelop) {
     return http.post('/api/translate', getDefaultRequestData(data))
   }
   return httpNav.post('/api/translate', data)
 }
 
-export async function getScreenshot(data?: Record<string, any>) {
+export function getScreenshot(data?: Record<string, any>) {
   if (isSelfDevelop) {
     return http.post('/api/screenshot', getDefaultRequestData(data), {
       timeout: 0,
@@ -347,12 +347,20 @@ export async function getScreenshot(data?: Record<string, any>) {
   })
 }
 
-export async function getConfigInfo(data: Record<string, any> = {}) {
+export function getConfigInfo(data: Record<string, any> = {}) {
   return http.post('/api/config/get', data)
 }
 
-export async function updateConfigInfo(data: Record<string, any> = {}) {
+export function updateConfigInfo(data: Record<string, any> = {}) {
   return http.post('/api/config/update', data)
+}
+
+export function getNews(data: Record<string, any> = {}) {
+  data['showError'] = false
+  data['showLoading'] = false
+  return httpNav.post('/api/news', data, {
+    timeout: 0,
+  })
 }
 
 export function getCDN(path: string) {

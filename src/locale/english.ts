@@ -317,6 +317,15 @@ const english: Record<string, any> = {
   _apiPass: '讯飞大模型密钥',
   _createWebKey: 'Press to create website',
   _onlyDelItem: 'Only delete this item',
+  _news: 'News',
+  _baidu: 'Baidu',
+  _douyin: 'Douyin',
+  _bilibili: 'Bilibili',
+  _weibo: 'Weibo',
+  _juejin: 'Juejin',
+  _noNews: 'No news',
+  _52: '52Pojie',
+  _hongshu: '小红书',
 }
 
 export default english

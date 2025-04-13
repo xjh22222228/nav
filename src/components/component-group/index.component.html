@@ -22,6 +22,7 @@
         [class.hidden]="!item['html']"
       />
       <app-holiday *ngSwitchCase="ComponentType.Holiday" [data]="item" />
+      <app-news *ngSwitchCase="ComponentType.News" [data]="item" />
     </ng-container>
   </ng-container>
 

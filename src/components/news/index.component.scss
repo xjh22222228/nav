@@ -1,0 +1,73 @@
+.news {
+  position: relative;
+  width: 310px;
+  height: var(--componentHeight) !important;
+  max-height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(100deg, #2a2d38, #535a68);
+  color: #fff;
+  padding: 10px 10px 0 10px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  .tabs {
+    display: flex;
+    column-gap: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: auto;
+  }
+  .tab {
+    border-radius: 4px;
+    padding: 2px 4px;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    &.active {
+      background-color: #fff2;
+    }
+  }
+  .content-box {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 10px 0;
+    color: #f1f1f1;
+  }
+  .nodata {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #aeaeae;
+  }
+  .content {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+    &:hover {
+      opacity: 0.9;
+    }
+    &:nth-child(1) .n {
+      color: #fff;
+    }
+    &:nth-child(2) .n {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    &:nth-child(3) .n {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .mid {
+      flex: 1;
+    }
+  }
+  .n {
+    color: #969c9c;
+  }
+}

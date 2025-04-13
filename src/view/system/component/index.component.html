@@ -36,6 +36,7 @@
       <app-countdown *ngSwitchCase="ComponentType.Countdown" [data]="item" />
       <app-html *ngSwitchCase="ComponentType.HTML" [data]="item" />
       <app-holiday *ngSwitchCase="ComponentType.Holiday" [data]="item" />
+      <app-news *ngSwitchCase="ComponentType.News" [data]="item" />
     </ng-container>
 
     <div class="text-center mt-3">
@@ -67,3 +68,4 @@
 <countdown-drawer #countdown (ok)="handleOk($event)" />
 <html-drawer #html (ok)="handleOk($event)" />
 <holiday-drawer #holiday (ok)="handleOk($event)" />
+<news-drawer #news (ok)="handleOk($event)" />

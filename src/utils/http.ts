@@ -111,7 +111,9 @@ httpNavInstance.interceptors.request.use(
       conf.headers['Authorization'] = data.code
     }
     conf.data = getDefaultRequestData(conf.data)
-    startLoad()
+    if (conf.data['showLoading'] !== false) {
+      startLoad()
+    }
 
     return conf
   },

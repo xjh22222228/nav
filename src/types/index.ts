@@ -23,6 +23,7 @@ export enum ComponentType {
   Countdown = 5,
   HTML = 6,
   Holiday = 7,
+  News = 8,
 }
 
 export enum ActionType {
@@ -31,7 +32,73 @@ export enum ActionType {
   Delete = 3,
 }
 
-export interface IComponentProps {
+export enum NewsType {
+  Weibo = 1,
+  V2ex = 2,
+  Douyin = 3,
+  Bilibili = 4,
+  Juejin = 5,
+  Baidu = 6,
+  GitHub = 7,
+  Pojie52 = 8,
+  Xiaohongshu = 9,
+}
+
+export interface INewsProps {
+  types: NewsType[]
+  count: number
+}
+
+export interface ICalendarProps {
+  topColor: string
+  bgColor: string
+}
+
+export interface IOffWorkProps {
+  workTitle: string
+  restTitle: string
+  startDate: number
+  date: number | string
+}
+
+export interface IImageProps {
+  url: string
+  go: string
+  text: string
+}
+
+export interface ICountdownProps {
+  topColor: string
+  bgColor: string
+  url: string
+  title: string
+  dateColor: string
+  dayColor: string
+  date: string
+}
+
+export interface IRuntimeProps {
+  title: string
+}
+
+export interface IHtmlProps {
+  html: string
+  width: number
+  bgColor: string
+}
+
+export interface IHolidayProps {
+  items: any[]
+}
+
+export interface IComponentProps
+  extends Partial<INewsProps>,
+    Partial<ICalendarProps>,
+    Partial<IOffWorkProps>,
+    Partial<IImageProps>,
+    Partial<Omit<ICountdownProps, 'date'>>,
+    Partial<IRuntimeProps>,
+    Partial<Omit<IHtmlProps, 'bgColor'>> {
   id: number
   type: number
   [key: string]: any
