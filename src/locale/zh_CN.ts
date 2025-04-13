@@ -304,6 +304,15 @@ const zhCN: Record<string, any> = {
   _apiPass: '讯飞大模型密钥',
   _createWebKey: '按下创建网站',
   _onlyDelItem: '只删除该项目',
+  _news: '资讯',
+  _baidu: '百度',
+  _douyin: '抖音',
+  _bilibili: '哔哩哔哩',
+  _weibo: '微博',
+  _juejin: '掘金',
+  _noNews: '暂无资讯',
+  _52: '52破解',
+  _hongshu: '小红书',
 }
 
 export default zhCN

@@ -110,7 +110,7 @@ build path `dist/browser`
 
 #### Cloudflare pages (Recommended, Free)
 
-[https://www.cloudflare.com/zh-cn](https://www.cloudflare.com/zh-cn)
+[https://www.cloudflare.com](https://www.cloudflare.com)
 
 ## Configuration
 

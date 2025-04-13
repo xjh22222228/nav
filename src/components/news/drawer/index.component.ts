@@ -12,6 +12,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
 import { NzColorPickerModule } from 'ng-zorro-antd/color-picker'
+import { NzCheckboxModule, NzCheckboxOption } from 'ng-zorro-antd/checkbox'
+import { newsTypeMap } from '../types'
+import { NewsType } from 'src/types'
+import { STORAGE_KEY_MAP } from 'src/constants'
 
 @Component({
   standalone: true,
@@ -24,24 +28,35 @@ import { NzColorPickerModule } from 'ng-zorro-antd/color-picker'
     NzInputModule,
     NzSliderModule,
     NzColorPickerModule,
+    NzCheckboxModule,
   ],
-  selector: 'html-drawer',
+  selector: 'news-drawer',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class HTMLDrawerComponent {
+export class NewsDrawerComponent {
   @Output() ok = new EventEmitter<void>()
 
   readonly $t = $t
   visible = false
   validateForm!: FormGroup
   index = 0
+  options: NzCheckboxOption[] = [
+    { label: newsTypeMap[NewsType.Baidu], value: NewsType.Baidu },
+    { label: newsTypeMap[NewsType.Bilibili], value: NewsType.Bilibili },
+    { label: newsTypeMap[NewsType.Douyin], value: NewsType.Douyin },
+    { label: newsTypeMap[NewsType.Juejin], value: NewsType.Juejin },
+    { label: newsTypeMap[NewsType.V2ex], value: NewsType.V2ex },
+    { label: newsTypeMap[NewsType.Weibo], value: NewsType.Weibo },
+    { label: newsTypeMap[NewsType.GitHub], value: NewsType.GitHub },
+    { label: newsTypeMap[NewsType.Pojie52], value: NewsType.Pojie52 },
+    { label: newsTypeMap[NewsType.Xiaohongshu], value: NewsType.Xiaohongshu },
+  ]
 
   constructor(private fb: FormBuilder) {
     this.validateForm = this.fb.group({
-      html: [''],
-      width: [0],
-      bgColor: [''],
+      types: [[]],
+      count: [0],
     })
   }
 
@@ -59,6 +74,7 @@ export class HTMLDrawerComponent {
 
   handleSubmit() {
     const values = this.validateForm.value
+    localStorage.removeItem(STORAGE_KEY_MAP.NEWS_DATE)
     this.ok.emit({
       ...values,
       index: this.index,

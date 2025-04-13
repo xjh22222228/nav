@@ -34,15 +34,10 @@ export async function getWebs() {
 
   // 检测到网站更新，清除缓存本地保存记录失效
   if (storageDate !== navConfig.datetime) {
-    const whiteKeys = [
-      STORAGE_KEY_MAP.TOKEN,
-      STORAGE_KEY_MAP.IS_DARK,
-      STORAGE_KEY_MAP.AUTH_CODE,
-      STORAGE_KEY_MAP.LOCATION,
-    ]
+    const removeKeys = [STORAGE_KEY_MAP.WEBSITE, STORAGE_KEY_MAP.DATE_TIME]
     Array.from({ length: globalThis.localStorage.length }, (_, i) => {
       const key = globalThis.localStorage.key(i)
-      if (key && !whiteKeys.includes(key)) {
+      if (key && removeKeys.includes(key)) {
         globalThis.localStorage.removeItem(key)
       }
     })

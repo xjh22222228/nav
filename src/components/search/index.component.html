@@ -71,6 +71,14 @@
           [nzValue]="SearchType.All"
         ></nz-option>
         <nz-option
+          [nzLabel]="$t('_class')"
+          [nzValue]="SearchType.Class"
+        ></nz-option>
+        <nz-option
+          [nzLabel]="$t('_tag')"
+          [nzValue]="SearchType.Tag"
+        ></nz-option>
+        <nz-option
           [nzLabel]="$t('_title')"
           [nzValue]="SearchType.Title"
         ></nz-option>
@@ -89,14 +97,6 @@
         <nz-option
           [nzLabel]="$t('_quick')"
           [nzValue]="SearchType.Quick"
-        ></nz-option>
-        <nz-option
-          [nzLabel]="$t('_tag')"
-          [nzValue]="SearchType.Tag"
-        ></nz-option>
-        <nz-option
-          [nzLabel]="$t('_class')"
-          [nzValue]="SearchType.Class"
         ></nz-option>
         <nz-option
           *ngIf="isLogin"

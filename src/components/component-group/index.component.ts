@@ -14,6 +14,7 @@ import { ImageComponent } from 'src/components/image/index.component'
 import { CountdownComponent } from 'src/components/countdown/index.component'
 import { HTMLComponent } from 'src/components/html/index.component'
 import { HolidayComponent } from 'src/components/holiday/index.component'
+import { NewsComponent } from 'src/components/news/index.component'
 import { Subject } from 'rxjs'
 import { debounceTime, takeUntil } from 'rxjs/operators'
 import { NzIconModule } from 'ng-zorro-antd/icon'
@@ -32,6 +33,7 @@ import { isMobile } from 'src/utils'
     HTMLComponent,
     HolidayComponent,
     NzIconModule,
+    NewsComponent,
   ],
   selector: 'component-group',
   templateUrl: './index.component.html',
