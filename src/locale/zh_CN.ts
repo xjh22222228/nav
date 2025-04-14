@@ -313,6 +313,7 @@ const zhCN: Record<string, any> = {
   _noNews: '暂无资讯',
   _52: '52破解',
   _hongshu: '小红书',
+  _toutiao: '今日头条',
 }
 
 export default zhCN

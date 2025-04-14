@@ -15,4 +15,5 @@ export const newsTypeMap = {
   [NewsType.GitHub]: 'GitHub',
   [NewsType.Pojie52]: $t('_52'),
   [NewsType.Xiaohongshu]: $t('_hongshu'),
+  [NewsType.Toutiao]: $t('_toutiao'),
 } as const

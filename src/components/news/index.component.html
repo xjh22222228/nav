@@ -12,7 +12,10 @@
   </div>
 
   <div class="content-box hidden-scrollbar">
-    <div class="nodata" *ngIf="newsList.length === 0">{{ $t('_noNews') }}</div>
+    <app-loading *ngIf="loading" />
+    <div class="nodata" *ngIf="!loading && newsList.length === 0">
+      {{ $t('_noNews') }}
+    </div>
 
     <div
       class="content ellipsis"

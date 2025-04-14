@@ -222,15 +222,16 @@ textarea.ant-input {
   width: 30px;
   height: 30px;
   animation: my-rotatex1 2s linear infinite;
+  .path {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: 0;
+    stroke-width: 5;
+    stroke: #409eff;
+    stroke-linecap: round;
+    animation: loading-dashx2 1.5s ease-in-out infinite;
+  }
 }
-.path {
-  stroke-dasharray: 90, 150;
-  stroke-dashoffset: 0;
-  stroke-width: 5;
-  stroke: #409eff;
-  stroke-linecap: round;
-  animation: loading-dashx2 1.5s ease-in-out infinite;
-}
+
 // loading end
 
 // Google ad

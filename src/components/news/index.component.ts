@@ -19,6 +19,7 @@ import { STORAGE_KEY_MAP } from 'src/constants'
 import { $t } from 'src/locale'
 import { NewsType } from 'src/types'
 import { scrollIntoView } from 'src/utils'
+import { LoadingComponent } from 'src/components/loading/index.component'
 
 interface INewsItem {
   text: string
@@ -29,7 +30,7 @@ interface INewsItem {
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LoadingComponent],
   selector: 'app-news',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
@@ -43,6 +44,7 @@ export class NewsComponent {
   readonly newsTypeMap = newsTypeMap
   activeIndex = 0
   newsListMap: Record<string, INewsItem[]> = {}
+  loading = false
 
   constructor(public readonly jumpService: JumpService) {
     const newsListMap = localStorage.getItem(STORAGE_KEY_MAP.NEWS)
@@ -78,6 +80,13 @@ export class NewsComponent {
   }
 
   private getNews() {
+    const types = this.data['types'] as NewsType[]
+    if (!types || types.length <= 0) {
+      localStorage.removeItem(STORAGE_KEY_MAP.NEWS)
+      localStorage.removeItem(STORAGE_KEY_MAP.NEWS_DATE)
+      return
+    }
+
     const now = Date.now()
     const newsDate = Number(localStorage.getItem(STORAGE_KEY_MAP.NEWS_DATE))
     // 1小时更新一次
@@ -85,20 +94,28 @@ export class NewsComponent {
       return
     }
 
-    getNews({ ...this.data }).then((res) => {
-      this.newsListMap = {
-        ...this.newsListMap,
-        ...res.data,
-      }
-      localStorage.setItem(
-        STORAGE_KEY_MAP.NEWS,
-        JSON.stringify(this.newsListMap)
-      )
-      localStorage.setItem(
-        STORAGE_KEY_MAP.NEWS_DATE,
-        JSON.stringify(Date.now())
-      )
-    })
+    if (this.newsList.length <= 0) {
+      this.loading = true
+    }
+
+    getNews({ ...this.data })
+      .then((res) => {
+        this.newsListMap = {
+          ...this.newsListMap,
+          ...res.data,
+        }
+        localStorage.setItem(
+          STORAGE_KEY_MAP.NEWS,
+          JSON.stringify(this.newsListMap)
+        )
+        localStorage.setItem(
+          STORAGE_KEY_MAP.NEWS_DATE,
+          JSON.stringify(Date.now())
+        )
+      })
+      .finally(() => {
+        this.loading = false
+      })
   }
 
   trackByItem(a: any, item: INewsItem) {
