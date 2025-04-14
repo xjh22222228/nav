@@ -42,6 +42,7 @@ export enum NewsType {
   GitHub = 7,
   Pojie52 = 8,
   Xiaohongshu = 9,
+  Toutiao = 10,
 }
 
 export interface INewsProps {

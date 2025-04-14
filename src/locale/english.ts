@@ -325,7 +325,8 @@ const english: Record<string, any> = {
   _juejin: 'Juejin',
   _noNews: 'No news',
   _52: '52Pojie',
-  _hongshu: '小红书',
+  _hongshu: 'Xiaohongshu',
+  _toutiao: 'Toutiao',
 }
 
 export default english
