@@ -64,10 +64,17 @@
         margin-right: 0;
       }
     }
-
     .mobile-search {
       .engine-main {
         max-width: 95% !important;
+      }
+    }
+    .web-list {
+      .name {
+        font-size: 13px;
+      }
+      .common-icon {
+        border-radius: 2px !important;
       }
     }
   }

@@ -1,29 +1,14 @@
 <div
-  class="web-list dark-scrollbar"
+  class="web-list"
   [class.overflowScroll]="overflow"
-  [class.large]="size === 'large'"
   *ngIf="dataList.length > 0"
 >
-  <div
-    class="wrapper"
-    [nzTooltipTitle]="titleTemplate"
-    nzTooltipPlacement="bottom"
-    nz-button
-    nz-tooltip
-    *ngFor="let item of dataList; trackBy: commonService.trackByItemWeb"
-    (click)="jumpService.goUrl($event, item.url)"
-  >
-    <ng-template #titleTemplate let-thing>
-      <p>{{ item.__name__ || item.name }}</p>
-      {{ item.__desc__ || item.desc }}
-    </ng-template>
-    <div class="logo">
-      <app-logo
-        [src]="item.icon"
-        [name]="item.__name__ || item.name"
-        [size]="35"
-      />
-    </div>
-    <div class="name dark-white ellipsis" [innerHTML]="item.name"></div>
+  <div class="wrapper gap-x-6 gap-y-4 dark-scrollbar">
+    <app-card
+      [dataSource]="item"
+      cardStyle="icon"
+      [iconSize]="iconSize"
+      *ngFor="let item of dataList; trackBy: commonService.trackByItemWeb"
+    />
   </div>
 </div>

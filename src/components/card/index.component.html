@@ -2,6 +2,10 @@
   class="card-container progrcode"
   *ngIf="isCode; else other"
   [innerHTML]="description | safeHtml"
+  [ngStyle]="{
+    'width': cardStyle === 'icon' ? iconSize + 30 + 'px' : '',
+    'height': cardStyle === 'icon' ? iconSize + 30 + 'px' : '',
+  }"
   #root
 ></div>
 
@@ -288,6 +292,45 @@
             [title]="dataSource.__desc__ || dataSource.desc"
           ></pre>
         </div>
+      </div>
+
+      <!-- icon style -->
+      <div
+        class="card-container icon2 ellipsis dark-white"
+        *ngSwitchCase="'icon'"
+        (click)="jumpService.goUrl($event, dataSource.url)"
+        [nzTooltipTitle]="titleTemplate"
+        nzTooltipPlacement="bottom"
+        nz-tooltip
+      >
+        <ng-template #titleTemplate let-thing>
+          <p>{{ dataSource.__name__ || dataSource.name }}</p>
+          {{ dataSource.__desc__ || dataSource.desc }}
+          <tag-list
+            [data]="dataSource.tags"
+            *ngIf="
+              dataSource.tags?.length ||
+              isLogin ||
+              permissions.edit ||
+              permissions.del
+            "
+            [action]="true"
+            (onDelete)="confirmDel()"
+            (onEdit)="openEditWebMoal()"
+            (onMove)="openMoveWebModal()"
+          />
+        </ng-template>
+        <app-logo
+          [src]="dataSource.icon"
+          [name]="dataSource.__name__ || dataSource.name"
+          [size]="iconSize"
+          [radius]="10"
+        />
+        <div
+          class="name dark-white ellipsis"
+          [ngStyle]="{ width: iconSize + 30 + 'px' }"
+          [innerHTML]="dataSource.name"
+        ></div>
       </div>
 
       <!-- column style -->

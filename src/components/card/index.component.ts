@@ -52,6 +52,7 @@ import event from 'src/utils/mitt'
 export class CardComponent {
   @Input() dataSource!: IWebProps
   @Input() cardStyle!: ICardType
+  @Input() iconSize = 60
   @ViewChild('root', { static: false }) root!: ElementRef
 
   readonly $t = $t

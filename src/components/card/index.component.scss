@@ -1,3 +1,9 @@
+::ng-deep .cdk-overlay-container {
+  .tag-action {
+    display: flex !important;
+  }
+}
+
 .card-parent {
   position: relative;
   width: 100%;
@@ -323,11 +329,11 @@
     color: #000;
   }
   .desc {
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 0;
   }
   .bottom {
-    padding: 0 10px;
+    padding: 0 5px;
   }
   .poster-tag {
     z-index: 2;
@@ -336,5 +342,21 @@
     left: 0;
     width: 100%;
     padding: 10px 10px 5px 10px;
+  }
+}
+
+.icon2 {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transform: translate(0, -3px);
+  }
+  .name {
+    margin-top: 2px;
+    text-align: center;
   }
 }
