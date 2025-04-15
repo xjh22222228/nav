@@ -29,6 +29,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
   font-size: 18px;
+}
+
+.common-icon {
+  transition: all 0.1s linear;
 }

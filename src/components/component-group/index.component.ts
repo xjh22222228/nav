@@ -20,6 +20,7 @@ import { debounceTime, takeUntil } from 'rxjs/operators'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import event from 'src/utils/mitt'
 import { isMobile } from 'src/utils'
+import { STORAGE_KEY_MAP } from 'src/constants'
 
 @Component({
   standalone: true,
@@ -49,10 +50,16 @@ export class ComponentGroupComponent {
   components: IComponentProps[] = []
   componentsLength: number = settings.components.length
   widths: number[] = []
-  isShowAll = false
+  isShowAll = !!Number(
+    localStorage.getItem(STORAGE_KEY_MAP.COMPONENT_COLLAPSED)
+  )
   isOver = false
 
   constructor() {
+    if (this.isShowAll) {
+      this.isOver = true
+    }
+
     this.windowResizeSubject
       .pipe(debounceTime(100), takeUntil(this.destroy$))
       .subscribe(() => {
@@ -99,7 +106,9 @@ export class ComponentGroupComponent {
           widths.push((item as HTMLElement).offsetWidth)
         })
         this.widths = widths
-        this.checkOver()
+        if (!this.isShowAll && !this.isOver) {
+          this.checkOver()
+        }
         window.addEventListener('resize', this.windowResize.bind(this))
       })
     }
@@ -114,6 +123,13 @@ export class ComponentGroupComponent {
 
   handleExpand() {
     this.isShowAll = !this.isShowAll
+    localStorage.setItem(
+      STORAGE_KEY_MAP.COMPONENT_COLLAPSED,
+      String(Number(this.isShowAll))
+    )
+    if (!this.isShowAll) {
+      this.checkOver()
+    }
   }
 
   private windowResize(event: Event) {
@@ -144,6 +160,7 @@ export class ComponentGroupComponent {
           return
         }
       }
+
       this.isOver = false
       this.componentsLength = this.components.length
     })

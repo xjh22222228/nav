@@ -93,11 +93,15 @@ export default class ShortcutComponent {
       }
 
       const nodeName = e.target.nodeName
-      if (nodeName === 'APP-LOGO' || nodeName === 'div') {
+
+      if (nodeName === 'APP-LOGO' || nodeName === 'DIV') {
         if (this.iconSize === 0) {
           this.iconSize = imgs[0].clientWidth
         }
-        const index = Number(e.target.dataset.index)
+        let index = Number(e.target.dataset.index)
+        if (Number.isNaN(index)) {
+          index = Number(e.target.parentNode.dataset.index)
+        }
         imgs.forEach((el: HTMLImageElement) => {
           el.style.width = `${this.iconSize}px`
           el.style.height = `${this.iconSize}px`
@@ -124,7 +128,9 @@ export default class ShortcutComponent {
           imgs[index + 2].style.height = `${smallSize}px`
         }
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   getDateTime() {

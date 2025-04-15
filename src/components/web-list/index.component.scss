@@ -1,13 +1,11 @@
 @media (max-width: 768px) {
   .web-list {
-    &.overflowScroll {
+    &.overflowScroll .wrapper {
       padding: 0;
       flex-wrap: nowrap;
       overflow: hidden;
       overflow-x: auto;
     }
-    gap: 10px !important;
-    --iconWidth: 50px;
   }
 }
 
@@ -17,42 +15,8 @@
   display: flex;
   padding: 0 10px;
   flex-wrap: wrap;
-  gap: 25px;
-  &.large {
-    .logo {
-      ::ng-deep {
-        .common-icon {
-          width: var(--iconWidth, 70px) !important;
-          height: var(--iconWidth, 70px) !important;
-          border-radius: 10px !important;
-          font-size: 30px;
-          &::after {
-            font-size: 30px;
-          }
-        }
-      }
-    }
-    .name {
-      width: 70px;
-    }
-  }
-
   .wrapper {
     display: flex;
-    text-align: center;
-    cursor: pointer;
-    align-items: center;
-    flex-direction: column;
-    transition: transform 0.1s ease-in;
-    &:hover {
-      transform: translateY(-2px);
-    }
-  }
-
-  .name {
-    width: 60px;
-    margin-top: 3px;
-    margin-top: 5px;
-    color: #666;
+    flex-wrap: wrap;
   }
 }

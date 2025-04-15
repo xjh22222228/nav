@@ -314,6 +314,7 @@ const zhCN: Record<string, any> = {
   _52: '52破解',
   _hongshu: '小红书',
   _toutiao: '今日头条',
+  _douban: '豆瓣',
 }
 
 export default zhCN

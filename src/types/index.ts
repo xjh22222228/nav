@@ -43,6 +43,7 @@ export enum NewsType {
   Pojie52 = 8,
   Xiaohongshu = 9,
   Toutiao = 10,
+  Douban = 11,
 }
 
 export interface INewsProps {
@@ -112,6 +113,7 @@ export type ICardType =
   | 'retro'
   | 'original'
   | 'poster'
+  | 'icon'
 
 type OverType = 'overflow' | 'ellipsis'
 

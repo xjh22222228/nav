@@ -14,16 +14,15 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { CommonService } from 'src/services/common'
 import { JumpService } from 'src/services/jump'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
-import { NzButtonModule } from 'ng-zorro-antd/button'
-import { LogoComponent } from 'src/components/logo/logo.component'
 import { DEFAULT_SORT_INDEX } from 'src/constants/symbol'
+import { CardComponent } from 'src/components/card/index.component'
 import event from 'src/utils/mitt'
 
 let DEFAULT_WEBSITE: Array<IWebProps> = []
 
 @Component({
   standalone: true,
-  imports: [CommonModule, NzToolTipModule, NzButtonModule, LogoComponent],
+  imports: [CommonModule, NzToolTipModule, CardComponent],
   selector: 'app-web-list',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
@@ -31,7 +30,7 @@ let DEFAULT_WEBSITE: Array<IWebProps> = []
 export class WebListComponent {
   @Input() type: 'dock' | '' = ''
   @Input() dockCount = 4
-  @Input() size: 'large' | '' = ''
+  @Input() iconSize = 70
   @Input() max: number = 110
   @Input() search = true
   @Input() overflow = false
