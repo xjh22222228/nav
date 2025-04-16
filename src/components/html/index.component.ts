@@ -3,9 +3,10 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input, ViewChild, ElementRef } from '@angular/core'
-import type { IComponentProps } from 'src/types'
+import type { IComponentItemProps } from 'src/types'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/utils'
+import { component } from 'src/store'
 
 @Component({
   standalone: true,
@@ -15,10 +16,11 @@ import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/utils'
   styleUrls: ['./index.component.scss'],
 })
 export class HTMLComponent {
-  @Input() data!: IComponentProps
+  @Input() data!: IComponentItemProps
   @ViewChild('root', { static: false }) root!: ElementRef
 
   private parseDescriptionTimer: any
+  readonly component = component
   html = ''
 
   constructor() {}

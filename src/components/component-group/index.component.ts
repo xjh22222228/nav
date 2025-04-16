@@ -4,9 +4,9 @@
 
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { settings, components } from 'src/store'
+import { settings, component } from 'src/store'
 import { ComponentType } from 'src/types'
-import type { IComponentProps } from 'src/types'
+import type { IComponentItemProps } from 'src/types'
 import { CalendarComponent } from 'src/components/calendar/index.component'
 import { RuntimeComponent } from 'src/components/runtime/index.component'
 import { OffWorkComponent } from 'src/components/off-work/index.component'
@@ -47,7 +47,7 @@ export class ComponentGroupComponent {
   private destroy$ = new Subject<void>()
   readonly isMobile = isMobile()
   ComponentType = ComponentType
-  components: IComponentProps[] = []
+  components: IComponentItemProps[] = []
   componentsLength: number = settings.components.length
   widths: number[] = []
   isShowAll = !!Number(
@@ -66,9 +66,9 @@ export class ComponentGroupComponent {
         this.checkOver()
       })
 
-    const c: IComponentProps[] = []
+    const c: IComponentItemProps[] = []
     // 按照系统设置顺序排序显示
-    components.forEach((item) => {
+    component.components.forEach((item) => {
       const has = settings.components.find(
         (c) => c.type === item.type && c.id === item.id
       )

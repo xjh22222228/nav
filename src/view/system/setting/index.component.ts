@@ -12,7 +12,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { SETTING_PATH } from 'src/constants'
 import { CODE_SYMBOL } from 'src/constants/symbol'
 import { updateFileContent, spiderWebs } from 'src/api'
-import { settings, components } from 'src/store'
+import { settings, component } from 'src/store'
 import { isSelfDevelop, compilerTemplate } from 'src/utils/utils'
 import { componentTitleMap } from '../component/types'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
@@ -31,7 +31,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select'
 import { UploadComponent } from 'src/components/upload/index.component'
 import { CardComponent } from 'src/components/card/index.component'
 import { ActionType } from 'src/types'
-import type { IComponentProps, IWebProps } from 'src/types'
+import type { IComponentItemProps, IWebProps } from 'src/types'
 import event from 'src/utils/mitt'
 import footTemplate from 'src/components/footer/template'
 import { replaceJsdelivrCDN } from 'src/utils/pureUtils'
@@ -114,7 +114,7 @@ export default class SystemSettingComponent {
     private notification: NzNotificationService,
     private message: NzMessageService
   ) {
-    this.componentOptions = components.map((item) => {
+    this.componentOptions = component.components.map((item) => {
       const data = settings.components.find(
         (c) => item.type === c.type && item.id === c.id
       )
@@ -266,8 +266,8 @@ export default class SystemSettingComponent {
         lightImages: this.settings.lightImages.filter(filterImage),
         components: formValues.componentOptions
           .map((id: number) => {
-            const data = components.find(
-              (item: IComponentProps) => item.id === id
+            const data = component.components.find(
+              (item: IComponentItemProps) => item.id === id
             )
             return {
               id: data?.id,

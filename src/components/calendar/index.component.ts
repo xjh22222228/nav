@@ -4,8 +4,9 @@
 
 import { Component, Input } from '@angular/core'
 import { getDateTime, getDayOfYear } from 'src/utils'
-import type { IComponentProps } from 'src/types'
+import type { IComponentItemProps } from 'src/types'
 import { $t } from 'src/locale'
+import { component } from 'src/store'
 
 @Component({
   standalone: true,
@@ -14,8 +15,9 @@ import { $t } from 'src/locale'
   styleUrls: ['./index.component.scss'],
 })
 export class CalendarComponent {
-  @Input() data!: IComponentProps
+  @Input() data!: IComponentItemProps
 
+  readonly component = component
   date = ''
   day = ''
   week = ''

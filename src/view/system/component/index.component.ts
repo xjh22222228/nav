@@ -11,9 +11,9 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { updateFileContent } from 'src/api'
 import { COMPONENT_PATH } from 'src/constants'
-import { components } from 'src/store'
+import { component } from 'src/store'
 import { ComponentType } from 'src/types'
-import type { IComponentProps } from 'src/types'
+import type { IComponentItemProps, IComponentProps } from 'src/types'
 import { CalendarDrawerComponent } from 'src/components/calendar/drawer/index.component'
 import { RuntimeDrawerComponent } from 'src/components/runtime/drawer/index.component'
 import { OffWorkDrawerComponent } from 'src/components/off-work/drawer/index.component'
@@ -83,9 +83,9 @@ export default class SystemComponentComponent {
   readonly isSelfDevelop = isSelfDevelop
   readonly componentTitleMap = componentTitleMap
   readonly ComponentType = ComponentType
-  components = components
+  components = component.components
   submitting: boolean = false
-  compoentZoom = components[0]['zoom'] || 1
+  compoentZoom = component.zoom || 1
 
   constructor(
     private message: NzMessageService,
@@ -131,7 +131,7 @@ export default class SystemComponentComponent {
     types[type]?.open(data, idx)
   }
 
-  onAdd(data: IComponentProps) {
+  onAdd(data: IComponentItemProps) {
     let max = Math.max(...this.components.map((item) => item.id))
     max = max <= 0 ? 1 : max + 1
     this.components.push({
@@ -145,10 +145,7 @@ export default class SystemComponentComponent {
   }
 
   handleZoomChange(value: number) {
-    this.components = this.components.map((item) => {
-      item['zoom'] = value
-      return item
-    })
+    component.zoom = value
   }
 
   handleOk(data: any) {
@@ -170,10 +167,14 @@ export default class SystemComponentComponent {
       nzOkText: $t('_confirmSync'),
       nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
+        const params: IComponentProps = {
+          zoom: this.compoentZoom,
+          components: this.components,
+        }
         this.submitting = true
         updateFileContent({
           message: 'update component',
-          content: JSON.stringify(this.components),
+          content: JSON.stringify(params),
           path: COMPONENT_PATH,
         })
           .then(() => {

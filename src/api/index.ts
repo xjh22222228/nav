@@ -13,7 +13,7 @@ import {
   getTagMap,
   searchEngineList,
   internal,
-  components,
+  component,
 } from 'src/store'
 import type { ISettings } from 'src/types'
 import { isSelfDevelop } from 'src/utils/utils'
@@ -81,18 +81,20 @@ export function getContentes() {
       websiteList.splice(0, websiteList.length)
       searchEngineList.splice(0, searchEngineList.length)
       tagList.splice(0, tagList.length)
-      components.splice(0, components.length)
 
       internal.loginViewCount = res.data.internal.loginViewCount
       internal.userViewCount = res.data.internal.userViewCount
       websiteList.push(...res.data.webs)
       tagList.push(...res.data.tags)
       searchEngineList.push(...res.data.search)
-      components.push(...res.data.components)
       const resSettings = res.data.settings as ISettings
       for (const k in resSettings) {
         // @ts-ignore
         settings[k] = resSettings[k]
+      }
+      for (const k in res.data.component) {
+        // @ts-ignore
+        component[k] = res.data.component[k]
       }
       getTagMap()
       event.emit('WEB_REFRESH')

@@ -3,8 +3,9 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
-import type { IComponentProps } from 'src/types'
+import type { IComponentItemProps } from 'src/types'
 import dayjs from 'dayjs'
+import { component } from 'src/store'
 
 interface IProps {
   dateStr: string
@@ -18,8 +19,10 @@ interface IProps {
   styleUrls: ['./index.component.scss'],
 })
 export class CountdownComponent {
-  @Input() data!: IComponentProps
-  component = {} as IProps
+  @Input() data!: IComponentItemProps
+
+  readonly component = component
+  countdownData = {} as IProps
 
   constructor() {}
 
@@ -41,6 +44,6 @@ export class CountdownComponent {
       payload.dayStr = payload.dayStr < 0 ? 0 : payload.dayStr
       payload.dayStr = payload.dayStr > 9999 ? 9999 : payload.dayStr
     }
-    this.component = payload
+    this.countdownData = payload
   }
 }

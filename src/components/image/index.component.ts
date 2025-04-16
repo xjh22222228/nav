@@ -3,8 +3,9 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component, Input } from '@angular/core'
-import type { IComponentProps } from 'src/types'
+import type { IComponentItemProps } from 'src/types'
 import { JumpService } from 'src/services/jump'
+import { component } from 'src/store'
 
 @Component({
   standalone: true,
@@ -13,7 +14,9 @@ import { JumpService } from 'src/services/jump'
   styleUrls: ['./index.component.scss'],
 })
 export class ImageComponent {
-  @Input() data!: IComponentProps
+  @Input() data!: IComponentItemProps
+
+  readonly component = component
 
   constructor(public jumpService: JumpService) {}
 }

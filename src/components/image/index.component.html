@@ -2,7 +2,7 @@
   class="cimage family citems"
   [style.backgroundImage]="data['url'] && 'url(' + data['url'] + ')'"
   [class.cursor-pointer]="data['go']"
-  [style.zoom]="data['zoom']"
+  [style.zoom]="component['zoom']"
   (click)="jumpService.goUrl($event, data['go'])"
 >
   <div class="text">{{ data['text'] }}</div>

@@ -49,6 +49,7 @@ export enum NewsType {
 export interface INewsProps {
   types: NewsType[]
   count: number
+  bgColor: string
 }
 
 export interface ICalendarProps {
@@ -93,8 +94,8 @@ export interface IHolidayProps {
   items: any[]
 }
 
-export interface IComponentProps
-  extends Partial<INewsProps>,
+export interface IComponentItemProps
+  extends Partial<Omit<INewsProps, 'bgColor'>>,
     Partial<ICalendarProps>,
     Partial<IOffWorkProps>,
     Partial<IImageProps>,
@@ -104,6 +105,11 @@ export interface IComponentProps
   id: number
   type: number
   [key: string]: any
+}
+
+export interface IComponentProps {
+  zoom: number
+  components: IComponentItemProps[]
 }
 
 export type ICardType =
@@ -283,7 +289,7 @@ export interface ISettings {
   loadingCode: string
   openSearch: boolean
   gitHubCDN: string
-  components: IComponentProps[]
+  components: IComponentItemProps[]
 
   runtime: number
 

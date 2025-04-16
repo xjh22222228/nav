@@ -63,7 +63,7 @@ const main = async () => {
   let settings = {} as ISettings
   let tags: ITagPropValues[] = []
   let search: any[] = []
-  let components: IComponentProps[] = []
+  let component: IComponentProps = { zoom: 1, components: [] }
 
   try {
     internal = JSON.parse(fs.readFileSync(PATHS.internal).toString())
@@ -75,10 +75,17 @@ const main = async () => {
   }
 
   try {
-    components = JSON.parse(fs.readFileSync(PATHS.component).toString())
+    const components = JSON.parse(fs.readFileSync(PATHS.component).toString())
+    // < 16
+    if (Array.isArray(components)) {
+      component = {
+        zoom: 1,
+        components,
+      }
+    }
   } catch {
   } finally {
-    let idx = components.findIndex(
+    let idx = component.components.findIndex(
       (item) => item['type'] === ComponentType.Calendar
     )
     const calendar = {
@@ -88,15 +95,17 @@ const main = async () => {
       bgColor: '#1d1d1d',
     }
     if (idx >= 0) {
-      components[idx] = {
+      component.components[idx] = {
         ...calendar,
-        ...components[idx],
+        ...component.components[idx],
       }
     } else {
-      components.push(calendar)
+      component.components.push(calendar)
     }
     //
-    idx = components.findIndex((item) => item['type'] === ComponentType.OffWork)
+    idx = component.components.findIndex(
+      (item) => item['type'] === ComponentType.OffWork
+    )
     const offWork = {
       type: ComponentType.OffWork,
       id: -ComponentType.OffWork,
@@ -106,15 +115,17 @@ const main = async () => {
       date: new Date(2018, 3, 26, 18, 0, 0).getTime(),
     }
     if (idx >= 0) {
-      components[idx] = {
+      component.components[idx] = {
         ...offWork,
-        ...components[idx],
+        ...component.components[idx],
       }
     } else {
-      components.push(offWork)
+      component.components.push(offWork)
     }
     //
-    idx = components.findIndex((item) => item['type'] === ComponentType.Image)
+    idx = component.components.findIndex(
+      (item) => item['type'] === ComponentType.Image
+    )
     const image = {
       type: ComponentType.Image,
       id: -ComponentType.Image,
@@ -123,19 +134,19 @@ const main = async () => {
       text: '只有认可，才能强大',
     }
     if (idx >= 0) {
-      components[idx] = {
+      component.components[idx] = {
         ...image,
-        ...components[idx],
+        ...component.components[idx],
       }
-      components[idx]['url'] = replaceJsdelivrCDN(
-        components[idx]['url'],
+      component.components[idx]['url'] = replaceJsdelivrCDN(
+        component.components[idx]['url'],
         settings
       )
     } else {
-      components.push(image)
+      component.components.push(image)
     }
     //
-    idx = components.findIndex(
+    idx = component.components.findIndex(
       (item) => item['type'] === ComponentType.Countdown
     )
     const countdown = {
@@ -150,34 +161,38 @@ const main = async () => {
       date: '2026-02-17',
     }
     if (idx >= 0) {
-      components[idx] = {
+      component.components[idx] = {
         ...countdown,
-        ...components[idx],
+        ...component.components[idx],
       }
-      components[idx]['url'] = replaceJsdelivrCDN(
-        components[idx]['url'],
+      component.components[idx]['url'] = replaceJsdelivrCDN(
+        component.components[idx]['url'],
         settings
       )
     } else {
-      components.push(countdown)
+      component.components.push(countdown)
     }
     //
-    idx = components.findIndex((item) => item['type'] === ComponentType.Runtime)
+    idx = component.components.findIndex(
+      (item) => item['type'] === ComponentType.Runtime
+    )
     const runtime = {
       type: ComponentType.Runtime,
       id: -ComponentType.Runtime,
       title: '已稳定运行',
     }
     if (idx >= 0) {
-      components[idx] = {
+      component.components[idx] = {
         ...runtime,
-        ...components[idx],
+        ...component.components[idx],
       }
     } else {
-      components.push(runtime)
+      component.components.push(runtime)
     }
     //
-    idx = components.findIndex((item) => item['type'] === ComponentType.HTML)
+    idx = component.components.findIndex(
+      (item) => item['type'] === ComponentType.HTML
+    )
     const html = {
       type: ComponentType.HTML,
       id: -ComponentType.HTML,
@@ -186,45 +201,50 @@ const main = async () => {
       bgColor: '#fff',
     }
     if (idx >= 0) {
-      components[idx] = {
+      component.components[idx] = {
         ...html,
-        ...components[idx],
+        ...component.components[idx],
       }
     } else {
-      components.push(html)
+      component.components.push(html)
     }
     //
-    idx = components.findIndex((item) => item['type'] === ComponentType.Holiday)
+    idx = component.components.findIndex(
+      (item) => item['type'] === ComponentType.Holiday
+    )
     const holiday = {
       type: ComponentType.Holiday,
       id: -ComponentType.Holiday,
       items: [],
     }
     if (idx >= 0) {
-      components[idx] = {
+      component.components[idx] = {
         ...holiday,
-        ...components[idx],
+        ...component.components[idx],
       }
     } else {
-      components.push(holiday)
+      component.components.push(holiday)
     }
     //
-    idx = components.findIndex((item) => item['type'] === ComponentType.News)
+    idx = component.components.findIndex(
+      (item) => item['type'] === ComponentType.News
+    )
     const news = {
       type: ComponentType.News,
       id: -ComponentType.News,
+      bgColor: 'linear-gradient(100deg,#2a2d38, rgb(35, 39, 54))',
       types: [],
       count: 0,
     }
     if (idx >= 0) {
-      components[idx] = {
+      component.components[idx] = {
         ...news,
-        ...components[idx],
+        ...component.components[idx],
       }
     } else {
-      components.push(news)
+      component.components.push(news)
     }
-    fs.writeFileSync(PATHS.component, JSON.stringify(components))
+    fs.writeFileSync(PATHS.component, JSON.stringify(component))
   }
 
   {

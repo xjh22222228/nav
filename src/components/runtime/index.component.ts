@@ -4,8 +4,9 @@
 
 import { Component, Input } from '@angular/core'
 import { settings } from 'src/store'
-import type { IComponentProps } from 'src/types'
+import type { IComponentItemProps } from 'src/types'
 import { $t } from 'src/locale'
+import { component } from 'src/store'
 
 @Component({
   standalone: true,
@@ -14,8 +15,9 @@ import { $t } from 'src/locale'
   styleUrls: ['./index.component.scss'],
 })
 export class RuntimeComponent {
-  @Input() data!: IComponentProps
+  @Input() data!: IComponentItemProps
 
+  readonly component = component
   runDays = 0
   unit = ''
 

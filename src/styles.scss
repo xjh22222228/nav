@@ -179,6 +179,7 @@ textarea.ant-input {
   }
 }
 .hidden-scrollbar {
+  scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }

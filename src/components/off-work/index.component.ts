@@ -4,8 +4,9 @@
 
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import type { IComponentProps } from 'src/types'
+import type { IComponentItemProps } from 'src/types'
 import { $t } from 'src/locale'
+import { component } from 'src/store'
 
 @Component({
   standalone: true,
@@ -15,11 +16,12 @@ import { $t } from 'src/locale'
   styleUrls: ['./index.component.scss'],
 })
 export class OffWorkComponent {
-  @Input() data!: IComponentProps
+  @Input() data!: IComponentItemProps
 
+  readonly component = component
+  private timer: any
   countdownStr = ''
   isRest = false
-  private timer: any
 
   constructor() {
     document.addEventListener(

@@ -47,4 +47,6 @@ export let websiteList: INavProps[] = isSelfDevelop
   ? []
   : (dbJson as INavProps[])
 
-export let components: IComponentProps[] = isSelfDevelop ? [] : componentJson
+export let component: IComponentProps = isSelfDevelop
+  ? { zoom: 1, components: [] }
+  : componentJson

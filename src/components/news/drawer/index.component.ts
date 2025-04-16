@@ -59,6 +59,7 @@ export class NewsDrawerComponent {
     this.validateForm = this.fb.group({
       types: [[]],
       count: [0],
+      bgColor: [''],
     })
   }
 

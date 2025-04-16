@@ -1,4 +1,7 @@
-<div class="news citems family" [style.zoom]="data['zoom']">
+<div
+  class="news citems family"
+  [ngStyle]="{ zoom: component['zoom'], background: data['bgColor'] }"
+>
   <div class="tabs hidden-scrollbar" #parent>
     <div
       #item
@@ -11,7 +14,7 @@
     </div>
   </div>
 
-  <div class="content-box hidden-scrollbar">
+  <div class="content-box hidden-scrollbar" #content>
     <app-loading *ngIf="loading" />
     <div class="nodata" *ngIf="!loading && newsList.length === 0">
       {{ $t('_noNews') }}
