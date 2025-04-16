@@ -82,6 +82,8 @@ const main = async () => {
         zoom: 1,
         components,
       }
+    } else {
+      component = components
     }
   } catch {
   } finally {

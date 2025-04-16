@@ -53,6 +53,9 @@ export class NewsDrawerComponent {
     { label: newsTypeMap[NewsType.Xiaohongshu], value: NewsType.Xiaohongshu },
     { label: newsTypeMap[NewsType.Toutiao], value: NewsType.Toutiao },
     { label: newsTypeMap[NewsType.Douban], value: NewsType.Douban },
+    { label: newsTypeMap[NewsType.HackerNews], value: NewsType.HackerNews },
+    { label: newsTypeMap[NewsType.Zhihu], value: NewsType.Zhihu },
+    { label: newsTypeMap[NewsType.ZhihuDaily], value: NewsType.ZhihuDaily },
   ]
 
   constructor(private fb: FormBuilder) {

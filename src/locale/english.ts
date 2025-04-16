@@ -328,6 +328,8 @@ const english: Record<string, any> = {
   _hongshu: 'Xiaohongshu',
   _toutiao: 'Toutiao',
   _douban: 'Douban',
+  _zhihu: 'Zhihu',
+  _zhihuDaily: 'Zhihu Daily',
 }
 
 export default english

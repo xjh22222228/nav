@@ -44,6 +44,9 @@ export enum NewsType {
   Xiaohongshu = 9,
   Toutiao = 10,
   Douban = 11,
+  HackerNews = 12,
+  Zhihu = 13,
+  ZhihuDaily = 14,
 }
 
 export interface INewsProps {
