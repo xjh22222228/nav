@@ -18,7 +18,7 @@ import { JumpService } from 'src/services/jump'
 import { STORAGE_KEY_MAP } from 'src/constants'
 import { $t } from 'src/locale'
 import { NewsType } from 'src/types'
-import { scrollIntoView } from 'src/utils'
+import { scrollIntoViewLeft } from 'src/utils'
 import { LoadingComponent } from 'src/components/loading/index.component'
 import { component } from 'src/store'
 
@@ -69,12 +69,11 @@ export class NewsComponent {
 
   onMouseEnter(index: number) {
     this.activeIndex = index
-    this.scrollIntoViewTabs()
     this.contentRef.nativeElement.scrollTop = 0
   }
 
-  private scrollIntoViewTabs() {
-    scrollIntoView(
+  scrollIntoViewTabs() {
+    scrollIntoViewLeft(
       this.parentElement.nativeElement,
       this.items.toArray()[this.activeIndex].nativeElement,
       {

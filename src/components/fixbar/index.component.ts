@@ -18,6 +18,8 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { cleanWebAttrs } from 'src/utils/pureUtils'
 import mitt from 'src/utils/mitt'
+import { fromEvent, Subscription } from 'rxjs'
+import { debounceTime } from 'rxjs/operators'
 
 @Component({
   standalone: true,
@@ -38,10 +40,12 @@ export class FixbarComponent {
   readonly settings = settings
   readonly language = getLocale()
   readonly isLogin = isLogin
+  private scrollSubscription: Subscription | null = null
   isDark: boolean = isDarkFn()
   websiteList = websiteList
   syncLoading = false
   isShowFace = true
+  isShowTop = false
   entering = false
   open = localStorage.getItem(STORAGE_KEY_MAP.FIXBAR_OPEN) === 'true'
   themeList = [
@@ -110,6 +114,28 @@ export class FixbarComponent {
     }
   }
 
+  onScroll(event: any) {
+    const top = event?.target?.scrollTop || scrollY
+    this.isShowTop = top > 100
+  }
+
+  ngAfterViewInit() {
+    const target = this.selector
+      ? (document.querySelector(this.selector) as HTMLElement)
+      : window
+
+    this.onScroll(target)
+    this.scrollSubscription = fromEvent(target, 'scroll')
+      .pipe(debounceTime(100))
+      .subscribe((event) => this.onScroll(event))
+  }
+
+  ngOnDestroy() {
+    if (this.scrollSubscription) {
+      this.scrollSubscription.unsubscribe()
+    }
+  }
+
   toggleTheme(theme: any) {
     this.router.navigate([theme.url], {
       queryParams: {
@@ -120,18 +146,19 @@ export class FixbarComponent {
   }
 
   goTop() {
+    const config: ScrollToOptions = {
+      top: 0,
+      behavior: 'smooth',
+    }
     if (this.selector) {
       const el = document.querySelector(this.selector)
       if (el) {
-        el.scrollTop = 0
+        el.scrollTo(config)
       }
       return
     }
 
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
+    window.scrollTo(config)
   }
 
   collapse() {

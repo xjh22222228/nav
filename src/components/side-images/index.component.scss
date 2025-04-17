@@ -1,6 +1,6 @@
 .sideimg {
-  width: var(--sideImagesWidth, 230px);
-  min-width: var(--sideImagesWidth, 230px);
+  max-width: 100%;
+  width: 230px;
   max-height: calc(100vh - 50px);
   overflow: hidden;
   overflow-y: auto;

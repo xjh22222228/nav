@@ -1,0 +1,22 @@
+<div
+  #parent
+  class="phone-nav dark-bg-gary md:!hidden"
+  *ngIf="
+    commonService.websiteList[commonService.oneIndex]?.nav?.length &&
+    commonService.websiteList[commonService.oneIndex].nav.length > 1
+  "
+>
+  <div
+    #item
+    class="nav-item dark-text"
+    [class.active]="commonService.twoIndex === i"
+    *ngFor="
+      let item of commonService.websiteList[commonService.oneIndex].nav;
+      index as i;
+      trackBy: commonService.trackByItem
+    "
+    (click)="handleClickTwo($event, item)"
+  >
+    {{ item.title }}
+  </div>
+</div>

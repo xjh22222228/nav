@@ -10,7 +10,7 @@ import {
   QueryList,
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { randomBgImg, removeBgImg, scrollIntoView } from 'src/utils'
+import { randomBgImg, removeBgImg, scrollIntoViewLeft } from 'src/utils'
 import { CommonService } from 'src/services/common'
 import { ComponentGroupComponent } from 'src/components/component-group/index.component'
 import { WebMoreMenuComponent } from 'src/components/web-more-menu/index.component'
@@ -49,7 +49,10 @@ import type { INavProps } from 'src/types'
 })
 export default class LightComponent {
   @ViewChild('parent') parentElement!: ElementRef
+  @ViewChild(ComponentGroupComponent) componentChild!: ComponentGroupComponent
   @ViewChildren('item') items!: QueryList<ElementRef>
+
+  componentMaxWidth = ''
 
   constructor(public commonService: CommonService) {}
 
@@ -70,7 +73,7 @@ export default class LightComponent {
     if (this.isEllipsis) {
       this.commonService.getOverIndex('.top-nav .over-item')
     } else {
-      scrollIntoView(
+      scrollIntoViewLeft(
         this.parentElement.nativeElement,
         this.items.toArray()[this.commonService.oneIndex].nativeElement,
         {
@@ -78,12 +81,19 @@ export default class LightComponent {
         }
       )
     }
+
+    if (this.componentChild) {
+      setTimeout(() => {
+        this.componentMaxWidth =
+          Math.max(...this.componentChild.getWidths()) + 'px'
+      })
+    }
   }
 
   handleClickTop(e: any, data: INavProps) {
     this.commonService.handleClickClass(data.id)
     if (!this.isEllipsis) {
-      scrollIntoView(this.parentElement.nativeElement, e.target)
+      scrollIntoViewLeft(this.parentElement.nativeElement, e.target)
     }
   }
 }

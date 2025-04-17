@@ -2,7 +2,12 @@
   class="news citems family"
   [ngStyle]="{ zoom: component['zoom'], background: data['bgColor'] }"
 >
-  <div class="tabs hidden-scrollbar" #parent>
+  <div
+    class="tabs hidden-scrollbar"
+    #parent
+    (mouseleave)="scrollIntoViewTabs()"
+    (click)="scrollIntoViewTabs()"
+  >
     <div
       #item
       class="tab"

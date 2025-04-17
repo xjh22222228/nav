@@ -2,21 +2,18 @@
   .super-xjh {
     --width: 960px;
     --leftWidth: 180px;
-    --sideImagesWidth: 200px;
   }
 }
 @media (max-width: 998px) {
   .super-xjh {
     --width: 100%;
     --leftWidth: 150px;
-    --sideImagesWidth: 160px;
   }
 }
 @media (max-width: 768px) {
   .super-xjh {
     --width: 100%;
     --leftWidth: 100%;
-    --sideImagesWidth: 100%;
   }
   .main-box {
     flex-direction: column;
@@ -27,10 +24,11 @@
     position: sticky;
     top: 0;
     left: 0;
-  }
-  .left {
-    position: initial !important;
-    max-height: initial !important;
+    .headerbox {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
   ::ng-deep {
     .sideimg {
@@ -45,7 +43,6 @@
   .super-xjh {
     --width: 1150px;
     --leftWidth: 180px;
-    --sideImagesWidth: 250px;
   }
 }
 
@@ -60,7 +57,6 @@
     display: flex;
     align-items: center;
     background-color: #fff;
-    height: 70px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.09);
     .headerbox {
       width: var(--width);
@@ -85,6 +81,7 @@
       font-weight: bold;
       font-size: 18px;
       margin-left: 10px;
+      padding-top: 10px;
       white-space: nowrap;
       &:hover {
         color: #000;
@@ -104,11 +101,13 @@
       }
     }
     .topnav {
+      width: 100%;
       position: relative;
       flex: 1;
       display: flex;
       overflow: hidden;
       overflow-x: auto;
+      padding: 15px 0;
     }
   }
 
@@ -120,7 +119,7 @@
 
   .main-box {
     width: var(--width);
-    margin: 24px auto 40px;
+    margin: 10px auto 40px;
     display: flex;
     flex: 1;
     column-gap: 20px;
@@ -138,6 +137,7 @@
       overflow: hidden;
       overflow-y: auto;
       border: 1px solid transparent;
+      display: none;
       .bar-item {
         padding: 10px 17px;
         cursor: pointer;
@@ -171,7 +171,6 @@
         width: initial;
       }
       .search-t {
-        padding: 8px 12px 0 12px;
         border-bottom: 1px solid #eee;
         margin-bottom: 12px;
       }
@@ -227,8 +226,8 @@
   ::ng-deep {
     .sideimg {
       position: sticky;
+      width: 100%;
       top: var(--stickyTop);
-      min-width: var(--sideImagesWidth);
       max-height: calc(100vh - 110px);
     }
     .standard {

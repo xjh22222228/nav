@@ -15,8 +15,8 @@ import { CountdownComponent } from 'src/components/countdown/index.component'
 import { HTMLComponent } from 'src/components/html/index.component'
 import { HolidayComponent } from 'src/components/holiday/index.component'
 import { NewsComponent } from 'src/components/news/index.component'
-import { Subject } from 'rxjs'
-import { debounceTime, takeUntil } from 'rxjs/operators'
+import { fromEvent, Subscription } from 'rxjs'
+import { debounceTime } from 'rxjs/operators'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import event from 'src/utils/mitt'
 import { isMobile } from 'src/utils'
@@ -43,8 +43,7 @@ import { STORAGE_KEY_MAP } from 'src/constants'
 export class ComponentGroupComponent {
   @Input() direction: 'column' | '' = ''
 
-  private windowResizeSubject = new Subject<Event>()
-  private destroy$ = new Subject<void>()
+  private scrollSubscription: Subscription | null = null
   readonly isMobile = isMobile()
   ComponentType = ComponentType
   components: IComponentItemProps[] = []
@@ -59,12 +58,6 @@ export class ComponentGroupComponent {
     if (this.isShowAll) {
       this.isOver = true
     }
-
-    this.windowResizeSubject
-      .pipe(debounceTime(100), takeUntil(this.destroy$))
-      .subscribe(() => {
-        this.checkOver()
-      })
 
     const c: IComponentItemProps[] = []
     // 按照系统设置顺序排序显示
@@ -100,24 +93,30 @@ export class ComponentGroupComponent {
       this.components.length
     ) {
       requestAnimationFrame(() => {
-        const items = document.querySelectorAll('.component-group .citems')
-        const widths: number[] = []
-        items.forEach((item) => {
-          widths.push((item as HTMLElement).offsetWidth)
-        })
-        this.widths = widths
+        this.widths = this.getWidths()
         if (!this.isShowAll && !this.isOver) {
           this.checkOver()
         }
-        window.addEventListener('resize', this.windowResize.bind(this))
+        this.scrollSubscription = fromEvent(window, 'resize')
+          .pipe(debounceTime(100))
+          .subscribe(() => this.checkOver())
       })
     }
   }
 
+  public getWidths(): number[] {
+    const items = document.querySelectorAll('.component-group .citems')
+    const widths: number[] = []
+    items.forEach((item) => {
+      widths.push((item as HTMLElement).offsetWidth)
+    })
+    return widths
+  }
+
   ngOnDestroy() {
-    window.removeEventListener('resize', this.windowResize.bind(this))
-    this.destroy$.next()
-    this.destroy$.complete()
+    if (this.scrollSubscription) {
+      this.scrollSubscription.unsubscribe()
+    }
     event.off('COMPONENT_CHECK_OVER')
   }
 
@@ -130,10 +129,6 @@ export class ComponentGroupComponent {
     if (!this.isShowAll) {
       this.checkOver()
     }
-  }
-
-  private windowResize(event: Event) {
-    this.windowResizeSubject.next(event)
   }
 
   private checkOver() {

@@ -5,9 +5,9 @@
     class="position-center"
   />
 
-  <header class="sheader dark-bg">
+  <header class="sheader dark-bg-gary dark-shadow">
     <div class="headerbox">
-      <div class="hitem">
+      <div class="hitem md:!pt-0">
         <img
           class="logo"
           [src]="commonService.settings.favicon"
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div class="topnav dark-scrollbar" #parent>
+      <div class="topnav" #parent>
         <div
           #item
           *ngFor="
@@ -52,13 +52,18 @@
   </header>
 
   <div class="component-box" *ngIf="commonService.settings.components.length">
-    <component-group></component-group>
+    <component-group />
   </div>
+
+  <app-phone-class class="mt-5" />
 
   <div class="main-box">
     <div
-      class="left dark-bg dark-border-color dark-scrollbar"
-      *ngIf="commonService.websiteList[commonService.oneIndex]"
+      class="left dark-bg dark-border-color md:!block"
+      *ngIf="
+        commonService.websiteList[commonService.oneIndex]?.nav?.length &&
+        commonService.websiteList[commonService.oneIndex].nav.length > 1
+      "
     >
       <div
         class="bar-item dark-text dark-hover ellipsis"
@@ -83,7 +88,7 @@
       <div class="search-t dark-border-color">
         <app-search />
 
-        <div class="bar dark-scrollbar select-none" #parentThree>
+        <div class="bar select-none" #parentThree>
           <div
             #itemThree
             class="bar-item"
@@ -139,7 +144,10 @@
       </div>
     </div>
 
-    <app-side-images [data]="commonService.settings.superImages" />
+    <app-side-images
+      [data]="commonService.settings.superImages"
+      class="md:w-[200px] lg:w-[230px] xl:w-[250px]"
+    />
   </div>
 
   <app-footer [content]="commonService.settings.superFooterHTML" />

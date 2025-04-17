@@ -61,8 +61,14 @@
     class="common-show wrapper dark-bg dark-border-color dark-action-hover"
     (click)="toggleMode()"
   >
-    <i class="iconfont icondark dark" *ngIf="!isDark"></i>
-    <img class="iconfont icondark" src="assets/img/light.svg" *ngIf="isDark" />
+    <img
+      class="iconfont icondark"
+      src="assets/img/light.svg"
+      *ngIf="isDark; else dark"
+    />
+    <ng-template #dark>
+      <i class="iconfont icondark dark" *ngIf="!isDark"></i>
+    </ng-template>
   </div>
 
   <div
@@ -73,13 +79,23 @@
     <img
       class="iconfont"
       src="assets/img/china.svg"
-      *ngIf="language === 'zh-CN'"
+      *ngIf="language === 'zh-CN'; else en"
     />
-    <img
-      class="iconfont"
-      src="assets/img/ua.svg"
-      *ngIf="!language || language === 'en'"
-    />
+    <ng-template #en>
+      <img class="iconfont" src="assets/img/ua.svg" />
+    </ng-template>
+  </div>
+
+  <div
+    class="wrapper scrolltop dark-bg dark-border-color dark-action-hover"
+    (click)="goTop()"
+    [class.showTop]="isShowTop"
+    *ngIf="showTop"
+  >
+    <i
+      class="iconfont iconjiantouarrow483 arrow"
+      style="color: rgb(61, 136, 82)"
+    ></i>
   </div>
 
   <div
@@ -92,17 +108,6 @@
       [class.iconxiaolian]="open"
       [class.iconxiaolian-02]="!open"
       style="color: rgb(231, 127, 81); font-size: 22px"
-    ></i>
-  </div>
-
-  <div
-    class="wrapper dark-bg dark-border-color dark-action-hover"
-    (click)="goTop()"
-    *ngIf="showTop"
-  >
-    <i
-      class="iconfont iconjiantouarrow483 arrow"
-      style="color: rgb(61, 136, 82)"
     ></i>
   </div>
 </div>

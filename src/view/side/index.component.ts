@@ -4,8 +4,8 @@
 
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import type { INavProps } from 'src/types'
-import { isMobile } from 'src/utils'
+import type { INavProps, INavTwoProp } from 'src/types'
+import { isMobile, isDark } from 'src/utils'
 import { websiteList } from 'src/store'
 import { settings } from 'src/store'
 import { $t } from 'src/locale'
@@ -25,14 +25,19 @@ import { SwiperComponent } from 'src/components/swiper/index.component'
 import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.component'
 import { WebListComponent } from 'src/components/web-list/index.component'
 import { ClassTabsComponent } from 'src/components/class-tabs/index.component'
+import { NzIconModule } from 'ng-zorro-antd/icon'
+import { LogoComponent } from 'src/components/logo/logo.component'
 import event from 'src/utils/mitt'
 
 function getDefaultCollapsed(): boolean {
+  if (isMobile()) {
+    return false
+  }
   const localCollapsed = localStorage.getItem(STORAGE_KEY_MAP.SIDE_COLLAPSED)
   if (localCollapsed) {
     return localCollapsed === 'true'
   }
-  return isMobile() || settings.sideCollapsed
+  return settings.sideCollapsed
 }
 
 @Component({
@@ -53,6 +58,8 @@ function getDefaultCollapsed(): boolean {
     NzLayoutModule,
     SwiperComponent,
     ClassTabsComponent,
+    NzIconModule,
+    LogoComponent,
   ],
   selector: 'app-side',
   templateUrl: './index.component.html',
@@ -60,16 +67,37 @@ function getDefaultCollapsed(): boolean {
 })
 export default class SideComponent {
   readonly $t = $t
+  isDark = isDark()
   websiteList: INavProps[] = websiteList
   isCollapsed = getDefaultCollapsed()
+  openSidebar = false
   menuOpenId = 0
 
   constructor(public commonService: CommonService) {
     this.menuOpenId = this.websiteList[commonService.oneIndex]?.id || 0
+
+    event.on('EVENT_DARK', (isDark: unknown) => {
+      this.isDark = isDark as boolean
+    })
+  }
+
+  get logoImage() {
+    return this.isDark
+      ? this.commonService.settings.darkLogo || this.commonService.settings.logo
+      : this.commonService.settings.logo || this.commonService.settings.darkLogo
   }
 
   openMenu(item: INavProps) {
     this.menuOpenId = item.id
+  }
+
+  toggleSidebar(openSidebar?: boolean) {
+    this.openSidebar = openSidebar ?? !this.openSidebar
+    if (this.openSidebar) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
   }
 
   handleCollapsed() {
@@ -81,5 +109,10 @@ export default class SideComponent {
     setTimeout(() => {
       event.emit('COMPONENT_CHECK_OVER')
     }, 300)
+  }
+
+  onClickNav(item: INavTwoProp) {
+    this.commonService.handleClickClass(item.id)
+    this.toggleSidebar(false)
   }
 }

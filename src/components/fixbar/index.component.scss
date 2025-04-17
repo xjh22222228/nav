@@ -1,13 +1,35 @@
+@media (min-width: 768px) {
+  .wrapper {
+    &:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+      transform: scale(1.2);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .fixbar {
-  z-index: 11;
+  z-index: 30;
   position: fixed;
-  bottom: 60px;
+  bottom: 20px;
   right: 15px;
   user-select: none;
   &.openFixbar {
     .common-show {
       visibility: visible !important;
       opacity: 1 !important;
+    }
+    .scrolltop {
+      opacity: 1 !important;
+      visibility: visible !important;
     }
   }
 
@@ -23,13 +45,19 @@
     border-radius: 50%;
     background-color: #fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    &:hover {
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-      transform: scale(1.2);
-    }
+    transition: all 0.1s linear;
     &.common-show {
       visibility: hidden;
       opacity: 0;
+    }
+  }
+
+  .scrolltop {
+    visibility: hidden;
+    opacity: 0;
+    &.showTop {
+      visibility: visible;
+      animation: fadeIn 0.5s linear forwards;
     }
   }
 

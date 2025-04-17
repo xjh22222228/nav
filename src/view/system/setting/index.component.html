@@ -3,17 +3,17 @@
     <nz-form-label [nzSpan]="4">{{ $t('_webLogo') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <label id="file">
-        <img [src]="settings.favicon" class="logo" />
-        <span style="white-space: nowrap; margin-top: 5px">
+        <img [src]="settings.favicon" class="w-14 h-14 object-cover" />
+        <span>
           {{ $t('_updateLogo') }}
         </span>
-        <app-upload (onChange)="onLogoChange($event)"></app-upload>
+        <app-upload (onChange)="onLogoChange($event, 'favicon')"></app-upload>
         <div>
           <input
             class="logo-input"
             nz-input
             [value]="settings.favicon"
-            (change)="onLogoChange($event)"
+            (change)="onLogoChange($event, 'favicon')"
           />
         </div>
       </label>
@@ -21,29 +21,53 @@
   </nz-form-item>
 
   <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_logoImg') }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-input-group [nzSuffix]="suffixLogo">
+        <input nz-input formControlName="logo" />
+      </nz-input-group>
+      <ng-template #suffixLogo>
+        <app-upload (onChange)="onLogoChange($event, 'logo')" />
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_logoDarkImg') }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <nz-input-group [nzSuffix]="suffixDarkLogo">
+        <input nz-input formControlName="darkLogo" />
+      </nz-input-group>
+      <ng-template #suffixDarkLogo>
+        <app-upload (onChange)="onLogoChange($event, 'darkLogo')" />
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
     <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_title') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
+    <nz-form-control [nzSpan]="20">
       <input nz-input formControlName="title" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_webDesc') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
+    <nz-form-control [nzSpan]="20">
       <input nz-input formControlName="description" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_keywords') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
+    <nz-form-control [nzSpan]="20">
       <input nz-input formControlName="keywords" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_defLanguage') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
+    <nz-form-control [nzSpan]="20">
       <nz-select formControlName="language">
         <nz-option nzValue="zh-CN" nzLabel="简体中文"></nz-option>
         <nz-option nzValue="en" nzLabel="English"></nz-option>
@@ -53,7 +77,7 @@
 
   <nz-form-item *ngIf="!isSelfDevelop">
     <nz-form-label [nzSpan]="4">{{ $t('_imageCDN') }}</nz-form-label>
-    <nz-form-control [nzSpan]="10">
+    <nz-form-control [nzSpan]="20">
       <nz-select formControlName="gitHubCDN">
         <nz-option
           nzValue="gcore.jsdelivr.net"
@@ -89,7 +113,7 @@
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4">Email</nz-form-label>
-    <nz-form-control [nzSpan]="10">
+    <nz-form-control [nzSpan]="20">
       <input
         nz-input
         formControlName="email"
@@ -173,7 +197,7 @@
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4">DIY Loading code</nz-form-label>
-    <nz-form-control [nzSpan]="10">
+    <nz-form-control [nzSpan]="20">
       <textarea
         nz-input
         formControlName="loadingCode"
@@ -634,11 +658,7 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ $t('_title') }}</nz-form-label>
         <nz-form-control [nzSpan]="10">
-          <input
-            nz-input
-            formControlName="simTitle"
-            [placeholder]="$t('_defaultTitle')"
-          />
+          <input nz-input formControlName="simTitle" />
         </nz-form-control>
       </nz-form-item>
 
@@ -794,7 +814,7 @@
 
       <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ $t('_sidebarTitle') }}</nz-form-label>
-        <nz-form-control [nzSpan]="10">
+        <nz-form-control [nzSpan]="20">
           <input
             nz-input
             formControlName="sideTitle"
@@ -805,7 +825,7 @@
 
       <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ $t('_cardStyle') }}</nz-form-label>
-        <nz-form-control [nzSpan]="10">
+        <nz-form-control [nzSpan]="20">
           <nz-radio-group formControlName="sideCardStyle">
             <label nz-radio nzValue="standard">{{ $t('_standard') }}</label>
             <label nz-radio nzValue="poster">{{ $t('_poster') }}</label>

@@ -317,6 +317,8 @@ const zhCN: Record<string, any> = {
   _douban: '豆瓣',
   _zhihu: '知乎',
   _zhihuDaily: '知乎日报',
+  _logoImg: 'Logo图',
+  _logoDarkImg: 'Logo暗黑图',
 }
 
 export default zhCN

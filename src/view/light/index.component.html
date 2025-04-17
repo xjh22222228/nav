@@ -1,20 +1,24 @@
-<div
-  class="index-wrapper dark-bg"
-  [class.noimg]="commonService.settings.lightImages.length <= 0"
->
-  <div class="light-box">
+<div class="index-wrapper dark-bg md:!pt-4">
+  <div class="light-box max-[1000px]:w-full">
     <div
       class="component-box hidden-scrollbar hidden 2xl:block"
       *ngIf="commonService.settings.components.length"
+      [ngStyle]="{ width: componentMaxWidth }"
     >
-      <component-group direction="column"></component-group>
+      <component-group #componentChild direction="column"></component-group>
     </div>
 
-    <main class="homepage dark-border-color dark-bg">
+    <main
+      class="homepage dark-border-color dark-bg xl:w-[1000px] lg:w-[800px]"
+      [ngClass]="{
+        '2xl:w-[1200px]':
+          commonService.settings.lightImages.length <= 0 && !componentMaxWidth
+      }"
+    >
       <nav
         #parent
         *ngIf="commonService.websiteList.length"
-        class="top-nav dark-scrollbar dark-border-color dark-bg"
+        class="top-nav dark-border-color dark-bg"
       >
         <span
           #item
@@ -47,28 +51,28 @@
 
       <section class="index-section select-none dark-bg">
         <div
-          class="sidebar dark-bg dark-border-color dark-scrollbar"
-          id="sidebar"
+          class="sidebar dark-bg dark-border-color auto-scrollbar"
+          *ngIf="
+            commonService.websiteList[commonService.oneIndex] &&
+            commonService.websiteList[commonService.oneIndex].nav.length > 1
+          "
         >
-          <div *ngIf="commonService.websiteList[commonService.oneIndex]">
-            <div
-              class="tag dark-text"
-              [class.active]="commonService.twoIndex === i"
-              [class.dark-item-active]="commonService.twoIndex === i"
-              (click)="commonService.handleClickClass(item.id)"
-              *ngFor="
-                let item of commonService.websiteList[commonService.oneIndex]
-                  .nav;
-                index as i;
-                trackBy: commonService.trackByItem
-              "
-            >
-              {{ item.title }}
-            </div>
+          <div
+            class="tag dark-text"
+            [class.active]="commonService.twoIndex === i"
+            [class.dark-item-active]="commonService.twoIndex === i"
+            (click)="commonService.handleClickClass(item.id)"
+            *ngFor="
+              let item of commonService.websiteList[commonService.oneIndex].nav;
+              index as i;
+              trackBy: commonService.trackByItem
+            "
+          >
+            {{ item.title }}
           </div>
         </div>
 
-        <div class="main dark-scrollbar" id="main-scroll">
+        <div class="main" id="main-scroll">
           <app-search />
           <div
             class="px-2 sticky top-0 left-0 z-10"
@@ -132,7 +136,7 @@
     </main>
 
     <app-side-images
-      class="app-side"
+      class="max-[1280px]:w-[200px] max-[1080px]:hidden"
       [data]="commonService.settings.lightImages"
     />
   </div>

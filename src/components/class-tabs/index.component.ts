@@ -12,9 +12,9 @@ import {
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import type { INavThreeProp } from 'src/types'
-import { scrollIntoView } from 'src/utils'
-import { Subject } from 'rxjs'
-import { debounceTime, takeUntil } from 'rxjs/operators'
+import { scrollIntoViewLeft } from 'src/utils'
+import { fromEvent, Subscription } from 'rxjs'
+import { debounceTime } from 'rxjs/operators'
 
 @Component({
   standalone: true,
@@ -32,17 +32,10 @@ export class ClassTabsComponent {
 
   activeIndex = 0
   private toolbarItems: HTMLElement[] = []
-  private scrollSubject = new Subject<Event>()
-  private destroy$ = new Subject<void>()
+  private scrollSubscription: Subscription | null = null
   private disableScrollEvent = false
 
-  constructor() {
-    this.scrollSubject
-      .pipe(debounceTime(55), takeUntil(this.destroy$))
-      .subscribe((event) => {
-        this.handleScroll(event)
-      })
-  }
+  constructor() {}
 
   ngOnChanges() {
     this.selectTab(0)
@@ -54,17 +47,19 @@ export class ClassTabsComponent {
   }
 
   ngOnDestroy() {
-    const target = this.getTarget()
-    target.removeEventListener('scroll', this.onScroll.bind(this))
-    this.destroy$.next()
-    this.destroy$.complete()
+    if (this.scrollSubscription) {
+      this.scrollSubscription.unsubscribe()
+    }
   }
 
   ngAfterViewInit() {
     this.getToolbarItems()
     this.setAnchor()
     const target = this.getTarget()
-    target.addEventListener('scroll', this.onScroll.bind(this))
+
+    this.scrollSubscription = fromEvent(target, 'scroll')
+      .pipe(debounceTime(100))
+      .subscribe((event) => this.handleScroll(event))
   }
 
   private getTarget() {
@@ -77,10 +72,6 @@ export class ClassTabsComponent {
     this.toolbarItems = Array.from(
       document.querySelectorAll('.nav-wrapper')
     ) as HTMLElement[]
-  }
-
-  private onScroll(e: any) {
-    this.scrollSubject.next(e)
   }
 
   private handleScroll(e: any) {
@@ -97,12 +88,6 @@ export class ClassTabsComponent {
     const scrollPosition =
       scrollY + this.parentElement.nativeElement.offsetHeight
 
-    const cb = (index: number) => {
-      if (this.activeIndex === index) return
-      this.activeIndex = index
-      this.scrollIntoViewTabs()
-      this.setAnchor()
-    }
     this.toolbarItems.forEach((item, index) => {
       const itemTop = item.offsetTop
       const itemBottom = itemTop + item.offsetHeight
@@ -126,7 +111,7 @@ export class ClassTabsComponent {
   }
 
   private scrollIntoViewTabs() {
-    scrollIntoView(
+    scrollIntoViewLeft(
       this.parentElement.nativeElement,
       this.items.toArray()[this.activeIndex].nativeElement,
       {

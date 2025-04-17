@@ -31,7 +31,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select'
 import { UploadComponent } from 'src/components/upload/index.component'
 import { CardComponent } from 'src/components/card/index.component'
 import { ActionType } from 'src/types'
-import type { IComponentItemProps, IWebProps } from 'src/types'
+import type { IComponentItemProps, IWebProps, ThemeType } from 'src/types'
 import event from 'src/utils/mitt'
 import footTemplate from 'src/components/footer/template'
 import { replaceJsdelivrCDN } from 'src/utils/pureUtils'
@@ -94,7 +94,7 @@ export default class SystemSettingComponent {
   webDemoData: IWebProps = {
     id: -1,
     name: '发现导航',
-    desc: '发现导航 , 最强轻量级导航网站',
+    desc: '发现导航是一个轻量级免费且强大的导航网站',
     url: 'https://nav3.cn',
     icon: replaceJsdelivrCDN(
       'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/logo.svg',
@@ -114,6 +114,16 @@ export default class SystemSettingComponent {
     private notification: NzNotificationService,
     private message: NzMessageService
   ) {
+    const themeMap: Record<ThemeType, number> = {
+      Light: 0,
+      Super: 1,
+      Sim: 2,
+      Side: 3,
+      Shortcut: 4,
+      App: 5,
+    }
+    this.tabActive = themeMap[settings.theme] || 0
+
     this.componentOptions = component.components.map((item) => {
       const data = settings.components.find(
         (c) => item.type === c.type && item.id === c.id
@@ -159,8 +169,9 @@ export default class SystemSettingComponent {
       .setValue(footTemplate[v]?.trim?.() || '')
   }
 
-  onLogoChange(data: any) {
-    this.settings.favicon = data.cdn || ''
+  onLogoChange(data: any, key: string) {
+    this.settings[key] = data.cdn || ''
+    this.validateForm.get(key)?.setValue(this.settings[key])
   }
 
   onBannerChange(data: any, key: string, idx: number) {

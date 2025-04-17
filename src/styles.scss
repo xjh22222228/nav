@@ -185,6 +185,33 @@ textarea.ant-input {
   }
 }
 
+.auto-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &:hover {
+    &::-webkit-scrollbar {
+      display: block;
+    }
+  }
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(124, 124, 124);
+}
+::-webkit-scrollbar-thumb {
+  background-color: #82828280;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-corner {
+  background: #000;
+  border-radius: 0 0 8px 0;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
 // loading start
 @keyframes my-rotatex1 {
   0% {

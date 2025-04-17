@@ -32,7 +32,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of searchList; index as idx; trackBy: trackByItem">
+    <tr *ngFor="let data of searchList; index as idx">
       <td>
         <input nz-input [(ngModel)]="data.name" maxlength="10" />
       </td>

@@ -1,3 +1,16 @@
+@media (hover: hover) and (pointer: fine) {
+  .example2,
+  .original2 {
+    &:hover {
+      border: 1px solid #78b7fa;
+      transform: translateY(-3px);
+      .title {
+        color: #007bff;
+      }
+    }
+  }
+}
+
 ::ng-deep .cdk-overlay-container {
   .tag-action {
     display: flex !important;
@@ -129,13 +142,6 @@
   transition: all 0.15s linear;
   color: #000;
   display: block;
-  &:hover {
-    border: 1px solid #78b7fa;
-    transform: translateY(-3px);
-    .title {
-      color: #007bff;
-    }
-  }
   &.noDesc {
     .title {
       font-size: 16px;
@@ -176,13 +182,6 @@
   transition: all 0.15s linear;
   color: #000;
   display: block;
-  &:hover {
-    border: 1px solid #78b7fa;
-    transform: translateY(-3px);
-    .title {
-      color: #007bff;
-    }
-  }
   .title {
     width: 100%;
     font-weight: 500;
@@ -261,7 +260,7 @@
     transform: translate(0, -3px);
   }
   .item-list {
-    z-index: 111;
+    z-index: 6;
     position: relative;
     overflow: hidden;
   }

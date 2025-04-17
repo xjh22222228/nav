@@ -8,14 +8,14 @@ import {
   IWebProps,
   INavThreeProp,
   INavProps,
-  ISearchProps,
+  ISearchItemProps,
   IWebTag,
 } from '../types'
 import { STORAGE_KEY_MAP } from 'src/constants'
 import { CODE_SYMBOL } from 'src/constants/symbol'
 import { isLogin } from './user'
 import { SearchType } from 'src/components/search/index'
-import { websiteList, searchEngineList, settings, tagMap } from 'src/store'
+import { websiteList, search, settings, tagMap } from 'src/store'
 import { $t } from 'src/locale'
 
 export function randomInt(max: number) {
@@ -308,13 +308,13 @@ export function setLocation() {
   )
 }
 
-export function getDefaultSearchEngine(): ISearchProps {
-  let DEFAULT = (searchEngineList[0] || {}) as ISearchProps
+export function getDefaultSearchEngine(): ISearchItemProps {
+  let DEFAULT = (search.list[0] || {}) as ISearchItemProps
   try {
     const engine = window.localStorage.getItem(STORAGE_KEY_MAP.SEARCH_ENGINE)
     if (engine) {
       const local = JSON.parse(engine)
-      const findItem = searchEngineList.find((item) => item.name === local.name)
+      const findItem = search.list.find((item) => item.name === local.name)
       if (findItem) {
         DEFAULT = findItem
       }
@@ -323,7 +323,7 @@ export function getDefaultSearchEngine(): ISearchProps {
   return DEFAULT
 }
 
-export function setDefaultSearchEngine(engine: ISearchProps) {
+export function setDefaultSearchEngine(engine: ISearchItemProps) {
   window.localStorage.setItem(
     STORAGE_KEY_MAP.SEARCH_ENGINE,
     JSON.stringify(engine)
@@ -440,7 +440,9 @@ export function getOverIndex(selector: string): number {
 }
 
 export function isMobile() {
-  return 'ontouchstart' in window
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  )
 }
 
 // 今年第几天
@@ -543,11 +545,14 @@ export function getClassById(id: unknown, initValue = 0, isWebId = false) {
   return { parentId, oneIndex, twoIndex, threeIndex, breadcrumb } as const
 }
 
-export function scrollIntoView(
+export function scrollIntoViewLeft(
   parentElement: HTMLElement,
   target: HTMLElement,
   config?: ScrollToOptions
 ) {
+  if (!parentElement || !target) {
+    return
+  }
   const containerWidth = parentElement.offsetWidth
   const categoryWidth = target.offsetWidth
   const categoryLeft = target.offsetLeft

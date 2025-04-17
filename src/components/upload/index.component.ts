@@ -54,9 +54,8 @@ export class UploadComponent {
         that.uploading = true
         const iconUrl = this.result as string
         const url = iconUrl.split(',')[1]
-        // fileName 方便自动带上文件后缀
-        const fileName = file.name.replace(/\s/gi, '')
-        const path = `${Date.now()}_${fileName}`
+        const mime = `.${file.name.split('.').at(-1) || 'png'}`
+        const path = `${Date.now()}${mime}`
 
         createFile({
           branch: getImageRepo().branch,

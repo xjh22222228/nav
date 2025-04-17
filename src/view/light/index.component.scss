@@ -1,39 +1,8 @@
-@media (max-width: 1280px) {
-  .index-wrapper {
-    --width: 800px;
-    --sideImagesWidth: 200px;
-  }
-  .index-wrapper.noimg {
-    --width: 1000px;
-  }
-}
-
-@media (max-width: 1080px) {
-  .index-wrapper {
-    --width: 800px !important;
-  }
-  .app-side {
-    display: none;
-  }
-}
-
-@media (max-width: 1000px) {
-  .light-box {
-    width: 100% !important;
-  }
-}
-
-@media (max-width: 810px) {
-  .index-wrapper {
-    --top: 0;
-  }
-}
-
 .index-wrapper {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  padding-top: var(--top, 15px);
+  padding-top: 0;
   overflow: hidden;
   .light-box {
     display: flex;
@@ -44,14 +13,13 @@
     overflow: hidden;
   }
   .component-box {
-    width: 320px;
+    max-width: 320px;
     overflow: hidden;
     overflow-y: auto;
   }
 }
 
 .homepage {
-  width: var(--width, 1000px);
   height: 100%;
   position: relative;
   background: #f9f9f9;
@@ -98,13 +66,15 @@
   position: relative;
   height: calc(100% - 52px);
   overflow: hidden;
+  display: flex;
 
   // 侧边栏分类
   $sidebarWidth: 80px;
   .sidebar {
     position: relative;
     width: $sidebarWidth;
-    height: calc(100% - 25px);
+    min-width: $sidebarWidth;
+    height: 98%;
     text-align: center;
     border-right: 1px solid #eee;
     overflow: hidden;
@@ -138,11 +108,7 @@
   }
 
   .main {
-    width: calc(100% - #{$sidebarWidth});
-    position: absolute;
-    top: 0;
-    left: $sidebarWidth;
-    bottom: 30px;
+    flex: 1;
     padding-bottom: 50px;
     overflow: hidden;
     overflow-y: auto;

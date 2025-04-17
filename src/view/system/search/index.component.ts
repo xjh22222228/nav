@@ -7,11 +7,11 @@ import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import type { ISearchProps } from 'src/types'
+import type { ISearchItemProps, ISearchProps } from 'src/types'
 import { updateFileContent } from 'src/api'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { SEARCH_PATH } from 'src/constants'
-import { searchEngineList } from 'src/store'
+import { search } from 'src/store'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzTableModule } from 'ng-zorro-antd/table'
 import { NzInputModule } from 'ng-zorro-antd/input'
@@ -40,7 +40,7 @@ import { isSelfDevelop } from 'src/utils/utils'
 export default class SystemSearchComponent {
   readonly $t = $t
   readonly isSelfDevelop = isSelfDevelop
-  searchList: ISearchProps[] = searchEngineList
+  searchList: ISearchItemProps[] = search.list
   submitting: boolean = false
 
   constructor(
@@ -99,23 +99,13 @@ export default class SystemSearchComponent {
       nzOkText: $t('_confirmSync'),
       nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
-        const o = {}
-        this.searchList.forEach((item) => {
-          if (item.name.trim()) {
-            // @ts-ignore
-            o[item.name] = null
-          }
-        })
-
-        if (Object.keys(o).length !== this.searchList.length) {
-          this.message.error($t('_repeatAdd'))
-          return
-        }
-
         this.submitting = true
+        const params: ISearchProps = {
+          list: this.searchList.filter((item) => item.name.trim()),
+        }
         updateFileContent({
           message: 'update search',
-          content: JSON.stringify(this.searchList),
+          content: JSON.stringify(params),
           path: SEARCH_PATH,
         })
           .then(() => {
@@ -126,10 +116,6 @@ export default class SystemSearchComponent {
           })
       },
     })
-  }
-
-  trackByItem(a: any, item: any) {
-    return item.name
   }
 
   onChangeUpload(path: any, idx: number) {

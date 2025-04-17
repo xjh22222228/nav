@@ -28,6 +28,7 @@ import type {
   INavProps,
   InternalProps,
   IComponentProps,
+  ISearchProps,
 } from '../src/types/index'
 import { ComponentType } from '../src/types/index'
 
@@ -62,16 +63,91 @@ const main = async () => {
   let internal = {} as InternalProps
   let settings = {} as ISettings
   let tags: ITagPropValues[] = []
-  let search: any[] = []
+  let search: ISearchProps = { list: [] }
   let component: IComponentProps = { zoom: 1, components: [] }
 
   try {
     internal = JSON.parse(fs.readFileSync(PATHS.internal).toString())
     settings = JSON.parse(fs.readFileSync(PATHS.settings).toString())
     tags = JSON.parse(fs.readFileSync(PATHS.tag).toString())
-    search = JSON.parse(fs.readFileSync(PATHS.search).toString())
   } catch (e: any) {
     console.log(e.message)
+  }
+
+  try {
+    const s = JSON.parse(fs.readFileSync(PATHS.search).toString())
+    if (Array.isArray(s)) {
+      search = {
+        list: s,
+      }
+    } else {
+      search = s
+    }
+  } catch {
+  } finally {
+    if (!search.list.length) {
+      search.list = [
+        {
+          name: '站内',
+          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg',
+          placeholder: '站内搜索',
+          blocked: false,
+          isInner: true,
+        },
+        {
+          name: '百度',
+          url: 'https://www.baidu.com/s?wd=',
+          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/baidu.svg',
+          placeholder: '百度一下',
+          blocked: false,
+          isInner: false,
+        },
+        {
+          name: 'Google',
+          url: 'https://www.google.com/search?q=',
+          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/google.svg',
+          blocked: false,
+          isInner: false,
+        },
+        {
+          name: '必应',
+          url: 'https://cn.bing.com/search?q=',
+          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/bing.svg',
+          blocked: false,
+          isInner: false,
+        },
+        {
+          name: 'GitHub',
+          url: 'https://github.com/search?q=',
+          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/github.svg',
+          placeholder: 'Search GitHub',
+          blocked: false,
+          isInner: false,
+        },
+        {
+          name: '知乎',
+          url: 'https://www.zhihu.com/search?type=content&q=',
+          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/zhihu.svg',
+          blocked: false,
+          isInner: false,
+        },
+        {
+          name: '豆瓣',
+          url: 'https://search.douban.com/book/subject_search?search_text=',
+          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/douban.svg',
+          placeholder: '书名、作者、ISBN',
+          blocked: false,
+          isInner: false,
+        },
+      ]
+    }
+    search.list = search.list.map((item) => {
+      item.icon = replaceJsdelivrCDN(item.icon, settings)
+      return item
+    })
+    fs.writeFileSync(PATHS.search, JSON.stringify(search), {
+      encoding: 'utf-8',
+    })
   }
 
   try {
@@ -250,72 +326,6 @@ const main = async () => {
   }
 
   {
-    if (!search.length) {
-      search = [
-        {
-          name: '站内',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg',
-          placeholder: '站内搜索',
-          blocked: false,
-          isInner: true,
-        },
-        {
-          name: '百度',
-          url: 'https://www.baidu.com/s?wd=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/baidu.svg',
-          placeholder: '百度一下',
-          blocked: false,
-          isInner: false,
-        },
-        {
-          name: 'Google',
-          url: 'https://www.google.com/search?q=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/google.svg',
-          blocked: false,
-          isInner: false,
-        },
-        {
-          name: '必应',
-          url: 'https://cn.bing.com/search?q=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/bing.svg',
-          blocked: false,
-          isInner: false,
-        },
-        {
-          name: 'GitHub',
-          url: 'https://github.com/search?q=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/github.svg',
-          placeholder: 'Search GitHub',
-          blocked: false,
-          isInner: false,
-        },
-        {
-          name: '知乎',
-          url: 'https://www.zhihu.com/search?type=content&q=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/zhihu.svg',
-          blocked: false,
-          isInner: false,
-        },
-        {
-          name: '豆瓣',
-          url: 'https://search.douban.com/book/subject_search?search_text=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/douban.svg',
-          placeholder: '书名、作者、ISBN',
-          blocked: false,
-          isInner: false,
-        },
-      ]
-      search = search.map((item) => {
-        item.icon = replaceJsdelivrCDN(item.icon, settings)
-        return item
-      })
-      fs.writeFileSync(PATHS.search, JSON.stringify(search), {
-        encoding: 'utf-8',
-      })
-    }
-  }
-
-  {
     const isEn = settings.language === 'en'
     const desc = isEn ? 'The system is built-in' : '系统内置不可删除'
     if (!Array.isArray(tags)) {
@@ -392,6 +402,8 @@ const main = async () => {
 </div>
 `.trim()
     settings.showThemeToggle ??= true
+    settings.logo ||= ''
+    settings.darkLogo ||= ''
 
     settings.lightDocTitle ||= ''
     settings.lightCardStyle ||= 'standard'
@@ -483,10 +495,6 @@ const main = async () => {
     settings.components ||= []
 
     // 替换CDN
-    search = search.map((item) => {
-      item.icon = replaceJsdelivrCDN(item.icon, settings)
-      return item
-    })
     settings.favicon = replaceJsdelivrCDN(settings.favicon, settings)
     settings.simThemeImages = settings.simThemeImages.map((item) => {
       item.src = replaceJsdelivrCDN(item.src, settings)

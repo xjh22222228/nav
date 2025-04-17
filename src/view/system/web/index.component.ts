@@ -14,7 +14,7 @@ import type {
 import {
   websiteList,
   settings,
-  searchEngineList,
+  search,
   tagList,
   internal,
   component,
@@ -259,7 +259,7 @@ export default class WebpComponent {
       db: this.websiteList,
       settings,
       tag: tagList,
-      search: searchEngineList,
+      search,
       component,
     }
     for (const k in params) {

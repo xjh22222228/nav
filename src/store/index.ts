@@ -23,7 +23,9 @@ export let settings: ISettings = settingsJson as ISettings
 
 let _tagMap: Record<string, ITagPropValues> = {}
 
-export let searchEngineList: ISearchProps[] = isSelfDevelop ? [] : searchJson
+export let search: ISearchProps = isSelfDevelop
+  ? ({} as ISearchProps)
+  : searchJson
 
 export let tagList: Array<ITagPropValues> = isSelfDevelop ? [] : tagJson
 

@@ -26,7 +26,7 @@
       ></i>
 
       <div
-        class="card-container standard dark-border-color dark-bg"
+        class="card-container standard dark-border-color dark-bg-gary"
         *ngSwitchCase="'standard'"
       >
         <div
@@ -124,7 +124,7 @@
 
       <!-- example style -->
       <div
-        class="card-container example2 dark-bg dark-white dark-shadow"
+        class="card-container example2 dark-bg-gary dark-white dark-shadow"
         [class.noDesc]="!dataSource.desc"
         *ngSwitchCase="'example'"
         (click)="jumpService.goUrl($event, dataSource.url)"
@@ -156,7 +156,7 @@
 
       <!-- original style -->
       <div
-        class="card-container original2 dark-bg dark-white dark-shadow"
+        class="card-container original2 dark-bg-gary dark-white dark-shadow"
         *ngSwitchCase="'original'"
         (click)="jumpService.goUrl($event, dataSource.url)"
       >
@@ -186,7 +186,7 @@
 
       <!-- retro style -->
       <div
-        class="card-container retro2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
+        class="card-container retro2 ellipsis dark-bg-gary dark-white dark-border-color dark-shadow dark-hover"
         *ngSwitchCase="'retro'"
       >
         <div
@@ -244,7 +244,7 @@
 
       <!-- poster style -->
       <div
-        class="card-container poster2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
+        class="card-container poster2 ellipsis dark-bg-gary dark-white dark-border-color dark-shadow dark-hover"
         *ngSwitchCase="'poster'"
         (click)="jumpService.goUrl($event, dataSource.url)"
       >
@@ -335,7 +335,7 @@
 
       <!-- column style -->
       <div
-        class="card-container column2 ellipsis dark-bg dark-white dark-border-color dark-shadow dark-hover"
+        class="card-container column2 ellipsis dark-bg-gary dark-white dark-border-color dark-shadow dark-hover"
         *ngSwitchDefault
       >
         <div

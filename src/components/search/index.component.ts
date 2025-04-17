@@ -10,8 +10,8 @@ import {
   queryString,
 } from 'src/utils'
 import { Router, ActivatedRoute } from '@angular/router'
-import { searchEngineList } from 'src/store'
-import type { ISearchProps } from 'src/types'
+import { search } from 'src/store'
+import type { ISearchItemProps } from 'src/types'
 import { SearchType } from './index'
 import { $t } from 'src/locale'
 import { NzInputModule } from 'ng-zorro-antd/input'
@@ -42,10 +42,10 @@ export class SearchComponent {
   readonly $t = $t
   readonly isLogin = isLogin
   readonly SearchType = SearchType
-  readonly searchEngineList: ISearchProps[] = searchEngineList.filter(
+  readonly searchEngineList: ISearchItemProps[] = search.list.filter(
     (item) => !item.blocked
   )
-  currentEngine: ISearchProps = getDefaultSearchEngine()
+  currentEngine: ISearchItemProps = getDefaultSearchEngine()
   searchTypeValue = Number(queryString()['type']) || SearchType.All
   keyword = queryString().q
 

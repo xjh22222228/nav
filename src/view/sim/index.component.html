@@ -15,15 +15,17 @@
       [autoplay]="commonService.settings.simThemeAutoplay"
       [height]="commonService.settings.simThemeHeight"
     />
-    <div class="bar">
-      <h1 class="title dark-white">
-        {{ commonService.settings.simTitle || commonService.settings.title }}
-      </h1>
-      <pre
-        class="description dark-white"
-        [innerHTML]="description | safeHtml"
-      ></pre>
-    </div>
+  </div>
+
+  <div class="bar" *ngIf="commonService.settings.simTitle">
+    <h1 class="title text-[36px] lg:text-[40px]">
+      {{ commonService.settings.simTitle }}
+    </h1>
+    <pre
+      *ngIf="description"
+      class="description dark-white"
+      [innerHTML]="description | safeHtml"
+    ></pre>
   </div>
 
   <div class="sim-component">
@@ -32,7 +34,7 @@
 
   <app-search class="hidden search-sm" />
 
-  <nav #parent class="top-nav dark-border-color dark-scrollbar dark-bg">
+  <nav #parent class="top-nav dark-border-color dark-bg">
     <span
       #item
       *ngFor="
@@ -57,10 +59,11 @@
     />
   </nav>
 
+  <app-phone-class class="mb-2" />
+
   <div class="wrapper">
-    <nav
-      class="sidebar dark-bg"
-      id="sidebar"
+    <div
+      class="sidebar dark-bg hidden md:block"
       *ngIf="commonService.websiteList[commonService.oneIndex]?.nav?.length"
     >
       <div
@@ -76,7 +79,7 @@
       >
         {{ item.title }}
       </div>
-    </nav>
+    </div>
 
     <aside class="site-box dark-bg">
       <app-search class="max768none" />

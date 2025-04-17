@@ -11,7 +11,7 @@ import {
   websiteList,
   tagList,
   getTagMap,
-  searchEngineList,
+  search,
   internal,
   component,
 } from 'src/store'
@@ -79,14 +79,12 @@ export function getContentes() {
     .post('/api/contents/get', getDefaultRequestData())
     .then((res: any) => {
       websiteList.splice(0, websiteList.length)
-      searchEngineList.splice(0, searchEngineList.length)
       tagList.splice(0, tagList.length)
 
       internal.loginViewCount = res.data.internal.loginViewCount
       internal.userViewCount = res.data.internal.userViewCount
       websiteList.push(...res.data.webs)
       tagList.push(...res.data.tags)
-      searchEngineList.push(...res.data.search)
       const resSettings = res.data.settings as ISettings
       for (const k in resSettings) {
         // @ts-ignore
@@ -95,6 +93,10 @@ export function getContentes() {
       for (const k in res.data.component) {
         // @ts-ignore
         component[k] = res.data.component[k]
+      }
+      for (const k in res.data.search) {
+        // @ts-ignore
+        search[k] = res.data.search[k]
       }
       getTagMap()
       event.emit('WEB_REFRESH')

@@ -2,13 +2,7 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-export type ThemeType =
-  | 'Current'
-  | 'Light'
-  | 'Sim'
-  | 'Side'
-  | 'App'
-  | 'Shortcut'
+export type ThemeType = 'Light' | 'Sim' | 'Side' | 'App' | 'Shortcut' | 'Super'
 
 export enum TopType {
   Side = 1,
@@ -194,13 +188,17 @@ export interface INavProps extends BaseNavItem {
   [key: string]: any
 }
 
-export interface ISearchProps {
+export interface ISearchItemProps {
   name: string
   icon: string
   blocked: boolean
   isInner: boolean
   url?: string
   placeholder?: string
+}
+
+export interface ISearchProps {
+  list: ISearchItemProps[]
 }
 
 export interface ImageProps {
@@ -224,7 +222,7 @@ export interface ISettings {
   keywords: string
   theme: ThemeType
   openSEO: boolean
-  appTheme: ThemeType
+  appTheme: ThemeType | 'Current'
   footerContent: string
   headerContent: string
   showGithub: boolean
@@ -236,6 +234,8 @@ export interface ISettings {
   checkUrl: boolean
   errorUrlCount?: number
   createWebKey: string
+  logo: string
+  darkLogo: string
 
   appCardStyle: ICardType
   appDocTitle: string
