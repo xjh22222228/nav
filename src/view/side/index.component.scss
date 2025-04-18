@@ -90,7 +90,6 @@
 .logo {
   z-index: 11;
   width: 100%;
-  padding: 10px;
   background-color: #fff;
   white-space: nowrap;
   overflow: hidden;
@@ -98,6 +97,11 @@
   cursor: pointer;
   user-select: none;
   text-align: center;
+  line-height: 70px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  img {
+    max-height: 50px;
+  }
   .logo-img {
     width: 50px;
     height: 50px;
@@ -118,6 +122,7 @@
   left: 0;
   height: 100vh;
   background-color: #fff;
+  width: 220px;
   ::ng-deep {
     .ant-layout-sider-children {
       display: flex;

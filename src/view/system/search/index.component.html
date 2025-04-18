@@ -19,6 +19,42 @@
 <div class="mb-2" *ngIf="!isSelfDevelop">
   <b>{{ $t('_buildTip') }}</b>
 </div>
+<form nz-form [formGroup]="validateForm">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2">{{ $t('_logoImg') }}</nz-form-label>
+    <nz-form-control [nzSpan]="22">
+      <nz-input-group [nzSuffix]="suffixLogo">
+        <input nz-input formControlName="logo" />
+      </nz-input-group>
+      <ng-template #suffixLogo>
+        <app-upload (onChange)="onLogoChange($event, 'logo')" />
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2">{{ $t('_logoDarkImg') }}</nz-form-label>
+    <nz-form-control [nzSpan]="22">
+      <nz-input-group [nzSuffix]="suffixDarkLogo">
+        <input nz-input formControlName="darkLogo" />
+      </nz-input-group>
+      <ng-template #suffixDarkLogo>
+        <app-upload (onChange)="onLogoChange($event, 'darkLogo')" />
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2">{{ $t('_logoMaxHeight') }}</nz-form-label>
+    <nz-form-control [nzSpan]="22">
+      <nz-slider
+        formControlName="height"
+        [nzMin]="40"
+        [nzMax]="120"
+      ></nz-slider>
+    </nz-form-control>
+  </nz-form-item>
+</form>
 <div class="mb-2">e.g. https://example.com/search?q=$&#123;q&#125;</div>
 <nz-table #basicTable [nzData]="searchList">
   <thead>

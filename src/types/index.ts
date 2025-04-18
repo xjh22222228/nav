@@ -198,6 +198,9 @@ export interface ISearchItemProps {
 }
 
 export interface ISearchProps {
+  logo: string
+  darkLogo: string
+  height: number
   list: ISearchItemProps[]
 }
 

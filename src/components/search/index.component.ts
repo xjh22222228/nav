@@ -8,6 +8,7 @@ import {
   getDefaultSearchEngine,
   setDefaultSearchEngine,
   queryString,
+  isDark,
 } from 'src/utils'
 import { Router, ActivatedRoute } from '@angular/router'
 import { search } from 'src/store'
@@ -38,6 +39,7 @@ import event from 'src/utils/mitt'
 export class SearchComponent {
   @ViewChild('input', { static: false }) input!: ElementRef
   @Input() size: 'small' | 'default' | 'large' = 'default'
+  @Input() showLogo = true
 
   readonly $t = $t
   readonly isLogin = isLogin
@@ -45,6 +47,8 @@ export class SearchComponent {
   readonly searchEngineList: ISearchItemProps[] = search.list.filter(
     (item) => !item.blocked
   )
+  readonly search = search
+  isDark = isDark()
   currentEngine: ISearchItemProps = getDefaultSearchEngine()
   searchTypeValue = Number(queryString()['type']) || SearchType.All
   keyword = queryString().q
@@ -56,6 +60,15 @@ export class SearchComponent {
     if (!this.isLogin && this.searchTypeValue === SearchType.Id) {
       this.searchTypeValue = SearchType.All
     }
+    event.on('EVENT_DARK', (isDark: unknown) => {
+      this.isDark = isDark as boolean
+    })
+  }
+
+  get logoImage() {
+    return this.isDark
+      ? search.darkLogo || search.logo
+      : search.logo || search.darkLogo
   }
 
   private inputFocus() {

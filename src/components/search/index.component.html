@@ -3,6 +3,13 @@
   *ngIf="searchEngineList && searchEngineList.length > 0"
   [class.small]="size === 'small'"
 >
+  <img
+    *ngIf="showLogo && logoImage"
+    class="pointer-events-none mb-4 select-none"
+    [src]="logoImage"
+    [ngStyle]="{ maxHeight: search.height + 'px' }"
+  />
+
   <div
     class="input-wrapper dark-bg dark-border-color"
     [class.removeAddon]="currentEngine.url"

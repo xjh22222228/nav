@@ -3,10 +3,14 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+} from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
-import { FormBuilder, FormGroup } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { SETTING_PATH } from 'src/constants'

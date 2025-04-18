@@ -332,6 +332,8 @@ const english: Record<string, any> = {
   _zhihuDaily: 'Zhihu Daily',
   _logoImg: 'Logo Picture',
   _logoDarkImg: 'Logo Dark Picture',
+  _errLogo: 'The logo image cannot be accessed',
+  _logoMaxHeight: 'Max height',
 }
 
 export default english

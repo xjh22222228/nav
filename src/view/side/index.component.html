@@ -27,7 +27,7 @@
       </div>
 
       <div
-        class="logo dark-bg pointer-events-none md:pointer-events-auto"
+        class="logo dark-bg dark-border-color2 pointer-events-none md:pointer-events-auto"
         (click)="handleCollapsed()"
       >
         <ng-content *ngIf="logoImage; else noLogo">
@@ -37,7 +37,7 @@
             *ngIf="isCollapsed; else noCollased"
           />
           <ng-template #noCollased>
-            <img class="h-full pointer-events-none" [src]="logoImage" />
+            <img class="pointer-events-none" [src]="logoImage" />
           </ng-template>
         </ng-content>
 

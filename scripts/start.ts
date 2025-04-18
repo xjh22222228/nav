@@ -63,7 +63,7 @@ const main = async () => {
   let internal = {} as InternalProps
   let settings = {} as ISettings
   let tags: ITagPropValues[] = []
-  let search: ISearchProps = { list: [] }
+  let search = {} as ISearchProps
   let component: IComponentProps = { zoom: 1, components: [] }
 
   try {
@@ -77,6 +77,7 @@ const main = async () => {
   try {
     const s = JSON.parse(fs.readFileSync(PATHS.search).toString())
     if (Array.isArray(s)) {
+      // @ts-ignore
       search = {
         list: s,
       }
@@ -85,7 +86,7 @@ const main = async () => {
     }
   } catch {
   } finally {
-    if (!search.list.length) {
+    if (!search.list || !search.list.length) {
       search.list = [
         {
           name: '站内',
@@ -141,6 +142,9 @@ const main = async () => {
         },
       ]
     }
+    search.logo ||= ''
+    search.darkLogo ||= ''
+    search.height ||= 80
     search.list = search.list.map((item) => {
       item.icon = replaceJsdelivrCDN(item.icon, settings)
       return item
@@ -391,7 +395,7 @@ const main = async () => {
     settings.keywords ??= '免费导航,开源导航'
     settings.theme ??= 'Light'
     settings.actionUrl ??= ''
-    settings.appTheme ??= 'App'
+    settings.appTheme ??= 'Current'
     settings.openSEO ??= !configJson.address
     settings.createWebKey ??= 'E'
     settings.headerContent ??= ''

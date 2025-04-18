@@ -361,14 +361,20 @@ export function copyText(el: Event, text: string): Promise<boolean> {
   })
 }
 
-export async function isValidImg(url: string): Promise<boolean> {
-  if (!url) return false
+export async function isValidImg(
+  url: string
+): Promise<{ valid: boolean; url: string }> {
+  const payload = {
+    valid: false,
+    url,
+  }
+  if (!url) return payload
 
-  if (url === 'null' || url === 'undefined') return false
+  if (url === 'null' || url === 'undefined') return payload
 
   const { protocol } = window.location
 
-  if (protocol === 'https:' && url.startsWith('http:')) return false
+  if (protocol === 'https:' && url.startsWith('http:')) return payload
 
   return new Promise((resolve) => {
     const img = document.createElement('img')
@@ -376,11 +382,12 @@ export async function isValidImg(url: string): Promise<boolean> {
     img.style.display = 'none'
     img.onload = () => {
       img.parentNode?.removeChild(img)
-      resolve(true)
+      payload.valid = true
+      resolve(payload)
     }
     img.onerror = () => {
       img.parentNode?.removeChild(img)
-      resolve(false)
+      resolve(payload)
     }
     document.body.append(img)
   })

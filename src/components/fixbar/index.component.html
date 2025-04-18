@@ -23,7 +23,6 @@
   <div
     class="common-show wrapper dark-bg dark-border-color dark-action-hover"
     (click)="handleSync()"
-    [class.rotate]="syncLoading"
     *ngIf="isLogin"
     nz-tooltip
     [nzTooltipTitle]="$t('_syncData')"
@@ -33,8 +32,6 @@
 
   <div
     *ngIf="isLogin"
-    nz-tooltip
-    [nzTooltipTitle]="$t('_addData')"
     class="common-show wrapper dark-bg dark-border-color dark-action-hover"
     [class.rotate]="entering"
     (click)="goSystemPage()"

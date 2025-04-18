@@ -12,6 +12,8 @@ $smallWidth: 300px;
   position: relative;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 10px 0;
   &.small {
     .input-wrapper {

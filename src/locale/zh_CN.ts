@@ -319,6 +319,8 @@ const zhCN: Record<string, any> = {
   _zhihuDaily: '知乎日报',
   _logoImg: 'Logo图',
   _logoDarkImg: 'Logo暗黑图',
+  _errLogo: '该LOGO图无法访问',
+  _logoMaxHeight: 'Logo最大高度',
 }
 
 export default zhCN

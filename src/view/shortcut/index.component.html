@@ -5,11 +5,12 @@
 >
   <div class="box2">
     <h1
+      *ngIf="settings.shortcutTitle"
       class="title dark-white"
       [class.text-black]="!shortcutThemeImage"
       [ngStyle]="{ color: shortcutThemeImage ? '#fff' : '' }"
     >
-      {{ settings.shortcutTitle || settings.title }}
+      {{ settings.shortcutTitle }}
     </h1>
 
     <div class="datetime">{{ hours }}:{{ minutes }}:{{ seconds }}</div>
@@ -20,7 +21,7 @@
       <span class="margin">{{ dayText }}</span>
     </div>
 
-    <app-search size="large" />
+    <app-search size="large" [showLogo]="false" />
 
     <div class="flex1">
       <app-web-list

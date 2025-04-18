@@ -43,7 +43,6 @@ export class FixbarComponent {
   private scrollSubscription: Subscription | null = null
   isDark: boolean = isDarkFn()
   websiteList = websiteList
-  syncLoading = false
   isShowFace = true
   isShowTop = false
   entering = false
@@ -166,6 +165,7 @@ export class FixbarComponent {
   }
 
   toggleMode() {
+    this.handleOpen()
     this.isDark = !this.isDark
     mitt.emit('EVENT_DARK', this.isDark)
     window.localStorage.setItem(
@@ -191,36 +191,25 @@ export class FixbarComponent {
   }
 
   handleSync() {
-    if (this.syncLoading) {
-      this.message.warning($t('_repeatOper'))
-      return
-    }
-
     this.modal.info({
       nzTitle: $t('_syncDataOut'),
       nzOkText: $t('_confirmSync'),
       nzContent: $t('_confirmSyncTip'),
-      nzOnOk: () => {
-        this.syncLoading = true
-
-        updateFileContent({
+      nzOnOk: async () => {
+        await updateFileContent({
           message: 'update db',
           content: JSON.stringify(
             cleanWebAttrs(JSON.parse(JSON.stringify(this.websiteList)))
           ),
           path: DB_PATH,
         })
-          .then(() => {
-            this.message.success($t('_syncSuccessTip'))
-          })
-          .finally(() => {
-            this.syncLoading = false
-          })
+        this.message.success($t('_syncSuccessTip'))
       },
     })
   }
 
   toggleLocale() {
+    this.handleOpen()
     const l = this.language === 'en' ? 'zh-CN' : 'en'
     localStorage.setItem(STORAGE_KEY_MAP.LANGUAGE, l)
     location.reload()
