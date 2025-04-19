@@ -26,17 +26,7 @@
     }
 
     &-bg {
-      background-color: #0d1117 !important;
-    }
-    &-hover {
-      &:hover {
-        background-color: #21262d !important;
-      }
-    }
-    &-hover-text {
-      &:hover {
-        color: #fff !important;
-      }
+      background-color: #12171e !important;
     }
 
     &-bg-gary {
@@ -52,7 +42,7 @@
     }
 
     &-text {
-      color: #6e7681 !important;
+      color: #969ca4 !important;
     }
 
     &-text-active {
@@ -69,6 +59,10 @@
       }
     }
 
+    &-border-color2 {
+      border-color: rgba(255, 255, 255, 0.05) !important;
+    }
+
     &-item-active {
       background-color: #21262d !important;
       border-color: #21262d !important;
@@ -76,39 +70,27 @@
       font-weight: 600;
     }
 
-    &-scrollbar {
-      &::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-        background-color: rgb(39, 39, 39);
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: rgb(96, 96, 96);
-        border: 2px solid rgb(39, 39, 39);
-        border-radius: 100px;
-        &:hover {
-          background-color: rgb(136, 136, 136);
+    @media (any-hover: hover) {
+      &-hover {
+        &:hover:not(.active) {
+          background-color: #21262d !important;
         }
       }
-      &::-webkit-scrollbar-cornet {
-        display: block;
+      &-hover-text {
+        &:hover {
+          color: #fff !important;
+        }
       }
-    }
-    // 全局滚动条细边
-    &-scrollbar-border {
-      &::-webkit-scrollbar-thumb {
-        border: 3px solid rgb(39, 39, 39);
+
+      &-item-hover:hover {
+        background-color: #30363d !important;
+        border: 1px solid #8b949e !important;
       }
-    }
 
-    &-item-hover:hover {
-      background-color: #30363d !important;
-      border: 1px solid #8b949e !important;
-    }
-
-    // fix-bar
-    &-action-hover:hover {
-      background-color: #c9d1d9 !important;
+      // fix-bar
+      &-action-hover:hover {
+        background-color: #c9d1d9 !important;
+      }
     }
   }
 }

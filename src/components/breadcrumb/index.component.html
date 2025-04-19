@@ -1,0 +1,8 @@
+<div class="breadcrumb1 ellipsis" *ngIf="data.breadcrumb">
+  <span *ngFor="let text of data.breadcrumb; let idx = index"
+    >{{ text
+    }}<span class="slash" *ngIf="idx !== data.breadcrumb.length - 1"
+      >/</span
+    ></span
+  >
+</div>

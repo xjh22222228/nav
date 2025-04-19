@@ -3,17 +3,21 @@
 // See https://github.com/xjh22222228/nav
 
 import { Component } from '@angular/core'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+} from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
-import { FormBuilder, FormGroup } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { NzModalService } from 'ng-zorro-antd/modal'
 import { SETTING_PATH } from 'src/constants'
-import { updateFileContent, spiderWeb } from 'src/api'
-import { settings, components } from 'src/store'
-import { isSelfDevelop, compilerTemplate } from 'src/utils/util'
+import { CODE_SYMBOL } from 'src/constants/symbol'
+import { updateFileContent, spiderWebs } from 'src/api'
+import { settings, component } from 'src/store'
+import { isSelfDevelop, compilerTemplate } from 'src/utils/utils'
 import { componentTitleMap } from '../component/types'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import { NzButtonModule } from 'ng-zorro-antd/button'
@@ -29,8 +33,12 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { UploadComponent } from 'src/components/upload/index.component'
+import { CardComponent } from 'src/components/card/index.component'
+import { ActionType } from 'src/types'
+import type { IComponentItemProps, IWebProps, ThemeType } from 'src/types'
 import event from 'src/utils/mitt'
 import footTemplate from 'src/components/footer/template'
+import { replaceJsdelivrCDN } from 'src/utils/pureUtils'
 
 // 额外添加的字段，但不添加到配置中
 const extraForm: Record<string, any> = {
@@ -58,37 +66,80 @@ const extraForm: Record<string, any> = {
     NzCheckboxModule,
     NzPopconfirmModule,
     UploadComponent,
+    CardComponent,
   ],
-  providers: [NzModalService, NzNotificationService, NzMessageService],
   selector: 'system-setting',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
 export default class SystemSettingComponent {
-  $t = $t
+  readonly $t = $t
+  readonly isSelfDevelop = isSelfDevelop
+  readonly textareaSize = { minRows: 3, maxRows: 20 }
   validateForm!: FormGroup
   submitting: boolean = false
   settings = settings
   tabActive = 0
-  isSelfDevelop = isSelfDevelop
-  textareaSize = { minRows: 3, maxRows: 20 }
+  componentOptions: any[] = []
+  actionOptions = [
+    {
+      label: $t('_add'),
+      value: ActionType.Create,
+    },
+    {
+      label: $t('_edit'),
+      value: ActionType.Edit,
+    },
+    {
+      label: $t('_del'),
+      value: ActionType.Delete,
+    },
+  ]
+  webDemoData: IWebProps = {
+    id: -1,
+    name: '发现导航',
+    desc: '发现导航是一个轻量级免费且强大的导航网站',
+    url: 'https://nav3.cn',
+    icon: replaceJsdelivrCDN(
+      'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/logo.svg',
+      settings
+    ),
+    img: replaceJsdelivrCDN(
+      'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/4.png',
+      settings
+    ),
+    tags: [],
+    breadcrumb: [],
+    rate: 5,
+  }
 
   constructor(
     private fb: FormBuilder,
     private notification: NzNotificationService,
-    private message: NzMessageService,
-    private modal: NzModalService
+    private message: NzMessageService
   ) {
-    extraForm['componentOptions'] = components.map((item) => {
-      const checked = settings.components.some(
+    const themeMap: Record<ThemeType, number> = {
+      Light: 0,
+      Super: 1,
+      Sim: 2,
+      Side: 3,
+      Shortcut: 4,
+      App: 5,
+    }
+    this.tabActive = themeMap[settings.theme] || 0
+
+    this.componentOptions = component.components.map((item) => {
+      const data = settings.components.find(
         (c) => item.type === c.type && item.id === c.id
       )
+      if (data) {
+        extraForm['componentOptions'].push(data.id)
+      }
       return {
         label: componentTitleMap[item.type],
         value: item.id,
         type: item.type,
         id: item.id,
-        checked,
       }
     })
     const group: any = {
@@ -122,186 +173,142 @@ export default class SystemSettingComponent {
       .setValue(footTemplate[v]?.trim?.() || '')
   }
 
-  onLogoChange(data: any) {
-    this.settings.favicon = data.cdn || ''
+  onLogoChange(data: any, key: string) {
+    this.settings[key] = data.cdn || ''
+    this.validateForm.get(key)?.setValue(this.settings[key])
   }
 
-  // Sim ===========================
-  onSimBannerChange(data: any, idx: number) {
-    this.settings.simThemeImages[idx]['src'] = data.cdn
+  onBannerChange(data: any, key: string, idx: number) {
+    this.settings[key][idx]['src'] = data.cdn
   }
 
-  onChangeSimBannerUrl(e: any, idx: number) {
+  onChangeBannerUrl(e: any, key: string, idx: number) {
     const value = e.target.value.trim()
-    this.settings.simThemeImages[idx]['src'] = value
+    this.settings[key][idx]['src'] = value
   }
 
-  onChangeSimJumpUrl(e: any, idx: number) {
+  onChangeJumpUrl(e: any, key: string, idx: number) {
     const value = e.target.value.trim()
-    this.settings.simThemeImages[idx]['url'] = value
+    this.settings[key][idx]['url'] = value
   }
 
-  onDeleteSimBanner(idx: number) {
-    this.settings.simThemeImages.splice(idx, 1)
+  onDeleteBanner(key: string, idx: number) {
+    this.settings[key].splice(idx, 1)
   }
 
-  onAddSimBanner() {
-    this.settings.simThemeImages.push({
-      src: '',
-      url: '',
-    })
-  }
-
-  // Super ===========================
-  onSuperBannerChange(data: any, idx: number) {
-    this.settings.superImages[idx]['src'] = data.cdn
-  }
-
-  onChangeSuperBannerUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.superImages[idx]['src'] = value
-  }
-
-  onChangeSuperJumpUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.superImages[idx]['url'] = value
-  }
-
-  onDeleteSuperBanner(idx: number) {
-    this.settings.superImages.splice(idx, 1)
-  }
-
-  onAddSuperBanner() {
-    this.settings.superImages.push({
-      src: '',
-      url: '',
-    })
-  }
-
-  // Light ===========================
-  onLightBannerChange(data: any, idx: number) {
-    this.settings.lightImages[idx]['src'] = data.cdn
-  }
-
-  onChangeLightBannerUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.lightImages[idx]['src'] = value
-  }
-
-  onChangeLightJumpUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.lightImages[idx]['url'] = value
-  }
-
-  onDeleteLightBanner(idx: number) {
-    this.settings.lightImages.splice(idx, 1)
-  }
-
-  onAddLightBanner() {
-    this.settings.lightImages.push({
-      src: '',
-      url: '',
-    })
-  }
-
-  // Side ===========================
-  onSideBannerChange(data: any, idx: number) {
-    this.settings.sideThemeImages[idx]['src'] = data.cdn
-  }
-
-  onChangeSideBannerUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.sideThemeImages[idx]['src'] = value
-  }
-
-  onChangeSideJumpUrl(e: any, idx: number) {
-    const value = e.target.value.trim()
-    this.settings.sideThemeImages[idx]['url'] = value
-  }
-
-  onDeleteSideBanner(idx: number) {
-    this.settings.sideThemeImages.splice(idx, 1)
-  }
-
-  onAddSideBanner() {
-    this.settings.sideThemeImages.push({
+  onAddBanner(key: string) {
+    this.settings[key].push({
       src: '',
       url: '',
     })
   }
 
   onShortcutImgChange(e: any) {
-    let url = e?.target?.value?.trim() || e.cdn
-    if (!url) {
-      url = ''
-    }
+    let url = e?.target?.value?.trim() || e.cdn || ''
     this.settings.shortcutThemeImages[0]['src'] = url
   }
 
-  handleSpider() {
-    if (this.submitting) {
+  handleMoveUp(key: string, idx: number) {
+    if (idx === 0) {
       return
     }
-    this.submitting = true
-    spiderWeb()
-      .then((res) => {
-        this.notification.success(
-          `爬取完成（${res.data.time}秒）`,
-          '爬取完成并保存成功',
-          {
-            nzDuration: 0,
-          }
-        )
-      })
-      .finally(() => {
-        this.submitting = false
-      })
+    const data = this.settings[key][idx]
+    this.settings[key][idx] = this.settings[key][idx - 1]
+    this.settings[key][idx - 1] = data
   }
 
-  handleSubmit() {
+  handleMoveDown(key: string, idx: number) {
+    if (idx === this.settings[key].length - 1) {
+      return
+    }
+    const data = this.settings[key][idx]
+    this.settings[key][idx] = this.settings[key][idx + 1]
+    this.settings[key][idx + 1] = data
+  }
+
+  async handleSpider() {
+    await this.handleSubmit()
+    this.submitting = true
+    try {
+      const res = await spiderWebs()
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.message)
+      }
+
+      const reader = res.body?.getReader()
+      const decoder = new TextDecoder()
+      if (reader) {
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) {
+            break
+          }
+          const chunk = JSON.parse(decoder.decode(value))
+          if (Array.isArray(chunk)) {
+            this.notification.info('Result', chunk.join('<div></div>'))
+          } else {
+            this.notification.success(`${chunk.time} s`, $t('_saveSuccess'), {
+              nzDuration: 0,
+            })
+          }
+        }
+      }
+    } catch (err: any) {
+      this.notification.error('Error', err.message)
+    }
+    this.submitting = false
+  }
+
+  async handleSubmit() {
     if (this.submitting) {
       return
     }
 
-    this.modal.info({
-      nzTitle: $t('_syncDataOut'),
-      nzOkText: $t('_confirmSync'),
-      nzContent: $t('_confirmSyncTip'),
-      nzOnOk: () => {
-        function filterImage(item: Record<string, any>) {
-          return item['src']
-        }
-        const formValues = this.validateForm.value
-        const values = {
-          ...formValues,
-          favicon: this.settings.favicon,
-          simThemeImages: this.settings.simThemeImages.filter(filterImage),
-          shortcutThemeImages:
-            this.settings.shortcutThemeImages.filter(filterImage),
-          sideThemeImages: this.settings.sideThemeImages.filter(filterImage),
-          superImages: this.settings.superImages.filter(filterImage),
-          lightImages: this.settings.lightImages.filter(filterImage),
-          components: formValues.componentOptions
-            .filter((item: any) => item.checked)
-            .map((item: any) => ({ type: item.type, id: item.id })),
-        }
-        for (const k in extraForm) {
-          delete values[k]
-        }
+    return new Promise((resolve, reject) => {
+      function filterImage(item: Record<string, any>) {
+        return item['src'] || item['url'][0] === CODE_SYMBOL
+      }
+      const formValues = this.validateForm.value
+      const values = {
+        ...formValues,
+        favicon: this.settings.favicon,
+        simThemeImages: this.settings.simThemeImages.filter(filterImage),
+        shortcutThemeImages:
+          this.settings.shortcutThemeImages.filter(filterImage),
+        sideThemeImages: this.settings.sideThemeImages.filter(filterImage),
+        superImages: this.settings.superImages.filter(filterImage),
+        lightImages: this.settings.lightImages.filter(filterImage),
+        components: formValues.componentOptions
+          .map((id: number) => {
+            const data = component.components.find(
+              (item: IComponentItemProps) => item.id === id
+            )
+            return {
+              id: data?.id,
+              type: data?.type,
+            }
+          })
+          .filter((item: any) => item.type),
+      }
+      for (const k in extraForm) {
+        delete values[k]
+      }
 
-        this.submitting = true
-        updateFileContent({
-          message: 'update settings',
-          content: JSON.stringify(values),
-          path: SETTING_PATH,
+      this.submitting = true
+      updateFileContent({
+        message: 'update settings',
+        content: JSON.stringify(values),
+        path: SETTING_PATH,
+      })
+        .finally(() => {
+          this.submitting = false
         })
-          .then(() => {
-            this.message.success($t('_saveSuccess'))
-          })
-          .finally(() => {
-            this.submitting = false
-          })
-      },
+        .then(() => {
+          this.message.success($t('_saveSuccess'))
+          resolve(null)
+        })
+        .catch(reject)
     })
   }
 }

@@ -9,7 +9,8 @@
     <router-outlet></router-outlet>
 
     <app-create-web />
+    <app-delete-modal />
     <app-move-web *ngIf="isLogin" />
-    <edit-category *ngIf="isLogin" [app]="true" />
+    <edit-class *ngIf="isLogin" />
   </div>
 </ng-template>

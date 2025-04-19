@@ -1,0 +1,45 @@
+<nz-modal
+  [(nzVisible)]="showModal"
+  [nzTitle]="isEdit ? $t('_edit') : $t('_add')"
+  (nzOnCancel)="onCancel()"
+  (nzOnOk)="handleOk()"
+  [nzOkLoading]="submitting"
+>
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="validateForm">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>{{
+          $t('_categoryName')
+        }}</nz-form-label>
+        <nz-form-control [nzSpan]="18" [nzErrorTip]="$t('_requiredName')">
+          <input formControlName="title" nz-input maxlength="50" #input />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>{{
+          $t('_onlyOwnVisible')
+        }}</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <nz-switch formControlName="ownVisible"></nz-switch>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">{{ $t('_iconAddr') }}</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <nz-input-group [nzPrefix]="prefixIcon" [nzSuffix]="suffixIconSearch">
+            <input formControlName="icon" nz-input />
+          </nz-input-group>
+
+          <ng-template #prefixIcon>
+            <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl" />
+          </ng-template>
+          <ng-template #suffixIconSearch>
+            <app-upload (onChange)="onChangeFile($event)"></app-upload>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>

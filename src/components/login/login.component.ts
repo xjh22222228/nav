@@ -2,14 +2,21 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+} from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { verifyToken, updateFileContent, createBranch } from 'src/api'
+import { verifyToken, createBranch, authorName } from 'src/api'
 import { setToken, removeToken, removeWebsite } from 'src/utils/user'
 import { $t } from 'src/locale'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzInputModule } from 'ng-zorro-antd/input'
 
@@ -20,69 +27,71 @@ import { NzInputModule } from 'ng-zorro-antd/input'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  @Input() visible: boolean = false
-  @Output() onCancel = new EventEmitter()
+export class LoginComponent {
+  @Input() visible = false
+  @Output() onCancel = new EventEmitter<void>()
+  @ViewChild('input', { static: false }) input!: ElementRef
 
-  $t = $t
-  isSelfDevelop = isSelfDevelop
+  readonly $t = $t
+  readonly isSelfDevelop = isSelfDevelop
   token = ''
-  submiting = false
+  submitting = false
 
-  constructor(private message: NzMessageService) {}
+  constructor(private readonly message: NzMessageService) {}
 
-  ngOnInit() {}
-
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.inputFocus()
   }
 
-  hanldeCancel() {
+  handleCancel(): void {
     this.onCancel.emit()
   }
 
-  inputFocus() {
+  private inputFocus(): void {
     setTimeout(() => {
-      document.getElementById('loginInput')?.focus?.()
+      this.input?.nativeElement?.focus()
     }, 300)
   }
 
-  onKey(event: KeyboardEvent) {
+  onKey(event: KeyboardEvent): void {
     if (event.code === 'Enter') {
       this.login()
     }
   }
 
-  login(): any {
+  async login(): Promise<void> {
     if (!this.token) {
-      return this.message.error($t('_pleaseInputToken'))
+      this.message.error($t('_pleaseInputToken'))
+      return
     }
-    const token = this.token.trim()
 
-    this.submiting = true
-    verifyToken(token)
-      .then(() => {
-        setToken(token)
-        updateFileContent({
-          message: 'auth',
-          path: '.navauth',
-          content: 'OK',
+    const token = this.token.trim()
+    this.submitting = true
+
+    try {
+      const res = await verifyToken(token)
+      if (
+        !isSelfDevelop &&
+        (res?.data?.login ?? res?.data?.username) !== authorName
+      ) {
+        this.message.error('Bad credentials')
+        throw new Error('Bad credentials')
+      }
+      setToken(token)
+
+      try {
+        createBranch('image').finally(() => {
+          this.message.success($t('_tokenVerSuc'))
+          removeWebsite().finally(() => {
+            window.location.reload()
+          })
         })
-          .then(() => {
-            createBranch('image').finally(() => {
-              this.message.success($t('_tokenVerSuc'))
-              removeWebsite().finally(() => {
-                window.location.reload()
-              })
-            })
-          })
-          .catch(() => {
-            removeToken()
-            this.submiting = false
-          })
-      })
-      .catch(() => {
-        this.submiting = false
-      })
+      } catch {
+        removeToken()
+        this.submitting = false
+      }
+    } catch {
+      this.submitting = false
+    }
   }
 }

@@ -1,0 +1,49 @@
+<form nz-form [formGroup]="validateForm">
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSpan]="4">{{ $t('_address') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <input nz-input formControlName="address" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSpan]="4">{{ $t('_password') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <input nz-input formControlName="password" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" [nzNoColon]="true">Hash Mode</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <label nz-checkbox formControlName="hashMode"></label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ $t('_apiPass') }}</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <input nz-input formControlName="XFAPIPassword" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">Email</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <textarea
+        nz-input
+        formControlName="mailConfig"
+        [nzAutosize]="textareaSize"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <button
+    nz-button
+    nzType="primary"
+    [nzLoading]="submitting"
+    (click)="handleSubmit()"
+  >
+    {{ $t('_save') }}
+  </button>
+</form>

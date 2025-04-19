@@ -1,13 +1,41 @@
 <div class="tagbox">
   <div
     class="tag-item"
+    [class.cursor-pointer]="item.url"
     *ngFor="let item of data"
     [style]="'background-color: ' + (tagMap[item.id] && tagMap[item.id].color)"
+    (click)="jumpService.goUrl($event, item.url)"
   >
-    <span
-      (click)="jumpService.goUrl($event, item.url)"
-      class="cursor-pointer"
-      >{{ tagMap[item.id] && tagMap[item.id].name }}</span
-    >
+    {{ tagMap[item.id] && tagMap[item.id].name }}
   </div>
+
+  <ng-container *ngIf="action">
+    <div
+      *ngIf="isLogin || permissions.edit"
+      class="tag-item cursor-pointer tag-action"
+      style="background-color: #1f883d"
+      (click)="openEditWebMoal($event)"
+      nz-icon
+      nzType="edit"
+      nzTheme="outline"
+    ></div>
+    <div
+      *ngIf="isLogin"
+      class="tag-item cursor-pointer tag-action"
+      style="background-color: #108ee9"
+      (click)="openMoveWebModal($event)"
+      nz-icon
+      nzType="swap"
+      nzTheme="outline"
+    ></div>
+    <div
+      *ngIf="isLogin || permissions.del"
+      class="tag-item cursor-pointer tag-action bg-red-500"
+      nz-icon
+      nzType="delete"
+      nzTheme="outline"
+      nzOkType="danger"
+      (click)="confirmDel($event)"
+    ></div>
+  </ng-container>
 </div>

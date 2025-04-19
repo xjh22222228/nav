@@ -1,4 +1,0 @@
-*.css linguist-language=TypeScript
-*.scss linguist-language=TypeScript
-*.js linguist-language=TypeScript
-*.mjs linguist-language=TypeScript

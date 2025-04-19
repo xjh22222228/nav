@@ -3,25 +3,39 @@
     padding-right: 12px !important;
     padding-left: 10px !important;
   }
-  .sider {
-    --menuTitleWidth: 85px;
+  .sider-compnent {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100% !important;
+    transform: translateX(-100%);
   }
 }
 
 .layout {
   min-height: 100vh;
+  &.showSidebar {
+    .sider-compnent {
+      transform: translateX(0) !important;
+    }
+  }
   .inner-layout {
     .content {
       margin-bottom: 2rem;
-      padding: 10px 70px 0 20px;
+      padding: 10px 70px 0 15px;
       display: flex;
       flex-direction: column;
     }
-    .search-header {
-      z-index: 9;
-      position: relative;
-      text-align: center;
-    }
+  }
+
+  .mask {
+    z-index: 31;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(3px);
   }
 
   .box {
@@ -50,24 +64,24 @@
     padding-left: 38px !important;
   }
   ::ng-deep {
-    .ant-menu-title-content {
-      display: flex;
-      align-items: center;
-    }
     .ant-menu.ant-menu-inline-collapsed {
-      & > .ant-menu-submenu > .ant-menu-submenu-title {
-        padding: 0 !important;
-        text-align: center;
-        font-weight: 400;
+      & > .ant-menu-submenu {
+        > .ant-menu-submenu-title {
+          padding: 0 !important;
+          text-align: center;
+        }
       }
       .sideicon {
         margin-right: 0;
       }
     }
-
-    .mobile-search {
-      .engine-main {
-        max-width: 95% !important;
+    .web-list {
+      padding: 0;
+      .name {
+        font-size: 13px;
+      }
+      .common-icon {
+        border-radius: 2px !important;
       }
     }
   }
@@ -76,59 +90,74 @@
 .logo {
   z-index: 11;
   width: 100%;
-  padding: 10px;
-  padding-left: 15px;
   background-color: #fff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
   user-select: none;
-
+  text-align: center;
+  line-height: 70px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  img {
+    max-height: 50px;
+  }
   .logo-img {
     width: 50px;
     height: 50px;
     pointer-events: none;
   }
-
   .web-title {
-    font-weight: 500;
-    font-size: 18px;
-    margin-left: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 8px;
     vertical-align: middle;
   }
 }
 
 .sider-compnent {
+  z-index: 32;
   position: sticky;
   top: 0;
   left: 0;
   height: 100vh;
   background-color: #fff;
+  width: 220px;
   ::ng-deep {
     .ant-layout-sider-children {
       display: flex;
       flex-direction: column;
     }
   }
+  .mobile-collapse {
+    position: absolute;
+    top: 50px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    box-shadow: 2px 0 8px #00000026;
+    background-color: #fff;
+    border-radius: 0 4px 4px 0;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
 }
 
 .sider {
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   overflow-y: auto;
   flex: 1;
   padding-bottom: 30px;
   .menu-title {
-    max-width: var(--menuTitleWidth, 130px);
+    max-width: 130px;
   }
 }
-.sideicon {
-  width: 20px;
-  height: 20px;
-  margin-right: 12px;
-  object-fit: cover;
-  &.fixicon {
-    margin-right: 8px;
+
+::ng-deep {
+  .ant-menu-title-content {
+    display: inline-flex;
+    align-items: center;
   }
 }

@@ -2,19 +2,17 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectionStrategy,
-} from '@angular/core'
+import { Component, Input, ViewChild, ElementRef } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
-import { isLogin } from 'src/utils/user'
-import { copyText, getTextContent } from 'src/utils'
-import { setWebsiteList, deleteByWeb } from 'src/utils/web'
-import { INavProps, IWebProps, ICardType } from 'src/types'
-import { $t } from 'src/locale'
+import { isLogin, getPermissions } from 'src/utils/user'
+import { copyText, getTextContent, randomColor, randomInt } from 'src/utils'
+import { parseHtmlWithContent, parseLoadingWithContent } from 'src/utils/utils'
+import { setWebsiteList } from 'src/utils/web'
+import type { INavProps, IWebProps, ICardType } from 'src/types'
+import { ActionType } from 'src/types'
+import { SearchType } from 'src/components/search/index'
+import { $t, isZhCN } from 'src/locale'
 import { settings, websiteList } from 'src/store'
 import { JumpService } from 'src/services/jump'
 import { NzRateModule } from 'ng-zorro-antd/rate'
@@ -25,6 +23,11 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
+import { saveUserCollect } from 'src/api'
+import { NzMessageService } from 'ng-zorro-antd/message'
+import { CommonService } from 'src/services/common'
+import { CODE_SYMBOL } from 'src/constants/symbol'
+import { BreadcrumbComponent } from 'src/components/breadcrumb/index.component'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -40,36 +43,63 @@ import event from 'src/utils/mitt'
     NzIconModule,
     NzPopconfirmModule,
     SafeHtmlPipe,
+    BreadcrumbComponent,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-card',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class CardComponent implements OnInit {
-  @Input() searchKeyword: string = ''
-  @Input() dataSource: IWebProps | Record<string, any> = {}
-  @Input() indexs: Array<number> = []
-  @Input() cardStyle: ICardType = 'standard'
+export class CardComponent {
+  @Input() dataSource!: IWebProps
+  @Input() cardStyle!: ICardType
+  @Input() iconSize = 60
+  @ViewChild('root', { static: false }) root!: ElementRef
 
-  $t = $t
-  settings = settings
-  websiteList: INavProps[] = websiteList
-  isLogin: boolean = isLogin
+  readonly $t = $t
+  readonly settings = settings
+  readonly websiteList: INavProps[] = websiteList
+  readonly isLogin = isLogin
+  readonly permissions = getPermissions(settings)
   copyUrlDone = false
   copyPathDone = false
+  description = ''
+  isCode = false
+  isError = false
+  backgroundColor = ''
 
-  constructor(public jumpService: JumpService) {}
+  constructor(
+    public commonService: CommonService,
+    public readonly jumpService: JumpService,
+    private message: NzMessageService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.isCode = this.dataSource.desc?.[0] === CODE_SYMBOL
+    this.description = parseLoadingWithContent(this.dataSource.desc)
+    if (this.cardStyle === 'poster') {
+      this.generateColor()
+    }
+  }
 
-  async copyUrl(e: Event, type: number) {
-    const w = this.dataSource
+  ngAfterViewInit() {
+    this.parseDescription()
+  }
+
+  private generateColor() {
+    this.backgroundColor = `linear-gradient(${randomInt(
+      360
+    )}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
+  }
+
+  private parseDescription() {
+    parseHtmlWithContent(this.root?.nativeElement, this.dataSource.desc)
+  }
+
+  async copyUrl(e: Event, type: 1 | 2): Promise<void> {
+    const { id, url } = this.dataSource
     const { origin, hash, pathname } = window.location
-    const pathUrl = `${origin}${pathname}${hash}?q=${
-      w.name
-    }&url=${encodeURIComponent(w.url)}`
-    const isDone = await copyText(e, type === 1 ? pathUrl : w.url)
+    const pathUrl = `${origin}${pathname}${hash}?q=${id}&type=${SearchType.Id}`
+    const isDone = await copyText(e, type === 1 ? pathUrl : url)
 
     if (type === 1) {
       this.copyPathDone = isDone
@@ -78,50 +108,67 @@ export class CardComponent implements OnInit {
     }
   }
 
-  copyMouseout() {
+  copyMouseout(): void {
     this.copyUrlDone = false
     this.copyPathDone = false
   }
 
-  openEditWebMoal() {
+  openEditWebMoal(): void {
     event.emit('CREATE_WEB', {
       detail: this.dataSource,
     })
   }
 
-  onRateChange(n: any) {
-    this.dataSource.rate = n
+  onRateChange(rate: number): void {
+    this.dataSource.rate = rate
     setWebsiteList(this.websiteList)
   }
 
-  confirmDel() {
-    deleteByWeb({
+  async confirmDel(): Promise<void> {
+    const params: IWebProps = {
       ...(this.dataSource as IWebProps),
       name: getTextContent(this.dataSource.name),
       desc: getTextContent(this.dataSource.desc),
-    })
+    }
+    if (isLogin) {
+      event.emit('DELETE_MODAL', {
+        ids: [params.id],
+        data: params,
+      })
+    } else {
+      event.emit('MODAL', {
+        nzTitle: $t('_confirmDel'),
+        nzContent: `ID: ${params.id}`,
+        nzWidth: 350,
+        nzOkType: 'primary',
+        nzOkDanger: true,
+        nzOkText: $t('_del'),
+        nzOnOk: async () => {
+          await saveUserCollect({
+            data: {
+              ...params,
+              extra: {
+                type: ActionType.Delete,
+              },
+            },
+          })
+          this.message.success($t('_waitHandle'))
+        },
+      })
+    }
   }
 
-  openMoveWebModal() {
+  openMoveWebModal(): void {
     event.emit('MOVE_WEB', {
-      indexs: this.indexs,
       data: [this.dataSource],
     })
   }
 
-  get html() {
-    return this.dataSource.desc.slice(1)
-  }
-
-  get getRate() {
-    if (!this.dataSource.rate) {
-      return null
+  get getRate(): string {
+    if (this.cardStyle !== 'column') {
+      return ''
     }
-    const rate = Number(this.dataSource.rate)
-    // 0分不显示
-    if (!rate) {
-      return null
-    }
-    return rate.toFixed(1) + '分'
+    const rate = Number(this.dataSource.rate ?? 0)
+    return rate > 0 ? `${rate.toFixed(1)}${isZhCN() ? '分' : ''}` : ''
   }
 }

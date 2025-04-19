@@ -7,6 +7,7 @@
   <p align="center">一个纯静态、支持SEO、在线编辑的强大导航网站，希望您会喜欢</p>
   <p align="center">内置收录多达 800+ 优质网站， 助您工作、学习和生活</p>
   <p align="center">
+    <a href="README_EN.md"><img alt="english" src="https://img.shields.io/static/v1.svg?label=&message=English&style=flat-square&color=ff5000"></a>
     <img src="https://img.shields.io/github/v/release/xjh22222228/nav" />
     <a href="https://github.com/xjh22222228/nav/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/nav" alt="Stars"/></a>
     <img alt="Angular" src="https://img.shields.io/static/v1.svg?label=&message=Angular&style=flat-square&color=C82B38">
@@ -33,31 +34,37 @@
   />
 </picture>
 
+## 设计理念
+
+无数据库、无服务器、零成本一键部署、开箱即用，但又可以像数据库那样操纵数据和保存。
+
+好用、简单、强大。
+
+[谁在使用？](https://official.nav3.cn/?id=3)
+
 ## 特性
-
-三不需：`无需数据库`、`无需服务器`、`无需成本`
-
-`发现导航` 的理念就是做一款无需依赖后端服务既简单又方便，没有繁杂的配置和数据库等配置概念, 做到开箱即用。
 
 - 🍰 内置 `800+` 优质网站
 - 🍰 支持 [码云 Gitee](https://gitee.com/xiejiahe/nav)
+- 🍰 支持 [GitLab](https://gitlab.com/xjh22222228/nav)
 - 🍰 支持从浏览器书签导入
 - 🍰 支持将数据导出到浏览器书签
-- 🍰 支持用户提交收录
-- 🍰 支持自有部署/Fork
-- 🍰 丰富的资源配置系统
+- 🍰 支持 AI 翻译
+- 🍰 支持用户提交新增、编辑、删除
+- 🍰 支持自有部署(pm2|Docker|宝塔)/Fork
+- 🍰 支持分类/网站移动和引用
 - 🍰 支持 SEO 搜索引擎
-- 🍰 支持网站关联多个网址
+- 🍰 支持网站关联多个网址或标签
 - 🍰 支持检测网站存活状态
 - 🍰 支持配置仅自己可见
-- 🍰 自动抓取网站图标/名称/描述
-- 🍰 海量小组件个性化定制
+- 🍰 支持自动抓取网站图标/名称/描述
+- 🍰 支持小组件个性化定制
 - 🍰 支持暗黑模式
 - 🍰 支持后台管理, 无需部署
-- 🍰 支持多种浏览模式，创新
 - 🍰 支持足迹记忆
 - 🍰 支持多种搜索查询
 - 🍰 支持自定义引擎搜索
+- 🍰 支持卡片广告展示
 - 🍰 多款高颜值主题切换
 - 🍰 强大的响应式系统
 - 🍰 多种 Loading 加载动画
@@ -73,8 +80,8 @@
 
 ## 可以干嘛
 
-- 公司部署，内部系统网站，不需要员工收藏各种链接
-- 做为个人书签，有些功能浏览器是没有的
+- 部署公司内部导航系统，统一管理常用链接
+- 个人书签管理，替代浏览器收藏夹
 - 个人导航网站，分享、价值、发现
 
 ## 部署
@@ -97,31 +104,17 @@
 
 #### Netlify 推荐(免费)
 
-作者目前使用，速度较快, 打包路径 `dist/browser`
+打包路径 `dist/browser`
 
 [https://www.netlify.com/](https://www.netlify.com/)
 
 #### Vercel 推荐(免费)
 
-国内访问速度较慢，建议测试后使用
-
 [https://github.com/apps/vercel](https://github.com/apps/vercel)
 
-#### 自有部署
+#### Cloudflare pages 推荐(免费)
 
-自有部署一直不是发现导航的需求目标，但陆续接到需求，决定从`v8.8.0`版本开始支持！
-
-#### Fork vs 自有部署
-
-|          | 自有部署         | Fork             |
-| -------- | ---------------- | ---------------- |
-| 速度     | 保存即时生效     | 需要等待构建完成 |
-| 成本     | 需要自己有服务器 | 各种平台免费部署 |
-| 数据存储 | 需要定时备份     | 永久存储         |
-| 存活状态 | 未知             | 只要`GitHub`还在 |
-| 图片     | 走服务器带宽     | 免费 CDN 加速    |
-
-自有部署操作速度快，无需等待，成本较高，按需选择。
+[https://www.cloudflare.com/zh-cn](https://www.cloudflare.com/zh-cn)
 
 ## 配置说明
 

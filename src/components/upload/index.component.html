@@ -1,4 +1,4 @@
-<label [id]="id" class="file">
+<label [id]="id">
   <i
     *ngIf="!uploading"
     nz-icon
@@ -13,6 +13,6 @@
     [name]="id"
     (change)="onChangeFile($event)"
     accept="image/*"
-    class="file-upload"
+    class="!hidden"
   />
 </label>

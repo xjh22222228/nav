@@ -1,9 +1,15 @@
 <div
-  class="component-group dark-scrollbar justify-center md:justify-start"
+  class="component-group justify-center md:justify-start"
   *ngIf="components.length > 0"
   [class.directionCol]="direction === 'column'"
+  [class.over]="isOver"
+  [class.showAll]="isShowAll"
+  [class.!overflow-x-scroll]="isMobile"
 >
-  <ng-container *ngFor="let item of components; trackBy: trackByItem">
+  <span *ngIf="isOver" class="arrow" (click)="handleExpand()"
+    ><nz-icon nzType="double-right" nzTheme="outline" class="arrowicon"
+  /></span>
+  <ng-container *ngFor="let item of componentList; trackBy: trackByItem">
     <ng-container [ngSwitch]="item.type">
       <app-calendar *ngSwitchCase="ComponentType.Calendar" [data]="item" />
       <app-runtime *ngSwitchCase="ComponentType.Runtime" [data]="item" />
@@ -16,6 +22,7 @@
         [class.hidden]="!item['html']"
       />
       <app-holiday *ngSwitchCase="ComponentType.Holiday" [data]="item" />
+      <app-news *ngSwitchCase="ComponentType.News" [data]="item" />
     </ng-container>
   </ng-container>
 

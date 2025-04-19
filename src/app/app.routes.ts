@@ -4,8 +4,8 @@ import SuperComponent from 'src/view/super/index.component'
 import SimComponent from 'src/view/sim/index.component'
 import SideComponent from 'src/view/side/index.component'
 import ShortcutComponent from 'src/view/shortcut/index.component'
-import WebpComponent from 'src/view/app/default/app.component'
-import { isSelfDevelop } from 'src/utils/util'
+import MobileComponent from 'src/view/mobile/index.component'
+import { isSelfDevelop } from 'src/utils/utils'
 import { getDefaultTheme } from 'src/utils'
 
 export const routes: Routes = [
@@ -34,13 +34,12 @@ export const routes: Routes = [
     path: 'light',
     component: LightComponent,
     data: {
-      renderLinear: true,
       data: {},
     },
   },
   {
     path: 'app',
-    component: WebpComponent,
+    component: MobileComponent,
     data: {},
   },
   {
@@ -65,8 +64,8 @@ export const routes: Routes = [
         loadComponent: () => import('src/view/system/collect/index.component'),
       },
       {
-        path: 'vip',
-        loadComponent: () => import('src/view/system/vip-auth/index.component'),
+        path: 'auth',
+        loadComponent: () => import('src/view/system/auth/index.component'),
       },
       {
         path: 'tag',
@@ -88,6 +87,10 @@ export const routes: Routes = [
       {
         path: 'web',
         loadComponent: () => import('src/view/system/web/index.component'),
+      },
+      {
+        path: 'config',
+        loadComponent: () => import('src/view/system/config/index.component'),
       },
       {
         path: '**',

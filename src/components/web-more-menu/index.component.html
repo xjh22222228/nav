@@ -11,7 +11,7 @@
       nzMenuClassName="navpopover"
       nz-menu-item
       *ngFor="let item of data; index as i"
-      (click)="handleCilck(index + i)"
+      (click)="handleCilck(item.id)"
       [class.moreActive]="page === index + i"
       [class.dark-text-active]="page === index + i"
       class="navpopover over-item dark-text dark-hover"

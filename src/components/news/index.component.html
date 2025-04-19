@@ -1,0 +1,38 @@
+<div
+  class="news citems family"
+  [ngStyle]="{ zoom: component['zoom'], background: data['bgColor'] }"
+>
+  <div
+    class="tabs hidden-scrollbar"
+    #parent
+    (mouseleave)="scrollIntoViewTabs()"
+    (click)="scrollIntoViewTabs()"
+  >
+    <div
+      #item
+      class="tab"
+      *ngFor="let type of data['types']; let i = index"
+      [class.active]="i === activeIndex"
+      (mouseenter)="onMouseEnter(i)"
+    >
+      {{ newsTypeMap[type] }}
+    </div>
+  </div>
+
+  <div class="content-box hidden-scrollbar" #content>
+    <app-loading *ngIf="loading" />
+    <div class="nodata" *ngIf="!loading && newsList.length === 0">
+      {{ $t('_noNews') }}
+    </div>
+
+    <div
+      class="content ellipsis"
+      *ngFor="let item of newsList; let i = index; trackBy: trackByItem"
+      (click)="jumpService.goUrl($event, item.url)"
+    >
+      <span class="mr-2 n">{{ i + 1 }}</span
+      ><span class="mid ellipsis">{{ item.text }}</span
+      ><span class="ml-2.5" *ngIf="item.hot">{{ item.hot }}</span>
+    </div>
+  </div>
+</div>

@@ -11,7 +11,11 @@
   align-items: center;
   transition: all 0.1s linear;
   color: #fff;
+  min-height: 15px;
   &:hover {
     opacity: 0.8;
   }
+}
+.tag-action {
+  display: none;
 }

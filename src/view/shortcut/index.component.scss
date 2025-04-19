@@ -24,6 +24,19 @@
     .days {
       font-size: 16px !important;
     }
+    ::ng-deep {
+      .web-list {
+        .common-icon {
+          width: 50px !important;
+          height: 50px !important;
+          min-width: 50px !important;
+          min-height: 50px !important;
+        }
+        .name {
+          width: 75px !important;
+        }
+      }
+    }
   }
 }
 
@@ -101,9 +114,6 @@
   ::ng-deep {
     .name {
       color: #fff !important;
-    }
-    .web-list {
-      gap: 40px;
     }
   }
   .datetime {

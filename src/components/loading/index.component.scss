@@ -1,0 +1,18 @@
+.cc1 {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  animation: my-rotatex1 2s linear infinite;
+}
+.cc2 {
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  stroke-width: 5;
+  stroke: #6d8ba7;
+  stroke-linecap: round;
+  animation: loading-dashx2 1.5s ease-in-out infinite;
+}

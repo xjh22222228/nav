@@ -11,8 +11,9 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { updateFileContent } from 'src/api'
 import { COMPONENT_PATH } from 'src/constants'
-import { components } from 'src/store'
-import { ComponentType, IComponentProps } from 'src/types'
+import { component } from 'src/store'
+import { ComponentType } from 'src/types'
+import type { IComponentItemProps, IComponentProps } from 'src/types'
 import { CalendarDrawerComponent } from 'src/components/calendar/drawer/index.component'
 import { RuntimeDrawerComponent } from 'src/components/runtime/drawer/index.component'
 import { OffWorkDrawerComponent } from 'src/components/off-work/drawer/index.component'
@@ -20,8 +21,9 @@ import { ImageDrawerComponent } from 'src/components/image/drawer/index.componen
 import { CountdownDrawerComponent } from 'src/components/countdown/drawer/index.component'
 import { HTMLDrawerComponent } from 'src/components/html/drawer/index.component'
 import { HolidayDrawerComponent } from 'src/components/holiday/drawer/index.component'
+import { NewsDrawerComponent } from 'src/components/news/drawer/index.component'
 import { componentTitleMap } from './types'
-import { isSelfDevelop } from 'src/utils/util'
+import { isSelfDevelop } from 'src/utils/utils'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
@@ -32,6 +34,7 @@ import { ImageComponent } from 'src/components/image/index.component'
 import { CountdownComponent } from 'src/components/countdown/index.component'
 import { HTMLComponent } from 'src/components/html/index.component'
 import { HolidayComponent } from 'src/components/holiday/index.component'
+import { NewsComponent } from 'src/components/news/index.component'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -58,6 +61,8 @@ import event from 'src/utils/mitt'
     CountdownDrawerComponent,
     HTMLDrawerComponent,
     HolidayDrawerComponent,
+    NewsDrawerComponent,
+    NewsComponent,
   ],
   providers: [NzMessageService, NzModalService],
   selector: 'system-component',
@@ -72,14 +77,15 @@ export default class SystemComponentComponent {
   @ViewChild('countdown') countdownChild!: CountdownDrawerComponent
   @ViewChild('html') htmlChild!: HTMLDrawerComponent
   @ViewChild('holiday') holidayChild!: HolidayDrawerComponent
+  @ViewChild('news') newsChild!: HolidayDrawerComponent
 
-  $t = $t
-  isSelfDevelop = isSelfDevelop
-  componentTitleMap = componentTitleMap
-  ComponentType = ComponentType
-  components = components
+  readonly $t = $t
+  readonly isSelfDevelop = isSelfDevelop
+  readonly componentTitleMap = componentTitleMap
+  readonly ComponentType = ComponentType
+  components = component.components
   submitting: boolean = false
-  compoentZoom = components[0]['zoom'] || 1
+  compoentZoom = component.zoom || 1
 
   constructor(
     private message: NzMessageService,
@@ -120,11 +126,12 @@ export default class SystemComponentComponent {
       [ComponentType.Countdown]: this.countdownChild,
       [ComponentType.HTML]: this.htmlChild,
       [ComponentType.Holiday]: this.holidayChild,
+      [ComponentType.News]: this.newsChild,
     }
     types[type]?.open(data, idx)
   }
 
-  onAdd(data: IComponentProps) {
+  onAdd(data: IComponentItemProps) {
     let max = Math.max(...this.components.map((item) => item.id))
     max = max <= 0 ? 1 : max + 1
     this.components.push({
@@ -138,10 +145,7 @@ export default class SystemComponentComponent {
   }
 
   handleZoomChange(value: number) {
-    this.components = this.components.map((item) => {
-      item['zoom'] = value
-      return item
-    })
+    component.zoom = value
   }
 
   handleOk(data: any) {
@@ -163,10 +167,14 @@ export default class SystemComponentComponent {
       nzOkText: $t('_confirmSync'),
       nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
+        const params: IComponentProps = {
+          zoom: this.compoentZoom,
+          components: this.components,
+        }
         this.submitting = true
         updateFileContent({
           message: 'update component',
-          content: JSON.stringify(this.components),
+          content: JSON.stringify(params),
           path: COMPONENT_PATH,
         })
           .then(() => {

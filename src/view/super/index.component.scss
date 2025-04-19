@@ -2,21 +2,18 @@
   .super-xjh {
     --width: 960px;
     --leftWidth: 180px;
-    --rightWidth: 200px;
   }
 }
 @media (max-width: 998px) {
   .super-xjh {
     --width: 100%;
     --leftWidth: 150px;
-    --rightWidth: 160px;
   }
 }
 @media (max-width: 768px) {
   .super-xjh {
     --width: 100%;
     --leftWidth: 100%;
-    --rightWidth: 100%;
   }
   .main-box {
     flex-direction: column;
@@ -27,22 +24,25 @@
     position: sticky;
     top: 0;
     left: 0;
+    .headerbox {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
-  .right,
-  .left {
-    position: initial !important;
-    max-height: initial !important;
-  }
-  .right {
-    padding: 0 20px;
-    background-color: #fff;
+  ::ng-deep {
+    .sideimg {
+      position: initial !important;
+      padding: 20px 20px 0 20px;
+      background-color: #fff;
+      max-height: initial !important;
+    }
   }
 }
 @media (min-width: 1200px) {
   .super-xjh {
     --width: 1150px;
     --leftWidth: 180px;
-    --rightWidth: 250px;
   }
 }
 
@@ -57,7 +57,6 @@
     display: flex;
     align-items: center;
     background-color: #fff;
-    height: 70px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.09);
     .headerbox {
       width: var(--width);
@@ -82,6 +81,7 @@
       font-weight: bold;
       font-size: 18px;
       margin-left: 10px;
+      padding-top: 10px;
       white-space: nowrap;
       &:hover {
         color: #000;
@@ -101,10 +101,13 @@
       }
     }
     .topnav {
+      width: 100%;
+      position: relative;
       flex: 1;
       display: flex;
       overflow: hidden;
       overflow-x: auto;
+      padding: 15px 0;
     }
   }
 
@@ -116,7 +119,7 @@
 
   .main-box {
     width: var(--width);
-    margin: 24px auto 40px;
+    margin: 10px auto 40px;
     display: flex;
     flex: 1;
     column-gap: 20px;
@@ -134,6 +137,7 @@
       overflow: hidden;
       overflow-y: auto;
       border: 1px solid transparent;
+      display: none;
       .bar-item {
         padding: 10px 17px;
         cursor: pointer;
@@ -167,7 +171,6 @@
         width: initial;
       }
       .search-t {
-        padding: 8px 12px 0 12px;
         border-bottom: 1px solid #eee;
         margin-bottom: 12px;
       }
@@ -218,29 +221,15 @@
         font-size: 12px;
       }
     }
-
-    .right {
-      position: sticky;
-      top: var(--stickyTop);
-      width: var(--rightWidth);
-      min-width: var(--rightWidth);
-      max-height: calc(100vh - 110px);
-      overflow: hidden;
-      overflow-y: auto;
-      .adsimg {
-        display: block;
-        width: 100%;
-        border-radius: 4px;
-      }
-      .aditem {
-        margin-bottom: 20px;
-        border-radius: 4px;
-        overflow: hidden;
-      }
-    }
   }
 
   ::ng-deep {
+    .sideimg {
+      position: sticky;
+      width: 100%;
+      top: var(--stickyTop);
+      max-height: calc(100vh - 110px);
+    }
     .standard {
       margin: 0 0 15px 0px;
     }

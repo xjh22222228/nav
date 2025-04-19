@@ -1,12 +1,12 @@
 <nz-spin nzTip="Loading..." [nzSpinning]="submitting">
-  <div *ngIf="isPermission">
+  <div *ngIf="isPermission" class="mt-4">
     <button
       *ngIf="!isSelfDevelop"
-      class="mt-2.5 mr-2.5"
       nz-button
       nzType="primary"
       (click)="handleSubmit()"
       [nzLoading]="submitting"
+      style="margin-right: 20px"
     >
       {{ $t('_save') }}
     </button>
@@ -15,56 +15,85 @@
       {{ $t('_refresh') }}
     </button>
 
-    <div class="mb-2.5 mt-2.5 color-red font-bold" *ngIf="!isSelfDevelop">
+    <button
+      nz-button
+      nzType="primary"
+      nzDanger
+      (click)="batchDelete()"
+      [nzLoading]="submitting"
+      style="margin-left: 20px"
+    >
+      {{ $t('_del') }}
+    </button>
+
+    <div class="mb-2.5 mt-2.5 !text-red-500 font-bold" *ngIf="!isSelfDevelop">
       处理完成所有数据后需要点击一次保存方可生效
     </div>
     <nz-table #basicTable [nzData]="dataList" [nzShowPagination]="false">
       <thead>
         <tr>
+          <th
+            nzWidth="100px"
+            [nzChecked]="checked"
+            (nzCheckedChange)="onAllChecked($event)"
+          ></th>
           <th nzWidth="80px">{{ $t('_action') }}</th>
+          <th nzWidth="80px">{{ $t('_type') }}</th>
+          <th nzWidth="80px">ID</th>
           <th nzWidth="80px">{{ $t('_icon') }}</th>
           <th nzWidth="100px">{{ $t('_webName') }}</th>
           <th nzWidth="100px">{{ $t('_associatedLabels') }}</th>
           <th nzWidth="300px">{{ $t('_webDesc') }}</th>
           <th nzWidth="300px">{{ $t('_webTag') }}</th>
-          <th>{{ $t('_createAt') }}</th>
+          <th nzWidth="200px">{{ $t('_createAt') }}</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of dataList; index as idx; trackBy: trackByItem">
+          <td
+            [nzChecked]="setOfCheckedId.has(data.extra.uuid)"
+            (nzCheckedChange)="onItemChecked(data.extra.uuid, $event)"
+          ></td>
           <td>
-            <div>
-              <a (click)="handleConfirmGet(data, idx)">{{ $t('_collect') }}</a>
-            </div>
-            <div class="mt-2.5">
-              <a
-                nz-popconfirm
-                nzPopconfirmPlacement="rightTop"
-                nzOkType="danger"
-                [nzPopconfirmTitle]="$t('_confirmDel')"
-                nzPopconfirmPlacement="bottom"
-                (nzOnConfirm)="handleDelete(idx)"
-                class="color-red"
-              >
-                {{ $t('_del') }}
-              </a>
-            </div>
+            <a (click)="handleClick(data, idx)">{{ $t('_handle') }}</a>
           </td>
-          <td>
+          <td>{{ typeMap[data.extra.type] }}</td>
+          <td>{{ data.id }}</td>
+          <td class="text-center">
+            <ng-content *ngIf="data.oldData">
+              <app-logo [src]="data.oldData.icon" [name]="data.oldData.name" />
+              <div>↓</div>
+            </ng-content>
             <app-logo [src]="data.icon" [name]="data.name" />
           </td>
           <td>
-            <a [href]="data.url" target="_blank">{{ data.name }}</a>
+            <ng-content *ngIf="data.oldData">
+              <a (click)="jumpService.goUrl($event, data.oldData.url)">{{
+                data.oldData.name
+              }}</a>
+              <div>↓</div>
+            </ng-content>
+            <a
+              (click)="jumpService.goUrl($event, data.url)"
+              [innerHTML]="data.name"
+            ></a>
           </td>
           <td>
+            <ng-content *ngIf="data.oldData">
+              <tag-list [data]="data.oldData.tags" *ngIf="data.oldData.tags" />
+              <div>↓</div>
+            </ng-content>
             <tag-list [data]="data.tags" *ngIf="data.tags" />
           </td>
           <td>
-            <pre class="desc">{{ data.desc }}</pre>
+            <ng-content *ngIf="data.oldData">
+              <pre class="desc">{{ data.oldData.desc }}</pre>
+              <div>↓</div>
+            </ng-content>
+            <pre class="desc" [innerHTML]="data.desc"></pre>
           </td>
-          <td nzWidth="300px" *ngIf="data.extra">
-            {{ data.extra.oneName }} / {{ data.extra.twoName }} /
-            {{ data.extra.threeName }}
+          <td nzWidth="300px">
+            {{ data.breadcrumb }}
           </td>
           <td>{{ data.createdAt }}</td>
         </tr>

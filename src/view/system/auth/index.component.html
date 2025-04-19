@@ -1,0 +1,47 @@
+<nz-spin nzTip="Loading..." [nzSpinning]="submitting">
+  <div *ngIf="!isPermission" class="text-center">
+    <input
+      nz-input
+      [placeholder]="$t('_inputAuthCode')"
+      [(ngModel)]="authCode"
+      autofocus
+    />
+    <div class="text-left mt-2.5">
+      <button
+        nz-button
+        nzType="primary"
+        (click)="handleSubmitAuthCode()"
+        [nzLoading]="submitting"
+      >
+        {{ $t('_save') }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isPermission">
+    <div class="mb-2.5 mt-2.5">
+      {{ $t('_bindDomain') }}
+    </div>
+    <input nz-input placeholder="example.cn,example.com" [(ngModel)]="url" />
+    <div class="mt-2.5">
+      <button
+        nz-button
+        nzType="primary"
+        (click)="handleSave()"
+        [nzLoading]="submitting"
+      >
+        {{ $t('_save') }}
+      </button>
+      <button
+        nz-button
+        nzType="primary"
+        nzDanger
+        (click)="logoutAuthCode()"
+        [nzLoading]="submitting"
+        style="margin-left: 20px"
+      >
+        {{ $t('_logoutAuthCode') }}
+      </button>
+    </div>
+  </div>
+</nz-spin>

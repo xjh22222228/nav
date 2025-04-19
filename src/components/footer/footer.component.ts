@@ -5,8 +5,9 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { settings } from 'src/store'
-import { compilerTemplate } from 'src/utils/util'
+import { compilerTemplate } from 'src/utils/utils'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
+import { queryString } from 'src/utils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -39,7 +40,7 @@ export class FooterComponent {
   }
 
   handleApplyWeb() {
-    event.emit('CREATE_WEB')
+    event.emit('CREATE_WEB', {})
   }
 
   ngAfterViewInit() {

@@ -29,7 +29,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
-  background-color: #1890ff;
   font-size: 18px;
+}
+
+.common-icon {
+  transition: all 0.1s linear;
 }

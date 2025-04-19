@@ -10,9 +10,7 @@ const o = {
 }
 
 export function getLocale(): string {
-  return (
-    window.localStorage.getItem(STORAGE_KEY_MAP.language) || settings.language
-  )
+  return localStorage.getItem(STORAGE_KEY_MAP.LANGUAGE) || settings.language
 }
 
 const l = getLocale()
@@ -30,6 +28,10 @@ export function $t(s: string, map?: Record<string, any>): string {
     return replaceStr(o.cn[s], map)
   }
   return replaceStr(o.en[s] ?? o.cn[s], map)
+}
+
+export function isZhCN(): boolean {
+  return l === 'zh-CN'
 }
 
 export default o

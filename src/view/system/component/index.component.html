@@ -3,12 +3,12 @@
   nzType="primary"
   (click)="handleSubmit()"
   [nzLoading]="submitting"
-  class="mb-4"
+  style="margin: 10px 0"
 >
   {{ $t('_save') }}
 </button>
 
-<div class="mb-4 color-red font-bold" *ngIf="!isSelfDevelop">
+<div class="mb-4 !text-red-500 font-bold" *ngIf="!isSelfDevelop">
   {{ $t('_buildTip') }}
 </div>
 
@@ -36,6 +36,7 @@
       <app-countdown *ngSwitchCase="ComponentType.Countdown" [data]="item" />
       <app-html *ngSwitchCase="ComponentType.HTML" [data]="item" />
       <app-holiday *ngSwitchCase="ComponentType.Holiday" [data]="item" />
+      <app-news *ngSwitchCase="ComponentType.News" [data]="item" />
     </ng-container>
 
     <div class="text-center mt-3">
@@ -47,7 +48,7 @@
         <a (click)="onAdd(item)">{{ $t('_copy') }}</a>
         <a
           *ngIf="item.id >= 0"
-          class="color-red ml-2"
+          class="!text-red-500 ml-2"
           nz-popconfirm
           nzOkType="danger"
           [nzPopconfirmTitle]="$t('_confirmDel')"
@@ -67,3 +68,4 @@
 <countdown-drawer #countdown (ok)="handleOk($event)" />
 <html-drawer #html (ok)="handleOk($event)" />
 <holiday-drawer #holiday (ok)="handleOk($event)" />
+<news-drawer #news (ok)="handleOk($event)" />

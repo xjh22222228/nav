@@ -1,0 +1,41 @@
+.class-tabs {
+  --height: 28px;
+  position: relative;
+  padding: 4px;
+  border-radius: 8px;
+  background-color: #ededee;
+  display: inline-flex;
+  font-size: 14px;
+  overflow: hidden;
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: nowrap;
+  color: #93959a;
+  user-select: none;
+  .anchor {
+    position: absolute;
+    height: var(--height);
+    background-color: #1890ff !important;
+    color: #fff;
+    transition: left 0.15s linear;
+    border-radius: 6px;
+  }
+  .tab {
+    z-index: 2;
+    position: relative;
+    padding: 0 8px;
+    height: var(--height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s linear;
+    cursor: pointer;
+    border-radius: 6px;
+    &:hover:not(.active) {
+      background-color: rgba(0, 0, 0, 0.055);
+    }
+    &.active {
+      color: #fff;
+    }
+  }
+}

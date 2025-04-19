@@ -1,4 +1,4 @@
-<div class="holiday family citems" [style.zoom]="data['zoom']">
+<div class="holiday family citems" [style.zoom]="component['zoom']">
   <div class="top" [style.background]="data['topColor']">
     {{ data['title'] }}
   </div>
@@ -8,10 +8,10 @@
     [style.backgroundColor]="data['bgColor']"
   >
     <div class="days" [style.color]="data['dayColor']">
-      {{ component['dayStr'] }}
+      {{ countdownData['dayStr'] }}
     </div>
     <div class="date" [style.color]="data['dateColor']">
-      - {{ component['dateStr'] }} -
+      - {{ countdownData['dateStr'] }} -
     </div>
   </div>
 </div>

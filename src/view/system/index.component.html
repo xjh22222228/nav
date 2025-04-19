@@ -1,95 +1,110 @@
 <nz-layout class="system-layout" *ngIf="isLogin">
   <nz-layout>
-    <nz-sider class="sidebar" nzWidth="150px" nzTheme="light">
+    <nz-sider
+      class="sidebar select-none"
+      [class.hide]="isCollapsed"
+      nzWidth="150px"
+      nzTheme="light"
+      nzCollapsible
+      [(nzCollapsed)]="isCollapsed"
+      [nzTrigger]="null"
+    >
       <ul nz-menu nzMode="inline" class="sider-menu">
-        <li nz-submenu nzOpen nzTitle="System">
-          <ul>
-            <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'web'"
-              (click)="goRoute('/system/web')"
-            >
-              {{ $t('_websiteMang') }}
-            </li>
-            <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'setting'"
-              (click)="goRoute('/system/setting')"
-            >
-              {{ $t('_systemSet') }}
-            </li>
-            <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'tag'"
-              (click)="goRoute('/system/tag')"
-            >
-              {{ $t('_tagSettings') }}
-            </li>
-            <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'bookmark'"
-              (click)="goRoute('/system/bookmark')"
-            >
-              {{ $t('_bookmarkImport') }}
-            </li>
-            <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'search'"
-              (click)="goRoute('/system/search')"
-            >
-              {{ $t('_searchEngines') }}
-            </li>
-            <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'component'"
-              (click)="goRoute('/system/component')"
-              *ngIf="isAuthz || isSelfDevelop"
-            >
-              {{ $t('_components') }}
-            </li>
-            <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'bookmarkExport'"
-              (click)="goRoute('/system/bookmarkExport')"
-              *ngIf="isAuthz"
-            >
-              {{ $t('_bookmarkExport') }}
-            </li>
-            <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'collect'"
-              (click)="goRoute('/system/collect')"
-              *ngIf="isAuthz || isSelfDevelop"
-            >
-              {{ $t('_userCollect') }}
-            </li>
+        <li
+          nz-menu-item
+          [nzSelected]="currentMenu === 'web'"
+          (click)="goRoute('/system/web')"
+        >
+          {{ $t('_websiteMang') }}
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="currentMenu === 'setting'"
+          (click)="goRoute('/system/setting')"
+        >
+          {{ $t('_systemSet') }}
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="currentMenu === 'tag'"
+          (click)="goRoute('/system/tag')"
+        >
+          {{ $t('_tagSettings') }}
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="currentMenu === 'search'"
+          (click)="goRoute('/system/search')"
+        >
+          {{ $t('_searchEngines') }}
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="currentMenu === 'component'"
+          (click)="goRoute('/system/component')"
+          *ngIf="isAuthz || isSelfDevelop"
+        >
+          {{ $t('_components') }}
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="currentMenu === 'bookmark'"
+          (click)="goRoute('/system/bookmark')"
+        >
+          {{ $t('_bookmarkImport') }}
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="currentMenu === 'bookmarkExport'"
+          (click)="goRoute('/system/bookmarkExport')"
+          *ngIf="isAuthz"
+        >
+          {{ $t('_bookmarkExport') }}
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="currentMenu === 'collect'"
+          (click)="goRoute('/system/collect')"
+          *ngIf="isAuthz || isSelfDevelop"
+        >
+          {{ $t('_userCollect') }}
+        </li>
 
-            <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'vip'"
-              (click)="goRoute('/system/vip')"
-            >
-              {{ $t('_vipAuth') }}
-            </li>
-            <li
-              nz-menu-item
-              [nzSelected]="currentMenu === 'info'"
-              (click)="goRoute('/system/info')"
-            >
-              {{ $t('_webInfo') }}
-            </li>
-          </ul>
+        <li
+          nz-menu-item
+          [nzSelected]="currentMenu === 'auth'"
+          (click)="goRoute('/system/auth')"
+        >
+          {{ $t('_vipAuth') }}
+        </li>
+        <li
+          *ngIf="isSelfDevelop"
+          nz-menu-item
+          [nzSelected]="currentMenu === 'config'"
+          (click)="goRoute('/system/config')"
+        >
+          {{ $t('_confInfo') }}
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="currentMenu === 'info'"
+          (click)="goRoute('/system/info')"
+        >
+          {{ $t('_webInfo') }}
         </li>
       </ul>
     </nz-sider>
-    <nz-layout class="inner-layout">
+    <nz-layout class="inner-layout" [class.!ml-0]="isCollapsed">
       <nz-content class="content">
-        <div>
-          <button nz-button style="margin-bottom: 15px" (click)="goBack()">
+        <div class="whitespace-nowrap overflow-x-auto topbar">
+          <button nz-button nzType="primary" (click)="toggleCollapsed()">
+            <nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" />
+          </button>
+          <button nz-button style="margin: 0 15px 15px" (click)="goBack()">
             {{ $t('_backHome') }}
           </button>
 
-          <button nz-button style="margin-left: 15px" (click)="logout()">
+          <button nz-button nzDanger nzType="primary" (click)="logout()">
             {{ $t('_logout') }}
           </button>
           <img [src]="currentVersionSrc" class="ml-2.5" />
@@ -103,6 +118,12 @@
           <span class="ml-2.5" *ngIf="!isSelfDevelop">{{ date }}</span>
         </div>
 
+        <nz-spin
+          nzSimple
+          [nzSize]="'large'"
+          class="fixed-center"
+          *ngIf="pageLoading"
+        ></nz-spin>
         <router-outlet></router-outlet>
       </nz-content>
     </nz-layout>

@@ -33,7 +33,7 @@ import dayjs from 'dayjs'
 export class HolidayDrawerComponent {
   @Output() ok = new EventEmitter<void>()
 
-  $t = $t
+  readonly $t = $t
   visible = false
   validateForm!: FormGroup
   index = 0

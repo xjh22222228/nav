@@ -1,0 +1,23 @@
+.phone-nav {
+  display: flex;
+  align-items: center;
+  background-color: #e1e1e1;
+  border-radius: 50px;
+  padding: 4px;
+  overflow: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  .nav-item {
+    padding: 4px 12px;
+    cursor: pointer;
+    border-radius: 50px;
+    color: #666;
+    &.active {
+      background-color: #1e80ff !important;
+      color: #fff !important;
+    }
+    &:hover {
+      background: rgba(0, 0, 0, 0.03);
+    }
+  }
+}

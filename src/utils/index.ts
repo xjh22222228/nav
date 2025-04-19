@@ -8,13 +8,14 @@ import {
   IWebProps,
   INavThreeProp,
   INavProps,
-  ISearchEngineProps,
+  ISearchItemProps,
   IWebTag,
 } from '../types'
 import { STORAGE_KEY_MAP } from 'src/constants'
+import { CODE_SYMBOL } from 'src/constants/symbol'
 import { isLogin } from './user'
-import { SearchType } from 'src/components/search-engine/index'
-import { websiteList, searchEngineList, settings } from 'src/store'
+import { SearchType } from 'src/components/search/index'
+import { websiteList, search, settings, tagMap } from 'src/store'
 import { $t } from 'src/locale'
 
 export function randomInt(max: number) {
@@ -28,18 +29,43 @@ export function fuzzySearch(
   if (!keyword.trim()) {
     return []
   }
+  keyword = keyword.toLowerCase()
 
-  const { type, page, id } = queryString()
-  const sType = Number(type) || SearchType.Title
+  const { type, id } = queryString()
+  const { oneIndex, twoIndex } = getClassById(id)
+  const sType = Number(type) || SearchType.All
   const navData: IWebProps[] = []
-  const resultList: INavThreeProp[] = [{ nav: navData }]
-  const urlRecordMap: Record<string, any> = {}
+  let resultList: INavThreeProp[] = [
+    { nav: navData, id: -1, title: $t('_searchRes'), icon: '' },
+  ]
+  const urlRecordMap = new Map<number, boolean>()
+
+  if (sType === SearchType.Class) {
+    resultList = []
+  }
 
   function f(arr?: any[]) {
     arr = arr || navList
 
-    for (let i = 0; i < arr.length; i++) {
+    outerLoop: for (let i = 0; i < arr.length; i++) {
       const item = arr[i]
+
+      if (sType === SearchType.Class) {
+        if (item.title) {
+          if (
+            item.title.toLowerCase().includes(keyword) ||
+            item.id == keyword
+          ) {
+            resultList.push(item)
+          }
+        }
+
+        if (Array.isArray(item.nav)) {
+          f(item.nav)
+        }
+        continue
+      }
+
       if (Array.isArray(item.nav)) {
         f(item.nav)
       }
@@ -50,17 +76,20 @@ export function fuzzySearch(
         const name = item.name.toLowerCase()
         const desc = item.desc.toLowerCase()
         const url = item.url.toLowerCase()
-        const search = keyword.toLowerCase()
+        const isCode = desc[0] === CODE_SYMBOL
+        if (isCode) {
+          continue
+        }
 
         const searchTitle = (): boolean => {
-          if (name.includes(search)) {
+          if (name.includes(keyword)) {
             let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
             result.__name__ = result.name
             result.name = result.name.replace(regex, '<b>$1</b>')
 
-            if (!urlRecordMap[result.id]) {
-              urlRecordMap[result.id] = true
+            if (!urlRecordMap.has(result.id)) {
+              urlRecordMap.set(result.id, true)
               navData.push(result)
               return true
             }
@@ -69,9 +98,9 @@ export function fuzzySearch(
         }
 
         const searchUrl = (): any => {
-          if (url?.includes?.(search)) {
-            if (!urlRecordMap[item.id]) {
-              urlRecordMap[item.id] = true
+          if (url.includes(keyword)) {
+            if (!urlRecordMap.has(item.id)) {
+              urlRecordMap.set(item.id, true)
               navData.push(item)
               return true
             }
@@ -81,8 +110,8 @@ export function fuzzySearch(
             item.url?.includes(keyword)
           )
           if (find) {
-            if (!urlRecordMap[item.id]) {
-              urlRecordMap[item.id] = true
+            if (!urlRecordMap.has(item.id)) {
+              urlRecordMap.set(item.id, true)
               navData.push(item)
               return true
             }
@@ -90,17 +119,14 @@ export function fuzzySearch(
         }
 
         const searchDesc = (): boolean => {
-          if (desc[0] === '!') {
-            return false
-          }
-          if (desc.includes(search)) {
+          if (desc.includes(keyword)) {
             let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
             result.__desc__ = result.desc
             result.desc = result.desc.replace(regex, '<b>$1</b>')
 
-            if (!urlRecordMap[result.id]) {
-              urlRecordMap[result.id] = true
+            if (!urlRecordMap.has(result.id)) {
+              urlRecordMap.set(result.id, true)
               navData.push(result)
               return true
             }
@@ -109,17 +135,36 @@ export function fuzzySearch(
         }
 
         const searchQuick = (): boolean => {
-          if (item.top && name.includes(search)) {
+          if (item.top && name.includes(keyword)) {
             let result = item
             const regex = new RegExp(`(${keyword})`, 'i')
             result.__name__ = result.name
             result.name = result.name.replace(regex, '<b>$1</b>')
 
-            if (!urlRecordMap[result.id]) {
-              urlRecordMap[result.id] = true
+            if (!urlRecordMap.has(result.id)) {
+              urlRecordMap.set(result.id, true)
               navData.push(result)
               return true
             }
+          }
+          return false
+        }
+
+        const searchTags = () => {
+          return item.tags.forEach((tag: IWebTag) => {
+            if (tagMap[tag.id]?.name?.toLowerCase() === keyword) {
+              if (!urlRecordMap.has(item.id)) {
+                urlRecordMap.set(item.id, true)
+                navData.push(item)
+              }
+            }
+          })
+        }
+
+        const searchId = (): boolean => {
+          if (item.id == keyword) {
+            navData.push(item)
+            return true
           }
           return false
         }
@@ -142,6 +187,16 @@ export function fuzzySearch(
               searchQuick()
               break
 
+            case SearchType.Tag:
+              searchTags()
+              break
+
+            case SearchType.Id:
+              if (searchId()) {
+                break outerLoop
+              }
+              break
+
             default:
               searchTitle()
               searchDesc()
@@ -155,118 +210,111 @@ export function fuzzySearch(
   }
 
   if (sType === SearchType.Current) {
-    f(navList[page].nav[id].nav)
+    f(navList[oneIndex].nav[twoIndex].nav)
   } else {
     f()
   }
 
-  if (navData.length <= 0) {
+  if (sType !== SearchType.Class && navData.length <= 0) {
     return []
   }
-
   return resultList
 }
 
-function randomColor(): string {
-  const r = randomInt(255)
-  const g = randomInt(255)
-  const b = randomInt(255)
-  const c = `#${r.toString(16)}${g.toString(16)}${b.toString(16)}000`
-  return c.slice(0, 7)
+export function randomColor(): string {
+  const randomValue = Math.floor(Math.random() * 0xffffff)
+  const hexColor = randomValue.toString(16).padStart(6, '0')
+  return `#${hexColor}`
 }
 
 let randomTimer: any
-export function randomBgImg() {
-  if (isDark()) return
+export function randomBgImg(): void {
+  if (randomTimer) {
+    clearInterval(randomTimer)
+  }
 
-  clearInterval(randomTimer)
   const id = 'random-light-bg'
   const el = document.getElementById(id) || document.createElement('div')
   const deg = randomInt(360)
   el.id = id
-  el.style.cssText =
-    'position:fixed;top:0;left:0;right:0;bottom:0;z-index:-3;transition: 1s linear;'
+  el.className = 'dark-bg'
+  el.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -3;
+    transition: 1s linear;
+  `
   el.style.backgroundImage = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
   document.body.appendChild(el)
 
-  function setBg() {
-    if (isDark()) {
-      clearInterval(randomTimer)
-      return
-    }
+  const transition = (): void => {
     const randomBg = `linear-gradient(${deg}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
-    el.style.opacity = '.3'
+    el.style.opacity = '0.3'
     setTimeout(() => {
       el.style.backgroundImage = randomBg
       el.style.opacity = '1'
     }, 1000)
   }
 
-  randomTimer = setInterval(setBg, 10000)
+  randomTimer = setInterval(transition, 10000)
 }
 
-export function queryString(): {
-  q: string
-  id: number
-  page: number
-  [key: string]: any
-} {
-  const { href } = window.location
+export function removeBgImg(): void {
+  if (randomTimer) {
+    clearInterval(randomTimer)
+    randomTimer = null
+  }
+  const el = document.getElementById('random-light-bg')
+  if (el) {
+    el.parentNode?.removeChild(el)
+  }
+}
+
+export function queryString() {
+  const { href } = location
   const search = href.split('?')[1] || ''
   const parseQs = qs.parse(search)
-  let id = parseInt(parseQs['id'] as string) || 0
-  let page = parseInt(parseQs['page'] as string) || 0
+  let id = parseQs['id']
 
-  if (parseQs['id'] === undefined && parseQs['page'] === undefined) {
+  if (parseQs['id'] == null) {
     try {
-      const location = window.localStorage.getItem(STORAGE_KEY_MAP.location)
+      const location = localStorage.getItem(STORAGE_KEY_MAP.LOCATION)
       if (location) {
         const localLocation = JSON.parse(location)
-        page = localLocation.page || 0
-        id = localLocation.id || 0
+        id = localLocation.id
       }
     } catch {}
   }
 
-  if (page > websiteList.length - 1) {
-    page = 0
-    id = 0
-  } else {
-    if (websiteList[page] && !(id <= websiteList[page].nav.length - 1)) {
-      id = websiteList[page].nav.length - 1
-    }
-  }
-
-  page = page < 0 ? 0 : page
-  id = id < 0 ? 0 : id
-
   return {
     ...parseQs,
+    type: parseQs['type'],
     q: (parseQs['q'] || '') as string,
     id,
-    page,
-  }
+  } as const
 }
 
 export function setLocation() {
-  const { page, id } = queryString()
+  const { id } = queryString()
 
   window.localStorage.setItem(
-    STORAGE_KEY_MAP.location,
+    STORAGE_KEY_MAP.LOCATION,
     JSON.stringify({
-      page,
       id,
     })
   )
 }
 
-export function getDefaultSearchEngine(): ISearchEngineProps {
-  let DEFAULT = (searchEngineList[0] || {}) as ISearchEngineProps
+export function getDefaultSearchEngine(): ISearchItemProps {
+  let DEFAULT = (search.list[0] || {}) as ISearchItemProps
   try {
-    const engine = window.localStorage.getItem(STORAGE_KEY_MAP.engine)
+    const engine = window.localStorage.getItem(STORAGE_KEY_MAP.SEARCH_ENGINE)
     if (engine) {
       const local = JSON.parse(engine)
-      const findItem = searchEngineList.find((item) => item.name === local.name)
+      const findItem = search.list.find((item) => item.name === local.name)
       if (findItem) {
         DEFAULT = findItem
       }
@@ -275,12 +323,15 @@ export function getDefaultSearchEngine(): ISearchEngineProps {
   return DEFAULT
 }
 
-export function setDefaultSearchEngine(engine: ISearchEngineProps) {
-  window.localStorage.setItem(STORAGE_KEY_MAP.engine, JSON.stringify(engine))
+export function setDefaultSearchEngine(engine: ISearchItemProps) {
+  window.localStorage.setItem(
+    STORAGE_KEY_MAP.SEARCH_ENGINE,
+    JSON.stringify(engine)
+  )
 }
 
 export function isDark(): boolean {
-  const storageVal = window.localStorage.getItem(STORAGE_KEY_MAP.isDark)
+  const storageVal = window.localStorage.getItem(STORAGE_KEY_MAP.IS_DARK)
   const darkMode = window?.matchMedia?.('(prefers-color-scheme: dark)')?.matches
 
   if (!storageVal && darkMode) {
@@ -310,14 +361,20 @@ export function copyText(el: Event, text: string): Promise<boolean> {
   })
 }
 
-export async function isValidImg(url: string): Promise<boolean> {
-  if (!url) return false
+export async function isValidImg(
+  url: string
+): Promise<{ valid: boolean; url: string }> {
+  const payload = {
+    valid: false,
+    url,
+  }
+  if (!url) return payload
 
-  if (url === 'null' || url === 'undefined') return false
+  if (url === 'null' || url === 'undefined') return payload
 
   const { protocol } = window.location
 
-  if (protocol === 'https:' && url.startsWith('http:')) return false
+  if (protocol === 'https:' && url.startsWith('http:')) return payload
 
   return new Promise((resolve) => {
     const img = document.createElement('img')
@@ -325,33 +382,35 @@ export async function isValidImg(url: string): Promise<boolean> {
     img.style.display = 'none'
     img.onload = () => {
       img.parentNode?.removeChild(img)
-      resolve(true)
+      payload.valid = true
+      resolve(payload)
     }
     img.onerror = () => {
       img.parentNode?.removeChild(img)
-      resolve(false)
+      resolve(payload)
     }
     document.body.append(img)
   })
 }
 
 // value 可能含有标签元素，用于过滤掉标签获取纯文字
-export function getTextContent(value: string): string {
+export function getTextContent(value: string = ''): string {
   if (!value) return ''
   return value.replace(/<b>|<\/b>/g, '')
 }
 
 export function matchCurrentList(): INavThreeProp[] {
-  const { id, page } = queryString()
+  const { id } = queryString()
+  const { oneIndex, twoIndex } = getClassById(id)
   let data: INavThreeProp[] = []
 
   try {
     if (
-      websiteList[page] &&
-      websiteList[page]?.nav?.length > 0 &&
-      (isLogin || !websiteList[page].nav[id].ownVisible)
+      websiteList[oneIndex] &&
+      websiteList[oneIndex]?.nav?.length > 0 &&
+      (isLogin || !websiteList[oneIndex].nav[twoIndex].ownVisible)
     ) {
-      data = websiteList[page].nav[id].nav
+      data = websiteList[oneIndex].nav[twoIndex].nav
     } else {
       data = []
     }
@@ -363,7 +422,7 @@ export function matchCurrentList(): INavThreeProp[] {
 }
 
 export function addZero(n: number): string {
-  return n < 10 ? `0${n}` : String(n)
+  return String(n).padStart(2, '0')
 }
 
 // 获取第几个元素超出父节点宽度
@@ -388,7 +447,9 @@ export function getOverIndex(selector: string): number {
 }
 
 export function isMobile() {
-  return 'ontouchstart' in window
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  )
 }
 
 // 今年第几天
@@ -430,4 +491,82 @@ export function getDefaultTheme() {
     return settings.theme
   }
   return t
+}
+
+export function getClassById(id: unknown, initValue = 0, isWebId = false) {
+  id = Number(id)
+  let oneIndex = initValue
+  let twoIndex = initValue
+  let threeIndex = initValue
+  let parentId = -1
+  const breadcrumb: string[] = []
+
+  outerLoop: for (let i = 0; i < websiteList.length; i++) {
+    const item = websiteList[i]
+    if (item.id === id) {
+      oneIndex = i
+      breadcrumb.push(item.title)
+      break
+    }
+    if (Array.isArray(item.nav)) {
+      for (let j = 0; j < item.nav.length; j++) {
+        const twoItem = item.nav[j]
+        if (twoItem.id === id) {
+          parentId = item.id
+          oneIndex = i
+          twoIndex = j
+          breadcrumb.push(item.title, twoItem.title)
+          break outerLoop
+        }
+        if (Array.isArray(twoItem.nav)) {
+          for (let k = 0; k < twoItem.nav.length; k++) {
+            const threeItem = twoItem.nav[k]
+            if (threeItem.id === id) {
+              parentId = twoItem.id
+              oneIndex = i
+              twoIndex = j
+              threeIndex = k
+              breadcrumb.push(item.title, twoItem.title, threeItem.title)
+              break outerLoop
+            }
+            if (isWebId) {
+              if (Array.isArray(threeItem.nav)) {
+                for (let l = 0; l < threeItem.nav.length; l++) {
+                  const web = threeItem.nav[l]
+                  if (web.id === id) {
+                    parentId = threeItem.id
+                    oneIndex = i
+                    twoIndex = j
+                    threeIndex = k
+                    breadcrumb.push(item.title, twoItem.title, threeItem.title)
+                    break outerLoop
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return { parentId, oneIndex, twoIndex, threeIndex, breadcrumb } as const
+}
+
+export function scrollIntoViewLeft(
+  parentElement: HTMLElement,
+  target: HTMLElement,
+  config?: ScrollToOptions
+) {
+  if (!parentElement || !target) {
+    return
+  }
+  const containerWidth = parentElement.offsetWidth
+  const categoryWidth = target.offsetWidth
+  const categoryLeft = target.offsetLeft
+  const scrollPosition = categoryLeft - (containerWidth - categoryWidth) / 2
+  parentElement.scrollTo({
+    left: scrollPosition,
+    behavior: 'smooth',
+    ...config,
+  })
 }

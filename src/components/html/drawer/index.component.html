@@ -18,6 +18,25 @@
         </textarea>
       </nz-form-control>
     </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">Width</nz-form-label>
+      <nz-form-control [nzSpan]="20">
+        <nz-slider formControlName="width" [nzMax]="1000"></nz-slider>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">{{ $t('_bgColor') }}</nz-form-label>
+      <nz-form-control [nzSpan]="20">
+        <nz-color-picker nzTrigger="hover" formControlName="bgColor" />
+      </nz-form-control>
+      <div>
+        <nz-form-control>
+          <input nz-input formControlName="bgColor" />
+        </nz-form-control>
+      </div>
+    </nz-form-item>
   </form>
 
   <ng-template #footerTpl>

@@ -16,26 +16,26 @@
   {{ $t('_save') }}
 </button>
 
-<div class="mb-4 color-red font-bold" *ngIf="!isSelfDevelop">
+<div class="mb-4 !text-red-500 font-bold" *ngIf="!isSelfDevelop">
   {{ $t('_buildTip') }}
 </div>
 
 <nz-table #basicTable [nzData]="tagList">
   <thead>
     <tr>
-      <th>{{ $t('_tagName') }}</th>
-      <th>{{ $t('_color') }}</th>
-      <th>{{ $t('_createAt') }}</th>
-      <th>{{ $t('_remark') }}</th>
-      <th>{{ $t('_action') }}</th>
+      <th nzWidth="150px">{{ $t('_tagName') }}</th>
+      <th nzWidth="160px">{{ $t('_color') }}</th>
+      <th nzWidth="150px">{{ $t('_sort') }}</th>
+      <th nzWidth="200px">{{ $t('_remark') }}</th>
+      <th nzWidth="200px">{{ $t('_action') }}</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of tagList; index as idx; trackBy: trackByItem">
-      <td width="150px">
+      <td>
         <input nz-input [(ngModel)]="data.name" maxlength="10" />
       </td>
-      <td width="160px">
+      <td>
         <input
           type="color"
           [value]="data.color"
@@ -43,8 +43,10 @@
         />
         - {{ data.color }}
       </td>
-      <td width="220px">{{ data.createdAt }}</td>
-      <td width="200px">
+      <td>
+        <input nz-input [(ngModel)]="data.sort" maxlength="10" />
+      </td>
+      <td>
         <div *ngIf="data.isInner">{{ data.desc }}</div>
         <input
           *ngIf="!data.isInner"
@@ -54,6 +56,8 @@
         />
       </td>
       <td>
+        <a (click)="moveUp(idx)">{{ $t('_moveUp') }}</a>
+        <a (click)="moveDown(idx)" class="mx-2.5">{{ $t('_moveDown') }}</a>
         <a
           *ngIf="!data.isInner"
           nz-popconfirm
@@ -61,7 +65,7 @@
           [nzPopconfirmTitle]="$t('_confirmDel')"
           nzPopconfirmPlacement="bottom"
           (nzOnConfirm)="handleDelete(idx)"
-          class="color-red"
+          class="!text-red-500"
         >
           {{ $t('_del') }}
         </a>
