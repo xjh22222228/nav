@@ -8,6 +8,7 @@ import getWebInfo from 'info-web'
 import path from 'node:path'
 import type {
   INavProps,
+  ISearchProps,
   ISettings,
   ITagPropValues,
   IWebProps,
@@ -362,6 +363,10 @@ export function writeTemplate({
   settings,
   seoTemplate,
 }: TemplateParams): string {
+  const search: ISearchProps = JSON.parse(
+    fs.readFileSync(PATHS.search, 'utf-8')
+  )
+
   function getLoadKey(): string {
     const keys = Object.keys(LOAD_MAP)
     const rand = Math.floor(Math.random() * keys.length)
@@ -369,6 +374,47 @@ export function writeTemplate({
       settings.loading === 'random' ? keys[rand] : settings.loading
     return loadingKey
   }
+  const prefetchs: Record<string, string>[] = [
+    {
+      href: getConfig().zorroDark,
+      as: 'style',
+      rel: 'prefetch',
+    },
+  ]
+  if (settings.logo) {
+    prefetchs.push({
+      href: settings.logo,
+      as: 'image',
+      rel: 'prefetch',
+    })
+  }
+  if (settings.darkLogo && settings.logo !== settings.darkLogo) {
+    prefetchs.push({
+      href: settings.darkLogo,
+      as: 'image',
+      rel: 'prefetch',
+    })
+  }
+  if (search.logo) {
+    prefetchs.push({
+      href: search.logo,
+      as: 'image',
+      rel: 'prefetch',
+    })
+  }
+  if (search.darkLogo && search.logo !== search.darkLogo) {
+    prefetchs.push({
+      href: search.darkLogo,
+      as: 'image',
+      rel: 'prefetch',
+    })
+  }
+
+  const prefetchLinks = prefetchs
+    .map((item) => {
+      return `<link rel="${item['rel']}" href="${item['href']}" as="${item['as']}" />`
+    })
+    .join('')
   const htmlTemplate = `
   <!-- https://github.com/xjh22222228/nav -->
   <title>${settings.title}</title>
@@ -377,9 +423,10 @@ export function writeTemplate({
   <meta property="og:type" content="website" />
   <meta name="description" content="${settings.description}" />
   <meta name="keywords" content="${settings.keywords}" id="xjh_2" />
+  <meta property="og:image" content="${settings.favicon}">
   <link rel="icon" href="${settings.favicon}" />
   <link rel ="apple-touch-icon" href="${settings.favicon}" />
-  <link rel="prefetch" href="${getConfig().zorroDark}" />
+  ${prefetchLinks}
 `.trim()
   let t = html
   t = t.replace(

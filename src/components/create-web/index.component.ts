@@ -24,7 +24,7 @@ import {
   getWebInfo,
   getTranslate,
   getScreenshot,
-  createFile,
+  createImageFile,
   getImageRepo,
   getCDN,
 } from 'src/api'
@@ -325,7 +325,7 @@ export class CreateWebComponent {
     getScreenshot({ url })
       .then((res) => {
         const path = `${Date.now()}.png`
-        createFile({
+        createImageFile({
           branch: getImageRepo().branch,
           message: 'create image',
           content: res.data.image,

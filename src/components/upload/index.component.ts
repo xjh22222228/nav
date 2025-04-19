@@ -6,7 +6,7 @@ import { Component, EventEmitter, Output } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { createFile, getCDN, getImageRepo } from 'src/api'
+import { createImageFile, getCDN, getImageRepo } from 'src/api'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { isSelfDevelop } from 'src/utils/utils'
 
@@ -57,7 +57,7 @@ export class UploadComponent {
         const mime = `.${file.name.split('.').at(-1) || 'png'}`
         const path = `${Date.now()}${mime}`
 
-        createFile({
+        createImageFile({
           branch: getImageRepo().branch,
           message: 'create image',
           content: url,

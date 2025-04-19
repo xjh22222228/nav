@@ -14,7 +14,17 @@
       autofocus
       (keyup)="onKey($event)"
       #input
+      [placeholder]="isSelfDevelop ? 'Password' : 'Token'"
     />
+    <div class="mt-4" *ngIf="!isSelfDevelop && showImgToken">
+      <input
+        nz-input
+        [(ngModel)]="imageToken"
+        autofocus
+        (keyup)="onKey($event)"
+        placeholder="Image token"
+      />
+    </div>
     <p *ngIf="!isSelfDevelop" class="!mt-2">
       {{ $t('_getToken')
       }}<a

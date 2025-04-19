@@ -38,7 +38,7 @@ import event from 'src/utils/mitt'
 })
 export class SearchComponent {
   @ViewChild('input', { static: false }) input!: ElementRef
-  @Input() size: 'small' | 'default' | 'large' = 'default'
+  @Input() size: 'small' | 'default' | 'large' = 'large'
   @Input() showLogo = true
 
   readonly $t = $t

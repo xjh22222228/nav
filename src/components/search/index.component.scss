@@ -1,5 +1,4 @@
-$width: 500px;
-$smallWidth: 300px;
+$width: 650px;
 
 @media (max-width: 768px) {
   .engine-main .item {
@@ -15,15 +14,10 @@ $smallWidth: 300px;
   flex-direction: column;
   align-items: center;
   padding: 10px 0;
-  &.small {
-    .input-wrapper {
-      width: $smallWidth;
-    }
-  }
-
   .input-wrapper {
     position: relative;
     width: $width;
+    max-width: 95%;
     background: #fff;
     border-radius: 5px;
     overflow: hidden;
