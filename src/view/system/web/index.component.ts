@@ -25,7 +25,14 @@ import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { setWebsiteList } from 'src/utils/web'
 import { updateFileContent } from 'src/api'
-import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
+import {
+  DB_PATH,
+  TAG_PATH,
+  SETTING_PATH,
+  SEARCH_PATH,
+  COMPONENT_PATH,
+  STORAGE_KEY_MAP,
+} from 'src/constants'
 import { $t } from 'src/locale'
 import { saveAs } from 'file-saver'
 import { isSelfDevelop } from 'src/utils/utils'
@@ -262,14 +269,12 @@ export default class WebpComponent {
       search,
       component,
     }
-    for (const k in params) {
-      saveAs(
-        new Blob([JSON.stringify(params[k])], {
-          type: 'text/plain;charset=utf-8',
-        }),
-        `${k}.json`
-      )
-    }
+    saveAs(
+      new Blob([JSON.stringify(params)], {
+        type: 'text/plain;charset=utf-8',
+      }),
+      'nav.json'
+    )
   }
 
   handleUploadBackup(e: any) {
@@ -281,14 +286,82 @@ export default class WebpComponent {
     const file = files[0]
     const fileReader = new FileReader()
     fileReader.readAsText(file)
-    fileReader.onload = function (data) {
+    fileReader.onload = async function (file) {
       try {
-        const { result } = data.target as any
-        that.websiteList = JSON.parse(result)
-        that.message.success($t('_actionSuccess'))
-        setWebsiteList(that.websiteList).finally(() => {
-          location.reload()
-        })
+        const { result } = file.target as any
+        const data = JSON.parse(result)
+
+        try {
+          await updateFileContent({
+            message: 'import db',
+            content: JSON.stringify(data.db),
+            path: DB_PATH,
+          })
+          that.notification.success('OK', 'DB import successful')
+        } catch {
+          that.notification.error('Error', 'DB import failed', {
+            nzDuration: 0,
+          })
+        }
+        try {
+          await updateFileContent({
+            message: 'import settings',
+            content: JSON.stringify({
+              ...settings,
+              ...data.settings,
+            }),
+            path: SETTING_PATH,
+          })
+          that.notification.success('OK', 'settings import successful')
+        } catch {
+          that.notification.error('Error', 'settings import failed', {
+            nzDuration: 0,
+          })
+        }
+        try {
+          await updateFileContent({
+            message: 'import tag',
+            content: JSON.stringify(data.tag),
+            path: TAG_PATH,
+          })
+          that.notification.success('OK', 'tag import successful')
+        } catch {
+          that.notification.error('Error', 'tag import failed', {
+            nzDuration: 0,
+          })
+        }
+        try {
+          await updateFileContent({
+            message: 'import search',
+            content: JSON.stringify({
+              ...search,
+              ...data.search,
+            }),
+            path: SEARCH_PATH,
+          })
+          that.notification.success('OK', 'search import successful')
+        } catch {
+          that.notification.error('Error', 'search import failed', {
+            nzDuration: 0,
+          })
+        }
+        try {
+          await updateFileContent({
+            message: 'import component',
+            content: JSON.stringify({
+              ...component,
+              ...data.component,
+            }),
+            path: COMPONENT_PATH,
+          })
+          that.notification.success('OK', 'component import successful')
+        } catch {
+          that.notification.error('Error', 'component import failed', {
+            nzDuration: 0,
+          })
+        }
+
+        that.message.success($t('_syncSuccessTip'))
       } catch (error: any) {
         that.notification.error($t('_error'), error.message)
       }

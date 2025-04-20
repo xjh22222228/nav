@@ -162,7 +162,7 @@ const english: Record<string, any> = {
   _autoPlay: 'Auto play',
   _importBackup: 'Import backup',
   _importBackupTip:
-    'After importing, all current website data will be cleared and imported',
+    'After importing, all current data will be cleared and imported',
   _showLanguage: 'Display switch language',
   _showRate: 'Show rate',
   _showCopy: 'Display Card Copy',

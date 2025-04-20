@@ -154,7 +154,7 @@ const zhCN: Record<string, any> = {
   _bannerHeight: 'Banner高度',
   _autoPlay: '自动轮播',
   _importBackup: '导入备份',
-  _importBackupTip: '导入后会将当前所有网站数据清空并导入',
+  _importBackupTip: '导入后会将当前所有数据清空并导入',
   _showLanguage: '显示切换语言',
   _showRate: '显示卡片评分',
   _showCopy: '显示卡片复制',
