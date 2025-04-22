@@ -128,69 +128,10 @@
       <nz-radio-group formControlName="loading">
         <label nz-radio nzValue="random">{{ $t('_random') }}</label>
         <label nz-radio nzValue="null">{{ $t('_noSet') }}</label>
-        <label
-          nz-radio
-          nzValue="loading1"
-          nz-popover
-          [nzPopoverContent]="loading1"
-          nzPopoverPlacement="bottom"
-        >
-          loading1
-        </label>
-        <ng-template #loading1>
-          <img
-            src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/loading1.png"
-            class="preview"
-          />
-        </ng-template>
-
-        <label
-          nz-radio
-          nzValue="loading2"
-          nz-popover
-          [nzPopoverContent]="loading2"
-          nzPopoverPlacement="bottom"
-        >
-          loading2
-        </label>
-        <ng-template #loading2>
-          <img
-            src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/loading2.png"
-            class="preview"
-          />
-        </ng-template>
-
-        <label
-          nz-radio
-          nzValue="loading3"
-          nz-popover
-          [nzPopoverContent]="loading3"
-          nzPopoverPlacement="bottom"
-        >
-          loading3
-        </label>
-        <ng-template #loading3>
-          <img
-            src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/loading3.png"
-            class="preview"
-          />
-        </ng-template>
-
-        <label
-          nz-radio
-          nzValue="loading4"
-          nz-popover
-          [nzPopoverContent]="loading4"
-          nzPopoverPlacement="bottom"
-        >
-          loading4
-        </label>
-        <ng-template #loading4>
-          <img
-            src="https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/loading4.png"
-            class="preview"
-          />
-        </ng-template>
+        <label nz-radio nzValue="loading1">loading1</label>
+        <label nz-radio nzValue="loading2">loading2</label>
+        <label nz-radio nzValue="loading3">loading3</label>
+        <label nz-radio nzValue="loading4">loading4</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>

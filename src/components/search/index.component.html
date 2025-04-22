@@ -10,7 +10,7 @@
   />
 
   <div
-    class="input-wrapper dark-bg dark-border-color"
+    class="input-wrapper dark-bg dark-border-color max-[768px]:!w-[90%]"
     [class.removeAddon]="currentEngine.url"
   >
     <nz-input-group
@@ -44,7 +44,7 @@
       <ng-template #contentTemplate>
         <div class="engine-main">
           <div
-            class="item ellipsis dark-bg-gary dark-item-hover"
+            class="item ellipsis dark-bg-gary dark-item-hover max-[768px]:!w-full"
             *ngFor="let item of searchEngineList; let i = index"
             (click)="clickEngineItem(i)"
           >

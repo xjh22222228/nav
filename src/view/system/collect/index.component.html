@@ -26,10 +26,15 @@
       {{ $t('_del') }}
     </button>
 
-    <div class="mb-2.5 mt-2.5 !text-red-500 font-bold" *ngIf="!isSelfDevelop">
+    <div class="mt-2.5 !text-red-500 font-bold" *ngIf="!isSelfDevelop">
       处理完成所有数据后需要点击一次保存方可生效
     </div>
-    <nz-table #basicTable [nzData]="dataList" [nzShowPagination]="false">
+    <nz-table
+      class="mt-2.5"
+      #basicTable
+      [nzData]="dataList"
+      [nzShowPagination]="false"
+    >
       <thead>
         <tr>
           <th

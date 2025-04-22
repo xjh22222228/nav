@@ -90,53 +90,17 @@ const main = async () => {
       search.list = [
         {
           name: '站内',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg',
+          icon:
+            settings.favicon ||
+            'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/logo.svg',
           placeholder: '站内搜索',
           blocked: false,
           isInner: true,
         },
         {
-          name: '百度',
-          url: 'https://www.baidu.com/s?wd=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/baidu.svg',
-          placeholder: '百度一下',
-          blocked: false,
-          isInner: false,
-        },
-        {
           name: 'Google',
           url: 'https://www.google.com/search?q=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/google.svg',
-          blocked: false,
-          isInner: false,
-        },
-        {
-          name: '必应',
-          url: 'https://cn.bing.com/search?q=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/bing.svg',
-          blocked: false,
-          isInner: false,
-        },
-        {
-          name: 'GitHub',
-          url: 'https://github.com/search?q=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/github.svg',
-          placeholder: 'Search GitHub',
-          blocked: false,
-          isInner: false,
-        },
-        {
-          name: '知乎',
-          url: 'https://www.zhihu.com/search?type=content&q=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/zhihu.svg',
-          blocked: false,
-          isInner: false,
-        },
-        {
-          name: '豆瓣',
-          url: 'https://search.douban.com/book/subject_search?search_text=',
-          icon: 'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/douban.svg',
-          placeholder: '书名、作者、ISBN',
+          icon: 'https://www.google.com/favicon.ico',
           blocked: false,
           isInner: false,
         },
