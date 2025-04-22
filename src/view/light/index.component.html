@@ -138,6 +138,7 @@
     <app-side-images
       class="max-[1280px]:w-[200px] max-[1080px]:hidden"
       [data]="commonService.settings.lightImages"
+      *ngIf="commonService.settings.lightImages.length > 0"
     />
   </div>
 

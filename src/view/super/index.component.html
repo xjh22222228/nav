@@ -147,6 +147,7 @@
     <app-side-images
       [data]="commonService.settings.superImages"
       class="md:w-[200px] lg:w-[230px] xl:w-[250px]"
+      *ngIf="commonService.settings.superImages.length > 0"
     />
   </div>
 
