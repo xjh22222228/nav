@@ -28,6 +28,9 @@ export class PhoneClassComponent {
   constructor(public commonService: CommonService) {}
 
   ngAfterViewInit() {
+    if (!this.parentRef) {
+      return
+    }
     scrollIntoViewLeft(
       this.parentRef.nativeElement,
       this.itemsRef.toArray()[this.commonService.twoIndex].nativeElement,

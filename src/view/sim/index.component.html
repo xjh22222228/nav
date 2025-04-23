@@ -64,7 +64,10 @@
   <div class="wrapper">
     <div
       class="sidebar dark-bg hidden md:block"
-      *ngIf="commonService.websiteList[commonService.oneIndex]?.nav?.length"
+      *ngIf="
+        commonService.websiteList[commonService.oneIndex]?.nav &&
+        commonService.websiteList[commonService.oneIndex].nav.length > 1
+      "
     >
       <div
         *ngFor="
