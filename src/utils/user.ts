@@ -50,13 +50,15 @@ export function userLogout() {
   ]
   localforage.clear()
   Array.from({ length: globalThis.localStorage.length }, (_, i) => {
-    const key = globalThis.localStorage.key(i)
+    return globalThis.localStorage.key(i)
+  }).forEach((key) => {
     if (key && removeKeys.includes(key)) {
       globalThis.localStorage.removeItem(key)
     }
   })
   Array.from({ length: globalThis.sessionStorage.length }, (_, i) => {
-    const key = globalThis.sessionStorage.key(i)
+    return globalThis.sessionStorage.key(i)
+  }).forEach((key) => {
     if (key && removeKeys.includes(key)) {
       globalThis.sessionStorage.removeItem(key)
     }

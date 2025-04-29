@@ -9,6 +9,7 @@ import {
   setDefaultSearchEngine,
   queryString,
   isDark,
+  isMobile,
 } from 'src/utils'
 import { Router, ActivatedRoute } from '@angular/router'
 import { search } from 'src/store'
@@ -113,6 +114,10 @@ export class SearchComponent {
         _: Date.now(),
       },
     })
+
+    if (isMobile()) {
+      this.input?.nativeElement?.blur()
+    }
   }
 
   onKey(event: KeyboardEvent) {

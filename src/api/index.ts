@@ -168,10 +168,8 @@ export async function createBranch(branch: string) {
   } else {
     params['sha'] = 'c1fdab3d29df4740bb97a4ae7f24ed0eaa682557'
     try {
-      const commitRes = await getCommits()
-      if (commitRes.data?.length > 0) {
-        params['sha'] = commitRes.data[0]['sha']
-      }
+      const commitRes = await createEmptyCommit()
+      params['sha'] = commitRes.data['sha']
     } catch (error) {}
 
     params['ref'] = `refs/heads/${branch}`
@@ -246,8 +244,11 @@ export async function updateFileContent({
   })
 }
 
-export function getCommits() {
-  return http.get(`/repos/${authorName}/${repoName}/commits`)
+export function createEmptyCommit() {
+  return http.post(`/repos/${authorName}/${repoName}/git/commits`, {
+    message: 'Initial commit',
+    tree: '4b825dc642cb6eb9a060e54bf8d69288fbee4904',
+  })
 }
 
 export async function createImageFile({

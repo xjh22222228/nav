@@ -36,7 +36,8 @@ export async function getWebs() {
   if (storageDate !== navConfig.datetime) {
     const removeKeys = [STORAGE_KEY_MAP.WEBSITE, STORAGE_KEY_MAP.DATE_TIME]
     Array.from({ length: globalThis.localStorage.length }, (_, i) => {
-      const key = globalThis.localStorage.key(i)
+      return globalThis.localStorage.key(i)
+    }).forEach((key) => {
       if (key && removeKeys.includes(key)) {
         globalThis.localStorage.removeItem(key)
       }
