@@ -50,7 +50,7 @@ export class ComponentGroupComponent {
   componentsLength: number = settings.components.length
   widths: number[] = []
   isShowAll = !!Number(
-    localStorage.getItem(STORAGE_KEY_MAP.COMPONENT_COLLAPSED)
+    localStorage.getItem(STORAGE_KEY_MAP.COMPONENT_COLLAPSED),
   )
   isOver = false
 
@@ -63,7 +63,7 @@ export class ComponentGroupComponent {
     // 按照系统设置顺序排序显示
     component.components.forEach((item) => {
       const has = settings.components.find(
-        (c) => c.type === item.type && c.id === item.id
+        (c) => c.type === item.type && c.id === item.id,
       )
       if (has) {
         c.push({
@@ -124,7 +124,7 @@ export class ComponentGroupComponent {
     this.isShowAll = !this.isShowAll
     localStorage.setItem(
       STORAGE_KEY_MAP.COMPONENT_COLLAPSED,
-      String(Number(this.isShowAll))
+      String(Number(this.isShowAll)),
     )
     if (!this.isShowAll) {
       this.checkOver()

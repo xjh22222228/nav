@@ -69,7 +69,7 @@ httpInstance.interceptors.request.use(
   function (error) {
     stopLoad()
     return Promise.reject(error)
-  }
+  },
 )
 
 httpInstance.interceptors.response.use(
@@ -91,7 +91,7 @@ httpInstance.interceptors.response.use(
     })
     stopLoad()
     return Promise.reject(error)
-  }
+  },
 )
 
 export const HTTP_BASE_URL = 'https://api.nav3.cn'
@@ -132,7 +132,7 @@ httpNavInstance.interceptors.request.use(
   function (error) {
     stopLoad()
     return Promise.reject(error)
-  }
+  },
 )
 
 httpNavInstance.interceptors.response.use(
@@ -168,7 +168,7 @@ httpNavInstance.interceptors.response.use(
 
     stopLoad()
     return Promise.reject(error)
-  }
+  },
 )
 
 export const httpNav = httpNavInstance

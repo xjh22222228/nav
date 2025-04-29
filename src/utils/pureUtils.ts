@@ -5,7 +5,7 @@ import type { ISettings, IWebProps, INavProps } from '../types'
 
 export function replaceJsdelivrCDN(
   url: string = '',
-  settings: ISettings
+  settings: ISettings,
 ): string {
   const cdn = settings?.gitHubCDN
   if (!cdn) {
@@ -35,7 +35,7 @@ export function removeTrailingSlashes(url: string | null | undefined): string {
 
 export function filterLoginData(
   websiteList: any[],
-  isLogin: boolean
+  isLogin: boolean,
 ): INavProps[] {
   function filterOwn(item: INavProps) {
     if (item.ownVisible && !isLogin) {

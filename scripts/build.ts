@@ -32,10 +32,10 @@ const handleFileOperation = (operation: () => any): any => {
 }
 
 const db: INavProps[] = handleFileOperation(() =>
-  JSON.parse(fs.readFileSync(PATHS.db, 'utf-8'))
+  JSON.parse(fs.readFileSync(PATHS.db, 'utf-8')),
 )
 const settings: ISettings = handleFileOperation(() =>
-  JSON.parse(fs.readFileSync(PATHS.settings, 'utf-8'))
+  JSON.parse(fs.readFileSync(PATHS.settings, 'utf-8')),
 )
 
 const seoTemplate = writeSEO(db, { settings })

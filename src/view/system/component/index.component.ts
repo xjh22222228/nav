@@ -89,7 +89,7 @@ export default class SystemComponentComponent {
 
   constructor(
     private message: NzMessageService,
-    private modal: NzModalService
+    private modal: NzModalService,
   ) {}
 
   ngOnInit() {}

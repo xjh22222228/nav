@@ -55,7 +55,7 @@ export default class SystemConfigComponent {
   constructor(
     private fb: FormBuilder,
     private notification: NzNotificationService,
-    private message: NzMessageService
+    private message: NzMessageService,
   ) {
     this.validateForm = this.fb.group({
       password: [''],
@@ -100,7 +100,7 @@ export default class SystemConfigComponent {
       const params = {
         ...this.validateForm.value,
         mailConfig: JSON.parse(
-          this.validateForm.get('mailConfig')?.value || '{}'
+          this.validateForm.get('mailConfig')?.value || '{}',
         ),
       }
 

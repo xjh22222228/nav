@@ -70,7 +70,7 @@ export class CardComponent {
   constructor(
     public commonService: CommonService,
     public readonly jumpService: JumpService,
-    private message: NzMessageService
+    private message: NzMessageService,
   ) {}
 
   ngOnInit() {
@@ -87,7 +87,7 @@ export class CardComponent {
 
   private generateColor() {
     this.backgroundColor = `linear-gradient(${randomInt(
-      360
+      360,
     )}deg, ${randomColor()} 0%, ${randomColor()} 100%)`
   }
 
@@ -97,8 +97,12 @@ export class CardComponent {
 
   async copyUrl(e: Event, type: 1 | 2): Promise<void> {
     const { id, url } = this.dataSource
-    const { origin, hash, pathname } = window.location
-    const pathUrl = `${origin}${pathname}${hash}?q=${id}&type=${SearchType.Id}`
+    let { href } = window.location
+    href = href.split('?')[0]
+    if (!href.endsWith('/')) {
+      href = href + '/'
+    }
+    const pathUrl = `${href}?q=${id}&type=${SearchType.Id}`
     const isDone = await copyText(e, type === 1 ? pathUrl : url)
 
     if (type === 1) {

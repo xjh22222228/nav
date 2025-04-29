@@ -46,7 +46,7 @@ export class SearchComponent {
   readonly isLogin = isLogin
   readonly SearchType = SearchType
   readonly searchEngineList: ISearchItemProps[] = search.list.filter(
-    (item) => !item.blocked
+    (item) => !item.blocked,
   )
   readonly search = search
   isDark = isDark()
@@ -54,7 +54,10 @@ export class SearchComponent {
   searchTypeValue = Number(queryString()['type']) || SearchType.All
   keyword = queryString().q
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+  ) {
     event.on('SEARCH_FOCUS', () => {
       this.inputFocus()
     })

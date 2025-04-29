@@ -79,7 +79,7 @@ export default class SystemComponent {
     this.isCollapsed = !this.isCollapsed
     localStorage.setItem(
       STORAGE_KEY_MAP.SYSTEM_COLLAPSED,
-      String(Number(this.isCollapsed))
+      String(Number(this.isCollapsed)),
     )
   }
 

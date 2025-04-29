@@ -63,7 +63,7 @@ export class AppComponent {
     private i18n: NzI18nService,
     private message: NzMessageService,
     private notification: NzNotificationService,
-    private modal: NzModalService
+    private modal: NzModalService,
   ) {
     this.registerEvents()
     this.registerKeyboard()
@@ -85,7 +85,7 @@ export class AppComponent {
         props.type,
         props.title,
         props.content,
-        props.config
+        props.config,
       )
     })
 
@@ -117,7 +117,7 @@ export class AppComponent {
           const currentRoutes = this.router.config
           const defaultTheme = getDefaultTheme().toLowerCase()
           const hasDefault = routes.find(
-            (item: any) => item.path === defaultTheme
+            (item: any) => item.path === defaultTheme,
           )
           const isHome = this.router.url.split('?')[0] === '/'
           if (hasDefault) {
@@ -191,7 +191,7 @@ export class AppComponent {
             $t('_collectTip'),
             {
               nzDuration: 0,
-            }
+            },
           )
         }
       })

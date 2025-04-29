@@ -24,7 +24,7 @@ export function compilerTemplate(str: string): string {
 
   return Object.entries(data).reduce(
     (result, [key, value]) => result.replaceAll(`\${${key}}`, String(value)),
-    str
+    str,
   )
 }
 

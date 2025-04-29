@@ -103,7 +103,7 @@ export default class WebpComponent {
     private modal: NzModalService,
     private notification: NzNotificationService,
     private message: NzMessageService,
-    public commonService: CommonService
+    public commonService: CommonService,
   ) {}
 
   ngOnInit() {}
@@ -123,7 +123,7 @@ export default class WebpComponent {
   get threeIndex() {
     try {
       return this.threeTableData.findIndex(
-        (item) => item.id === this.threeSelect
+        (item) => item.id === this.threeSelect,
       )
     } catch {
       return -1
@@ -153,7 +153,7 @@ export default class WebpComponent {
   get websiteTableData(): IWebProps[] {
     try {
       const data = this.threeTableData.find(
-        (item) => item.id === this.threeSelect
+        (item) => item.id === this.threeSelect,
       )
       if (data) {
         return data.nav
@@ -273,7 +273,7 @@ export default class WebpComponent {
       new Blob([JSON.stringify(params)], {
         type: 'text/plain;charset=utf-8',
       }),
-      'nav.json'
+      'nav.json',
     )
   }
 
@@ -604,7 +604,7 @@ export default class WebpComponent {
         updateFileContent({
           message: 'update db',
           content: JSON.stringify(
-            cleanWebAttrs(JSON.parse(JSON.stringify(this.websiteList)))
+            cleanWebAttrs(JSON.parse(JSON.stringify(this.websiteList))),
           ),
           path: DB_PATH,
         })

@@ -78,7 +78,7 @@ export default class LightComponent {
         this.items.toArray()[this.commonService.oneIndex].nativeElement,
         {
           behavior: 'auto',
-        }
+        },
       )
     }
 

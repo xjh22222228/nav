@@ -26,7 +26,7 @@ export class OffWorkComponent {
   constructor() {
     document.addEventListener(
       'visibilitychange',
-      this.visibilitychange.bind(this)
+      this.visibilitychange.bind(this),
     )
   }
 

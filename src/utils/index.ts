@@ -24,7 +24,7 @@ export function randomInt(max: number) {
 
 export function fuzzySearch(
   navList: INavProps[],
-  keyword: string
+  keyword: string,
 ): INavThreeProp[] {
   if (!keyword.trim()) {
     return []
@@ -107,7 +107,7 @@ export function fuzzySearch(
           }
 
           const find = item.tags.some((item: IWebTag) =>
-            item.url?.includes(keyword)
+            item.url?.includes(keyword),
           )
           if (find) {
             if (!urlRecordMap.has(item.id)) {
@@ -304,7 +304,7 @@ export function setLocation() {
     STORAGE_KEY_MAP.LOCATION,
     JSON.stringify({
       id,
-    })
+    }),
   )
 }
 
@@ -326,7 +326,7 @@ export function getDefaultSearchEngine(): ISearchItemProps {
 export function setDefaultSearchEngine(engine: ISearchItemProps) {
   window.localStorage.setItem(
     STORAGE_KEY_MAP.SEARCH_ENGINE,
-    JSON.stringify(engine)
+    JSON.stringify(engine),
   )
 }
 
@@ -362,7 +362,7 @@ export function copyText(el: Event, text: string): Promise<boolean> {
 }
 
 export async function isValidImg(
-  url: string
+  url: string,
 ): Promise<{ valid: boolean; url: string }> {
   const payload = {
     valid: false,
@@ -448,7 +448,7 @@ export function getOverIndex(selector: string): number {
 
 export function isMobile() {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
+    navigator.userAgent,
   )
 }
 
@@ -555,7 +555,7 @@ export function getClassById(id: unknown, initValue = 0, isWebId = false) {
 export function scrollIntoViewLeft(
   parentElement: HTMLElement,
   target: HTMLElement,
-  config?: ScrollToOptions
+  config?: ScrollToOptions,
 ) {
   if (!parentElement || !target) {
     return

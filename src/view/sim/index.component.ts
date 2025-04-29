@@ -78,7 +78,7 @@ export default class SimComponent {
         this.itemsRef.toArray()[this.commonService.oneIndex].nativeElement,
         {
           behavior: 'auto',
-        }
+        },
       )
     }
   }

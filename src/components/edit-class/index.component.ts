@@ -58,7 +58,10 @@ export class EditClassComponent {
   isEdit = false
   submitting = false
 
-  constructor(private fb: FormBuilder, private message: NzMessageService) {
+  constructor(
+    private fb: FormBuilder,
+    private message: NzMessageService,
+  ) {
     this.validateForm = this.fb.group({
       title: ['', [Validators.required]],
       icon: [''],

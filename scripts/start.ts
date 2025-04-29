@@ -132,7 +132,7 @@ const main = async () => {
   } catch {
   } finally {
     let idx = component.components.findIndex(
-      (item) => item['type'] === ComponentType.Calendar
+      (item) => item['type'] === ComponentType.Calendar,
     )
     const calendar = {
       type: ComponentType.Calendar,
@@ -150,7 +150,7 @@ const main = async () => {
     }
     //
     idx = component.components.findIndex(
-      (item) => item['type'] === ComponentType.OffWork
+      (item) => item['type'] === ComponentType.OffWork,
     )
     const offWork = {
       type: ComponentType.OffWork,
@@ -170,7 +170,7 @@ const main = async () => {
     }
     //
     idx = component.components.findIndex(
-      (item) => item['type'] === ComponentType.Image
+      (item) => item['type'] === ComponentType.Image,
     )
     const image = {
       type: ComponentType.Image,
@@ -186,14 +186,14 @@ const main = async () => {
       }
       component.components[idx]['url'] = replaceJsdelivrCDN(
         component.components[idx]['url'],
-        settings
+        settings,
       )
     } else {
       component.components.push(image)
     }
     //
     idx = component.components.findIndex(
-      (item) => item['type'] === ComponentType.Countdown
+      (item) => item['type'] === ComponentType.Countdown,
     )
     const countdown = {
       type: ComponentType.Countdown,
@@ -213,14 +213,14 @@ const main = async () => {
       }
       component.components[idx]['url'] = replaceJsdelivrCDN(
         component.components[idx]['url'],
-        settings
+        settings,
       )
     } else {
       component.components.push(countdown)
     }
     //
     idx = component.components.findIndex(
-      (item) => item['type'] === ComponentType.Runtime
+      (item) => item['type'] === ComponentType.Runtime,
     )
     const runtime = {
       type: ComponentType.Runtime,
@@ -237,7 +237,7 @@ const main = async () => {
     }
     //
     idx = component.components.findIndex(
-      (item) => item['type'] === ComponentType.HTML
+      (item) => item['type'] === ComponentType.HTML,
     )
     const html = {
       type: ComponentType.HTML,
@@ -256,7 +256,7 @@ const main = async () => {
     }
     //
     idx = component.components.findIndex(
-      (item) => item['type'] === ComponentType.Holiday
+      (item) => item['type'] === ComponentType.Holiday,
     )
     const holiday = {
       type: ComponentType.Holiday,
@@ -273,7 +273,7 @@ const main = async () => {
     }
     //
     idx = component.components.findIndex(
-      (item) => item['type'] === ComponentType.News
+      (item) => item['type'] === ComponentType.News,
     )
     const news = {
       type: ComponentType.News,

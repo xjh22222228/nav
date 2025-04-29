@@ -44,7 +44,7 @@ export async function getWebs() {
     })
     globalThis.localStorage.setItem(
       STORAGE_KEY_MAP.DATE_TIME,
-      navConfig.datetime
+      navConfig.datetime,
     )
     localforage.removeItem(STORAGE_KEY_MAP.WEBSITE)
     finish(data)
@@ -101,7 +101,7 @@ export function toggleCollapseAll(wsList?: INavProps[]): boolean {
 
 export async function deleteWebByIds(
   ids: number[],
-  isDelRid = false
+  isDelRid = false,
 ): Promise<boolean> {
   let hasDelete = false
   function f(arr: any[]) {
@@ -208,7 +208,7 @@ export function updateByClass(oldId: number, newData: any) {
 
 export async function deleteClassByIds(
   ids: number[],
-  isDelRid = false
+  isDelRid = false,
 ): Promise<boolean> {
   let hasDelete = false
 

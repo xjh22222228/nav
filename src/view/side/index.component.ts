@@ -104,7 +104,7 @@ export default class SideComponent {
     this.isCollapsed = !this.isCollapsed
     localStorage.setItem(
       STORAGE_KEY_MAP.SIDE_COLLAPSED,
-      String(this.isCollapsed)
+      String(this.isCollapsed),
     )
     setTimeout(() => {
       event.emit('COMPONENT_CHECK_OVER')

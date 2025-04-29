@@ -62,12 +62,12 @@ export const getConfig = () => {
 
   const gitRepoUrl = removeTrailingSlashes(config['gitRepoUrl'] || '').replace(
     /\.git$/,
-    ''
+    '',
   )
 
   const zorroVersion = pkgJson.dependencies['ng-zorro-antd'].replace(
     /[^0-9.]/g,
-    ''
+    '',
   )
   return {
     version: pkgJson.version,
@@ -190,7 +190,7 @@ function incrementClassId(id: number | string): number {
 export function setWebs(
   nav: INavProps[],
   settings: ISettings,
-  tags: ITagPropValues[] = []
+  tags: ITagPropValues[] = [],
 ): INavProps[] {
   if (!Array.isArray(nav)) return []
 
@@ -364,7 +364,7 @@ export function writeTemplate({
   seoTemplate,
 }: TemplateParams): string {
   const search: ISearchProps = JSON.parse(
-    fs.readFileSync(PATHS.search, 'utf-8')
+    fs.readFileSync(PATHS.search, 'utf-8'),
   )
 
   function getLoadKey(): string {
@@ -431,24 +431,24 @@ export function writeTemplate({
   let t = html
   t = t.replace(
     /(<!-- nav\.config-start -->)(.|\s)*?(<!-- nav.config-end -->)/i,
-    `$1${htmlTemplate}$3`
+    `$1${htmlTemplate}$3`,
   )
   if (settings.headerContent) {
     t = t.replace(
       /(<!-- nav.headerContent-start -->)(.|\s)*?(<!-- nav.headerContent-end -->)/i,
-      `$1${settings.headerContent}$3`
+      `$1${settings.headerContent}$3`,
     )
   }
 
   t = t.replace(
     /(<!-- nav.seo-start -->)(.|\s)*?(<!-- nav.seo-end -->)/i,
-    `$1${seoTemplate}$3`
+    `$1${seoTemplate}$3`,
   )
 
   const loadingCode = settings.loadingCode.trim()
   t = t.replace(
     /(<!-- nav.loading-start -->)(.|\s)*?(<!-- nav.loading-end -->)/i,
-    `$1${loadingCode || LOAD_MAP[getLoadKey()] || ''}$3`
+    `$1${loadingCode || LOAD_MAP[getLoadKey()] || ''}$3`,
   )
   return t
 }
@@ -480,7 +480,7 @@ function updateItemField(
   value: string | undefined,
   settingKey: keyof ISettings,
   settings: ISettings,
-  logMessage: string
+  logMessage: string,
 ): string {
   if (settings[settingKey] === 'ALWAYS' && value) {
     const message = `更新${logMessage}：${correctURL(item.url)}: "${
@@ -506,7 +506,7 @@ export async function spiderWebs(
   settings: ISettings,
   props?: {
     onOk?: (messages: string[]) => void
-  }
+  },
 ): Promise<SpiderWebResult> {
   let errorUrlCount = 0
   const { onOk } = props || {}
@@ -544,7 +544,7 @@ export async function spiderWebs(
 
   if (items.length) {
     console.log(
-      `正在爬取信息... 并发数量：${max}  超时: ${settings.spiderTimeout}秒`
+      `正在爬取信息... 并发数量：${max}  超时: ${settings.spiderTimeout}秒`,
     )
   }
 
@@ -554,7 +554,7 @@ export async function spiderWebs(
       .map((item) =>
         getWebInfo(correctURL(item.url), {
           timeout: settings.spiderTimeout * 1000,
-        })
+        }),
       )
 
     const promises = await Promise.all(requestPromises)
@@ -584,7 +584,7 @@ export async function spiderWebs(
             res.iconUrl,
             'spiderIcon',
             settings,
-            '图标'
+            '图标',
           ),
           updateItemField(
             item,
@@ -592,7 +592,7 @@ export async function spiderWebs(
             res.title,
             'spiderTitle',
             settings,
-            '标题'
+            '标题',
           ),
           updateItemField(
             item,
@@ -600,8 +600,8 @@ export async function spiderWebs(
             res.description,
             'spiderDescription',
             settings,
-            '描述'
-          )
+            '描述',
+          ),
         )
       }
       console.log('-'.repeat(100))

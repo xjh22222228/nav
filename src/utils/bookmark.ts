@@ -44,7 +44,7 @@ interface BookmarkParseResult {
 }
 
 export function parseBookmark(
-  htmlStr: string
+  htmlStr: string,
 ): BookmarkParseResult | INavProps[] {
   const copyWebList = JSON.parse(JSON.stringify(websiteList))
   const data: INavProps[] = []
@@ -220,7 +220,7 @@ export function parseBookmark(
       const title = (item.title || removeTrailingSlashes(item.url)).trim()
       const idx = list.findIndex(
         (item) =>
-          (item.title || removeTrailingSlashes(item.url)).trim() === title
+          (item.title || removeTrailingSlashes(item.url)).trim() === title,
       )
 
       if (idx !== -1) {
@@ -231,7 +231,7 @@ export function parseBookmark(
         const url = removeTrailingSlashes((item.url || '').trim())
         if (item.url) {
           const has = list.some(
-            (e) => removeTrailingSlashes(e.url).trim() === url
+            (e) => removeTrailingSlashes(e.url).trim() === url,
           )
           if (!has) {
             list.push(item)

@@ -42,7 +42,7 @@ export default class SystemTagComponent {
 
   constructor(
     private message: NzMessageService,
-    private modal: NzModalService
+    private modal: NzModalService,
   ) {}
 
   ngOnInit() {}

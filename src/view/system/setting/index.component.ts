@@ -102,11 +102,11 @@ export default class SystemSettingComponent {
     url: 'https://nav3.cn',
     icon: replaceJsdelivrCDN(
       'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/logo.svg',
-      settings
+      settings,
     ),
     img: replaceJsdelivrCDN(
       'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/4.png',
-      settings
+      settings,
     ),
     tags: [],
     breadcrumb: [],
@@ -116,7 +116,7 @@ export default class SystemSettingComponent {
   constructor(
     private fb: FormBuilder,
     private notification: NzNotificationService,
-    private message: NzMessageService
+    private message: NzMessageService,
   ) {
     const themeMap: Record<ThemeType, number> = {
       Light: 0,
@@ -130,7 +130,7 @@ export default class SystemSettingComponent {
 
     this.componentOptions = component.components.map((item) => {
       const data = settings.components.find(
-        (c) => item.type === c.type && item.id === c.id
+        (c) => item.type === c.type && item.id === c.id,
       )
       if (data) {
         extraForm['componentOptions'].push(data.id)
@@ -282,7 +282,7 @@ export default class SystemSettingComponent {
         components: formValues.componentOptions
           .map((id: number) => {
             const data = component.components.find(
-              (item: IComponentItemProps) => item.id === id
+              (item: IComponentItemProps) => item.id === id,
             )
             return {
               id: data?.id,

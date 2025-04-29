@@ -36,7 +36,10 @@ export class OffWorkDrawerComponent {
   validateForm!: FormGroup
   index = 0
 
-  constructor(private fb: FormBuilder, private message: NzMessageService) {
+  constructor(
+    private fb: FormBuilder,
+    private message: NzMessageService,
+  ) {
     this.validateForm = this.fb.group({
       workTitle: [''],
       restTitle: [''],

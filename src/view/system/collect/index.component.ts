@@ -56,7 +56,7 @@ export default class CollectComponent {
   constructor(
     private message: NzMessageService,
     private modal: NzModalService,
-    public readonly jumpService: JumpService
+    public readonly jumpService: JumpService,
   ) {}
 
   ngOnInit() {
@@ -96,7 +96,7 @@ export default class CollectComponent {
         this.submitting = true
         delUserCollect({
           data: this.dataList.filter((item) =>
-            this.setOfCheckedId.has(item.extra.uuid)
+            this.setOfCheckedId.has(item.extra.uuid),
           ),
         })
           .then((res) => {
@@ -182,11 +182,11 @@ export default class CollectComponent {
             if (item.oldData) {
               item.name = this.highlightDifferences(
                 item.oldData.name,
-                item.name
+                item.name,
               )
               item.desc = this.highlightDifferences(
                 item.oldData.desc,
-                item.desc
+                item.desc,
               )
             }
           }

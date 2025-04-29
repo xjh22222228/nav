@@ -42,7 +42,7 @@ export class WebListComponent {
     private router: Router,
     public jumpService: JumpService,
     private activatedRoute: ActivatedRoute,
-    public commonService: CommonService
+    public commonService: CommonService,
   ) {}
 
   ngOnInit() {
@@ -95,7 +95,7 @@ export class WebListComponent {
         if (item.url) {
           if (item.top && (isLogin || !item.ownVisible)) {
             const isMatch = (item.topTypes || []).some(
-              (v: number) => path === TopType[v]
+              (v: number) => path === TopType[v],
             )
             if (isMatch) {
               dataList.push(item)

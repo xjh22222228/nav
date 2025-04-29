@@ -28,7 +28,7 @@ export class FooterComponent {
 
   ngOnInit() {
     this.footerContent = compilerTemplate(
-      this.content || settings.footerContent
+      this.content || settings.footerContent,
     )
   }
 

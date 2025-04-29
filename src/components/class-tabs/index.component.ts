@@ -70,7 +70,7 @@ export class ClassTabsComponent {
 
   private getToolbarItems() {
     this.toolbarItems = Array.from(
-      document.querySelectorAll('.nav-wrapper')
+      document.querySelectorAll('.nav-wrapper'),
     ) as HTMLElement[]
   }
 
@@ -116,7 +116,7 @@ export class ClassTabsComponent {
       this.items.toArray()[this.activeIndex].nativeElement,
       {
         behavior: 'smooth',
-      }
+      },
     )
   }
 

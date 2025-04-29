@@ -77,7 +77,7 @@ export class FixbarComponent {
   constructor(
     private message: NzMessageService,
     private modal: NzModalService,
-    private router: Router
+    private router: Router,
   ) {
     if (this.isDark) {
       addDark()
@@ -170,7 +170,7 @@ export class FixbarComponent {
     mitt.emit('EVENT_DARK', this.isDark)
     window.localStorage.setItem(
       STORAGE_KEY_MAP.IS_DARK,
-      String(Number(this.isDark))
+      String(Number(this.isDark)),
     )
 
     if (this.isDark) {
@@ -199,7 +199,7 @@ export class FixbarComponent {
         await updateFileContent({
           message: 'update db',
           content: JSON.stringify(
-            cleanWebAttrs(JSON.parse(JSON.stringify(this.websiteList)))
+            cleanWebAttrs(JSON.parse(JSON.stringify(this.websiteList))),
           ),
           path: DB_PATH,
         })

@@ -34,7 +34,7 @@ export class PhoneClassComponent {
     scrollIntoViewLeft(
       this.parentRef.nativeElement,
       this.itemsRef.toArray()[this.commonService.twoIndex].nativeElement,
-      { behavior: 'auto' }
+      { behavior: 'auto' },
     )
   }
 

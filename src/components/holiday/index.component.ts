@@ -50,7 +50,7 @@ export class HolidayComponent {
           item.dateStr = dayjs(item.date).format('MM.DD')
           item.diffDay = dayjs(dayjs(item.date).format('YYYY-MM-DD')).diff(
             now,
-            'day'
+            'day',
           )
           item.diffDay = item.diffDay < 0 ? 0 : item.diffDay
           item.diffDay = item.diffDay > 999 ? 999 : item.diffDay

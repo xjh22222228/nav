@@ -58,7 +58,7 @@ export class HolidayDrawerComponent {
             day: String(item.day),
             title: item.title,
             date: item.date,
-          })
+          }),
         )
       })
     }
@@ -72,7 +72,7 @@ export class HolidayDrawerComponent {
         url: '',
         title: '',
         date: Date.now(),
-      })
+      }),
     )
   }
 

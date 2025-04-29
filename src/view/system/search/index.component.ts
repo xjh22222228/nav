@@ -58,7 +58,7 @@ export default class SystemSearchComponent {
   constructor(
     private fb: FormBuilder,
     private message: NzMessageService,
-    private modal: NzModalService
+    private modal: NzModalService,
   ) {
     const group: any = {
       ...search,

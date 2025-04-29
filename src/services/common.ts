@@ -35,7 +35,10 @@ export class CommonService {
   searchKeyword = ''
   overIndex = Number.MAX_SAFE_INTEGER
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+  ) {
     const getData = () => {
       const { id, q } = queryString()
       const { oneIndex, twoIndex, threeIndex } = getClassById(id)

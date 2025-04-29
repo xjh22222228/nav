@@ -60,7 +60,7 @@ export class MoveWebComponent {
       id?: number
       level?: number
       data: IWebProps[]
-    }
+    },
   ) {
     ctx.oneSelect = -1
     ctx.twoSelect = -1
@@ -111,7 +111,7 @@ export class MoveWebComponent {
         for (const item of moveItems) {
           const id = item.id
           const has = this.websiteList[oneIndex].nav.some(
-            (item) => item.id === id
+            (item) => item.id === id,
           )
           if (has) {
             this.message.error($t('_sameExists'))
@@ -139,7 +139,7 @@ export class MoveWebComponent {
         for (const item of moveItems) {
           const id = item.id
           const has = this.websiteList[oneIndex].nav[twoIndex].nav.some(
-            (item) => item.id === id
+            (item) => item.id === id,
           )
           if (has) {
             this.message.error($t('_sameExists'))
@@ -164,7 +164,7 @@ export class MoveWebComponent {
           return this.message.error($t('_sel3'))
         }
         const { oneIndex, twoIndex, threeIndex } = getClassById(
-          this.threeSelect
+          this.threeSelect,
         )
         for (const item of moveItems) {
           const id = item.id
@@ -188,7 +188,7 @@ export class MoveWebComponent {
             await deleteWebByIds([item.rId || id], !!item.rId)
           }
           this.websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav.unshift(
-            item
+            item,
           )
           this.message.success(`"${item.name}" ${$t('_moveSuccess')}`)
         }

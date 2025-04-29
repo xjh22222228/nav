@@ -30,9 +30,10 @@
         <nz-form-control [nzSpan]="20" [nzErrorTip]="$t('_requiredName')">
           <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
             <input
+              #inputTitle
               formControlName="title"
               nz-input
-              [readonly]="getting"
+              [readonly]="getting || translating"
               [placeholder]="getting ? $t('_pendingGet') : ''"
             />
           </nz-input-group>
@@ -165,10 +166,11 @@
         <nz-form-label [nzSpan]="4">{{ $t('_webDesc') }}</nz-form-label>
         <nz-form-control [nzSpan]="20">
           <textarea
+            #inputDesc
             formControlName="desc"
             nz-input
             [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-            [readonly]="getting"
+            [readonly]="getting || translating"
             [placeholder]="getting ? $t('_pendingGet') : ''"
           >
           </textarea>

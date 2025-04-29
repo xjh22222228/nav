@@ -28,7 +28,7 @@ export default class SystemBookmarkComponent {
 
   constructor(
     private message: NzMessageService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
   ) {}
 
   ngOnInit() {}
@@ -51,7 +51,7 @@ export default class SystemBookmarkComponent {
         if (!Array.isArray(result)) {
           that.notification.error(
             $t('_errorBookTip'),
-            `${result?.message ?? ''}`
+            `${result?.message ?? ''}`,
           )
         } else {
           that.message.success($t('_importSuccess'))

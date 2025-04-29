@@ -78,7 +78,7 @@ export class NewsComponent {
       this.items.toArray()[this.activeIndex].nativeElement,
       {
         behavior: 'smooth',
-      }
+      },
     )
   }
 
@@ -109,11 +109,11 @@ export class NewsComponent {
         }
         localStorage.setItem(
           STORAGE_KEY_MAP.NEWS,
-          JSON.stringify(this.newsListMap)
+          JSON.stringify(this.newsListMap),
         )
         localStorage.setItem(
           STORAGE_KEY_MAP.NEWS_DATE,
-          JSON.stringify(Date.now())
+          JSON.stringify(Date.now()),
         )
       })
       .finally(() => {

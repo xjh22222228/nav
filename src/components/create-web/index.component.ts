@@ -71,7 +71,9 @@ import event from 'src/utils/mitt'
 })
 export class CreateWebComponent {
   @ViewChildren('inputs') inputs!: QueryList<ElementRef>
-  @ViewChild('inputUrl', { static: false }) inputUrl!: ElementRef
+  @ViewChild('inputUrl', { static: false }) inputUrlRef!: ElementRef
+  @ViewChild('inputTitle') inputTitleRef!: ElementRef
+  @ViewChild('inputDesc') inputDescRef!: ElementRef
 
   readonly $t = $t
   readonly isLogin: boolean = isLogin
@@ -98,7 +100,7 @@ export class CreateWebComponent {
     public readonly jumpService: JumpService,
     private fb: FormBuilder,
     private message: NzMessageService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
   ) {
     event.on('CREATE_WEB', (props: any) => {
       this.open(this, props)
@@ -167,7 +169,7 @@ export class CreateWebComponent {
       isMove?: boolean
       parentId?: number
       detail: IWebProps | null | undefined
-    }
+    },
   ) {
     if (props?.isKeyboard && this.showModal) {
       return
@@ -206,7 +208,7 @@ export class CreateWebComponent {
               id: Number(item.id),
               name: tagMap[item.id].name ?? '',
               url: item.url || '',
-            })
+            }),
           )
         })
       }
@@ -228,7 +230,7 @@ export class CreateWebComponent {
       return
     }
     setTimeout(() => {
-      this.inputUrl?.nativeElement?.focus()
+      this.inputUrlRef?.nativeElement?.focus()
     }, 400)
   }
 
@@ -275,7 +277,7 @@ export class CreateWebComponent {
         this.validateForm.get('desc')!.setValue(res['description'])
       }
       this.getting = false
-      this.inputUrl?.nativeElement?.blur()
+      this.inputUrlRef?.nativeElement?.blur()
       this.checkRepeat()
     } catch {}
   }
@@ -286,7 +288,7 @@ export class CreateWebComponent {
         id: '',
         name: '',
         url: '',
-      })
+      }),
     )
   }
 
@@ -307,12 +309,31 @@ export class CreateWebComponent {
   }
 
   handleTranslate(key = 'desc') {
+    let content = key === 'desc' ? this.desc : this.title
+    let transalteBody = content
+    const el = key === 'desc' ? this.inputDescRef : this.inputTitleRef
+    const start = el.nativeElement.selectionStart
+    const end = el.nativeElement.selectionEnd
+    const isSelected = start !== end
+    if (isSelected) {
+      transalteBody = content.slice(start, end)
+    }
+    if (!transalteBody) {
+      return
+    }
     this.translating = true
     getTranslate({
-      content: key === 'desc' ? this.desc : this.title,
+      content: transalteBody,
     })
       .then((res) => {
-        this.validateForm.get(key)!.setValue(res.data.content || '')
+        let translateContent = res.data.content || ''
+        if (isSelected) {
+          const newContent =
+            content.slice(0, start) + translateContent + content.slice(end)
+          this.validateForm.get(key)!.setValue(newContent)
+        } else {
+          this.validateForm.get(key)!.setValue(translateContent)
+        }
       })
       .finally(() => {
         this.translating = false
@@ -349,7 +370,7 @@ export class CreateWebComponent {
     try {
       const url = removeTrailingSlashes(this.url)
       const { oneIndex, twoIndex, threeIndex, breadcrumb } = getClassById(
-        this.parentId
+        this.parentId,
       )
       const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
       const repeatData = w.find((item) => {
@@ -369,7 +390,7 @@ export class CreateWebComponent {
           `,
           {
             nzDuration: 20000,
-          }
+          },
         )
       } else {
         this.message.success($t('_urlNoRepeat'))

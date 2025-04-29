@@ -234,7 +234,7 @@ export async function updateFileContent({
 
   const url = isGitLab
     ? `/projects/${getLabProjectId()}/repository/files/${encodeURIComponent(
-        path
+        path,
       )}`
     : `/repos/${authorName}/${repoName}/contents/${path}`
 
