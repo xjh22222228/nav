@@ -165,7 +165,6 @@ export class FixbarComponent {
   }
 
   toggleMode() {
-    this.handleOpen()
     this.isDark = !this.isDark
     mitt.emit('EVENT_DARK', this.isDark)
     window.localStorage.setItem(
@@ -186,6 +185,9 @@ export class FixbarComponent {
   }
 
   handleOpen() {
+    if (!this.isShowFace) {
+      return
+    }
     this.open = !this.open
     localStorage.setItem(STORAGE_KEY_MAP.FIXBAR_OPEN, String(this.open))
   }
