@@ -17,6 +17,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzTableModule } from 'ng-zorro-antd/table'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
+import { NzSwitchModule } from 'ng-zorro-antd/switch'
 
 @Component({
   standalone: true,
@@ -27,6 +28,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
     NzInputModule,
     NzTableModule,
     NzPopconfirmModule,
+    NzSwitchModule,
   ],
   providers: [NzModalService, NzMessageService],
   selector: 'system-tag',

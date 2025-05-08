@@ -321,6 +321,7 @@ const zhCN: Record<string, any> = {
   _logoDarkImg: 'Logo暗黑图',
   _errLogo: '该LOGO图无法访问',
   _logoMaxHeight: 'Logo最大高度',
+  _noPublic: '不公开',
 }
 
 export default zhCN

@@ -81,7 +81,7 @@ export class CreateWebComponent {
   readonly permissions = getPermissions(settings)
   readonly DEFAULT_SORT_INDEX = DEFAULT_SORT_INDEX
   validateForm!: FormGroup
-  tagList = tagList
+  tagList = tagList.filter((item) => !(!isLogin && item.noOpen))
   submitting = false
   getting = false
   translating = false

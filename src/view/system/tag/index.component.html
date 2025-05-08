@@ -23,6 +23,7 @@
 <nz-table #basicTable [nzData]="tagList">
   <thead>
     <tr>
+      <th nzWidth="80px">{{ $t('_noPublic') }}</th>
       <th nzWidth="150px">{{ $t('_tagName') }}</th>
       <th nzWidth="160px">{{ $t('_color') }}</th>
       <th nzWidth="150px">{{ $t('_sort') }}</th>
@@ -32,6 +33,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of tagList; index as idx; trackBy: trackByItem">
+      <td>
+        <nz-switch [(ngModel)]="data.noOpen"></nz-switch>
+      </td>
       <td>
         <input nz-input [(ngModel)]="data.name" maxlength="10" />
       </td>

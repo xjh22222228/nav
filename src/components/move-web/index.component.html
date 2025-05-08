@@ -6,56 +6,60 @@
   (nzOnOk)="hanldeOk()"
 >
   <ng-container *nzModalContent>
-    <nz-select
-      [ngModel]="oneSelect"
-      nzShowSearch
-      [nzPlaceHolder]="$t('_sel1')"
-      (ngModelChange)="hanldeOneSelect($event)"
-      style="width: 160px"
-    >
-      <nz-option
-        *ngFor="let item of websiteList"
-        [nzLabel]="item.title"
-        [nzValue]="item.id"
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <nz-select
+        [ngModel]="oneSelect"
+        nzShowSearch
+        [nzPlaceHolder]="$t('_sel1')"
+        (ngModelChange)="hanldeOneSelect($event)"
+        class="w-full md:w-[160px]"
       >
-      </nz-option>
-    </nz-select>
+        <nz-option
+          *ngFor="let item of websiteList"
+          [nzLabel]="item.title"
+          [nzValue]="item.id"
+        >
+        </nz-option>
+      </nz-select>
 
-    <nz-select
-      [ngModel]="twoSelect"
-      nzShowSearch
-      [nzPlaceHolder]="$t('_sel2')"
-      (ngModelChange)="hanldeTwoSelect($event)"
-      style="width: 160px; margin-left: 15px"
-      *ngIf="level > 2"
-    >
-      <nz-option
-        *ngFor="let item of twoOptions"
-        [nzLabel]="item.title"
-        [nzValue]="item.id"
+      <nz-select
+        [ngModel]="twoSelect"
+        nzShowSearch
+        [nzPlaceHolder]="$t('_sel2')"
+        (ngModelChange)="hanldeTwoSelect($event)"
+        class="w-full md:w-[160px]"
+        *ngIf="level > 2"
       >
-      </nz-option>
-    </nz-select>
+        <nz-option
+          *ngFor="let item of twoOptions"
+          [nzLabel]="item.title"
+          [nzValue]="item.id"
+        >
+        </nz-option>
+      </nz-select>
 
-    <nz-select
-      [ngModel]="threeSelect"
-      nzShowSearch
-      [nzPlaceHolder]="$t('_sel3')"
-      (ngModelChange)="hanldeThreeSelect($event)"
-      style="width: 160px; margin-left: 15px"
-      *ngIf="level === 4"
-    >
-      <nz-option
-        *ngFor="let item of threeOptions"
-        [nzLabel]="item.title"
-        [nzValue]="item.id"
+      <nz-select
+        [ngModel]="threeSelect"
+        nzShowSearch
+        [nzPlaceHolder]="$t('_sel3')"
+        (ngModelChange)="hanldeThreeSelect($event)"
+        class="w-full md:w-[160px]"
+        *ngIf="level === 4"
       >
-      </nz-option>
-    </nz-select>
+        <nz-option
+          *ngFor="let item of threeOptions"
+          [nzLabel]="item.title"
+          [nzValue]="item.id"
+        >
+        </nz-option>
+      </nz-select>
+    </div>
 
     <div class="act select-none">
       <label nz-checkbox [(ngModel)]="isCopy">{{ $t('_copy') }}</label>
-      <label nz-checkbox [(ngModel)]="isSame" *ngIf="isCopy">{{ $t('_same') }}</label>
+      <label nz-checkbox [(ngModel)]="isSame" *ngIf="isCopy">{{
+        $t('_same')
+      }}</label>
     </div>
   </ng-container>
 </nz-modal>

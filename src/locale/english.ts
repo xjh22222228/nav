@@ -334,6 +334,7 @@ const english: Record<string, any> = {
   _logoDarkImg: 'Logo Dark Picture',
   _errLogo: 'The logo image cannot be accessed',
   _logoMaxHeight: 'Max height',
+  _noPublic: 'No open',
 }
 
 export default english
