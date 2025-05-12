@@ -19,7 +19,8 @@
     ></i>
 
     <span class="ml-1 self-center align-middle">
-      {{ dataSource.title }} x {{ dataSource.nav.length }}
+      {{ dataSource.title
+      }}{{ dataSource.nav.length < 10 ? '' : ' x ' + dataSource.nav.length }}
     </span>
 
     <ng-content *ngIf="dataSource.id !== -1">

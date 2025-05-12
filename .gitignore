@@ -44,6 +44,7 @@ _upload
 test.md
 data/collect.json
 data/serverdb.json
+data/news.json
 /.dockerignore
 /Dockerfile
 .next

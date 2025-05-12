@@ -326,13 +326,15 @@ export class CreateWebComponent {
       content: transalteBody,
     })
       .then((res) => {
-        let translateContent = res.data.content || ''
-        if (isSelected) {
-          const newContent =
-            content.slice(0, start) + translateContent + content.slice(end)
-          this.validateForm.get(key)!.setValue(newContent)
-        } else {
-          this.validateForm.get(key)!.setValue(translateContent)
+        const translateContent = res.data.content
+        if (translateContent) {
+          if (isSelected) {
+            const newContent =
+              content.slice(0, start) + translateContent + content.slice(end)
+            this.validateForm.get(key)!.setValue(newContent)
+          } else {
+            this.validateForm.get(key)!.setValue(translateContent)
+          }
         }
       })
       .finally(() => {

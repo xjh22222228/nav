@@ -215,6 +215,8 @@ export default class CollectComponent {
       isMove: true,
     })
     event.emit('SET_CREATE_WEB', {
+      parentId: data.parentId,
+      breadcrumb: data.breadcrumb,
       detail: null,
       callback() {
         that.handleDelete(idx)
@@ -234,9 +236,15 @@ export default class CollectComponent {
     })
   }
 
-  handleUpdateWeb(data: any) {
+  handleUpdateWeb(data: any, idx: number) {
+    const that = this
     event.emit('CREATE_WEB', {
       detail: data,
+    })
+    event.emit('SET_CREATE_WEB', {
+      callback() {
+        that.handleDelete(idx)
+      },
     })
   }
 
@@ -246,7 +254,7 @@ export default class CollectComponent {
     } else if (data.extra.type === ActionType.Delete) {
       this.handleDeleteWeb(data, idx)
     } else if (data.extra.type === ActionType.Edit) {
-      this.handleUpdateWeb(data)
+      this.handleUpdateWeb(data, idx)
     }
   }
 

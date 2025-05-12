@@ -4,6 +4,7 @@ import config from '../../../nav.config.json'
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { settings } from 'src/store'
+import { isSelfDevelop } from 'src/utils/utils'
 
 @Component({
   standalone: true,
@@ -14,10 +15,8 @@ import { settings } from 'src/store'
   styleUrls: ['./icon-git.component.scss'],
 })
 export class IconGitComponent {
-  gitRepoUrl: string = config.gitRepoUrl.includes('github.com/xjh22222228')
-    ? 'https://github.com/xjh22222228/nav'
-    : config.gitRepoUrl
-  showGithub = settings.showGithub
+  gitRepoUrl: string = config.gitRepoUrl
+  showGithub = !isSelfDevelop && settings.showGithub
 
   constructor() {}
 }

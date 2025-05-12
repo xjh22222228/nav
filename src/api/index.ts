@@ -402,6 +402,11 @@ export function updateConfigInfo(data: Record<string, any> = {}) {
 export function getNews(data: Record<string, any> = {}) {
   data['showError'] = false
   data['showLoading'] = false
+  if (isSelfDevelop) {
+    return http.post('/api/news', data, {
+      timeout: 0,
+    })
+  }
   return httpNav.post('/api/news', data, {
     timeout: 0,
   })

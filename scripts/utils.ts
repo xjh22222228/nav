@@ -43,6 +43,7 @@ export const PATHS = {
   collect: path.resolve('data', 'collect.json'),
   component: path.resolve('data', 'component.json'),
   internal: path.resolve('data', 'internal.json'),
+  news: path.resolve('data', 'news.json'),
   config: path.resolve('nav.config.yaml'),
   configJson: path.resolve('nav.config.json'),
   pkg: path.resolve('package.json'),
