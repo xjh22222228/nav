@@ -86,6 +86,7 @@
           {{ $t('_confInfo') }}
         </li>
         <li
+          *ngIf="!isSelfDevelop"
           nz-menu-item
           [nzSelected]="currentMenu === 'info'"
           (click)="goRoute('/system/info')"

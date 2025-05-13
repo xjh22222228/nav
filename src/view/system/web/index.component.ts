@@ -296,6 +296,7 @@ export default class WebpComponent {
             message: 'import db',
             content: JSON.stringify(data.db),
             path: DB_PATH,
+            refresh: false,
           })
           that.notification.success('OK', 'DB import successful')
         } catch {
@@ -311,6 +312,7 @@ export default class WebpComponent {
               ...data.settings,
             }),
             path: SETTING_PATH,
+            refresh: false,
           })
           that.notification.success('OK', 'settings import successful')
         } catch {
@@ -323,6 +325,7 @@ export default class WebpComponent {
             message: 'import tag',
             content: JSON.stringify(data.tag),
             path: TAG_PATH,
+            refresh: false,
           })
           that.notification.success('OK', 'tag import successful')
         } catch {
@@ -338,6 +341,7 @@ export default class WebpComponent {
               ...data.search,
             }),
             path: SEARCH_PATH,
+            refresh: false,
           })
           that.notification.success('OK', 'search import successful')
         } catch {
@@ -353,6 +357,7 @@ export default class WebpComponent {
               ...data.component,
             }),
             path: COMPONENT_PATH,
+            refresh: false,
           })
           that.notification.success('OK', 'component import successful')
         } catch {
@@ -361,9 +366,13 @@ export default class WebpComponent {
           })
         }
 
-        that.message.success($t('_syncSuccessTip'))
+        setTimeout(() => {
+          location.reload()
+        }, 2000)
       } catch (error: any) {
         that.notification.error($t('_error'), error.message)
+      } finally {
+        e.target.value = ''
       }
     }
   }

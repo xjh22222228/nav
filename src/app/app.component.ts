@@ -129,7 +129,7 @@ export class AppComponent {
               },
             ])
           }
-          if (isHome) {
+          if (isHome && !location.href.includes('system')) {
             this.router.navigate([defaultTheme])
           }
           this.updateDocumentTitle()

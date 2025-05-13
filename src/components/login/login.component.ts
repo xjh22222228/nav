@@ -65,7 +65,7 @@ export class LoginComponent {
   private inputFocus(): void {
     setTimeout(() => {
       this.input?.nativeElement?.focus()
-    }, 300)
+    }, 500)
   }
 
   onKey(event: KeyboardEvent): void {

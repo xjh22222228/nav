@@ -630,7 +630,7 @@ export async function fileWriteStream(path: string, data: object | string) {
   const stream1 = fs.createWriteStream(path)
 
   const stream1Promise = new Promise((resolve, reject) => {
-    stream1.on('finish', () => resolve('file1 written'))
+    stream1.on('finish', () => resolve(`${path} written`))
     stream1.on('error', (err) => reject(err))
   })
 

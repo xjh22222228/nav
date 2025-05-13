@@ -191,6 +191,7 @@ type Iupdate = {
   path: string
   branch?: string
   isEncode?: boolean
+  refresh?: boolean
 }
 export async function updateFileContent({
   message = 'update',
@@ -198,6 +199,7 @@ export async function updateFileContent({
   path,
   branch = DEFAULT_BRANCH,
   isEncode = true,
+  refresh = true,
 }: Iupdate) {
   if (isSelfDevelop) {
     if (!isLogin) {
@@ -209,7 +211,7 @@ export async function updateFileContent({
         content,
       })
       .then((res) => {
-        getContentes()
+        refresh && getContentes()
         requestActionUrl()
         return res
       })
