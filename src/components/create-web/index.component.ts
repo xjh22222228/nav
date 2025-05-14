@@ -45,7 +45,11 @@ import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { SELF_SYMBOL, DEFAULT_SORT_INDEX } from 'src/constants/symbol'
 import { JumpService } from 'src/services/jump'
-import { removeTrailingSlashes } from 'src/utils/pureUtils'
+import {
+  removeTrailingSlashes,
+  transformSafeHTML,
+  transformUnSafeHTML,
+} from 'src/utils/pureUtils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -98,7 +102,6 @@ export class CreateWebComponent {
     { label: TopType[2], value: TopType.Shortcut },
   ]
   breadcrumb: string[] = []
-  navs = navs()
 
   constructor(
     public readonly jumpService: JumpService,
@@ -182,9 +185,9 @@ export class CreateWebComponent {
     const detail = props?.detail
     if (!detail) {
       ctx.parentId = props?.parentId || ctx.parentId
-      if (this.navs.length === 0) return
+      if (navs().length === 0) return
       if (ctx.parentId === -1) {
-        const parentId = this.navs[0]?.nav?.[0]?.nav?.[0]?.id
+        const parentId = navs()[0]?.nav?.[0]?.nav?.[0]?.id
         if (!parentId) {
           return
         }
@@ -194,17 +197,22 @@ export class CreateWebComponent {
     ctx.detail = detail
     ctx.showModal = true
     ctx.isMove = !!props?.isMove
-    this.validateForm.get('title')!.setValue(getTextContent(detail?.name))
-    this.validateForm.get('desc')!.setValue(getTextContent(detail?.desc))
-    this.validateForm.get('index')!.setValue(detail?.index ?? '')
-    this.validateForm.get('icon')!.setValue(detail?.icon || '')
-    this.validateForm.get('url')!.setValue(detail?.url || '')
-    this.validateForm.get('top')!.setValue(detail?.top ?? false)
-    this.validateForm.get('topTypes')!.setValue(detail?.topTypes ?? [])
-    this.validateForm.get('ownVisible')!.setValue(detail?.ownVisible ?? false)
-    this.validateForm.get('rate')!.setValue(detail?.rate ?? 5)
-    this.validateForm.get('img')!.setValue(detail?.img ?? '')
+
     if (detail) {
+      this.validateForm
+        .get('title')!
+        .setValue(transformUnSafeHTML(getTextContent(detail?.name)))
+      this.validateForm
+        .get('desc')!
+        .setValue(transformUnSafeHTML(getTextContent(detail?.desc)))
+      this.validateForm.get('index')!.setValue(detail?.index ?? '')
+      this.validateForm.get('icon')!.setValue(detail?.icon || '')
+      this.validateForm.get('url')!.setValue(detail?.url || '')
+      this.validateForm.get('top')!.setValue(detail?.top ?? false)
+      this.validateForm.get('topTypes')!.setValue(detail?.topTypes ?? [])
+      this.validateForm.get('ownVisible')!.setValue(detail?.ownVisible ?? false)
+      this.validateForm.get('rate')!.setValue(detail?.rate ?? 5)
+      this.validateForm.get('img')!.setValue(detail?.img ?? '')
       if (Array.isArray(detail.tags)) {
         detail.tags.forEach((item: IWebTag) => {
           ;(this.validateForm?.get('urlArr') as FormArray).push?.(
@@ -216,9 +224,6 @@ export class CreateWebComponent {
           )
         })
       }
-    }
-
-    if (detail) {
       const { parentId } = getClassById(detail.id, 0, true)
       ctx.parentId = parentId
     } else {
@@ -379,7 +384,7 @@ export class CreateWebComponent {
       const { oneIndex, twoIndex, threeIndex, breadcrumb } = getClassById(
         this.parentId,
       )
-      const w = this.navs[oneIndex].nav[twoIndex].nav[threeIndex].nav
+      const w = navs()[oneIndex].nav[twoIndex].nav[threeIndex].nav
       const repeatData = w.find((item) => {
         if (this.detail && item.id === this.detail.id) {
           return false
@@ -429,10 +434,10 @@ export class CreateWebComponent {
 
     const payload: Record<string, any> = {
       id: this.detail?.id,
-      name: title,
+      name: transformSafeHTML(title),
+      desc: transformSafeHTML(this.desc),
       breadcrumb: this.detail?.breadcrumb ?? [],
       rate,
-      desc: this.desc,
       top,
       index,
       ownVisible,

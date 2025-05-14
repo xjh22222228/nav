@@ -101,3 +101,19 @@ export function isNumber(v: any): boolean {
   }
   return true
 }
+
+export function transformSafeHTML(str: string) {
+  const entity: any = {
+    '<': '&lt;',
+    '>': '&gt;',
+  }
+  return str.replace(/[<>]/g, (char) => entity[char])
+}
+
+export function transformUnSafeHTML(str: string) {
+  const entity: any = {
+    '&lt;': '<',
+    '&gt;': '>',
+  }
+  return str.replace(/(&lt;|&gt;)/g, (char) => entity[char])
+}

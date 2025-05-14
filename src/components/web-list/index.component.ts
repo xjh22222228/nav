@@ -5,7 +5,7 @@
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { navs } from 'src/store'
-import type { IWebProps, INavProps } from 'src/types'
+import type { IWebProps } from 'src/types'
 import { TopType } from 'src/types'
 import { queryString, fuzzySearch, isMobile, getDefaultTheme } from 'src/utils'
 import { isNumber } from 'src/utils/pureUtils'
@@ -35,7 +35,6 @@ export class WebListComponent {
   @Input() search = true
   @Input() overflow = false
 
-  navs: INavProps[] = navs()
   dataList: IWebProps[] = []
 
   constructor(
@@ -52,7 +51,7 @@ export class WebListComponent {
         const { q } = queryString()
 
         if (this.search && q.trim()) {
-          const result = fuzzySearch(this.navs, q)
+          const result = fuzzySearch(navs(), q)
           if (result.length === 0) {
             this.dataList = []
           } else {
@@ -106,7 +105,7 @@ export class WebListComponent {
         }
       }
     }
-    r(navs)
+    r(navs())
 
     // @ts-ignore
     this.dataList = dataList.sort((a: any, b: any) => {

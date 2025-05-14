@@ -12,8 +12,7 @@
   <ng-container *ngIf="action">
     <div
       *ngIf="isLogin || permissions.edit"
-      class="tag-item cursor-pointer tag-action"
-      style="background-color: #1f883d"
+      class="tag-item cursor-pointer tag-action bg-[#1f883d]"
       (click)="openEditWebMoal($event)"
       nz-icon
       nzType="edit"
@@ -21,8 +20,7 @@
     ></div>
     <div
       *ngIf="isLogin"
-      class="tag-item cursor-pointer tag-action"
-      style="background-color: #108ee9"
+      class="tag-item cursor-pointer tag-action bg-[#108ee9]"
       (click)="openMoveWebModal($event)"
       nz-icon
       nzType="swap"

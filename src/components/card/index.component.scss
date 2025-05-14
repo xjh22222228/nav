@@ -137,7 +137,9 @@
   padding: 8px 8px;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 0px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
   border: 1px solid transparent;
   transition: all 0.15s linear;
   color: #000;
@@ -177,7 +179,9 @@
   padding: 4px 8px;
   border-radius: 4px;
   cursor: pointer;
-  box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 0px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
   border: 1px solid transparent;
   transition: all 0.15s linear;
   color: #000;
@@ -211,7 +215,7 @@
 }
 .column2 {
   background-color: #fff;
-  padding: 8px 12px;
+  padding: 8px;
   border-bottom: 1px solid #eee;
   transition: all 0.15s linear;
   color: #000;
@@ -231,22 +235,21 @@
   }
   .title {
     font-weight: 500;
-    margin-left: 10px;
-    font-size: 15px;
+    margin-left: 8px;
+    font-size: 16px;
   }
   .desc {
     margin: 0;
-    font-size: 12px;
+    font-size: 13px;
   }
   .bottom-bar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin-top: 4px;
   }
   .rate2 {
     color: #8a919f;
-    margin-right: 10px;
+    margin-right: 6px;
   }
 }
 

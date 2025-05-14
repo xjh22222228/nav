@@ -3,8 +3,8 @@
   *ngIf="isCode; else other"
   [innerHTML]="description | safeHtml"
   [ngStyle]="{
-    'width': cardStyle === 'icon' ? iconSize + 30 + 'px' : '',
-    'height': cardStyle === 'icon' ? iconSize + 30 + 'px' : '',
+    width: cardStyle === 'icon' ? iconSize + 30 + 'px' : '',
+    height: cardStyle === 'icon' ? iconSize + 30 + 'px' : '',
   }"
   #root
 ></div>
@@ -372,8 +372,11 @@
         </div>
 
         <div class="bottom-bar">
-          <div class="rate2" *ngIf="settings.showRate">{{ getRate }}</div>
+          <div class="rate2 mt-1" *ngIf="settings.showRate && getRate">
+            {{ getRate }}
+          </div>
           <tag-list
+            class="mt-1"
             [data]="dataSource.tags"
             *ngIf="
               dataSource.tags?.length ||

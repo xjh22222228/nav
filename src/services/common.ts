@@ -13,7 +13,7 @@ import {
   getClassById,
 } from 'src/utils'
 import { setNavs, toggleCollapseAll } from 'src/utils/web'
-import type { INavProps, INavThreeProp } from 'src/types'
+import type { INavThreeProp } from 'src/types'
 import { isLogin, getPermissions } from 'src/utils/user'
 import { isSelfDevelop } from 'src/utils/utils'
 import event from 'src/utils/mitt'
