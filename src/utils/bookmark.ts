@@ -123,7 +123,7 @@ export function parseBookmark(
             const twoLevel: INavTwoProp = {
               id: (id += 1),
               title,
-              icon: '',
+              icon: getIcon(titleEl),
               nav: [],
             }
             parentData.nav.push(twoLevel)
@@ -159,7 +159,7 @@ export function parseBookmark(
           const oneLevel: INavProps = {
             id: (id += 1),
             title,
-            icon: '',
+            icon: getIcon(titleEl),
             nav: [],
           }
           data.push(oneLevel)

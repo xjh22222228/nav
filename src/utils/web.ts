@@ -18,8 +18,8 @@ export async function getNavs() {
   if (isSelfDevelop) {
     return
   }
-  function finish(dbData: any) {
-    navs.set(dbData)
+  function finish(navsData: INavProps[]) {
+    navs.set(navsData)
     event.emit('WEB_FINISH')
     window.__FINISHED__ = true
   }
@@ -61,9 +61,9 @@ export async function getNavs() {
   }
 
   try {
-    const dbData: any =
+    const navsData: any =
       (await localforage.getItem(STORAGE_KEY_MAP.WEBSITE)) || data
-    finish(dbData)
+    finish(navsData)
   } catch {
     finish(data)
   }

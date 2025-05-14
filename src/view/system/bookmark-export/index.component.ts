@@ -53,7 +53,7 @@ export default class SystemBookmarkExportComponent {
       data.forEach((item) => {
         if (item.title) {
           for (const k in item) {
-            const keys = ['title', 'nav']
+            const keys = ['title', 'nav', 'icon']
             if (!keys.includes(k)) {
               delete item[k]
             }
