@@ -8,8 +8,9 @@ import { isDark as isDarkFn } from 'src/utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { isLogin } from 'src/utils/user'
+import { isSelfDevelop } from 'src/utils/utils'
 import { updateFileContent } from 'src/api'
-import { websiteList, settings } from 'src/store'
+import { navs, settings } from 'src/store'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import { Router } from '@angular/router'
 import { $t, getLocale } from 'src/locale'
@@ -37,12 +38,12 @@ export class FixbarComponent {
   @Output() onCollapse = new EventEmitter()
 
   readonly $t = $t
-  readonly settings = settings
+  readonly settings = settings()
   readonly language = getLocale()
   readonly isLogin = isLogin
   private scrollSubscription: Subscription | null = null
+  readonly isSelfDevelop = isSelfDevelop
   isDark: boolean = isDarkFn()
-  websiteList = websiteList
   isShowFace = true
   isShowTop = false
   entering = false
@@ -84,7 +85,7 @@ export class FixbarComponent {
     }
 
     const url = this.router.url.split('?')[0]
-    const defaultTheme = settings.theme?.toLowerCase?.()
+    const defaultTheme = this.settings.theme?.toLowerCase?.()
     this.themeList = this.themeList
       .map((item) => {
         if (item.url === '/' + defaultTheme) {
@@ -93,10 +94,16 @@ export class FixbarComponent {
         return item
       })
       .filter((t) => {
-        if (url === '/' && url + settings.theme?.toLowerCase?.() === t.url) {
+        if (
+          url === '/' &&
+          url + this.settings.theme?.toLowerCase?.() === t.url
+        ) {
           return false
         }
-        if (t.url === '/' && url === t.url + settings.theme?.toLowerCase?.()) {
+        if (
+          t.url === '/' &&
+          url === t.url + this.settings.theme?.toLowerCase?.()
+        ) {
           return false
         }
         return t.url !== url
@@ -104,8 +111,9 @@ export class FixbarComponent {
 
     if (!isLogin) {
       const isShowFace =
-        [settings.showLanguage, settings.showThemeToggle].filter(Boolean)
-          .length === 0
+        [this.settings.showLanguage, this.settings.showThemeToggle].filter(
+          Boolean,
+        ).length === 0
       if (isShowFace) {
         this.open = true
         this.isShowFace = false
@@ -201,7 +209,7 @@ export class FixbarComponent {
         await updateFileContent({
           message: 'update db',
           content: JSON.stringify(
-            cleanWebAttrs(JSON.parse(JSON.stringify(this.websiteList))),
+            cleanWebAttrs(JSON.parse(JSON.stringify(navs()))),
           ),
           path: DB_PATH,
         })

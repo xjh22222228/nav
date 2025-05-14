@@ -3,7 +3,7 @@
 // See https://github.com/xjh22222228/nav
 
 import type { INavProps, IWebProps, INavTwoProp, INavThreeProp } from '../types'
-import { websiteList } from '../store'
+import { navs } from '../store'
 import { $t } from '../locale'
 import { getTempId } from './utils'
 import { removeTrailingSlashes } from './pureUtils'
@@ -46,11 +46,14 @@ interface BookmarkParseResult {
 export function parseBookmark(
   htmlStr: string,
 ): BookmarkParseResult | INavProps[] {
-  const copyWebList = JSON.parse(JSON.stringify(websiteList))
+  const copyWebList = JSON.parse(JSON.stringify(navs()))
   const data: INavProps[] = []
-  const importEl = document.createElement('div')
-  importEl.innerHTML = htmlStr
-  const roolDL = importEl.querySelector('dl dl')
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(htmlStr, 'text/html')
+  const querySelector = htmlStr.includes('PERSONAL_TOOLBAR_FOLDER="true"')
+    ? 'body dl dl'
+    : 'body dl'
+  const roolDL = doc.querySelector(querySelector)
 
   if (!roolDL) {
     return {
@@ -248,6 +251,5 @@ export function parseBookmark(
     }
   }
   r(data, copyWebList)
-
   return copyWebList
 }

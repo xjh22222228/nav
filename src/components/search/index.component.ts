@@ -45,10 +45,10 @@ export class SearchComponent {
   readonly $t = $t
   readonly isLogin = isLogin
   readonly SearchType = SearchType
-  readonly searchEngineList: ISearchItemProps[] = search.list.filter(
+  readonly searchEngineList: ISearchItemProps[] = search().list.filter(
     (item) => !item.blocked,
   )
-  readonly search = search
+  readonly search = search()
   isDark = isDark()
   currentEngine: ISearchItemProps = getDefaultSearchEngine()
   searchTypeValue = Number(queryString()['type']) || SearchType.All
@@ -70,9 +70,8 @@ export class SearchComponent {
   }
 
   get logoImage() {
-    return this.isDark
-      ? search.darkLogo || search.logo
-      : search.logo || search.darkLogo
+    const { darkLogo, logo } = search()
+    return this.isDark ? darkLogo || logo : logo || darkLogo
   }
 
   private inputFocus() {

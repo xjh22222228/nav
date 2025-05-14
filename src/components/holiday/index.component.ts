@@ -20,7 +20,7 @@ export class HolidayComponent {
   @Input() data!: IComponentItemProps
   items: any[] = []
 
-  readonly component = component
+  readonly component = component()
   readonly $t = $t
 
   constructor() {}

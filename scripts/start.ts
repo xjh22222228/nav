@@ -36,7 +36,7 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.tz.setDefault('Asia/Shanghai')
 
-const getWebs = (): INavProps[] => {
+const getNavs = (): INavProps[] => {
   try {
     const strings = fs.readFileSync(PATHS.db).toString().trim()
     if (!strings) throw new Error('empty')
@@ -59,7 +59,7 @@ const main = async () => {
   const configJson = getConfig()
   fs.writeFileSync(PATHS.configJson, JSON.stringify(configJson))
 
-  const db = getWebs()
+  const db = getNavs()
   let internal = {} as InternalProps
   let settings = {} as ISettings
   let tags: ITagPropValues[] = []

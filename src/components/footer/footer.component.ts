@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common'
 import { settings } from 'src/store'
 import { compilerTemplate } from 'src/utils/utils'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
-import { queryString } from 'src/utils'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -28,7 +27,7 @@ export class FooterComponent {
 
   ngOnInit() {
     this.footerContent = compilerTemplate(
-      this.content || settings.footerContent,
+      this.content || settings().footerContent,
     )
   }
 

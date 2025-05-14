@@ -2,8 +2,8 @@
   #parent
   class="phone-nav dark-bg-gary md:!hidden"
   *ngIf="
-    commonService.websiteList[commonService.oneIndex]?.nav?.length &&
-    commonService.websiteList[commonService.oneIndex].nav.length > 1
+    commonService.navs()[commonService.oneIndex]?.nav?.length &&
+    commonService.navs()[commonService.oneIndex].nav.length > 1
   "
 >
   <div
@@ -11,7 +11,7 @@
     class="nav-item dark-text"
     [class.active]="commonService.twoIndex === i"
     *ngFor="
-      let item of commonService.websiteList[commonService.oneIndex].nav;
+      let item of commonService.navs()[commonService.oneIndex].nav;
       index as i;
       trackBy: commonService.trackByItem
     "

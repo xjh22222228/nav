@@ -7,10 +7,8 @@ import { $t } from 'src/locale'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzButtonModule } from 'ng-zorro-antd/button'
-import { setWebsiteList } from 'src/utils/web'
+import { setNavs } from 'src/utils/web'
 import { parseBookmark } from 'src/utils/bookmark'
-import type { INavProps } from 'src/types'
-import { websiteList } from 'src/store'
 import { NzInputModule } from 'ng-zorro-antd/input'
 
 @Component({
@@ -24,7 +22,6 @@ export default class SystemBookmarkComponent {
   @ViewChild('file', { static: false }) file!: ElementRef
 
   readonly $t = $t
-  websiteList: INavProps[] = websiteList
 
   constructor(
     private message: NzMessageService,
@@ -55,13 +52,13 @@ export default class SystemBookmarkComponent {
           )
         } else {
           that.message.success($t('_importSuccess'))
-          that.websiteList = result
-          setWebsiteList(that.websiteList)
+          setNavs(result)
           setTimeout(() => window.location.reload(), 2000)
         }
       } catch (error: any) {
         that.notification.error($t('_errorBookTip'), `${error.message}`)
       }
+      e.target.value = ''
     }
   }
 }

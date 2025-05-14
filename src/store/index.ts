@@ -1,7 +1,7 @@
 // 开源项目，未经作者同意，不得以抄袭/复制代码/修改源代码版权信息。
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
-
+import { signal, computed } from '@angular/core'
 import dbJson from '../../data/db.json'
 import searchJson from '../../data/search.json'
 import settingsJson from '../../data/settings.json'
@@ -19,36 +19,34 @@ import type {
 } from 'src/types'
 import { isSelfDevelop } from 'src/utils/utils'
 
-export let settings: ISettings = settingsJson as ISettings
+export const settings = signal<ISettings>(settingsJson as ISettings)
 
-let _tagMap: Record<string, ITagPropValues> = {}
+export const search = signal<ISearchProps>(
+  isSelfDevelop ? ({} as ISearchProps) : searchJson,
+)
 
-export let search: ISearchProps = isSelfDevelop
-  ? ({} as ISearchProps)
-  : searchJson
+export const tagList = signal<Array<ITagPropValues>>(
+  isSelfDevelop ? [] : tagJson,
+)
 
-export let tagList: Array<ITagPropValues> = isSelfDevelop ? [] : tagJson
-
-export function getTagMap() {
-  tagList.forEach((item) => {
+export const tagMap = computed<ITagProp>(() => {
+  const map: ITagProp = {}
+  tagList().forEach((item) => {
     if (item.id) {
-      _tagMap[item.id] = {
+      map[item.id] = {
         ...item,
       }
     }
   })
-  return _tagMap
-}
-getTagMap()
+  return map
+})
 
-export let tagMap: ITagProp = _tagMap
+export const internal = signal<InternalProps>(internalJson)
 
-export let internal: InternalProps = internalJson
+export const navs = signal<INavProps[]>(
+  isSelfDevelop ? [] : (dbJson as INavProps[]),
+)
 
-export let websiteList: INavProps[] = isSelfDevelop
-  ? []
-  : (dbJson as INavProps[])
-
-export let component: IComponentProps = isSelfDevelop
-  ? { zoom: 1, components: [] }
-  : componentJson
+export const component = signal<IComponentProps>(
+  isSelfDevelop ? { zoom: 1, components: [] } : componentJson,
+)

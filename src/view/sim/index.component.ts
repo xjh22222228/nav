@@ -57,7 +57,7 @@ export default class SimComponent {
   @ViewChild('parent') parentRef!: ElementRef
   @ViewChildren('item') itemsRef!: QueryList<ElementRef>
 
-  readonly description: string = compilerTemplate(settings.simThemeDesc)
+  readonly description: string = compilerTemplate(settings().simThemeDesc)
 
   constructor(public commonService: CommonService) {}
 
@@ -66,7 +66,7 @@ export default class SimComponent {
   }
 
   get isEllipsis() {
-    return this.commonService.settings.simOverType === 'ellipsis'
+    return this.commonService.settings().simOverType === 'ellipsis'
   }
 
   ngAfterViewInit() {

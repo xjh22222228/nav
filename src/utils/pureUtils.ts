@@ -33,19 +33,16 @@ export function removeTrailingSlashes(url: string | null | undefined): string {
   return url.replace(/\/+$/, '')
 }
 
-export function filterLoginData(
-  websiteList: any[],
-  isLogin: boolean,
-): INavProps[] {
+export function filterLoginData(navs: any[], isLogin: boolean): INavProps[] {
   function filterOwn(item: INavProps) {
     if (item.ownVisible && !isLogin) {
       return false
     }
     return true
   }
-  websiteList = websiteList.filter(filterOwn)
-  for (let i = 0; i < websiteList.length; i++) {
-    const item = websiteList[i]
+  navs = navs.filter(filterOwn)
+  for (let i = 0; i < navs.length; i++) {
+    const item = navs[i]
     if (Array.isArray(item.nav)) {
       item.nav = item.nav.filter(filterOwn)
       for (let j = 0; j < item.nav.length; j++) {
@@ -68,7 +65,7 @@ export function filterLoginData(
     }
   }
 
-  return websiteList
+  return navs
 }
 
 export function cleanWebAttrs(data: any) {

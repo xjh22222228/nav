@@ -47,7 +47,7 @@ export class ComponentGroupComponent {
   readonly isMobile = isMobile()
   ComponentType = ComponentType
   components: IComponentItemProps[] = []
-  componentsLength: number = settings.components.length
+  componentsLength: number = settings().components.length
   widths: number[] = []
   isShowAll = !!Number(
     localStorage.getItem(STORAGE_KEY_MAP.COMPONENT_COLLAPSED),
@@ -61,8 +61,8 @@ export class ComponentGroupComponent {
 
     const c: IComponentItemProps[] = []
     // 按照系统设置顺序排序显示
-    component.components.forEach((item) => {
-      const has = settings.components.find(
+    component().components.forEach((item) => {
+      const has = settings().components.find(
         (c) => c.type === item.type && c.id === item.id,
       )
       if (has) {

@@ -15,7 +15,7 @@
         class="w-full md:w-[160px]"
       >
         <nz-option
-          *ngFor="let item of websiteList"
+          *ngFor="let item of navs()"
           [nzLabel]="item.title"
           [nzValue]="item.id"
         >

@@ -108,11 +108,16 @@
           <button nz-button nzDanger nzType="primary" (click)="logout()">
             {{ $t('_logout') }}
           </button>
-          <img [src]="currentVersionSrc" class="ml-2.5" />
+          <img
+            [src]="currentVersionSrc"
+            class="ml-2.5"
+            (error)="imageErrorHidden($event)"
+          />
           <a href="https://github.com/xjh22222228/nav/releases" target="_blank">
             <img
               src="https://img.shields.io/github/v/release/xjh22222228/nav"
               class="ml-2.5"
+              (error)="imageErrorHidden($event)"
             />
           </a>
 

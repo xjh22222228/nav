@@ -21,7 +21,7 @@ interface IProps {
 export class CountdownComponent {
   @Input() data!: IComponentItemProps
 
-  readonly component = component
+  readonly component = component()
   countdownData = {} as IProps
 
   constructor() {}

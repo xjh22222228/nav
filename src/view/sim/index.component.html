@@ -7,19 +7,19 @@
 
   <div
     class="wallpaper"
-    *ngIf="commonService.settings.simThemeImages.length > 0"
-    [class.bootstrap]="commonService.settings.simThemeHeight < 260"
+    *ngIf="commonService.settings().simThemeImages.length > 0"
+    [class.bootstrap]="commonService.settings().simThemeHeight < 260"
   >
     <app-swiper
-      [images]="commonService.settings.simThemeImages"
-      [autoplay]="commonService.settings.simThemeAutoplay"
-      [height]="commonService.settings.simThemeHeight"
+      [images]="commonService.settings().simThemeImages"
+      [autoplay]="commonService.settings().simThemeAutoplay"
+      [height]="commonService.settings().simThemeHeight"
     />
   </div>
 
-  <div class="bar" *ngIf="commonService.settings.simTitle">
+  <div class="bar" *ngIf="commonService.settings().simTitle">
     <h1 class="title text-[36px] lg:text-[40px]">
-      {{ commonService.settings.simTitle }}
+      {{ commonService.settings().simTitle }}
     </h1>
     <pre
       *ngIf="description"
@@ -38,7 +38,7 @@
     <span
       #item
       *ngFor="
-        let item of commonService.websiteList.slice(0, commonService.overIndex);
+        let item of commonService.navs().slice(0, commonService.overIndex);
         let i = index;
         trackBy: commonService.trackByItem
       "
@@ -51,8 +51,8 @@
     </span>
     <!-- More -->
     <app-web-more-menu
-      *ngIf="commonService.overIndex < commonService.websiteList.length"
-      [data]="commonService.websiteList.slice(commonService.overIndex, 99999)"
+      *ngIf="commonService.overIndex < commonService.navs().length"
+      [data]="commonService.navs().slice(commonService.overIndex, 99999)"
       [index]="commonService.overIndex"
       [page]="commonService.oneIndex"
       (onClick)="commonService.handleClickClass($event)"
@@ -65,13 +65,13 @@
     <div
       class="sidebar dark-bg hidden md:block"
       *ngIf="
-        commonService.websiteList[commonService.oneIndex]?.nav &&
-        commonService.websiteList[commonService.oneIndex].nav.length > 1
+        commonService.navs()[commonService.oneIndex]?.nav &&
+        commonService.navs()[commonService.oneIndex].nav.length > 1
       "
     >
       <div
         *ngFor="
-          let item of commonService.websiteList[commonService.oneIndex].nav;
+          let item of commonService.navs()[commonService.oneIndex].nav;
           let i = index;
           trackBy: commonService.trackByItem
         "
@@ -114,7 +114,7 @@
             <div
               class="px-3"
               [ngClass]="
-                commonService.settings.simCardStyle === 'icon'
+                commonService.settings().simCardStyle === 'icon'
                   ? 'flex flex-wrap gap-x-6 gap-y-4'
                   : 'grid gap-x-4 gap-y-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
               "
@@ -125,7 +125,7 @@
                   let el of item.nav;
                   trackBy: commonService.trackByItemWeb
                 "
-                [cardStyle]="commonService.settings.simCardStyle"
+                [cardStyle]="commonService.settings().simCardStyle"
                 [dataSource]="el"
                 class="column-border"
               ></app-card>
@@ -143,7 +143,7 @@
 
 <app-footer
   className="sim-footer"
-  [content]="commonService.settings.simFooterHTML"
+  [content]="commonService.settings().simFooterHTML"
 />
 <app-fixbar
   (onCollapse)="commonService.onCollapseAll()"

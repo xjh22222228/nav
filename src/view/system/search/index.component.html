@@ -16,9 +16,6 @@
   {{ $t('_save') }}
 </button>
 
-<div class="mb-2" *ngIf="!isSelfDevelop">
-  <b>{{ $t('_buildTip') }}</b>
-</div>
 <form nz-form [formGroup]="validateForm">
   <nz-form-item>
     <nz-form-label [nzSpan]="2">{{ $t('_logoImg') }}</nz-form-label>
@@ -92,7 +89,9 @@
         <nz-switch [(ngModel)]="data.blocked"></nz-switch>
       </td>
       <td class="select-none">
-        <a (click)="moveUp(idx)">{{ $t('_moveUp') }}</a>
+        <a (click)="moveUp(idx)" [class.invisible]="idx === 0">{{
+          $t('_moveUp')
+        }}</a>
         <a (click)="moveDown(idx)" class="ml-2.5">{{ $t('_moveDown') }}</a>
         <a
           *ngIf="!data.isInner"

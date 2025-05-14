@@ -103,6 +103,7 @@ const httpNavInstance = axios.create({
 
 export function getDefaultRequestData(data?: any) {
   const code = getAuthCode()
+  const { email, language } = settings()
   return {
     code,
     hostname: location.hostname,
@@ -111,8 +112,8 @@ export function getDefaultRequestData(data?: any) {
     isLogin,
     ...config,
     ...data,
-    email: settings.email,
-    language: settings.language,
+    email,
+    language,
   } as const
 }
 

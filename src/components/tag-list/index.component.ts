@@ -27,8 +27,8 @@ export class TagListComponent {
 
   readonly $t = $t
   readonly isLogin = isLogin
-  readonly tagMap = tagMap
-  readonly permissions = getPermissions(settings)
+  readonly tagMap = tagMap()
+  readonly permissions = getPermissions(settings())
 
   constructor(public jumpService: JumpService) {}
 

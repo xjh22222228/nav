@@ -78,7 +78,7 @@ export default class SystemSettingComponent {
   readonly textareaSize = { minRows: 3, maxRows: 20 }
   validateForm!: FormGroup
   submitting: boolean = false
-  settings = settings
+  settings = settings()
   tabActive = 0
   componentOptions: any[] = []
   actionOptions = [
@@ -102,11 +102,11 @@ export default class SystemSettingComponent {
     url: 'https://nav3.cn',
     icon: replaceJsdelivrCDN(
       'https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/logo.svg',
-      settings,
+      settings(),
     ),
     img: replaceJsdelivrCDN(
       'https://gcore.jsdelivr.net/gh/xjh22222228/public@gh-pages/nav/4.png',
-      settings,
+      settings(),
     ),
     tags: [],
     breadcrumb: [],
@@ -126,10 +126,10 @@ export default class SystemSettingComponent {
       Shortcut: 4,
       App: 5,
     }
-    this.tabActive = themeMap[settings.theme] || 0
+    this.tabActive = themeMap[this.settings.theme] || 0
 
-    this.componentOptions = component.components.map((item) => {
-      const data = settings.components.find(
+    this.componentOptions = component().components.map((item) => {
+      const data = this.settings.components.find(
         (c) => item.type === c.type && item.id === c.id,
       )
       if (data) {
@@ -144,7 +144,7 @@ export default class SystemSettingComponent {
     })
     const group: any = {
       ...extraForm,
-      ...settings,
+      ...this.settings,
     }
     const groupPayload: any = {}
     for (const k in group) {
@@ -153,9 +153,9 @@ export default class SystemSettingComponent {
     this.validateForm = this.fb.group(groupPayload)
 
     event.on('GITHUB_USER_INFO', (data: any) => {
-      this.validateForm
-        .get('email')!
-        .setValue(this.settings.email || data.email || '')
+      if (!this.validateForm.get('email')?.value) {
+        this.validateForm.get('email')!.setValue(data.email)
+      }
     })
   }
 
@@ -281,7 +281,7 @@ export default class SystemSettingComponent {
         lightImages: this.settings.lightImages.filter(filterImage),
         components: formValues.componentOptions
           .map((id: number) => {
-            const data = component.components.find(
+            const data = component().components.find(
               (item: IComponentItemProps) => item.id === id,
             )
             return {
@@ -305,6 +305,9 @@ export default class SystemSettingComponent {
           this.submitting = false
         })
         .then(() => {
+          if (!isSelfDevelop) {
+            settings.set(values)
+          }
           this.message.success($t('_saveSuccess'))
           resolve(null)
         })

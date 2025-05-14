@@ -10,11 +10,11 @@
       <div class="hitem md:!pt-0">
         <img
           class="logo"
-          [src]="commonService.settings.favicon"
+          [src]="commonService.settings().favicon"
           draggable="false"
         />
         <div class="title dark-white">
-          {{ commonService.settings.superTitle || commonService.title }}
+          {{ commonService.settings().superTitle || commonService.title() }}
         </div>
       </div>
 
@@ -22,10 +22,7 @@
         <div
           #item
           *ngFor="
-            let item of commonService.websiteList.slice(
-              0,
-              commonService.overIndex
-            );
+            let item of commonService.navs().slice(0, commonService.overIndex);
             index as i;
             trackBy: commonService.trackByItem
           "
@@ -38,10 +35,8 @@
         </div>
         <!-- More -->
         <app-web-more-menu
-          *ngIf="commonService.overIndex < commonService.websiteList.length"
-          [data]="
-            commonService.websiteList.slice(commonService.overIndex, 99999)
-          "
+          *ngIf="commonService.overIndex < commonService.navs().length"
+          [data]="commonService.navs().slice(commonService.overIndex, 99999)"
           [index]="commonService.overIndex"
           [page]="commonService.oneIndex"
           (onClick)="commonService.handleClickClass($event)"
@@ -51,7 +46,7 @@
     </div>
   </header>
 
-  <div class="component-box" *ngIf="commonService.settings.components.length">
+  <div class="component-box" *ngIf="commonService.settings().components.length">
     <component-group />
   </div>
 
@@ -61,8 +56,8 @@
     <div
       class="left dark-bg dark-border-color md:!block"
       *ngIf="
-        commonService.websiteList[commonService.oneIndex]?.nav?.length &&
-        commonService.websiteList[commonService.oneIndex].nav.length > 1
+        commonService.navs()[commonService.oneIndex]?.nav?.length &&
+        commonService.navs()[commonService.oneIndex].nav.length > 1
       "
     >
       <div
@@ -71,7 +66,7 @@
         [class.dark-item-active]="commonService.twoIndex === i"
         (click)="commonService.handleClickClass(item.id)"
         *ngFor="
-          let item of commonService.websiteList[commonService.oneIndex].nav;
+          let item of commonService.navs()[commonService.oneIndex].nav;
           index as i;
           trackBy: commonService.trackByItem
         "
@@ -83,7 +78,7 @@
 
     <div
       class="middle dark-bg"
-      [class.noads]="commonService.settings.superImages.length <= 0"
+      [class.noads]="commonService.settings().superImages.length <= 0"
     >
       <div class="search-t dark-border-color">
         <app-search />
@@ -122,7 +117,7 @@
             ].nav.slice(0, commonService.sliceMax);
             trackBy: commonService.trackByItemWeb
           "
-          [cardStyle]="commonService.settings.superCardStyle"
+          [cardStyle]="commonService.settings().superCardStyle"
           [dataSource]="el"
         />
       </div>
@@ -145,13 +140,13 @@
     </div>
 
     <app-side-images
-      [data]="commonService.settings.superImages"
+      [data]="commonService.settings().superImages"
       class="md:w-[200px] lg:w-[230px] xl:w-[250px]"
-      *ngIf="commonService.settings.superImages.length > 0"
+      *ngIf="commonService.settings().superImages.length > 0"
     />
   </div>
 
-  <app-footer [content]="commonService.settings.superFooterHTML" />
+  <app-footer [content]="commonService.settings().superFooterHTML" />
 
   <app-fixbar [showCollapse]="false" />
 </section>

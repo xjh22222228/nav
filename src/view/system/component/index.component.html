@@ -8,10 +8,6 @@
   {{ $t('_save') }}
 </button>
 
-<div class="mb-4 !text-red-500 font-bold" *ngIf="!isSelfDevelop">
-  {{ $t('_buildTip') }}
-</div>
-
 <div class="mb-4">
   <div class="flex items-center">
     <span class="mr-2">Size:</span>
@@ -41,7 +37,9 @@
 
     <div class="text-center mt-3">
       <div>{{ componentTitleMap[item.type] }}</div>
-      <a (click)="moveUp(idx)">{{ $t('_moveUp') }}</a>
+      <a (click)="moveUp(idx)" [class.hidden]="idx === 0">{{
+        $t('_moveUp')
+      }}</a>
       <a (click)="moveDown(idx)" class="mx-2.5">{{ $t('_moveDown') }}</a>
       <a (click)="handleEdit(item, idx)">{{ $t('_edit') }}</a>
       <div>

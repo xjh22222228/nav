@@ -90,7 +90,7 @@ interface WebCountResult {
 }
 
 // 统计网站数量
-export function getWebCount(websiteList: INavProps[]): WebCountResult {
+export function getWebCount(navs: INavProps[]): WebCountResult {
   // 用户查看所有数量
   let userViewCount = 0
   // 登陆者统计所有数量
@@ -130,8 +130,8 @@ export function getWebCount(websiteList: INavProps[]): WebCountResult {
     }
   }
 
-  r(websiteList)
-  r2(websiteList)
+  r(navs)
+  r2(navs)
 
   return {
     userViewCount: userViewCount - diffCount,
@@ -434,13 +434,10 @@ export function writeTemplate({
     /(<!-- nav\.config-start -->)(.|\s)*?(<!-- nav.config-end -->)/i,
     `$1${htmlTemplate}$3`,
   )
-  if (settings.headerContent) {
-    t = t.replace(
-      /(<!-- nav.headerContent-start -->)(.|\s)*?(<!-- nav.headerContent-end -->)/i,
-      `$1${settings.headerContent}$3`,
-    )
-  }
-
+  t = t.replace(
+    /(<!-- nav.headerContent-start -->)(.|\s)*?(<!-- nav.headerContent-end -->)/i,
+    `$1${settings.headerContent}$3`,
+  )
   t = t.replace(
     /(<!-- nav.seo-start -->)(.|\s)*?(<!-- nav.seo-end -->)/i,
     `$1${seoTemplate}$3`,

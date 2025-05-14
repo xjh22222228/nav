@@ -1,7 +1,7 @@
 <section class="app-page select-none">
   <header class="header">
     <div class="header-top">
-      <img [src]="commonService.settings.favicon" class="logo" alt="logo" />
+      <img [src]="commonService.settings().favicon" class="logo" alt="logo" />
       <div class="open" [class.active]="open" (click)="handleToggleOpen()">
         <i></i>
         <i></i>
@@ -12,7 +12,7 @@
     <nav class="nav-open" [class.active]="open">
       <div
         *ngFor="
-          let item of commonService.websiteList;
+          let item of commonService.navs();
           let i = index;
           trackBy: commonService.trackByItem
         "
@@ -27,18 +27,15 @@
 
   <app-search />
 
-  <div
-    class="wrapper"
-    *ngIf="commonService.websiteList[commonService.oneIndex]"
-  >
+  <div class="wrapper" *ngIf="commonService.navs()[commonService.oneIndex]">
     <nav
       class="children-nav"
-      *ngIf="commonService.websiteList[commonService.oneIndex]?.nav?.length"
+      *ngIf="commonService.navs()[commonService.oneIndex]?.nav?.length"
     >
       <span
         class="tag"
         *ngFor="
-          let item of commonService.websiteList[commonService.oneIndex].nav;
+          let item of commonService.navs()[commonService.oneIndex].nav;
           let i = index;
           trackBy: commonService.trackByItem
         "
@@ -58,17 +55,17 @@
         [class.hidden]="item['collapsed']"
         [ngClass]="{
           'px-3 grid gap-x-4 gap-y-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4':
-            commonService.settings.appCardStyle !== 'icon',
+            commonService.settings().appCardStyle !== 'icon',
           'flex flex-wrap gap-x-6 gap-y-4':
-            commonService.settings.appCardStyle === 'icon',
+            commonService.settings().appCardStyle === 'icon',
           '2xl:grid-cols-6':
-            commonService.settings.appCardStyle === 'original' ||
-            commonService.settings.appCardStyle === 'example'
+            commonService.settings().appCardStyle === 'original' ||
+            commonService.settings().appCardStyle === 'example',
         }"
       >
         <app-card
           *ngFor="let el of item.nav; trackBy: commonService.trackByItemWeb"
-          [cardStyle]="commonService.settings.appCardStyle"
+          [cardStyle]="commonService.settings().appCardStyle"
           [dataSource]="el"
           class="column-border"
         ></app-card>

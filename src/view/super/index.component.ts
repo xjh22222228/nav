@@ -58,7 +58,7 @@ export default class SideComponent {
   constructor(public commonService: CommonService) {}
 
   get isEllipsis() {
-    return this.commonService.settings.superOverType === 'ellipsis'
+    return this.commonService.settings().superOverType === 'ellipsis'
   }
 
   ngAfterViewInit() {

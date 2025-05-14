@@ -25,7 +25,6 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { UploadComponent } from 'src/components/upload/index.component'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
-import { isSelfDevelop } from 'src/utils/utils'
 import { isValidImg } from 'src/utils'
 
 @Component({
@@ -50,8 +49,7 @@ import { isValidImg } from 'src/utils'
 })
 export default class SystemSearchComponent {
   readonly $t = $t
-  readonly isSelfDevelop = isSelfDevelop
-  searchList: ISearchItemProps[] = search.list
+  searchList: ISearchItemProps[] = search().list
   submitting: boolean = false
   validateForm!: FormGroup
 
@@ -61,7 +59,7 @@ export default class SystemSearchComponent {
     private modal: NzModalService,
   ) {
     const group: any = {
-      ...search,
+      ...search(),
       list: null,
     }
     const groupPayload: any = {}

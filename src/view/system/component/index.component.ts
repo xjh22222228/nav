@@ -23,7 +23,6 @@ import { HTMLDrawerComponent } from 'src/components/html/drawer/index.component'
 import { HolidayDrawerComponent } from 'src/components/holiday/drawer/index.component'
 import { NewsDrawerComponent } from 'src/components/news/drawer/index.component'
 import { componentTitleMap } from './types'
-import { isSelfDevelop } from 'src/utils/utils'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
@@ -80,12 +79,11 @@ export default class SystemComponentComponent {
   @ViewChild('news') newsChild!: HolidayDrawerComponent
 
   readonly $t = $t
-  readonly isSelfDevelop = isSelfDevelop
   readonly componentTitleMap = componentTitleMap
   readonly ComponentType = ComponentType
-  components = component.components
+  components = component().components
+  compoentZoom = component().zoom
   submitting: boolean = false
-  compoentZoom = component.zoom || 1
 
   constructor(
     private message: NzMessageService,
@@ -100,9 +98,9 @@ export default class SystemComponentComponent {
       return
     }
     const current = this.components[index]
-    const prev = this.components[index - 1]
+    const prevData = this.components[index - 1]
     this.components[index - 1] = current
-    this.components[index] = prev
+    this.components[index] = prevData
   }
 
   // 下移
@@ -145,7 +143,10 @@ export default class SystemComponentComponent {
   }
 
   handleZoomChange(value: number) {
-    component.zoom = value
+    component.update((prev) => {
+      prev.zoom = value
+      return prev
+    })
   }
 
   handleOk(data: any) {

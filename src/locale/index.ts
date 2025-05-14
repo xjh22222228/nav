@@ -10,7 +10,7 @@ const o = {
 }
 
 export function getLocale(): string {
-  return localStorage.getItem(STORAGE_KEY_MAP.LANGUAGE) || settings.language
+  return localStorage.getItem(STORAGE_KEY_MAP.LANGUAGE) || settings().language
 }
 
 const l = getLocale()

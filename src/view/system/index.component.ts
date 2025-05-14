@@ -23,6 +23,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { LoginComponent } from 'src/components/login/login.component'
 import { STORAGE_KEY_MAP } from 'src/constants'
+import { imageErrorHidden } from 'src/utils'
 import navConfig from '../../../nav.config.json'
 
 @Component({
@@ -47,6 +48,7 @@ export default class SystemComponent {
   readonly isLogin: boolean = isLogin
   readonly currentVersionSrc = `https://img.shields.io/badge/current-v${VERSION}-red.svg?longCache=true&style=flat-square`
   readonly date = navConfig.datetime
+  readonly imageErrorHidden = imageErrorHidden
   showLoginModal: boolean = !isLogin
   currentMenu: string = ''
   isAuthz = !!getAuthCode()

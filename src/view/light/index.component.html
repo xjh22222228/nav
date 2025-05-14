@@ -2,7 +2,7 @@
   <div class="light-box max-[1000px]:w-full">
     <div
       class="component-box hidden-scrollbar hidden 2xl:block"
-      *ngIf="commonService.settings.components.length"
+      *ngIf="commonService.settings().components.length"
       [ngStyle]="{ width: componentMaxWidth }"
     >
       <component-group #componentChild direction="column"></component-group>
@@ -12,21 +12,19 @@
       class="homepage dark-border-color dark-bg w-full xl:w-[1000px] lg:w-[800px]"
       [ngClass]="{
         '2xl:w-[1200px]':
-          commonService.settings.lightImages.length <= 0 && !componentMaxWidth
+          commonService.settings().lightImages.length <= 0 &&
+          !componentMaxWidth,
       }"
     >
       <nav
         #parent
-        *ngIf="commonService.websiteList.length"
+        *ngIf="commonService.navs().length"
         class="top-nav dark-border-color dark-bg"
       >
         <span
           #item
           *ngFor="
-            let item of commonService.websiteList.slice(
-              0,
-              commonService.overIndex
-            );
+            let item of commonService.navs().slice(0, commonService.overIndex);
             index as i;
             trackBy: commonService.trackByItem
           "
@@ -39,10 +37,8 @@
         </span>
         <!-- More -->
         <app-web-more-menu
-          *ngIf="commonService.overIndex < commonService.websiteList.length"
-          [data]="
-            commonService.websiteList.slice(commonService.overIndex, 99999)
-          "
+          *ngIf="commonService.overIndex < commonService.navs().length"
+          [data]="commonService.navs().slice(commonService.overIndex, 99999)"
           [index]="commonService.overIndex"
           [page]="commonService.oneIndex"
           (onClick)="commonService.handleClickClass($event)"
@@ -53,8 +49,8 @@
         <div
           class="sidebar dark-bg dark-border-color auto-scrollbar"
           *ngIf="
-            commonService.websiteList[commonService.oneIndex] &&
-            commonService.websiteList[commonService.oneIndex].nav.length > 1
+            commonService.navs()[commonService.oneIndex] &&
+            commonService.navs()[commonService.oneIndex].nav.length > 1
           "
         >
           <div
@@ -63,7 +59,7 @@
             [class.dark-item-active]="commonService.twoIndex === i"
             (click)="commonService.handleClickClass(item.id)"
             *ngFor="
-              let item of commonService.websiteList[commonService.oneIndex].nav;
+              let item of commonService.navs()[commonService.oneIndex].nav;
               index as i;
               trackBy: commonService.trackByItem
             "
@@ -109,7 +105,7 @@
               <div
                 class="px-3"
                 [ngClass]="
-                  commonService.settings.lightCardStyle === 'icon'
+                  commonService.settings().lightCardStyle === 'icon'
                     ? 'flex flex-wrap gap-x-6 gap-y-4'
                     : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-3'
                 "
@@ -120,7 +116,7 @@
                     let el of item.nav;
                     trackBy: commonService.trackByItemWeb
                   "
-                  [cardStyle]="commonService.settings.lightCardStyle"
+                  [cardStyle]="commonService.settings().lightCardStyle"
                   [dataSource]="el"
                   class="column-border"
                 />
@@ -137,12 +133,12 @@
 
     <app-side-images
       class="max-[1280px]:w-[200px] max-[1080px]:hidden"
-      [data]="commonService.settings.lightImages"
-      *ngIf="commonService.settings.lightImages.length > 0"
+      [data]="commonService.settings().lightImages"
+      *ngIf="commonService.settings().lightImages.length > 0"
     />
   </div>
 
-  <app-footer [content]="commonService.settings.lightFooterHTML" />
+  <app-footer [content]="commonService.settings().lightFooterHTML" />
   <app-fixbar
     (onCollapse)="commonService.onCollapseAll()"
     [collapsed]="commonService.collapsed"

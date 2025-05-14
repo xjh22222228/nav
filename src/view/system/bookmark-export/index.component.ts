@@ -9,7 +9,7 @@ import { $t } from 'src/locale'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import type { INavProps } from 'src/types'
-import { websiteList } from 'src/store'
+import { navs } from 'src/store'
 import { bookmarksExport } from 'src/api'
 import { saveAs } from 'file-saver'
 import { getAuthCode } from 'src/utils/user'
@@ -32,7 +32,6 @@ import LZString from 'lz-string'
 })
 export default class SystemBookmarkExportComponent {
   readonly $t = $t
-  readonly websiteList: INavProps[] = websiteList
   submitting = false
 
   constructor(private notification: NzNotificationService) {}
@@ -45,7 +44,8 @@ export default class SystemBookmarkExportComponent {
     if (this.submitting) {
       return
     }
-    const webs: INavProps = JSON.parse(JSON.stringify(this.websiteList))
+    const navsData: INavProps = JSON.parse(JSON.stringify(navs()))
+
     function removeAttrs(data: any) {
       if (!Array.isArray(data)) {
         return
@@ -72,10 +72,9 @@ export default class SystemBookmarkExportComponent {
         }
       })
     }
-    removeAttrs(webs)
-
+    removeAttrs(navsData)
     this.submitting = true
-    bookmarksExport({ data: LZString.compress(JSON.stringify(webs)) })
+    bookmarksExport({ data: LZString.compress(JSON.stringify(navsData)) })
       .then((res) => {
         const fileName = 'bookmarks.html'
         const blob = new Blob([res.data.data], {

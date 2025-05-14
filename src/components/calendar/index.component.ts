@@ -17,7 +17,7 @@ import { component } from 'src/store'
 export class CalendarComponent {
   @Input() data!: IComponentItemProps
 
-  readonly component = component
+  readonly component = component()
   date = ''
   day = ''
   week = ''

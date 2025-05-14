@@ -16,7 +16,7 @@ import { component } from 'src/store'
 export class ImageComponent {
   @Input() data!: IComponentItemProps
 
-  readonly component = component
+  readonly component = component()
 
   constructor(public jumpService: JumpService) {}
 }

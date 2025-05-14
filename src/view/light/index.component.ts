@@ -57,7 +57,7 @@ export default class LightComponent {
   constructor(public commonService: CommonService) {}
 
   get isEllipsis() {
-    return this.commonService.settings.lightOverType === 'ellipsis'
+    return this.commonService.settings().lightOverType === 'ellipsis'
   }
 
   ngOnInit() {

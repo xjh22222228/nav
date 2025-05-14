@@ -2,7 +2,7 @@
   <nz-spin
     nzSimple
     *ngIf="commonService.sliceMax === 0"
-    class="position-center z-50 mt-24"
+    class="position-center !z-50 mt-24"
   />
   <nz-layout>
     <nz-sider
@@ -32,7 +32,7 @@
       >
         <ng-content *ngIf="logoImage; else noLogo">
           <img
-            [src]="commonService.settings.favicon"
+            [src]="commonService.settings().favicon"
             class="logo-img"
             *ngIf="isCollapsed; else noCollased"
           />
@@ -42,9 +42,9 @@
         </ng-content>
 
         <ng-template #noLogo>
-          <img [src]="commonService.settings.favicon" class="logo-img" />
+          <img [src]="commonService.settings().favicon" class="logo-img" />
           <span class="web-title" *ngIf="!isCollapsed">{{
-            commonService.settings.sideTitle || commonService.title
+            commonService.settings().sideTitle || commonService.title()
           }}</span>
         </ng-template>
       </div>
@@ -57,7 +57,7 @@
         <li
           nz-submenu
           *ngFor="
-            let item of commonService.websiteList;
+            let item of commonService.navs();
             index as pageIdx;
             trackBy: commonService.trackByItem
           "
@@ -78,8 +78,8 @@
               isCollapsed && item.icon
                 ? ''
                 : isCollapsed && !item.icon
-                ? item.title
-                : item.title
+                  ? item.title
+                  : item.title
             }}</span>
           </ng-template>
 
@@ -116,6 +116,7 @@
                 class="collapse-wrapper"
               >
                 <i
+                  *ngIf="!isCollapsed"
                   class="iconfont iconweibiaoti25 collapseIcon"
                   [class.active]="commonService.collapsed"
                 >
@@ -134,10 +135,10 @@
         (click)="toggleSidebar(false)"
       ></div>
       <app-swiper
-        *ngIf="commonService.settings.sideThemeImages.length > 0"
-        [images]="commonService.settings.sideThemeImages"
-        [autoplay]="commonService.settings.sideThemeAutoplay"
-        [height]="commonService.settings.sideThemeHeight"
+        *ngIf="commonService.settings().sideThemeImages.length > 0"
+        [images]="commonService.settings().sideThemeImages"
+        [autoplay]="commonService.settings().sideThemeAutoplay"
+        [height]="commonService.settings().sideThemeHeight"
       />
       <app-search />
       <component-group />
@@ -174,12 +175,12 @@
                   [class.hidden]="item['collapsed']"
                   [ngClass]="{
                     'grid gap-x-4 gap-y-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4':
-                      commonService.settings.sideCardStyle !== 'icon',
+                      commonService.settings().sideCardStyle !== 'icon',
                     'flex flex-wrap gap-x-6 gap-y-4':
-                      commonService.settings.sideCardStyle === 'icon',
+                      commonService.settings().sideCardStyle === 'icon',
                     '2xl:grid-cols-6':
-                      commonService.settings.sideCardStyle === 'original' ||
-                      commonService.settings.sideCardStyle === 'example'
+                      commonService.settings().sideCardStyle === 'original' ||
+                      commonService.settings().sideCardStyle === 'example',
                   }"
                 >
                   <app-card
@@ -187,7 +188,7 @@
                       let el of item.nav;
                       trackBy: commonService.trackByItemWeb
                     "
-                    [cardStyle]="commonService.settings.sideCardStyle"
+                    [cardStyle]="commonService.settings().sideCardStyle"
                     [dataSource]="el"
                     class="column-border"
                   />
@@ -204,7 +205,7 @@
 
       <app-footer
         className="side-footer"
-        [content]="commonService.settings.sideFooterHTML"
+        [content]="commonService.settings().sideFooterHTML"
       />
     </nz-layout>
   </nz-layout>

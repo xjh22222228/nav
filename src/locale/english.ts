@@ -174,8 +174,6 @@ const english: Record<string, any> = {
   _dragSort: 'Drag to sort',
   _checkWeb:
     'Last time, {count} website links were detected to be invalid. Please refer to the management website for details. If you need to check the status again, simply click Save to trigger the event.',
-  _buildTip:
-    'After modification, please save and wait for the build to complete. Leaving is invalid',
   _enableSEO: 'Enable SEO (loading slightly slower)',
   _allowUser: 'Allow users to submit',
   _collectMenuView: `Please refer to the user's inclusion menu for specific details`,

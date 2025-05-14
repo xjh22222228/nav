@@ -17,12 +17,12 @@ import { component } from 'src/store'
 export class RuntimeComponent {
   @Input() data!: IComponentItemProps
 
-  readonly component = component
+  readonly component = component()
   runDays = 0
   unit = ''
 
   constructor() {
-    let now = Date.now() - settings.runtime
+    let now = Date.now() - settings().runtime
     now = now < 0 ? 0 : now
     const diffYear = Math.floor(now / (1000 * 60 * 60 * 24 * 365))
     if (diffYear > 0) {

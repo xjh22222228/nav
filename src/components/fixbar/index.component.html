@@ -23,11 +23,11 @@
   <div
     class="common-show wrapper dark-bg dark-border-color dark-action-hover"
     (click)="handleSync()"
-    *ngIf="isLogin"
+    *ngIf="isLogin && !isSelfDevelop"
     nz-tooltip
     [nzTooltipTitle]="$t('_syncData')"
   >
-    <i class="iconfont iconwinfo-icon-tongbu font-bold" style="color: red"></i>
+    <i class="iconfont iconwinfo-icon-tongbu font-bold !text-red-400"></i>
   </div>
 
   <div
@@ -89,10 +89,7 @@
     [class.showTop]="isShowTop"
     *ngIf="showTop"
   >
-    <i
-      class="iconfont iconjiantouarrow483 arrow"
-      style="color: rgb(61, 136, 82)"
-    ></i>
+    <i class="iconfont iconjiantouarrow483 arrow !text-green-600"></i>
   </div>
 
   <div
@@ -101,10 +98,9 @@
     *ngIf="isShowFace"
   >
     <i
-      class="iconfont font-bold"
+      class="iconfont font-bold !text-orange-400 text-xs"
       [class.iconxiaolian]="open"
       [class.iconxiaolian-02]="!open"
-      style="color: rgb(231, 127, 81); font-size: 22px"
     ></i>
   </div>
 </div>

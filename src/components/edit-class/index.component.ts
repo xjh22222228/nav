@@ -25,8 +25,8 @@ import { LogoComponent } from 'src/components/logo/logo.component'
 import { UploadComponent } from 'src/components/upload/index.component'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
-import { websiteList } from 'src/store'
-import { setWebsiteList, updateByClass, pushDataByAny } from 'src/utils/web'
+import { navs } from 'src/store'
+import { setNavs, updateByClass, pushDataByAny } from 'src/utils/web'
 import { getClassById } from 'src/utils/index'
 import { getTempId, isSelfDevelop } from 'src/utils/utils'
 import event from 'src/utils/mitt'
@@ -127,8 +127,11 @@ export class EditClassComponent {
           const ok = pushDataByAny(id, params)
           ok && this.message.success($t('_addSuccess'))
         } else {
-          websiteList.push(params as any)
-          setWebsiteList(websiteList)
+          navs.update((prev) => {
+            prev.push(params as any)
+            setNavs(prev)
+            return prev
+          })
         }
       }
     } catch (error: any) {

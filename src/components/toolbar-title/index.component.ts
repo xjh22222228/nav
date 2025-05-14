@@ -6,7 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import type { INavThreeProp, INavProps } from 'src/types'
 import { isLogin, getPermissions } from 'src/utils/user'
-import { websiteList, settings } from 'src/store'
+import { navs, settings } from 'src/store'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { $t } from 'src/locale'
@@ -27,8 +27,8 @@ export class ToolbarTitleWebComponent {
 
   readonly $t = $t
   readonly isLogin = isLogin
-  readonly websiteList: INavProps[] = websiteList
-  readonly permissions = getPermissions(settings)
+  readonly navs: INavProps[] = navs()
+  readonly permissions = getPermissions(settings())
 
   constructor(public commonService: CommonService) {}
 

@@ -6,7 +6,7 @@ import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import type { INavProps, INavTwoProp } from 'src/types'
 import { isMobile, isDark } from 'src/utils'
-import { websiteList } from 'src/store'
+import { navs } from 'src/store'
 import { settings } from 'src/store'
 import { $t } from 'src/locale'
 import { CommonService } from 'src/services/common'
@@ -37,7 +37,7 @@ function getDefaultCollapsed(): boolean {
   if (localCollapsed) {
     return localCollapsed === 'true'
   }
-  return settings.sideCollapsed
+  return settings().sideCollapsed
 }
 
 @Component({
@@ -68,13 +68,13 @@ function getDefaultCollapsed(): boolean {
 export default class SideComponent {
   readonly $t = $t
   isDark = isDark()
-  websiteList: INavProps[] = websiteList
+  navs: INavProps[] = navs()
   isCollapsed = getDefaultCollapsed()
   openSidebar = false
   menuOpenId = 0
 
   constructor(public commonService: CommonService) {
-    this.menuOpenId = this.websiteList[commonService.oneIndex]?.id || 0
+    this.menuOpenId = this.navs[commonService.oneIndex]?.id || 0
 
     event.on('EVENT_DARK', (isDark: unknown) => {
       this.isDark = isDark as boolean
@@ -83,8 +83,10 @@ export default class SideComponent {
 
   get logoImage() {
     return this.isDark
-      ? this.commonService.settings.darkLogo || this.commonService.settings.logo
-      : this.commonService.settings.logo || this.commonService.settings.darkLogo
+      ? this.commonService.settings().darkLogo ||
+          this.commonService.settings().logo
+      : this.commonService.settings().logo ||
+          this.commonService.settings().darkLogo
   }
 
   openMenu(item: INavProps) {

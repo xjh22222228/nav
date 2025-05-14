@@ -8,6 +8,7 @@ import {
   ViewChildren,
   QueryList,
   ElementRef,
+  computed,
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -29,7 +30,7 @@ import {
   getCDN,
 } from 'src/api'
 import { $t } from 'src/locale'
-import { settings, websiteList, tagList, tagMap } from 'src/store'
+import { settings, navs, tagList, tagMap } from 'src/store'
 import { isLogin, getPermissions } from 'src/utils/user'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzFormModule } from 'ng-zorro-antd/form'
@@ -77,11 +78,13 @@ export class CreateWebComponent {
 
   readonly $t = $t
   readonly isLogin: boolean = isLogin
-  readonly settings = settings
-  readonly permissions = getPermissions(settings)
+  readonly settings = settings()
+  readonly permissions = getPermissions(settings())
   readonly DEFAULT_SORT_INDEX = DEFAULT_SORT_INDEX
-  validateForm!: FormGroup
-  tagList = tagList.filter((item) => !(!isLogin && item.noOpen))
+  readonly validateForm!: FormGroup
+  readonly tagList = computed(() =>
+    tagList().filter((item) => !(!isLogin && item.noOpen)),
+  )
   submitting = false
   getting = false
   translating = false
@@ -95,6 +98,7 @@ export class CreateWebComponent {
     { label: TopType[2], value: TopType.Shortcut },
   ]
   breadcrumb: string[] = []
+  navs = navs()
 
   constructor(
     public readonly jumpService: JumpService,
@@ -178,9 +182,9 @@ export class CreateWebComponent {
     const detail = props?.detail
     if (!detail) {
       ctx.parentId = props?.parentId || ctx.parentId
-      if (websiteList.length === 0) return
+      if (this.navs.length === 0) return
       if (ctx.parentId === -1) {
-        const parentId = websiteList[0]?.nav?.[0]?.nav?.[0]?.id
+        const parentId = this.navs[0]?.nav?.[0]?.nav?.[0]?.id
         if (!parentId) {
           return
         }
@@ -206,7 +210,7 @@ export class CreateWebComponent {
           ;(this.validateForm?.get('urlArr') as FormArray).push?.(
             this.fb.group({
               id: Number(item.id),
-              name: tagMap[item.id].name ?? '',
+              name: tagMap()[item.id].name ?? '',
               url: item.url || '',
             }),
           )
@@ -226,10 +230,11 @@ export class CreateWebComponent {
   }
 
   private focusUrl() {
-    if (this.validateForm.get('url')?.value) {
-      return
-    }
     setTimeout(() => {
+      if (this.detail) {
+        this.inputTitleRef?.nativeElement?.focus()
+        return
+      }
       this.inputUrlRef?.nativeElement?.focus()
     }, 400)
   }
@@ -244,7 +249,7 @@ export class CreateWebComponent {
   }
 
   async onUrlBlur() {
-    if (!settings.openSearch) {
+    if (!this.settings.openSearch) {
       return
     }
     let url = this.url
@@ -374,7 +379,7 @@ export class CreateWebComponent {
       const { oneIndex, twoIndex, threeIndex, breadcrumb } = getClassById(
         this.parentId,
       )
-      const w = websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav
+      const w = this.navs[oneIndex].nav[twoIndex].nav[threeIndex].nav
       const repeatData = w.find((item) => {
         if (this.detail && item.id === this.detail.id) {
           return false

@@ -62,7 +62,7 @@
       <nz-table
         #rowSelectionTable
         #basicTable
-        [nzData]="websiteList"
+        [nzData]="navs()"
         [nzShowPagination]="false"
         style="margin-top: 15px"
       >
@@ -82,13 +82,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of websiteList; let idx = index">
+          <tr *ngFor="let data of navs(); let idx = index">
             <td
               [nzChecked]="setOfCheckedId.has(data.id)"
               (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
             <td class="select-none">
-              <a (click)="moveOneUp(idx)">{{ $t('_moveUp') }}</a>
+              <a (click)="moveOneUp(idx)" [class.invisible]="idx === 0">{{
+                $t('_moveUp')
+              }}</a>
               <a (click)="moveOneDown(idx)" class="ml-2.5">{{
                 $t('_moveDown')
               }}</a>
@@ -122,7 +124,7 @@
         style="width: 260px"
       >
         <nz-option
-          *ngFor="let item of websiteList"
+          *ngFor="let item of navs()"
           [nzLabel]="item.title"
           [nzValue]="item.id"
         >
@@ -176,7 +178,9 @@
               (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
             <td class="select-none">
-              <a (click)="moveTwoUp(idx)">{{ $t('_moveUp') }}</a>
+              <a (click)="moveTwoUp(idx)" [class.invisible]="idx === 0">{{
+                $t('_moveUp')
+              }}</a>
               <a (click)="moveTwoDown(idx)" class="ml-2.5">{{
                 $t('_moveDown')
               }}</a>
@@ -213,7 +217,7 @@
         style="width: 200px"
       >
         <nz-option
-          *ngFor="let item of websiteList"
+          *ngFor="let item of navs()"
           [nzLabel]="item.title"
           [nzValue]="item.id"
         >
@@ -282,7 +286,9 @@
               (nzCheckedChange)="onItemChecked(data.id, $event)"
             ></td>
             <td class="select-none">
-              <a (click)="moveThreeUp(idx)">{{ $t('_moveUp') }}</a>
+              <a (click)="moveThreeUp(idx)" [class.invisible]="idx === 0">{{
+                $t('_moveUp')
+              }}</a>
               <a (click)="moveThreeDown(idx)" class="ml-2.5">{{
                 $t('_moveDown')
               }}</a>
@@ -319,7 +325,7 @@
         style="width: 150px"
       >
         <nz-option
-          *ngFor="let item of websiteList"
+          *ngFor="let item of navs()"
           [nzLabel]="item.title"
           [nzValue]="item.id"
         >
@@ -411,7 +417,9 @@
             ></td>
             <td class="text-center select-none">
               <div *ngIf="errorWebs.length <= 0">
-                <a (click)="moveWebUp(idx)">{{ $t('_moveUp') }}</a>
+                <a (click)="moveWebUp(idx)" [class.invisible]="idx === 0">{{
+                  $t('_moveUp')
+                }}</a>
               </div>
               <div *ngIf="errorWebs.length <= 0">
                 <a (click)="moveWebDown(idx)">{{ $t('_moveDown') }}</a>

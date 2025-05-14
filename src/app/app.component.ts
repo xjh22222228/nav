@@ -25,7 +25,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { NzModalService } from 'ng-zorro-antd/modal'
-import { getWebs } from 'src/utils/web'
+import { getNavs } from 'src/utils/web'
 import { isSelfDevelop } from 'src/utils/utils'
 import { routes } from './app.routes'
 import { MoveWebComponent } from 'src/components/move-web/index.component'
@@ -96,9 +96,9 @@ export class AppComponent {
 
   private updateDocumentTitle() {
     const url = this.router.url.split('?')[0].slice(1)
-    const theme = (url === '' ? settings.theme : url).toLowerCase()
-    const title = settings[`${theme}DocTitle`]
-    document.title = title || window.__TITLE__ || settings.title
+    const theme = (url === '' ? settings().theme : url).toLowerCase()
+    const title = settings()[`${theme}DocTitle`]
+    document.title = title || window.__TITLE__ || settings().title
   }
 
   ngOnInit() {
@@ -106,11 +106,12 @@ export class AppComponent {
     this.activatedRoute.queryParams.subscribe(setLocation)
     this.setLocale()
     this.verifyToken()
-    this.getWebs()
+    this.getNavs()
     this.getCollectCount()
   }
 
-  private getWebs() {
+  private getNavs() {
+    const { href } = location
     if (isSelfDevelop) {
       getContentes().then(() => {
         setTimeout(() => {
@@ -129,7 +130,7 @@ export class AppComponent {
               },
             ])
           }
-          if (isHome && !location.href.includes('system')) {
+          if (isHome && !href.includes('/system')) {
             this.router.navigate([defaultTheme])
           }
           this.updateDocumentTitle()
@@ -139,7 +140,7 @@ export class AppComponent {
         }, 100)
       })
     } else {
-      getWebs().finally(() => {
+      getNavs().finally(() => {
         this.fetchIng = false
       })
     }
@@ -160,15 +161,19 @@ export class AppComponent {
         .then((res) => {
           const data = res.data || {}
           if (!isSelfDevelop) {
-            if (data.login && data.login !== authorName) {
+            if ((data.login || data.username) !== authorName) {
               throw new Error('Bad credentials')
             }
-            if (!settings.email && data.email) {
-              settings.email = data.email
+            if (!settings().email && data.email) {
+              settings.update((prev) => {
+                return {
+                  ...prev,
+                  email: data.email,
+                }
+              })
+              event.emit('GITHUB_USER_INFO', data)
             }
           }
-
-          event.emit('GITHUB_USER_INFO', data)
         })
         .catch((e: any) => {
           if (e.code !== 'ERR_NETWORK') {
@@ -182,7 +187,7 @@ export class AppComponent {
   }
 
   private getCollectCount() {
-    if (isLogin && getAuthCode() && getPermissions(settings).ok) {
+    if (isLogin && getAuthCode() && getPermissions(settings()).ok) {
       getUserCollectCount().then((res) => {
         const count = res.data.count
         if (count > 0) {
@@ -200,7 +205,8 @@ export class AppComponent {
 
   private goRoute() {
     // is App
-    if (settings.appTheme !== 'Current' && isMobile()) {
+    const { appTheme } = settings()
+    if (appTheme !== 'Current' && isMobile()) {
       if (location.href.includes('system')) {
         return
       }
@@ -208,7 +214,7 @@ export class AppComponent {
       const url = (this.router.url.split('?')[0] || '').toLowerCase()
       const { id, q } = queryString()
       const queryParams = { id, q }
-      const path = '/' + String(settings.appTheme).toLowerCase()
+      const path = '/' + String(appTheme).toLowerCase()
 
       if (!url.includes(path)) {
         this.router.navigate([path], { queryParams })
@@ -218,7 +224,7 @@ export class AppComponent {
 
   private registerKeyboard() {
     document.addEventListener('keyup', (e) => {
-      const createWebKey = settings.createWebKey.toLowerCase()
+      const createWebKey = settings().createWebKey.toLowerCase()
       if (!createWebKey) {
         return
       }

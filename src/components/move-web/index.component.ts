@@ -6,9 +6,9 @@ import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
-import { setWebsiteList } from 'src/utils/web'
-import { websiteList } from '../../store'
-import { INavProps, INavTwoProp, INavThreeProp, IWebProps } from '../../types'
+import { setNavs } from 'src/utils/web'
+import { navs } from '../../store'
+import { INavTwoProp, INavThreeProp, IWebProps } from '../../types'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
@@ -32,8 +32,8 @@ import event from 'src/utils/mitt'
   styleUrls: ['./index.component.scss'],
 })
 export class MoveWebComponent {
-  $t = $t
-  websiteList: INavProps[] = websiteList
+  readonly $t = $t
+  readonly navs = navs
   twoOptions: INavTwoProp[] = []
   threeOptions: INavThreeProp[] = []
   isCopy = false
@@ -75,7 +75,7 @@ export class MoveWebComponent {
 
   hanldeOneSelect(id: number) {
     this.oneSelect = id
-    const data = this.websiteList.find((item) => item.id === id)
+    const data = this.navs().find((item) => item.id === id)
     this.twoOptions = data?.nav || []
     this.twoSelect = -1
     this.threeSelect = -1
@@ -110,9 +110,7 @@ export class MoveWebComponent {
         const { oneIndex } = getClassById(this.oneSelect)
         for (const item of moveItems) {
           const id = item.id
-          const has = this.websiteList[oneIndex].nav.some(
-            (item) => item.id === id,
-          )
+          const has = this.navs()[oneIndex].nav.some((item) => item.id === id)
           if (has) {
             this.message.error($t('_sameExists'))
             return
@@ -128,7 +126,10 @@ export class MoveWebComponent {
           } else {
             await deleteClassByIds([item.rId || id], !!item.rId)
           }
-          this.websiteList[oneIndex].nav.unshift(item)
+          this.navs.update((prev) => {
+            prev[oneIndex].nav.unshift(item)
+            return prev
+          })
           this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
         }
       } else if (this.level === 3) {
@@ -138,7 +139,7 @@ export class MoveWebComponent {
         const { oneIndex, twoIndex } = getClassById(this.twoSelect)
         for (const item of moveItems) {
           const id = item.id
-          const has = this.websiteList[oneIndex].nav[twoIndex].nav.some(
+          const has = this.navs()[oneIndex].nav[twoIndex].nav.some(
             (item) => item.id === id,
           )
           if (has) {
@@ -156,7 +157,10 @@ export class MoveWebComponent {
           } else {
             await deleteClassByIds([item.rId || id], !!item.rId)
           }
-          this.websiteList[oneIndex].nav[twoIndex].nav.unshift(item)
+          this.navs.update((prev) => {
+            prev[oneIndex].nav[twoIndex].nav.unshift(item)
+            return prev
+          })
           this.message.success(`"${item.title}" ${$t('_moveSuccess')}`)
         }
       } else if (this.level === 4) {
@@ -168,7 +172,7 @@ export class MoveWebComponent {
         )
         for (const item of moveItems) {
           const id = item.id
-          const has = this.websiteList[oneIndex].nav[twoIndex].nav[
+          const has = this.navs()[oneIndex].nav[twoIndex].nav[
             threeIndex
           ].nav.some((item) => item.id === id)
           if (has) {
@@ -187,14 +191,15 @@ export class MoveWebComponent {
           } else {
             await deleteWebByIds([item.rId || id], !!item.rId)
           }
-          this.websiteList[oneIndex].nav[twoIndex].nav[threeIndex].nav.unshift(
-            item,
-          )
+          this.navs.update((prev) => {
+            prev[oneIndex].nav[twoIndex].nav[threeIndex].nav.unshift(item)
+            return prev
+          })
           this.message.success(`"${item.name}" ${$t('_moveSuccess')}`)
         }
       }
 
-      setWebsiteList(this.websiteList)
+      setNavs(this.navs())
       this.handleCancel()
       if (!isSelfDevelop) {
         event.emit('WEB_REFRESH')

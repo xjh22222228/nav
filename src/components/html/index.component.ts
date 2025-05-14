@@ -20,7 +20,7 @@ export class HTMLComponent {
   @ViewChild('root', { static: false }) root!: ElementRef
 
   private parseDescriptionTimer: any
-  readonly component = component
+  readonly component = component()
   html = ''
 
   constructor() {}

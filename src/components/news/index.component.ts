@@ -44,7 +44,7 @@ export class NewsComponent {
 
   readonly $t = $t
   readonly newsTypeMap = newsTypeMap
-  readonly component = component
+  readonly component = component()
   activeIndex = 0
   newsListMap: Record<string, INewsItem[]> = {}
   loading = false

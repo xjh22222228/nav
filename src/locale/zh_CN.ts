@@ -166,7 +166,6 @@ const zhCN: Record<string, any> = {
   _dragSort: '拖动可排序',
   _checkWeb:
     '上次检测出 {count} 个网站链接失效，具体到管理网站查看，如需再次检测状态直接点保存触发事件即可。',
-  _buildTip: '修改完请保存并等待构建完成，离开无效',
   _enableSEO: '开启SEO(加载稍慢)',
   _allowUser: '允许用户提交',
   _collectMenuView: `具体到用户收录菜单查看`,

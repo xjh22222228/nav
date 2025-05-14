@@ -12,16 +12,7 @@ import http, {
 } from '../utils/http'
 import qs from 'qs'
 import { encode } from 'js-base64'
-import {
-  settings,
-  websiteList,
-  tagList,
-  getTagMap,
-  search,
-  internal,
-  component,
-} from 'src/store'
-import type { ISettings } from 'src/types'
+import { settings, navs, tagList, search, internal, component } from 'src/store'
 import { isSelfDevelop } from 'src/utils/utils'
 import { isLogin, getImageToken } from 'src/utils/user'
 import { DB_PATH } from 'src/constants'
@@ -102,27 +93,12 @@ export function getContentes() {
   return http
     .post('/api/contents/get', getDefaultRequestData())
     .then((res: any) => {
-      websiteList.splice(0, websiteList.length)
-      tagList.splice(0, tagList.length)
-
-      internal.loginViewCount = res.data.internal.loginViewCount
-      internal.userViewCount = res.data.internal.userViewCount
-      websiteList.push(...res.data.webs)
-      tagList.push(...res.data.tags)
-      const resSettings = res.data.settings as ISettings
-      for (const k in resSettings) {
-        // @ts-ignore
-        settings[k] = resSettings[k]
-      }
-      for (const k in res.data.component) {
-        // @ts-ignore
-        component[k] = res.data.component[k]
-      }
-      for (const k in res.data.search) {
-        // @ts-ignore
-        search[k] = res.data.search[k]
-      }
-      getTagMap()
+      internal.set(res.data.internal)
+      navs.set(res.data.webs)
+      tagList.set(res.data.tags)
+      settings.set(res.data.settings)
+      component.set(res.data.component)
+      search.set(res.data.search)
       event.emit('WEB_REFRESH')
       return res
     })
@@ -429,11 +405,11 @@ export function getCDN(path: string) {
   } else if (_isGItLab) {
     return `https://gitlab.com/${owner}/${repo}/-/raw/${branch}/${path}?ref_type=heads`
   }
-  return `https://${settings.gitHubCDN}/gh/${owner}/${repo}@${branch}/${path}`
+  return `https://${settings().gitHubCDN}/gh/${owner}/${repo}@${branch}/${path}`
 }
 
 function requestActionUrl() {
-  const url = settings.actionUrl
+  const url = settings().actionUrl
   if (url) {
     const img = document.createElement('img')
     img.src = url
