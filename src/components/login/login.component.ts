@@ -10,6 +10,7 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core'
+import { Router } from '@angular/router'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -50,8 +51,13 @@ export class LoginComponent {
   submitting = false
   showImgToken = false
 
-  constructor(private readonly message: NzMessageService) {
-    this.showImgToken = isStandaloneImage()
+  constructor(
+    private readonly message: NzMessageService,
+    private router: Router,
+  ) {
+    if (!isSelfDevelop) {
+      this.showImgToken = isStandaloneImage()
+    }
   }
 
   ngAfterViewInit(): void {
@@ -60,6 +66,7 @@ export class LoginComponent {
 
   handleCancel(): void {
     this.onCancel.emit()
+    this.router.navigate(['/'])
   }
 
   private inputFocus(): void {

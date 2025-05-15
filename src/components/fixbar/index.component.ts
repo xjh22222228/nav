@@ -8,19 +8,19 @@ import { isDark as isDarkFn } from 'src/utils'
 import { NzModalService } from 'ng-zorro-antd/modal'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { isLogin } from 'src/utils/user'
-import { isSelfDevelop } from 'src/utils/utils'
 import { updateFileContent } from 'src/api'
 import { navs, settings } from 'src/store'
 import { DB_PATH, STORAGE_KEY_MAP } from 'src/constants'
 import { Router } from '@angular/router'
 import { $t, getLocale } from 'src/locale'
-import { addDark, removeDark } from 'src/utils/utils'
+import { addDark, removeDark, isSelfDevelop } from 'src/utils/utils'
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { cleanWebAttrs } from 'src/utils/pureUtils'
 import mitt from 'src/utils/mitt'
 import { fromEvent, Subscription } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
+import { unregisterServiceWorkers, isPwaMode } from 'src/utils/sw'
 
 @Component({
   standalone: true,
@@ -43,10 +43,12 @@ export class FixbarComponent {
   readonly isLogin = isLogin
   private scrollSubscription: Subscription | null = null
   readonly isSelfDevelop = isSelfDevelop
+  readonly isPwaMode = isPwaMode() && window.__PWA_ENABLE__
   isDark: boolean = isDarkFn()
   isShowFace = true
   isShowTop = false
   entering = false
+  checking = false
   open = localStorage.getItem(STORAGE_KEY_MAP.FIXBAR_OPEN) === 'true'
   themeList = [
     {
@@ -140,6 +142,7 @@ export class FixbarComponent {
   ngOnDestroy() {
     if (this.scrollSubscription) {
       this.scrollSubscription.unsubscribe()
+      this.scrollSubscription = null
     }
   }
 
@@ -201,6 +204,24 @@ export class FixbarComponent {
   }
 
   handleSync() {
+    if (this.isPwaMode) {
+      this.checking = true
+      unregisterServiceWorkers()
+        .then((status) => {
+          if (status) {
+            setTimeout(() => {
+              location.reload()
+            }, 2000)
+          } else {
+            this.checking = false
+          }
+        })
+        .catch(() => {
+          this.checking = false
+        })
+      return
+    }
+
     this.modal.info({
       nzTitle: $t('_syncDataOut'),
       nzOkText: $t('_confirmSync'),

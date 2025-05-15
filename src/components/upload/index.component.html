@@ -12,7 +12,7 @@
     type="file"
     [name]="id"
     (change)="onChangeFile($event)"
-    accept="image/*"
+    [accept]="accept"
     class="!hidden"
   />
 </label>

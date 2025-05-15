@@ -128,7 +128,7 @@ const english: Record<string, any> = {
   _about: 'About',
   _webInfo: 'Web info',
   _systemSet: 'Settings',
-  _searchEngines: 'Engines',
+  _searchEngines: 'Search',
   _userCollect: 'Collect',
   _bookmarkImport: 'Book Import',
   _bookmarkExport: 'Book Export',
@@ -333,6 +333,14 @@ const english: Record<string, any> = {
   _errLogo: 'The logo image cannot be accessed',
   _logoMaxHeight: 'Max height',
   _noPublic: 'No open',
+  _noUpdate: 'No updates available',
+  _updating: 'updating...',
+  _canNewVer:
+    'Is there a new version available? Refresh to update the application?',
+  _nowUpdate: 'Immediate Updating',
+  _later: 'Later',
+  _avaUpdate: 'Application updates available',
+  _updateFailed: 'UpdateFailed',
 }
 
 export default english

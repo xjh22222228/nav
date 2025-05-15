@@ -29,6 +29,7 @@
     "@angular/platform-browser": "^19.2.10",
     "@angular/platform-browser-dynamic": "^19.2.10",
     "@angular/router": "^19.2.10",
+    "@angular/service-worker": "^19.2.10",
     "axios": "^1.9.0",
     "chrome-finder": "^1.0.7",
     "clipboard": "^2.0.11",
@@ -51,8 +52,8 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.11",
-    "@angular/cli": "^19.2.11",
+    "@angular-devkit/build-angular": "^19.2.12",
+    "@angular/cli": "^19.2.12",
     "@angular/compiler-cli": "^19.2.10",
     "@tailwindcss/postcss": "^4.1.6",
     "@types/compression": "^1.7.5",
@@ -70,7 +71,7 @@
     "jasmine-core": "~5.7.1",
     "lint-staged": "^16.0.0",
     "nodemailer": "^7.0.3",
-    "pm2": "^6.0.5",
+    "pm2": "^6.0.6",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "tailwindcss": "^4.1.6",

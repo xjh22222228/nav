@@ -300,6 +300,10 @@ export interface ISettings {
 
   runtime: number
 
+  pwaEnable: boolean
+  pwaName: string
+  pwaIcon: string
+
   [key: string]: any
 }
 

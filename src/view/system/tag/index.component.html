@@ -16,15 +16,15 @@
   {{ $t('_save') }}
 </button>
 
-<nz-table #basicTable [nzData]="tagList">
+<nz-table #basicTable [nzData]="tagList" [nzShowPagination]="false">
   <thead>
     <tr>
-      <th nzWidth="80px">{{ $t('_noPublic') }}</th>
-      <th nzWidth="150px">{{ $t('_tagName') }}</th>
-      <th nzWidth="160px">{{ $t('_color') }}</th>
-      <th nzWidth="150px">{{ $t('_sort') }}</th>
-      <th nzWidth="200px">{{ $t('_remark') }}</th>
-      <th nzWidth="200px">{{ $t('_action') }}</th>
+      <th class="min-w-[80px]">{{ $t('_noPublic') }}</th>
+      <th class="min-w-[150px]">{{ $t('_tagName') }}</th>
+      <th class="min-w-[160px]">{{ $t('_color') }}</th>
+      <th class="min-w-[150px]">{{ $t('_sort') }}</th>
+      <th class="min-w-[200px]">{{ $t('_remark') }}</th>
+      <th class="min-w-[200px]">{{ $t('_action') }}</th>
     </tr>
   </thead>
   <tbody>

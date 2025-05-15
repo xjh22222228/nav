@@ -16,11 +16,12 @@
   >
     {{ $t('_resetInitData') }}
   </button>
-  <button nz-button (click)="handleDownloadBackup()" style="margin-right: 15px">
+  <button nz-button (click)="handleDownloadBackup()">
     {{ $t('_backup') }}
   </button>
 
   <button
+    class="!ml-2.5"
     nz-button
     nz-tooltip
     nzTooltipPlacement="bottom"
@@ -69,16 +70,16 @@
         <thead>
           <tr>
             <th
-              nzWidth="100px"
+              class="min-w-[100px]"
               [nzChecked]="checkedAll"
               (nzCheckedChange)="onCheckAll($event)"
             >
               ({{ setOfCheckedId.size }})
             </th>
-            <th nzWidth="200px">{{ $t('_action') }}</th>
-            <th nzWidth="100px">{{ $t('_icon') }}</th>
-            <th nzWidth="200px">{{ $t('_tagName') }}</th>
-            <th nzWidth="100px">{{ $t('_onlyOwnVisible') }}</th>
+            <th class="min-w-[200px]">{{ $t('_action') }}</th>
+            <th class="min-w-[100px]">{{ $t('_icon') }}</th>
+            <th class="min-w-[200px]">{{ $t('_tagName') }}</th>
+            <th class="min-w-[100px]">{{ $t('_onlyOwnVisible') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -121,7 +122,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel1')"
         (ngModelChange)="hanldeOneSelect($event)"
-        style="width: 260px"
+        class="w-full !mb-2.5 md:w-[260px] md:!mb-0"
       >
         <nz-option
           *ngFor="let item of navs()"
@@ -135,7 +136,7 @@
         nz-button
         nzType="primary"
         (click)="openCreateClass()"
-        style="margin-left: 20px"
+        class="md:!ml-2.5"
       >
         {{ $t('_addTag') }}
       </button>
@@ -143,7 +144,7 @@
         (click)="onBatchDelete()"
         nz-button
         nzDanger
-        style="margin-left: 10px"
+        class="!ml-2.5"
         [disabled]="setOfCheckedId.size <= 0"
       >
         {{ $t('_batchDel') }}
@@ -159,16 +160,16 @@
         <thead>
           <tr>
             <th
-              nzWidth="100px"
+              class="min-w-[100px]"
               [nzChecked]="checkedAll"
               (nzCheckedChange)="onCheckAll($event)"
             >
               ({{ setOfCheckedId.size }})
             </th>
-            <th nzWidth="200px">{{ $t('_action') }}</th>
-            <th nzWidth="100px">{{ $t('_icon') }}</th>
-            <th nzWidth="200px">{{ $t('_tagName') }}</th>
-            <th nzWidth="100px">{{ $t('_onlyOwnVisible') }}</th>
+            <th class="min-w-[200px]">{{ $t('_action') }}</th>
+            <th class="min-w-[100px]">{{ $t('_icon') }}</th>
+            <th class="min-w-[200px]">{{ $t('_tagName') }}</th>
+            <th class="min-w-[100px]">{{ $t('_onlyOwnVisible') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -214,7 +215,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel1')"
         (ngModelChange)="hanldeOneSelect($event)"
-        style="width: 200px"
+        class="w-full md:w-[260px]"
       >
         <nz-option
           *ngFor="let item of navs()"
@@ -229,7 +230,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel2')"
         (ngModelChange)="hanldeTwoSelect($event)"
-        style="width: 200px; margin-left: 15px"
+        class="w-full md:w-[260px] !mb-2.5 !mt-2.5 md:!ml-2.5 md:!mt-0 md:!mb-0"
       >
         <nz-option
           *ngFor="let item of twoTableData"
@@ -243,7 +244,7 @@
         nz-button
         nzType="primary"
         (click)="openCreateClass()"
-        style="margin-left: 20px"
+        class="md:!ml-2.5"
       >
         {{ $t('_addTag') }}
       </button>
@@ -251,7 +252,7 @@
         (click)="onBatchDelete()"
         nz-button
         nzDanger
-        style="margin-left: 10px"
+        class="!ml-2.5"
         [disabled]="setOfCheckedId.size <= 0"
       >
         {{ $t('_batchDel') }}
@@ -267,16 +268,16 @@
         <thead>
           <tr>
             <th
-              nzWidth="100px"
+              class="min-w-[100px]"
               [nzChecked]="checkedAll"
               (nzCheckedChange)="onCheckAll($event)"
             >
               ({{ setOfCheckedId.size }})
             </th>
-            <th nzWidth="200px">{{ $t('_action') }}</th>
-            <th nzWidth="100px">{{ $t('_icon') }}</th>
-            <th nzWidth="200px">{{ $t('_tagName') }}</th>
-            <th nzWidth="100px">{{ $t('_onlyOwnVisible') }}</th>
+            <th class="min-w-[200px]">{{ $t('_action') }}</th>
+            <th class="min-w-[100px]">{{ $t('_icon') }}</th>
+            <th class="min-w-[200px]">{{ $t('_tagName') }}</th>
+            <th class="min-w-[100px]">{{ $t('_onlyOwnVisible') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -316,13 +317,13 @@
       </nz-table>
     </nz-tab>
 
-    <nz-tab [nzTitle]="$t('_mgrWeb') + '（' + internal.loginViewCount + '）'">
+    <nz-tab [nzTitle]="$t('_mgrWeb') + '(' + internal.loginViewCount + ')'">
       <nz-select
         [ngModel]="oneSelect"
         nzShowSearch
         [nzPlaceHolder]="$t('_sel1')"
         (ngModelChange)="hanldeOneSelect($event)"
-        style="width: 150px"
+        class="w-full !mb-2.5 md:w-[150px] md:!mb-0"
       >
         <nz-option
           *ngFor="let item of navs()"
@@ -337,7 +338,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel2')"
         (ngModelChange)="hanldeTwoSelect($event)"
-        style="width: 150px; margin-left: 15px"
+        class="w-full !mb-2.5 md:w-[150px] md:!mb-0 md:!ml-2.5"
       >
         <nz-option
           *ngFor="let item of twoTableData"
@@ -352,7 +353,7 @@
         nzShowSearch
         [nzPlaceHolder]="$t('_sel3')"
         (ngModelChange)="hanldeThreeSelect($event)"
-        style="width: 150px; margin-left: 15px"
+        class="w-full !mb-2.5 md:w-[150px] md:!mb-0 md:!ml-2.5"
       >
         <nz-option
           *ngFor="let item of threeTableData"
@@ -366,20 +367,26 @@
         nz-button
         nzType="primary"
         (click)="openCreateWebModal()"
-        style="margin-left: 10px"
+        class="md:!ml-2.5"
       >
-        {{ $t('_addWeb') }}（{{ websiteTableData.length }}）
+        {{ $t('_addWeb') }}({{ websiteTableData.length }})
       </button>
       <button
         (click)="onBatchDelete()"
         nz-button
         nzDanger
         [disabled]="setOfCheckedId.size <= 0"
-        style="margin: 0 10px"
+        class="!ml-2.5"
       >
         {{ $t('_batchDel') }}
       </button>
-      <button nz-button nzType="primary" nzDanger (click)="getErrorWebs()">
+      <button
+        class="!ml-2.5"
+        nz-button
+        nzType="primary"
+        nzDanger
+        (click)="getErrorWebs()"
+      >
         {{ $t('_getErrorWeb') }}
       </button>
 
@@ -393,20 +400,20 @@
         <thead>
           <tr>
             <th
-              nzWidth="70px"
+              class="min-w-[70px]"
               [nzChecked]="checkedAll"
               (nzCheckedChange)="onCheckAll($event)"
             >
               ({{ setOfCheckedId.size }})
             </th>
-            <th nzWidth="60px" class="text-center">{{ $t('_action') }}</th>
-            <th nzWidth="70px">{{ $t('_status') }}</th>
-            <th nzWidth="80px">{{ $t('_icon') }}</th>
-            <th nzWidth="100px">{{ $t('_webName') }}</th>
-            <th nzWidth="100px">{{ $t('_associatedLabels') }}</th>
-            <th nzWidth="120px">{{ $t('_onlyOwnVisible') }}</th>
-            <th nzWidth="300px">{{ $t('_webDesc') }}</th>
-            <th nzWidth="300px">{{ $t('_webTag') }}</th>
+            <th class="text-center min-w-[60px]">{{ $t('_action') }}</th>
+            <th class="min-w-[70px]">{{ $t('_status') }}</th>
+            <th class="min-w-[80px]">{{ $t('_icon') }}</th>
+            <th class="min-w-[100px]">{{ $t('_webName') }}</th>
+            <th class="min-w-[100px]">{{ $t('_associatedLabels') }}</th>
+            <th class="min-w-[120px]">{{ $t('_onlyOwnVisible') }}</th>
+            <th class="min-w-[300px]">{{ $t('_webDesc') }}</th>
+            <th class="min-w-[300px]">{{ $t('_webTag') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -462,7 +469,7 @@
             <td>
               <pre class="desc">{{ data.desc }}</pre>
             </td>
-            <th nzWidth="300px">{{ data.breadcrumb }}</th>
+            <td>{{ data.breadcrumb }}</td>
           </tr>
         </tbody>
       </nz-table>

@@ -41,8 +41,12 @@ export class ClassTabsComponent {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['data']) {
       const { currentValue = [], previousValue = [] } = changes['data']
-      const currentIds = currentValue.map((item: any) => item.id).join(',')
-      const previousIds = previousValue.map((item: any) => item.id).join(',')
+      const currentIds = currentValue
+        .map((item: any) => item.rId || item.id)
+        .join(',')
+      const previousIds = previousValue
+        .map((item: any) => item.rId || item.id)
+        .join(',')
       if (currentIds === previousIds) return
       this.selectTab(0)
       requestAnimationFrame(() => {

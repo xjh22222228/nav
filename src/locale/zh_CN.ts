@@ -270,7 +270,7 @@ const zhCN: Record<string, any> = {
   _dayOfYear: '第{day}天',
   _errCountTip:
     '上次检测出 {count} 个网站链接失效，具体到管理网站查看，如需再次检测状态直接点保存触发事件即可。',
-  _getErrorWeb: '检索所有异常网站',
+  _getErrorWeb: '检索异常网站',
   _categoryName: '分类名称',
   _dayIs: '今天是',
   _rest: '休',
@@ -321,6 +321,13 @@ const zhCN: Record<string, any> = {
   _errLogo: '该LOGO图无法访问',
   _logoMaxHeight: 'Logo最大高度',
   _noPublic: '不公开',
+  _noUpdate: '没有可用更新',
+  _updating: '正在更新...',
+  _canNewVer: '有新版本可用，是否刷新以更新应用？',
+  _nowUpdate: '立即更新',
+  _later: '稍后',
+  _avaUpdate: '应用更新可用',
+  _updateFailed: '更新失败',
 }
 
 export default zhCN

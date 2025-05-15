@@ -13,6 +13,7 @@ import {
   PATHS,
   getConfig,
   fileWriteStream,
+  writePWA,
 } from './utils'
 import type { INavProps, ISettings } from '../src/types/index'
 
@@ -46,6 +47,15 @@ const html = writeTemplate({
 })
 
 handleFileOperation(() => fs.writeFileSync(PATHS.html.write, html))
+handleFileOperation(() =>
+  writePWA(
+    {
+      ...settings,
+      pwaIcon: '',
+    },
+    PATHS.manifestPublic,
+  ),
+)
 
 let errorUrlCount = 0
 

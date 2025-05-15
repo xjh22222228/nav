@@ -2,7 +2,7 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component, EventEmitter, Output, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { $t } from 'src/locale'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -18,6 +18,7 @@ import { isSelfDevelop } from 'src/utils/utils'
   styleUrls: ['./index.component.scss'],
 })
 export class UploadComponent {
+  @Input() accept = 'image/*'
   @Output() onChange = new EventEmitter()
 
   readonly $t = $t

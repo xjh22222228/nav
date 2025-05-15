@@ -21,6 +21,8 @@ import {
 } from '../src/utils/pureUtils'
 import fs from 'node:fs'
 import yaml from 'js-yaml'
+import sharp from 'sharp'
+import axios from 'axios'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -34,7 +36,7 @@ export const TAG_ID_NAME2 = '英文'
 export const TAG_ID_NAME3 = 'GitHub'
 
 export const PATHS = {
-  upload: path.resolve('_upload', 'images'),
+  uploadImage: path.resolve('_upload', 'images'),
   db: path.resolve('data', 'db.json'),
   serverdb: path.resolve('data', 'serverdb.json'),
   settings: path.resolve('data', 'settings.json'),
@@ -44,6 +46,7 @@ export const PATHS = {
   component: path.resolve('data', 'component.json'),
   internal: path.resolve('data', 'internal.json'),
   news: path.resolve('data', 'news.json'),
+  backup: path.resolve('data', 'backup.json'),
   config: path.resolve('nav.config.yaml'),
   configJson: path.resolve('nav.config.json'),
   pkg: path.resolve('package.json'),
@@ -52,6 +55,10 @@ export const PATHS = {
     main: path.resolve('src', 'main.html'),
     write: path.resolve('src', 'index.html'),
   },
+  manifest: path.resolve('dist', 'browser', 'manifest.webmanifest'),
+  manifestPublic: path.resolve('public', 'manifest.webmanifest'),
+  manifestIcon512: path.resolve('dist', 'browser', 'icons', 'icon-512x512.png'),
+  manifestIcon192: path.resolve('dist', 'browser', 'icons', 'icon-192x192.png'),
 } as const
 
 export const getConfig = () => {
@@ -429,6 +436,11 @@ export function writeTemplate({
   <link rel ="apple-touch-icon" href="${settings.favicon}" />
   ${prefetchLinks}
 `.trim()
+
+  const pwaContent = `
+<script>window.__PWA_ENABLE__=${settings.pwaEnable};</script>
+`.trim()
+
   let t = html
   t = t.replace(
     /(<!-- nav\.config-start -->)(.|\s)*?(<!-- nav.config-end -->)/i,
@@ -441,6 +453,10 @@ export function writeTemplate({
   t = t.replace(
     /(<!-- nav.seo-start -->)(.|\s)*?(<!-- nav.seo-end -->)/i,
     `$1${seoTemplate}$3`,
+  )
+  t = t.replace(
+    /(<!-- nav.pwa-start -->)(.|\s)*?(<!-- nav.pwa-end -->)/i,
+    `$1${pwaContent}$3`,
   )
 
   const loadingCode = settings.loadingCode.trim()
@@ -700,4 +716,53 @@ export function fileReadStream(path: string): Promise<string> {
       console.error('Error:', err)
     })
   })
+}
+
+export async function writePWA(settings: ISettings, manifestPath: string) {
+  try {
+    if (settings.pwaEnable) {
+      const manifestFile = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))
+      if (settings.pwaName) {
+        manifestFile.name = settings.pwaName
+        manifestFile.short_name = settings.pwaName
+        fs.writeFileSync(manifestPath, JSON.stringify(manifestFile, null, 2))
+      }
+      if (settings.pwaIcon) {
+        let imageBuffer = Buffer.from([])
+        try {
+          new URL(settings.pwaIcon)
+          const res = await axios.get(settings.pwaIcon, {
+            responseType: 'arraybuffer',
+          })
+          imageBuffer = res.data
+        } catch {
+          const imagePath = path.join(PATHS.uploadImage, '..', settings.pwaIcon)
+          console.log('PWA icon path', imagePath)
+          imageBuffer = fs.readFileSync(imagePath)
+        }
+
+        const sharpImage = sharp(imageBuffer)
+        await Promise.all([
+          sharpImage
+            .resize({
+              width: 512,
+              height: 512,
+              fit: 'cover',
+            })
+            .png()
+            .toFile(PATHS.manifestIcon512),
+          sharpImage
+            .resize({
+              width: 192,
+              height: 192,
+              fit: 'cover',
+            })
+            .png()
+            .toFile(PATHS.manifestIcon192),
+        ])
+      }
+    }
+  } catch (error: any) {
+    console.log('writePWA error', error.message)
+  }
 }

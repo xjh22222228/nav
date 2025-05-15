@@ -49,6 +49,7 @@ export class SearchComponent {
     (item) => !item.blocked,
   )
   readonly search = search()
+  readonly isMobile = isMobile()
   isDark = isDark()
   currentEngine: ISearchItemProps = getDefaultSearchEngine()
   searchTypeValue = Number(queryString()['type']) || SearchType.All
@@ -59,7 +60,9 @@ export class SearchComponent {
     private activatedRoute: ActivatedRoute,
   ) {
     event.on('SEARCH_FOCUS', () => {
-      this.inputFocus()
+      if (!this.isMobile) {
+        this.inputFocus()
+      }
     })
     if (!this.isLogin && this.searchTypeValue === SearchType.Id) {
       this.searchTypeValue = SearchType.All
@@ -81,7 +84,9 @@ export class SearchComponent {
   }
 
   ngAfterViewInit() {
-    this.inputFocus()
+    if (!this.isMobile) {
+      this.inputFocus()
+    }
   }
 
   onSelectChange() {
@@ -117,7 +122,7 @@ export class SearchComponent {
       },
     })
 
-    if (isMobile()) {
+    if (this.isMobile) {
       this.input?.nativeElement?.blur()
     }
   }

@@ -65,6 +65,7 @@ Easy to use, simple, and powerful.
 - 🍰 Support for multiple search queries
 - 🍰 Support for custom search engines
 - 🍰 Support for card advertisement display
+- 🍰 Support PWA applications
 - 🍰 Multiple high-value themes to switch between
 - 🍰 Powerful responsive system
 - 🍰 Various loading animations

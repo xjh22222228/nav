@@ -11,3 +11,7 @@
   for = "/api/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"

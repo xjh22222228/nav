@@ -22,16 +22,15 @@
 
   <div
     class="common-show wrapper dark-bg dark-border-color dark-action-hover"
+    [class.rotate]="checking"
     (click)="handleSync()"
-    *ngIf="isLogin && !isSelfDevelop"
-    nz-tooltip
-    [nzTooltipTitle]="$t('_syncData')"
+    *ngIf="(isLogin && !isSelfDevelop) || isPwaMode"
   >
     <i class="iconfont iconwinfo-icon-tongbu font-bold !text-red-400"></i>
   </div>
 
   <div
-    *ngIf="isLogin"
+    *ngIf="isLogin || isPwaMode"
     class="common-show wrapper dark-bg dark-border-color dark-action-hover"
     [class.rotate]="entering"
     (click)="goSystemPage()"
@@ -86,7 +85,7 @@
   <div
     class="wrapper scrolltop dark-bg dark-border-color dark-action-hover"
     (click)="goTop()"
-    [class.showTop]="isShowTop"
+    [class.showTop]="isShowTop || open"
     *ngIf="showTop"
   >
     <i class="iconfont iconjiantouarrow483 arrow !text-green-600"></i>

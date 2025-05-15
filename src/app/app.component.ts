@@ -36,6 +36,8 @@ import { $t } from 'src/locale'
 import { getAuthCode } from 'src/utils/user'
 import { DeleteModalComponent } from 'src/components/delete-modal/index.component'
 import event from 'src/utils/mitt'
+import { SwUpdate, VersionReadyEvent } from '@angular/service-worker'
+import { filter } from 'rxjs/operators'
 
 @Component({
   standalone: true,
@@ -64,6 +66,7 @@ export class AppComponent {
     private message: NzMessageService,
     private notification: NzNotificationService,
     private modal: NzModalService,
+    private swUpdate: SwUpdate,
   ) {
     this.registerEvents()
     this.registerKeyboard()
@@ -72,6 +75,35 @@ export class AppComponent {
         this.updateDocumentTitle()
       }
     })
+    this.setupSwUpdate()
+  }
+
+  private setupSwUpdate() {
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.versionUpdates
+        .pipe(
+          filter(
+            (evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY',
+          ),
+        )
+        .subscribe((evt) => {
+          this.swUpdate.activateUpdate()
+          this.modal.confirm({
+            nzTitle: `${$t('_avaUpdate')} ${evt.latestVersion.hash.slice(0, 10)}`,
+            nzContent: $t('_canNewVer'),
+            nzOkText: $t('_nowUpdate'),
+            nzCancelText: $t('_later'),
+            nzOnOk: async () => {
+              try {
+                await this.swUpdate.activateUpdate()
+                window.location.reload()
+              } catch (error) {
+                this.message.error($t('_updateFailed'))
+              }
+            },
+          })
+        })
+    }
   }
 
   private registerEvents() {

@@ -15,7 +15,7 @@
       #input
       [placeholder]="isSelfDevelop ? 'Password' : 'Token'"
     />
-    <div class="mt-4" *ngIf="!isSelfDevelop && showImgToken">
+    <div class="mt-4" *ngIf="showImgToken">
       <input
         nz-input
         [(ngModel)]="imageToken"

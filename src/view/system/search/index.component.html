@@ -53,15 +53,15 @@
   </nz-form-item>
 </form>
 <div class="mb-2">e.g. https://example.com/search?q=$&#123;q&#125;</div>
-<nz-table #basicTable [nzData]="searchList">
+<nz-table #basicTable [nzData]="searchList" [nzShowPagination]="false">
   <thead>
     <tr>
-      <th nzWidth="150px">{{ $t('_engineName') }}</th>
-      <th nzWidth="220px">{{ $t('_engineUrl') }}</th>
-      <th nzWidth="260px">{{ $t('_icon') }}</th>
-      <th nzWidth="220px">{{ $t('_desc') }}</th>
-      <th nzWidth="100px">{{ $t('_isDisable') }}</th>
-      <th nzWidth="200px">{{ $t('_action') }}</th>
+      <th class="min-w-[150px]">{{ $t('_engineName') }}</th>
+      <th class="min-w-[220px]">{{ $t('_engineUrl') }}</th>
+      <th class="min-w-[260px]">{{ $t('_icon') }}</th>
+      <th class="min-w-[220px]">{{ $t('_desc') }}</th>
+      <th class="min-w-[100px]">{{ $t('_isDisable') }}</th>
+      <th class="min-w-[170px]">{{ $t('_action') }}</th>
     </tr>
   </thead>
   <tbody>

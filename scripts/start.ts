@@ -20,6 +20,7 @@ import {
   PATHS,
   getConfig,
   fileWriteStream,
+  writePWA,
 } from './utils'
 import { replaceJsdelivrCDN } from '../src/utils/pureUtils'
 import type {
@@ -461,6 +462,10 @@ const main = async () => {
     settings.appDocTitle ||= ''
     settings.gitHubCDN ||= 'gcore.jsdelivr.net'
     settings.components ||= []
+
+    settings.pwaEnable ??= false
+    settings.pwaName ??= '发现导航'
+    settings.pwaIcon ||= ''
 
     // 替换CDN
     settings.favicon = replaceJsdelivrCDN(settings.favicon, settings)

@@ -38,19 +38,19 @@
       <thead>
         <tr>
           <th
-            nzWidth="100px"
+            class="min-w-[100px]"
             [nzChecked]="checked"
             (nzCheckedChange)="onAllChecked($event)"
           ></th>
-          <th nzWidth="80px">{{ $t('_action') }}</th>
-          <th nzWidth="80px">{{ $t('_type') }}</th>
-          <th nzWidth="80px">ID</th>
-          <th nzWidth="80px">{{ $t('_icon') }}</th>
-          <th nzWidth="100px">{{ $t('_webName') }}</th>
-          <th nzWidth="100px">{{ $t('_associatedLabels') }}</th>
-          <th nzWidth="300px">{{ $t('_webDesc') }}</th>
-          <th nzWidth="300px">{{ $t('_webTag') }}</th>
-          <th nzWidth="200px">{{ $t('_createAt') }}</th>
+          <th class="min-w-[80px]">{{ $t('_action') }}</th>
+          <th class="min-w-[80px]">{{ $t('_type') }}</th>
+          <th class="min-w-[80px]">ID</th>
+          <th class="min-w-[80px]">{{ $t('_icon') }}</th>
+          <th class="min-w-[100px]">{{ $t('_webName') }}</th>
+          <th class="min-w-[100px]">{{ $t('_associatedLabels') }}</th>
+          <th class="min-w-[300px]">{{ $t('_webDesc') }}</th>
+          <th class="min-w-[300px]">{{ $t('_webTag') }}</th>
+          <th class="min-w-[200px]">{{ $t('_createAt') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -97,7 +97,7 @@
             </ng-content>
             <pre class="desc" [innerHTML]="data.desc"></pre>
           </td>
-          <td nzWidth="300px">
+          <td>
             {{ data.breadcrumb }}
           </td>
           <td>{{ data.createdAt }}</td>
