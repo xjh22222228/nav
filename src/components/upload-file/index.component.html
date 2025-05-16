@@ -1,0 +1,17 @@
+<label [id]="id">
+  <i
+    *ngIf="!uploading"
+    nz-icon
+    nzType="upload"
+    nzTheme="outline"
+    class="cursor-pointer"
+    [title]="$t('_upload')"
+  ></i>
+  <i *ngIf="uploading" nz-icon [nzType]="'loading'"></i>
+  <input
+    type="file"
+    [name]="id"
+    (change)="onChangeFile($event)"
+    class="!hidden"
+  />
+</label>

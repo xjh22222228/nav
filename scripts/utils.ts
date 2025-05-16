@@ -36,6 +36,8 @@ export const TAG_ID_NAME2 = '英文'
 export const TAG_ID_NAME3 = 'GitHub'
 
 export const PATHS = {
+  root: path.resolve('dist', 'browser'),
+  public: path.resolve('public'),
   uploadImage: path.resolve('_upload', 'images'),
   db: path.resolve('data', 'db.json'),
   serverdb: path.resolve('data', 'serverdb.json'),

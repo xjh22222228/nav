@@ -286,6 +286,21 @@ export async function createImageFile({
   })
 }
 
+export async function createFile({ content, path }: Iupdate) {
+  if (isSelfDevelop) {
+    return http
+      .post('/api/file/create', {
+        path,
+        content,
+      })
+      .then((res) => {
+        requestActionUrl()
+        return res
+      })
+  }
+  return null
+}
+
 export function getUserCollect(data?: Record<string, any>) {
   if (isSelfDevelop) {
     return http.post('/api/collect/get', data)

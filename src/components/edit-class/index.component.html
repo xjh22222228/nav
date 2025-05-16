@@ -36,7 +36,9 @@
             <app-logo [src]="iconUrl" [size]="25" *ngIf="iconUrl" />
           </ng-template>
           <ng-template #suffixIconSearch>
-            <app-upload (onChange)="onChangeFile($event)"></app-upload>
+            <app-upload-image
+              (onChange)="onChangeFile($event)"
+            ></app-upload-image>
           </ng-template>
         </nz-form-control>
       </nz-form-item>

@@ -27,7 +27,9 @@
         </nz-input-group>
 
         <ng-template #suffixIconSearch>
-          <app-upload (onChange)="onUploadImage($event)"></app-upload>
+          <app-upload-image
+            (onChange)="onUploadImage($event)"
+          ></app-upload-image>
         </ng-template>
       </nz-form-control>
     </nz-form-item>

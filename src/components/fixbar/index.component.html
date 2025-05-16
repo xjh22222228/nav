@@ -22,9 +22,17 @@
 
   <div
     class="common-show wrapper dark-bg dark-border-color dark-action-hover"
-    [class.rotate]="checking"
     (click)="handleSync()"
-    *ngIf="(isLogin && !isSelfDevelop) || isPwaMode"
+    *ngIf="isLogin && !isSelfDevelop"
+  >
+    <img class="iconfont" src="assets/img/sync.svg" />
+  </div>
+
+  <div
+    class="common-show wrapper dark-bg dark-border-color dark-action-hover"
+    [class.rotate]="checking"
+    (click)="unregisterServiceWorkers()"
+    *ngIf="isPwaMode"
   >
     <i class="iconfont iconwinfo-icon-tongbu font-bold !text-red-400"></i>
   </div>

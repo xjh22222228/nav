@@ -13,11 +13,11 @@ import { isSelfDevelop } from 'src/utils/utils'
 @Component({
   standalone: true,
   imports: [CommonModule, NzIconModule],
-  selector: 'app-upload',
+  selector: 'app-upload-image',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
-export class UploadComponent {
+export class UploadImageComponent {
   @Input() accept = 'image/*'
   @Output() onChange = new EventEmitter()
 

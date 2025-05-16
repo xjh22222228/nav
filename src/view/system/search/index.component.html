@@ -24,7 +24,7 @@
         <input nz-input formControlName="logo" />
       </nz-input-group>
       <ng-template #suffixLogo>
-        <app-upload (onChange)="onLogoChange($event, 'logo')" />
+        <app-upload-image (onChange)="onLogoChange($event, 'logo')" />
       </ng-template>
     </nz-form-control>
   </nz-form-item>
@@ -36,7 +36,7 @@
         <input nz-input formControlName="darkLogo" />
       </nz-input-group>
       <ng-template #suffixDarkLogo>
-        <app-upload (onChange)="onLogoChange($event, 'darkLogo')" />
+        <app-upload-image (onChange)="onLogoChange($event, 'darkLogo')" />
       </ng-template>
     </nz-form-control>
   </nz-form-item>
@@ -80,7 +80,9 @@
           [(ngModel)]="data.icon"
           style="width: 180px"
         />
-        <app-upload (onChange)="onChangeUpload($event, idx)"></app-upload>
+        <app-upload-image
+          (onChange)="onChangeUpload($event, idx)"
+        ></app-upload-image>
       </td>
       <td>
         <input nz-input [(ngModel)]="data.placeholder" maxlength="50" />

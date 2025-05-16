@@ -113,9 +113,9 @@
           </ng-template>
           <ng-template #suffixIconSearch>
             <ng-content *ngIf="isLogin">
-              <app-upload
+              <app-upload-image
                 (onChange)="onChangeFile($event, 'icon')"
-              ></app-upload>
+              ></app-upload-image>
             </ng-content>
           </ng-template>
         </nz-form-control>
@@ -149,7 +149,9 @@
       </nz-form-item>
       <ng-template #suffixImgButton>
         <span class="mx-2">
-          <app-upload (onChange)="onChangeFile($event, 'img')"></app-upload>
+          <app-upload-image
+            (onChange)="onChangeFile($event, 'img')"
+          ></app-upload-image>
         </span>
         <button
           [nzLoading]="submitting"

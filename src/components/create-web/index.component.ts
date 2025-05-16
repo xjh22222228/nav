@@ -39,7 +39,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { NzRateModule } from 'ng-zorro-antd/rate'
 import { LogoComponent } from 'src/components/logo/logo.component'
-import { UploadComponent } from 'src/components/upload/index.component'
+import { UploadImageComponent } from 'src/components/upload-image/index.component'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzSelectModule } from 'ng-zorro-antd/select'
@@ -66,7 +66,7 @@ import event from 'src/utils/mitt'
     NzCheckboxModule,
     NzRateModule,
     LogoComponent,
-    UploadComponent,
+    UploadImageComponent,
     NzIconModule,
     NzButtonModule,
   ],

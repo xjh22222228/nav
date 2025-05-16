@@ -22,7 +22,7 @@ import { NzTableModule } from 'ng-zorro-antd/table'
 import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzSwitchModule } from 'ng-zorro-antd/switch'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
-import { UploadComponent } from 'src/components/upload/index.component'
+import { UploadImageComponent } from 'src/components/upload-image/index.component'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzSliderModule } from 'ng-zorro-antd/slider'
 import { isValidImg } from 'src/utils'
@@ -36,7 +36,7 @@ import { isValidImg } from 'src/utils'
     NzButtonModule,
     NzTableModule,
     NzInputModule,
-    UploadComponent,
+    UploadImageComponent,
     NzSwitchModule,
     NzPopconfirmModule,
     NzFormModule,

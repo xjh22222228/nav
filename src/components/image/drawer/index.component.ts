@@ -10,12 +10,12 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzInputModule } from 'ng-zorro-antd/input'
-import { UploadComponent } from 'src/components/upload/index.component'
+import { UploadImageComponent } from 'src/components/upload-image/index.component'
 
 @Component({
   standalone: true,
   imports: [
-    UploadComponent,
+    UploadImageComponent,
     FormsModule,
     ReactiveFormsModule,
     NzDrawerModule,

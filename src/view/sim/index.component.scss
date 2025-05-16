@@ -63,22 +63,26 @@
     position: relative;
     display: inline-block;
     padding: 10px 15px;
-    color: #666;
     cursor: pointer;
     overflow: hidden;
-    &.active::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 20%;
-      right: 20%;
-      height: 3px;
-      border-radius: 2px;
-      background-color: rgb(16, 142, 233);
+    &.active {
+      font-weight: 500;
+      color: #000;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 20%;
+        right: 20%;
+        height: 3px;
+        border-radius: 2px;
+        background-color: rgb(16, 142, 233);
+      }
     }
   }
   .over-item {
     &:hover {
+      font-weight: 500;
       color: #000;
     }
   }

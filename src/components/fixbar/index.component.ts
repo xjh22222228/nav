@@ -203,25 +203,24 @@ export class FixbarComponent {
     localStorage.setItem(STORAGE_KEY_MAP.FIXBAR_OPEN, String(this.open))
   }
 
-  handleSync() {
-    if (this.isPwaMode) {
-      this.checking = true
-      unregisterServiceWorkers()
-        .then((status) => {
-          if (status) {
-            setTimeout(() => {
-              location.reload()
-            }, 2000)
-          } else {
-            this.checking = false
-          }
-        })
-        .catch(() => {
+  unregisterServiceWorkers() {
+    this.checking = true
+    unregisterServiceWorkers()
+      .then((status) => {
+        if (status) {
+          setTimeout(() => {
+            location.reload()
+          }, 2000)
+        } else {
           this.checking = false
-        })
-      return
-    }
+        }
+      })
+      .catch(() => {
+        this.checking = false
+      })
+  }
 
+  handleSync() {
     this.modal.info({
       nzTitle: $t('_syncDataOut'),
       nzOkText: $t('_confirmSync'),

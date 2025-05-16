@@ -32,7 +32,8 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
 import { NzSelectModule } from 'ng-zorro-antd/select'
-import { UploadComponent } from 'src/components/upload/index.component'
+import { UploadImageComponent } from 'src/components/upload-image/index.component'
+import { UploadFileComponent } from 'src/components/upload-file/index.component'
 import { CardComponent } from 'src/components/card/index.component'
 import { ActionType } from 'src/types'
 import type { IComponentItemProps, IWebProps, ThemeType } from 'src/types'
@@ -65,7 +66,8 @@ const extraForm: Record<string, any> = {
     NzRadioModule,
     NzCheckboxModule,
     NzPopconfirmModule,
-    UploadComponent,
+    UploadImageComponent,
+    UploadFileComponent,
     CardComponent,
   ],
   selector: 'system-setting',
