@@ -35,9 +35,6 @@ export class UploadFileComponent {
     if (files.length <= 0) return
     const file = files[0]
 
-    if (!file.type.startsWith('image')) {
-      return this.message.error($t('_notUpload'))
-    }
     this.onUpload(file).finally(() => {
       e.target.value = ''
     })

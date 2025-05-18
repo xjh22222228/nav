@@ -30,6 +30,13 @@
   </nz-form-item>
 
   <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>{{ $t('_title') }}</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <input nz-input formControlName="title" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ $t('_webDesc') }}</nz-form-label>
     <nz-form-control [nzSpan]="20">
       <input nz-input formControlName="description" />
