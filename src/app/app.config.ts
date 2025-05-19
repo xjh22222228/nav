@@ -48,7 +48,8 @@ const icons: IconDefinition[] = [
 
 const isPhone = isMobile()
 const isHashMode = window.__HASH_MODE__ ?? config.hashMode
-const pwaEnable = window.__PWA_ENABLE__ ? isPhone : false
+const pwaEnable =
+  window.__PWA_ENABLE__ && location.protocol === 'https:' ? isPhone : false
 
 if (!pwaEnable && isPhone) {
   unregisterServiceWorkers()

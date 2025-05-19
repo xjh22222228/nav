@@ -3,7 +3,6 @@
 // See https://github.com/xjh22222228/nav
 
 import qs from 'qs'
-import Clipboard from 'clipboard'
 import {
   IWebProps,
   INavThreeProp,
@@ -17,6 +16,7 @@ import { isLogin } from './user'
 import { SearchType } from 'src/components/search/index'
 import { navs, search, settings, tagMap } from 'src/store'
 import { $t } from 'src/locale'
+import event from 'src/utils/mitt'
 
 export function randomInt(max: number) {
   return Math.floor(Math.random() * max)
@@ -341,24 +341,17 @@ export function isDark(): boolean {
   return Boolean(Number(storageVal))
 }
 
-export function copyText(el: Event, text: string): Promise<boolean> {
-  const target = el.target as Element
-  const ranId = `copy-${Date.now()}`
-  target.id = ranId
-  target.setAttribute('data-clipboard-text', text)
-
-  return new Promise((resolve) => {
-    const clipboard = new Clipboard(`#${ranId}`)
-    clipboard.on('success', function () {
-      clipboard.destroy()
-      resolve(true)
+export async function copyText(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text)
+    return true
+  } catch (error: any) {
+    event.emit('MESSAGE', {
+      type: 'error',
+      message: error.message,
     })
-
-    clipboard.on('error', function () {
-      clipboard.destroy()
-      resolve(false)
-    })
-  })
+    return false
+  }
 }
 
 export async function isValidImg(

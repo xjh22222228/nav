@@ -94,7 +94,7 @@ export class CardComponent {
     parseHtmlWithContent(this.root?.nativeElement, this.dataSource.desc)
   }
 
-  async copyUrl(e: Event, type: 1 | 2): Promise<void> {
+  async copyUrl(type: 1 | 2): Promise<void> {
     const { id, url } = this.dataSource
     let { href } = window.location
     href = href.split('?')[0]
@@ -102,12 +102,13 @@ export class CardComponent {
       href = href + '/'
     }
     const pathUrl = `${href}?q=${id}&type=${SearchType.Id}`
-    const isDone = await copyText(e, type === 1 ? pathUrl : url)
-
-    if (type === 1) {
-      this.copyPathDone = isDone
-    } else {
-      this.copyUrlDone = isDone
+    const isDone = await copyText(type === 1 ? pathUrl : url)
+    if (isDone) {
+      if (type === 1) {
+        this.copyPathDone = isDone
+      } else {
+        this.copyUrlDone = isDone
+      }
     }
   }
 

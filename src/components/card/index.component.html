@@ -76,7 +76,7 @@
             nz-icon
             [nzType]="copyUrlDone ? 'check' : 'copy'"
             nzTheme="outline"
-            (click)="copyUrl($event, 2)"
+            (click)="copyUrl(2)"
             (mouseout)="copyMouseout()"
           ></div>
           <div
@@ -88,7 +88,7 @@
             nz-icon
             [nzType]="copyPathDone ? 'check' : 'share-alt'"
             nzTheme="outline"
-            (click)="copyUrl($event, 1)"
+            (click)="copyUrl(1)"
             (mouseout)="copyMouseout()"
           ></div>
           <div
@@ -335,7 +335,7 @@
 
       <!-- column style -->
       <div
-        class="card-container column2 ellipsis dark-bg-gary dark-white dark-border-color dark-shadow dark-hover"
+        class="card-container column2 ellipsis dark-bg-gary dark-white dark-border-color dark-shadow dark-hover-bg"
         *ngSwitchDefault
       >
         <div

@@ -21,7 +21,6 @@
               "axios",
               "qs",
               "nprogress",
-              "clipboard",
               "file-saver",
               "localforage",
               "dayjs",

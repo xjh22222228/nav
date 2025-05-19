@@ -81,6 +81,11 @@
           color: #fff !important;
         }
       }
+      &-hover-bg {
+        &:hover {
+          background-color: #30363d !important;
+        }
+      }
 
       &-item-hover:hover {
         background-color: #30363d !important;
