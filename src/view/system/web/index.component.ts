@@ -626,7 +626,7 @@ export default class WebpComponent {
         updateFileContent({
           message: 'update db',
           content: JSON.stringify(
-            cleanWebAttrs(JSON.parse(JSON.stringify(this.navs))),
+            cleanWebAttrs(JSON.parse(JSON.stringify(this.navs()))),
           ),
           path: DB_PATH,
         })

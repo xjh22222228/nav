@@ -154,7 +154,7 @@
     </nz-form-control>
   </nz-form-item>
 
-  <nz-form-item>
+  <nz-form-item *ngIf="!isSelfDevelop">
     <nz-form-label [nzSpan]="4" [nzNoColon]="true">{{
       $t('_showGithub')
     }}</nz-form-label>
