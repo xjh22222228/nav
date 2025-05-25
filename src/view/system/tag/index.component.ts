@@ -143,7 +143,7 @@ export default class SystemTagComponent {
           path: TAG_PATH,
         })
           .then(() => {
-            this.message.success($t('_saveSuccess'))
+            this.message.success($t('_syncSuccessTip'))
           })
           .finally(() => {
             this.submitting = false

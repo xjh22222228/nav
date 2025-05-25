@@ -310,7 +310,7 @@ export default class SystemSettingComponent {
           if (!isSelfDevelop) {
             settings.set(values)
           }
-          this.message.success($t('_saveSuccess'))
+          this.message.success($t('_syncSuccessTip'))
           resolve(null)
         })
         .catch(reject)

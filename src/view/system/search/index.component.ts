@@ -156,7 +156,7 @@ export default class SystemSearchComponent {
           path: SEARCH_PATH,
         })
           .then(() => {
-            this.message.success($t('_saveSuccess'))
+            this.message.success($t('_syncSuccessTip'))
           })
           .finally(() => {
             this.submitting = false

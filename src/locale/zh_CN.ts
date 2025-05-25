@@ -47,7 +47,7 @@ const zhCN: Record<string, any> = {
   _confirmSyncTip: isSelfDevelop
     ? ''
     : '确定将所有数据同步到远端吗？（每次保存需要等待构建完成再进行下一次操作）',
-  _syncSuccessTip: isSelfDevelop ? '同步成功' : '同步成功, 正在构建...',
+  _syncSuccessTip: isSelfDevelop ? '保存成功' : '同步成功, 正在构建...',
   _error: '错误',
   _syncFailTip: '同步失败, 请重试',
   _inputToken: '请输入TOKEN',
