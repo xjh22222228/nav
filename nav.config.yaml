@@ -19,7 +19,7 @@ branch: main
 # 仓库必须自己提前创建，如果打算长期使用本软件，建议每个人都创建一个新的仓库作为图片存储
 # e.g 'https://github.com/xjh22222228/image?branch=main'
 # gitlab e.g 'https://gitlab.com/xjh22222228/image?branch=main&projectId=1001'
-imageRepoUrl: 'https://imgbed.138gl.com'
+imageRepoUrl: ''
 
 # 只有GitHub pages用户需要设置为true， 其他建议设置为 false
 hashMode: false
