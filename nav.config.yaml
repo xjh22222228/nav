@@ -10,7 +10,7 @@
 # 仓库地址，填写 Fork 后的仓库地址，支持 Gitee / GitHub / GitLab
 # 作者 Gitee 仓库地址 https://gitee.com/xiejiahe/nav
 # 作者 GitLab 仓库地址 https://gitlab.com/xjh22222228/nav?projectId=68880543, projectId 是项目 ID，可在仓库页面中找到
-gitRepoUrl: https://github.com/xjh22222228/nav
+gitRepoUrl: https://github.com/gl33332/nav
 
 # Fork 部署分支
 branch: main
@@ -19,10 +19,10 @@ branch: main
 # 仓库必须自己提前创建，如果打算长期使用本软件，建议每个人都创建一个新的仓库作为图片存储
 # e.g 'https://github.com/xjh22222228/image?branch=main'
 # gitlab e.g 'https://gitlab.com/xjh22222228/image?branch=main&projectId=1001'
-imageRepoUrl: ''
+imageRepoUrl: 'https://imgbed.138gl.com'
 
 # 只有GitHub pages用户需要设置为true， 其他建议设置为 false
-hashMode: true
+hashMode: false
 
 # 一旦填写认为你是自有部署，Fork 不要填写
 address: ''
@@ -34,7 +34,7 @@ password: admin
 port: 7777
 
 # 收录通知邮箱
-email: ''
+email: '123@138gl.com'
 
 # 自有部署邮件通知系统
 mailConfig:
