@@ -22,7 +22,7 @@ branch: main
 imageRepoUrl: 'https://imgbed.138gl.com'
 
 # 只有GitHub pages用户需要设置为true， 其他建议设置为 false
-hashMode: false
+hashMode: true
 
 # 一旦填写认为你是自有部署，Fork 不要填写
 address: ''
