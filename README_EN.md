@@ -91,17 +91,17 @@ Zero-cost deployment, as easy as counting `3-2-1`.
 
 #### gh-pages (Free)
 
-1. Click `Fork` in the top right corner.
+1. Click `Fork` in the upper right corner to fork this repository.
 
-2. Apply for a `token` at [https://github.com/settings/tokens/new](https://github.com/settings/tokens/new), select appropriate permissions (select all if unsure), copy and save the Token; [For Gitee, click here](https://gitee.com/profile/personal_access_tokens/new)
+2. Request a token at [https://github.com/settings/tokens/new](https://github.com/settings/tokens/new), check **repo** and **workflow** permissions, then copy and save the Token.
 
-3. Add the token at https://github.com/your-username/nav/settings/secrets/actions/new, name it `TOKEN` in uppercase.
+3. Open https://github.com/your-username/nav/actions to ensure GitHub Actions are enabled.
 
-4. Open https://github.com/your-username/nav/actions to enable automatic deployment
+4. Modify the [gitRepoUrl](file:///Users/xiejiahe/NoCode/develop/open-source/nav/scripts/utils.ts#L64-L67) field in the root configuration file [nav.config.yaml](nav.config.yaml).
 
-5. Modify the `gitRepoUrl` field in the root configuration file [nav.config.yaml](nav.config.yaml)
+5. Visit https://your-username.github.io/nav to access your powerful navigation site.
 
-6. Open https://your-username.github.io/nav to see your powerful navigation website.
+If you encounter 404, open https://github.com/your-username/nav/settings/pages and verify if the deployment branch is set to **gh-pages**.
 
 #### Netlify (Recommended, Free)
 
@@ -124,12 +124,12 @@ Only need to modify the following fields in the root `nav.config.yaml`
 | --------------------------------------------- | -------- |--- |--- |
 |√ | | gitRepoUrl | Your repository URL |
 |√ | | branch | Deployment branch |
+|√ | | imageRepoUrl | Image repository, default `https://github.com/xjh22222228/image?branch=main` |
 |√ | √| hashMode | Whether to use Hash mode for routing, must be true for `github pages` |
+|√ | √| email | User submission notification |
 | | √| password | Self-deployment login password, not needed for `Fork` users |
 | | √| address | Self-deployment address |
-|√| √| email | User submission notification |
 | | √| mailConfig | Email configuration for self-deployment notifications |
-|√ | | imageRepoUrl | Image repository, default `https://github.com/xjh22222228/image?branch=main` |
 
 ## Backend
 
