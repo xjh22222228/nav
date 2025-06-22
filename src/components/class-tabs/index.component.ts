@@ -13,7 +13,7 @@ import {
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import type { INavThreeProp } from 'src/types'
-import { scrollIntoViewLeft } from 'src/utils'
+import { scrollIntoViewLeft, queryString } from 'src/utils'
 import { fromEvent, Subscription } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
 
@@ -48,10 +48,22 @@ export class ClassTabsComponent {
         .map((item: any) => item.rId || item.id)
         .join(',')
       if (currentIds === previousIds) return
-      this.selectTab(0)
+      const { id } = queryString(false)
+      const idx = this.data?.findIndex((item) => item.id === Number(id)) || -1
+      if (idx === -1) {
+        this.selectTab(0)
+      } else {
+        setTimeout(() => {
+          this.getToolbarItems()
+          this.selectTab(idx)
+        }, 100)
+      }
+
       requestAnimationFrame(() => {
-        this.getToolbarItems()
-        this.setAnchorStyle()
+        if (idx === -1) {
+          this.getToolbarItems()
+          this.setAnchorStyle()
+        }
 
         if (this.scrollSubscription) {
           this.scrollSubscription.unsubscribe()
@@ -131,7 +143,7 @@ export class ClassTabsComponent {
   }
 
   selectTab(index: number) {
-    if (this.activeIndex === index) return
+    if (this.activeIndex === index && index <= 0) return
 
     this.activeIndex = index
     this.scrollIntoViewTabs()

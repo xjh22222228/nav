@@ -14,7 +14,7 @@ import {
 import { Router, ActivatedRoute } from '@angular/router'
 import { search } from 'src/store'
 import type { ISearchItemProps } from 'src/types'
-import { SearchType } from './index'
+import { SearchType } from './types'
 import { $t } from 'src/locale'
 import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzPopoverModule } from 'ng-zorro-antd/popover'
@@ -111,7 +111,7 @@ export class SearchComponent {
       return
     }
 
-    const params = queryString()
+    const { id, ...params } = queryString()
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {

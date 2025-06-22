@@ -18,9 +18,10 @@ import { SwiperItemComponent } from './swiper-item/index.component'
   styleUrls: ['./index.component.scss'],
 })
 export class SwiperComponent {
-  @Input() images: ImageProps[] = []
+  @Input() images?: ImageProps[] = []
   @Input() autoplay = true
   @Input() height = 300
+  @Input() fit?: string = 'cover'
 
   constructor(public jumpService: JumpService) {}
 }

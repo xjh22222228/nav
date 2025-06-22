@@ -13,7 +13,7 @@ import {
 import { STORAGE_KEY_MAP } from 'src/constants'
 import { CODE_SYMBOL } from 'src/constants/symbol'
 import { isLogin } from './user'
-import { SearchType } from 'src/components/search/index'
+import { SearchType } from 'src/components/search/types'
 import { navs, search, settings, tagMap } from 'src/store'
 import { $t } from 'src/locale'
 import event from 'src/utils/mitt'
@@ -53,8 +53,9 @@ export function fuzzySearch(
       if (sType === SearchType.Class) {
         if (item.title) {
           if (
-            item.title.toLowerCase().includes(keyword) ||
-            item.id == keyword
+            (item.title.toLowerCase().includes(keyword) ||
+              item.id == keyword) &&
+            item.nav?.[0]?.name
           ) {
             resultList.push(item)
           }
@@ -273,13 +274,13 @@ export function removeBgImg(): void {
   }
 }
 
-export function queryString() {
+export function queryString(cached: boolean = true) {
   const { href } = location
   const search = href.split('?')[1] || ''
   const parseQs = qs.parse(search)
   let id = parseQs['id']
 
-  if (parseQs['id'] == null) {
+  if (cached && parseQs['id'] == null) {
     try {
       const location = localStorage.getItem(STORAGE_KEY_MAP.LOCATION)
       if (location) {

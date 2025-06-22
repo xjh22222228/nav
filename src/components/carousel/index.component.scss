@@ -1,0 +1,13 @@
+.ccarousel {
+  position: relative;
+  height: var(--componentHeight);
+  max-height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+
+  ::ng-deep {
+    .swiper {
+      height: var(--componentHeight) !important;
+    }
+  }
+}

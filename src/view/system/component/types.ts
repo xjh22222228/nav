@@ -14,4 +14,5 @@ export const componentTitleMap: Record<string, string> = {
   [ComponentType.HTML]: 'HTML',
   [ComponentType.Holiday]: $t('_holiday'),
   [ComponentType.News]: $t('_news'),
+  [ComponentType.Carousel]: $t('_carousel'),
 }

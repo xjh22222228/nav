@@ -1,7 +1,7 @@
 <div
   class="swiper"
   [ngStyle]="{ height: height <= 0 ? '' : height + 'px' }"
-  *ngIf="images.length > 0"
+  *ngIf="images && images.length > 0"
 >
   <nz-carousel
     [nzAutoPlay]="autoplay"
@@ -14,7 +14,7 @@
       *ngFor="let item of images"
       (click)="jumpService.goUrl($event, item['url'])"
     >
-      <app-swiper-item [data]="item" [height]="height" />
+      <app-swiper-item [data]="item" [height]="height" [fit]="fit" />
     </div>
   </nz-carousel>
 

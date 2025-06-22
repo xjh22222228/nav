@@ -54,6 +54,9 @@ export function removeDark(): void {
 }
 
 export function parseHtmlWithContent(node: HTMLElement, str: string) {
+  if (!str || !node) {
+    return
+  }
   if (str[0] === CODE_SYMBOL) {
     if (!node) return
     const s = node.querySelectorAll('script')
@@ -81,6 +84,9 @@ export function parseHtmlWithContent(node: HTMLElement, str: string) {
 }
 
 export function parseLoadingWithContent(str: string): string {
+  if (!str) {
+    return ''
+  }
   if (str[0] !== '!') {
     return str
   }

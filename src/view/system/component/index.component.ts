@@ -34,6 +34,8 @@ import { CountdownComponent } from 'src/components/countdown/index.component'
 import { HTMLComponent } from 'src/components/html/index.component'
 import { HolidayComponent } from 'src/components/holiday/index.component'
 import { NewsComponent } from 'src/components/news/index.component'
+import { CarouselComponent } from 'src/components/carousel/index.component'
+import { CarouselDrawerComponent } from 'src/components/carousel/drawer/index.component'
 import event from 'src/utils/mitt'
 
 @Component({
@@ -62,6 +64,8 @@ import event from 'src/utils/mitt'
     HolidayDrawerComponent,
     NewsDrawerComponent,
     NewsComponent,
+    CarouselComponent,
+    CarouselDrawerComponent,
   ],
   providers: [NzMessageService, NzModalService],
   selector: 'system-component',
@@ -77,6 +81,7 @@ export default class SystemComponentComponent {
   @ViewChild('html') htmlChild!: HTMLDrawerComponent
   @ViewChild('holiday') holidayChild!: HolidayDrawerComponent
   @ViewChild('news') newsChild!: HolidayDrawerComponent
+  @ViewChild('carousel') carouselChild!: CarouselDrawerComponent
 
   readonly $t = $t
   readonly componentTitleMap = componentTitleMap
@@ -125,6 +130,7 @@ export default class SystemComponentComponent {
       [ComponentType.HTML]: this.htmlChild,
       [ComponentType.Holiday]: this.holidayChild,
       [ComponentType.News]: this.newsChild,
+      [ComponentType.Carousel]: this.carouselChild,
     }
     types[type]?.open(data, idx)
   }

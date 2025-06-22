@@ -15,6 +15,7 @@ import { CountdownComponent } from 'src/components/countdown/index.component'
 import { HTMLComponent } from 'src/components/html/index.component'
 import { HolidayComponent } from 'src/components/holiday/index.component'
 import { NewsComponent } from 'src/components/news/index.component'
+import { CarouselComponent } from 'src/components/carousel/index.component'
 import { fromEvent, Subscription } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
 import { NzIconModule } from 'ng-zorro-antd/icon'
@@ -35,6 +36,7 @@ import { STORAGE_KEY_MAP } from 'src/constants'
     HolidayComponent,
     NzIconModule,
     NewsComponent,
+    CarouselComponent,
   ],
   selector: 'component-group',
   templateUrl: './index.component.html',

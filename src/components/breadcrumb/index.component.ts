@@ -4,6 +4,8 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import type { IWebProps } from 'src/types'
+import { getClassById } from 'src/utils/index'
+import { CommonService } from 'src/services/common'
 
 @Component({
   standalone: true,
@@ -16,5 +18,14 @@ import type { IWebProps } from 'src/types'
 export class BreadcrumbComponent {
   @Input() data!: IWebProps
 
-  constructor() {}
+  constructor(public commonService: CommonService) {}
+
+  handleClick(e: Event) {
+    e.stopPropagation()
+    const data = getClassById(this.data.id, void 0, true)
+    if (data.parentId === -1) {
+      return
+    }
+    this.commonService.handleClickClass(data.parentId)
+  }
 }

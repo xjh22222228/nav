@@ -19,6 +19,7 @@ import { CODE_SYMBOL } from 'src/constants/symbol'
 export class SwiperItemComponent {
   @Input() data: ImageProps = {} as ImageProps
   @Input() height!: number
+  @Input() fit?: string = 'cover'
   @ViewChild('root', { static: false }) root!: ElementRef
 
   isCode = false

@@ -341,6 +341,7 @@ const english: Record<string, any> = {
   _later: 'Later',
   _avaUpdate: 'Application updates available',
   _updateFailed: 'UpdateFailed',
+  _carousel: 'Carousel',
 }
 
 export default english

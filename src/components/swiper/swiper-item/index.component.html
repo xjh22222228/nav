@@ -9,6 +9,6 @@
     class="bgimg"
     [src]="data.src"
     draggable="false"
-    [ngStyle]="{ height: height <= 0 ? '' : height + 'px' }"
+    [ngStyle]="{ height: height <= 0 ? '' : height + 'px', 'object-fit': fit }"
   />
 </ng-template>

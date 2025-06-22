@@ -30,7 +30,7 @@ import { UploadImageComponent } from 'src/components/upload-image/index.componen
 export class ImageDrawerComponent {
   @Output() ok = new EventEmitter<void>()
 
-  $t = $t
+  readonly $t = $t
   visible = false
   validateForm!: FormGroup
   index = 0

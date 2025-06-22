@@ -18,6 +18,7 @@ export enum ComponentType {
   HTML = 6,
   Holiday = 7,
   News = 8,
+  Carousel = 9,
 }
 
 export enum ActionType {
@@ -61,6 +62,12 @@ export interface IOffWorkProps {
   date: number | string
 }
 
+export interface ICarouselProps {
+  imgs: ImageProps[]
+  width: number
+  fit: string
+}
+
 export interface IImageProps {
   url: string
   go: string
@@ -98,6 +105,7 @@ export interface IComponentItemProps
     Partial<IImageProps>,
     Partial<Omit<ICountdownProps, 'date'>>,
     Partial<IRuntimeProps>,
+    Partial<ICarouselProps>,
     Partial<Omit<IHtmlProps, 'bgColor'>> {
   id: number
   type: number

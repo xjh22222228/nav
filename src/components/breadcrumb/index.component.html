@@ -1,4 +1,8 @@
-<div class="breadcrumb1 ellipsis" *ngIf="data.breadcrumb">
+<div
+  class="breadcrumb1 ellipsis"
+  *ngIf="data.breadcrumb"
+  (click)="handleClick($event)"
+>
   <span *ngFor="let text of data.breadcrumb; let idx = index"
     >{{ text
     }}<span class="slash" *ngIf="idx !== data.breadcrumb.length - 1"

@@ -328,6 +328,7 @@ const zhCN: Record<string, any> = {
   _later: '稍后',
   _avaUpdate: '应用更新可用',
   _updateFailed: '更新失败',
+  _carousel: '走马灯',
 }
 
 export default zhCN

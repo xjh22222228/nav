@@ -33,6 +33,7 @@
       <app-html *ngSwitchCase="ComponentType.HTML" [data]="item" />
       <app-holiday *ngSwitchCase="ComponentType.Holiday" [data]="item" />
       <app-news *ngSwitchCase="ComponentType.News" [data]="item" />
+      <app-carousel *ngSwitchCase="ComponentType.Carousel" [data]="item" />
     </ng-container>
 
     <div class="text-center mt-3">
@@ -67,3 +68,4 @@
 <html-drawer #html (ok)="handleOk($event)" />
 <holiday-drawer #holiday (ok)="handleOk($event)" />
 <news-drawer #news (ok)="handleOk($event)" />
+<carousel-drawer #carousel (ok)="handleOk($event)" />
