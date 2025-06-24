@@ -24,7 +24,7 @@ import { FixbarComponent } from 'src/components/fixbar/index.component'
 import { SideImagesComponent } from 'src/components/side-images/index.component'
 import { queryString, scrollIntoViewLeft } from 'src/utils'
 import { PhoneClassComponent } from 'src/components/phone-class/index.component'
-import type { INavThreeProp, INavProps, INavTwoProp } from 'src/types'
+import type { INavThreeProp, INavProps } from 'src/types'
 import event from 'src/utils/mitt'
 
 @Component({

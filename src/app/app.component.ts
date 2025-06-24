@@ -98,7 +98,7 @@ export class AppComponent {
                 await this.swUpdate.activateUpdate()
                 window.location.reload()
               } catch (error) {
-                this.message.error($t('_updateFailed'))
+                this.message.error(`${$t('_updateFailed')} ${error}`)
               }
             },
           })

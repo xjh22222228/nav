@@ -215,7 +215,7 @@ export class CreateWebComponent {
       this.validateForm.get('img')!.setValue(detail?.img ?? '')
       if (Array.isArray(detail.tags)) {
         detail.tags.forEach((item: IWebTag) => {
-          ;(this.validateForm?.get('urlArr') as FormArray).push?.(
+          ;(this.validateForm?.get('urlArr') as FormArray)?.push(
             this.fb.group({
               id: Number(item.id),
               name: tagMap()[item.id].name ?? '',

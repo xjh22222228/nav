@@ -20,7 +20,6 @@ import {
   PATHS,
   getConfig,
   fileWriteStream,
-  writePWA,
 } from './utils'
 import { replaceJsdelivrCDN } from '../src/utils/pureUtils'
 import type {
@@ -385,7 +384,7 @@ const main = async () => {
     settings.headerContent ??= ''
     settings.footerContent ??= `
 <div class="dark-white">
-  <div>共收录$\{total\}个网站</div>
+  <div>共收录$\{total}个网站</div>
   <div>Copyright © 2018-$\{year} $\{hostname}, All Rights Reserved</div>  
 </div>
 `.trim()

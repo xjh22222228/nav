@@ -143,12 +143,11 @@ export async function createBranch(branch: string) {
     params['branch'] = branch
   } else {
     params['sha'] = 'c1fdab3d29df4740bb97a4ae7f24ed0eaa682557'
+    params['ref'] = `refs/heads/${branch}`
     try {
       const commitRes = await createEmptyCommit()
       params['sha'] = commitRes.data['sha']
-    } catch (error) {}
-
-    params['ref'] = `refs/heads/${branch}`
+    } catch {}
   }
   return http.post(getUrl(), params)
 }

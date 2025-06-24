@@ -65,8 +65,8 @@ export class CarouselDrawerComponent {
 
   open(data: any, idx: number) {
     this.index = idx
-    this.validateForm.get('width')!?.setValue(data['width'])
-    this.validateForm.get('fit')!?.setValue(data['fit'])
+    this.validateForm.get('width')?.setValue(data['width'])
+    this.validateForm.get('fit')?.setValue(data['fit'])
     if (data['imgs']) {
       data['imgs'].forEach((item: any) => {
         ;(this.validateForm.get('imgs') as FormArray).push(
