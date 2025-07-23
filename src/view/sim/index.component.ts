@@ -27,8 +27,8 @@ import { SwiperComponent } from 'src/components/swiper/index.component'
 import { SafeHtmlPipe } from 'src/pipe/safeHtml.pipe'
 import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.component'
 import { ClassTabsComponent } from 'src/components/class-tabs/index.component'
-import { PhoneClassComponent } from 'src/components/phone-class/index.component'
 import type { INavProps } from 'src/types'
+import { SidebarComponent } from 'src/components/sidebar/index.component'
 
 @Component({
   standalone: true,
@@ -47,7 +47,7 @@ import type { INavProps } from 'src/types'
     SwiperComponent,
     SafeHtmlPipe,
     ClassTabsComponent,
-    PhoneClassComponent,
+    SidebarComponent,
   ],
   selector: 'app-sim',
   templateUrl: './index.component.html',

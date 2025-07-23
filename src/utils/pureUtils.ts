@@ -2,6 +2,7 @@
 // Copyright @ 2018-present xiejiahe. All rights reserved.
 // See https://github.com/xjh22222228/nav
 import type { ISettings, IWebProps, INavProps } from '../types'
+import { CODE_SYMBOL } from 'src/constants/symbol'
 
 export function replaceJsdelivrCDN(
   url: string = '',
@@ -103,6 +104,9 @@ export function isNumber(v: any): boolean {
 }
 
 export function transformSafeHTML(str: string) {
+  if (!str || str[0] === CODE_SYMBOL) {
+    return str
+  }
   const entity: any = {
     '<': '&lt;',
     '>': '&gt;',

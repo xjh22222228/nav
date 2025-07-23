@@ -1,0 +1,125 @@
+<nz-sider
+  class="sider-compnent"
+  [class.showSidebar]="openSidebar"
+  nzCollapsible
+  [(nzCollapsed)]="isCollapsed"
+  [nzTrigger]="null"
+>
+  <div
+    *ngIf="openSidebar"
+    class="mask block md:hidden"
+    (click)="toggleSidebar(false)"
+  ></div>
+
+  <div class="mobile-collapse flex md:hidden" (click)="toggleSidebar()">
+    <nz-icon
+      *ngIf="!openSidebar"
+      nzType="double-right"
+      nzTheme="outline"
+      class="text-base !text-gray-500"
+    />
+    <nz-icon
+      *ngIf="openSidebar"
+      nzType="double-left"
+      nzTheme="outline"
+      class="text-base !text-gray-500"
+    />
+  </div>
+
+  <div
+    class="logo dark-bg dark-border-color2 pointer-events-none md:pointer-events-auto"
+    (click)="handleCollapsed()"
+  >
+    <ng-content *ngIf="logoImage; else noLogo">
+      <img
+        [src]="commonService.settings().favicon"
+        class="logo-img"
+        *ngIf="isCollapsed; else noCollased"
+      />
+      <ng-template #noCollased>
+        <img class="pointer-events-none" [src]="logoImage" />
+      </ng-template>
+    </ng-content>
+
+    <ng-template #noLogo>
+      <img [src]="commonService.settings().favicon" class="logo-img" />
+      <span class="web-title" *ngIf="!isCollapsed">{{
+        commonService.settings().sideTitle || commonService.title()
+      }}</span>
+    </ng-template>
+  </div>
+
+  <ul nz-menu nzMode="inline" class="sider dark-bg select-none auto-scrollbar">
+    <li
+      nz-submenu
+      *ngFor="
+        let item of commonService.navs();
+        index as pageIdx;
+        trackBy: commonService.trackByItem
+      "
+      (nzOpenChange)="openMenu(item)"
+      [nzTitle]="titleTpl"
+      [nzOpen]="item.id === menuOpenId"
+    >
+      <ng-template #titleTpl>
+        <app-logo
+          *ngIf="item.icon"
+          [src]="item.icon"
+          class="mr-2.5 flex-center sideicon"
+          [size]="25"
+          [radius]="0"
+          [name]="item.title"
+        />
+        <span class="menu-title ellipsis">{{
+          isCollapsed && item.icon
+            ? ''
+            : isCollapsed && !item.icon
+              ? item.title
+              : item.title
+        }}</span>
+      </ng-template>
+
+      <ul>
+        <li
+          nz-menu-item
+          *ngFor="
+            let el of item.nav;
+            let idIdx = index;
+            trackBy: commonService.trackByItem
+          "
+          [nzSelected]="
+            commonService.oneIndex === pageIdx &&
+            commonService.twoIndex === idIdx
+          "
+          (click)="onClickNav(el)"
+        >
+          <app-logo
+            *ngIf="el.icon"
+            [src]="el.icon"
+            class="mr-2 flex-center"
+            [size]="25"
+            [radius]="0"
+            [name]="el.title"
+          />
+          <span class="ellipsis">{{ el.title }}</span>
+
+          <div
+            *ngIf="
+              commonService.oneIndex === pageIdx &&
+              commonService.twoIndex === idIdx
+            "
+            (click)="commonService.onCollapseAll($event)"
+            class="collapse-wrapper"
+          >
+            <i
+              *ngIf="!isCollapsed"
+              class="iconfont iconweibiaoti25 collapseIcon"
+              [class.active]="commonService.collapsed"
+            >
+            </i>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nz-sider>

@@ -7,7 +7,7 @@
 
   <header class="sheader dark-bg-gary dark-shadow">
     <div class="headerbox">
-      <div class="hitem md:!pt-0">
+      <div class="hitem py-2 md:py-0">
         <img
           class="logo"
           [src]="commonService.settings().favicon"
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div class="topnav" #parent>
+      <div class="topnav hidden md:flex" #parent>
         <div
           #item
           *ngFor="
@@ -49,8 +49,6 @@
   <div class="component-box" *ngIf="commonService.settings().components.length">
     <component-group />
   </div>
-
-  <app-phone-class class="mt-5" />
 
   <div class="main-box">
     <div
@@ -146,7 +144,7 @@
     />
   </div>
 
+  <app-sidebar class="md:hidden" />
   <app-footer [content]="commonService.settings().superFooterHTML" />
-
   <app-fixbar [showCollapse]="false" />
 </section>

@@ -81,7 +81,6 @@
       font-weight: bold;
       font-size: 18px;
       margin-left: 10px;
-      padding-top: 10px;
       white-space: nowrap;
       &:hover {
         color: #000;
@@ -104,7 +103,6 @@
       width: 100%;
       position: relative;
       flex: 1;
-      display: flex;
       overflow: hidden;
       overflow-x: auto;
       padding: 15px 0;

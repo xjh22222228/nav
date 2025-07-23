@@ -23,7 +23,7 @@ import { FooterComponent } from 'src/components/footer/footer.component'
 import { FixbarComponent } from 'src/components/fixbar/index.component'
 import { SideImagesComponent } from 'src/components/side-images/index.component'
 import { queryString, scrollIntoViewLeft } from 'src/utils'
-import { PhoneClassComponent } from 'src/components/phone-class/index.component'
+import { SidebarComponent } from 'src/components/sidebar/index.component'
 import type { INavThreeProp, INavProps } from 'src/types'
 import event from 'src/utils/mitt'
 
@@ -41,7 +41,7 @@ import event from 'src/utils/mitt'
     FooterComponent,
     FixbarComponent,
     SideImagesComponent,
-    PhoneClassComponent,
+    SidebarComponent,
   ],
   selector: 'app-side',
   templateUrl: './index.component.html',

@@ -13,28 +13,29 @@ $bg-color: #fbfbfb;
     left: 0;
     right: 0;
     text-align: center;
-    background: $bg-color;
+    background-color: $bg-color;
     box-shadow: 0 0 3px #ccc;
 
     .header-top {
       position: relative;
-      height: 45px;
       border-bottom: 1px solid #eee;
-      background: $bg-color;
-
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 0;
       .logo {
         display: inline-block;
-        width: 35px;
-        height: 35px;
-        margin-top: 4px;
+        width: 40px;
+        height: 40px;
         pointer-events: none;
       }
     }
 
     .open {
       position: absolute;
-      top: 9px;
+      top: 50%;
       left: 15px;
+      transform: translateY(-50%);
       cursor: pointer;
 
       i {

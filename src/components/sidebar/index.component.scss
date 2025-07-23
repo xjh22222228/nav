@@ -1,0 +1,129 @@
+@media (max-width: 768px) {
+  .sider-compnent {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: translateX(-100%);
+    width: 220px !important;
+    max-width: 220px !important;
+  }
+}
+
+:host {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100svh;
+  z-index: 32;
+}
+
+.sider-compnent {
+  height: 100svh;
+  background-color: #fff;
+  width: 200px;
+  display: block;
+  &.showSidebar {
+    transform: translateX(0);
+  }
+  .mask {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(3px);
+  }
+  ::ng-deep {
+    .ant-layout-sider-children {
+      display: flex;
+      flex-direction: column;
+    }
+    .ant-menu.ant-menu-inline-collapsed {
+      & > .ant-menu-submenu {
+        > .ant-menu-submenu-title {
+          padding: 0 !important;
+          text-align: center;
+        }
+      }
+      .sideicon {
+        margin-right: 0;
+      }
+    }
+  }
+  .collapse-wrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0 15px;
+    .collapseIcon {
+      display: block;
+      transform: rotate(-270deg);
+      &.active {
+        transform: rotate(-360deg);
+      }
+    }
+  }
+
+  .ant-menu-item {
+    padding-right: 40px;
+    padding-left: 38px !important;
+  }
+  .mobile-collapse {
+    position: absolute;
+    top: 50px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    box-shadow: 2px 0 8px #00000026;
+    background-color: #fff;
+    border-radius: 0 4px 4px 0;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .menu-title {
+    max-width: 130px;
+  }
+  .logo {
+    z-index: 11;
+    width: 100%;
+    background-color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    line-height: 70px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    img {
+      max-height: 50px;
+    }
+    .logo-img {
+      width: 50px;
+      height: 50px;
+      pointer-events: none;
+    }
+    .web-title {
+      font-weight: bold;
+      font-size: 20px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+  }
+  .sider {
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    flex: 1;
+    padding-bottom: 30px;
+  }
+}
+
+::ng-deep {
+  .ant-menu-title-content {
+    display: inline-flex;
+    align-items: center;
+  }
+}

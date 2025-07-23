@@ -41,6 +41,7 @@
       </nz-form-item>
       <ng-template #suffixButton>
         <button
+          *ngIf="isLogin"
           [disabled]="!title"
           [nzLoading]="translating"
           nz-button
@@ -243,6 +244,7 @@
       {{ $t('_cancel') }}
     </button>
     <button
+      *ngIf="isLogin"
       [disabled]="!desc"
       nz-button
       nzType="primary"

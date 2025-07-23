@@ -1,6 +1,6 @@
-<section class="app-page select-none">
-  <header class="header">
-    <div class="header-top">
+<section class="app-page select-none dark-bg">
+  <header class="header dark-bg-gary dark-shadow">
+    <div class="header-top dark-border-color">
       <img [src]="commonService.settings().favicon" class="logo" alt="logo" />
       <div class="open" [class.active]="open" (click)="handleToggleOpen()">
         <i></i>
@@ -25,15 +25,15 @@
     </nav>
   </header>
 
-  <app-search />
+  <app-search class="mt-2.5 flow-root" />
 
   <div class="wrapper" *ngIf="commonService.navs()[commonService.oneIndex]">
     <nav
-      class="children-nav"
+      class="children-nav dark-bg"
       *ngIf="commonService.navs()[commonService.oneIndex]?.nav?.length"
     >
       <span
-        class="tag"
+        class="tag dark-text"
         *ngFor="
           let item of commonService.navs()[commonService.oneIndex].nav;
           let i = index;
@@ -74,4 +74,8 @@
   </div>
 
   <app-footer />
+  <app-fixbar
+    (onCollapse)="commonService.onCollapseAll()"
+    [collapsed]="commonService.collapsed"
+  />
 </section>

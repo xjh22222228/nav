@@ -304,7 +304,7 @@
         nz-tooltip
       >
         <ng-template #titleTemplate let-thing>
-          <p>{{ dataSource.__name__ || dataSource.name }}</p>
+          <div>{{ dataSource.__name__ || dataSource.name }}</div>
           {{ dataSource.__desc__ || dataSource.desc }}
           <tag-list
             [data]="dataSource.tags"

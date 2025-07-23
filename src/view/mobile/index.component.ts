@@ -9,6 +9,7 @@ import { SearchComponent } from 'src/components/search/index.component'
 import { CardComponent } from 'src/components/card/index.component'
 import { FooterComponent } from 'src/components/footer/footer.component'
 import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.component'
+import { FixbarComponent } from 'src/components/fixbar/index.component'
 
 @Component({
   standalone: true,
@@ -18,6 +19,7 @@ import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.com
     CardComponent,
     FooterComponent,
     ToolbarTitleWebComponent,
+    FixbarComponent,
   ],
   selector: 'app-mobile',
   templateUrl: './index.component.html',

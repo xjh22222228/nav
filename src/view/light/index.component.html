@@ -16,10 +16,10 @@
           !componentMaxWidth,
       }"
     >
-      <nav
+      <div
         #parent
         *ngIf="commonService.navs().length"
-        class="top-nav dark-border-color dark-bg"
+        class="top-nav dark-border-color dark-bg hidden md:block"
       >
         <span
           #item
@@ -43,11 +43,11 @@
           [page]="commonService.oneIndex"
           (onClick)="commonService.handleClickClass($event)"
         />
-      </nav>
+      </div>
 
       <section class="index-section select-none dark-bg">
         <div
-          class="sidebar dark-bg dark-border-color auto-scrollbar"
+          class="sidebar dark-bg dark-border-color auto-scrollbar hidden md:block"
           *ngIf="
             commonService.navs()[commonService.oneIndex] &&
             commonService.navs()[commonService.oneIndex].nav.length > 1
@@ -138,6 +138,7 @@
     />
   </div>
 
+  <app-sidebar class="!h-[auto] md:hidden" />
   <app-footer [content]="commonService.settings().lightFooterHTML" />
   <app-fixbar
     (onCollapse)="commonService.onCollapseAll()"

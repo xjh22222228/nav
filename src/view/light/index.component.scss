@@ -27,6 +27,8 @@
   overflow: hidden;
   transition: 0.1s linear;
   border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
 
   .top-nav {
     padding: 10px 0;
@@ -64,9 +66,9 @@
 
 .index-section {
   position: relative;
-  height: calc(100% - 52px);
   overflow: hidden;
   display: flex;
+  flex: 1;
 
   // 侧边栏分类
   $sidebarWidth: 80px;

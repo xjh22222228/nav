@@ -25,6 +25,7 @@ import { ToolbarTitleWebComponent } from 'src/components/toolbar-title/index.com
 import { SideImagesComponent } from 'src/components/side-images/index.component'
 import { ClassTabsComponent } from 'src/components/class-tabs/index.component'
 import type { INavProps } from 'src/types'
+import { SidebarComponent } from 'src/components/sidebar/index.component'
 
 @Component({
   standalone: true,
@@ -42,6 +43,7 @@ import type { INavProps } from 'src/types'
     FixbarComponent,
     SideImagesComponent,
     ClassTabsComponent,
+    SidebarComponent,
   ],
   selector: 'app-light',
   templateUrl: './index.component.html',

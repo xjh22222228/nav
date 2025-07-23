@@ -34,7 +34,7 @@
 
   <app-search class="hidden search-sm" />
 
-  <nav #parent class="top-nav dark-border-color dark-bg">
+  <div #parent class="top-nav dark-border-color dark-bg hidden md:block">
     <span
       #item
       *ngFor="
@@ -57,9 +57,7 @@
       [page]="commonService.oneIndex"
       (onClick)="commonService.handleClickClass($event)"
     />
-  </nav>
-
-  <app-phone-class class="mb-2" />
+  </div>
 
   <div class="wrapper">
     <div
@@ -141,6 +139,7 @@
   </div>
 </div>
 
+<app-sidebar class="md:hidden" />
 <app-footer
   className="sim-footer"
   [content]="commonService.settings().simFooterHTML"
