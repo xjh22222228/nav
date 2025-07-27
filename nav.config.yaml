@@ -10,7 +10,7 @@
 # 仓库地址，填写 Fork 后的仓库地址，支持 Gitee / GitHub / GitLab
 # 作者 Gitee 仓库地址 https://gitee.com/xiejiahe/nav
 # 作者 GitLab 仓库地址 https://gitlab.com/xjh22222228/nav?projectId=68880543, projectId 是项目 ID，可在仓库页面中找到
-gitRepoUrl: https://github.com/xjh22222228/nav
+gitRepoUrl: https://github.com/yom298/x
 
 # Fork 部署分支
 branch: main
