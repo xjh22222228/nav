@@ -6,26 +6,55 @@
   (nzOnClose)="handleClose()"
   [nzFooter]="footerTpl"
 >
-  <form nz-form [formGroup]="validateForm" *nzDrawerContent>
-    <div formArrayName="items">
-      <div
-        *ngFor="let n of items.controls; let idx = index"
-        class="border-b border-solid mb-4"
-      >
-        <ng-container [formGroupName]="idx">
-          <nz-form-item>
-            <nz-form-label [nzSpan]="6">{{ $t('_title') }}</nz-form-label>
-            <nz-form-control [nzSpan]="18">
-              <input
-                formControlName="title"
-                type="text"
-                nz-input
-                maxlength="10"
-              />
-            </nz-form-control>
-          </nz-form-item>
+  <div *nzDrawerContent>
+    <button
+      *ngIf="holidays.length < 1"
+      class="!mb-4"
+      nz-button
+      nzType="primary"
+      [nzLoading]="loading"
+      (click)="getHoliday()"
+    >
+      {{ $t('_getHoliday') }}
+    </button>
 
-          <!-- <nz-form-item>
+    <nz-select
+      *ngIf="holidays.length > 0"
+      class="!w-full !mb-4"
+      nzMode="multiple"
+      nzAllowClear
+      [nzPlaceHolder]="$t('_addHoliday')"
+      [nzShowArrow]="true"
+      [(ngModel)]="holidayValue"
+      (ngModelChange)="handleHolidayChange($event)"
+    >
+      <nz-option
+        *ngFor="let item of holidays; let idx = index"
+        [nzLabel]="item.label"
+        [nzValue]="item"
+      ></nz-option>
+    </nz-select>
+
+    <form nz-form [formGroup]="validateForm">
+      <div formArrayName="items">
+        <div
+          *ngFor="let n of items.controls; let idx = index"
+          class="border-b border-solid mb-4"
+        >
+          <ng-container [formGroupName]="idx">
+            <nz-form-item>
+              <nz-form-label [nzSpan]="6">{{ $t('_title') }}</nz-form-label>
+              <nz-form-control [nzSpan]="18">
+                <input
+                  formControlName="title"
+                  type="text"
+                  nz-input
+                  maxlength="10"
+                />
+              </nz-form-control>
+            </nz-form-item>
+
+            <!-- <nz-form-item>
             <nz-form-label [nzSpan]="6">{{
               $t('_backgroundImage')
             }}</nz-form-label>
@@ -34,26 +63,40 @@
             </nz-form-control>
           </nz-form-item> -->
 
-          <nz-form-item>
-            <nz-form-label [nzSpan]="6">休息天数</nz-form-label>
-            <nz-form-control [nzSpan]="18">
-              <input formControlName="day" type="text" nz-input />
-            </nz-form-control>
-          </nz-form-item>
-          <nz-form-item>
-            <nz-form-label [nzSpan]="6">{{ $t('_date') }}</nz-form-label>
-            <nz-form-control [nzSpan]="18">
-              <nz-date-picker formControlName="date"></nz-date-picker>
-            </nz-form-control>
-          </nz-form-item>
-        </ng-container>
-      </div>
-    </div>
+            <nz-form-item>
+              <nz-form-label [nzSpan]="6">休息天数</nz-form-label>
+              <nz-form-control [nzSpan]="18">
+                <input formControlName="day" type="text" nz-input />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label [nzSpan]="6">{{ $t('_date') }}</nz-form-label>
+              <nz-form-control [nzSpan]="18">
+                <nz-date-picker
+                  formControlName="date"
+                  [nzAllowClear]="false"
+                ></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+          </ng-container>
 
-    <button class="mt-4" nz-button nzType="primary" (click)="handleAdd()">
-      {{ $t('_add') }}
-    </button>
-  </form>
+          <button
+            class="!mb-2.5"
+            nz-button
+            nzType="primary"
+            nzDanger
+            (click)="handleDel(idx)"
+          >
+            {{ $t('_del') }}
+          </button>
+        </div>
+      </div>
+
+      <button class="mt-4" nz-button nzType="primary" (click)="handleAdd()">
+        {{ $t('_add') }}
+      </button>
+    </form>
+  </div>
 
   <ng-template #footerTpl>
     <div style="float: right">

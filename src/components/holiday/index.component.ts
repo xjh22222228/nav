@@ -30,7 +30,7 @@ export class HolidayComponent {
   }
 
   private init() {
-    let items: any = {}
+    let items: any = []
     const now = dayjs(dayjs().format('YYYY-MM-DD'))
     if (this.data['items']) {
       items = [...this.data['items']]

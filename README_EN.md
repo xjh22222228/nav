@@ -137,14 +137,6 @@ Change the route to `system` to access, e.g., https://www.nav3.cn to https://www
 
 ## Upgrade
 
-#### Automatic
-
-For `Fork` users only
-
-[Install Pull here](https://github.com/apps/pull), updates will automatically create Pull Requests for your repository.
-
-#### Manual
-
 Clone your repository and execute:
 
 ```bash

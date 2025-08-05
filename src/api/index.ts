@@ -404,6 +404,12 @@ export function getNews(data: Record<string, any> = {}) {
   })
 }
 
+export function getHoliday() {
+  return httpNav.post('/api/holiday', {
+    date: Date.now(),
+  })
+}
+
 export function getCDN(path: string) {
   let _isGitee = isGitee
   let _isGItLab = isGitLab

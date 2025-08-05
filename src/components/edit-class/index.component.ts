@@ -123,12 +123,13 @@ export class EditClassComponent {
         params['nav'] = []
 
         const { oneIndex, twoIndex } = getClassById(id, -1)
+        // 非一级
         if (oneIndex !== -1 || twoIndex !== -1) {
           const ok = pushDataByAny(id, params)
           ok && this.message.success($t('_addSuccess'))
         } else {
           navs.update((prev) => {
-            prev.push(params as any)
+            prev.unshift(params as any)
             setNavs(prev)
             return prev
           })

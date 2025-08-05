@@ -342,6 +342,8 @@ const english: Record<string, any> = {
   _avaUpdate: 'Application updates available',
   _updateFailed: 'UpdateFailed',
   _carousel: 'Carousel',
+  _addHoliday: 'Select the festival to add',
+  _getHoliday: 'Get holiday',
 }
 
 export default english

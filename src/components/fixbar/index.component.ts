@@ -228,9 +228,7 @@ export class FixbarComponent {
       nzOnOk: async () => {
         await updateFileContent({
           message: 'update db',
-          content: JSON.stringify(
-            cleanWebAttrs(JSON.parse(JSON.stringify(navs()))),
-          ),
+          content: JSON.stringify(cleanWebAttrs(navs())),
           path: DB_PATH,
         })
         this.message.success($t('_syncSuccessTip'))

@@ -329,6 +329,8 @@ const zhCN: Record<string, any> = {
   _avaUpdate: '应用更新可用',
   _updateFailed: '更新失败',
   _carousel: '走马灯',
+  _addHoliday: '选择要添加的节日',
+  _getHoliday: '获取节日',
 }
 
 export default zhCN

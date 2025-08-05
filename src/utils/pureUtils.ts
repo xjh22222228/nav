@@ -34,6 +34,77 @@ export function removeTrailingSlashes(url: string | null | undefined): string {
   return url.replace(/\/+$/, '')
 }
 
+type WebProps = {
+  breadcrumb?: string[]
+}
+
+type DFSProps<T, F, C, C2> = {
+  navs: T
+  breadcrumb?: boolean
+  sort?: (a: any, b: any) => number
+  filter?: (data: F) => boolean
+  callback?: (data: C) => boolean | void
+  webCallback?: (data: C2, props: WebProps) => boolean | void
+}
+
+export function dfsNavs<
+  T extends any[],
+  F extends INavProps & IWebProps,
+  C extends INavProps = INavProps,
+  C2 extends IWebProps = IWebProps,
+>(props: DFSProps<T, F, C, C2>): T {
+  let cloneNavs = JSON.parse(JSON.stringify(props.navs)) as T
+  if (props.filter) {
+    cloneNavs = cloneNavs.filter(props.filter) as T
+  }
+  const breadcrumbMap = new Map<any, string[]>()
+  if (props.breadcrumb) {
+    cloneNavs.forEach((item: any) => {
+      breadcrumbMap.set(item, [item.title])
+    })
+  }
+  let stack = [...cloneNavs] as T
+  while (stack.length > 0) {
+    const item = stack.pop()
+    if (item) {
+      if (item.nav && Array.isArray(item.nav)) {
+        if (props.filter) {
+          item.nav = item.nav.filter(props.filter)
+        }
+        if (props.sort) {
+          item.nav.sort(props.sort)
+        }
+        if (props.breadcrumb) {
+          item.nav.forEach((navItem: any) => {
+            const currentBreadcrumb = breadcrumbMap.get(item) || []
+            const newBreadcrumb = [...currentBreadcrumb]
+            if (navItem.title) {
+              newBreadcrumb.push(navItem.title)
+            }
+            breadcrumbMap.set(navItem, newBreadcrumb)
+          })
+        }
+
+        stack.push(...item.nav)
+      }
+      if (item.title) {
+        const isBreak = props.callback?.(item)
+        if (isBreak) {
+          break
+        }
+      } else if (item.url) {
+        const breadcrumb = breadcrumbMap.get(item)
+        const isBreak = props.webCallback?.(item, { breadcrumb })
+        if (isBreak) {
+          break
+        }
+      }
+    }
+  }
+
+  return cloneNavs
+}
+
 export function filterLoginData(navs: any[], isLogin: boolean): INavProps[] {
   function filterOwn(item: INavProps) {
     if (item.ownVisible && !isLogin) {
@@ -41,56 +112,33 @@ export function filterLoginData(navs: any[], isLogin: boolean): INavProps[] {
     }
     return true
   }
-  navs = navs.filter(filterOwn)
-  for (let i = 0; i < navs.length; i++) {
-    const item = navs[i]
-    if (Array.isArray(item.nav)) {
-      item.nav = item.nav.filter(filterOwn)
-      for (let j = 0; j < item.nav.length; j++) {
-        const twoItem = item.nav[j]
-        if (Array.isArray(twoItem.nav)) {
-          twoItem.nav = twoItem.nav.filter(filterOwn)
-          for (let k = 0; k < twoItem.nav.length; k++) {
-            const threeItem = twoItem.nav[k]
-            if (Array.isArray(threeItem.nav)) {
-              threeItem.nav = threeItem.nav.filter(filterOwn)
-              for (let l = 0; l < threeItem.nav.length; l++) {
-                const web = threeItem.nav[l] as IWebProps
-                web.breadcrumb = [item.title, twoItem.title, threeItem.title]
-                web.tags ||= []
-              }
-            }
-          }
-        }
-      }
-    }
-  }
 
-  return navs
+  return dfsNavs({
+    navs,
+    breadcrumb: true,
+    filter: filterOwn,
+    webCallback(web: IWebProps, props: WebProps) {
+      web.tags ||= []
+      web.breadcrumb = props.breadcrumb
+    },
+  })
 }
 
-export function cleanWebAttrs(data: any) {
-  if (!Array.isArray(data)) {
-    return
-  }
-  data.forEach((item) => {
-    if (item.url) {
-      for (const k in item) {
+export function cleanWebAttrs(navs: any) {
+  return dfsNavs({
+    navs,
+    webCallback(web: IWebProps) {
+      for (const k in web) {
         const removeKeys = ['breadcrumb', '__name__', '__desc__']
         if (removeKeys.includes(k)) {
-          delete item[k]
+          delete web[k]
         }
       }
-      if (item.tags?.length === 0) {
-        delete item.tags
+      if (web.tags?.length === 0) {
+        delete web.tags
       }
-    }
-    if (Array.isArray(item.nav)) {
-      cleanWebAttrs(item.nav)
-    }
+    },
   })
-
-  return data
 }
 
 export function isNumber(v: any): boolean {

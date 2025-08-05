@@ -8,13 +8,14 @@ import { FormsModule } from '@angular/forms'
 import { $t } from 'src/locale'
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 import { NzButtonModule } from 'ng-zorro-antd/button'
-import type { INavProps } from 'src/types'
+import type { INavProps, IWebProps } from 'src/types'
 import { navs } from 'src/store'
 import { bookmarksExport } from 'src/api'
 import { saveAs } from 'file-saver'
 import { getAuthCode } from 'src/utils/user'
 import { NzSwitchModule } from 'ng-zorro-antd/switch'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
+import { dfsNavs } from 'src/utils/pureUtils'
 import LZString from 'lz-string'
 
 @Component({
@@ -44,35 +45,26 @@ export default class SystemBookmarkExportComponent {
     if (this.submitting) {
       return
     }
-    const navsData: INavProps = JSON.parse(JSON.stringify(navs()))
+    const navsData = dfsNavs({
+      navs: navs(),
+      callback: (data: INavProps) => {
+        for (const k in data) {
+          const keys = ['title', 'nav', 'icon']
+          if (!keys.includes(k)) {
+            delete data[k]
+          }
+        }
+      },
+      webCallback: (data: IWebProps) => {
+        for (const k in data) {
+          const keys = ['url', 'icon', 'name']
+          if (!keys.includes(k)) {
+            delete data[k]
+          }
+        }
+      },
+    })
 
-    function removeAttrs(data: any) {
-      if (!Array.isArray(data)) {
-        return
-      }
-      data.forEach((item) => {
-        if (item.title) {
-          for (const k in item) {
-            const keys = ['title', 'nav', 'icon']
-            if (!keys.includes(k)) {
-              delete item[k]
-            }
-          }
-        }
-        if (item.url) {
-          for (const k in item) {
-            const keys = ['url', 'icon', 'name']
-            if (!keys.includes(k)) {
-              delete item[k]
-            }
-          }
-        }
-        if (Array.isArray(item.nav)) {
-          removeAttrs(item.nav)
-        }
-      })
-    }
-    removeAttrs(navsData)
     this.submitting = true
     bookmarksExport({ data: LZString.compress(JSON.stringify(navsData)) })
       .then((res) => {
