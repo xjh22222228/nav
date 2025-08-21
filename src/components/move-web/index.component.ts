@@ -13,7 +13,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { NzSelectModule } from 'ng-zorro-antd/select'
-import { deleteWebByIds, deleteClassByIds } from 'src/utils/web'
+import { deleteByIds } from 'src/utils/web'
 import { getClassById } from 'src/utils'
 import { getTempId, isSelfDevelop } from 'src/utils/utils'
 import event from 'src/utils/mitt'
@@ -124,7 +124,7 @@ export class MoveWebComponent {
               delete item.rId
             }
           } else {
-            await deleteClassByIds([item.rId || id], !!item.rId)
+            await deleteByIds([item.rId || id], !!item.rId)
           }
           this.navs.update((prev) => {
             prev[oneIndex].nav.unshift(item)
@@ -155,7 +155,7 @@ export class MoveWebComponent {
               delete item.rId
             }
           } else {
-            await deleteClassByIds([item.rId || id], !!item.rId)
+            await deleteByIds([item.rId || id], !!item.rId)
           }
           this.navs.update((prev) => {
             prev[oneIndex].nav[twoIndex].nav.unshift(item)
@@ -189,7 +189,7 @@ export class MoveWebComponent {
               delete item.rId
             }
           } else {
-            await deleteWebByIds([item.rId || id], !!item.rId)
+            await deleteByIds([item.rId || id], !!item.rId)
           }
           this.navs.update((prev) => {
             prev[oneIndex].nav[twoIndex].nav[threeIndex].nav.unshift(item)

@@ -94,7 +94,7 @@ export function toggleCollapseAll(navs: INavProps[]): boolean {
   return collapsed
 }
 
-export async function deleteWebByIds(
+export async function deleteByIds(
   ids: number[],
   isDelRid = false,
 ): Promise<boolean> {
@@ -102,11 +102,9 @@ export async function deleteWebByIds(
   const navsData = dfsNavs({
     navs: navs(),
     filter: (w) => {
-      if (w.name) {
-        if (ids.includes(isDelRid ? (w.rId as number) : w.id)) {
-          hasDelete = true
-          return false
-        }
+      if (ids.includes(isDelRid ? (w.rId as number) : w.id)) {
+        hasDelete = true
+        return false
       }
       return true
     },
@@ -180,32 +178,6 @@ export function updateByClass(oldId: number, newData: any) {
   navs.set(navsData)
   setNavs(navsData)
   return ok
-}
-
-export async function deleteClassByIds(
-  ids: number[],
-  isDelRid = false,
-): Promise<boolean> {
-  let hasDelete = false
-
-  const navsData = dfsNavs({
-    navs: navs(),
-    filter: (w) => {
-      if (w.title) {
-        if (ids.includes(isDelRid ? (w['rId'] as number) : w.id)) {
-          hasDelete = true
-          return false
-        }
-      }
-      return true
-    },
-  })
-
-  if (hasDelete) {
-    navs.set(navsData)
-    await setNavs(navsData)
-  }
-  return hasDelete
 }
 
 export function pushDataByAny(parentId: number, data: any): boolean {

@@ -11,7 +11,7 @@ import { NzMessageService } from 'ng-zorro-antd/message'
 import event from 'src/utils/mitt'
 import { $t } from 'src/locale'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
-import { deleteWebByIds, deleteClassByIds } from 'src/utils/web'
+import { deleteByIds } from 'src/utils/web'
 
 interface Props {
   ids: number[]
@@ -69,9 +69,7 @@ export class DeleteModalComponent {
       isDelRid = true
     }
 
-    const ok = await (this.isClass
-      ? deleteClassByIds(this.ids, isDelRid)
-      : deleteWebByIds(this.ids, isDelRid))
+    const ok = await deleteByIds(this.ids, isDelRid)
     if (ok) {
       this.onOk?.()
       this.message.success($t('_delSuccess'))

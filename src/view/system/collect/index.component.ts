@@ -18,7 +18,7 @@ import { NzTableModule } from 'ng-zorro-antd/table'
 import { LogoComponent } from 'src/components/logo/logo.component'
 import { TagListComponent } from 'src/components/tag-list/index.component'
 import { ActionType } from 'src/types'
-import { deleteWebByIds, getWebById } from 'src/utils/web'
+import { deleteByIds, getWebById } from 'src/utils/web'
 import { JumpService } from 'src/services/jump'
 import event from 'src/utils/mitt'
 
@@ -227,7 +227,7 @@ export default class CollectComponent {
     this.modal.info({
       nzTitle: $t('_confirmDel'),
       nzOnOk: async () => {
-        if (await deleteWebByIds([data.id])) {
+        if (await deleteByIds([data.id])) {
           this.message.success($t('_delSuccess'))
         } else {
           this.message.error('Delete failed')

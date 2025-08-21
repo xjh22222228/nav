@@ -35,7 +35,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzSwitchModule } from 'ng-zorro-antd/switch'
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
+import { NzTooltipModule } from 'ng-zorro-antd/tooltip'
 import { LogoComponent } from 'src/components/logo/logo.component'
 import { TagListComponent } from 'src/components/tag-list/index.component'
 import { CommonService } from 'src/services/common'
@@ -47,7 +47,7 @@ import { cleanWebAttrs } from 'src/utils/pureUtils'
   standalone: true,
   imports: [
     CommonModule,
-    NzToolTipModule,
+    NzTooltipModule,
     FormsModule,
     ReactiveFormsModule,
     NzInputModule,
@@ -233,7 +233,7 @@ export default class WebpComponent {
     }
   }
 
-  handleReset() {
+  handleRestoreData() {
     this.modal.info({
       nzTitle: $t('_resetInitData'),
       nzContent: $t('_warnReset'),
