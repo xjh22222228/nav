@@ -147,52 +147,34 @@ export function getWebCount(navs: INavProps[]): WebCountResult {
   }
 }
 
-let maxWebId = 0
-let maxClassId = 0
-let maxWebRid = 0
+let maxId = 0
 
 function getMaxWebId(navs: any[]): void {
   dfsNavs({
     navs,
     callback(item: INavProps) {
-      if (item.id > maxClassId) {
-        maxClassId = item.id
+      if (item.id > maxId) {
+        maxId = item.id
       }
-      if (item['rId'] && item['rId'] > maxWebRid) {
-        maxWebRid = item['rId']
+      if (item['rId'] && item['rId'] > maxId) {
+        maxId = item['rId']
       }
     },
     webCallback(web: IWebProps) {
-      if (web.id > maxWebId) {
-        maxWebId = web.id
+      if (web.id > maxId) {
+        maxId = web.id
       }
-      if (web.rId && web.rId > maxWebRid) {
-        maxWebRid = web.rId
+      if (web.rId && web.rId > maxId) {
+        maxId = web.rId
       }
     },
   })
 }
 
-function incrementWebId(id: number | string): number {
+function incrementId(id: number | string): number {
   id = Number.parseInt(id as string)
   if (!id || id < 0) {
-    return ++maxWebId
-  }
-  return id
-}
-
-function incrementWebRId(id: number | string): number {
-  id = Number.parseInt(id as string)
-  if (id < 0) {
-    return ++maxWebRid
-  }
-  return id
-}
-
-function incrementClassId(id: number | string): number {
-  id = Number.parseInt(id as string)
-  if (!id || id < 0) {
-    return ++maxClassId
+    return ++maxId
   }
   return id
 }
@@ -217,9 +199,9 @@ export function setWebs(
     if (!item.ownVisible) {
       delete item.ownVisible
     }
-    item.id = incrementClassId(item.id)
+    item.id = incrementId(item.id)
     if (item.rId < 0) {
-      item.rId = incrementWebRId(item.rId)
+      item.rId = incrementId(item.rId)
     }
     item.icon = replaceJsdelivrCDN(item.icon, settings)
     item.nav ||= []
@@ -262,9 +244,9 @@ export function setWebs(
       return aIdx - bIdx
     },
     webCallback(webItem: IWebProps) {
-      webItem.id = incrementWebId(webItem.id)
+      webItem.id = incrementId(webItem.id)
       if (webItem.rId) {
-        webItem.rId = incrementWebRId(webItem.rId)
+        webItem.rId = incrementId(webItem.rId)
       }
       webItem.tags ||= []
       webItem.rate ??= 5
@@ -699,7 +681,8 @@ export async function writePWA(settings: ISettings, manifestPath: string) {
         fs.writeFileSync(manifestPath, JSON.stringify(manifestFile, null, 2))
       }
       if (settings.pwaIcon) {
-        let imageBuffer = Buffer.from([])
+        let imageBuffer: Buffer<ArrayBuffer> | Buffer<ArrayBufferLike> =
+          Buffer.from([])
         try {
           new URL(settings.pwaIcon)
           const res = await axios.get(settings.pwaIcon, {
@@ -709,7 +692,7 @@ export async function writePWA(settings: ISettings, manifestPath: string) {
         } catch {
           const imagePath = path.join(PATHS.uploadImage, '..', settings.pwaIcon)
           console.log('PWA icon path', imagePath)
-          imageBuffer = fs.readFileSync(imagePath)
+          imageBuffer = fs.readFileSync(imagePath) as any
         }
 
         const sharpImage = sharp(imageBuffer)

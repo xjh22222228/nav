@@ -27,13 +27,15 @@ export class SwiperComponent {
   constructor(public jumpService: JumpService) {}
 
   ngAfterViewInit(): void {
-    if (this.autoplay) {
-      this.autoPlay = true
-      document.addEventListener(
-        'visibilitychange',
-        this.handleVisibilityChange.bind(this),
-      )
-    }
+    setTimeout(() => {
+      if (this.autoplay) {
+        this.autoPlay = true
+        document.addEventListener(
+          'visibilitychange',
+          this.handleVisibilityChange.bind(this),
+        )
+      }
+    }, 0)
   }
 
   ngOnDestroy(): void {
